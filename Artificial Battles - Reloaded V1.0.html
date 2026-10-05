@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artificial Battles - Release V3.5</title>
+    <title>Artificial Battles: Reloaded V1.0</title>
     <style>
 /* Czcionka Nunito (SIL Open Font License 1.1) osadzona w pliku - gra działa w pełni offline */
 @font-face { font-family: 'Nunito'; font-style: normal; font-display: swap; font-weight: 200 1000;
@@ -395,110 +395,276 @@ button { font-family: inherit; }
 .loading-track { width: 340px; height: 10px; background: #05080c; border: 1px solid var(--gold-dim); border-radius: 6px; overflow: hidden; }
 #loading-bar { height: 100%; width: 0; background: linear-gradient(to right, #b98d2c, #f5dc9a); transition: width 0.1s; }
 
-/* ================= Menu główne ================= */
+/* ================= Menu główne (Reloaded V1.0) ================= */
+/* Panel boczny z logo i zakładkami, żywe tło (krajobraz z zamkiem - menu-bg), pływający pasek "Nowa bitwa" */
 
 #main-menu {
+    --m-card: rgba(13, 20, 32, 0.84);
+    --m-border: rgba(255, 255, 255, 0.08);
+    --m-border-2: rgba(255, 255, 255, 0.15);
+    --m-gold: #e9c46a;
+    --m-gold-2: #f6dfa2;
+    --m-ember: #ff9a5c;
+    --m-text-2: rgba(232, 238, 245, 0.74);
     position: absolute; inset: 0;
-    background: radial-gradient(circle at 70% 20%, #10405f 0%, #071728 55%, #030a13 100%);
-    display: flex; flex-direction: column;
+    display: grid; grid-template-columns: 284px minmax(0, 1fr);
+    background: #060a12;
     z-index: 100; color: #fff; overflow: hidden;
 }
-#menu-bg { position: absolute; inset: 0; pointer-events: none; }
+#menu-bg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
 #main-menu::before {
-    content: ''; position: absolute; inset: 0;
+    content: ''; position: absolute; inset: 0; z-index: 1;
     background: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
-    opacity: 0.05; pointer-events: none;
+    opacity: 0.045; pointer-events: none;
+}
+#main-menu::after {
+    content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse 80% 90% at 65% 45%, rgba(0, 0, 0, 0) 45%, rgba(2, 4, 9, 0.6) 100%);
 }
 
-.menu-top-bar {
-    position: relative; display: flex; align-items: flex-end; gap: 60px;
-    background: linear-gradient(to bottom, rgba(3, 10, 19, 0.92) 0%, rgba(3, 10, 19, 0.2) 100%);
-    padding: 22px 50px 0; box-sizing: border-box;
-    border-bottom: 1px solid var(--gold-dim);
-    z-index: 2;
+/* --- panel boczny --- */
+.menu-side {
+    position: relative; z-index: 3; min-height: 0;
+    display: flex; flex-direction: column; gap: 26px;
+    padding: 30px 18px 18px; box-sizing: border-box; overflow-y: auto;
+    background: linear-gradient(180deg, rgba(9, 14, 24, 0.84), rgba(5, 9, 16, 0.92));
+    border-right: 1px solid var(--m-border);
+    box-shadow: 1px 0 0 rgba(233, 196, 106, 0.07), 24px 0 60px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
 }
-.menu-logo { padding-bottom: 14px; }
+.menu-logo { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 6px; }
+.menu-emblem { width: 72px; height: 72px; margin-bottom: 12px; filter: drop-shadow(0 6px 18px rgba(233, 196, 106, 0.32)); }
 .menu-logo h1 {
-    font-size: 2.3rem; font-family: Georgia, serif; font-weight: normal; margin: 0; line-height: 1.05; letter-spacing: 5px;
-    background: linear-gradient(to bottom, #fff3c9, #dfb85e 60%, #9a7424);
+    margin: 0; font-family: Georgia, serif; font-weight: normal; font-size: 1.6rem; line-height: 1.1;
+    letter-spacing: 4px; padding-left: 4px; text-transform: uppercase;
+    background: linear-gradient(to bottom, #fff6d6, #e9c46a 58%, #a07a28);
     -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.menu-logo .version { font-size: 0.8rem; color: rgba(223, 184, 94, 0.7); margin: 4px 0 0; letter-spacing: 1px; }
-
-.menu-nav { display: flex; gap: 34px; }
-.menu-nav span {
-    font-size: 0.92rem; letter-spacing: 2px; color: rgba(255, 255, 255, 0.55);
-    cursor: pointer; text-transform: uppercase; padding: 0 2px 13px; border-bottom: 2px solid transparent;
-    transition: color 0.2s;
+.menu-logo h1 span { display: block; }
+.menu-reloaded {
+    display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 9px;
+    font-size: 0.74rem; font-weight: 900; letter-spacing: 0.55em; text-indent: 0.55em; text-transform: uppercase;
+    color: var(--m-ember); text-shadow: 0 0 14px rgba(255, 140, 70, 0.55);
 }
-.menu-nav span:hover { color: var(--gold); }
-.menu-nav span.active { color: var(--gold); border-bottom-color: var(--gold); }
+.menu-reloaded::before, .menu-reloaded::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(255, 154, 92, 0.75)); }
+.menu-reloaded::after { background: linear-gradient(270deg, transparent, rgba(255, 154, 92, 0.75)); }
+.menu-logo .version {
+    display: inline-flex; align-items: center; gap: 6px; margin: 13px 0 0; padding: 4px 12px; border-radius: 999px;
+    background: rgba(233, 196, 106, 0.09); border: 1px solid rgba(233, 196, 106, 0.32);
+    color: rgba(246, 223, 162, 0.85); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.4px;
+}
+.menu-logo .version b { color: #fff; font-weight: 900; }
 
-.menu-content { flex: 1; padding: 28px 50px; z-index: 2; overflow-y: auto; }
-.menu-pane { max-width: 1300px; }
-.play-grid { display: grid; grid-template-columns: minmax(380px, 450px) minmax(330px, 400px) minmax(300px, 1fr); gap: 24px; align-items: start; }
-@media (max-width: 1180px) { .play-grid { grid-template-columns: 1fr 1fr; } .menu-content { padding: 20px 24px; } .menu-top-bar { padding: 16px 24px 0; gap: 30px; } }
-@media (max-width: 800px) { .play-grid { grid-template-columns: 1fr !important; } .menu-nav { gap: 16px; } }
+.menu-nav { display: flex; flex-direction: column; gap: 3px; }
+.menu-nav span {
+    position: relative; display: flex; align-items: center; gap: 12px;
+    padding: 11px 14px; border-radius: 10px; border: 1px solid transparent; cursor: pointer;
+    color: rgba(232, 238, 245, 0.64); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.2px; white-space: nowrap;
+    transition: color 0.18s, background 0.18s, border-color 0.18s;
+}
+.menu-nav svg { width: 20px; height: 20px; flex-shrink: 0; opacity: 0.7; transition: opacity 0.18s, color 0.18s; }
+.menu-nav span:hover { color: #fff; background: rgba(255, 255, 255, 0.05); }
+.menu-nav span:hover svg { opacity: 1; }
+.menu-nav span:focus-visible { outline: none; border-color: rgba(233, 196, 106, 0.6); }
+.menu-nav span.active {
+    color: var(--m-gold-2); border-color: rgba(233, 196, 106, 0.2);
+    background: linear-gradient(90deg, rgba(233, 196, 106, 0.17), rgba(233, 196, 106, 0.03));
+}
+.menu-nav span.active svg { opacity: 1; color: var(--m-gold); }
+.menu-nav span.active::before {
+    content: ''; position: absolute; left: -1px; top: 9px; bottom: 9px; width: 3px; border-radius: 3px;
+    background: var(--m-gold); box-shadow: 0 0 10px var(--m-gold);
+}
+.menu-nav .nav-sep { height: 1px; margin: 8px 8px; background: var(--m-border); }
+.menu-nav .mp-beta { margin-left: auto; vertical-align: 0; }
 
+.menu-side-foot {
+    margin-top: auto; display: flex; flex-direction: column; gap: 10px;
+    font-size: 0.72rem; color: rgba(232, 238, 245, 0.4); line-height: 1.4;
+}
+.engine-badge {
+    display: flex; align-items: center; gap: 11px; padding: 10px 12px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255, 154, 92, 0.1), rgba(233, 196, 106, 0.04)); border: 1px solid var(--m-border);
+}
+.engine-badge svg { width: 30px; height: 30px; flex-shrink: 0; color: var(--m-gold); }
+.engine-badge b { display: block; color: #fff; font-size: 0.78rem; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; }
+.engine-badge small { color: rgba(232, 238, 245, 0.5); font-size: 0.7rem; }
+.menu-side-foot p { margin: 0 4px; }
+
+/* --- treść --- */
+.menu-main { position: relative; z-index: 2; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.menu-content {
+    flex: 1; min-height: 0; overflow-y: auto; padding: 0 44px 44px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14px); mask-image: linear-gradient(to bottom, transparent 0, #000 14px);
+}
+.menu-pane { max-width: 1340px; padding-top: 34px; animation: pane-in 0.35s ease both; }
+#pane-play { padding-top: 14px; }
+@keyframes pane-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .menu-pane { animation: none; } }
+
+.eyebrow { font-size: 0.7rem; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: var(--m-ember); }
+.pane-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 18px 24px; flex-wrap: wrap; margin-bottom: 22px; }
+.pane-head h2 { margin: 4px 0 0; font-family: Georgia, serif; font-weight: normal; font-size: 2rem; letter-spacing: 0.5px; color: #fff; line-height: 1.15; }
+.pane-head p { margin: 6px 0 0; color: var(--m-text-2); font-size: 0.92rem; max-width: 660px; line-height: 1.5; }
+
+/* pasek "Nowa bitwa" - przyklejony u góry: start i podsumowanie meczu zawsze pod ręką */
+.play-hero {
+    position: sticky; top: 14px; z-index: 6; overflow: hidden;
+    display: flex; align-items: center; gap: 14px 28px; flex-wrap: wrap;
+    margin-bottom: 22px; padding: 18px 20px 18px 26px; border-radius: 18px;
+    background: linear-gradient(110deg, #18212f, #0d131d);
+    border: 1px solid var(--m-border-2);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.play-hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(circle at 92% 50%, rgba(233, 196, 106, 0.2), rgba(233, 196, 106, 0) 42%),
+                radial-gradient(circle at 0% 0%, rgba(255, 154, 92, 0.12), rgba(255, 154, 92, 0) 40%);
+}
+.play-hero > * { position: relative; }
+.hero-text { flex: 1; min-width: 280px; }
+.hero-text h2 { margin: 3px 0 10px; font-family: Georgia, serif; font-weight: normal; font-size: 1.9rem; line-height: 1.1; color: #fff; letter-spacing: 0.5px; }
+.match-summary { display: flex; flex-wrap: wrap; gap: 6px; }
+.sum-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06); border: 1px solid var(--m-border);
+    font-size: 0.78rem; font-weight: 700; color: rgba(232, 238, 245, 0.9); white-space: nowrap;
+}
+.sum-chip small { color: rgba(232, 238, 245, 0.5); font-weight: 700; font-size: 0.72rem; }
+.sum-chip.gold { background: rgba(233, 196, 106, 0.12); border-color: rgba(233, 196, 106, 0.35); color: var(--m-gold-2); }
+.sum-chip.warn { background: rgba(255, 90, 77, 0.12); border-color: rgba(255, 90, 77, 0.5); color: #ffc4bd; }
+.sum-teams { gap: 8px; }
+.sum-teams em { font-style: normal; font-size: 0.68rem; font-weight: 900; letter-spacing: 1px; color: rgba(232, 238, 245, 0.45); text-transform: uppercase; }
+.sum-team { display: inline-flex; gap: 3px; }
+.sum-team i { width: 11px; height: 11px; border-radius: 50%; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45), 0 0 6px rgba(255, 255, 255, 0.15); }
+.sum-team i.me { box-shadow: 0 0 0 2px #fff, 0 0 8px rgba(255, 255, 255, 0.5); }
+.hero-actions { display: flex; align-items: center; gap: 12px; }
+#menu-error { display: none; flex-basis: 100%; color: #ffc4bd; font-weight: 700; font-size: 0.86rem; padding: 8px 12px; border-radius: 10px; background: rgba(255, 90, 77, 0.12); border: 1px solid rgba(255, 90, 77, 0.45); }
+
+#main-menu .action-btn { border-radius: 10px; }
+#main-menu .action-btn:not(.gold):not(.outline) { background: linear-gradient(180deg, #1c7cc0, #0b5288); border-color: #3aa0e8; box-shadow: 0 6px 18px rgba(20, 110, 190, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.18); }
+#main-menu .action-btn.gold { background: linear-gradient(180deg, #f6d27c, #d9a63d 55%, #b9862a); border-color: #ffe7a6; box-shadow: 0 8px 22px rgba(233, 170, 60, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.55); }
+#start-btn.cta {
+    position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 12px;
+    padding: 17px 30px 17px 26px; font-size: 1.04rem; letter-spacing: 2px; border-radius: 14px;
+    box-shadow: 0 12px 32px rgba(233, 170, 60, 0.38), 0 0 0 4px rgba(233, 196, 106, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: filter 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+#start-btn.cta svg { width: 18px; height: 18px; }
+#start-btn.cta:hover { transform: translateY(-1px); box-shadow: 0 16px 38px rgba(233, 170, 60, 0.5), 0 0 0 5px rgba(233, 196, 106, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.6); }
+#start-btn.cta::after {
+    content: ''; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; pointer-events: none;
+    background: linear-gradient(100deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+    transform: skewX(-20deg); animation: cta-shine 4.5s ease-in-out infinite;
+}
+@keyframes cta-shine { 0%, 70% { left: -60%; } 100% { left: 130%; } }
+@media (prefers-reduced-motion: reduce) { #start-btn.cta::after { animation: none; display: none; } }
+
+.play-grid { display: grid; grid-template-columns: minmax(380px, 450px) minmax(330px, 410px) minmax(300px, 1fr); gap: 22px; align-items: start; }
+.play-grid > * { min-width: 0; }
+@media (max-width: 1280px) { .play-grid { grid-template-columns: 1fr 1fr; } .menu-content { padding: 0 28px 32px; } }
+@media (max-width: 900px) {
+    #main-menu { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+    .menu-side { flex-direction: row; align-items: center; gap: 16px; padding: 10px 16px; overflow-x: auto; overflow-y: hidden; border-right: 0; border-bottom: 1px solid var(--m-border); }
+    .menu-logo { flex-direction: row; gap: 10px; padding: 0; text-align: left; flex-shrink: 0; }
+    .menu-emblem { width: 38px; height: 38px; margin: 0; }
+    .menu-logo h1 { font-size: 1rem; letter-spacing: 2px; }
+    .menu-logo h1 span { display: inline; }
+    .menu-reloaded { margin-top: 3px; font-size: 0.6rem; }
+    .menu-reloaded::before, .menu-reloaded::after, .menu-logo .version, .menu-side-foot, .menu-nav .nav-sep { display: none; }
+    .menu-nav { flex-direction: row; gap: 2px; }
+    .menu-nav span { padding: 9px 11px; font-size: 0.86rem; }
+    .menu-nav span.active::before { left: 12px; right: 12px; top: auto; bottom: -1px; width: auto; height: 2px; }
+    .menu-content { padding: 0 16px 24px; }
+    .play-hero { padding: 14px 16px; }
+}
+@media (max-width: 800px) { .play-grid { grid-template-columns: 1fr !important; } .codex { grid-template-columns: 1fr !important; } .nation-head { flex-wrap: wrap; } .start-pick { flex-wrap: wrap; } }
+
+/* --- karty --- */
 .menu-card {
-    background: rgba(9, 28, 46, 0.86); border: 1px solid #1a4568; border-radius: 6px;
-    padding: 20px 22px; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(180deg, rgba(17, 25, 38, 0.93), rgba(11, 17, 27, 0.93));
+    border: 1px solid var(--m-border); border-radius: 16px;
+    padding: 22px 22px; box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.04);
     display: flex; flex-direction: column; gap: 14px;
 }
-.menu-card h2 { margin: 0; font-family: Georgia, serif; color: var(--gold); font-size: 1.35rem; font-weight: normal; letter-spacing: 1px; }
-.menu-card h3 { margin: 0 0 6px; font-family: Georgia, serif; color: var(--gold); font-size: 1.05rem; font-weight: normal; }
-.menu-card p, .menu-card li { margin: 0; color: rgba(255, 255, 255, 0.82); line-height: 1.55; font-size: 0.92rem; }
+.menu-card h2 { margin: 0; font-family: Georgia, serif; color: #f6e6bd; font-size: 1.3rem; font-weight: normal; letter-spacing: 0.4px; line-height: 1.3; }
+.menu-card h3 { margin: 4px 0 6px; font-family: Georgia, serif; color: var(--m-gold); font-size: 1.05rem; font-weight: normal; }
+.menu-card p, .menu-card li { margin: 0; color: rgba(232, 238, 245, 0.8); line-height: 1.6; font-size: 0.92rem; }
 .menu-card ul { margin: 0; padding-left: 18px; }
+.menu-card li::marker { color: var(--m-gold); }
 .menu-card b { color: #fff; }
-.menu-card kbd {
-    display: inline-block; padding: 0 6px; border-radius: 4px; font-family: inherit; font-size: 0.8rem; font-weight: 900;
-    background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.25); color: var(--gold);
+.card-ico {
+    display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; margin-right: 11px; vertical-align: -7px;
+    border-radius: 9px; color: var(--m-gold); background: rgba(233, 196, 106, 0.1); border: 1px solid rgba(233, 196, 106, 0.28);
 }
-.opt-label { color: #fff; font-size: 0.88rem; display: flex; align-items: center; gap: 8px; }
+.card-ico svg { width: 18px; height: 18px; }
+.menu-card kbd, .tutorial-box kbd {
+    display: inline-block; min-width: 1.1em; text-align: center; margin: 1px 1px; padding: 0 6px; border-radius: 5px;
+    font-family: inherit; font-size: 0.78rem; font-weight: 900; line-height: 1.55; color: #f6e3b4;
+    background: linear-gradient(180deg, #2a3548, #192231); border: 1px solid rgba(255, 255, 255, 0.16); border-bottom-width: 2px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+.opt-label { color: rgba(232, 238, 245, 0.56); font-size: 0.7rem; font-weight: 900; letter-spacing: 1.6px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
 .swatch { width: 12px; height: 12px; border-radius: 50%; display: inline-block; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5); }
 
-.radio-group { display: grid; gap: 5px; margin-top: 6px; }
+/* przełączniki segmentowe (rozmiar mapy, kraina, poziom AI...) */
+.radio-group {
+    position: relative; display: grid; gap: 3px; margin-top: 7px; padding: 3px; border-radius: 11px;
+    background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.07); box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
+}
 .radio-group.c2 { grid-template-columns: repeat(2, 1fr); }
 .radio-group.c3 { grid-template-columns: repeat(3, 1fr); }
 .radio-group.c4 { grid-template-columns: repeat(4, 1fr); }
-.radio-group.c5 { grid-template-columns: repeat(5, 1fr); }
-.radio-group.c5 label { font-size: 0.78rem; padding: 7px 2px; }
-.radio-group input[type="radio"] { display: none; }
+.radio-group.c5 { grid-template-columns: repeat(5, auto); }
+.radio-group.c5 label { font-size: 0.76rem; padding: 7px 1px; }
+.radio-group input[type="radio"] { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
 .radio-group label {
-    text-align: center; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 7px 4px; border-radius: 4px; cursor: pointer; font-size: 0.84rem; transition: all 0.15s;
+    text-align: center; background: transparent; border: 1px solid transparent; color: rgba(232, 238, 245, 0.7);
+    padding: 7px 3px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; font-weight: 600; letter-spacing: -0.1px; transition: all 0.15s;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
+.radio-group label:hover { background: rgba(255, 255, 255, 0.07); color: #fff; }
 .radio-group input[type="radio"]:checked + label {
-    background: #004c7a; border-color: var(--gold); color: var(--gold); font-weight: bold; box-shadow: 0 0 8px rgba(223, 184, 94, 0.35);
+    background: linear-gradient(180deg, rgba(233, 196, 106, 0.3), rgba(233, 196, 106, 0.14)); border-color: rgba(233, 196, 106, 0.7);
+    color: #ffe7a8; font-weight: 800; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 0 12px rgba(233, 196, 106, 0.2);
 }
-.radio-group label:hover { background: rgba(255, 255, 255, 0.18); }
-.nation-row { padding: 9px 10px 10px; border-radius: 6px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08); }
-.nation-row.off { opacity: 0.62; }
+.radio-group input[type="radio"]:focus-visible + label { outline: 2px solid rgba(255, 255, 255, 0.7); outline-offset: -2px; }
+
+/* nacje */
+.nation-row {
+    position: relative; overflow: hidden; padding: 12px 14px 12px 17px; border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035); border: 1px solid var(--m-border); transition: border-color 0.15s, opacity 0.15s;
+}
+.nation-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--nc, #8b97a5); box-shadow: 0 0 14px var(--nc, transparent); }
+.nation-row.me { background: linear-gradient(90deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)); border-color: var(--m-border-2); }
+.nation-row:hover { border-color: var(--m-border-2); }
+.nation-row.off { opacity: 0.58; }
+.nation-row.off::before { background: rgba(255, 255, 255, 0.16); box-shadow: none; }
 .nation-row + .nation-row { margin-top: 8px; }
-.nation-head { display: flex; align-items: center; gap: 8px; color: #fff; font-size: 0.9rem; font-weight: 700; }
+.nation-head { display: flex; align-items: center; gap: 8px; color: #fff; font-size: 0.92rem; font-weight: 800; }
 .nation-head .swatch { width: 14px; height: 14px; }
 .nation-head .nation-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.team-pick { display: flex; align-items: center; gap: 4px; font-size: 0.74rem; color: var(--muted); font-weight: 400; }
+.team-pick { display: flex; align-items: center; gap: 4px; font-size: 0.7rem; color: rgba(232, 238, 245, 0.5); font-weight: 700; letter-spacing: 0.3px; }
 .team-pick button {
-    width: 24px; height: 22px; padding: 0; border-radius: 11px; cursor: pointer; font-weight: 900; font-size: 0.76rem;
-    background: rgba(255, 255, 255, 0.08); color: #c6d0db; border: 1px solid rgba(255, 255, 255, 0.2); transition: all 0.12s;
+    width: 25px; height: 23px; padding: 0; border-radius: 12px; cursor: pointer; font-weight: 900; font-size: 0.76rem;
+    background: rgba(255, 255, 255, 0.06); color: #c6d0db; border: 1px solid rgba(255, 255, 255, 0.16); transition: all 0.12s;
 }
-.team-pick button:hover { border-color: var(--gold); }
-.team-pick button.on.t1 { background: #e8c56b; color: #10161d; border-color: #fff; }
-.team-pick button.on.t2 { background: #6fc3ff; color: #10161d; border-color: #fff; }
-.team-pick button.on.t3 { background: #ff9ac4; color: #10161d; border-color: #fff; }
-.team-pick button.on.t4 { background: #a6e36a; color: #10161d; border-color: #fff; }
-.color-pick { display: flex; gap: 7px; margin-top: 8px; align-items: center; }
-.color-pick span { font-size: 0.78rem; color: var(--muted); margin-right: 2px; }
-.color-pick button { width: 24px; height: 24px; border-radius: 50%; padding: 0; cursor: pointer; border: 2px solid rgba(0, 0, 0, 0.5); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25); transition: transform 0.1s; }
+.team-pick button:hover { border-color: var(--m-gold); color: #fff; }
+.team-pick button.on.t1 { background: #e8c56b; color: #10161d; border-color: #fff; box-shadow: 0 0 10px rgba(232, 197, 107, 0.5); }
+.team-pick button.on.t2 { background: #6fc3ff; color: #10161d; border-color: #fff; box-shadow: 0 0 10px rgba(111, 195, 255, 0.5); }
+.team-pick button.on.t3 { background: #ff9ac4; color: #10161d; border-color: #fff; box-shadow: 0 0 10px rgba(255, 154, 196, 0.5); }
+.team-pick button.on.t4 { background: #a6e36a; color: #10161d; border-color: #fff; box-shadow: 0 0 10px rgba(166, 227, 106, 0.5); }
+.color-pick { display: flex; gap: 7px; margin-top: 10px; align-items: center; flex-wrap: wrap; }
+.color-pick span { font-size: 0.7rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: rgba(232, 238, 245, 0.5); margin-right: 3px; }
+.color-pick button { width: 24px; height: 24px; border-radius: 50%; padding: 0; cursor: pointer; border: 2px solid rgba(0, 0, 0, 0.45); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.22); transition: transform 0.12s, box-shadow 0.12s; }
 .color-pick button:hover { transform: scale(1.15); }
-.color-pick button.on { box-shadow: 0 0 0 2px #fff, 0 0 10px rgba(255, 255, 255, 0.6); transform: scale(1.12); }
-.start-pick { display: flex; gap: 10px; margin-top: 9px; align-items: center; }
-.start-pick > span { font-size: 0.78rem; color: var(--muted); }
+.color-pick button.on { box-shadow: 0 0 0 2px #fff, 0 0 12px rgba(255, 255, 255, 0.55); transform: scale(1.12); }
+.start-pick { display: flex; gap: 10px; margin-top: 10px; align-items: center; }
+.start-pick > span { font-size: 0.7rem; font-weight: 900; letter-spacing: 1px; text-transform: uppercase; color: rgba(232, 238, 245, 0.5); }
 .start-map {
-    position: relative; width: 52px; height: 52px; flex-shrink: 0; border-radius: 5px;
-    background: linear-gradient(135deg, rgba(92, 150, 84, 0.34), rgba(40, 84, 58, 0.34));
-    border: 1px solid rgba(255, 255, 255, 0.28); box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.45);
+    position: relative; width: 54px; height: 54px; flex-shrink: 0; border-radius: 9px;
+    background: radial-gradient(circle at 60% 55%, rgba(70, 140, 190, 0.45) 0 16%, rgba(0, 0, 0, 0) 17%), linear-gradient(135deg, rgba(98, 158, 88, 0.42), rgba(38, 82, 56, 0.42));
+    border: 1px solid rgba(255, 255, 255, 0.24); box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .start-map button {
     position: absolute; width: 16px; height: 16px; padding: 0; border-radius: 50%; cursor: pointer;
@@ -510,15 +676,25 @@ button { font-family: inherit; }
 .start-map .c-bl { left: 3px; bottom: 3px; } .start-map .c-br { right: 3px; bottom: 3px; }
 .start-map .c-random { left: 50%; top: 50%; margin: -8px 0 0 -8px; font-size: 0.7rem; font-weight: 900; line-height: 14px; color: #dbe3ec; }
 .start-map .c-random.on { color: #10161d; }
-.start-pick em { font-style: normal; font-size: 0.84rem; font-weight: 700; color: #fff; }
-.diff-hint { font-size: 0.74rem; color: var(--muted); line-height: 1.35; margin-top: 6px; }
+.start-pick em { font-style: normal; font-size: 0.86rem; font-weight: 800; color: #fff; }
+.diff-hint { font-size: 0.74rem; color: rgba(232, 238, 245, 0.55); line-height: 1.4; margin-top: 7px; }
 .preset-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.mini-btn { padding: 5px 9px; font-size: 0.76rem; font-weight: 700; cursor: pointer; border-radius: 4px; background: rgba(255, 255, 255, 0.08); color: #dbe3ec; border: 1px solid rgba(255, 255, 255, 0.18); }
-.mini-btn:hover { background: rgba(255, 255, 255, 0.18); border-color: var(--gold-dim); }
-.menu-note { font-size: 0.78rem !important; color: var(--muted) !important; line-height: 1.4 !important; }
-.tutorial-box { display: flex; gap: 14px; align-items: center; padding: 12px 14px; border-radius: 6px; background: rgba(223, 184, 94, 0.08); border: 1px solid rgba(223, 184, 94, 0.35); font-size: 0.86rem; line-height: 1.45; }
-.tutorial-box span { color: rgba(255, 255, 255, 0.75); font-size: 0.82rem; }
+.mini-btn {
+    padding: 6px 12px; font-size: 0.76rem; font-weight: 800; cursor: pointer; border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06); color: #dbe3ec; border: 1px solid rgba(255, 255, 255, 0.14); transition: all 0.15s;
+}
+.mini-btn:hover { background: rgba(233, 196, 106, 0.14); border-color: rgba(233, 196, 106, 0.55); color: #fff; }
+.menu-note { font-size: 0.78rem !important; color: rgba(232, 238, 245, 0.52) !important; line-height: 1.45 !important; }
+.tutorial-box {
+    display: flex; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 12px; font-size: 0.86rem; line-height: 1.45;
+    background: linear-gradient(135deg, rgba(255, 154, 92, 0.12), rgba(233, 196, 106, 0.05)); border: 1px solid rgba(233, 196, 106, 0.32);
+}
+.tutorial-box span { color: rgba(232, 238, 245, 0.74); font-size: 0.82rem; }
+.tutorial-box { flex-wrap: wrap; }
+.tutorial-box > div { flex: 1 1 180px; }
 .tutorial-box button { flex-shrink: 0; }
+#match-options { display: flex; flex-direction: column; gap: 14px; }
+#match-options .reveal-row { padding: 0 4px; }
 .check { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; cursor: pointer; }
 .check input { accent-color: var(--gold); width: 16px; height: 16px; }
 /* V3.5: warunki zwycięstwa i pora dnia - kafelki z ikonami i przełącznikami (menu i poczekalnia gry wieloosobowej) */
@@ -581,19 +757,30 @@ button { font-family: inherit; }
 .reveal-row input:checked ~ .win-switch { background: #8a6a22; border-color: var(--gold); }
 .reveal-row input:checked ~ .win-switch::after { transform: translateX(16px); background: #fff3cf; }
 .reveal-row small { color: var(--muted); font-size: 0.74rem; }
-#menu-error { display: none; color: #ff8a7a; font-weight: 700; font-size: 0.86rem; }
-#start-btn { font-size: 1.05rem; padding: 15px; }
+.win-tile, .sky-pick label { border-radius: 10px; }
 
-.codex { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 12px; }
-.codex-card {
-    display: flex; gap: 12px; padding: 12px 14px;
-    background: rgba(9, 28, 46, 0.86); border: 1px solid #1a4568; border-radius: 6px;
+/* encyklopedia: jednostki i budynki (z filtrem er) */
+.era-filter { display: flex; gap: 3px; padding: 3px; border-radius: 11px; background: rgba(0, 0, 0, 0.32); border: 1px solid rgba(255, 255, 255, 0.07); flex-wrap: wrap; }
+.era-filter button {
+    padding: 7px 13px; border-radius: 8px; border: 1px solid transparent; background: transparent; cursor: pointer;
+    color: rgba(232, 238, 245, 0.7); font-size: 0.8rem; font-weight: 800; transition: all 0.15s;
 }
-.codex-icon { width: 60px; height: 60px; flex-shrink: 0; border-radius: 6px; border: 1px solid var(--gold-dim); background: radial-gradient(circle at 50% 40%, #4f8f4a 0%, #2e5a30 100%); }
-.codex-name { font-family: Georgia, serif; color: var(--gold); font-size: 1.02rem; }
+.era-filter button:hover { color: #fff; background: rgba(255, 255, 255, 0.07); }
+.era-filter button.on { color: #ffe7a8; border-color: rgba(233, 196, 106, 0.7); background: linear-gradient(180deg, rgba(233, 196, 106, 0.3), rgba(233, 196, 106, 0.14)); }
+.codex { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 14px; }
+.codex[data-era="1"] .codex-card:not([data-age="1"]), .codex[data-era="2"] .codex-card:not([data-age="2"]),
+.codex[data-era="3"] .codex-card:not([data-age="3"]), .codex[data-era="4"] .codex-card:not([data-age="4"]) { display: none; }
+.codex-card {
+    display: flex; gap: 14px; padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(17, 25, 38, 0.93), rgba(11, 17, 27, 0.93)); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px;
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3); transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+}
+.codex-card:hover { transform: translateY(-2px); border-color: rgba(233, 196, 106, 0.35); box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45); }
+.codex-icon { width: 62px; height: 62px; flex-shrink: 0; border-radius: 12px; border: 1px solid rgba(233, 196, 106, 0.4); background: radial-gradient(circle at 50% 40%, #4f8f4a 0%, #2e5a30 100%); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3); }
+.codex-name { font-family: Georgia, serif; color: #f6e6bd; font-size: 1.06rem; }
 .codex-meta { margin: 3px 0 5px; font-size: 0.84rem; }
 .codex-meta .at { color: var(--muted); font-size: 0.78rem; }
-.codex-desc { font-size: 0.8rem; color: #b9c5d2; line-height: 1.35; margin-top: 5px; }
+.codex-desc { font-size: 0.8rem; color: #b9c5d2; line-height: 1.4; margin-top: 6px; }
 .codex-extra { font-size: 0.74rem; color: var(--muted); margin-top: 4px; }
 .codex-new { font-family: 'Nunito', sans-serif; font-size: 0.62rem; font-weight: 900; padding: 1px 6px; border-radius: 9px; vertical-align: 2px; margin-left: 4px; background: #7a2f2f; color: #ffd0c8; letter-spacing: 0.5px; }
 .era { font-family: 'Nunito', sans-serif; font-size: 0.66rem; font-weight: 900; padding: 1px 7px; border-radius: 9px; vertical-align: 2px; margin-left: 4px; letter-spacing: 0.5px; }
@@ -601,12 +788,8 @@ button { font-family: inherit; }
 .era2 { background: #3a3f66; color: #b9c2ff; }
 .era3 { background: #5a3f16; color: #ffd98a; }
 .era4 { background: #5c2233; color: #ffb9c6; }
-
-.menu-bottom-bar {
-    height: 40px; background: rgba(3, 10, 19, 0.9); border-top: 1px solid #1a4568;
-    display: flex; align-items: center; padding: 0 50px; z-index: 2;
-    color: rgba(255, 255, 255, 0.35); font-size: 0.78rem; justify-content: space-between;
-}
+.menu-card.news-new { border-color: rgba(233, 196, 106, 0.42); background: linear-gradient(135deg, rgba(48, 36, 18, 0.9), rgba(13, 20, 32, 0.88) 55%); box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 30px rgba(233, 196, 106, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.06); }
+.menu-card.news-new .eyebrow { margin-bottom: -8px; }
 
 /* ================= Gra wieloosobowa ================= */
 .mp-wrap { display: flex; flex-direction: column; gap: 18px; max-width: 1180px; }
@@ -625,7 +808,7 @@ button { font-family: inherit; }
 .menu-nav .mp-beta { vertical-align: 2px; }
 
 /* pasek kroków */
-.mp-steps { display: flex; align-items: center; gap: 0; background: rgba(3, 10, 19, 0.55); border: 1px solid #1a4568; border-radius: 6px; padding: 10px 16px; }
+.mp-steps { display: flex; align-items: center; gap: 0; background: linear-gradient(110deg, #18212f, #0d131d); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 14px; padding: 10px 16px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35); }
 .mp-step { display: flex; align-items: center; gap: 10px; color: rgba(255, 255, 255, 0.45); font-size: 0.9rem; font-weight: 700; white-space: nowrap; }
 .mp-step i { font-style: normal; width: 28px; height: 28px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; border: 2px solid rgba(255, 255, 255, 0.3); font-weight: 900; font-size: 0.86rem; flex-shrink: 0; }
 .mp-step.on { color: #fff; }
@@ -732,29 +915,64 @@ details.mp-more[open] summary { margin-bottom: 8px; }
     <div id="game-container">
         <div id="main-menu">
             <canvas id="menu-bg"></canvas>
-            <div class="menu-top-bar">
+            <aside class="menu-side">
                 <div class="menu-logo">
-                    <h1>Artificial Battles</h1>
-                    <p class="version">Release V3.5 by Conrad3k</p>
+                    <svg class="menu-emblem" viewBox="0 0 64 64" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="emb-gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6d6"/><stop offset="0.55" stop-color="#e9c46a"/><stop offset="1" stop-color="#9a7424"/></linearGradient>
+                            <radialGradient id="emb-fill" cx="0.5" cy="0.35" r="0.7"><stop offset="0" stop-color="#26344c"/><stop offset="1" stop-color="#0b111c"/></radialGradient>
+                        </defs>
+                        <path d="M32 4 L54 12 V30 C54 44 44 54 32 60 C20 54 10 44 10 30 V12 Z" fill="url(#emb-fill)" stroke="url(#emb-gold)" stroke-width="2.6" stroke-linejoin="round"/>
+                        <path d="M32 9.5 L49 15.8 V30 C49 41 41.5 49.5 32 54.5" fill="none" stroke="rgba(233,196,106,0.25)" stroke-width="1"/>
+                        <g stroke="url(#emb-gold)" stroke-width="3" stroke-linecap="round" fill="none">
+                            <path d="M22 16 L40 34"/><path d="M36 38 L44 30"/><path d="M40 34 L45 39"/>
+                            <path d="M42 16 L24 34"/><path d="M28 38 L20 30"/><path d="M24 34 L19 39"/>
+                        </g>
+                        <circle cx="46.5" cy="40.5" r="2.2" fill="#e9c46a"/><circle cx="17.5" cy="40.5" r="2.2" fill="#e9c46a"/>
+                        <path d="M32 44 l2 3.4 3.8 0.6 -2.9 2.6 0.8 3.8 -3.7 -1.9 -3.7 1.9 0.8 -3.8 -2.9 -2.6 3.8 -0.6z" fill="#ff9a5c"/>
+                    </svg>
+                    <h1><span>Artificial</span> <span>Battles</span></h1>
+                    <div class="menu-reloaded">Reloaded</div>
+                    <p class="version"><b>V1.0</b> · by Conrad3k</p>
                 </div>
-                <div class="menu-nav">
-                    <span class="active" data-pane="play">Graj</span>
-                    <span data-pane="mp" id="nav-mp">Gra wieloosobowa<i class="mp-beta" style="font-style:normal">Beta</i></span>
-                    <span data-pane="units">Jednostki</span>
-                    <span data-pane="buildings">Budynki</span>
-                    <span data-pane="controls">Sterowanie</span>
-                    <span data-pane="news">Co nowego</span>
+                <nav class="menu-nav">
+                    <span class="active" data-pane="play" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" y1="14" x2="9" y2="18"/><line x1="7" y1="17" x2="4" y2="20"/><line x1="3" y1="19" x2="5" y2="21"/></svg>Graj</span>
+                    <span data-pane="mp" id="nav-mp" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Gra wieloosobowa<i class="mp-beta" style="font-style:normal">Beta</i></span>
+                    <div class="nav-sep"></div>
+                    <span data-pane="units" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 7v9"/><path d="M8.5 11h7"/></svg>Jednostki</span>
+                    <span data-pane="buildings" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21h20"/><path d="M4 21V9h3V6h2v3h2V6h2v3h2V6h2v3h3v12"/><path d="M10 21v-4a2 2 0 0 1 4 0v4"/></svg>Budynki</span>
+                    <span data-pane="controls" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg>Sterowanie</span>
+                    <span data-pane="news" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>Co nowego</span>
+                </nav>
+                <div class="menu-side-foot">
+                    <div class="engine-badge">
+                        <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 28 C5 17 10 8 19 5.5 C24 4.2 28.5 6 30 9.5 L26.4 10.6 C27.6 12.6 26.8 15.6 24 15.8 L21.4 14.6 C19.2 18.4 18.4 23 18.6 28 Z" fill="currentColor"/><path d="M8 25 C8.6 18 12 12.5 17 9.6" fill="none" stroke="#0b111c" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/><circle cx="22.6" cy="9.4" r="1.5" fill="#0b111c"/></svg>
+                        <div><b>Raptor Engine</b><small>silnik gry · designed by Claude</small></div>
+                    </div>
+                    <p>Artificial Battles: Reloaded V1.0 · wykonane przy użyciu agentów LLM</p>
                 </div>
-            </div>
+            </aside>
 
+            <main class="menu-main">
             <div class="menu-content">
                 <div class="menu-pane" id="pane-play">
+                    <div class="play-hero">
+                        <div class="hero-text">
+                            <div class="eyebrow">Bitwa z AI</div>
+                            <h2>Nowa bitwa</h2>
+                            <div class="match-summary" id="match-summary"></div>
+                        </div>
+                        <div class="hero-actions">
+                            <button id="start-btn" class="action-btn gold cta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg>ROZPOCZNIJ GRĘ</button>
+                        </div>
+                        <div id="menu-error"></div>
+                    </div>
                     <div class="play-grid">
                         <div class="menu-card">
-                            <h2>Nacje i drużyny</h2>
+                            <h2><span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22V3"/><path d="M5 4h12l-2.5 4.5L17 13H5"/></svg></span>Nacje i drużyny</h2>
                             <div id="nation-rows"></div>
                             <div class="preset-row">
-                                <span class="opt-label">Szybki układ:</span>
+                                <span class="opt-label">Szybki układ</span>
                                 <button class="mini-btn" data-preset="ffa" title="Każda nacja w osobnej drużynie">Każdy na każdego</button>
                                 <button class="mini-btn" data-preset="2v2" title="Ty i AI 1 przeciw AI 2 i AI 3">2 na 2</button>
                                 <button class="mini-btn" data-preset="1v3" title="Wszystkie AI w jednej drużynie przeciw tobie">Ty kontra reszta</button>
@@ -764,7 +982,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         </div>
 
                         <div class="menu-card">
-                            <h2>Świat</h2>
+                            <h2><span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 20l7-11 4.5 6.5L16.5 11 22 20z"/><circle cx="17" cy="5" r="1.8"/></svg></span>Świat</h2>
                             <div>
                                 <span class="opt-label">Rozmiar mapy</span>
                                 <div class="radio-group c4">
@@ -802,12 +1020,10 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 </div>
                             </div>
                             <div id="match-options"></div>
-                            <div id="menu-error"></div>
-                            <button id="start-btn" class="action-btn gold">ROZPOCZNIJ GRĘ</button>
                         </div>
 
                         <div class="menu-card">
-                            <h2>Cel</h2>
+                            <h2><span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span>Cel</h2>
                             <p>Zbieraj <b>żywność, drewno, złoto i kamień</b>, stawiaj domy, by powiększać populację, i awansuj w Ratuszu do kolejnych er. Zniszcz Ratusze wszystkich wrogich drużyn, by zwyciężyć! Z warunkiem <b>Królowie</b> wystarczy też pokonać wrogiego króla, a z warunkiem <b>Cud Świata</b> wygrywa drużyna, której Cud przetrwa 10 minut (oba wybierzesz w karcie Świat).</p>
                             <h3>Na dobry początek</h3>
                             <ul>
@@ -830,6 +1046,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 <div class="menu-pane" id="pane-buildings" style="display:none"></div>
 
                 <div class="menu-pane" id="pane-controls" style="display:none">
+                    <div class="pane-head"><div><div class="eyebrow">Poradnik</div><h2>Sterowanie</h2><p>Mysz, klawiatura i skróty. Ustawienia grafiki i dźwięku znajdziesz w menu pauzy (Esc) — gra je zapamiętuje.</p></div></div>
                     <div class="play-grid" style="grid-template-columns: repeat(3, minmax(300px, 1fr));">
                         <div class="menu-card">
                             <h2>Kamera i zaznaczanie</h2>
@@ -882,7 +1099,22 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 </div>
 
                 <div class="menu-pane" id="pane-news" style="display:none">
+                    <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
                     <div class="play-grid" style="grid-template-columns: repeat(3, minmax(300px, 1fr));">
+                        <div class="menu-card news-new" style="grid-column: 1 / -1;">
+                            <div class="eyebrow">Nowa odsłona</div>
+                            <h2>Reloaded V1.0 — nowe menu główne</h2>
+                            <p class="menu-note" style="margin-top:0"><b>Pierwsze wydanie serii Artificial Battles: Reloaded</b> — podwaliny pod duże zmiany w grze. Na początek całkiem nowe menu główne. Rozgrywka, jednostki, budynki i balans są takie same jak w V3.5; gra nadal działa na silniku <b>Raptor</b>.</p>
+                            <ul>
+                                <li><b>Panel boczny</b> z nowym herbem i logo Reloaded, zakładkami z ikonami i znakiem silnika Raptor. Na wąskim ekranie panel zamienia się w pasek u góry.</li>
+                                <li><b>Żywe tło</b>: nocny krajobraz — księżyc, gwiazdy, trzy pasma gór, zamek na wzgórzu z łopoczącą chorągwią i światłem w oknach, mgła i iskry. Warstwy lekko przesuwają się za kursorem. Gdy w systemie włączone jest ograniczanie ruchu, tło stoi w miejscu.</li>
+                                <li><b>Pasek „Nowa bitwa”</b> zawsze na wierzchu: przycisk <b>Rozpocznij grę</b> i podsumowanie meczu — kto z kim gra, mapa, kraina, surowce i warunki zwycięstwa — bez przewijania strony.</li>
+                                <li>Nowe przełączniki opcji, karty nacji w kolorach graczy, klawisze narysowane jak na klawiaturze.</li>
+                                <li><b>Encyklopedia</b> jednostek i budynków z filtrem er (Wszystkie, I–IV).</li>
+                                <li>Zakładki menu obsłużysz także klawiaturą: <kbd>Tab</kbd> i <kbd>Enter</kbd>.</li>
+                            </ul>
+                            <p class="menu-note">Gra wieloosobowa: wszyscy gracze muszą mieć wydanie Reloaded V1.0 — z wersją V3.5 gra się nie połączy.</p>
+                        </div>
                         <div class="menu-card" style="grid-column: 1 / -1;">
                             <h2>V3.5 — Cud Świata, warunki zwycięstwa, szlak handlowy, Wielkie Działo, Koń Trojański, obrona królestwa, nowy dźwięk, szybszy silnik</h2>
                             <p class="menu-note" style="margin-top:0"><b>To największa aktualizacja w historii gry.</b> Osiem nowych jednostek z Wielkim Działem, Koniem Trojańskim i lisowczykami na czele, dwa nowe budynki — <b>Cud Świata</b>, czyli drugi sposób na zwycięstwo, i Plantacja Jabłek — szlak handlowy z wozami kupieckimi, warunki zwycięstwa do wyboru (Królowie i Cud Świata), obrona królestwa (dzwon na trwogę, uliczki, mury bez dziur), nowe ratusze i ulepszenia Kuźni, kierunek szyku wskazywany myszą, AI z prawdziwym dowódcą, dźwięk zrobiony od nowa i silnik Raptor ok. 3 razy szybszy w symulacji. Wszystko działa także w grze wieloosobowej.</p>
@@ -1216,11 +1448,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 </div>
             </div>
 
-            <div class="menu-bottom-bar">
-                <span>Wykonane przy użyciu agentów LLM</span>
-                <span class="engine-credit">Raptor Engine · designed by Claude</span>
-                <span>Artificial Battles · Release V3.5</span>
-            </div>
+            </main>
         </div>
 
         <div id="loading-screen" class="overlay">
@@ -1340,7 +1568,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
     <script>
 /* --- core/Config.js --- */
 const GameConfig = {
-    version: 'V3.5',
+    version: 'Reloaded V1.0',
     engine: 'Raptor Engine · designed by Claude',
     cameraPad: 320,             // o tyle (w pikselach świata) kamera może wyjechać poza granicę mapy
     popCap: 200,
@@ -24531,6 +24759,32 @@ document.addEventListener("DOMContentLoaded", () => {
             reveal: !!document.getElementById('opt-reveal').checked, atmo: atmoOn(),
             kings: !!document.getElementById('opt-kings').checked, wonders: !!document.getElementById('opt-wonder').checked
         });
+        renderSummary();
+    }
+
+    // Reloaded V1.0: podsumowanie meczu w pasku "Nowa bitwa" - drużyny (kropki w kolorach nacji), świat i warunki zwycięstwa
+    function renderSummary() {
+        const box = document.getElementById('match-summary');
+        if (!box || !document.getElementById('opt-reveal')) return;
+        const o = readOptions();
+        const label = (name) => { const el = document.querySelector(`input[name="${name}"]:checked`); const l = el && document.querySelector(`label[for="${el.id}"]`); return l ? l.textContent : ''; };
+        const teams = new Map();
+        for (const n of o.nations) {
+            if (!teams.has(n.team)) teams.set(n.team, []);
+            teams.get(n.team).push(n);
+        }
+        const dots = [...teams.keys()].sort((a, b) => a - b).map(t => '<span class="sum-team">' + teams.get(t).map(n =>
+            `<i class="${n.isPlayer ? 'me' : ''}" style="background:${TeamPalette[n.color].main}" title="${n.isPlayer ? 'Ty' : 'AI — ' + Difficulty.names[n.diff]} · drużyna ${t}"></i>`).join('') + '</span>').join('<em>vs</em>');
+        let h = `<span class="sum-chip sum-teams${teams.size < 2 ? ' warn' : ''}">${dots}</span>`;
+        if (teams.size < 2) h += '<span class="sum-chip warn">Wszyscy w jednej drużynie</span>';
+        h += `<span class="sum-chip"><small>Mapa</small>${label('mapsize')} · ${label('maptype')}</span>`;
+        h += `<span class="sum-chip"><small>Kraina</small>${label('biome')}</span>`;
+        if (o.rich) h += '<span class="sum-chip"><small>Surowce</small>Bogate</span>';
+        if (o.kings) h += '<span class="sum-chip gold">Królowie</span>';
+        if (o.wonders) h += '<span class="sum-chip gold">Cud Świata</span>';
+        if (o.reveal) h += '<span class="sum-chip">Odkryta mapa</span>';
+        if (!o.atmosphere) h += '<span class="sum-chip">Wieczny dzień</span>';
+        box.innerHTML = h;
     }
 
     function renderNationRows() {
@@ -24542,7 +24796,7 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let t = 1; t <= 4; t++) h += `<button type="button" class="t${t}${team === t ? ' on' : ''}" data-slot="${slot}" data-team="${t}" title="Drużyna ${t}">${t}</button>`;
             return h + '</div>';
         };
-        let html = `<div class="nation-row"><div class="nation-head"><i class="swatch" style="background:${TeamPalette[menu.color].main}"></i>
+        let html = `<div class="nation-row me" style="--nc:${TeamPalette[menu.color].main}"><div class="nation-head"><i class="swatch" style="background:${TeamPalette[menu.color].main}"></i>
             <span class="nation-name">Ty — ${TeamPalette[menu.color].nation}</span>${teamPick('p', menu.team)}</div>
             <div class="color-pick"><span>Kolor nacji</span>${ColorOrder.map(c => `<button type="button" class="${c === menu.color ? 'on' : ''}" data-color="${c}" title="${TeamPalette[c].label}" style="background:${TeamPalette[c].main}"></button>`).join('')}</div>
             <div class="start-pick"><span>Pozycja startowa</span>
@@ -24551,7 +24805,7 @@ document.addEventListener("DOMContentLoaded", () => {
         menu.ai.forEach((a, i) => {
             const levels = (i === 0 ? [] : ['none']).concat(Difficulty.order);
             const cls = levels.length === 5 ? 'c5' : 'c4';
-            html += `<div class="nation-row${a.diff === 'none' ? ' off' : ''}"><div class="nation-head"><i class="swatch" style="background:${TeamPalette[colors[i]].main}"></i>
+            html += `<div class="nation-row${a.diff === 'none' ? ' off' : ''}" style="--nc:${TeamPalette[colors[i]].main}"><div class="nation-head"><i class="swatch" style="background:${TeamPalette[colors[i]].main}"></i>
                 <span class="nation-name">AI ${i + 1} — ${TeamPalette[colors[i]].nation}</span>${teamPick(i, a.team)}</div>
                 <div class="radio-group ${cls}">${levels.map(l => `<input type="radio" name="ai${i}" id="ai${i}-${l}" value="${l}"${a.diff === l ? ' checked' : ''}><label for="ai${i}-${l}" title="${l === 'none' ? 'Ta nacja nie bierze udziału w grze' : Difficulty.hints[l]}">${l === 'none' ? 'Brak' : Difficulty.names[l]}</label>`).join('')}</div>
                 ${a.diff !== 'none' ? `<div class="diff-hint">${Difficulty.hints[a.diff].replace(/^[^:]+: /, '')}</div>` : ''}</div>`;
@@ -24598,6 +24852,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let renderCodex = () => {};
     initMenu();
     renderNationRows();
+    renderSummary();
 
     function readOptions() {
         const val = (name, def) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : def; };
@@ -25076,6 +25331,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.querySelectorAll('.menu-pane').forEach(p => p.style.display = 'none');
                 const pane = document.getElementById('pane-' + tab.dataset.pane);
                 if (pane) pane.style.display = '';
+                const content = document.querySelector('.menu-content');
+                if (content) content.scrollTop = 0;
+            });
+            // Reloaded V1.0: zakładki także z klawiatury (Tab, potem Enter / spacja)
+            tab.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tab.click(); }
             });
         });
 
@@ -25093,12 +25354,29 @@ document.addEventListener("DOMContentLoaded", () => {
         for (const b in GameConfig.buildings) for (const t of (GameConfig.buildings[b].trains || [])) trainedAt[t] = GameConfig.buildings[b].name;
         trainedAt.king = 'tryb Królowie';
 
+        // Reloaded V1.0: encyklopedia z filtrem er - wybór zostaje przy przerysowaniu (zmiana koloru nacji)
+        const codexEra = { units: 0, buildings: 0 };
+        const codexHead = (kind, title, sub) => `<div class="pane-head"><div><div class="eyebrow">Encyklopedia</div><h2>${title}</h2><p>${sub}</p></div>
+            <div class="era-filter">${[0, 1, 2, 3, 4].map(a => `<button type="button" class="${codexEra[kind] === a ? 'on' : ''}" data-era="${a}">${a ? 'Era ' + GameConfig.ages[a].roman : 'Wszystkie'}</button>`).join('')}</div></div>`;
+        for (const kind of ['units', 'buildings']) {
+            const pane = document.getElementById('pane-' + kind);
+            if (!pane) continue;
+            pane.addEventListener('click', (e) => {
+                const b = e.target.closest && e.target.closest('.era-filter button');
+                if (!b) return;
+                codexEra[kind] = Number(b.dataset.era);
+                pane.querySelectorAll('.era-filter button').forEach(x => x.classList.toggle('on', x === b));
+                const cx = pane.querySelector('.codex');
+                if (cx) cx.dataset.era = b.dataset.era;
+            });
+        }
+
         renderCodex = () => {
             const color = menu.color;
             matchOptionsRecolor(document.getElementById('match-options'), color);
             const unitsPane = document.getElementById('pane-units');
             if (unitsPane) {
-                let h = '<div class="codex">';
+                let h = codexHead('units', 'Jednostki', `${Object.keys(GameConfig.units).length} jednostek od robotnika po Wielkie Działo — koszt, statystyki, gdzie je szkolić i z kim wygrywają. Ikony w kolorze twojej nacji.`) + `<div class="codex" data-era="${codexEra.units}">`;
                 for (const t in GameConfig.units) {
                     const u = GameConfig.units[t];
                     let st = `<span class="chip" title="Życie">♥ ${u.maxHp}</span>`;
@@ -25108,7 +25386,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (u.attackRange > 40) st += `<span class="chip" title="Zasięg">➶ ${u.attackRange}</span>`;
                     st += `<span class="chip" title="Szybkość">➤ ${u.speed}</span>`;
                     if (u.attackRate > 0 && u.attackDamage > 0) st += `<span class="chip" title="Czas między atakami">⏱ ${u.attackRate} s</span>`;
-                    h += `<div class="codex-card"><img class="codex-icon" src="${Icons.entityUrl('unit', t, color, 30)}">
+                    h += `<div class="codex-card" data-age="${u.age || 1}"><img class="codex-icon" src="${Icons.entityUrl('unit', t, color, 30)}">
                         <div><div class="codex-name">${u.name} ${era(u.age)}${isNew(NEW_UNITS, t)}</div>
                         <div class="codex-meta">${cost(u.cost)} <span class="at">${trainedAt[t] || ''}</span></div>
                         <div class="chips">${st}</div><div class="codex-desc">${u.desc}</div>
@@ -25119,7 +25397,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const bPane = document.getElementById('pane-buildings');
             if (bPane) {
-                let h = '<div class="codex">';
+                let h = codexHead('buildings', 'Budynki', `${Object.keys(GameConfig.buildings).length} budowli — od domu i farmy po zamek, arsenał i Cud Świata. Co szkolą, co badają i ile wytrzymają.`) + `<div class="codex" data-era="${codexEra.buildings}">`;
                 for (const t in GameConfig.buildings) {
                     const b = GameConfig.buildings[t];
                     let st = `<span class="chip" title="Wytrzymałość">♥ ${b.maxHp}</span>`;
@@ -25129,7 +25407,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (b.vision >= 450) st += `<span class="chip" title="Zasięg widzenia">👁 ${b.vision}</span>`;
                     const ups = Object.values(GameConfig.upgrades).filter(u => u.at === t).map(u => u.name);
                     const trains = (b.trains || []).map(u => GameConfig.units[u].name);
-                    h += `<div class="codex-card"><img class="codex-icon" src="${Icons.entityUrl('building', t, color, 30, t === 'town_center' ? 2 : 0)}">
+                    h += `<div class="codex-card" data-age="${b.age || 1}"><img class="codex-icon" src="${Icons.entityUrl('building', t, color, 30, t === 'town_center' ? 2 : 0)}">
                         <div><div class="codex-name">${b.name} ${era(b.age)}${isNew(NEW_BUILDINGS, t)}</div>
                         <div class="codex-meta">${cost(b.cost)}</div>
                         <div class="chips">${st}</div><div class="codex-desc">${b.desc}</div>
@@ -25140,31 +25418,233 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         renderCodex();
 
-        // Tło menu: unoszące się iskry
+        // Tło menu (Reloaded V1.0): nocny krajobraz - niebo z księżycem i gwiazdami, trzy pasma gór, zamek na wzgórzu
+        // ze światłem w oknach i łopoczącą chorągwią, mgła i unoszące się iskry. Warstwy maluje się raz (przy zmianie
+        // rozmiaru okna) na osobne płótna; w każdej klatce są tylko składane, z lekkim przesunięciem za kursorem.
+        // Gdy zaczyna się mecz, pętla staje, a płótno znika ze strony (stopMenuFx).
         const bg = document.getElementById('menu-bg');
         if (bg) {
             const c = bg.getContext('2d');
-            let sparks = [];
-            const resize = () => { bg.width = window.innerWidth; bg.height = window.innerHeight; };
-            resize();
-            window.addEventListener('resize', resize);
-            for (let i = 0; i < 70; i++) sparks.push({ x: Math.random(), y: Math.random(), r: 0.6 + Math.random() * 1.8, v: 0.01 + Math.random() * 0.03, p: Math.random() * 6 });
-            let last = performance.now();
-            const tick = (now) => {
-                if (!window.menuActive || !bg.isConnected) { stopMenuFx(); return; }
-                const dt = Math.min(0.1, (now - last) / 1000); last = now;
-                c.clearRect(0, 0, bg.width, bg.height);
-                for (const s of sparks) {
-                    s.y -= s.v * dt; s.p += dt;
-                    if (s.y < -0.02) { s.y = 1.02; s.x = Math.random(); }
-                    const x = (s.x + Math.sin(s.p * 0.7) * 0.01) * bg.width, y = s.y * bg.height;
-                    c.globalAlpha = 0.25 + 0.35 * (0.5 + 0.5 * Math.sin(s.p * 2.3));
-                    c.fillStyle = '#ffcf7a';
-                    c.beginPath(); c.arc(x, y, s.r, 0, Math.PI * 2); c.fill();
-                }
-                requestAnimationFrame(tick);
+            const still = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+            const PAD = 60;   // zapas warstw na paralaksę (px z każdej strony)
+            let W = 0, H = 0, sky = null, far = null, mid = null, near = null, flag = null, fogSprite = null;
+            let stars = [], sparks = [], fogs = [];
+            const mouse = { x: 0, y: 0, sx: 0, sy: 0 };
+            const rng = (seed) => () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+            const layer = (paint) => {
+                const cv = document.createElement('canvas');
+                cv.width = W + PAD * 2; cv.height = H;
+                paint(cv.getContext('2d'), cv.width);
+                return cv;
             };
-            requestAnimationFrame(tick);
+            // linia grzbietu: kilka sinusoid i drobny szum; zwraca punkty [x, y] w układzie warstwy
+            const ridge = (r, w, base, amp, rough, step) => {
+                const ph = [r() * 6.3, r() * 6.3, r() * 6.3], pts = [];
+                for (let x = 0; x <= w + step; x += step) {
+                    const t = x / w;
+                    let y = base - amp * (0.55 * Math.sin(t * 3.3 + ph[0]) + 0.3 * Math.sin(t * 7.9 + ph[1]) + 0.15 * Math.sin(t * 17.3 + ph[2]));
+                    pts.push([x, y + (r() - 0.5) * rough]);
+                }
+                return pts;
+            };
+            const fillRidge = (g, pts, w, fill, rim) => {
+                g.beginPath(); g.moveTo(0, H);
+                for (const p of pts) g.lineTo(p[0], p[1]);
+                g.lineTo(w, H); g.closePath();
+                g.fillStyle = fill; g.fill();
+                if (rim) {   // poświata księżyca na grzbiecie
+                    g.beginPath();
+                    pts.forEach((p, i) => i ? g.lineTo(p[0], p[1]) : g.moveTo(p[0], p[1]));
+                    g.strokeStyle = rim; g.lineWidth = 1.2; g.stroke();
+                }
+            };
+            const heightAt = (pts, x) => {
+                const step = pts[1][0] - pts[0][0], i = clamp(Math.floor(x / step), 0, pts.length - 2), f = (x - pts[i][0]) / step;
+                return pts[i][1] * (1 - f) + pts[i + 1][1] * f;
+            };
+            // zamek: mury z blankami, baszty, wysoki donżon; okna świecą ciepłym światłem
+            const castle = (g, cx, gy, s, color) => {
+                const r = rng(77);
+                g.fillStyle = color;
+                const block = (x, y, w, h, merlons) => {
+                    g.fillRect(cx + x * s, gy - (y + h) * s, w * s, h * s + 2);
+                    if (merlons) {
+                        const n = Math.max(2, Math.round(w / 6)), mw = w / (n * 2 - 1);
+                        for (let i = 0; i < n; i++) g.fillRect(cx + (x + i * mw * 2) * s, gy - (y + h + 3) * s, mw * s, 3 * s + 1);
+                    }
+                };
+                const roof = (x, y, w, h) => {
+                    g.beginPath(); g.moveTo(cx + (x - 1.5) * s, gy - y * s); g.lineTo(cx + (x + w / 2) * s, gy - (y + h) * s); g.lineTo(cx + (x + w + 1.5) * s, gy - y * s); g.closePath(); g.fill();
+                };
+                block(-62, 0, 124, 22, true);          // mur obwodowy
+                block(-74, 0, 18, 40, true);           // baszty narożne
+                block(56, 0, 18, 40, true);
+                block(-36, 0, 16, 52, false); roof(-36, 52, 16, 16);
+                block(22, 0, 16, 48, false); roof(22, 48, 16, 15);
+                block(-16, 0, 32, 70, true);           // donżon
+                block(-5, 70, 10, 14, false); roof(-5, 84, 10, 14);
+                g.beginPath(); g.moveTo(cx, gy - 98 * s); g.lineTo(cx, gy - 122 * s); g.strokeStyle = color; g.lineWidth = Math.max(1, 1.4 * s); g.stroke();
+                // okna
+                const win = (x, y) => {
+                    const lit = r() < 0.75;
+                    g.fillStyle = lit ? 'rgba(255, 190, 110, 0.95)' : 'rgba(40, 46, 60, 0.9)';
+                    if (lit) { g.shadowColor = 'rgba(255, 160, 70, 0.9)'; g.shadowBlur = 8 * s; }
+                    g.fillRect(cx + x * s, gy - y * s, 2.6 * s, 4.2 * s);
+                    g.shadowBlur = 0;
+                };
+                [[-9, 58], [4, 58], [-9, 42], [4, 42], [-2.5, 26], [-31, 40], [27, 36], [-68, 30], [62, 30]].forEach(p => win(p[0], p[1]));
+                // brama
+                g.fillStyle = 'rgba(255, 170, 90, 0.35)';
+                g.beginPath(); g.moveTo(cx - 6 * s, gy + 1); g.lineTo(cx - 6 * s, gy - 10 * s); g.arc(cx, gy - 10 * s, 6 * s, Math.PI, 0); g.lineTo(cx + 6 * s, gy + 1); g.fill();
+                return { x: cx, y: gy - 122 * s, s };
+            };
+            const build = () => {
+                W = Math.max(1, window.innerWidth); H = Math.max(1, window.innerHeight);
+                bg.width = W; bg.height = H;
+                const r = rng(1234);
+                const focusX = W * 0.66;   // panel boczny zakrywa lewą część - zamek i księżyc stoją po prawej
+                sky = layer((g, w) => {
+                    const gr = g.createLinearGradient(0, 0, 0, H);
+                    gr.addColorStop(0, '#04070f'); gr.addColorStop(0.45, '#0b1730'); gr.addColorStop(0.68, '#1d2240'); gr.addColorStop(0.8, '#4a2c34'); gr.addColorStop(1, '#2a1a20');
+                    g.fillStyle = gr; g.fillRect(0, 0, w, H);
+                    // łuna na horyzoncie (ogniska obozów)
+                    const glow = g.createRadialGradient(PAD + focusX, H * 0.82, 0, PAD + focusX, H * 0.82, W * 0.6);
+                    glow.addColorStop(0, 'rgba(255, 120, 60, 0.32)'); glow.addColorStop(1, 'rgba(255, 120, 60, 0)');
+                    g.fillStyle = glow; g.fillRect(0, 0, w, H);
+                    // księżyc
+                    const mx = PAD + W * 0.72, my = H * 0.075, mr = Math.max(18, Math.min(W, H) * 0.034);
+                    const halo = g.createRadialGradient(mx, my, mr * 0.8, mx, my, mr * 6);
+                    halo.addColorStop(0, 'rgba(200, 220, 255, 0.22)'); halo.addColorStop(1, 'rgba(200, 220, 255, 0)');
+                    g.fillStyle = halo; g.fillRect(0, 0, w, H);
+                    const disc = g.createRadialGradient(mx - mr * 0.3, my - mr * 0.3, mr * 0.1, mx, my, mr);
+                    disc.addColorStop(0, '#fbf7ea'); disc.addColorStop(1, '#cfd6e6');
+                    g.fillStyle = disc; g.beginPath(); g.arc(mx, my, mr, 0, Math.PI * 2); g.fill();
+                    g.fillStyle = 'rgba(150, 160, 185, 0.25)';
+                    [[0.3, -0.2, 0.22], [-0.25, 0.25, 0.16], [0.05, 0.45, 0.1], [-0.4, -0.3, 0.09]].forEach(k => { g.beginPath(); g.arc(mx + k[0] * mr, my + k[1] * mr, k[2] * mr, 0, Math.PI * 2); g.fill(); });
+                });
+                far = layer((g, w) => {
+                    const pts = ridge(r, w, H * 0.6, H * 0.13, 3, 6);
+                    const gr = g.createLinearGradient(0, H * 0.45, 0, H);
+                    gr.addColorStop(0, '#1d2a45'); gr.addColorStop(1, '#141c30');
+                    fillRidge(g, pts, w, gr, 'rgba(170, 195, 240, 0.16)');
+                });
+                let flagAt = null;
+                mid = layer((g, w) => {
+                    const pts = ridge(r, w, H * 0.73, H * 0.07, 2, 6);
+                    // wzgórze pod zamkiem
+                    const hx = PAD + focusX, hw = Math.max(260, W * 0.2);
+                    for (const p of pts) { const d = (p[0] - hx) / hw; if (Math.abs(d) < 1) p[1] -= H * 0.075 * Math.cos(d * Math.PI / 2) ** 2; }
+                    const gr = g.createLinearGradient(0, H * 0.55, 0, H);
+                    gr.addColorStop(0, '#111a2c'); gr.addColorStop(1, '#0c1322');
+                    fillRidge(g, pts, w, gr, 'rgba(170, 195, 240, 0.12)');
+                    const s = clamp(Math.min(W, H) / 620, 0.75, 2.1);
+                    flagAt = castle(g, hx, heightAt(pts, hx) + 4, s, '#0c1322');
+                });
+                flag = flagAt;
+                near = layer((g, w) => {
+                    const pts = ridge(r, w, H * 0.88, H * 0.05, 2, 5);
+                    fillRidge(g, pts, w, '#070b14', null);
+                    // las świerków na pierwszym planie
+                    g.fillStyle = '#070b14';
+                    for (let x = 0; x < w; x += 6 + r() * 16) {
+                        if (r() < 0.35) continue;
+                        const y = heightAt(pts, x) + 3, h = H * (0.03 + r() * 0.06), hw = h * (0.22 + r() * 0.08);
+                        g.beginPath(); g.moveTo(x, y - h);
+                        for (let k = 1; k <= 3; k++) { g.lineTo(x + hw * k / 3, y - h + h * k / 3 - h * 0.08); g.lineTo(x + hw * k / 6, y - h + h * k / 3 - h * 0.04); }
+                        g.lineTo(x + hw, y); g.lineTo(x - hw, y);
+                        for (let k = 3; k >= 1; k--) { g.lineTo(x - hw * k / 6, y - h + h * k / 3 - h * 0.04); g.lineTo(x - hw * k / 3, y - h + h * k / 3 - h * 0.08); }
+                        g.closePath(); g.fill();
+                    }
+                });
+                // mgła: jedna miękka plama malowana raz, rysowana wiele razy w różnej skali
+                fogSprite = document.createElement('canvas');
+                fogSprite.width = 256; fogSprite.height = 64;
+                const fg = fogSprite.getContext('2d'), fgr = fg.createRadialGradient(128, 128, 0, 128, 128, 128);
+                fgr.addColorStop(0, 'rgba(150, 170, 210, 0.5)'); fgr.addColorStop(1, 'rgba(150, 170, 210, 0)');
+                fg.setTransform(1, 0, 0, 0.25, 0, 0); fg.fillStyle = fgr; fg.fillRect(0, 0, 256, 256);
+                const fr = rng(99);
+                fogs = [];
+                for (let i = 0; i < 9; i++) fogs.push({ x: fr(), y: i < 5 ? 0.66 + fr() * 0.08 : 0.8 + fr() * 0.08, w: 0.35 + fr() * 0.4, a: 0.25 + fr() * 0.3, v: 0.004 + fr() * 0.008, near: i >= 5 });
+                stars = [];
+                const sr = rng(4321), n = Math.round(W * H / 9000);
+                for (let i = 0; i < n; i++) stars.push({ x: sr() * W, y: sr() * sr() * H * 0.62, r: sr() < 0.08 ? 1.6 : 0.6 + sr() * 0.7, p: sr() * 6.3, v: 0.6 + sr() * 2 });
+                if (!sparks.length) for (let i = 0; i < 80; i++) sparks.push(newSpark(true));
+            };
+            const newSpark = (any) => ({
+                x: Math.random(), y: any ? Math.random() : 1.03, r: 0.6 + Math.random() * 1.9, v: 0.012 + Math.random() * 0.035,
+                p: Math.random() * 6.3, drift: (Math.random() - 0.5) * 0.012, hot: Math.random() < 0.25
+            });
+            const draw = (now, dt) => {
+                const t = now / 1000;
+                mouse.sx += (mouse.x - mouse.sx) * Math.min(1, dt * 3);
+                mouse.sy += (mouse.y - mouse.sy) * Math.min(1, dt * 3);
+                const px = (k) => -PAD + mouse.sx * k, py = (k) => mouse.sy * k * 0.4;
+                c.globalCompositeOperation = 'source-over'; c.globalAlpha = 1;
+                c.drawImage(sky, px(-8), 0);
+                for (const s of stars) {
+                    c.globalAlpha = 0.35 + 0.45 * (0.5 + 0.5 * Math.sin(s.p + t * s.v));
+                    c.fillStyle = '#dfe8ff';
+                    c.fillRect(s.x + mouse.sx * -6, s.y, s.r, s.r);
+                }
+                c.globalAlpha = 1;
+                c.drawImage(far, px(10), py(6));
+                const fogPass = (front) => {
+                    for (const f of fogs) {
+                        if (f.near !== front) continue;
+                        if (!still) f.x += f.v * dt;
+                        if (f.x > 1.3) f.x = -0.5;
+                        c.globalAlpha = f.a;
+                        c.drawImage(fogSprite, f.x * W - f.w * W * 0.5 + mouse.sx * (front ? 26 : 14), f.y * H - H * 0.06 + py(front ? 14 : 9), f.w * W, H * 0.12);
+                    }
+                    c.globalAlpha = 1;
+                };
+                fogPass(false);
+                c.drawImage(mid, px(18), py(9));
+                if (flag) {   // chorągiew na maszcie donżonu
+                    const fx = flag.x + px(18), fy = flag.y + py(9), fw = 26 * flag.s, fh = 13 * flag.s;
+                    c.fillStyle = '#c0392b';
+                    c.beginPath(); c.moveTo(fx, fy);
+                    for (let i = 0; i <= 8; i++) { const u = i / 8; c.lineTo(fx + u * fw, fy + Math.sin(t * 5 - u * 4) * 2.4 * flag.s * u); }
+                    for (let i = 8; i >= 0; i--) { const u = i / 8; c.lineTo(fx + u * fw, fy + fh * (1 - 0.2 * u) + Math.sin(t * 5 - u * 4) * 2.4 * flag.s * u); }
+                    c.closePath(); c.fill();
+                    c.fillStyle = 'rgba(233, 196, 106, 0.9)';
+                    c.beginPath(); c.arc(fx + fw * 0.42, fy + fh * 0.48 + Math.sin(t * 5 - 1.7) * 1.1 * flag.s, 2.4 * flag.s, 0, Math.PI * 2); c.fill();
+                }
+                fogPass(true);
+                c.drawImage(near, px(30), py(14));
+                // iskry z ognisk unoszą się w górę
+                c.globalCompositeOperation = 'lighter';
+                for (const s of sparks) {
+                    if (!still) { s.y -= s.v * dt; s.x += s.drift * dt; s.p += dt; }
+                    if (s.y < -0.03) Object.assign(s, newSpark(false));
+                    const x = (s.x + Math.sin(s.p * 0.8) * 0.008) * W + mouse.sx * 34, y = s.y * H;
+                    const a = 0.35 + 0.4 * (0.5 + 0.5 * Math.sin(s.p * 2.6));
+                    c.globalAlpha = a * (s.hot ? 0.22 : 1);
+                    c.fillStyle = s.hot ? '#ff9a4c' : '#ffd38a';
+                    c.beginPath(); c.arc(x, y, s.hot ? s.r * 2.2 : s.r, 0, Math.PI * 2); c.fill();
+                }
+                c.globalCompositeOperation = 'source-over'; c.globalAlpha = 1;
+            };
+            let rebuild = false;
+            build();
+            window.addEventListener('resize', () => { rebuild = true; if (still && window.menuActive && bg.isConnected) { build(); draw(performance.now(), 0); } });
+            window.addEventListener('mousemove', (e) => {
+                if (!window.menuActive || still) return;
+                mouse.x = e.clientX / Math.max(1, window.innerWidth) - 0.5;
+                mouse.y = e.clientY / Math.max(1, window.innerHeight) - 0.5;
+            });
+            if (still) draw(performance.now(), 0);
+            else {
+                let last = performance.now();
+                const tick = (now) => {
+                    if (!window.menuActive || !bg.isConnected) { stopMenuFx(); return; }
+                    const dt = Math.min(0.1, (now - last) / 1000); last = now;
+                    if (rebuild) { rebuild = false; build(); }
+                    draw(now, dt);
+                    requestAnimationFrame(tick);
+                };
+                requestAnimationFrame(tick);
+            }
         }
     }
 });
