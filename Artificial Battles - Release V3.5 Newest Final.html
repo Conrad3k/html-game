@@ -158,6 +158,17 @@ button { font-family: inherit; }
     box-shadow: 0 0 18px rgba(255, 70, 50, 0.4); animation: pulse-red 1.2s ease-in-out infinite;
 }
 #grace-banner b { color: #fff; font-size: 1.15rem; }
+/* V3.5 Newest Final: odliczanie Cudu Świata */
+#wonder-banner {
+    position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); pointer-events: auto; cursor: pointer;
+    display: flex; flex-direction: column; gap: 4px; align-items: center; max-width: calc(100% - 28px);
+}
+#wonder-banner div {
+    background: rgba(40, 30, 6, 0.93); border: 1px solid #e8c25a; border-radius: 8px; padding: 7px 16px;
+    color: #ffeeb8; font-weight: 700; text-align: center; box-shadow: 0 0 16px rgba(255, 200, 70, 0.35);
+}
+#wonder-banner div.theirs { background: rgba(60, 10, 6, 0.93); border-color: #ff6b5b; color: #ffe2dc; box-shadow: 0 0 18px rgba(255, 70, 50, 0.4); }
+#wonder-banner b { color: #fff; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
 #grace-banner small { display: block; font-weight: 400; color: #ffc4bd; margin-top: 2px; }
 @keyframes pulse-red { 0%, 100% { box-shadow: 0 0 10px rgba(255, 70, 50, 0.3); } 50% { box-shadow: 0 0 24px rgba(255, 70, 50, 0.65); } }
 
@@ -815,8 +826,23 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 <div class="menu-pane" id="pane-news" style="display:none">
                     <div class="play-grid" style="grid-template-columns: repeat(3, minmax(300px, 1fr));">
                         <div class="menu-card" style="grid-column: 1 / -1;">
-                            <h2>V3.5 — Wielkie Działo, Koń Trojański, tryb Królowie, obrona królestwa, nowy dźwięk, szybszy silnik</h2>
-                            <p class="menu-note" style="margin-top:0"><b>To największa aktualizacja w historii gry.</b> Sześć nowych jednostek z Wielkim Działem i Koniem Trojańskim na czele, tryb Królowie, obrona królestwa (dzwon na trwogę, uliczki, mury bez dziur), Plantacja Jabłek, nowe ratusze i ulepszenia Kuźni, kierunek szyku wskazywany myszą, AI z prawdziwym dowódcą, dźwięk zrobiony od nowa i silnik Raptor ok. 3 razy szybszy w symulacji. Wszystko działa także w grze wieloosobowej.</p>
+                            <h2>V3.5 — Cud Świata, szlak handlowy, Wielkie Działo, Koń Trojański, tryb Królowie, obrona królestwa, nowy dźwięk, szybszy silnik</h2>
+                            <p class="menu-note" style="margin-top:0"><b>To największa aktualizacja w historii gry.</b> Osiem nowych jednostek z Wielkim Działem, Koniem Trojańskim i lisowczykami na czele, dwa nowe budynki — <b>Cud Świata</b>, czyli drugi sposób na zwycięstwo, i Plantacja Jabłek — szlak handlowy z wozami kupieckimi, tryb Królowie, obrona królestwa (dzwon na trwogę, uliczki, mury bez dziur), nowe ratusze i ulepszenia Kuźni, kierunek szyku wskazywany myszą, AI z prawdziwym dowódcą, dźwięk zrobiony od nowa i silnik Raptor ok. 3 razy szybszy w symulacji. Wszystko działa także w grze wieloosobowej.</p>
+                            <h3>Cud Świata — drugi sposób na zwycięstwo</h3>
+                            <ul>
+                                <li><b>Nowy budynek</b> (Era IV, Budynki gospodarcze, 1000 żywności, 1000 drewna, 1200 złota i 1000 kamienia, jeden na nację): bazylika na planie krzyża z wielką złotą kopułą, czterema kampanilami w barwach nacji i placem z obeliskami — największa budowla w grze (9000 wytrzymałości).</li>
+                                <li><b>Odliczanie do zwycięstwa.</b> Gdy Cud stanie, rusza zegar <b>10 minut</b>. Jeśli Cud przetrwa, a jego budowniczy nie przegra wcześniej, cała jego drużyna wygrywa. Odliczanie widać na złotym (wasz Cud) albo czerwonym (wrogi) pasku nad panelem — kliknięcie pokazuje Cud. Ostrzeżenia przychodzą na 5, 2 i 1 minutę przed końcem.</li>
+                                <li><b>Nie da się go ukryć.</b> Wszyscy dowiadują się o fundamentach i widzą budowę przez mgłę wojny (na minimapie pulsuje złoty romb). Budowa długo trwa (jeden robotnik — ok. 24 minuty, dwudziestu — nieco ponad minutę), więc wróg ma szansę zburzyć ją, zanim ruszy zegar. Zburzony Cud przerywa odliczanie.</li>
+                                <li><b>AI walczy o Cud.</b> Gdy wróg ukończy Cud, każde AI rzuca na niego co pół minuty całe wojsko poza załogą bazy (najpierw Cud, potem reszta osady) — w sile co najmniej 10 jednostek, a w ostatnich 2,5 minutach odliczania także mniejszymi oddziałami. AI, które samo buduje Cud (w IV erze, przy pełnej armii, bogate — najchętniej charakter Ostrożny), odkłada na niego surowce, przysyła kilkunastu robotników i trzyma wojsko przy Cudzie, zamiast wysyłać fale.</li>
+                            </ul>
+                            <h3>Szlak handlowy i lisowczycy</h3>
+                            <ul>
+                                <li><b>Wóz kupiecki</b> (Era II, Targ, 80 żywności i 60 złota): kryty wóz z towarem pod płachtą w barwach nacji. Kursuje między dwoma targami — twoimi albo sojusznika — i za każdy kurs przywozi złoto rosnące z długością szlaku (1000 kroków to 13 złota za kurs, najdłuższy szlak — ok. 60; z targiem sojusznika +20%). Złoto z handlu nigdy się nie wyczerpuje — to odpowiedź na wybrane złoża w późnej grze.</li>
+                                <li>Nowy wóz sam rusza do najdalszego targu drużyny. Szlak zmienisz PPM na dowolny własny albo sojuszniczy targ; zaznaczony wóz pokazuje trasę złotą przerywaną linią, a panel — ile złota przywiezie z bieżącego kursu. Gdy targ padnie, wóz jedzie do innego.</li>
+                                <li><b>Lisowczyk</b> (Era II, Stajnia, 80 żywności i 45 drewna — jedyna jazda bez złota): lekki jeździec w kołpaku z czaplim piórem, z szablą i łukiem w sajdaku. Najszybsza jednostka w grze (184). Zadaje ×2,2 obrażeń robotnikom, wozom kupieckim, mnichom i chorążym, ×1,8 machinom, a za każdego zabitego cywila przywozi <b>łup</b>: 15 złota, z wozu kupieckiego 40. W otwartej bitwie słaby, budynkom prawie nic nie zrobi (×0,15); ginie na włóczniach.</li>
+                                <li>Podkowy przyspieszają lisowczyków i wozy kupieckie, Hartowana Stal ostrzy szable (+3), a Kropierze i Mistrzowie Kuźni działają na lisowczyków jak na resztę jazdy.</li>
+                                <li><b>AI handluje i łupi:</b> w III erze stawia drugi targ daleko od pierwszego (w stronę środka mapy albo sojusznika, z dala od wrogów; po zburzeniu odczekuje, a po trzech stratach rezygnuje), szkoli kilka wozów i wraca nimi na szlak. Lisowczyków bierze do najazdów (Łupieżca najwięcej, a gdy brakuje złota — zamiast rycerzy), a najazdy celują w wozy kupieckie na szlaku.</li>
+                            </ul>
                             <h3>Nowe jednostki</h3>
                             <ul>
                                 <li><b>Wielkie Działo</b> (Era IV, Arsenał): ogromna spiżowa bombarda z czteroosobową obsługą. Przeładowanie trwa <b>10 sekund</b> — widać je na pasku pod działem (pomarańczowy: celowanie z lontem, stalowy: nabijanie od wylotu, złoty: gotowe) — ale każdy strzał to 160 obrażeń z zasięgu 390, ×3 na budynki i fala uderzeniowa raniąca wszystko wokół celu. Huk słychać daleko poza kadrem, ziemia drży, zostaje krater. Wolne, 5 miejsc populacji, 350 drewna, 450 złota i 150 kamienia. Balistyka i Spiżowe Lufy (+25 ataku, +80 życia) też je ulepszają.</li>
@@ -880,7 +906,8 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <li><b>Pełna mobilizacja</b>: gdy armia AI dojdzie do limitu, nadwyżka ponad załogę bazy idzie w bój — większą falą albo jako posiłki dla fali, która już walczy — zamiast stać bezczynnie pod ratuszem (od trzeciej fali; pierwsze ataki zostają takie, jak przewiduje poziom trudności). W testach AI kontra AI pod ratuszami stało wcześniej po 30–50 bezczynnych żołnierzy; teraz bitwy rozstrzygają się wyraźnie szybciej.</li>
                                 <li><b>Nadwyżki surowców</b>: gdy skarbiec pęka w szwach, a armia jest na limicie, AI od razu bada ulepszenia, sprzedaje nadmiar żywności i drewna na targu i stopniowo podnosi limit armii (najwyżej o 25%). AI awansuje też wcześniej, gdy zalegają jej surowce, sprzedaje nieużywany kamień, gdy brakuje złota, i stawia sady w późnej grze.</li>
                                 <li><b>Wybór celu</b> w grze każdy na każdego: liczy się nie tylko odległość, ale i siła wroga, którą AI widziało — słabszy sąsiad nieco dalej bywa lepszym celem niż twierdza tuż obok.</li>
-                                <li>Przetestowane w dziesiątkach meczów AI kontra AI na wszystkich poziomach (także każdy na każdego, w trybie Królowie i w grze wieloosobowej).</li>
+                                <li><b>Cud Świata, handel i lisowczycy</b> — opisane wyżej: szturm na wrogi Cud, budowa i obrona własnego, drugi targ i wozy kupieckie, najazdy lisowczyków na szlaki.</li>
+                                <li>Przetestowane w dziesiątkach meczów AI kontra AI na wszystkich poziomach (także 2 na 2, każdy na każdego, w trybie Królowie i w grze wieloosobowej) — w tym mecze rozstrzygnięte zwycięstwem przez Cud Świata.</li>
                             </ul>
                             <h3>Dźwięk od nowa</h3>
                             <ul>
@@ -889,6 +916,9 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <li><b>Tło</b>: wiatr z podmuchami (silniejszy w zamieci i burzy piaskowej), deszcz, grzmot chwilę po piorunie, chlupot wody przy jeziorach, ptaki za dnia, świerszcze nocą.</li>
                                 <li><b>Spokojniejszy miks</b>: miękkie, drewniane puknięcia interfejsu zamiast metalicznych trzasków; cichszy i ciemniejszy deszcz, łagodniejszy grzmot, cichszy wiatr, rzadsze ptaki, cichsze młotki budowy, zbiór surowców, wydobycie złota i fanfara awansu; nocne świerszcze i róg ostrzegający przed atakiem wyraźnie ciszej, odgłosy walki odrobinę ciszej, a śmierć jednostki to już tylko ciche osunięcie się na ziemię.</li>
                                 <li><b>Wielkie Działo słychać, zanim strzeli</b>: toczy się z niskim pomrukiem kół (także działo wroga, gdy jest w kadrze).</li>
+                                <li><b>Naprawione: dźwięk milknący w bitwie.</b> Dwa z trzech wariantów odgłosu leczenia mnicha były zepsute — gdy mnich leczył rannych, cały dźwięk gry milkł na kilka sekund, a czasem już nie wracał. Dźwięk jest poprawiony, a każda próbka przechodzi teraz przez bezpiecznik. Do tego strażnik co sekundę sprawdza wyjście i gdyby coś jeszcze kiedyś „zatkało” dźwięk, sam odbudowuje miks (sprawdzone na wszystkich 730 próbkach i 5 częstotliwościach próbkowania).</li>
+                                <li><b>Ciszej w menu</b>: szum wiatru w menu głównym jest ledwie słyszalny (ok. 6 razy ciszej).</li>
+                                <li><b>Koń Trojański dudni kołami</b> tym samym niskim pomrukiem co Wielkie Działo, gdy toczy się w kadrze.</li>
                                 <li><b>Dźwięk nie znika w dużych bitwach.</b> Wcześniej przy setkach odgłosów na sekundę cały dźwięk potrafił na chwilę zamilknąć. Teraz efekty grają przez stałą pulę kanałów (ok. 5× mniej pracy dla przeglądarki na każdy odgłos), przy natłoku najcichszy odgłos ustępuje głośniejszemu, ogranicznik pilnuje, żeby kilka wybuchów naraz nie przesterowało dźwięku, a wstrzymany przez przeglądarkę dźwięk sam się wznawia.</li>
                                 <li>Plik nadal nie ma ani jednego nagrania — wszystko liczy się w osobnym wątku przez ok. 2 s po pierwszym kliknięciu, bez przycinania gry.</li>
                             </ul>
@@ -904,8 +934,8 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <h3>Drobiazgi</h3>
                             <ul>
                                 <li>Iskry z tła menu nie pojawiają się już nad grą.</li>
-                                <li>Encyklopedia oznacza nowe jednostki V3.5 plakietką <b>NOWOŚĆ</b>.</li>
-                                <li>Gra wieloosobowa: wszyscy gracze muszą mieć wydanie V3.5 — ze starszymi wersjami gra się nie połączy.</li>
+                                <li>Encyklopedia oznacza nowe jednostki i budynki V3.5 plakietką <b>NOWOŚĆ</b>.</li>
+                                <li>Gra wieloosobowa: wszyscy gracze muszą mieć wydanie V3.5 (Newest Final) — ze starszymi wersjami, także wcześniejszymi kompilacjami V3.5, gra się nie połączy.</li>
                             </ul>
                         </div>
                         <div class="menu-card" style="grid-column: 1 / -1;">
@@ -1231,6 +1261,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 <div id="messages"></div>
                 <div id="nations-panel" style="display:none"></div>
                 <div id="grace-banner" style="display:none"></div>
+                <div id="wonder-banner" style="display:none"></div>
                 <div id="mp-banner"></div>
                 <div id="tutorial-panel" style="display:none"></div>
             </div>
@@ -1375,7 +1406,16 @@ const GameConfig = {
         king: { name: 'Król', cls: 'cavalry', domain: 'land', military: true, hero: true, maxHp: 2200, speed: 140, attackDamage: 30, attackRange: 26, attackRate: 1.0, radius: 13,
             armor: [5, 5], armored: true, dtype: 'melee', vsBuilding: 0.5, bonus: { ranged: 1.3, siege: 1.5 }, regen: 5, cost: {}, trainTime: 0, age: 1, pop: 0, vision: 440, limit: 1, iconSpan: 64,
             royal: { radius: 320, duration: 15, cooldown: 75, bonus: 0.2 },
-            desc: "Władca nacji w trybie Królowie: ogromna wytrzymałość, zbroja i miecz, poza walką sam leczy rany (5 życia na sekundę). Królewska Szarża (Y): przez 15 s wojsko twojej drużyny w promieniu 320 zadaje o 20% więcej obrażeń, otrzymuje o 20% mniej i biega o 20% szybciej (odnawia się 75 s). Gdy król zginie, nacja natychmiast przegrywa, a cała jej osada obraca się w perzynę — bez szansy na odbudowę." }
+            desc: "Władca nacji w trybie Królowie: ogromna wytrzymałość, zbroja i miecz, poza walką sam leczy rany (5 życia na sekundę). Królewska Szarża (Y): przez 15 s wojsko twojej drużyny w promieniu 320 zadaje o 20% więcej obrażeń, otrzymuje o 20% mniej i biega o 20% szybciej (odnawia się 75 s). Gdy król zginie, nacja natychmiast przegrywa, a cała jej osada obraca się w perzynę — bez szansy na odbudowę." },
+        // V3.5 Newest Final: szlak handlowy - wóz kursuje między dwoma targami (własnymi albo sojusznika) i przywozi złoto
+        // tym większe, im dłuższa trasa (trader: patrz Game.tradeGold); bezbronny, więc szlak trzeba osłaniać
+        trade_cart: { name: 'Wóz kupiecki', cls: 'civil', domain: 'land', trader: true, maxHp: 160, speed: 104, attackDamage: 0, attackRange: 0, attackRate: 0, radius: 12,
+            armor: [0, 2], dtype: 'melee', cost: { food: 80, gold: 60 }, trainTime: 8, age: 2, pop: 1, vision: 300, iconSpan: 48,
+            desc: "Kupiecki wóz z towarem pod płachtą w barwach nacji. Kursuje między dwoma targami — twoimi albo sojusznika — i za każdy kurs przywozi złoto: im dłuższy szlak, tym więcej (handel z sojusznikiem +20%). Złoto z handlu nigdy się nie wyczerpuje, ale wóz jest bezbronny — pilnuj szlaku." },
+        // V3.5 Newest Final: lekka jazda bez złota w koszcie - najazdy, łowy na wozy kupieckie, robotników, mnichów i machiny
+        lisowczyk: { name: 'Lisowczyk', cls: 'cavalry', domain: 'land', military: true, maxHp: 120, speed: 184, attackDamage: 9, attackRange: 24, attackRate: 0.9, radius: 11,
+            armor: [0, 1], dtype: 'melee', vsBuilding: 0.15, bonus: { civil: 2.2, support: 2.2, siege: 1.8 }, plunder: true, cost: { food: 80, wood: 45 }, trainTime: 6, age: 2, pop: 1, vision: 420,
+            desc: "Lekki jeździec w kołpaku, z szablą i bez zbroi — najszybsza jednostka w grze i jedyna jazda bez złota w koszcie. Zadaje ×2,2 obrażeń robotnikom, wozom kupieckim, mnichom i chorążym oraz ×1,8 machinom; za każdego zabitego cywila przywozi łup (15 złota, z wozu kupieckiego 40). Słaby w otwartej bitwie i bezradny wobec budynków (×0,15)." }
     },
 
     buildings: {
@@ -1395,14 +1435,14 @@ const GameConfig = {
             desc: "Punkt zrzutu żywności z farm — postaw go niedaleko pól, a robotnicy nie będą nosić plonów do odległego Ratusza. Pola muszą jednak stać poza małym czerwonym kręgiem wokół Młyna. Tu zbadasz Pług." },
         storehouse: { name: 'Skład', maxHp: 400, size: 50, cost: { wood: 80 }, age: 1, vision: 250, dropOff: ['wood', 'gold', 'stone'], menu: 'eco',
             desc: "Punkt zrzutu drewna, złota i kamienia. Stawiaj blisko złóż — krótsze kursy robotników." },
-        market: { name: 'Targ', maxHp: 500, size: 60, cost: { wood: 150 }, age: 2, vision: 250, menu: 'eco',
-            desc: "Pozwala wymieniać surowce na złoto i odwrotnie." },
+        market: { name: 'Targ', maxHp: 500, size: 60, cost: { wood: 150 }, age: 2, vision: 250, menu: 'eco', trains: ['trade_cart'],
+            desc: "Pozwala wymieniać surowce na złoto i odwrotnie. Szkoli wozy kupieckie: postaw drugi targ daleko od pierwszego (albo handluj z targiem sojusznika), a wozy będą przywozić złoto z każdego kursu." },
         port: { name: 'Port', maxHp: 600, size: 60, cost: { wood: 200 }, age: 1, vision: 350, trains: ['fishing_boat', 'trireme', 'galleon', 'fire_ship'], boatDropOff: true, menu: 'eco',
             desc: "Buduje okręty nad brzegiem jeziora i przyjmuje połów." },
         barracks: { name: 'Koszary', maxHp: 600, size: 60, cost: { wood: 150 }, age: 1, vision: 300, trains: ['spearman', 'archer', 'swordsman', 'crossbowman', 'standard_bearer', 'halberdier', 'musketeer', 'skirmisher', 'axeman', 'grenadier', 'arquebusier', 'petardier'], menu: 'mil',
             desc: "Szkoli piechotę, strzelców, chorążych, a od III ery także arkebuzerów i petardników." },
-        stable: { name: 'Stajnia', maxHp: 600, size: 60, cost: { wood: 175, gold: 50 }, age: 2, vision: 300, trains: ['knight', 'horse_archer', 'hussar', 'reiter'], menu: 'mil',
-            desc: "Szkoli kawalerię: ciężkich rycerzy, konnych łuczników, w III erze husarię, a w IV — rajtarów." },
+        stable: { name: 'Stajnia', maxHp: 600, size: 60, cost: { wood: 175, gold: 50 }, age: 2, vision: 300, trains: ['knight', 'horse_archer', 'lisowczyk', 'hussar', 'reiter'], menu: 'mil',
+            desc: "Szkoli kawalerię: ciężkich rycerzy, konnych łuczników i lekkich lisowczyków, w III erze husarię, a w IV — rajtarów." },
         siege_workshop: { name: 'Warsztat oblężniczy', maxHp: 650, size: 60, cost: { wood: 200, gold: 75 }, age: 2, vision: 300, trains: ['ram', 'catapult', 'cannon', 'ballista', 'trojan_horse'], menu: 'mil',
             repairAura: 190, repairRate: 4, repairUpgrade: 'field_engineers',
             desc: "Buduje tarany, balisty, katapulty, działa, a od III ery Konia Trojańskiego. Po zbadaniu Inżynierów Polowych naprawia też pobliskie machiny — jak lazaret leczy ludzi." },
@@ -1428,7 +1468,12 @@ const GameConfig = {
         gate: { name: 'Brama', maxHp: 500, size: 40, cost: { wood: 30 }, age: 1, vision: 150, menu: 'mil',
             desc: "Brama. Przepuszcza tylko jednostki twojej drużyny. Stawiana na istniejącym murze." },
         arsenal: { name: 'Arsenał', maxHp: 750, size: 60, cost: { wood: 200, stone: 150, gold: 100 }, age: 4, vision: 300, trains: ['organ_gun', 'great_cannon'], menu: 'mil',
-            desc: "Prochownia i ludwisarnia Imperium. Odlewa Organki i Wielkie Działa, a tu zbadasz Ziarnisty Proch, Bagnety i Spiżowe Lufy — ulepszenia broni palnej, dział, galeonów i wież bombardowych." }
+            desc: "Prochownia i ludwisarnia Imperium. Odlewa Organki i Wielkie Działa, a tu zbadasz Ziarnisty Proch, Bagnety i Spiżowe Lufy — ulepszenia broni palnej, dział, galeonów i wież bombardowych." },
+        // V3.5 Newest Final: Cud Świata - drugi sposób na zwycięstwo. Po ukończeniu rusza odliczanie (wonder: sekundy);
+        // jeśli Cud przetrwa, drużyna jego budowniczego wygrywa (Game.checkWonders). Widać go przez mgłę wojny.
+        wonder: { name: 'Cud Świata', maxHp: 9000, size: 120, cost: { food: 1000, wood: 1000, gold: 1200, stone: 1000 }, buildRate: 0.07, age: 4, vision: 420, limit: 1, menu: 'eco',
+            wonder: 600,
+            desc: "Bazylika z wielką złotą kopułą — największa budowla w grze i drugi sposób na zwycięstwo. Gdy ją ukończysz, wszystkie nacje dowiedzą się o niej i zobaczą ją przez mgłę wojny, a ruszy odliczanie 10 minut: jeśli Cud przetrwa, twoja drużyna wygrywa. Budowa długo trwa — przyślij wielu robotników i przygotuj obronę, bo wszyscy wrogowie rzucą się, by go zburzyć. Jeden na nację." }
     },
 
     // effects: { units:[...] | buildings:[...], stat, add }  lub  { gather: 'wood', add: 0.25 }
@@ -1459,7 +1504,7 @@ const GameConfig = {
         archer_range: { name: 'Sokoli Wzrok', at: 'forge', age: 1, cost: { wood: 150, gold: 50 }, time: 12, icon: 'eye',
             effects: [{ units: ['archer'], stat: 'attackRange', add: 30 }, { units: ['horse_archer'], stat: 'attackRange', add: 20 }], desc: "+30 do zasięgu łuczników, +20 konnych łuczników." },
         steel: { name: 'Hartowana Stal', at: 'forge', age: 2, cost: { food: 150, gold: 120 }, time: 15, icon: 'sword',
-            effects: [{ units: ['swordsman', 'knight', 'axeman', 'hussar', 'royal_guard'], stat: 'attackDamage', add: 3 }], desc: "+3 do ataku mieczników, toporników, gwardzistów, rycerzy i husarzy." },
+            effects: [{ units: ['swordsman', 'knight', 'axeman', 'hussar', 'royal_guard', 'lisowczyk'], stat: 'attackDamage', add: 3 }], desc: "+3 do ataku mieczników, toporników, gwardzistów, rycerzy, husarzy i lisowczyków." },
         plate: { name: 'Zbroje Płytowe', at: 'forge', age: 2, cost: { food: 120, gold: 180 }, time: 18, icon: 'armor',
             effects: [{ units: ['swordsman', 'knight', 'hussar', 'royal_guard'], stat: 'armorMelee', add: 1 }, { units: ['swordsman', 'knight', 'hussar', 'royal_guard'], stat: 'armorPierce', add: 2 }],
             desc: "+1 pancerza wręcz i +2 pancerza kłutego dla mieczników, gwardzistów, rycerzy i husarzy." },
@@ -1511,7 +1556,7 @@ const GameConfig = {
             desc: "+10 do ataku dział, galeonów i wież bombardowych, +40 do życia dział; Wielkie Działo: +25 do ataku i +80 do życia." },
 
         horseshoes: { name: 'Podkowy', at: 'stable', age: 2, cost: { food: 120, gold: 80 }, time: 14, icon: 'horseshoe',
-            effects: [{ units: ['knight', 'scout', 'horse_archer', 'hussar', 'reiter'], stat: 'speed', add: 20 }], desc: "+20 do szybkości rycerzy, husarzy, rajtarów, konnych łuczników i zwiadowców." },
+            effects: [{ units: ['knight', 'scout', 'horse_archer', 'hussar', 'reiter', 'lisowczyk', 'trade_cart'], stat: 'speed', add: 20 }], desc: "+20 do szybkości rycerzy, husarzy, rajtarów, lisowczyków, konnych łuczników, zwiadowców i wozów kupieckich." },
         field_engineers: { name: 'Inżynierowie Polowi', at: 'siege_workshop', age: 2, cost: { wood: 150, gold: 100 }, time: 18, icon: 'engineer',
             desc: "Każdy twój Warsztat oblężniczy działa odtąd jak lazaret dla machin: naprawia pobliskie tarany, balisty, katapulty, działa, Organki, Wielkie Działa i trebusze twojej drużyny (4 punkty na sekundę każdą, promień 190) — ale tylko te, które od 4 sekund nie oberwały. Kilka warsztatów nie sumuje napraw. Postaw warsztat tuż za linią frontu, a machiny wrócą do walki zamiast przepaść." },
         herbs: { name: 'Zielarstwo', at: 'monastery', age: 2, cost: { food: 150, gold: 100 }, time: 14, icon: 'herb',
@@ -2578,6 +2623,9 @@ class Game {
         const activeNations = this.nations.filter(n => !n.defeated);
         const activeTeams = new Set(activeNations.map(n => n.team));
 
+        // V3.5 Newest Final: Cud Świata, który przetrwał odliczanie, daje zwycięstwo drużynie budowniczego
+        if (this.checkWonders()) return;
+
         if (activeTeams.size <= 1 && new Set(this.nations.map(n => n.team)).size > 1) {
             const winnerTeam = activeTeams.size === 1 ? [...activeTeams][0] : null;
             this.endGame(winnerTeam, false);
@@ -2683,6 +2731,8 @@ class Game {
                     this.markCircle(vis, null, b.x, b.y, b.isConstructed ? (b.vision || 400) : 150);
                 }
             }
+            // V3.5 Newest Final: Cud Świata (także w budowie) widać z każdego zakątka mapy
+            for (const w of this.wonderInfo()) this.markCircle(vis, null, w.x, w.y, w.size / 2 + 70);
             // odkryty teren = suma wszystkiego, co kiedykolwiek było widać (jedno przejście zamiast drugiego fill na każdy krąg)
             for (let i = 0; i < vis.length; i++) if (vis[i]) exp[i] = 1;
         }
@@ -3327,10 +3377,18 @@ Game.prototype.killEntity = function (target, source) {
     if (target.unitType) {
         if (target.owner) target.owner.stats.unitsLost++;
         if (hostile) source.owner.stats.kills++;
+        if (hostile && source.unitType && source.cfg && source.cfg.plunder && target.cfg && target.cfg.cls === 'civil') {
+            // V3.5 Newest Final: lisowczyk wraca z łupem - sakiewka robotnika, skrzynia z wozu kupieckiego
+            const loot = target.cfg.trader ? 40 : 15;
+            source.owner.resources.add('gold', loot);
+            source.owner.stats.gathered.gold += loot;
+            this.floatFor(source.owner, target.x, target.y - 16, '+' + loot + ' złota (łup)', '#ffd94a');
+        }
     } else if (target.buildProgress !== undefined) {
         if (target.owner) target.owner.stats.buildingsLost++;
         if (hostile) source.owner.stats.razed++;
         if (target.owner && !isWallType(target.type)) this.tell(target.owner, `Stracono budynek: ${buildingName(target.type)}`, 'warn');
+        if (target.cfg && target.cfg.wonder) this.wonderFallen(target, hostile ? source : null);
     }
 
     this._fxLocal++;
@@ -4454,6 +4512,7 @@ Game.prototype.shake = function (x, y, amount, margin) {
 //   board    { units, target }                 V3.5: piechota wsiada do Konia Trojańskiego, robotnicy chowają się w budynku
 //   unload   { units }                         V3.5: Koń Trojański otwiera brzuch (desant z premią zaskoczenia)
 //   bell     { on }                            V3.5: dzwon na trwogę - robotnicy chowają się w ratuszach, zamkach i wieżach
+//   route    { units, target }                 V3.5 Newest Final: wozy kupieckie handlują przez wskazany targ
 
 // Wystawienie rozkazu przez lokalnego gracza
 Game.prototype.issue = function (cmd) {
@@ -4714,6 +4773,172 @@ Game.prototype.kingFallen = function (king, source) {
     n.graceUntil = null;
 };
 
+// ---------------- V3.5 Newest Final: szlak handlowy ----------------
+// Wóz kupiecki (cfg.trader) jeździ między dwoma ukończonymi targami własnej drużyny. Za każdy kurs dostaje złoto
+// rosnące z kwadratem długości trasy (Game.TRADE_K, do Game.TRADE_MAX kroków) - tak, by złoto na sekundę rosło liniowo
+// z odległością: krótki szlak w obrębie osady daje grosze, długi przez pół mapy - więcej niż górnik, ale wymaga obrony.
+// Handel z targiem sojusznika daje +20%. Kurs liczy się od targu, z którego wóz wyjechał (tradeOx, tradeOy);
+// ręczny marsz kasuje punkt wyjazdu, więc złota nie da się "dowieźć" bez przejechania szlaku.
+Game.TRADE_K = 0.000013;
+Game.TRADE_MAX = 2200;
+Game.TRADE_ALLY = 1.2;
+
+Game.isTradeMarket = function (nation, b) {
+    return !!(b && nation && b.type === 'market' && b.isConstructed && !b.isDestroyed && b.owner && b.owner.team === nation.team && !b.owner.defeated);
+};
+
+// Złoto za kurs z punktu (ox, oy) na targ m; fromOwner - właściciel targu wyjazdu (premia za handel z sojusznikiem)
+Game.prototype.tradeGold = function (nation, ox, oy, m, fromOwner) {
+    if (ox == null || !m) return 0;
+    const d = Math.min(Game.TRADE_MAX, Math.hypot(m.x - ox, m.y - oy));
+    const ally = (m.owner && m.owner !== nation) || (fromOwner && fromOwner !== nation);
+    return Math.round(Game.TRADE_K * d * d * (ally ? Game.TRADE_ALLY : 1));
+};
+
+// Najlepszy partner handlowy dla targu "from": najdalszy osiągalny targ drużyny (najwięcej złota z kursu)
+Game.prototype.tradePartner = function (u, from) {
+    const pf = this.pathfinder, nation = u.owner;
+    let best = null, bd = 0;
+    for (const n of this.nations) {
+        if (n.team !== nation.team) continue;
+        for (const b of n.buildings) {
+            if (b === from || !Game.isTradeMarket(nation, b)) continue;
+            const d = Math.hypot(b.x - from.x, b.y - from.y);
+            if (d <= bd) continue;
+            if (pf && !pf.canReach(u, from.x, from.y, b, 2)) continue;
+            bd = d; best = b;
+        }
+    }
+    return best;
+};
+
+// Wóz dojechał na targ m: rozliczenie kursu i powrót na drugi koniec szlaku
+Game.prototype.tradeArrive = function (u, m) {
+    if (!Game.isTradeMarket(u.owner, m)) { this.tradeResume(u); return; }
+    const from = u.tradeFrom;
+    if (u.tradeOx != null && from !== m) {
+        const gold = this.tradeGold(u.owner, u.tradeOx, u.tradeOy, m, from && from.owner);
+        if (gold > 0) {
+            const n = u.owner;
+            n.resources.add('gold', gold);
+            n.stats.gathered.gold += gold;
+            n.stats.traded = (n.stats.traded || 0) + gold;
+            this.floatFor(n, m.x, m.y - m.size / 2 - 6, '+' + gold + ' złota', '#ffd94a');
+            this.spawnParticle(u.x, u.y, 'sparkle');
+            this.snd('Gather', u.x, u.y, 'gold');
+        }
+    }
+    const back = (Game.isTradeMarket(u.owner, u.tradeBack) && u.tradeBack !== m) ? u.tradeBack
+        : ((Game.isTradeMarket(u.owner, from) && from !== m) ? from : this.tradePartner(u, m));
+    u.tradeFrom = m; u.tradeOx = m.x; u.tradeOy = m.y;
+    if (!back) {
+        u.goIdle();
+        if (u.owner.human && this.time - (u.owner._tradeTold || -99) > 30) {
+            u.owner._tradeTold = this.time;
+            this.tell(u.owner, 'Wóz kupiecki nie ma dokąd jechać — potrzebny drugi targ (twój albo sojusznika). Im dalej, tym więcej złota.', 'warn');
+        }
+        return;
+    }
+    u.tradeTo(back, m);
+};
+
+// Cel kursu zniknął (targ zburzony): wóz jedzie na drugi koniec szlaku albo do innego targu drużyny
+Game.prototype.tradeResume = function (u) {
+    if (Game.isTradeMarket(u.owner, u.tradeBack)) { u.tradeTo(u.tradeBack, null); return; }
+    if (Game.isTradeMarket(u.owner, u.tradeFrom)) { u.tradeTo(u.tradeFrom, null); return; }
+    let best = null, bd = Infinity;
+    for (const n of this.nations) {
+        if (n.team !== u.owner.team) continue;
+        for (const b of n.buildings) {
+            if (!Game.isTradeMarket(u.owner, b)) continue;
+            const d = Math.hypot(b.x - u.x, b.y - u.y);
+            if (d < bd) { bd = d; best = b; }
+        }
+    }
+    if (best) { u.tradeOx = null; u.tradeTo(best, null); }
+    else u.goIdle();
+};
+
+// Szlak dla wozu: najpierw na targ t, potem między t a poprzednim targiem (albo najlepszym partnerem t)
+Game.prototype.setTradeRoute = function (u, t) {
+    const back = (Game.isTradeMarket(u.owner, u.tradeFrom) && u.tradeFrom !== t) ? u.tradeFrom : this.tradePartner(u, t);
+    if (!back) return false;
+    u.tradeTo(t, back);
+    return true;
+};
+
+// ---------------- V3.5 Newest Final: Cud Świata ----------------
+// Cud widać przez mgłę wojny od chwili położenia fundamentów - wszyscy wiedzą, gdzie rośnie. Po ukończeniu rusza
+// odliczanie (cfg.wonder sekund); jeśli Cud przetrwa, a jego budowniczy nie przegra wcześniej, drużyna budowniczego
+// wygrywa (checkWonders). Gość gry wieloosobowej dostaje listę Cudów z odliczaniem od hosta ('wd' - net/Host.js).
+Game.NO_WONDERS = [];
+
+// Cuda na mapie: u hosta budynki, u gościa obiekty z tymi samymi polami (owner, x, y, size, isConstructed, wonderUntil, buildProgress)
+Game.prototype.wonderInfo = function () {
+    if (this.isClient) return this.netWonders || Game.NO_WONDERS;
+    const W = this.wonders;
+    if (!W) return Game.NO_WONDERS;
+    for (let i = W.length - 1; i >= 0; i--) if (W[i].isDestroyed) W.splice(i, 1);
+    return W;
+};
+
+Game.prototype.wonderStarted = function (b) {
+    (this.wonders || (this.wonders = [])).push(b);
+    const n = b.owner;
+    this.tell(n, 'Fundamenty Cudu Świata położone! Przyślij wielu robotników — i szykuj obronę: budowę widać z każdego zakątka mapy.', 'good');
+    this.tellAll(`Nacja ${n.shortName || n.name} kładzie fundamenty pod Cud Świata! Budowę widać przez mgłę wojny.`, 'alert', n);
+    this.updateVisibility(); this.fogDirty = true;
+};
+
+Game.prototype.wonderBuilt = function (b) {
+    const n = b.owner, mins = Math.round(b.cfg.wonder / 60);
+    b.wonderAt = this.time;
+    b.wonderUntil = this.time + b.cfg.wonder;
+    this.spawnParticle(b.x, b.y, 'levelup');
+    this.shake(b.x, b.y, 5, 80);
+    for (const o of this.nations) {
+        if (o === n) { this.tell(o, `Cud Świata ukończony! Jeśli przetrwa ${mins} minut, twoja drużyna zwycięży. Wszyscy wrogowie już ruszają, by go zburzyć.`, 'good'); this.cue(o, 'AgeUp'); }
+        else if (o.team === n.team) { this.tell(o, `Sojusznik ${n.shortName || n.name} ukończył Cud Świata! Brońcie go przez ${mins} minut, a drużyna zwycięży.`, 'good'); this.cue(o, 'Complete'); }
+        else { this.tell(o, `Nacja ${n.shortName || n.name} ukończyła Cud Świata! Za ${mins} minut jej drużyna zwycięży — zburzcie go!`, 'alert'); this.cue(o, 'Warning'); }
+    }
+};
+
+Game.prototype.wonderFallen = function (b, source) {
+    const n = b.owner, nm = n.shortName || n.name;
+    if (!b.isConstructed) { this.tellAll(`Budowa Cudu Świata nacji ${nm} przerwana.`, 'info'); return; }
+    const by = source && source.owner && source.owner !== n ? ' z ręki nacji ' + (source.owner.shortName || source.owner.name) : '';
+    this.tell(n, 'Twój Cud Świata legł w gruzach! Odliczanie przerwane.', 'alert');
+    this.cue(n, 'Warning');
+    this.tellAll(`Cud Świata nacji ${nm} legł w gruzach${by}! Odliczanie do zwycięstwa przerwane.`, 'alert', n);
+};
+
+// Zwycięstwo przez Cud: ostrzeżenia na 5, 2 i 1 minutę przed końcem odliczania, potem koniec meczu
+Game.WONDER_WARN = [[300, '5 minut'], [120, '2 minuty'], [60, 'minuta']];
+Game.prototype.checkWonders = function () {
+    const W = this.wonderInfo();
+    if (!W.length) return false;
+    let best = null;
+    for (const b of W) {
+        if (b.isDestroyed || !b.isConstructed || b.wonderUntil == null || b.owner.defeated) continue;
+        const left = b.wonderUntil - this.time;
+        for (const [m, label] of Game.WONDER_WARN) {
+            if (left <= m && left > 0 && (b.wonderTold === undefined || b.wonderTold > m)) {
+                b.wonderTold = m;
+                const nm = b.owner.shortName || b.owner.name;
+                for (const o of this.nations) {
+                    if (o.team === b.owner.team) this.tell(o, `Cud Świata: do zwycięstwa ${m > 60 ? 'zostało' : 'została'} ${label}! Nie dajcie go zburzyć.`, 'good');
+                    else { this.tell(o, `Cud Świata nacji ${nm}: do jej zwycięstwa ${m > 60 ? 'zostało' : 'została'} ${label}!`, 'alert'); this.cue(o, 'Warning'); }
+                }
+            }
+        }
+        if (left <= 0 && (!best || b.wonderUntil < best.wonderUntil)) best = b;
+    }
+    if (!best) return false;
+    this.byWonder = best.owner.shortName || best.owner.name;
+    this.endGame(best.owner.team, false);
+    return true;
+};
+
 Game.prototype.applyCommand = function (nation, cmd) {
     const OK = { ok: true };
     const fail = (msg) => ({ ok: false, msg });
@@ -4940,6 +5165,7 @@ Game.prototype.applyCommand = function (nation, cmd) {
             if (!b.isConstructed) {
                 const cost = b.cfg.cost || {};
                 for (const k in cost) nation.resources.add(k, cost[k]);
+                if (b.cfg.wonder) this.wonderFallen(b, null);
                 b.destroy();
                 return { ok: true, msg: 'Anulowano budowę — koszt zwrócony.' };
             }
@@ -4980,6 +5206,21 @@ Game.prototype.applyCommand = function (nation, cmd) {
             const r = this.ringBell(nation, !!cmd.on);
             if (cmd.on) return { ok: true, msg: r > 0 ? `Dzwon na trwogę! ${r} robotników biegnie do schronień.` : 'Dzwon na trwogę — nie ma robotników w pobliżu schronień.', type: r > 0 ? 'alert' : 'info' };
             return { ok: true, msg: r > 0 ? `Koniec alarmu — ${r} robotników wraca do pracy.` : 'Koniec alarmu.', type: 'good' };
+        }
+
+        case 'route': {
+            // V3.5 Newest Final: wozy kupieckie - szlak handlowy przez wskazany targ
+            const t = this.cmdTarget(nation, cmd.target);
+            if (!Game.isTradeMarket(nation, t)) return OK;
+            let ok = 0, none = 0;
+            for (const u of this.cmdUnits(nation, cmd.units)) {
+                if (!u.cfg.trader) continue;
+                u.urgentPath = true;
+                if (this.setTradeRoute(u, t)) ok++;
+                else { none++; u.moveTo(t.x, t.y, false); }
+            }
+            if (none > 0 && ok === 0) return { ok: true, msg: 'Do handlu potrzebne są dwa targi: postaw drugi z dala od pierwszego (im dłuższy szlak, tym więcej złota) albo handluj z targiem sojusznika.', type: 'warn' };
+            return OK;
         }
 
         case 'royal': {
@@ -5535,8 +5776,10 @@ function SfxModule() {
         heal: { n: 3, render(D) {
             const o = D.buf(1.8);
             const sc = [1046.5, 1174.7, 1318.5, 1568, 1760, 2093];
+            // V3.5 Newest Final: indeks nuty nie wychodzi poza skalę - wcześniej w 2 z 3 wariantów trzeci dzwonek dostawał
+            // częstotliwość sc[6] (undefined), cała próbka była NaN i w bitwie z mnichami wyciszała na kilka sekund cały dźwięk
             let k = Math.floor(D.r() * 3);
-            for (let i = 0; i < 3; i++) { D.bell(o, i * 0.085, sc[k], 0.3 - i * 0.05, 0.8); k += 1 + Math.floor(D.r() * 2); }
+            for (let i = 0; i < 3; i++) { D.bell(o, i * 0.085, sc[Math.min(k, sc.length - 1)], 0.3 - i * 0.05, 0.8); k += 1 + Math.floor(D.r() * 2); }
             D.noise(o, 0, 0.6, 0.05, 'hp', 6000, 0.7, ENV.bell);
             return D.normalize(o, 0.55);
         } },
@@ -5727,14 +5970,30 @@ class SoundManager {
         this.muted = false;
         this._last = {};
         this._s = 0x2f6b9a1;                 // własny generator losowy: dźwięk nie zużywa Math.random symulacji
+        this.bank = new Map();               // nazwa próbki -> [AudioBuffer, ...] (warianty)
+        this.lastVar = {};
+        this.buildGraph();
 
+        const unlock = () => {
+            if (this.ctx.state === 'suspended') this.ctx.resume();
+            if (!this.enabled) { this.enabled = true; this.boot(); }
+        };
+        for (const ev of ['mousedown', 'pointerdown', 'keydown', 'touchstart']) window.addEventListener(ev, unlock, { passive: true });
+        // strażnik: przeglądarka potrafi wstrzymać kontekst (przeciążenie, zmiana urządzenia) - wznawiamy go sami
+        ctx.onstatechange = () => { if (this.enabled && !this.muted && ctx.state !== 'running' && ctx.state !== 'closed') this.wake(); };
+    }
+
+    // Tor sygnału (szyny, kompresory, pogłos, pula kanałów). V3.5 Newest Final: osobna metoda, żeby strażnik (watch)
+    // mógł zbudować go od nowa, gdyby coś "zatruło" go wartością NaN - wtedy cały dźwięk milknie na stałe.
+    buildGraph() {
+        const ctx = this.ctx;
         // V3.5 Final 2: na samym końcu ogranicznik - suma kilku wybuchów naraz nie przesteruje wyjścia
         this.limiter = ctx.createDynamicsCompressor();
         this.limiter.threshold.value = -2; this.limiter.knee.value = 0; this.limiter.ratio.value = 20;
         this.limiter.attack.value = 0.002; this.limiter.release.value = 0.12;
         this.limiter.connect(ctx.destination);
         this.master = ctx.createGain();
-        this.master.gain.value = this.volume;
+        this.master.gain.value = this.muted ? 0 : this.volume;
         this.master.connect(this.limiter);
         this.comp = ctx.createDynamicsCompressor();
         this.comp.threshold.value = -17; this.comp.knee.value = 10; this.comp.ratio.value = 4.5;
@@ -5749,9 +6008,10 @@ class SoundManager {
         this.verbOut = ctx.createGain(); this.verbOut.gain.value = 0.42;
         this.verbIn.connect(this.verb); this.verb.connect(this.verbOut); this.verbOut.connect(this.mix);
         this.verbReady = false;
+        // podsłuch wyjścia dla strażnika
+        this.guard = ctx.createAnalyser(); this.guard.fftSize = 256;
+        this.limiter.connect(this.guard);
 
-        this.bank = new Map();               // nazwa próbki -> [AudioBuffer, ...] (warianty)
-        this.lastVar = {};
         this.voices = {};
         this.total = 0;
 
@@ -5777,14 +6037,36 @@ class SoundManager {
             (p || g).connect(busOf[bus]);
             this.strips.push({ f, g, p, s, bus, src: null, busy: false, start: 0, endAt: 0, t0: 0, prio: 0, key: '', id: 0 });
         }
+    }
 
-        const unlock = () => {
-            if (this.ctx.state === 'suspended') this.ctx.resume();
-            if (!this.enabled) { this.enabled = true; this.boot(); }
-        };
-        for (const ev of ['mousedown', 'pointerdown', 'keydown', 'touchstart']) window.addEventListener(ev, unlock, { passive: true });
-        // strażnik: przeglądarka potrafi wstrzymać kontekst (przeciążenie, zmiana urządzenia) - wznawiamy go sami
-        ctx.onstatechange = () => { if (this.enabled && !this.muted && ctx.state !== 'running' && ctx.state !== 'closed') this.wake(); };
+    // V3.5 Newest Final: strażnik wyjścia. Gdy na wyjściu pojawi się NaN albo nieskończoność, kompresory, filtry i pogłos
+    // "zapamiętują" ją i cały dźwięk milknie do przeładowania strony. Strażnik wykrywa to w ciągu sekundy i buduje
+    // tor od nowa (próbki zostają, tło startuje ponownie).
+    watch() {
+        if (!this.guard || this.ctx.state !== 'running') return;
+        const buf = this._gbuf || (this._gbuf = new Float32Array(this.guard.fftSize));
+        this.guard.getFloatTimeDomainData(buf);
+        for (let i = 0; i < buf.length; i++) {
+            const x = buf[i];
+            if (!(x > -1e4 && x < 1e4)) { this.rebuild(); return; }
+        }
+    }
+
+    rebuild() {
+        this.repairs = (this.repairs || 0) + 1;
+        const ir = this.verbReady ? this.verb.buffer : null;
+        for (const st of this.strips) { if (st.src) { st.src.onended = null; try { st.src.stop(); } catch (e) { /* już stoi */ } } }
+        const A = this.amb;
+        if (A) { for (const s of (A.srcs || [])) { try { s.stop(); } catch (e) { /* już stoi */ } } if (this._ambTimer) clearInterval(this._ambTimer); }
+        if (this.rollV && this.rollV.src) { try { this.rollV.src.stop(); } catch (e) { /* już stoi */ } }
+        for (const n of [this.limiter, this.master, this.comp, this.mix, this.sfxBus, this.uiBus, this.ambBus, this.verb, this.verbIn, this.verbOut, this.guard]) {
+            try { n.disconnect(); } catch (e) { /* już odłączony */ }
+        }
+        for (const st of this.strips) for (const n of [st.f, st.g, st.p, st.s]) if (n) { try { n.disconnect(); } catch (e) { /* już odłączony */ } }
+        this.amb = null; this._ambTimer = null; this.rollV = null;
+        this.buildGraph();
+        if (ir) { this.verb.buffer = ir; this.verbReady = true; }
+        if (this.enabled) this.startAmbient();
     }
 
     wake() {
@@ -5824,6 +6106,7 @@ class SoundManager {
         } catch (e) {
             this.renderLocal();
         }
+        setInterval(() => { try { this.watch(); } catch (e) { /* dźwięk nie zatrzymuje gry */ } }, 1000);
     }
 
     // Zapas: synteza w wątku głównym, jeden wariant na raz (między klatkami)
@@ -5848,6 +6131,9 @@ class SoundManager {
 
     addSample(name, v, data) {
         const ctx = this.ctx;
+        // V3.5 Newest Final: bezpiecznik - jedna próbka NaN / nieskończoność "zatruwa" filtr kanału, pogłos i kompresory,
+        // a wtedy milknie cały dźwięk gry (tak działał zepsuty dźwięk leczenia mnicha). Takie wartości zamieniamy na ciszę.
+        for (let i = 0; i < data.length; i++) { const s = data[i]; if (!(s > -4 && s < 4)) data[i] = 0; }
         if (name === 'reverb_ir') {
             // dwa warianty impulsu = dwa kanały: pogłos jest przestrzenny (stereo)
             (this._ir || (this._ir = []))[v] = data;
@@ -6051,6 +6337,7 @@ class SoundManager {
             s.buffer = this.bank.get(name)[0]; s.loop = true;
             s.connect(dest);
             s.start(ctx.currentTime + 0.05, offset || 0);
+            (A.srcs || (A.srcs = [])).push(s);
             return s;
         };
         const gainNode = (v, to) => { const g = ctx.createGain(); g.gain.value = v; g.connect(to); return g; };
@@ -6075,7 +6362,7 @@ class SoundManager {
     }
 
     // V3.5 Final 2: toczenie Wielkiego Działa - jedna zapętlona próbka, której głośność i panorama idą za
-    // wszystkimi widocznymi w kadrze toczącymi się działami (własnymi i wroga)
+    // wszystkimi widocznymi w kadrze toczącymi się działami (własnymi i wroga). V3.5 Newest Final: także Koń Trojański.
     rollTick(g, now) {
         const list = this.bank.get('roll');
         if (!list || !list[0]) return;
@@ -6091,11 +6378,12 @@ class SoundManager {
             src.buffer = list[0]; src.loop = true;
             src.connect(R.f);
             src.start(now + 0.05);
+            R.src = src;
         }
         let sum = 0, pan = 0, lp = 0;
         if (g && g.nations && !window.menuActive && !g.isPaused && !g.gameOver) {
             for (const n of g.nations) for (const u of n.units) {
-                if (u.unitType !== 'great_cannon' || !u.isMoving || u.isDestroyed || u.inside || u.netHidden) continue;
+                if ((u.unitType !== 'great_cannon' && u.unitType !== 'trojan_horse') || !u.isMoving || u.isDestroyed || u.inside || u.netHidden) continue;   // V3.5 Newest Final: Koń Trojański też dudni kołami
                 const sp = this.spatial(u.x, u.y, 1.4);
                 if (!sp) continue;
                 sum += sp.g; pan += sp.pan * sp.g; lp = Math.max(lp, sp.lp || 9000);
@@ -6120,7 +6408,8 @@ class SoundManager {
         A.gustV += (this.rnd() - 0.5) * 0.05; A.gustV *= 0.9;
         A.gust = Math.max(0, Math.min(0.4, A.gust + A.gustV));
         if (!g || !g.camera || window.menuActive) {
-            set(A.wind.gain, 0.04 + A.gust * 0.12); set(A.water.gain, 0); set(A.rain.gain, 0); set(A.crick.gain, 0);
+            // V3.5 Newest Final: w menu szum wiatru ledwie słyszalny (ok. 6 razy ciszej niż wcześniej)
+            set(A.wind.gain, 0.006 + A.gust * 0.02); set(A.water.gain, 0); set(A.rain.gain, 0); set(A.crick.gain, 0);
             for (const f of A.wf) set(f.frequency, 420 + A.gust * 900, 0.8);
             return;
         }
@@ -6366,6 +6655,18 @@ class Minimap {
         const ctx = this.ctx;
         ctx.clearRect(0, 0, S, S);
         ctx.drawImage(this.cachedCanvas, 0, 0);
+
+        // V3.5 Newest Final: Cuda Świata - pulsujący złoty znak (widać je przez mgłę)
+        const wl = g.wonderInfo();
+        if (wl.length) {
+            const pulse = 0.5 + 0.5 * Math.sin(performance.now() / 260);
+            for (const w of wl) {
+                const mx = w.x * scaleX, my = w.y * scaleY, r = 4.5 + (w.isConstructed ? pulse * 2.5 : 0);
+                ctx.fillStyle = w.owner.color; ctx.strokeStyle = '#ffd94a'; ctx.lineWidth = 1.6;
+                ctx.beginPath(); ctx.moveTo(mx, my - r); ctx.lineTo(mx + r, my); ctx.lineTo(mx, my + r); ctx.lineTo(mx - r, my); ctx.closePath();
+                ctx.fill(); ctx.stroke();
+            }
+        }
 
         // Sygnały (atak na gracza itp.)
         for (const p of g.pings) {
@@ -6996,7 +7297,7 @@ class UIManager {
             idle: 'Bezczynny', moving: 'W marszu', moving_to_resource: 'Idzie po surowiec', gathering: 'Zbiera surowiec',
             returning: 'Odnosi surowiec', moving_to_build: 'Idzie na budowę', constructing: 'Buduje',
             moving_to_repair: 'Idzie naprawiać', repairing: 'Naprawia', moving_to_attack: 'Rusza do ataku', attacking: 'Walczy',
-            boarding: 'Idzie do schronienia'
+            boarding: 'Idzie do schronienia', trading: 'Handluje'
         };
 
         this.initTopBar();
@@ -7081,8 +7382,14 @@ class UIManager {
         this.el = {};
         ['res-food', 'res-wood', 'res-gold', 'res-stone', 'res-pop', 'workers-food', 'workers-wood', 'workers-gold', 'workers-stone',
          'workers-idle', 'age-badge', 'game-clock', 'speed-btn', 'mute-btn', 'menu-btn', 'idle-btn', 'army-btn', 'king-btn', 'fps-counter',
-         'nations-btn', 'results-top-btn', 'top-bar', 'grace-banner', 'nations-panel'].forEach(id => this.el[id] = document.getElementById(id));
+         'nations-btn', 'results-top-btn', 'top-bar', 'grace-banner', 'wonder-banner', 'nations-panel'].forEach(id => this.el[id] = document.getElementById(id));
         this.topCache = {};
+        const wb = this.el['wonder-banner'];
+        if (wb) wb.addEventListener('click', () => {
+            // klik w odliczanie: kamera na Cud Świata
+            const w = this.game.wonderInfo().find(x => x.isConstructed && x.wonderUntil != null);
+            if (w) this.game.centerOn(w.x, w.y);
+        });
     }
 
     setText(id, value) {
@@ -7105,6 +7412,7 @@ class UIManager {
         }
         if (this.el['results-top-btn']) this.el['results-top-btn'].style.display = g0.gameOver ? '' : 'none';
         this.updateGraceBanner();
+        this.updateWonderBanner();
         if (this.nationsOpen) this.renderNations();
         this.setText('res-food', Math.floor(r.get('food')));
         this.setText('res-wood', Math.floor(r.get('wood')));
@@ -7150,6 +7458,27 @@ class UIManager {
         } else if (el.style.display !== 'none') {
             el.style.display = 'none';
         }
+    }
+
+    // V3.5 Newest Final: odliczanie Cudów Świata (złote - nasza drużyna, czerwone - wróg); klik pokazuje Cud
+    updateWonderBanner() {
+        const el = this.el['wonder-banner'];
+        if (!el) return;
+        const g = this.game;
+        const list = g.gameOver ? [] : g.wonderInfo().filter(w => w.isConstructed && w.wonderUntil != null && !w.owner.defeated);
+        let html = '';
+        for (const w of list) {
+            const left = Math.max(0, Math.ceil(w.wonderUntil - g.time));
+            const tm = Math.floor(left / 60) + ':' + String(left % 60).padStart(2, '0');
+            const ours = w.owner.team === g.playerTeam && !g.observeAll;
+            const nm = w.owner.shortName || w.owner.name;
+            html += `<div class="${ours ? 'ours' : 'theirs'}">⛪ Cud Świata — ${nm}: <b>${tm}</b> ${ours ? 'do zwycięstwa. Brońcie go!' : 'do ich zwycięstwa. Zburzcie go!'}</div>`;
+        }
+        if (html !== this._wonderHtml) { this._wonderHtml = html; el.innerHTML = html; }
+        const show = html ? 'flex' : 'none';
+        if (el.style.display !== show) el.style.display = show;
+        const grace = this.el['grace-banner'];
+        el.style.bottom = grace && grace.style.display === 'block' ? '74px' : '14px';
     }
 
     // ---------------- Tabela nacji (drużyny, ery, w trybie obserwatora także surowce i armie) ----------------
@@ -7274,6 +7603,8 @@ class UIManager {
         if (cfg.colossal) parts.push(`rani go tylko artyleria (×${Unit.COLOSSAL_MUL})`);
         if (cfg.carry) parts.push(`mieści ${cfg.carry} piechurów (desant: +30% obrażeń przez ${Unit.AMBUSH_TIME} s)`);
         if (cfg.limit) parts.push(`limit: ${cfg.limit} na nację`);
+        if (cfg.trader) parts.push(`złoto za kurs rośnie z długością szlaku (do ${Math.round(Game.TRADE_K * Game.TRADE_MAX * Game.TRADE_MAX)} przy ${Game.TRADE_MAX} krokach), z sojusznikiem +${Math.round((Game.TRADE_ALLY - 1) * 100)}%`);
+        if (cfg.plunder) parts.push('łup: 15 złota za cywila, 40 za wóz kupiecki');
         return parts.join(' · ');
     }
 
@@ -7281,6 +7612,11 @@ class UIManager {
         if (u.healTarget) return 'Leczy rannych';
         let s = this.STATE_NAMES[u.state] || '';
         if (u.state === 'boarding' && u.targetEntity && u.targetEntity.unitType) s = 'Wsiada do konia';
+        if (u.state === 'trading' && u.targetEntity) {
+            // V3.5 Newest Final: wóz kupiecki - dokąd jedzie i ile złota przywiezie z tego kursu
+            const t = u.targetEntity, gold = this.game.tradeGold(u.owner, u.tradeOx, u.tradeOy, t, u.tradeFrom && u.tradeFrom.owner);
+            s = (t.owner && t.owner !== u.owner ? 'Wiezie towar na targ sojusznika' : 'Wiezie towar na targ') + (u.tradeOx != null ? ` · ${gold} złota za kurs` : '');
+        }
         if ((u.state === 'gathering' || u.state === 'moving_to_resource') && u.targetEntity) {
             const t = u.targetEntity.type;
             s = 'Zbiera: ' + (isFarmType(t) || t === 'food' ? (t === 'orchard' ? 'jabłka' : 'żywność') : (GameConfig.resourceNames[t] || '').toLowerCase());
@@ -7481,7 +7817,7 @@ class UIManager {
 
             let i = 0;
             if (hasWorker) {
-                cmds[i++] = { icon: Icons.url('build_eco', 24), title: 'Budynki gospodarcze', desc: 'Ratusz, dom, farma, młyn, skład, targ, port.', onClick: () => { this.menuPage = 'eco'; this.updateActionPanel(); } };
+                cmds[i++] = { icon: Icons.url('build_eco', 24), title: 'Budynki gospodarcze', desc: 'Ratusz, dom, farma, sad, młyn, skład, targ, port i Cud Świata.', onClick: () => { this.menuPage = 'eco'; this.updateActionPanel(); } };
                 cmds[i++] = { icon: Icons.url('build_mil', 24), title: 'Budynki wojskowe', desc: 'Koszary, stajnia, warsztat, kuźnia, klasztor, lazaret, wieże, posterunek, zamek, mury, arsenał.', onClick: () => { this.menuPage = 'mil'; this.updateActionPanel(); } };
             }
             if (hasFighter) {
@@ -8539,8 +8875,23 @@ class UIManager {
         }
 
         const isFriendly = (o) => o === n || g.isAlly(o, n);
-        const units = this.ids(selectedUnits);
+        let units = this.ids(selectedUnits);
         let marker = '#7dff8a';
+
+        // V3.5 Newest Final: PPM na własny albo sojuszniczy targ - wozy kupieckie ruszają na szlak handlowy
+        if (clickedBuilding && clickedBuilding.type === 'market' && clickedBuilding.isConstructed && isFriendly(clickedBuilding.owner)) {
+            const carts = selectedUnits.filter(u => u.cfg.trader);
+            if (carts.length > 0) {
+                g.issue({ t: 'route', units: this.ids(carts), target: clickedBuilding.id });
+                const rest = selectedUnits.filter(u => !u.cfg.trader);
+                if (rest.length === 0) {
+                    g.clickMarker = { x: worldX, y: worldY, life: 0.45, color: '#ffd94a' };
+                    if (window.soundManager) window.soundManager.playCommand();
+                    return;
+                }
+                units = this.ids(rest);
+            }
+        }
 
         // Interfejs rozpoznaje, o jaki rozkaz chodzi, i wystawia go jako dane; wykonuje go symulacja (applyCommand)
         if (clickedNode) {
@@ -8604,8 +8955,9 @@ class UIManager {
         const sub = document.getElementById('end-sub');
         el.className = 'overlay ' + result;
         const pts = g.byPoints ? ' Pat: od 10 minut nikt nie walczył, więc bitwę rozstrzygnięto na punkty.' : '';
-        if (result === 'victory') { title.textContent = 'ZWYCIĘSTWO'; sub.textContent = (g.byPoints ? 'Twoja drużyna wygrywa na punkty.' : 'Wszystkie wrogie Ratusze legły w gruzach.') + pts; }
-        else if (result === 'defeat') { title.textContent = 'PORAŻKA'; sub.textContent = 'Zwyciężyła drużyna: ' + winnerNames + '.' + pts; }
+        const wonder = g.byWonder ? ` Cud Świata nacji ${g.byWonder} przetrwał odliczanie.` : '';
+        if (result === 'victory') { title.textContent = 'ZWYCIĘSTWO'; sub.textContent = (g.byWonder ? 'Cud Świata przetrwał — twoja drużyna zwycięża!' : (g.byPoints ? 'Twoja drużyna wygrywa na punkty.' : 'Wszystkie wrogie Ratusze legły w gruzach.')) + pts + (g.byWonder ? wonder : ''); }
+        else if (result === 'defeat') { title.textContent = 'PORAŻKA'; sub.textContent = 'Zwyciężyła drużyna: ' + winnerNames + '.' + pts + wonder; }
         else { title.textContent = 'REMIS'; sub.textContent = 'Nikt nie ocalał.'; }
 
         const t = Math.floor(g.time);
@@ -10112,6 +10464,8 @@ const Sprites = {
             case 'great_cannon': return [148, 82];
             case 'trojan_horse': return [172, 96];
             case 'king': return [100, 60];
+            case 'lisowczyk': return [96, 56];
+            case 'trade_cart': return [104, 56];
             default: return [56, 52];
         }
     },
@@ -10834,6 +11188,108 @@ const UnitPainter = {
         // szyszak z kitą
         this.helmet(g, -1.2, 4.5, col.light);
         this.ell(g, -1.2, 0, 1.3, 1.3, '#f4d46a', this.OUT, 0.6);
+    },
+
+    // ---------------- LISOWCZYK (V3.5 Newest Final) ----------------
+    // Lekki jeździec na kasztanku, bez zbroi: żupan w barwach nacji, futrzany kołpak z czaplim piórem, łuk w sajdaku
+    // przy siodle i krzywa szabla - w spoczynku oparta o ramię, w ataku tnie z zamachu.
+    p_lisowczyk(g, col, pose, frame) {
+        const ph = this.phase(pose, frame);
+        this.horse(g, null, ph, '#9a6236');
+        // czaprak w barwach nacji
+        g.fillStyle = col.main; g.strokeStyle = this.OUT; g.lineWidth = 1;
+        g.beginPath(); g.roundRect(-9, -5.6, 11, 11.2, 3); g.fill(); g.stroke();
+        g.strokeStyle = col.light; g.lineWidth = 0.9;
+        g.beginPath(); g.moveTo(-8.2, -3.8); g.lineTo(1.2, -3.8); g.moveTo(-8.2, 3.8); g.lineTo(1.2, 3.8); g.stroke();
+        // sajdak z łukiem przy lewym boku siodła
+        g.save(); g.translate(-8, -7.6); g.rotate(-0.22);
+        g.fillStyle = '#6b4424'; g.strokeStyle = this.OUT; g.lineWidth = 0.9;
+        g.beginPath(); g.ellipse(0, 0, 7, 2.3, 0, 0, Math.PI * 2); g.fill(); g.stroke();
+        this.line(g, -5.4, 0, 5.4, 0, '#c9a03c', 0.7);
+        g.strokeStyle = '#4d321c'; g.lineWidth = 1.1;
+        g.beginPath(); g.moveTo(4, -1.6); g.quadraticCurveTo(8.5, 0, 4, 1.6); g.stroke();
+        g.restore();
+        // jeździec w żupanie przepasanym pasem
+        this.ell(g, -2.5, 0, 4.6, 6.8, shadeColor(col.main, -0.35));
+        this.ell(g, -2.2, -0.4, 4, 6, col.main);
+        g.fillStyle = col.light; g.globalAlpha = 0.45;
+        g.beginPath(); g.ellipse(-1.6, -2.6, 2.4, 2.2, 0, 0, Math.PI * 2); g.fill();
+        g.globalAlpha = 1;
+        this.ell(g, -2.5, 0, 4.6, 6.8, null, this.OUT, 1);
+        this.line(g, -2.4, -5.8, -2.4, 5.8, '#c9a03c', 1.3);
+        // szabla
+        const sw = pose === 'attack' ? [-1.25, -1.7, 0.55, 0.15][frame & 3] : -0.75;
+        const hx = 2.6, hy = 6.2;
+        g.save(); g.translate(hx, hy); g.rotate(sw);
+        g.strokeStyle = 'rgba(20,14,8,0.8)'; g.lineWidth = 2.7;
+        g.beginPath(); g.moveTo(0, 0); g.quadraticCurveTo(7.5, -1.2, 14, 2.6); g.stroke();
+        g.strokeStyle = '#e8ebf0'; g.lineWidth = 1.4;
+        g.beginPath(); g.moveTo(0, 0); g.quadraticCurveTo(7.5, -1.2, 14, 2.6); g.stroke();
+        this.line(g, -0.3, -1.8, -0.3, 1.8, '#c9a03c', 1.3);
+        g.restore();
+        this.arm(g, 5.2, hx, hy, shadeColor(col.main, -0.18));
+        this.arm(g, -5.2, 4.6, -3.6, shadeColor(col.main, -0.18));   // ręka na wodzach
+        // kołpak: futrzany otok, wierzch w barwach nacji, czaple pióro odchylone do tyłu
+        this.ell(g, -1.4, 0, 4.5, 4.5, '#4a3220', this.OUT, 1);
+        g.strokeStyle = 'rgba(255,240,220,0.18)'; g.lineWidth = 0.6;
+        g.beginPath(); for (let i = 0; i < 8; i++) { const a = i * Math.PI / 4; g.moveTo(-1.4 + Math.cos(a) * 3.4, Math.sin(a) * 3.4); g.lineTo(-1.4 + Math.cos(a) * 4.3, Math.sin(a) * 4.3); } g.stroke();
+        this.ell(g, -1.2, 0, 2.9, 2.9, col.main, 'rgba(20,14,8,0.5)', 0.7);
+        this.ell(g, -1.2, 0, 0.9, 0.9, '#ffd94a', null);
+        g.strokeStyle = 'rgba(20,14,8,0.6)'; g.lineWidth = 2.4;
+        g.beginPath(); g.moveTo(-2, -0.6); g.quadraticCurveTo(-6.5, -3.2, -10.5, -1.8); g.stroke();
+        g.strokeStyle = '#f6f3ec'; g.lineWidth = 1.4; g.stroke();
+    },
+
+    // ---------------- WÓZ KUPIECKI (V3.5 Newest Final) ----------------
+    // Kryty wóz ciągnięty przez gniadego konia w chomącie: towar pod płachtą w barwach nacji przewiązaną sznurem,
+    // z tyłu beczka i skrzynia, z przodu woźnica w słomkowym kapeluszu. Koła "toczą się" (paski przesuwają się z krokiem).
+    p_trade_cart(g, col, pose, frame) {
+        const ph = this.phase(pose, frame);
+        // koń pociągowy
+        g.save(); g.translate(14, 0); g.scale(0.9, 0.9);
+        this.horse(g, null, ph, '#7a5634');
+        g.strokeStyle = 'rgba(20,14,8,0.75)'; g.lineWidth = 2.2;
+        g.beginPath(); g.ellipse(9, 0, 1.4, 4.4, 0, 0, Math.PI * 2); g.stroke();
+        g.strokeStyle = '#9a7445'; g.lineWidth = 1.1; g.stroke();
+        g.restore();
+        // dyszle
+        for (const s of [-1, 1]) {
+            this.line(g, -6, s * 5, 16, s * 4.2, 'rgba(20,14,8,0.8)', 2.6);
+            this.line(g, -6, s * 5, 16, s * 4.2, '#9a7445', 1.3);
+        }
+        // koła z góry: obręcze po bokach, paski szprych przesuwają się w ruchu
+        const roll = (frame & 3) * 2.2;
+        for (const s of [-1, 1]) {
+            this.wheelTop(g, -18, s * 11.4, 14);
+            g.fillStyle = 'rgba(20,14,8,0.55)';
+            for (let k = -6 + roll % 4.4; k < 6.5; k += 4.4) g.fillRect(-18 + k - 0.5, s * 11.4 - 1.6, 1, 3.2);
+        }
+        // skrzynia wozu z desek
+        g.fillStyle = '#6b4a2a'; g.strokeStyle = this.OUT; g.lineWidth = 1;
+        g.beginPath(); g.roundRect(-33, -10, 29, 20, 2); g.fill(); g.stroke();
+        g.strokeStyle = 'rgba(40,24,10,0.45)'; g.lineWidth = 0.7;
+        g.beginPath(); for (let x = -29; x < -5; x += 4) { g.moveTo(x, -10); g.lineTo(x, 10); } g.stroke();
+        // ładunek pod płachtą
+        g.fillStyle = col.main; g.strokeStyle = shadeColor(col.main, -0.45); g.lineWidth = 1;
+        g.beginPath(); g.roundRect(-30, -8.4, 22, 16.8, 6); g.fill(); g.stroke();
+        g.fillStyle = col.light; g.globalAlpha = 0.4;
+        g.beginPath(); g.ellipse(-19, -3.4, 9, 3, 0, 0, Math.PI * 2); g.fill();
+        g.globalAlpha = 1;
+        g.strokeStyle = '#e2cf9a'; g.lineWidth = 0.9;
+        g.beginPath(); g.moveTo(-26, -8.4); g.lineTo(-26, 8.4); g.moveTo(-19, -8.4); g.lineTo(-19, 8.4); g.moveTo(-12, -8.4); g.lineTo(-12, 8.4); g.moveTo(-30, 0); g.lineTo(-8, 0); g.stroke();
+        // beczka i skrzynia z tyłu
+        this.ell(g, -34.5, -4.2, 3.6, 3.6, '#8a5e34', this.OUT, 0.9);
+        this.ell(g, -34.5, -4.2, 2.2, 2.2, null, 'rgba(40,24,10,0.6)', 0.7);
+        g.fillStyle = '#a8763e'; g.strokeStyle = this.OUT; g.lineWidth = 0.9;
+        g.fillRect(-38, 1.2, 6.5, 6.5); g.strokeRect(-38, 1.2, 6.5, 6.5);
+        this.line(g, -38, 4.45, -31.5, 4.45, 'rgba(40,24,10,0.6)', 0.7);
+        // woźnica na koźle
+        this.ell(g, -3.8, 0, 3.6, 5, '#6e5a3e', this.OUT, 1);
+        this.arm(g, 3.6, 3.8, 3.8, '#6e5a3e');
+        this.arm(g, -3.6, 3.8, -3.8, '#6e5a3e');
+        this.ell(g, -3.2, 0, 3.6, 3.6, '#d9b860', this.OUT, 0.9);
+        this.ell(g, -3.2, 0, 2.1, 2.1, '#c9a24a', 'rgba(90,64,20,0.6)', 0.6);
+        this.line(g, -5.2, 0, -1.2, 0, col.main, 1);
     },
 
     // ---------------- KRÓL (V3.5 Final) ----------------
@@ -11616,6 +12072,21 @@ const UnitPainter = {
             this.ell(g, 9, 0, 4.5, 5.5, '#3d2814', this.OUT, 0.9);
             g.restore();
             g.fillStyle = 'rgba(60,56,52,0.5)'; for (const [x, y, r] of [[-20, -4, 8], [6, 4, 6], [-34, 10, 5]]) { g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill(); }
+            return;
+        }
+        if (type === 'trade_cart') {
+            // przewrócony wóz: rozsypany towar, płachta, koło na boku
+            g.fillStyle = 'rgba(30,24,18,0.35)'; g.beginPath(); g.ellipse(-8, 0, 26, 14, 0, 0, Math.PI * 2); g.fill();
+            g.save(); g.rotate(0.35);
+            g.fillStyle = '#5c3d1f'; g.strokeStyle = this.OUT; g.lineWidth = 1;
+            g.beginPath(); g.roundRect(-30, -9, 26, 18, 2); g.fill(); g.stroke();
+            g.fillStyle = shadeColor(col.main, -0.25);
+            g.beginPath(); g.moveTo(-28, -8); g.quadraticCurveTo(-14, -16, -2, -9); g.lineTo(-6, 4); g.quadraticCurveTo(-18, 0, -28, 6); g.closePath(); g.fill(); g.stroke();
+            g.restore();
+            this.ell(g, 10, 10, 6.5, 6.5, null, '#2b1d12', 2.4);
+            this.line(g, 4, 10, 16, 10, '#2b1d12', 1.2); this.line(g, 10, 4, 10, 16, '#2b1d12', 1.2);
+            for (const [x, y] of [[6, -10], [12, -4], [-36, 8]]) { g.fillStyle = '#a8763e'; g.fillRect(x, y, 5, 5); g.strokeStyle = this.OUT; g.lineWidth = 0.8; g.strokeRect(x, y, 5, 5); }
+            this.ell(g, -38, -6, 3.4, 3.4, '#8a5e34', this.OUT, 0.8);
             return;
         }
         if (cfg.cls === 'siege') {
@@ -13262,6 +13733,72 @@ const BuildingPainter = {
         this.banner(g, 15, -27, col);
     },
 
+    // ---------------- CUD ŚWIATA (V3.5 Newest Final) ----------------
+    // Bazylika na planie krzyża na kamiennym placu: nawa i transept kryte miedzią z patyną, nad skrzyżowaniem
+    // bęben z wielką złotą kopułą (żebra, latarnia, krzyż), w narożnikach cztery kampanile z hełmami w barwach nacji,
+    // przed fasadą schody, obeliski i chorągwie. Złoty blask kopuły dorysowuje Building.draw (animacja).
+    wonder(g, col) {
+        const H = 60, T = Math.PI * 2;
+        // plac: płyty z jaśniejszą rozetą pośrodku i obramowaniem
+        this.masonry(g, -H, -H, 120, 120, '#cfc6b1', 91, 6, 8);
+        g.strokeStyle = 'rgba(110,96,74,0.45)'; g.lineWidth = 2.2; g.strokeRect(-H + 3, -H + 3, 114, 114);
+        g.strokeStyle = 'rgba(255,250,235,0.35)'; g.lineWidth = 0.8; g.strokeRect(-H + 5, -H + 5, 110, 110);
+        // trawniki z cyprysami w narożach placu
+        for (const [sx, sy] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+            this.lawn(g, sx * 40 - 9, sy * 40 - 9, 18, 18, '#6f9a45', 92 + sx + sy * 3, 5);
+        }
+        // schody przed fasadą (dół rysunku)
+        for (let i = 0; i < 4; i++) this.rect(g, -20 + i * 1.5, 44 + i * 3.4, 40 - i * 3, 3.4, shadeColor('#d9d0bb', -i * 0.05), 'rgba(60,48,32,0.55)', 0.6);
+        // ramiona krzyża: nawa (poziomo) i transept (pionowo)
+        const WALL = '#e8dfca';
+        this.withShadow(g, 0.5, 4, () => { this.rect(g, -50, -17, 100, 34, WALL, this.OUT, 1.1); this.rect(g, -17, -50, 34, 94, WALL, this.OUT, 1.1); });
+        const COPPER = '#5f9a86';
+        this.gable(g, -48, -15, 96, 30, COPPER, true, col);
+        this.gable(g, -15, -48, 30, 90, COPPER, false, col);
+        // fasada z rozetą (dół) i absyda (góra)
+        this.withShadow(g, 0.4, 2, () => this.rect(g, -19, 40, 38, 6, '#efe7d4', this.OUT, 1));
+        this.circ(g, 0, 43, 2.6, '#7fb4e6', '#8a6410', 0.8);
+        for (const sx of [-12, 12]) this.rect(g, sx - 2, 41, 4, 4.4, '#3d2814', this.OUT, 0.6);
+        this.withShadow(g, 0.4, 2.4, () => { g.fillStyle = WALL; g.strokeStyle = this.OUT; g.lineWidth = 1; g.beginPath(); g.arc(0, -47, 12, Math.PI, T); g.closePath(); g.fill(); g.stroke(); });
+        this.cone(g, 0, -47, 10, COPPER, 10);
+        // bęben kopuły
+        this.withShadow(g, 0.55, 5, () => this.circ(g, 0, 0, 25, '#d9d0bb', this.OUT, 1.2));
+        this.roundStone(g, 0, 0, 25, 20.5, '#e4dccb', 93);
+        for (let i = 0; i < 16; i++) {
+            const a = i / 16 * T;
+            this.circ(g, Math.cos(a) * 22.7, Math.sin(a) * 22.7, 1.1, '#5a4a36', null);   // okna bębna
+        }
+        // złota kopuła z żebrami
+        const gr = g.createRadialGradient(-6, -7, 2, 0, 0, 21);
+        gr.addColorStop(0, '#fff6c4'); gr.addColorStop(0.35, '#f3cf55'); gr.addColorStop(0.75, '#c9952a'); gr.addColorStop(1, '#8a6410');
+        this.circ(g, 0, 0, 20.5, gr, this.OUT, 1.1);
+        g.strokeStyle = 'rgba(110,70,10,0.55)'; g.lineWidth = 0.9;
+        g.beginPath();
+        for (let i = 0; i < 12; i++) { const a = i / 12 * T; g.moveTo(Math.cos(a) * 5.5, Math.sin(a) * 5.5); g.lineTo(Math.cos(a) * 20, Math.sin(a) * 20); }
+        g.stroke();
+        g.strokeStyle = 'rgba(255,248,210,0.5)'; g.lineWidth = 0.6;
+        g.beginPath(); g.arc(0, 0, 13, 0, T); g.stroke();
+        // latarnia z krzyżem
+        this.circ(g, 0, 0, 5.8, '#efe7d4', this.OUT, 1);
+        this.circ(g, 0, 0, 3.8, col.main, col.dark, 0.9);
+        this.line(g, -3.2, 0, 3.2, 0, '#ffd94a', 1.3); this.line(g, 0, -4.2, 0, 3, '#ffd94a', 1.3);
+        // kampanile w narożach krzyża
+        for (const [tx, ty] of [[-36, -32], [36, -32], [-36, 32], [36, 32]]) {
+            this.withShadow(g, 0.5, 3.6, () => this.rect(g, tx - 8, ty - 8, 16, 16, '#d6cdb8', this.OUT, 1.1));
+            this.masonry(g, tx - 8, ty - 8, 16, 16, '#e6decb', 94 + tx + ty, 2.6, 4);
+            this.rect(g, tx - 8, ty - 8, 16, 16, null, this.OUT, 1.1);
+            this.hip(g, tx - 6, ty - 6, 12, 12, col.main);
+            this.circ(g, tx, ty, 1.5, '#ffd94a', this.OUT, 0.6);
+        }
+        // obeliski przy schodach i chorągwie
+        for (const sx of [-28, 28]) {
+            this.withShadow(g, 0.45, 2, () => this.rect(g, sx - 2.6, 47, 5.2, 5.2, '#bdb39c', this.OUT, 0.8));
+            this.poly(g, [sx - 2, 47.6, sx + 2, 47.6, sx + 2, 51.6, sx - 2, 51.6], '#e9e0ca', null);
+            this.circ(g, sx, 49.6, 0.9, '#ffd94a', null);
+        }
+        this.banner(g, -21, 38, col); this.banner(g, 21, 38, col); this.banner(g, -52, -2, col); this.banner(g, 52, -2, col);
+    },
+
     // ---------------- BRAMA ----------------
     gate(g, col, stone) {
         const H = 20;
@@ -13308,7 +13845,7 @@ Sprites.building = function (type, colorKey, variant) {
         const fn = BuildingPainter[type === 'wooden_wall' ? 'wall_post' : type];
         if (fn) fn.call(BuildingPainter, g, col, variant);
     };
-    const tall = type === 'tower' || type === 'town_center' || type === 'castle' || type === 'bombard_tower' || type === 'outpost';
+    const tall = type === 'tower' || type === 'town_center' || type === 'castle' || type === 'bombard_tower' || type === 'outpost' || type === 'wonder';
     const flat = type === 'farm' || (type === 'orchard' && variant >= 2);   // warstwy owoców sadu - bez cienia
     s = flat ? this.crop(this.makeR(size + pad, size + pad, paint))
              : this.makeShadowed(size + pad, size + pad, paint, tall ? 9 : 6, tall ? 11 : 7, tall ? 7 : 6, 0.42);
@@ -14240,6 +14777,7 @@ class Unit extends Entity {
         this.formSpeed = form && form.speed ? form.speed : null;
         this.formHold = !!(form && form.hold);   // własne miejsce w szyku: jednostka staje dokładnie na nim i wraca, gdy ktoś ją zepchnie
         this.resumeGather = null;
+        if (this.cfg.trader) { this.tradeOx = null; this.tradeBack = null; }   // wóz zjechał ze szlaku: kurs liczy się od nowa od targu
         this.aggroEnabled = aggro;
         this.explicitTarget = false;
         this.resumeTargetX = null;
@@ -14250,6 +14788,7 @@ class Unit extends Entity {
     }
 
     stop() {
+        if (this.cfg.trader) { this.tradeOx = null; this.tradeBack = null; }
         this.targetX = this.x;
         this.targetY = this.y;
         this.targetEntity = null;
@@ -14700,6 +15239,21 @@ class Unit extends Entity {
         this.auraCount = n;
     }
 
+    // --- V3.5 Newest Final: wóz kupiecki ---
+    // Kurs na targ "market"; back - drugi koniec szlaku (dokąd wóz wróci po rozliczeniu kursu, null - wybór po dojeździe).
+    // Rozliczenie i zawrócenie: Game.tradeArrive (actAtTarget, stan 'trading').
+    tradeTo(market, back) {
+        this.formAngle = null; this.formHold = false; this.formSpeed = null;
+        this.explicitTarget = false;
+        this.resumeTargetX = null; this.resumeTargetY = null;
+        this.leashAnchorX = null; this.leashAnchorY = null;
+        this.tradeBack = back || null;
+        this.targetEntity = market;
+        this.path = null;
+        this.state = 'trading';
+        this.resetStuck();
+    }
+
     // --- V3.5: pasażerowie ---
     // Robotnik idzie schować się w budynku (dzwon na trwogę), piechur - wsiąść do Konia Trojańskiego. Wejście do środka
     // załatwia Game.boardUnit, gdy jednostka dojdzie do nosiciela (actAtTarget, stan 'boarding').
@@ -14893,7 +15447,7 @@ class Unit extends Entity {
         const movedDist = Math.hypot(mvx, mvy);
         const st = this.state;
         let desired = null;
-        const activeMove = st === 'moving' || st === 'moving_to_attack' || st === 'moving_to_repair' || st === 'moving_to_build' || st === 'moving_to_resource' || st === 'returning' || (st === 'attacking' && this._faceX !== null);
+        const activeMove = st === 'moving' || st === 'moving_to_attack' || st === 'moving_to_repair' || st === 'moving_to_build' || st === 'moving_to_resource' || st === 'returning' || st === 'trading' || (st === 'attacking' && this._faceX !== null);
         if (activeMove && movedDist > deltaTime * this.moveSpeed * 0.3) {
             this.isMoving = true;
             this.walkDist += movedDist;
@@ -15105,6 +15659,9 @@ class Unit extends Entity {
                 } else if (this.state === 'boarding') {
                     this.afterShelter();
                     return;
+                } else if (this.state === 'trading') {
+                    g.tradeResume(this);   // targ docelowy zburzony: drugi koniec szlaku albo nowy partner
+                    return;
                 } else {
                     this.goIdle();
                     return;
@@ -15309,6 +15866,9 @@ class Unit extends Entity {
         }
         else if (this.state === 'boarding') {
             if (!te || !g.boardUnit(this, te)) this.afterShelter();
+        }
+        else if (this.state === 'trading') {
+            g.tradeArrive(this, te);   // V3.5 Newest Final: wóz dojechał na targ - złoto za kurs i powrót
         }
         else if (this.state === 'attacking') {
             if (te && !te.isDestroyed) {
@@ -15631,6 +16191,18 @@ class Unit extends Entity {
             ctx.beginPath(); ctx.ellipse(x, y, this.cfg.aura, this.cfg.aura * 0.9, 0, 0, Math.PI * 2); ctx.stroke();
             ctx.setLineDash([]); ctx.lineDashOffset = 0;
         }
+        if (this.cfg.trader && this.isSelected && this.state === 'trading' && this.targetEntity && !this.targetEntity.isDestroyed) {
+            // V3.5 Newest Final: szlak zaznaczonego wozu - złota przerywana linia do celu kursu i do drugiego końca szlaku
+            const a = this.targetEntity, b = this.tradeBack && !this.tradeBack.isDestroyed ? this.tradeBack : null;
+            ctx.strokeStyle = 'rgba(255,217,74,0.7)'; ctx.lineWidth = 1.6;
+            ctx.setLineDash([8, 7]); ctx.lineDashOffset = -t * 18;
+            ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(a.x, a.y); ctx.stroke();
+            if (b) {
+                ctx.strokeStyle = 'rgba(255,217,74,0.28)';
+                ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+            }
+            ctx.setLineDash([]); ctx.lineDashOffset = 0;
+        }
         const ht = this.healTarget;
         if (ht && !ht.isDestroyed) {
             const gl = Sprites.glow('heal', '150,255,170');
@@ -15681,10 +16253,10 @@ Unit.inEnemyStreets = function (g, u) {
     }
     return false;
 };
-Unit.FIELDS = ['owner', 'unitType', 'targetX', 'targetY', 'cfg', 'isShip', 'speed', 'radius', 'isSelected', 'targetEntity', 'state', 'leashTargetX', 'leashTargetY', 'explicitTarget', 'gatherTimer', 'carryType', 'carryAmount', 'carryCapacity', 'gatherRate', 'kills', 'rank', 'attackTimer', 'attackRate', 'angle', '_px', '_py', '_pa', 'walkDist', 'isMoving', 'seed', 'resumeTargetX', 'resumeTargetY', 'leashAnchorX', 'leashAnchorY', 'formAngle', 'formSpeed', 'formHold', 'attackDamage', 'attackRange', 'armorMelee', 'armorPierce', 'healRate', 'healRange', 'vision', 'aggroRadius', '_gridLayer', '_gridTeam', '_gridKey', '_faceX', '_grid', 'freeX', 'freeY', 'aggroTimer', '_sepX', '_sepY', '_sx', '_sy', '_sa', 'path', 'stuck', 'stuckT', 'stuckX', 'stuckY', 'moveFailCount', 'repathCooldown', '_gt', 'urgentPath', 'lastPathTargetX', 'lastPathTargetY', 'pathPartial', '_faceY', 'fxTimer', 'buildTimer', 'resumeGather', 'lastGatherType', 'previousResource', 'aggroEnabled', '_swing', 'hasDealtDamage', 'chargeDist', 'lastHitTime', 'ghostUntil', 'isDrafted', 'healTimer', 'inspiredUntil', 'inspireBonus', 'fuseFx', 'auraTimer', 'auraCount', 'healTarget', 'healFx', 'healSnd', 'lazT', 'chargeIdle', 'repairTimer', 'unreachableBy', 'netHidden', 'netFresh', 'deathCause', 'inside', 'passengers', 'ambushUntil', 'inStreets', 'streetT', 'carryApples', 'waitT', 'regen', 'chargeBonus', 'royalOn', 'royalReady', 'royalUntil', 'royalT', '_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf'];
+Unit.FIELDS = ['owner', 'unitType', 'targetX', 'targetY', 'cfg', 'isShip', 'speed', 'radius', 'isSelected', 'targetEntity', 'state', 'leashTargetX', 'leashTargetY', 'explicitTarget', 'gatherTimer', 'carryType', 'carryAmount', 'carryCapacity', 'gatherRate', 'kills', 'rank', 'attackTimer', 'attackRate', 'angle', '_px', '_py', '_pa', 'walkDist', 'isMoving', 'seed', 'resumeTargetX', 'resumeTargetY', 'leashAnchorX', 'leashAnchorY', 'formAngle', 'formSpeed', 'formHold', 'attackDamage', 'attackRange', 'armorMelee', 'armorPierce', 'healRate', 'healRange', 'vision', 'aggroRadius', '_gridLayer', '_gridTeam', '_gridKey', '_faceX', '_grid', 'freeX', 'freeY', 'aggroTimer', '_sepX', '_sepY', '_sx', '_sy', '_sa', 'path', 'stuck', 'stuckT', 'stuckX', 'stuckY', 'moveFailCount', 'repathCooldown', '_gt', 'urgentPath', 'lastPathTargetX', 'lastPathTargetY', 'pathPartial', '_faceY', 'fxTimer', 'buildTimer', 'resumeGather', 'lastGatherType', 'previousResource', 'aggroEnabled', '_swing', 'hasDealtDamage', 'chargeDist', 'lastHitTime', 'ghostUntil', 'isDrafted', 'healTimer', 'inspiredUntil', 'inspireBonus', 'fuseFx', 'auraTimer', 'auraCount', 'healTarget', 'healFx', 'healSnd', 'lazT', 'chargeIdle', 'repairTimer', 'unreachableBy', 'netHidden', 'netFresh', 'deathCause', 'inside', 'passengers', 'ambushUntil', 'inStreets', 'streetT', 'carryApples', 'waitT', 'regen', 'chargeBonus', 'royalOn', 'royalReady', 'royalUntil', 'royalT', 'tradeFrom', 'tradeBack', 'tradeOx', 'tradeOy', '_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf'];
 
 // Rodzaj dźwięku ciosu wręcz (V3.5): 0 - szczęk stali, 1 - drzewce i tarcza, 2 - topór, 3 - narzędzie / pięść, 4 - stal o mur
-Unit.MELEE_SND = { swordsman: 0, knight: 0, hussar: 0, royal_guard: 0, scout: 0, spearman: 1, halberdier: 1, axeman: 2, worker: 3 };
+Unit.MELEE_SND = { swordsman: 0, knight: 0, hussar: 0, royal_guard: 0, scout: 0, lisowczyk: 0, spearman: 1, halberdier: 1, axeman: 2, worker: 3 };
 Unit.meleeSound = function (type, target) {
     const k = Unit.MELEE_SND[type];
     if (target && target.buildProgress !== undefined) return k === 2 ? 2 : (k === 3 ? 3 : 4);
@@ -15770,6 +16342,7 @@ class Building extends Entity {
                 g.cue(this.owner, 'Complete');
             }
             if (this.owner) this.owner.recomputePopulation();
+            if (this.cfg && this.cfg.wonder) g.wonderBuilt(this);   // V3.5 Newest Final: rusza odliczanie do zwycięstwa
         }
     }
 
@@ -16096,6 +16669,19 @@ class Building extends Entity {
             this.owner.stats.trained++;
             if (game) game.spawnParticle(spawnX, spawnY, 'spawn');
             unit.angle = this.rallyPoint ? Math.atan2(this.rallyPoint.y - spawnY, this.rallyPoint.x - spawnX) : Math.PI / 2;
+            if (unit.cfg.trader && game && Game.isTradeMarket(this.owner, this)) {
+                // V3.5 Newest Final: nowy wóz kupiecki od razu rusza w trasę - do najdalszego targu drużyny i z powrotem
+                const partner = game.tradePartner(unit, this);
+                if (partner) {
+                    unit.tradeFrom = this; unit.tradeOx = this.x; unit.tradeOy = this.y;
+                    unit.tradeTo(partner, this);
+                    return;
+                }
+                if (this.owner.human && game.time - (this.owner._tradeTold || -99) > 30) {
+                    this.owner._tradeTold = game.time;
+                    game.tell(this.owner, 'Wóz kupiecki czeka na szlak: postaw drugi targ z dala od pierwszego (albo handluj z targiem sojusznika) i wskaż go PPM.', 'info');
+                }
+            }
             let rt = this.rallyTarget;
             if (rt && unit.cfg.gatherer && rt.amount !== undefined) {
                 if (rt.isDestroyed || rt.amount <= 0) {
@@ -16255,6 +16841,15 @@ class Building extends Entity {
             const fp = this.type === 'town_center' ? (BuildingPainter.TC_FLAG[this.spriteVariant()] || [0, -2]) : [0, -2];
             const fl = Sprites.flagFrame(colorKey, Math.floor(t * 5 + this.seed) & 3);
             ctx.drawImage(fl.canvas, x + fp[0] + 11 + fl.dx, y + fp[1] + 0.8 + fl.dy, fl.dw, fl.dh);
+        } else if (this.type === 'wonder') {
+            // V3.5 Newest Final: złota kopuła lśni; w czasie odliczania blask pulsuje mocniej
+            const g = window.game;
+            const counting = this.wonderUntil != null && g && !g.gameOver;
+            const gl = Sprites.glow('wonder', '255,214,90');
+            const s = 62 + Math.sin(t * (counting ? 3.2 : 1.4) + this.seed) * (counting ? 10 : 5);
+            ctx.globalAlpha = counting ? 0.6 : 0.4;
+            ctx.drawImage(gl.canvas, x - s / 2, y - s / 2, s, s);
+            ctx.globalAlpha = 1;
         }
 
         if (this.cfg && (this.cfg.healAura || this.repairOn) && this.healCount > 0) {
@@ -16585,7 +17180,7 @@ Building._q = [];
 Building.DRILL_TYPES = { swordsman: 1, axeman: 1, royal_guard: 1 };
 
 
-Building.FIELDS = ['owner', 'type', 'cfg', 'size', 'buildProgress', 'isConstructed', 'isSelected', 'variant', 'seed', 'stone', 'repairOn', 'attackCfg', 'attackDamage', 'attackRange', 'attackRate', 'vision', 'trainingQueue', 'trainingTimer', 'attackTimer', 'targetEntity', 'aggroTimer', 'fxTimer', '_gridLayer', '_gridTeam', '_gridKey', 'queueError', 'game', '_linksVer', 'amount', 'maxAmount', 'currentWorkers', 'unreachableBy', 'reseeds', 'healTimer', 'healCount', 'lastHitTime', 'extraTargets', 'deathCause', 'rallyPoint', 'fireAngle', 'fireTime', 'netHidden', 'passengers', 'regrowUntil'];
+Building.FIELDS = ['owner', 'type', 'cfg', 'size', 'buildProgress', 'isConstructed', 'isSelected', 'variant', 'seed', 'stone', 'repairOn', 'attackCfg', 'attackDamage', 'attackRange', 'attackRate', 'vision', 'trainingQueue', 'trainingTimer', 'attackTimer', 'targetEntity', 'aggroTimer', 'fxTimer', '_gridLayer', '_gridTeam', '_gridKey', 'queueError', 'game', '_linksVer', 'amount', 'maxAmount', 'currentWorkers', 'unreachableBy', 'reseeds', 'healTimer', 'healCount', 'lastHitTime', 'extraTargets', 'deathCause', 'rallyPoint', 'fireAngle', 'fireTime', 'netHidden', 'passengers', 'regrowUntil', 'wonderAt', 'wonderUntil', 'wonderTold'];
 
 /* --- nation/Nation.js --- */
 class Nation {
@@ -16680,6 +17275,7 @@ class Nation {
             this.buildings.push(building);
             gameInstance.addEntity(building);
             if (building.isConstructed) this.recomputePopulation();
+            if (building.cfg && building.cfg.wonder && gameInstance.wonderStarted) gameInstance.wonderStarted(building);
             return building;
         }
         return null;
@@ -16878,6 +17474,7 @@ const AI_PROFILES = {
         assemble: false, staging: false, retreat: false, counters: false, focusFire: false, helpAllies: false,
         siege: false, cavalry: false, monks: 0, bearers: 0, scout: false, trades: false,
         raidEvery: 0, flank: false, counter: false, bell: false, horse: 0, regroup: false,
+        tradeCarts: 0, lisowczycy: 0, wonder: 0,
         gatherBonus: 1, trainSpeed: 1
     },
     // Średni: pełna gospodarka II ery, fale po 8-20 jednostek od 7. minuty, mury i dwie wieże. Na IV erę odkłada od 19. minuty.
@@ -16890,6 +17487,7 @@ const AI_PROFILES = {
         assemble: true, staging: false, retreat: false, counters: true, focusFire: false, helpAllies: true,
         siege: true, cavalry: true, monks: 0, bearers: 0, scout: true, trades: false, infirmary: 1,
         raidEvery: 0, flank: false, counter: true, bell: true, horse: 0.35, regroup: true,
+        tradeCarts: 3, lisowczycy: 1, wonder: 0.4,
         gatherBonus: 1, trainSpeed: 1
     },
     // Trudny: szybki awans, trzy koszary, zgrupowanie przed szturmem, kontry, zamek i machiny w III erze,
@@ -16903,6 +17501,7 @@ const AI_PROFILES = {
         assemble: true, staging: true, retreat: true, counters: true, focusFire: true, helpAllies: true,
         siege: true, cavalry: true, monks: 2, bearers: 1, scout: true, trades: true, infirmary: 1,
         raidEvery: 150, flank: true, counter: true, bell: true, horse: 0.8, regroup: true,
+        tradeCarts: 5, lisowczycy: 2, wonder: 0.7,
         gatherBonus: 1, trainSpeed: 1
     },
     // Skandaliczny: gospodarka na 32 robotników, pięć koszar, nacisk od 4. minuty, fale co minutę,
@@ -16916,6 +17515,7 @@ const AI_PROFILES = {
         assemble: true, staging: true, retreat: true, counters: true, focusFire: true, helpAllies: true,
         siege: true, cavalry: true, monks: 3, bearers: 2, scout: true, trades: true, infirmary: 1,
         raidEvery: 105, flank: true, counter: true, bell: true, horse: 1, regroup: true,
+        tradeCarts: 8, lisowczycy: 3, wonder: 0.8,
         gatherBonus: 1.15, trainSpeed: 1.15
     },
     // Samouczek: przeciwnik rozwija małą osadę i nigdy nie atakuje.
@@ -16928,6 +17528,7 @@ const AI_PROFILES = {
         assemble: false, staging: false, retreat: false, counters: false, focusFire: false, helpAllies: false,
         siege: false, cavalry: false, monks: 0, bearers: 0, scout: false, trades: false,
         raidEvery: 0, flank: false, counter: false, bell: false, horse: 0, regroup: false,
+        tradeCarts: 0, lisowczycy: 0, wonder: 0,
         gatherBonus: 1, trainSpeed: 1
     }
 };
@@ -17129,6 +17730,8 @@ class NationAI {
                 for (const b of n.buildings) if (!b.isDestroyed) visible.add(b);
             }
         }
+        // V3.5 Newest Final: Cud Świata (także w budowie) widać z każdego zakątka mapy
+        for (const w of game.wonderInfo()) if (w.owner.team !== myTeam && !w.isDestroyed) visible.add(w);
         for (const u of nation.units) {
             const nearby = game.spatialGrid.queryEnemies(u.x, u.y, u.vision || 300, myTeam, q);
             for (let i = 0; i < nearby.length; i++) { const e = nearby[i]; if (e.owner && e.owner.team !== myTeam) visible.add(e); }
@@ -17198,6 +17801,25 @@ class NationAI {
         const landArmy = landArmyAll.filter(u => !u.inside && u.unitType !== 'trojan_horse' && !u.cfg.hero);   // pasażerowie, koń i król mają własne rozkazy (manageHorse, manageKing)
         const fleet = military.filter(u => u.isShip);
         const count = (t) => { let c = 0; for (const u of nation.units) if (u.unitType === t) c++; return c; };
+
+        // V3.5 Newest Final: Cuda Świata - wrogi (najpilniejszy: ukończony z najkrótszym odliczaniem, potem najdalej
+        // posunięta budowa) i własny
+        this.enemyWonder = null; this.myWonder = null;
+        {
+            let bs = -Infinity;
+            for (const w of game.wonderInfo()) {
+                if (w.isDestroyed || w.owner.defeated) continue;
+                if (w.owner === nation) { this.myWonder = w; continue; }
+                if (!game.isEnemy(w.owner, nation)) continue;
+                const s = w.isConstructed ? 1000 - (w.wonderUntil - time) : w.buildProgress;
+                if (s > bs) { bs = s; this.enemyWonder = w; }
+            }
+            if (this.enemyWonder && this.enemyWonder !== this._wonderSeen) {
+                this._wonderSeen = this.enemyWonder;
+                this.log(`wrogi Cud Świata (${this.enemyWonder.owner.shortName || this.enemyWonder.owner.name}) — cel numer jeden`);
+            }
+        }
+        const traders = nation.units.filter(u => u.cfg.trader);
 
         // Kolejki produkcji
         const q = {};
@@ -17431,7 +18053,24 @@ class NationAI {
         const nextAge = nation.age + 1;
         const nextAgeUp = (nation.age >= 2 && nextAge <= GameConfig.maxAge && p['age' + nextAge + 'At'] < Infinity) ? GameConfig.upgrades['age' + nextAge] : null;
         const ageStone = nextAgeUp ? (nextAgeUp.cost.stone || 0) : 0;
-        const needStone = nation.age >= 2 && res.get('stone') < Math.max(200, ageStone + 40) &&
+        // V3.5 Newest Final: Cud Świata - AI, które chce go postawić, odkłada na niego w IV erze i buduje go wieloma rękami
+        const WD = GameConfig.buildings.wonder;
+        if (this.wantsWonder === undefined) this.wantsWonder = Math.random() < (p.wonder || 0) * (this.personality === 'defensive' ? 1.5 : 1);
+        const wonderPlan = !!tc && this.wantsWonder && nation.age >= WD.age && !this.myWonder && time > p.age4At + 300 &&
+            !(this.enemyWonder && this.enemyWonder.isConstructed) && nation.countBuildings('wonder') < WD.limit;
+        if (wonderPlan && !this.underThreat && !this.agingUp && this.armySize >= this.armyFloor && this.mood > -0.3) {
+            if (res.canAfford(WD.cost)) {
+                const w = this.trySpawn('wonder', tc, 560, false, 24);
+                if (w) { this.assignBuilder(workers, w, 8); this.log('kładzie fundamenty pod Cud Świata'); }
+            } else reserve(WD.cost);
+        }
+        if (this.myWonder && !this.myWonder.isConstructed) {
+            const w = this.myWonder;
+            const busy = workers.filter(u => u.targetEntity === w).length;
+            const want = Math.min(14, Math.max(6, Math.floor(nW * 0.45))) - (this.underThreat ? 3 : 0);
+            if (busy < want) this.assignBuilder(workers.filter(u => u.targetEntity !== w), w, want - busy);
+        }
+        const needStone = (wonderPlan && res.get('stone') < WD.cost.stone + 50) || nation.age >= 2 && res.get('stone') < Math.max(200, ageStone + 40) &&
             (towers.length < p.towers || ageStone > 0 || castles.length < p.castles || bombards.length < p.bombards ||
              (nation.age >= GameConfig.buildings.arsenal.age && arsenals.length < (p.arsenal || 0)) ||
              (p.walls && !nation.researchedUpgrades.includes('stone_walls')));
@@ -17558,6 +18197,44 @@ class NationAI {
             else if (needStone && st < 80 && g > 450) nation.trade('buy', 'stone');
         }
 
+        // --- V3.5 Newest Final: szlak handlowy - drugi targ z dala od pierwszego i wozy kupieckie ---
+        if (tc && p.tradeCarts > 0 && nation.age >= 3) {
+            const own = markets.filter(m => m.isConstructed);
+            const probe = { unitType: 'trade_cart', owner: nation };
+            const reach = (m) => { const pt = m ? game.tradePartner(probe, m) : null; return pt ? Math.hypot(pt.x - m.x, pt.y - m.y) : 0; };
+            // targ na szlaku, który wróg zburzył (często jeszcze jako plac budowy), wydłuża przerwę przed kolejną próbą;
+            // po trzech stratach AI daje sobie spokój (w grze każdy na każdego środek mapy bywa nie do utrzymania)
+            if (this.tradeSite && this.tradeSite.isDestroyed) { this.tradeLost = (this.tradeLost || 0) + 1; this.tradeSite = null; this.nextMarketAt = time + 150 * this.tradeLost; }
+            if (own.length >= 1 && markets.length < 2 && !this.underThreat && nW >= 14 && (this.spawnFails.market || 0) < 8 && (this.tradeLost || 0) < 3 &&
+                time >= (this.nextMarketAt || 0) && reach(own[0]) < 800 && this.canSpend(GameConfig.buildings.market.cost)) {
+                const site = this.pickTradeSite(tc, own[0]);
+                if (site) {
+                    const b = this.trySpawn('market', site, 240, false, 20);
+                    if (b) {
+                        this.tradeSite = b; this.nextMarketAt = time + 60;
+                        this.assignBuilder(workers, b, 2);
+                        this.log(`drugi targ na szlak handlowy (${Math.round(Math.hypot(b.x - own[0].x, b.y - own[0].y))} kroków)`);
+                    }
+                }
+            }
+            const carts = traders.length + qn('trade_cart');
+            const cap = Math.min(p.tradeCarts, Math.floor(nW / 4));
+            if (carts < cap && !this.underThreat) {
+                const m = own.find(b => b.trainingQueue.length < 1 && reach(b) >= 700);
+                if (m && this.canSpend(GameConfig.units.trade_cart.cost)) m.queueUnit(game, 'trade_cart');
+            }
+            // wóz bez szlaku (targ zburzony, zepchnięty z trasy) wraca do handlu
+            for (const u of traders) {
+                if (u.state !== 'idle' || u.inside) continue;
+                let best = null, bd = Infinity;
+                for (const n of game.nations) {
+                    if (n.team !== nation.team) continue;
+                    for (const b of n.buildings) { if (!Game.isTradeMarket(nation, b)) continue; const d = Math.hypot(b.x - u.x, b.y - u.y); if (d < bd) { bd = d; best = b; } }
+                }
+                if (best) game.setTradeRoute(u, best);
+            }
+        }
+
         // --- Zwiadowca ---
         if (p.scout && tc && (scouts.length + qn('scout')) < 1 && res.canAfford(GameConfig.units.scout.cost) && nW >= 6 && tc.trainingQueue.length < 2) {
             tc.queueUnit(game, 'scout');
@@ -17577,6 +18254,33 @@ class NationAI {
 
         // --- Robotnicy ---
         this.assignWorkers(workers, farms, needStone, tc);
+    }
+
+    // V3.5 Newest Final: miejsce na drugi targ - daleko od pierwszego (dłuższy szlak = więcej złota), ale z dala od wrogów:
+    // w stronę środka mapy albo sojusznika, z kandydatów wybierany ten, który leży najdalej od wrogich ratuszy
+    pickTradeSite(tc, m0) {
+        const game = this.game, nation = this.nation, W = game.mapWidth, H = game.mapHeight;
+        const foes = [], friends = [];
+        for (const n of game.nations) {
+            if (n === nation || n.defeated) continue;
+            const t = n.buildings.find(b => b.type === 'town_center' && !b.isDestroyed);
+            if (!t) continue;
+            (game.isEnemy(n, nation) ? foes : friends).push(t);
+        }
+        const dirs = [Math.atan2(H / 2 - tc.y, W / 2 - tc.x)];
+        for (const f of friends) dirs.push(Math.atan2(f.y - tc.y, f.x - tc.x));
+        let best = null, bs = -Infinity;
+        for (const a0 of dirs) for (const off of [0, -0.5, 0.5, -1, 1]) for (const d of [1150, 950, 800]) {
+            const a = a0 + off;
+            const x = clamp(tc.x + Math.cos(a) * d, 120, W - 120), y = clamp(tc.y + Math.sin(a) * d, 120, H - 120);
+            const route = Math.hypot(x - m0.x, y - m0.y);
+            if (route < 700 || game.isWater(x, y) || game.isMountain(x, y)) continue;
+            let foe = 3000;
+            for (const f of foes) foe = Math.min(foe, Math.hypot(f.x - x, f.y - y));
+            const s = Math.min(foe, 1600) * 1.4 + Math.min(route, 1300) * 0.6 - (foe < Math.hypot(x - tc.x, y - tc.y) ? 900 : 0);
+            if (s > bs) { bs = s; best = { x, y }; }
+        }
+        return best;
     }
 
     pickRallyPoint(tc) {
@@ -17613,7 +18317,7 @@ class NationAI {
         const U = GameConfig.units;
         const comp = c.comp;
         const cnt = {};
-        for (const t of ['knight', 'horse_archer', 'hussar', 'reiter', 'ram', 'cannon', 'catapult', 'ballista', 'trebuchet', 'standard_bearer', 'royal_guard', 'petardier', 'organ_gun', 'great_cannon', 'trojan_horse']) cnt[t] = c.count(t) + c.qn(t);
+        for (const t of ['knight', 'horse_archer', 'hussar', 'reiter', 'lisowczyk', 'ram', 'cannon', 'catapult', 'ballista', 'trebuchet', 'standard_bearer', 'royal_guard', 'petardier', 'organ_gun', 'great_cannon', 'trojan_horse']) cnt[t] = c.count(t) + c.qn(t);
         const known = comp.infantry + comp.ranged + comp.cavalry + comp.siege;
         const smart = p.counters && known > 2;
 
@@ -17680,8 +18384,19 @@ class NationAI {
                 let cap = Math.max(2, Math.floor(c.totalArmy * 0.3));
                 if (smart && comp.ranged + comp.siege > comp.spearman * 1.5) cap += 3;
                 if (smart && comp.spearman / known > 0.45) cap = Math.max(1, cap - 2);
-                const cav = cnt.knight + cnt.horse_archer + cnt.hussar + cnt.reiter;
+                const cav = cnt.knight + cnt.horse_archer + cnt.hussar + cnt.reiter + cnt.lisowczyk;
                 if (cav >= cap) continue;
+                // V3.5 Newest Final: lisowczycy - tania jazda do najazdów i łowów na wozy kupieckie, mnichów i machiny
+                // (Łupieżca - więcej; więcej też, gdy wróg handluje albo ma machiny, a gdy brakuje złota - zamiast rycerza)
+                let enemyCarts = 0;
+                for (const e of this.knownEnemies) if (e.unitType && e.cfg.trader && !e.isDestroyed) enemyCarts++;
+                const lisCap = (p.lisowczycy || 0) + (this.personality === 'raider' ? 3 : 0) + (p.raidEvery ? 1 : 0) + Math.min(3, enemyCarts) +
+                    (smart && (comp.siege >= 2) ? 1 : 0);
+                const goldPoor = nation.resources.get('gold') < U.knight.cost.gold + 40;
+                if (nation.age >= U.lisowczyk.age && cnt.lisowczyk < lisCap + (goldPoor ? 2 : 0) && !(smart && comp.spearman / known > 0.45) &&
+                    (goldPoor || Math.random() < 0.55) && this.canSpend(U.lisowczyk.cost)) {
+                    if (b.queueUnit(game, 'lisowczyk')) { cnt.lisowczyk++; continue; }
+                }
                 const wantHA = p.interval < 1.5 && cnt.horse_archer * 2 < cnt.knight + cnt.hussar && !(smart && comp.ranged / known > 0.5);
                 // w III erze husaria stopniowo zastępuje rycerzy (chyba że wróg stoi na samych włóczniach)
                 const wantHussar = nation.age >= U.hussar.age && cnt.hussar <= cnt.knight && !(smart && comp.spearman / known > 0.45);
@@ -17748,6 +18463,12 @@ class NationAI {
     pickWaveTarget(from) {
         const enemies = this.enemyNations();
         if (enemies.length === 0) return null;
+        // V3.5 Newest Final: wrogi Cud Świata (ukończony albo w połowie budowy) jest celem numer jeden
+        const ew = this.enemyWonder;
+        if (ew && !ew.isDestroyed && (ew.isConstructed || ew.buildProgress > 35)) {
+            this.knownEnemies.add(ew);
+            return { n: ew.owner, x: ew.x, y: ew.y, d: Math.hypot(ew.x - from.x, ew.y - from.y), b: ew };
+        }
         const scored = [];
         for (const n of enemies) {
             const etc = n.buildings.find(b => b.type === 'town_center' && !b.isDestroyed) || n.buildings.find(b => !isWallType(b.type) && !b.isDestroyed) || n.buildings[0];
@@ -17887,7 +18608,7 @@ class NationAI {
         const p = this.p, home = this.rallyPoint || this.homePos, st = this.nation.stats;
         for (const u of picked) u.isDrafted = true;
         for (const u of support) u.isDrafted = true;
-        const direct = kind === 'counter' || !p.assemble;
+        const direct = kind !== 'wave' || !p.assemble;   // kontratak i szturm na Cud Świata - bez zbiórki
         const wave = this.wave = {
             id: ++this.waveSeq, kind, units: [...picked, ...support], size0: picked.length, phase: direct ? 'attack' : 'assemble',
             t0: time, tPhase: time, target: target || null, staging: null, flank: null,
@@ -17949,11 +18670,35 @@ class NationAI {
         // Od trzeciej fali - pierwsze ataki zostają takie, jak w profilu trudności (gracz ma czas się rozkręcić).
         const atCap = this.difficulty !== 'easy' && this.wavesSent >= 2 && p.maxArmy >= 20 && this.armySize >= p.maxArmy * 0.9;
         const early = atCap && !!wave && wave.phase === 'attack' && time >= this.nextWaveAt - p.waveCooldown * 0.5;
-        if (time >= this.nextWaveAt || early) {
+        // V3.5 Newest Final: Cud Świata. Wróg go ukończył - wszystko, co nie strzeże bazy, rusza na niego co pół minuty
+        // (bez czekania na przerwę między falami i bez oceny sił: przegrana i tak jest pewna). Własny Cud - armia zostaje
+        // w domu i go broni (nowych fal nie ma, trwająca dobiega końca).
+        const ew = this.enemyWonder;
+        const rush = !!ew && ew.isConstructed && this.difficulty !== 'tutorial' && time - (this.lastRushAt || -99) > 30;
+        const hold = !!this.myWonder && (this.myWonder.isConstructed || this.myWonder.buildProgress > 30);
+        if (!hold && (time >= this.nextWaveAt || early || rush)) {
             let size = Math.min(p.waveMax, this.waveSizeNow);
             const avail = fresh.length - this.guardSize();
             if (atCap && avail > size) size = Math.min(avail, Math.round(p.waveMax * 1.5), size * 2);
-            if (avail >= size && (!early || avail >= 8) && this.enemyNations().length > 0) {
+            // szturm na Cud w sile co najmniej 10 jednostek (posiłki do trwającego - od 6); garstką tylko, gdy czasu brak
+            const rushMin = ew && ew.wonderUntil - time < 150 ? 4 : (wave && wave.phase === 'attack' ? 6 : 10);
+            if (rush && avail >= rushMin) {
+                const picked = fresh.slice(0, avail);
+                const tgt = { n: ew.owner, x: ew.x, y: ew.y, d: 0, b: ew };
+                this.lastRushAt = time;
+                if (wave) {
+                    for (const u of picked) u.isDrafted = true;
+                    wave.units.push(...picked); wave.size0 += picked.length; wave.target = tgt;
+                    if (wave.phase !== 'retreat') { wave.phase = 'attack'; wave.tPhase = time; }
+                    this.log(`posiłki na Cud Świata (${picked.length})`);
+                } else {
+                    wave = this.startWave(picked, [], time, 'wonder', tgt);
+                    this.log(`szturm na Cud Świata nacji ${ew.owner.shortName || ew.owner.name}: ${picked.length} jednostek`);
+                }
+                this.wavesSent++;
+                this.warnPlayer(time);
+            } else if (rush) { /* za mało wojska - czekamy na posiłki */ }
+            else if (avail >= size && (!early || avail >= 8) && this.enemyNations().length > 0) {
                 // najpierw jednostki stojące najbliżej punktu zbiórki
                 fresh.sort((a, b) => Math.hypot(a.x - home.x, a.y - home.y) - Math.hypot(b.x - home.x, b.y - home.y));
                 let picked = fresh.slice(0, size);
@@ -18135,6 +18880,7 @@ class NationAI {
             if (!e.type || e.isDestroyed || e.unitType) continue;
             if (this.isUnreachable(e)) continue;
             let adjustedDist = Math.hypot(e.x - s.x, e.y - s.y);
+            if (e.cfg && e.cfg.wonder) adjustedDist -= e.isConstructed ? 2600 : 1200;   // V3.5 Newest Final: Cud Świata przed wszystkim
             if (isWallType(e.type)) adjustedDist += siege ? 900 : 5000;
             else if (s._flank) { if (ECO[e.type]) adjustedDist -= 600; if (e.attackCfg) adjustedDist += 800; }
             else if (this.smartTargeting) {
@@ -18217,7 +18963,10 @@ class NationAI {
 
     controlDefenders(landArmy, monks, bearers, baseThreats, barracksList) {
         const game = this.game, p = this.p;
-        const home = this.rallyPoint || this.homePos;
+        // V3.5 Newest Final: odwód stoi przy własnym Cudzie Świata (od strony bazy), a nie przy punkcie zbiórki
+        const mw = this.myWonder, base = this.rallyPoint || this.homePos;
+        const home = mw && !mw.isDestroyed && (mw.isConstructed || mw.buildProgress > 30) && base
+            ? { x: mw.x + (base.x - mw.x) * 0.25, y: mw.y + (base.y - mw.y) * 0.25 } : base;
         if (!home) return;
         const defenders = [];
         for (const u of landArmy) if (!u.isDrafted) defenders.push(u);
@@ -18273,6 +19022,14 @@ class NationAI {
                 if (etc) score += Math.min(600, Math.hypot(b.x - etc.x, b.y - etc.y)) * 0.6;   // im dalej od ratusza, tym lepiej
                 if (score > bestScore) { bestScore = score; best = b; }
             }
+            // V3.5 Newest Final: wozy kupieckie na szlaku - najlepsza zdobycz (łup 40 złota, a wróg traci dochód)
+            for (const u of n.units) {
+                if (u.isDestroyed || u.inside || !u.cfg.trader) continue;
+                if (this.defenseAtTrue(n, u.x, u.y, 300) > 0) continue;
+                let score = 1150 - Math.hypot(u.x - home.x, u.y - home.y) * 0.25;
+                if (etc) score += Math.min(600, Math.hypot(u.x - etc.x, u.y - etc.y)) * 0.6;
+                if (score > bestScore) { bestScore = score; best = u; }
+            }
         }
         return best;
     }
@@ -18306,7 +19063,9 @@ class NationAI {
             x /= r.units.length; y /= r.units.length;
             if (r.phase === 'go') {
                 const d = Math.hypot(r.target.x - x, r.target.y - y);
-                if (d < 300) { r.phase = 'strike'; r.tPhase = time; this.log(`najazd: uderzenie (${r.units.length} jeźdźców)`); }
+                const gone = r.target.isDestroyed || r.target.inside;
+                if (r.target.unitType && !gone && d < 700) { for (const u of r.units) if (u.targetEntity !== r.target) u.attack(r.target); }   // pościg za wozem kupieckim
+                if (d < 300 || gone) { r.phase = 'strike'; r.tPhase = time; this.log(`najazd: uderzenie (${r.units.length} jeźdźców)`); }
                 else if (time - r.t0 > 70) { r.phase = 'home'; r.tPhase = time; }
                 else for (const u of r.units) if (u.state === 'idle') u.moveTo(r.target.x + (Math.random() - 0.5) * 120, r.target.y + (Math.random() - 0.5) * 120, false);
             }
@@ -18360,7 +19119,7 @@ class NationAI {
         const picked = fast.slice(0, n);
         for (const u of picked) { u.isDrafted = true; u.moveTo(target.x + (Math.random() - 0.5) * 120, target.y + (Math.random() - 0.5) * 120, false); }
         this.raid = { units: picked, target, phase: 'go', t0: time, tPhase: time, k0: this.nation.stats.kills };
-        this.log(`najazd: ${picked.length} jeźdźców na ${buildingName(target.type).toLowerCase()} nacji ${target.owner.shortName || target.owner.name}`);
+        this.log(`najazd: ${picked.length} jeźdźców na ${(target.unitType ? unitName(target.unitType) : buildingName(target.type)).toLowerCase()} nacji ${target.owner.shortName || target.owner.name}`);
     }
 
     // ---------------- V3.5: Koń Trojański ----------------
@@ -21010,14 +21769,14 @@ class Tutorial {
 // Model: HOST LICZY, GOŚCIE OGLĄDAJĄ. Przeglądarka hosta prowadzi jedyną symulację (tę samą, co w grze solo),
 // goście wysyłają rozkazy i rysują stan świata przysłany przez hosta.
 const NetCodec = {
-    PROTOCOL: 5,                // V3.5 Final: królowie ('rc'), sady (flaga odrastania), stan szarży w stanie nacji
+    PROTOCOL: 6,                // V3.5 Newest Final: wozy kupieckie (stan 'trading'), lisowczycy, Cud Świata ('wd')
     SNAP: 1,                    // rodzaj wiadomości binarnej: paczka stanu jednostek
 
     UNIT_TYPES: Object.keys(GameConfig.units),
     BUILDING_TYPES: Object.keys(GameConfig.buildings),
     NODE_TYPES: ['wood', 'gold', 'stone', 'food'],
     STATES: ['idle', 'moving', 'moving_to_resource', 'gathering', 'returning', 'moving_to_build', 'constructing',
-             'moving_to_repair', 'repairing', 'moving_to_attack', 'attacking', 'boarding'],
+             'moving_to_repair', 'repairing', 'moving_to_attack', 'attacking', 'boarding', 'trading'],
     CARRY: [null, 'food', 'wood', 'gold', 'stone'],
     PROJECTILES: ['arrow', 'bolt', 'javelin', 'ballista', 'bullet', 'grenade', 'cannonball', 'boulder', 'great_ball'],
 
@@ -22115,7 +22874,7 @@ class HostSession {
         const g = this.game;
         peer.observer = true;   // po meczu każdy może obejrzeć całą mapę
         peer.out.push(['end', g.winnerTeam === undefined ? null : g.winnerTeam, !!g.byPoints, g.winnerNames || '',
-            g.nations.map(n => ({ age: n.age, defeated: !!n.defeated, score: n.score(), ctl: n.controlLabel(), stats: n.stats }))]);
+            g.nations.map(n => ({ age: n.age, defeated: !!n.defeated, score: n.score(), ctl: n.controlLabel(), stats: n.stats })), g.byWonder || '']);
     }
 
     // ---------------- Po każdym kroku symulacji ----------------
@@ -22226,6 +22985,14 @@ class HostSession {
                 n.graceUntil != null ? Math.round(n.graceUntil * 10) / 10 : -1, [c.food, c.wood, c.gold, c.stone, c.idle], n.researchingUpgrades, n.defeated ? 1 : 0, n.bell ? 1 : 0, kingRdy];
             const sig = JSON.stringify(st);
             if (sig !== slot.natSig) { slot.natSig = sig; out.push(['n', st]); }
+        }
+        // V3.5 Newest Final: Cuda Świata (widoczne dla wszystkich) z odliczaniem do zwycięstwa
+        const wl = g.wonderInfo();
+        const wsig = wl.map(w => w.id + ':' + (w.isConstructed ? 1 : 0) + ':' + Math.round(w.wonderUntil || 0) + ':' + Math.round(w.buildProgress / 4)).join('|');
+        if (wsig !== slot.wdSig) {
+            slot.wdSig = wsig;
+            out.push(['wd', wl.map(w => [w.id, g.nations.indexOf(w.owner), Math.round(w.x * 10) / 10, Math.round(w.y * 10) / 10, w.size, w.isConstructed ? 1 : 0,
+                w.wonderUntil != null ? Math.round(w.wonderUntil * 10) / 10 : -1, Math.round(w.buildProgress)])]);
         }
         for (let i = 0; i < g.nations.length; i++) {
             const x = g.nations[i];
@@ -22756,6 +23523,13 @@ class ClientSession {
                 });
                 break;
             }
+            case 'wd': {   // V3.5 Newest Final: Cuda Świata i odliczanie do zwycięstwa
+                g.netWonders = e[1].map(a => ({ id: a[0], owner: g.nations[a[1]], x: a[2], y: a[3], size: a[4], isConstructed: !!a[5],
+                    wonderUntil: a[6] < 0 ? null : a[6], buildProgress: a[7] })).filter(w => w.owner);
+                for (const w of g.netWonders) { const b = byId.get(w.id); if (b) { b.wonderUntil = w.wonderUntil; } }
+                g.updateVisibility(); g.fogDirty = true;
+                break;
+            }
             case 'rc': {   // V3.5 Final: Królewska Szarża - gość rysuje złotą aurę wokół króla
                 const k = byId.get(e[1]);
                 if (k && !k.isDestroyed) { k.royalOn = e[2]; k.royalT = 99; }
@@ -22772,6 +23546,7 @@ class ClientSession {
                 g.gameOver = true;
                 g.winnerTeam = e[1];
                 g.byPoints = !!e[2];
+                g.byWonder = e[5] ? NetCodec.clean(e[5]) : null;
                 g.winnerNames = NetCodec.clean(e[3], 200);
                 e[4].forEach((d, i) => {
                     const n = g.nations[i];
@@ -24202,8 +24977,8 @@ document.addEventListener("DOMContentLoaded", () => {
             return s;
         };
         const era = (a) => `<span class="era era${a || 1}">Era ${GameConfig.ages[a || 1].roman}</span>`;
-        const NEW_UNITS = ['arquebusier', 'petardier', 'organ_gun', 'great_cannon', 'trojan_horse', 'king'];
-        const NEW_BUILDINGS = ['orchard'];
+        const NEW_UNITS = ['arquebusier', 'petardier', 'organ_gun', 'great_cannon', 'trojan_horse', 'king', 'trade_cart', 'lisowczyk'];
+        const NEW_BUILDINGS = ['orchard', 'wonder'];
         const isNew = (list, t) => list.includes(t) ? '<span class="codex-new">NOWOŚĆ</span>' : '';
 
         const trainedAt = {};
