@@ -1,2 +1,2 @@
-# html-game
+# Artificial-Battles
 Gra w jednym pliku HTML
