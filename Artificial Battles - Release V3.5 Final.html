@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artificial Battles - Release V3.5 (Preview 2)</title>
+    <title>Artificial Battles - Release V3.5</title>
     <style>
 /* Czcionka Nunito (SIL Open Font License 1.1) osadzona w pliku - gra działa w pełni offline */
 @font-face { font-family: 'Nunito'; font-style: normal; font-display: swap; font-weight: 200 1000;
@@ -664,7 +664,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
             <div class="menu-top-bar">
                 <div class="menu-logo">
                     <h1>Artificial Battles</h1>
-                    <p class="version">Release V3.5 (Preview 2) by Conrad3k</p>
+                    <p class="version">Release V3.5 by Conrad3k</p>
                 </div>
                 <div class="menu-nav">
                     <span class="active" data-pane="play">Graj</span>
@@ -815,7 +815,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="play-grid" style="grid-template-columns: repeat(3, minmax(300px, 1fr));">
                         <div class="menu-card" style="grid-column: 1 / -1;">
                             <h2>V3.5 — Wielkie Działo, Koń Trojański, obrona królestwa, nowy dźwięk, szybszy silnik</h2>
-                            <p class="menu-note" style="margin-top:0">Pięć nowych jednostek z Koniem Trojańskim na czele, obrona królestwa (dzwon na trwogę, uliczki, mury bez dziur), AI z prawdziwym dowódcą, dźwięk zrobiony od nowa i silnik Raptor ok. 3 razy szybszy w symulacji. Wszystko działa także w grze wieloosobowej. Zmiany wydania Preview 2 są oznaczone w nagłówkach.</p>
+                            <p class="menu-note" style="margin-top:0"><b>To największa aktualizacja w historii gry.</b> Pięć nowych jednostek z Koniem Trojańskim na czele, obrona królestwa (dzwon na trwogę, uliczki, mury bez dziur), AI z prawdziwym dowódcą, dźwięk zrobiony od nowa i silnik Raptor ok. 3 razy szybszy w symulacji. Wszystko działa także w grze wieloosobowej. Zmiany wydania Preview 2 są oznaczone w nagłówkach.</p>
                             <h3>Nowe jednostki</h3>
                             <ul>
                                 <li><b>Wielkie Działo</b> (Era IV, Arsenał): ogromna spiżowa bombarda z czteroosobową obsługą. Przeładowanie trwa <b>10 sekund</b> — widać je na pasku pod działem (pomarańczowy: celowanie z lontem, stalowy: nabijanie od wylotu, złoty: gotowe) — ale każdy strzał to 160 obrażeń z zasięgu 390, ×3 na budynki i fala uderzeniowa raniąca wszystko wokół celu. Huk słychać daleko poza kadrem, ziemia drży, zostaje krater. Wolne, 5 miejsc populacji, 350 drewna, 450 złota i 150 kamienia. Balistyka i Spiżowe Lufy (+25 ataku, +80 życia) też je ulepszają.</li>
@@ -838,7 +838,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <li>Szybsze liczenie mgły wojny i osiągalności terenu; drzewa i złoża nie są już "aktualizowane" w każdym kroku.</li>
                                 <li>Mniej przycięć, gdy w bitwie pojawiają się nowe pozy jednostek (sprite'y wycinane bez odczytu z karty graficznej).</li>
                                 <li>Zmiany nie wpływają na przebieg gry: ten sam mecz liczy się co do bitu identycznie jak przed optymalizacją — tylko szybciej. Najbardziej odczuwalne przy prędkości 2× i 3× oraz w dużych bitwach.</li>
-                                <li>Gra wieloosobowa: wszyscy gracze muszą mieć V3.5 (Preview 2) — z wcześniejszym wydaniem V3.5 gra się nie połączy.</li>
+                                <li>Gra wieloosobowa: wszyscy gracze muszą mieć wydanie V3.5 (plik „V3.5 Final”) — z wersjami Preview gra się nie połączy.</li>
                             </ul>
                             <h3>Koń Trojański (Preview 2)</h3>
                             <ul>
@@ -864,6 +864,33 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <li><b>Kontratak</b>: gdy odeprze twój szturm, AI może od razu ruszyć na twoją osadę, zanim odbudujesz armię (najwyżej raz na ok. 3,5 minuty).</li>
                                 <li><b>Nastrój</b>: po wygranych bitwach dowódca atakuje śmielej i częściej, po porażkach okopuje się — stawia dodatkowe wieże i trzyma więcej wojska w domu.</li>
                                 <li>AI sama bije w dzwon, gdy jej robotników napadnie garstka jeźdźców, a obrońców brak.</li>
+                            </ul>
+                            <h3>Tryb Królowie (nowa opcja gry)</h3>
+                            <ul>
+                                <li>Zaznacz <b>Królowie</b> przy ustawieniach świata (także w poczekalni gry wieloosobowej): każda nacja zaczyna z władcą na koniu — 2200 życia, zbroja 5/5, miecz, a poza walką sam leczy rany.</li>
+                                <li><b>Królewska Szarża</b> (Y): przez 15 s wojsko twojej drużyny w promieniu 320 zadaje o 20% więcej obrażeń, otrzymuje o 20% mniej i biega o 20% szybciej. Odnawia się 75 s — złoty krąg pokazuje zasięg.</li>
+                                <li><b>Haczyk:</b> gdy król zginie, nacja od razu przegrywa, a cała jej osada obraca się w perzynę — bez szansy na odbudowę. Przycisk 👑 na górnym pasku (klawisz ;) zaznacza króla i czerwieni się, gdy jest ranny; „,” zaznacza wojsko już bez króla.</li>
+                                <li>AI pilnuje swojego władcy: broni nim osady, śmielsi dowódcy zabierają go z dużą falą, w bitwie dobywa szarży, a ranny wycofuje się pod ratusz. Wrogiego króla AI bierze na cel w pierwszej kolejności.</li>
+                            </ul>
+                            <h3>Plantacja Jabłek</h3>
+                            <ul>
+                                <li>Nowe pole uprawne (I era, 170 drewna i 40 złota): 9 jabłoni, 3 robotników, 1100 jabłek na owocowanie. Nie trzeba jej obsiewać — po zbiorze drzewa przez 40 s kwitną i zawiązują nowe owoce (robotnicy przechodzą wtedy na wolne pola), a każdy kosz jabłek daje dodatkowo 12% złota.</li>
+                                <li>Obowiązują ją te same czerwone kręgi przy Ratuszu i Młynie co farmę. AI też zakłada sady, zwłaszcza w późnych erach, gdy brakuje złota.</li>
+                            </ul>
+                            <h3>Nowe ratusze</h3>
+                            <ul>
+                                <li>Ratusz nie przypomina już zamku: w I erze to drewniany dom wiecowy z ogniskiem i spichlerzem, w II szachulcowy ratusz z dzwonnicą i rynkiem, w III gotycki ratusz z cegły z wieżą zegarową i fontanną, a w IV renesansowy pałac miejski z attyką, loggią i barokową kopułą.</li>
+                            </ul>
+                            <h3>Kuźnia: nowe ulepszenia i Wszech-wzrok</h3>
+                            <ul>
+                                <li><b>Skórzane Kaftany</b> (strzelcy +1/+1 pancerza), <b>Kropierze</b> (jazda +2 pancerza kłutego i +25 życia), <b>Polowe Opatrunki</b> (żołnierze poza walką odzyskują 1,5 życia/s), <b>Okute Tarany</b> (tarany, Koń Trojański, petardy), <b>Hartowane Kopie</b> (szarża husarii ×3) i <b>Mistrzowie Kuźni</b> (całe wojsko lądowe +1 ataku i +1/+1 pancerza).</li>
+                                <li><b>★ Wszech-wzrok</b> — ultra-ulepszenie IV ery: ty i sojusznicy widzicie całą mapę naraz. Bardzo drogie (2000 żywności, 1500 drewna, 3000 złota, 1000 kamienia, 2 minuty badania), a wieść o nim obiega wszystkie nacje.</li>
+                                <li>Gdy budynek ma więcej ulepszeń niż mieści panel, przycisk V przełącza strony.</li>
+                            </ul>
+                            <h3>AI i dźwięk</h3>
+                            <ul>
+                                <li>Przetestowane w dziesiątkach meczów AI kontra AI (także w trybie Królowie i w grze wieloosobowej): AI awansuje wcześniej, gdy zalegają jej surowce, sprzedaje nieużywany kamień, gdy brakuje złota, i stawia sady w późnej grze.</li>
+                                <li>Łagodniejszy dźwięk wydobywania złota, cichszy szum wiatru, rzadsze i cichsze ptaki, ciszej fanfara awansu do nowej ery.</li>
                             </ul>
                             <h3>Dźwięk i drobiazgi (Preview 2)</h3>
                             <ul>
@@ -1092,7 +1119,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
             <div class="menu-bottom-bar">
                 <span>Wykonane przy użyciu agentów LLM</span>
                 <span class="engine-credit">Raptor Engine · designed by Claude</span>
-                <span>Artificial Battles · Release V3.5 (Preview 2)</span>
+                <span>Artificial Battles · Release V3.5</span>
             </div>
         </div>
 
@@ -17027,7 +17054,8 @@ class NationAI {
             if (barracks || res.get('wood') >= 200 || nW < 10) {
                 const O = GameConfig.buildings.orchard;
                 let orchards = 0; for (const f of farms) if (f.type === 'orchard') orchards++;
-                const sad = farms.length >= 3 && orchards < Math.floor(farms.length / 3) + (nation.age >= 3 ? 1 : 0) &&
+                const goldPoor = nation.age >= 3 && res.get('gold') < 300;   // w późnych erach złoża przy bazie są wybrane - sad daje też złoto
+                const sad = farms.length >= 3 && orchards < Math.floor(farms.length / 3) + (nation.age >= 3 ? 1 : 0) + (goldPoor ? 1 : 0) &&
                     this.canSpend(O.cost) && res.get('wood') >= O.cost.wood + 120 && (this.spawnFails.orchard || 0) < 6;
                 this.assignBuilder(workers, this.spawnFarm(tc, mills, farms, sad ? 'orchard' : 'farm'));
             }
@@ -17122,10 +17150,15 @@ class NationAI {
             const up = GameConfig.upgrades[id];
             if (up && !nation.researchingUpgrades.includes(id)) {
                 let ready;
+                // V3.5 Final: nadwyżka (półtora kosztu awansu leży bezczynnie w skarbcu) pozwala awansować wcześniej niż
+                // w planie - w testach Średni w I erze trzymał po 2000 drewna i żywności, czekając na swoją minutę
+                let rich = this.difficulty !== 'easy' && this.difficulty !== 'tutorial' && !this.underThreat;
+                for (const k in up.cost) if (res.get(k) < up.cost[k] * 1.5) rich = false;
+                const due = (at) => time > at || (rich && time > at * 0.7);
                 if (nation.age === 1) {
-                    ready = barracks && barracks.isConstructed && nW >= p.ageWorkers && time > p.age2At;
+                    ready = barracks && barracks.isConstructed && nW >= p.ageWorkers && due(p.age2At);
                 } else if (nation.age === 2) {
-                    ready = nW >= p.ageWorkers + 3 && time > p.age3At && (stables.length + workshops.length > 0 || !p.cavalry);
+                    ready = nW >= p.ageWorkers + 3 && due(p.age3At) && (stables.length + workshops.length > 0 || !p.cavalry);
                 } else {
                     // IV era jest droga: najpierw zamek (jeśli profil go przewiduje; po 4 minutach czekania już bez niego),
                     // potem odkładanie na awans
@@ -17252,7 +17285,7 @@ class NationAI {
             // IV era: wojsko prochowe kosztuje głównie złoto, a złoża przy bazie są już wybrane - nadwyżki idą na targ wcześniej
             else if (w > (nation.age >= 4 ? 700 : 900) && g < (nation.age >= 4 ? 320 : 250)) nation.trade('sell', 'wood');
             else if (f > (nation.age >= 4 ? 850 : 1300) && g < (nation.age >= 4 ? 320 : 250)) nation.trade('sell', 'food');
-            else if (st > (nation.age >= 4 && !needStone ? 450 : 700) && g < (nation.age >= 4 ? 320 : 250)) nation.trade('sell', 'stone');
+            else if (st > (needStone ? 700 : 300) && g < (nation.age >= 4 ? 320 : 250)) nation.trade('sell', 'stone');   // V3.5 Final: kamień bez planów nie leży, gdy brakuje złota
             else if (w < 60 && g > 260) nation.trade('buy', 'wood');
             else if (f < 60 && g > 300) nation.trade('buy', 'food');
             else if (needStone && st < 80 && g > 450) nation.trade('buy', 'stone');
@@ -20669,7 +20702,7 @@ class Tutorial {
 // Model: HOST LICZY, GOŚCIE OGLĄDAJĄ. Przeglądarka hosta prowadzi jedyną symulację (tę samą, co w grze solo),
 // goście wysyłają rozkazy i rysują stan świata przysłany przez hosta.
 const NetCodec = {
-    PROTOCOL: 4,                // V3.5 Preview 2: Koń Trojański, schronienia (zdarzenia 'in' / 'out', stan 'boarding')
+    PROTOCOL: 5,                // V3.5 Final: królowie ('rc'), sady (flaga odrastania), stan szarży w stanie nacji
     SNAP: 1,                    // rodzaj wiadomości binarnej: paczka stanu jednostek
 
     UNIT_TYPES: Object.keys(GameConfig.units),
