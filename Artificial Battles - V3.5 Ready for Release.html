@@ -521,6 +521,66 @@ button { font-family: inherit; }
 .tutorial-box button { flex-shrink: 0; }
 .check { display: flex; align-items: center; gap: 8px; font-size: 0.88rem; cursor: pointer; }
 .check input { accent-color: var(--gold); width: 16px; height: 16px; }
+/* V3.5: warunki zwycięstwa i pora dnia - kafelki z ikonami i przełącznikami (menu i poczekalnia gry wieloosobowej) */
+.win-grid { display: flex; flex-direction: column; gap: 6px; margin-top: 6px; }
+.win-tile {
+    position: relative; display: flex; align-items: center; gap: 11px; padding: 7px 12px 7px 8px; border-radius: 6px; cursor: pointer;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)); border: 1px solid rgba(255, 255, 255, 0.16);
+    transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+}
+.win-tile:hover { border-color: var(--gold-dim); background: linear-gradient(90deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)); }
+.win-tile input { position: absolute; opacity: 0; pointer-events: none; }
+.win-tile img {
+    width: 40px; height: 40px; flex-shrink: 0; border-radius: 6px; border: 1px solid rgba(255, 255, 255, 0.2);
+    background: radial-gradient(circle at 50% 40%, #4f8f4a 0%, #2e5a30 100%); filter: grayscale(0.85) brightness(0.75); transition: filter 0.2s;
+}
+.win-tile .wt-text { flex: 1; min-width: 0; display: flex; flex-direction: column; line-height: 1.25; }
+.win-tile .wt-text b { font-family: Georgia, serif; font-weight: normal; font-size: 0.98rem; color: #c9d3de; letter-spacing: 0.3px; }
+.win-tile .wt-text small { font-size: 0.74rem; color: var(--muted); }
+.win-switch {
+    position: relative; width: 36px; height: 20px; flex-shrink: 0; border-radius: 10px;
+    background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.25); transition: background 0.18s, border-color 0.18s;
+}
+.win-switch::after {
+    content: ''; position: absolute; left: 2px; top: 2px; width: 14px; height: 14px; border-radius: 50%;
+    background: #8b97a5; transition: transform 0.18s, background 0.18s;
+}
+.win-tile input:checked ~ .win-switch { background: #8a6a22; border-color: var(--gold); }
+.win-tile input:checked ~ .win-switch::after { transform: translateX(16px); background: #fff3cf; }
+.win-tile:has(input:checked) { border-color: rgba(223, 184, 94, 0.75); background: linear-gradient(90deg, rgba(223, 184, 94, 0.2), rgba(223, 184, 94, 0.05)); box-shadow: 0 0 10px rgba(223, 184, 94, 0.18); }
+.win-tile input:checked ~ img { filter: none; }
+.win-tile input:checked ~ .wt-text b { color: var(--gold); }
+.win-tile input:focus-visible ~ .win-switch { box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.6); }
+.win-tile.fixed { cursor: default; border-style: dashed; }
+.win-tile.fixed img { filter: none; }
+.win-tile.fixed .wt-text b { color: #fff; }
+.win-tile.fixed .win-lock { font-size: 0.68rem; font-weight: 900; letter-spacing: 0.6px; color: #a8e0a0; border: 1px solid rgba(168, 224, 160, 0.5); border-radius: 9px; padding: 1px 7px; }
+.sky-pick { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+.sky-pick input { display: none; }
+.sky-pick label {
+    position: relative; display: flex; flex-direction: column; gap: 5px; padding: 6px 6px 7px; border-radius: 6px; cursor: pointer;
+    background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.16); font-size: 0.8rem; text-align: center; transition: all 0.15s;
+}
+.sky-pick label:hover { border-color: var(--gold-dim); background: rgba(255, 255, 255, 0.12); }
+.sky-pick input:checked + label { border-color: var(--gold); color: var(--gold); font-weight: bold; background: rgba(223, 184, 94, 0.12); box-shadow: 0 0 8px rgba(223, 184, 94, 0.3); }
+.sky-pick small { font-size: 0.68rem; font-weight: 400; color: var(--muted); line-height: 1.2; }
+.sky { position: relative; height: 30px; border-radius: 4px; overflow: hidden; filter: saturate(0.5) brightness(0.8); transition: filter 0.2s; }
+.sky-pick input:checked + label .sky { filter: none; }
+.sky.cycle { background: linear-gradient(90deg, #0d1838 0%, #283a78 22%, #e9915a 42%, #8cc6ef 60%, #e48a55 80%, #101a3c 100%); }
+.sky.day { background: linear-gradient(180deg, #5fa8e6 0%, #a9d8f7 100%); }
+.sky i { position: absolute; top: 7px; width: 14px; height: 14px; border-radius: 50%; }
+.sky .sun { background: radial-gradient(circle, #fff7c8 0%, #ffd34d 60%, #f5a623 100%); box-shadow: 0 0 10px #ffd34d; }
+.sky.cycle .sun { left: calc(50% - 7px); }
+.sky.day .sun { left: calc(50% - 9px); width: 18px; height: 18px; top: 6px; }
+.sky .moon { left: 9px; background: transparent; box-shadow: 4px 2px 0 0 #e8ecf7; top: 5px; }
+.sky .star { width: 2px; height: 2px; background: #fff; box-shadow: 0 0 2px #fff; }
+.sky .cloud { width: 22px; height: 7px; border-radius: 6px; background: rgba(255, 255, 255, 0.85); top: 17px; }
+.sky.cycle .cloud { left: auto; right: 14px; background: rgba(255, 255, 255, 0.45); }
+.reveal-row { display: flex; align-items: center; gap: 10px; font-size: 0.86rem; cursor: pointer; color: rgba(255, 255, 255, 0.85); }
+.reveal-row input { position: absolute; opacity: 0; pointer-events: none; }
+.reveal-row input:checked ~ .win-switch { background: #8a6a22; border-color: var(--gold); }
+.reveal-row input:checked ~ .win-switch::after { transform: translateX(16px); background: #fff3cf; }
+.reveal-row small { color: var(--muted); font-size: 0.74rem; }
 #menu-error { display: none; color: #ff8a7a; font-weight: 700; font-size: 0.86rem; }
 #start-btn { font-size: 1.05rem; padding: 15px; }
 
@@ -741,16 +801,14 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                     <input type="radio" name="startres" id="sr-1" value="rich"><label for="sr-1">Bogate</label>
                                 </div>
                             </div>
-                            <label class="check"><input type="checkbox" id="opt-reveal"> Odkryta mapa (mgła wojny bez „czarnych plam”)</label>
-                            <label class="check"><input type="checkbox" id="opt-kings"> <span title="Każda nacja ma króla — potężnego wojownika z Królewską Szarżą (+20% dla okolicznej armii). Gdy król zginie, jego nacja przegrywa i traci całą osadę."><b>Królowie</b> — każda nacja ma władcę; śmierć króla to porażka</span></label>
-                            <label class="check"><input type="checkbox" id="opt-atmo" checked> <span title="Wyłączone: zawsze dzień i pogodne niebo — słońce łagodnie wędruje między przedpołudniem a popołudniem. Ptaki zostają.">Cykl dnia i nocy, pogoda</span></label>
+                            <div id="match-options"></div>
                             <div id="menu-error"></div>
                             <button id="start-btn" class="action-btn gold">ROZPOCZNIJ GRĘ</button>
                         </div>
 
                         <div class="menu-card">
                             <h2>Cel</h2>
-                            <p>Zbieraj <b>żywność, drewno, złoto i kamień</b>, stawiaj domy, by powiększać populację, i awansuj w Ratuszu do kolejnych er. Zniszcz Ratusze wszystkich wrogich drużyn, by zwyciężyć! W trybie <b>Królowie</b> wystarczy też pokonać wrogiego króla.</p>
+                            <p>Zbieraj <b>żywność, drewno, złoto i kamień</b>, stawiaj domy, by powiększać populację, i awansuj w Ratuszu do kolejnych er. Zniszcz Ratusze wszystkich wrogich drużyn, by zwyciężyć! Z warunkiem <b>Królowie</b> wystarczy też pokonać wrogiego króla, a z warunkiem <b>Cud Świata</b> wygrywa drużyna, której Cud przetrwa 10 minut (oba wybierzesz w karcie Świat).</p>
                             <h3>Na dobry początek</h3>
                             <ul>
                                 <li>Robotnicy → <kbd>PPM</kbd> na drzewo. Ratusz → <kbd>Q</kbd> szkoli kolejnych.</li>
@@ -826,10 +884,11 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 <div class="menu-pane" id="pane-news" style="display:none">
                     <div class="play-grid" style="grid-template-columns: repeat(3, minmax(300px, 1fr));">
                         <div class="menu-card" style="grid-column: 1 / -1;">
-                            <h2>V3.5 — Cud Świata, szlak handlowy, Wielkie Działo, Koń Trojański, tryb Królowie, obrona królestwa, nowy dźwięk, szybszy silnik</h2>
-                            <p class="menu-note" style="margin-top:0"><b>To największa aktualizacja w historii gry.</b> Osiem nowych jednostek z Wielkim Działem, Koniem Trojańskim i lisowczykami na czele, dwa nowe budynki — <b>Cud Świata</b>, czyli drugi sposób na zwycięstwo, i Plantacja Jabłek — szlak handlowy z wozami kupieckimi, tryb Królowie, obrona królestwa (dzwon na trwogę, uliczki, mury bez dziur), nowe ratusze i ulepszenia Kuźni, kierunek szyku wskazywany myszą, AI z prawdziwym dowódcą, dźwięk zrobiony od nowa i silnik Raptor ok. 3 razy szybszy w symulacji. Wszystko działa także w grze wieloosobowej.</p>
+                            <h2>V3.5 — Cud Świata, warunki zwycięstwa, szlak handlowy, Wielkie Działo, Koń Trojański, obrona królestwa, nowy dźwięk, szybszy silnik</h2>
+                            <p class="menu-note" style="margin-top:0"><b>To największa aktualizacja w historii gry.</b> Osiem nowych jednostek z Wielkim Działem, Koniem Trojańskim i lisowczykami na czele, dwa nowe budynki — <b>Cud Świata</b>, czyli drugi sposób na zwycięstwo, i Plantacja Jabłek — szlak handlowy z wozami kupieckimi, warunki zwycięstwa do wyboru (Królowie i Cud Świata), obrona królestwa (dzwon na trwogę, uliczki, mury bez dziur), nowe ratusze i ulepszenia Kuźni, kierunek szyku wskazywany myszą, AI z prawdziwym dowódcą, dźwięk zrobiony od nowa i silnik Raptor ok. 3 razy szybszy w symulacji. Wszystko działa także w grze wieloosobowej.</p>
                             <h3>Cud Świata — drugi sposób na zwycięstwo</h3>
                             <ul>
+                                <li><b>Warunek do wyboru.</b> Cud Świata, tak jak Królowie, to warunek zwycięstwa, który włączasz albo wyłączasz w karcie <b>Świat</b> (domyślnie włączony; w grze wieloosobowej ustawia go host). Wyłączony: Cudu nie ma w menu budowy ani w planach AI, a wygrywa się podbojem.</li>
                                 <li><b>Nowy budynek</b> (Era IV, Budynki gospodarcze, 1000 żywności, 1000 drewna, 1200 złota i 1000 kamienia, jeden na nację): bazylika na planie krzyża z wielką złotą kopułą, czterema kampanilami w barwach nacji i placem z obeliskami — największa budowla w grze (9000 wytrzymałości).</li>
                                 <li><b>Odliczanie do zwycięstwa.</b> Gdy Cud stanie, rusza zegar <b>10 minut</b>. Jeśli Cud przetrwa, a jego budowniczy nie przegra wcześniej, cała jego drużyna wygrywa. Odliczanie widać na złotym (wasz Cud) albo czerwonym (wrogi) pasku nad panelem — kliknięcie pokazuje Cud. Ostrzeżenia przychodzą na 5, 2 i 1 minutę przed końcem.</li>
                                 <li><b>Nie da się go ukryć.</b> Wszyscy dowiadują się o fundamentach i widzą budowę przez mgłę wojny (na minimapie pulsuje złoty romb). Budowa długo trwa (jeden robotnik — ok. 24 minuty, dwudziestu — nieco ponad minutę), więc wróg ma szansę zburzyć ją, zanim ruszy zegar. Zburzony Cud przerywa odliczanie.</li>
@@ -858,9 +917,10 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <li><b>Desant w brzuchu.</b> Mieści 10 piechurów, strzelców, mnichów albo chorążych: zaznacz ich i kliknij PPM na konia. Pod murami, bramą albo ratuszem wroga naciśnij <b>Otwórz brzuch</b> (Q) — desant wyskakuje i przez 12 s walczy z premią zaskoczenia (+30% obrażeń). Wewnątrz nikt go nie widzi ani nie trafi; gdy koń spłonie, załoga wybiega poturbowana.</li>
                                 <li>AI też go buduje (zwłaszcza dowódca o charakterze <b>Oblężnik</b>), ładuje do niego najtwardszą piechotę i toczy go na twoją osadę — zwiadowcy ostrzegą cię wcześniej. Gdy AI zobaczy twojego konia, warsztat najpierw odlewa działa i katapulty.</li>
                             </ul>
-                            <h3>Tryb Królowie (nowa opcja gry)</h3>
+                            <h3>Warunki zwycięstwa i tryb Królowie</h3>
                             <ul>
-                                <li>Zaznacz <b>Królowie</b> przy ustawieniach świata (także w poczekalni gry wieloosobowej): każda nacja zaczyna z władcą na koniu — 2200 życia, zbroja 5/5, miecz, a poza walką sam leczy rany.</li>
+                                <li><b>Nowe ustawienia meczu.</b> W karcie Świat (i w poczekalni gry wieloosobowej) warunki zwycięstwa to kafelki z ikonami i przełącznikami: <b>Podbój</b> (zawsze), <b>Królowie</b> i <b>Cud Świata</b>. Obok przełącznik odkrytej mapy i wybór pory dnia: <b>Dzień i noc</b> (pory dnia i pogoda) albo <b>Wieczny dzień</b> — z podglądem nieba. Wszystko jest zapamiętywane.</li>
+                                <li>Włącz <b>Królowie</b>: każda nacja zaczyna z władcą na koniu — 2200 życia, zbroja 5/5, miecz, a poza walką sam leczy rany.</li>
                                 <li><b>Królewska Szarża</b> (Y): przez 15 s wojsko twojej drużyny w promieniu 320 zadaje o 20% więcej obrażeń, otrzymuje o 20% mniej i biega o 20% szybciej. Odnawia się 75 s — złoty krąg pokazuje zasięg.</li>
                                 <li><b>Haczyk:</b> gdy król zginie, nacja od razu przegrywa, a cała jej osada obraca się w perzynę — bez szansy na odbudowę. Przycisk 👑 na górnym pasku (klawisz ;) zaznacza króla i czerwieni się, gdy jest ranny; „,” zaznacza wojsko już bez króla.</li>
                                 <li>AI pilnuje swojego władcy: broni nim osady, śmielsi dowódcy zabierają go z dużą falą, w bitwie dobywa szarży, a ranny wycofuje się pod ratusz. Wrogiego króla AI bierze na cel w pierwszej kolejności.</li>
@@ -903,6 +963,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <li><b>Kontratak</b>: gdy odeprze twój szturm, AI może od razu ruszyć na twoją osadę, zanim odbudujesz armię (najwyżej raz na ok. 3,5 minuty).</li>
                                 <li><b>Nastrój</b>: po wygranych bitwach dowódca atakuje śmielej i częściej, po porażkach okopuje się — stawia dodatkowe wieże i trzyma więcej wojska w domu.</li>
                                 <li>AI sama bije w dzwon, gdy jej robotników napadnie garstka jeźdźców, a obrońców brak.</li>
+                                <li><b>Gospodarka nie staje po alarmie</b>: na jeden plac budowy idzie najwyżej kilku robotników (mur 1, dom i pole 2, inne budynki 3) — wcześniej po dzwonie wszyscy wolni robotnicy naraz szli na budowy (w testach nawet 24 z 24), a zbiór surowców stawał na minutę.</li>
                                 <li><b>Pełna mobilizacja</b>: gdy armia AI dojdzie do limitu, nadwyżka ponad załogę bazy idzie w bój — większą falą albo jako posiłki dla fali, która już walczy — zamiast stać bezczynnie pod ratuszem (od trzeciej fali; pierwsze ataki zostają takie, jak przewiduje poziom trudności). W testach AI kontra AI pod ratuszami stało wcześniej po 30–50 bezczynnych żołnierzy; teraz bitwy rozstrzygają się wyraźnie szybciej.</li>
                                 <li><b>Nadwyżki surowców</b>: gdy skarbiec pęka w szwach, a armia jest na limicie, AI od razu bada ulepszenia, sprzedaje nadmiar żywności i drewna na targu i stopniowo podnosi limit armii (najwyżej o 25%). AI awansuje też wcześniej, gdy zalegają jej surowce, sprzedaje nieużywany kamień, gdy brakuje złota, i stawia sady w późnej grze.</li>
                                 <li><b>Wybór celu</b> w grze każdy na każdego: liczy się nie tylko odległość, ale i siła wroga, którą AI widziało — słabszy sąsiad nieco dalej bywa lepszym celem niż twierdza tuż obok.</li>
@@ -930,12 +991,13 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <li>Mniej przycięć, gdy w bitwie pojawiają się nowe pozy jednostek (sprite'y wycinane bez odczytu z karty graficznej).</li>
                                 <li>Mgła wojny przelicza się tylko wtedy, gdy widoczność naprawdę się zmieni (gdy wojsko stoi, ok. 2× mniej pracy na klatkę i rzadsze odświeżanie tekstury), jednostki pamiętają swoje sprite'y zamiast szukać ich co klatkę, a pusty bufor śladów nie jest przeglądany.</li>
                                 <li>Zmiany nie wpływają na przebieg gry: ten sam mecz liczy się co do bitu identycznie jak przed optymalizacją — tylko szybciej. Najbardziej odczuwalne przy prędkości 2× i 3× oraz w dużych bitwach.</li>
+                                <li><b>Przegląd renderowania</b> na wszystkich poziomach efektów (dzień i noc, zwykły widok i maksymalne oddalenie): rysowanie jednostek, budynków, mgły i minimapy zajmuje ułamki milisekundy, a czas klatki idą na efekty pikselowe wyższych poziomów (poświata, woda, cienie) — to ich cena, którą tryb Auto dopasowuje do komputera. Bez obniżania grafiki: płótno gry jest teraz nieprzezroczyste (przeglądarka nie miesza go z tłem strony przy każdym odświeżeniu), a połysk wody czyści tylko używany fragment warstwy. Obraz jest piksel w piksel taki sam.</li>
                             </ul>
                             <h3>Drobiazgi</h3>
                             <ul>
                                 <li>Iskry z tła menu nie pojawiają się już nad grą.</li>
                                 <li>Encyklopedia oznacza nowe jednostki i budynki V3.5 plakietką <b>NOWOŚĆ</b>.</li>
-                                <li>Gra wieloosobowa: wszyscy gracze muszą mieć wydanie V3.5 (Newest Final) — ze starszymi wersjami, także wcześniejszymi kompilacjami V3.5, gra się nie połączy.</li>
+                                <li>Gra wieloosobowa: wszyscy gracze muszą mieć wydanie V3.5 (plik „V3.5 Ready for Release”) — ze starszymi wersjami, także wcześniejszymi kompilacjami V3.5 (Preview, Final, Newest Final), gra się nie połączy.</li>
                             </ul>
                         </div>
                         <div class="menu-card" style="grid-column: 1 / -1;">
@@ -1809,7 +1871,9 @@ class Game {
 
     constructor(options = {}) {
         this.canvas = document.getElementById('game-canvas');
-        this.ctx = this.canvas.getContext('2d');
+        // V3.5: canvas nieprzezroczysty - każda klatka zaczyna się od pełnego, kryjącego wypełnienia, więc obraz jest
+        // identyczny, a przeglądarka nie musi mieszać go z tłem strony przy każdym odświeżeniu ekranu
+        this.ctx = this.canvas.getContext('2d', { alpha: false });
         this.lastTime = 0;
         this.time = 0;          // czas symulacji
         this.renderTime = 0;    // czas animacji (stoi podczas pauzy)
@@ -4873,6 +4937,11 @@ Game.prototype.setTradeRoute = function (u, t) {
 // wygrywa (checkWonders). Gość gry wieloosobowej dostaje listę Cudów z odliczaniem od hosta ('wd' - net/Host.js).
 Game.NO_WONDERS = [];
 
+// V3.5: Cud Świata to opcjonalny warunek zwycięstwa (ustawienia meczu, domyślnie włączony). Wyłączony: Cudu nie ma
+// w menu budowy, rozkaz postawienia jest odrzucany, AI go nie planuje, a odliczanie nie rusza.
+Game.prototype.wondersOn = true;
+Game.prototype.buildingOff = function (type) { return type === 'wonder' && !this.wondersOn; };
+
 // Cuda na mapie: u hosta budynki, u gościa obiekty z tymi samymi polami (owner, x, y, size, isConstructed, wonderUntil, buildProgress)
 Game.prototype.wonderInfo = function () {
     if (this.isClient) return this.netWonders || Game.NO_WONDERS;
@@ -4915,6 +4984,7 @@ Game.prototype.wonderFallen = function (b, source) {
 // Zwycięstwo przez Cud: ostrzeżenia na 5, 2 i 1 minutę przed końcem odliczania, potem koniec meczu
 Game.WONDER_WARN = [[300, '5 minut'], [120, '2 minuty'], [60, 'minuta']];
 Game.prototype.checkWonders = function () {
+    if (!this.wondersOn) return false;
     const W = this.wonderInfo();
     if (!W.length) return false;
     let best = null;
@@ -5045,6 +5115,7 @@ Game.prototype.applyCommand = function (nation, cmd) {
             const cfg = GameConfig.buildings[type];
             if (!cfg || type === 'wooden_wall' || !num(cmd.x) || !num(cmd.y)) return OK;
             let x = cmd.x, y = cmd.y;
+            if (this.buildingOff(type)) return fail(`${cfg.name} jest wyłączony w ustawieniach tego meczu.`);
             if ((cfg.age || 1) > nation.age) return fail('Wymagana wyższa era!');
             if (cfg.limit && nation.countBuildings(type) >= cfg.limit) return fail(`Osiągnięto limit (max ${cfg.limit}): ${cfg.name}`);
             if (!this.teamExplored(nation.team, x, y)) return fail('Nie możesz budować w nieodkrytej mgle!');
@@ -7796,7 +7867,7 @@ class UIManager {
             const hasFighter = selUnits.some(u => u.cfg.attackDamage > 0);
 
             if (hasWorker && this.menuPage) {
-                const list = Object.keys(GameConfig.buildings).filter(t => GameConfig.buildings[t].menu === this.menuPage);
+                const list = Object.keys(GameConfig.buildings).filter(t => GameConfig.buildings[t].menu === this.menuPage && !g.buildingOff(t));
                 list.forEach((t, i) => {
                     const cfg = GameConfig.buildings[t];
                     const locked = (cfg.age || 1) > n.age;
@@ -7817,7 +7888,7 @@ class UIManager {
 
             let i = 0;
             if (hasWorker) {
-                cmds[i++] = { icon: Icons.url('build_eco', 24), title: 'Budynki gospodarcze', desc: 'Ratusz, dom, farma, sad, młyn, skład, targ, port i Cud Świata.', onClick: () => { this.menuPage = 'eco'; this.updateActionPanel(); } };
+                cmds[i++] = { icon: Icons.url('build_eco', 24), title: 'Budynki gospodarcze', desc: 'Ratusz, dom, farma, sad, młyn, skład, targ, port' + (g.wondersOn ? ' i Cud Świata.' : '.'), onClick: () => { this.menuPage = 'eco'; this.updateActionPanel(); } };
                 cmds[i++] = { icon: Icons.url('build_mil', 24), title: 'Budynki wojskowe', desc: 'Koszary, stajnia, warsztat, kuźnia, klasztor, lazaret, wieże, posterunek, zamek, mury, arsenał.', onClick: () => { this.menuPage = 'mil'; this.updateActionPanel(); } };
             }
             if (hasFighter) {
@@ -17639,7 +17710,7 @@ class NationAI {
         const cfg = GameConfig.buildings[type];
         const cost = cfg.cost;
         const nation = this.nation, game = this.game;
-        if ((cfg.age || 1) > nation.age) return null;
+        if ((cfg.age || 1) > nation.age || game.buildingOff(type)) return null;
         if (!nation.resources.canAfford(cost)) return null;
         if (cfg.limit && nation.countBuildings(type) >= cfg.limit) return null;
         const tc = this.tc;
@@ -18056,7 +18127,7 @@ class NationAI {
         // V3.5 Newest Final: Cud Świata - AI, które chce go postawić, odkłada na niego w IV erze i buduje go wieloma rękami
         const WD = GameConfig.buildings.wonder;
         if (this.wantsWonder === undefined) this.wantsWonder = Math.random() < (p.wonder || 0) * (this.personality === 'defensive' ? 1.5 : 1);
-        const wonderPlan = !!tc && this.wantsWonder && nation.age >= WD.age && !this.myWonder && time > p.age4At + 300 &&
+        const wonderPlan = !!tc && this.wantsWonder && game.wondersOn && nation.age >= WD.age && !this.myWonder && time > p.age4At + 300 &&
             !(this.enemyWonder && this.enemyWonder.isConstructed) && nation.countBuildings('wonder') < WD.limit;
         if (wonderPlan && !this.underThreat && !this.agingUp && this.armySize >= this.armyFloor && this.mood > -0.3) {
             if (res.canAfford(WD.cost)) {
@@ -19553,15 +19624,20 @@ class NationAI {
         const order = ['wood', 'food', 'gold', 'stone'];
         const byDeficit = () => order.slice().sort((a, b) => (sh[b] - cnt[b] / totalGatherers) - (sh[a] - cnt[a] / totalGatherers));
 
+        // V3.5: najwyżej kilku budowniczych na plac (mur 1, dom i pole 2, reszta 3; Cud i zamek obsadza osobno
+        // assignBuilder) - w testach AI kontra AI po alarmie wszyscy wolni robotnicy naraz szli na place budowy
+        // (nawet 24 z 24), a zbiór surowców stawał na minutę
         const unbuilt = nation.buildings.filter(b => !b.isConstructed && !b.isDestroyed && !this.isUnreachable(b));
+        const crew = new Map();
+        if (unbuilt.length) for (const w of workers) if (w.targetEntity && !w.targetEntity.isConstructed && (w.state === 'constructing' || w.state === 'moving_to_build')) crew.set(w.targetEntity, (crew.get(w.targetEntity) || 0) + 1);
+        const crewCap = (b) => isWallType(b.type) ? 1 : (b.type === 'house' || isFarmType(b.type) ? 2 : 3);
         for (const unit of workers) {
             if (unit.state !== 'idle') continue;
             if (unbuilt.length > 0 && !(res.get('wood') < 50 && cnt.wood / totalGatherers < 0.4)) {
-                // najbliższy plac budowy
-                let b = unbuilt[0], bd = Infinity;
-                for (const u of unbuilt) { const d = Math.hypot(u.x - unit.x, u.y - unit.y); if (d < bd) { bd = d; b = u; } }
-                unit.build(b);
-                continue;
+                // najbliższy plac budowy, który ma jeszcze wolne miejsce dla budowniczego
+                let b = null, bd = Infinity;
+                for (const u of unbuilt) { if ((crew.get(u) || 0) >= crewCap(u)) continue; const d = Math.hypot(u.x - unit.x, u.y - unit.y); if (d < bd) { bd = d; b = u; } }
+                if (b) { unit.build(b); crew.set(b, (crew.get(b) || 0) + 1); continue; }
             }
             let done = false;
             for (const t of byDeficit()) {
@@ -20474,7 +20550,7 @@ Game.prototype.drawWaterShine = function (ctx, view, t, s, ox, oy) {
     g.setTransform(1, 0, 0, 1, 0, 0);
     g.globalCompositeOperation = 'source-over';
     g.globalAlpha = 1;
-    g.clearRect(0, 0, lw, lh);
+    g.clearRect(X0, Y0, rw, rh);   // V3.5: tylko używany prostokąt - reszty warstwy nic nie czyta (obraz bez zmian)
     g.save();
     g.beginPath();
     g.rect(X0, Y0, rw, rh);
@@ -21769,7 +21845,7 @@ class Tutorial {
 // Model: HOST LICZY, GOŚCIE OGLĄDAJĄ. Przeglądarka hosta prowadzi jedyną symulację (tę samą, co w grze solo),
 // goście wysyłają rozkazy i rysują stan świata przysłany przez hosta.
 const NetCodec = {
-    PROTOCOL: 6,                // V3.5 Newest Final: wozy kupieckie (stan 'trading'), lisowczycy, Cud Świata ('wd')
+    PROTOCOL: 7,                // V3.5: wozy kupieckie (stan 'trading'), lisowczycy, Cud Świata ('wd'), Cud jako opcja meczu
     SNAP: 1,                    // rodzaj wiadomości binarnej: paczka stanu jednostek
 
     UNIT_TYPES: Object.keys(GameConfig.units),
@@ -22375,7 +22451,7 @@ class HostSession {
 
         const used = new Set();
         const pickColor = (want) => { let c = (want && !used.has(want)) ? want : ColorOrder.find(k => !used.has(k)); used.add(c); return c; };
-        this.settings = Object.assign({ mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false, kings: false }, opts.settings || {});
+        this.settings = Object.assign({ mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false, kings: false, wonders: true }, opts.settings || {});
         this.slots = [];
         for (let i = 0; i < 4; i++) {
             this.slots.push({
@@ -22653,7 +22729,7 @@ class HostSession {
             else nations.push({ isPlayer: false, color: s.color, team: s.team, diff: s.diff, slot: s.idx });
         }
         const o = this.settings;
-        return { nations, playerCorner: 'random', mapSize: o.mapSize, mapType: o.mapType, biome: o.biome, rich: !!o.rich, reveal: !!o.reveal, kings: !!o.kings, atmosphere, mp: this };
+        return { nations, playerCorner: 'random', mapSize: o.mapSize, mapType: o.mapType, biome: o.biome, rich: !!o.rich, reveal: !!o.reveal, kings: !!o.kings, wonders: o.wonders !== false, atmosphere, mp: this };
     }
 
     beginLoading() {
@@ -22762,7 +22838,7 @@ class HostSession {
             })),
             you: g.nations.indexOf(n),
             nodes, time: g.time, reveal: !!g.revealAll, explored: resume && !g.revealAll ? NetCodec.packGrid(tv.exp) : null,
-            graceTime: g.graceTime, kings: !!g.kings, hostName: this.hostName, slots: this.lobbyState().slots
+            graceTime: g.graceTime, kings: !!g.kings, wonders: !!g.wondersOn, hostName: this.hostName, slots: this.lobbyState().slots
         }]);
     }
 
@@ -23190,6 +23266,7 @@ class ClientSession {
         game.net = this;
         game.graceTime = w.graceTime;
         game.kings = !!w.kings;
+        game.wondersOn = w.wonders !== false;
         game.time = w.time;
         this.renderT = w.time; this.newestT = w.time; this.newestAt = performance.now();
         this.frames = [];
@@ -23597,6 +23674,32 @@ class ClientSession {
 // dzieje i dlaczego), poczekalnia oraz elementy w trakcie meczu (stan połączenia, lista graczy, ponowne zaproszenie).
 //
 // Kreator rysuje się od nowa z aktualnego stanu sesji (render); pola tekstowe zachowują treść i kursor (swap).
+// V3.5: warunki zwycięstwa, mapa i pora dnia - wspólne kafelki menu głównego i poczekalni gry wieloosobowej.
+// p: przedrostek identyfikatorów ('opt' w menu, 'mp' w poczekalni); o: { kings, wonders, reveal, atmo };
+// color: kolor nacji na ikonach; sky: czy pokazać wybór pory dnia (to ustawienie każdego gracza z osobna)
+function matchIcon(kind, type, color) {
+    try { return Icons.entityUrl(kind, type, color, 30, type === 'town_center' ? 2 : 0); } catch (e) { return ''; }
+}
+function matchOptionsHtml(p, o, color, sky) {
+    const img = (kind, type) => `<img data-ico="${kind}:${type}" src="${matchIcon(kind, type, color)}" alt="">`;
+    const tile = (id, on, kind, type, title, sub, tip) => `<label class="win-tile" title="${tip}"><input type="checkbox" id="${p}-${id}"${on ? ' checked' : ''}>${img(kind, type)}<span class="wt-text"><b>${title}</b><small>${sub}</small></span><i class="win-switch"></i></label>`;
+    let h = `<div><span class="opt-label">Warunki zwycięstwa</span><div class="win-grid">
+        <div class="win-tile fixed" title="Drużyna, która jako ostatnia zachowa Ratusz, wygrywa. Ten warunek obowiązuje zawsze.">${img('building', 'town_center')}<span class="wt-text"><b>Podbój</b><small>Zniszcz Ratusze wszystkich wrogów</small></span><span class="win-lock">ZAWSZE</span></div>
+        ${tile('kings', o.kings, 'unit', 'king', 'Królowie', 'Każda nacja ma władcę — jego śmierć to porażka', 'Każda nacja zaczyna z królem: potężnym wojownikiem z Królewską Szarżą (+20% dla okolicznej armii). Gdy król zginie, jego nacja przegrywa i traci całą osadę.')}
+        ${tile('wonder', o.wonders !== false, 'building', 'wonder', 'Cud Świata', 'Cud, który przetrwa 10 minut, daje zwycięstwo', 'W IV erze można zbudować Cud Świata (jeden na nację). Jeśli po ukończeniu przetrwa 10 minut, drużyna budowniczego wygrywa. Wyłączone: Cudu nie ma w menu budowy, a AI go nie stawia.')}
+    </div></div>
+    <label class="reveal-row" title="Odkryta mapa: od początku znasz teren i rozmieszczenie surowców; wrogie wojsko nadal kryje mgła wojny."><input type="checkbox" id="${p}-reveal"${o.reveal ? ' checked' : ''}><i class="win-switch"></i><span>Odkryta mapa <small>— teren znany od startu</small></span></label>`;
+    if (sky) h += `<div><span class="opt-label">Pora dnia i pogoda</span><div class="sky-pick">
+        <input type="radio" name="${p}-atmo" id="${p}-atmo-on" value="on"${o.atmo !== false ? ' checked' : ''}><label for="${p}-atmo-on" title="Świt, dzień, zmierzch i noc ze światłami osad oraz pogoda zależna od krainy (deszcz, burze, zamiecie)."><span class="sky cycle"><i class="moon"></i><i class="star" style="left:30px;top:6px"></i><i class="star" style="left:24px;top:19px"></i><i class="sun"></i><i class="cloud"></i></span>Dzień i noc<small>pory dnia i pogoda</small></label>
+        <input type="radio" name="${p}-atmo" id="${p}-atmo-off" value="off"${o.atmo === false ? ' checked' : ''}><label for="${p}-atmo-off" title="Zawsze dzień i pogodne niebo — słońce łagodnie wędruje między przedpołudniem a popołudniem, więc cienie dalej się obracają. Ptaki zostają."><span class="sky day"><i class="sun"></i><i class="cloud" style="left:12px"></i><i class="cloud" style="right:10px;top:9px;width:16px;height:6px"></i></span>Wieczny dzień<small>bez nocy i pogody</small></label>
+    </div></div>`;
+    return h;
+}
+// Odświeża ikony kafelków po zmianie koloru nacji
+function matchOptionsRecolor(box, color) {
+    if (box) box.querySelectorAll('img[data-ico]').forEach(im => { const [k, t] = im.dataset.ico.split(':'); im.src = matchIcon(k, t, color); });
+}
+
 const MpUI = {
     session: null,      // HostSession albo ClientSession
     role: null,         // null (wybór roli) | 'host' | 'guest'
@@ -23813,7 +23916,7 @@ const MpUI = {
         const size = { 2400: 'mała', 3000: 'średnia', 3900: 'duża', 5100: 'gigantyczna' }[o.mapSize] || o.mapSize;
         const type = { random: 'losowe', lake: 'jezioro', lakes: 'pojezierze', plains: 'równiny', highlands: 'góry' }[o.mapType] || o.mapType;
         const biome = { random: 'losowa', meadow: 'łąki', autumn: 'jesień', winter: 'zima', desert: 'pustynia' }[o.biome] || o.biome;
-        return `Mapa: <b>${size}</b> · ukształtowanie: <b>${type}</b> · kraina: <b>${biome}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}`;
+        return `Mapa: <b>${size}</b> · ukształtowanie: <b>${type}</b> · kraina: <b>${biome}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}${o.wonders !== false ? ' · <b>Cud Świata</b>' : ' · bez Cudu Świata'}`;
     },
 
     // ================= Widok: host =================
@@ -23854,8 +23957,7 @@ const MpUI = {
                 <div><span class="opt-label">Ukształtowanie</span>${this.radios('mp-mapType', o.mapType, [['random', 'Losowe'], ['lake', 'Jezioro'], ['lakes', 'Pojezierze'], ['plains', 'Równiny'], ['highlands', 'Góry']], 'c5')}</div>
                 <div><span class="opt-label">Kraina</span>${this.radios('mp-biome', o.biome, [['random', 'Losowa'], ['meadow', 'Łąki'], ['autumn', 'Jesień'], ['winter', 'Zima'], ['desert', 'Pustynia']], 'c5')}</div>
                 <div><span class="opt-label">Surowce na start</span>${this.radios('mp-rich', o.rich ? 1 : 0, [[0, 'Standardowe'], [1, 'Bogate']], 'c2')}</div>
-                <label class="check"><input type="checkbox" id="mp-reveal"${o.reveal ? ' checked' : ''}> Odkryta mapa (mgła wojny bez „czarnych plam”)</label>
-                <label class="check"><input type="checkbox" id="mp-kings"${o.kings ? ' checked' : ''}> <span title="Każda nacja ma króla — potężnego wojownika z Królewską Szarżą (+20% dla okolicznej armii). Gdy król zginie, jego nacja przegrywa i traci całą osadę."><b>Królowie</b> — każda nacja ma władcę; śmierć króla to porażka</span></label>
+                ${matchOptionsHtml('mp', o, s.slots[0].color, false)}
                 <p class="menu-note">Te ustawienia zobaczą goście w poczekalni. Im większa mapa i im więcej nacji, tym więcej pracy ma twój komputer.</p>
             </div></div>
             <div class="mp-nav"><button class="action-btn outline" data-act="quit">← ZREZYGNUJ</button>
@@ -24050,7 +24152,7 @@ const MpUI = {
         const pick = (v, list, def) => list.includes(v) ? v : def;
         const s = new HostSession({
             name: this.playerName('Host'), color: saved.color,
-            settings: { mapSize: Number(pick(String(saved.mapSize), ['2400', '3000', '3900', '5100'], '3000')), mapType: saved.mapType || 'random', biome: saved.biome || 'random', rich: saved.startRes === 'rich', reveal: !!saved.reveal, kings: !!saved.kings }
+            settings: { mapSize: Number(pick(String(saved.mapSize), ['2400', '3000', '3900', '5100'], '3000')), mapType: saved.mapType || 'random', biome: saved.biome || 'random', rich: saved.startRes === 'rich', reveal: !!saved.reveal, kings: !!saved.kings, wonders: saved.wonders !== false }
         });
         s.onChange = () => this.refresh();
         s.startLobbyTimer();
@@ -24142,6 +24244,7 @@ const MpUI = {
         if (!s || !s.isHost) return;
         if (t.id === 'mp-reveal') { s.setSettings({ reveal: t.checked }); return; }
         if (t.id === 'mp-kings') { s.setSettings({ kings: t.checked }); return; }
+        if (t.id === 'mp-wonder') { s.setSettings({ wonders: t.checked }); return; }
         if (t.id === 'mp-loop') { if (t.checked) s.openLoopback(MpUI.loopRoom); this.render(); return; }
         if (t.type !== 'radio') return;
         const n = t.name;
@@ -24417,13 +24520,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Pora dnia: "Dzień i noc" albo "Wieczny dzień" (kafelki w karcie Świat)
+    function atmoOn() { const el = document.getElementById('opt-atmo-off'); return !(el && el.checked); }
+
     function saveMenu() {
         const val = (name, def) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : def; };
         Settings.set('menu', {
             color: menu.color, corner: menu.corner, team: menu.team, ai: menu.ai,
             mapSize: val('mapsize', '3000'), mapType: val('maptype', 'random'), biome: val('biome', 'random'), startRes: val('startres', 'std'),
-            reveal: !!document.getElementById('opt-reveal').checked, atmo: !!document.getElementById('opt-atmo').checked,
-            kings: !!document.getElementById('opt-kings').checked
+            reveal: !!document.getElementById('opt-reveal').checked, atmo: atmoOn(),
+            kings: !!document.getElementById('opt-kings').checked, wonders: !!document.getElementById('opt-wonder').checked
         });
     }
 
@@ -24484,9 +24590,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // przywrócenie zapamiętanych opcji świata
     const restore = (name, value) => { if (value === undefined) return; const el = document.querySelector(`input[name="${name}"][value="${value}"]`); if (el) el.checked = true; };
     restore('mapsize', saved.mapSize); restore('maptype', saved.mapType); restore('biome', saved.biome); restore('startres', saved.startRes);
-    if (saved.reveal !== undefined) document.getElementById('opt-reveal').checked = !!saved.reveal;
-    if (saved.kings !== undefined) document.getElementById('opt-kings').checked = !!saved.kings;
-    if (saved.atmo !== undefined) document.getElementById('opt-atmo').checked = !!saved.atmo;
+    // V3.5: warunki zwycięstwa, odkryta mapa i pora dnia - kafelki (matchOptionsHtml, wspólne z poczekalnią)
+    const matchBox = document.getElementById('match-options');
+    if (matchBox) matchBox.innerHTML = matchOptionsHtml('opt', { kings: !!saved.kings, wonders: saved.wonders !== false, reveal: !!saved.reveal, atmo: saved.atmo !== false }, menu.color, true);
     document.querySelectorAll('#pane-play input').forEach(el => el.addEventListener('change', saveMenu));
 
     let renderCodex = () => {};
@@ -24507,7 +24613,8 @@ document.addEventListener("DOMContentLoaded", () => {
             rich: val('startres', 'std') === 'rich',
             reveal: !!document.getElementById('opt-reveal').checked,
             kings: !!document.getElementById('opt-kings').checked,
-            atmosphere: !!document.getElementById('opt-atmo').checked
+            wonders: !!document.getElementById('opt-wonder').checked,
+            atmosphere: atmoOn()
         };
     }
 
@@ -24540,7 +24647,7 @@ document.addEventListener("DOMContentLoaded", () => {
             tutorial: true,
             playerCorner: menu.corner,   // samouczek respektuje wybraną pozycję startową
             nations: [{ isPlayer: true, color: menu.color, team: 1 }, { isPlayer: false, color: aiColors()[0], team: 2, diff: 'tutorial' }],
-            mapSize: 2400, mapType: 'plains', biome: 'meadow', rich: false, reveal: false, atmosphere: !!document.getElementById('opt-atmo').checked
+            mapSize: 2400, mapType: 'plains', biome: 'meadow', rich: false, reveal: false, atmosphere: atmoOn()
         });
     });
 
@@ -24846,6 +24953,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (!playerNation) { playerNation = game.nations[0]; playerNation.isPlayer = true; game._playerNation = null; }
         game.kings = !!o.kings;
+        game.wondersOn = o.wonders !== false;   // V3.5: Cud Świata - opcjonalny warunek zwycięstwa
         // tryb pokazowy / testowy: nacją gracza też steruje AI, a cała mapa jest odkryta
         if (o.autoplay) {
             playerNation.setAI(new NationAI(game, o.autoplay));
@@ -24946,7 +25054,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // HOST: start meczu z poczekalni
     function startHost(session) {
-        const atmo = !!document.getElementById('opt-atmo').checked;
+        const atmo = atmoOn();
         Settings.set('atmo', atmo);
         session.beginLoading();
         launch(session.gameOptions(atmo));
@@ -24987,6 +25095,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         renderCodex = () => {
             const color = menu.color;
+            matchOptionsRecolor(document.getElementById('match-options'), color);
             const unitsPane = document.getElementById('pane-units');
             if (unitsPane) {
                 let h = '<div class="codex">';
@@ -25024,7 +25133,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div><div class="codex-name">${b.name} ${era(b.age)}${isNew(NEW_BUILDINGS, t)}</div>
                         <div class="codex-meta">${cost(b.cost)}</div>
                         <div class="chips">${st}</div><div class="codex-desc">${b.desc}</div>
-                        <div class="codex-extra">${trains.length ? 'Szkoli: ' + trains.join(', ') + '. ' : ''}${ups.length ? 'Badania: ' + ups.join(', ') + '.' : ''}${b.limit ? ' Limit: ' + b.limit + '.' : ''}</div></div></div>`;
+                        <div class="codex-extra">${trains.length ? 'Szkoli: ' + trains.join(', ') + '. ' : ''}${ups.length ? 'Badania: ' + ups.join(', ') + '.' : ''}${b.limit ? ' Limit: ' + b.limit + '.' : ''}${b.wonder ? ' Tylko z warunkiem zwycięstwa „Cud Świata” (karta Świat, domyślnie włączony).' : ''}</div></div></div>`;
                 }
                 bPane.innerHTML = h + '</div>';
             }
