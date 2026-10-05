@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artificial Battles - Release V3.5 (Preview 2)</title>
+    <title>Artificial Battles - Release V3.5</title>
     <style>
 /* Czcionka Nunito (SIL Open Font License 1.1) osadzona w pliku - gra działa w pełni offline */
 @font-face { font-family: 'Nunito'; font-style: normal; font-display: swap; font-weight: 200 1000;
@@ -664,7 +664,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
             <div class="menu-top-bar">
                 <div class="menu-logo">
                     <h1>Artificial Battles</h1>
-                    <p class="version">Release V3.5 (Preview 2) by Conrad3k</p>
+                    <p class="version">Release V3.5 by Conrad3k</p>
                 </div>
                 <div class="menu-nav">
                     <span class="active" data-pane="play">Graj</span>
@@ -731,6 +731,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 </div>
                             </div>
                             <label class="check"><input type="checkbox" id="opt-reveal"> Odkryta mapa (mgła wojny bez „czarnych plam”)</label>
+                            <label class="check"><input type="checkbox" id="opt-kings"> <span title="Każda nacja ma króla — potężnego wojownika z Królewską Szarżą (+20% dla okolicznej armii). Gdy król zginie, jego nacja przegrywa i traci całą osadę."><b>Królowie</b> — każda nacja ma władcę; śmierć króla to porażka</span></label>
                             <label class="check"><input type="checkbox" id="opt-atmo" checked> <span title="Wyłączone: zawsze dzień i pogodne niebo — słońce łagodnie wędruje między przedpołudniem a popołudniem. Ptaki zostają.">Cykl dnia i nocy, pogoda</span></label>
                             <div id="menu-error"></div>
                             <button id="start-btn" class="action-btn gold">ROZPOCZNIJ GRĘ</button>
@@ -738,7 +739,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 
                         <div class="menu-card">
                             <h2>Cel</h2>
-                            <p>Zbieraj <b>żywność, drewno, złoto i kamień</b>, stawiaj domy, by powiększać populację, i awansuj w Ratuszu do kolejnych er. Zniszcz Ratusze wszystkich wrogich drużyn, by zwyciężyć!</p>
+                            <p>Zbieraj <b>żywność, drewno, złoto i kamień</b>, stawiaj domy, by powiększać populację, i awansuj w Ratuszu do kolejnych er. Zniszcz Ratusze wszystkich wrogich drużyn, by zwyciężyć! W trybie <b>Królowie</b> wystarczy też pokonać wrogiego króla.</p>
                             <h3>Na dobry początek</h3>
                             <ul>
                                 <li>Robotnicy → <kbd>PPM</kbd> na drzewo. Ratusz → <kbd>Q</kbd> szkoli kolejnych.</li>
@@ -797,7 +798,8 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <h2>Skróty</h2>
                             <p>
                                 <kbd>.</kbd> — następny bezczynny robotnik<br>
-                                <kbd>,</kbd> — całe wojsko lądowe<br>
+                                <kbd>,</kbd> — całe wojsko lądowe (bez króla)<br>
+                                <kbd>;</kbd> — król (tryb Królowie; 2× = pokaż go)<br>
                                 <kbd>Spacja</kbd> — skocz do ostatniego alarmu / Ratusza<br>
                                 <kbd>Tab</kbd> — tabela nacji i drużyn<br>
                                 <kbd>Esc</kbd> — anuluj / pauza (po bitwie: wyniki i menu)<br>
@@ -813,7 +815,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="play-grid" style="grid-template-columns: repeat(3, minmax(300px, 1fr));">
                         <div class="menu-card" style="grid-column: 1 / -1;">
                             <h2>V3.5 — Wielkie Działo, Koń Trojański, obrona królestwa, nowy dźwięk, szybszy silnik</h2>
-                            <p class="menu-note" style="margin-top:0">Pięć nowych jednostek z Koniem Trojańskim na czele, obrona królestwa (dzwon na trwogę, uliczki, mury bez dziur), AI z prawdziwym dowódcą, dźwięk zrobiony od nowa i silnik Raptor ok. 3 razy szybszy w symulacji. Wszystko działa także w grze wieloosobowej. Zmiany wydania Preview 2 są oznaczone w nagłówkach.</p>
+                            <p class="menu-note" style="margin-top:0"><b>To największa aktualizacja w historii gry.</b> Pięć nowych jednostek z Koniem Trojańskim na czele, obrona królestwa (dzwon na trwogę, uliczki, mury bez dziur), AI z prawdziwym dowódcą, dźwięk zrobiony od nowa i silnik Raptor ok. 3 razy szybszy w symulacji. Wszystko działa także w grze wieloosobowej. Zmiany wydania Preview 2 są oznaczone w nagłówkach.</p>
                             <h3>Nowe jednostki</h3>
                             <ul>
                                 <li><b>Wielkie Działo</b> (Era IV, Arsenał): ogromna spiżowa bombarda z czteroosobową obsługą. Przeładowanie trwa <b>10 sekund</b> — widać je na pasku pod działem (pomarańczowy: celowanie z lontem, stalowy: nabijanie od wylotu, złoty: gotowe) — ale każdy strzał to 160 obrażeń z zasięgu 390, ×3 na budynki i fala uderzeniowa raniąca wszystko wokół celu. Huk słychać daleko poza kadrem, ziemia drży, zostaje krater. Wolne, 5 miejsc populacji, 350 drewna, 450 złota i 150 kamienia. Balistyka i Spiżowe Lufy (+25 ataku, +80 życia) też je ulepszają.</li>
@@ -836,7 +838,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <li>Szybsze liczenie mgły wojny i osiągalności terenu; drzewa i złoża nie są już "aktualizowane" w każdym kroku.</li>
                                 <li>Mniej przycięć, gdy w bitwie pojawiają się nowe pozy jednostek (sprite'y wycinane bez odczytu z karty graficznej).</li>
                                 <li>Zmiany nie wpływają na przebieg gry: ten sam mecz liczy się co do bitu identycznie jak przed optymalizacją — tylko szybciej. Najbardziej odczuwalne przy prędkości 2× i 3× oraz w dużych bitwach.</li>
-                                <li>Gra wieloosobowa: wszyscy gracze muszą mieć V3.5 (Preview 2) — z wcześniejszym wydaniem V3.5 gra się nie połączy.</li>
+                                <li>Gra wieloosobowa: wszyscy gracze muszą mieć wydanie V3.5 (plik „V3.5 Final”) — z wersjami Preview gra się nie połączy.</li>
                             </ul>
                             <h3>Koń Trojański (Preview 2)</h3>
                             <ul>
@@ -862,6 +864,33 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <li><b>Kontratak</b>: gdy odeprze twój szturm, AI może od razu ruszyć na twoją osadę, zanim odbudujesz armię (najwyżej raz na ok. 3,5 minuty).</li>
                                 <li><b>Nastrój</b>: po wygranych bitwach dowódca atakuje śmielej i częściej, po porażkach okopuje się — stawia dodatkowe wieże i trzyma więcej wojska w domu.</li>
                                 <li>AI sama bije w dzwon, gdy jej robotników napadnie garstka jeźdźców, a obrońców brak.</li>
+                            </ul>
+                            <h3>Tryb Królowie (nowa opcja gry)</h3>
+                            <ul>
+                                <li>Zaznacz <b>Królowie</b> przy ustawieniach świata (także w poczekalni gry wieloosobowej): każda nacja zaczyna z władcą na koniu — 2200 życia, zbroja 5/5, miecz, a poza walką sam leczy rany.</li>
+                                <li><b>Królewska Szarża</b> (Y): przez 15 s wojsko twojej drużyny w promieniu 320 zadaje o 20% więcej obrażeń, otrzymuje o 20% mniej i biega o 20% szybciej. Odnawia się 75 s — złoty krąg pokazuje zasięg.</li>
+                                <li><b>Haczyk:</b> gdy król zginie, nacja od razu przegrywa, a cała jej osada obraca się w perzynę — bez szansy na odbudowę. Przycisk 👑 na górnym pasku (klawisz ;) zaznacza króla i czerwieni się, gdy jest ranny; „,” zaznacza wojsko już bez króla.</li>
+                                <li>AI pilnuje swojego władcy: broni nim osady, śmielsi dowódcy zabierają go z dużą falą, w bitwie dobywa szarży, a ranny wycofuje się pod ratusz. Wrogiego króla AI bierze na cel w pierwszej kolejności.</li>
+                            </ul>
+                            <h3>Plantacja Jabłek</h3>
+                            <ul>
+                                <li>Nowe pole uprawne (I era, 170 drewna i 40 złota): 9 jabłoni, 3 robotników, 1100 jabłek na owocowanie. Nie trzeba jej obsiewać — po zbiorze drzewa przez 40 s kwitną i zawiązują nowe owoce (robotnicy przechodzą wtedy na wolne pola), a każdy kosz jabłek daje dodatkowo 12% złota.</li>
+                                <li>Obowiązują ją te same czerwone kręgi przy Ratuszu i Młynie co farmę. AI też zakłada sady, zwłaszcza w późnych erach, gdy brakuje złota.</li>
+                            </ul>
+                            <h3>Nowe ratusze</h3>
+                            <ul>
+                                <li>Ratusz nie przypomina już zamku: w I erze to drewniany dom wiecowy z ogniskiem i spichlerzem, w II szachulcowy ratusz z dzwonnicą i rynkiem, w III gotycki ratusz z cegły z wieżą zegarową i fontanną, a w IV renesansowy pałac miejski z attyką, loggią i barokową kopułą.</li>
+                            </ul>
+                            <h3>Kuźnia: nowe ulepszenia i Wszech-wzrok</h3>
+                            <ul>
+                                <li><b>Skórzane Kaftany</b> (strzelcy +1/+1 pancerza), <b>Kropierze</b> (jazda +2 pancerza kłutego i +25 życia), <b>Polowe Opatrunki</b> (żołnierze poza walką odzyskują 1,5 życia/s), <b>Okute Tarany</b> (tarany, Koń Trojański, petardy), <b>Hartowane Kopie</b> (szarża husarii ×3) i <b>Mistrzowie Kuźni</b> (całe wojsko lądowe +1 ataku i +1/+1 pancerza).</li>
+                                <li><b>★ Wszech-wzrok</b> — ultra-ulepszenie IV ery: ty i sojusznicy widzicie całą mapę naraz. Bardzo drogie (2000 żywności, 1500 drewna, 3000 złota, 1000 kamienia, 2 minuty badania), a wieść o nim obiega wszystkie nacje.</li>
+                                <li>Gdy budynek ma więcej ulepszeń niż mieści panel, przycisk V przełącza strony.</li>
+                            </ul>
+                            <h3>AI i dźwięk</h3>
+                            <ul>
+                                <li>Przetestowane w dziesiątkach meczów AI kontra AI (także w trybie Królowie i w grze wieloosobowej): AI awansuje wcześniej, gdy zalegają jej surowce, sprzedaje nieużywany kamień, gdy brakuje złota, i stawia sady w późnej grze.</li>
+                                <li>Łagodniejszy dźwięk wydobywania złota, cichszy szum wiatru, rzadsze i cichsze ptaki, ciszej fanfara awansu do nowej ery.</li>
                             </ul>
                             <h3>Dźwięk i drobiazgi (Preview 2)</h3>
                             <ul>
@@ -1090,7 +1119,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
             <div class="menu-bottom-bar">
                 <span>Wykonane przy użyciu agentów LLM</span>
                 <span class="engine-credit">Raptor Engine · designed by Claude</span>
-                <span>Artificial Battles · Release V3.5 (Preview 2)</span>
+                <span>Artificial Battles · Release V3.5</span>
             </div>
         </div>
 
@@ -1175,7 +1204,8 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 <div class="top-sep"></div>
                 <div class="res pop" title="Populacja / limit (domy zwiększają limit o 20)"><img id="ico-pop"><b id="res-pop">0/0</b></div>
                 <button class="top-btn" id="idle-btn" title="Zaznacz bezczynnego robotnika (klawisz . )"><span class="lbl">Wolni: </span><b id="workers-idle">0</b></button>
-                <button class="top-btn" id="army-btn" title="Zaznacz całe wojsko lądowe (klawisz , )">⚔<span class="lbl"> Wojsko</span></button>
+                <button class="top-btn" id="army-btn" title="Zaznacz całe wojsko lądowe (klawisz , ) — bez króla">⚔<span class="lbl"> Wojsko</span></button>
+                <button class="top-btn" id="king-btn" style="display:none" title="Zaznacz króla i pokaż go (klawisz ; )">👑<span class="lbl"> Król</span></button>
                 <div class="observer-note">Tryb obserwatora</div>
                 <div class="top-spacer"></div>
                 <div id="age-badge">Era I · Osada</div>
@@ -1332,7 +1362,12 @@ const GameConfig = {
         trojan_horse: { name: 'Koń Trojański', cls: 'siege', domain: 'land', military: true, maxHp: 2400, speed: 24, attackDamage: 50, attackRange: 22, attackRate: 3.6, radius: 30,
             armor: [0, 0], dtype: 'siege', vsBuilding: 1.6, onlyBuildings: true, colossal: true, carry: 10, turn: 0.8, iconSpan: 120, limit: 1,
             cost: { wood: 650, gold: 250 }, trainTime: 40, age: 3, pop: 4, vision: 380,
-            desc: "Olbrzymi dębowy koń na kołach, popychany od środka przez załogę. Strzały, kule muszkietów, miecze i kopie odbijają się od niego — ranią go wyłącznie działa i machiny miotające (katapulta, trebusz, działo, Wielkie Działo, wieża bombardowa, galeon), za to z potrójną siłą. W brzuchu mieści 10 piechurów lub strzelców: wsadź ich PPM na konia, a pod murami wroga otwórz brzuch — desant przez 12 s walczy z premią zaskoczenia (+30% obrażeń). Powoli tratuje budynki. Jeden na nację." }
+            desc: "Olbrzymi dębowy koń na kołach, popychany od środka przez załogę. Strzały, kule muszkietów, miecze i kopie odbijają się od niego — ranią go wyłącznie działa i machiny miotające (katapulta, trebusz, działo, Wielkie Działo, wieża bombardowa, galeon), za to z potrójną siłą. W brzuchu mieści 10 piechurów lub strzelców: wsadź ich PPM na konia, a pod murami wroga otwórz brzuch — desant przez 12 s walczy z premią zaskoczenia (+30% obrażeń). Powoli tratuje budynki. Jeden na nację." },
+        // V3.5 Final: tryb Królowie - władca nacji (nie da się go wyszkolić; pojawia się na starcie meczu przy Ratuszu)
+        king: { name: 'Król', cls: 'cavalry', domain: 'land', military: true, hero: true, maxHp: 2200, speed: 140, attackDamage: 30, attackRange: 26, attackRate: 1.0, radius: 13,
+            armor: [5, 5], armored: true, dtype: 'melee', vsBuilding: 0.5, bonus: { ranged: 1.3, siege: 1.5 }, regen: 5, cost: {}, trainTime: 0, age: 1, pop: 0, vision: 440, limit: 1, iconSpan: 64,
+            royal: { radius: 320, duration: 15, cooldown: 75, bonus: 0.2 },
+            desc: "Władca nacji w trybie Królowie: ogromna wytrzymałość, zbroja i miecz, poza walką sam leczy rany (5 życia na sekundę). Królewska Szarża (Y): przez 15 s wojsko twojej drużyny w promieniu 320 zadaje o 20% więcej obrażeń, otrzymuje o 20% mniej i biega o 20% szybciej (odnawia się 75 s). Gdy król zginie, nacja natychmiast przegrywa, a cała jej osada obraca się w perzynę — bez szansy na odbudowę." }
     },
 
     buildings: {
@@ -1344,6 +1379,10 @@ const GameConfig = {
         farm: { name: 'Farma', maxHp: 500, size: 60, amount: 1500, cost: { wood: 50 }, age: 1, vision: 250, menu: 'eco',
             reseed: { wood: 50 },
             desc: "Produkcja żywności (1500 na zasiew, 2 robotników). Nie może stać tuż przy własnym Ratuszu ani przy Młynie (czerwone kręgi) — plon zrzucaj do Młyna stojącego niedaleko pól. Wyczerpana farma jest obsiewana ponownie za 50 drewna (auto-obsiew można wyłączyć)." },
+        // V3.5 Final: sad - droższy na start, ale bez obsiewu: drzewa same owocują na nowo, a część jabłek idzie na targ (złoto)
+        orchard: { name: 'Plantacja Jabłek', maxHp: 700, size: 66, amount: 1100, cost: { wood: 170, gold: 40 }, age: 1, vision: 250, menu: 'eco',
+            seats: 3, regrow: 40, goldShare: 0.12,
+            desc: "Sad jabłoni: 1100 jabłek na owocowanie, pracuje przy nim 3 robotników. Nie trzeba go obsiewać — po zbiorze drzewa przez 40 s zawiązują nowe owoce (robotnicy w tym czasie przechodzą na wolne pola), a każdy kosz jabłek daje też 12% złota z handlu owocami. Droższy niż farma i zajmuje więcej miejsca; obowiązują go te same czerwone kręgi przy Ratuszu i Młynie co farmę." },
         mill: { name: 'Młyn', maxHp: 450, size: 54, cost: { wood: 100 }, age: 1, vision: 250, dropOff: ['food'], menu: 'eco',
             desc: "Punkt zrzutu żywności z farm — postaw go niedaleko pól, a robotnicy nie będą nosić plonów do odległego Ratusza. Pola muszą jednak stać poza małym czerwonym kręgiem wokół Młyna. Tu zbadasz Pług." },
         storehouse: { name: 'Skład', maxHp: 400, size: 50, cost: { wood: 80 }, age: 1, vision: 250, dropOff: ['wood', 'gold', 'stone'], menu: 'eco',
@@ -1425,6 +1464,27 @@ const GameConfig = {
         stone_walls: { name: 'Kamienne Mury', at: 'forge', age: 2, cost: { stone: 200, wood: 100 }, time: 20, icon: 'wall',
             effects: [{ buildings: ['wooden_wall'], stat: 'maxHp', add: 600 }, { buildings: ['gate'], stat: 'maxHp', add: 800 }],
             desc: "Mury i bramy stają się kamienne: +600 / +800 do wytrzymałości." },
+        // --- V3.5 Final: nowe ulepszenia Kuźni. cls: [klasy jednostek], landMilitary: całe wojsko lądowe poza machinami ---
+        padded_armor: { name: 'Skórzane Kaftany', at: 'forge', age: 1, cost: { food: 100, gold: 40 }, time: 12, icon: 'jerkin',
+            effects: [{ units: ['archer', 'crossbowman', 'skirmisher', 'horse_archer', 'arquebusier'], stat: 'armorMelee', add: 1 }, { units: ['archer', 'crossbowman', 'skirmisher', 'horse_archer', 'arquebusier'], stat: 'armorPierce', add: 1 }],
+            desc: "Pikowane kaftany z grubej skóry: +1 pancerza wręcz i +1 kłutego dla łuczników, kuszników, oszczepników, konnych łuczników i arkebuzerów." },
+        barding: { name: 'Kropierze', at: 'forge', age: 2, cost: { food: 150, gold: 150 }, time: 16, icon: 'barding',
+            effects: [{ cls: ['cavalry'], stat: 'armorPierce', add: 2 }, { cls: ['cavalry'], stat: 'maxHp', add: 25 }],
+            desc: "Konie w pikowanych i kolczych kropierzach: cała jazda (także król) dostaje +2 pancerza kłutego i +25 życia." },
+        field_dressing: { name: 'Polowe Opatrunki', at: 'forge', age: 2, cost: { food: 200, gold: 100 }, time: 18, icon: 'bandage',
+            effects: [{ landMilitary: true, stat: 'regen', add: 1.5 }],
+            desc: "Bandaże, ocet i szarpie w każdym tobołku: żołnierze, którzy od 6 s nie oberwali, sami odzyskują 1,5 życia na sekundę (nie dotyczy machin)." },
+        iron_rams: { name: 'Okute Tarany', at: 'forge', age: 2, cost: { wood: 150, gold: 100 }, time: 16, icon: 'ram_iron',
+            effects: [{ units: ['ram'], stat: 'attackDamage', add: 15 }, { units: ['ram'], stat: 'maxHp', add: 80 }, { units: ['trojan_horse'], stat: 'maxHp', add: 400 }, { units: ['petardier'], stat: 'attackDamage', add: 60 }],
+            desc: "Żelazne okucia i mocniejszy proch: tarany +15 ataku i +80 życia, Koń Trojański +400 życia, petarda petardnika +60 obrażeń." },
+        tempered_lances: { name: 'Hartowane Kopie', at: 'forge', age: 3, cost: { food: 200, gold: 250 }, time: 20, icon: 'lance',
+            effects: [{ units: ['knight', 'hussar'], stat: 'attackDamage', add: 2 }, { units: ['hussar'], stat: 'chargeMul', add: 0.5 }],
+            desc: "+2 do ataku rycerzy i husarzy, a rozpędzona husaria uderza z siłą ×3 zamiast ×2,5." },
+        master_smiths: { name: 'Mistrzowie Kuźni', at: 'forge', age: 3, cost: { food: 300, gold: 300, stone: 100 }, time: 30, icon: 'anvil',
+            effects: [{ landMilitary: true, stat: 'attackDamage', add: 1 }, { landMilitary: true, stat: 'armorMelee', add: 1 }, { landMilitary: true, stat: 'armorPierce', add: 1 }],
+            desc: "Cech mistrzów kowalskich: każdy żołnierz lądowy (poza machinami) dostaje +1 do ataku i +1 do obu pancerzy." },
+        omnisight: { name: 'Wszech-wzrok', at: 'forge', age: 4, ultra: true, cost: { food: 2000, wood: 1500, gold: 3000, stone: 1000 }, time: 120, icon: 'omnisight',
+            desc: "ULTRA-ULEPSZENIE. Sieć zwiadowców, gołębi pocztowych i lunet na każdej wieży: ty i twoi sojusznicy widzicie całą mapę jednocześnie — każdą jednostkę i każdy budynek, bez mgły wojny. Kosztuje fortunę, trwa 2 minuty, a gdy się uda, wieść obiega wszystkie nacje." },
         ballistics: { name: 'Balistyka', at: 'forge', age: 3, cost: { wood: 200, gold: 200 }, time: 20, icon: 'siege',
             effects: [{ units: ['cannon', 'catapult', 'galleon', 'trebuchet', 'ballista', 'great_cannon'], stat: 'attackRange', add: 30 }, { units: ['cannon', 'catapult', 'galleon', 'trebuchet', 'ballista', 'great_cannon'], stat: 'attackDamage', add: 8 },
                       { buildings: ['bombard_tower'], stat: 'attackRange', add: 30 }, { buildings: ['bombard_tower'], stat: 'attackDamage', add: 8 }],
@@ -1470,6 +1530,9 @@ const GameConfig = {
 function isBoatType(t) { const c = GameConfig.units[t]; return !!c && c.domain === 'water'; }
 function isMilitaryType(t) { const c = GameConfig.units[t]; return !!c && c.military === true; }
 function isWallType(t) { return t === 'wooden_wall' || t === 'gate'; }
+// V3.5 Final: pola uprawne - farma i Plantacja Jabłek (wspólne zasady: kręgi przy ratuszu i młynie, praca robotników, zrzut do młyna)
+function isFarmType(t) { return t === 'farm' || t === 'orchard'; }
+function farmSeats(b) { return (b && b.cfg && b.cfg.seats) || 2; }
 
 // Kotwice odcinka muru stojącego w (x, y): krawędź mapy i zbocza gór bliżej niż 65 kroków. Rysunek muru (getLinks)
 // prowadzi do nich odcinek, a siatka ścieżek zamyka tę samą szczelinę - do V3.5 mur tylko wyglądał na domknięty,
@@ -1931,7 +1994,7 @@ class Game {
 
         // Farma musi stać w odstępie od Ratusza i od Młyna tej samej nacji: pola pod samym punktem zrzutu dawały
         // zbiór bez chodzenia (robotnik zbierał i oddawał plon, nie ruszając się z miejsca).
-        if (owner && (type === 'farm' || type === 'town_center' || type === 'mill')) {
+        if (owner && (isFarmType(type) || type === 'town_center' || type === 'mill')) {
             const near = this.farmTooClose(type, x, y, owner);
             if (near) {
                 this.placeError = (type === 'mill' || near.type === 'mill') ? 'millDist' : 'farmDist';
@@ -1988,7 +2051,7 @@ class Game {
         for (let i = 0; i < list.length; i++) {
             const b = list[i];
             if (b.isDestroyed) continue;
-            const D = type === 'farm' ? this.farmGap(b.type) : (b.type === 'farm' ? own : 0);
+            const D = isFarmType(type) ? this.farmGap(b.type) : (isFarmType(b.type) ? own : 0);
             if (!D) continue;
             const dx = b.x - x, dy = b.y - y;
             if (dx * dx + dy * dy < D * D) return b;
@@ -2414,12 +2477,12 @@ class Game {
 
         this.advanceProjectiles(deltaTime);
 
-        for (const n of this.nations) for (const b of n.buildings) { if (b.type === 'farm') b.currentWorkers = 0; }
+        for (const n of this.nations) for (const b of n.buildings) { if (isFarmType(b.type)) b.currentWorkers = 0; }
         for (const n of this.nations) {
             for (const u of n.units) {
                 if (u.unitType === 'worker') {
                     const target = (u.state === 'returning') ? u.previousResource : u.targetEntity;
-                    if (target && target.type === 'farm' && (u.state === 'moving_to_resource' || u.state === 'gathering' || u.state === 'returning')) {
+                    if (target && isFarmType(target.type) && (u.state === 'moving_to_resource' || u.state === 'gathering' || u.state === 'returning')) {
                         target.currentWorkers = (target.currentWorkers || 0) + 1;
                     }
                 }
@@ -2471,6 +2534,13 @@ class Game {
         // wieloosobowej także siecią do gości. Symulacja nie zakłada już, że gracz jest jeden.
         for (const n of this.nations) {
             if (n.defeated) continue;
+            if (n.kingDead) {
+                // V3.5 Final: śmierć króla - porażka bez czasu na odbudowę
+                n.defeated = true;
+                n.defeatedAt = this.time;
+                n.graceUntil = null;
+                continue;
+            }
             if (n.hasTownCenter() && !n.resigned) {
                 if (n.graceUntil != null) {
                     n.graceUntil = null;
@@ -2589,6 +2659,10 @@ class Game {
         for (const team of teams) {
             const tv = this.teamGrids(team);
             const vis = tv.vis, exp = tv.exp;
+            // V3.5 Final: Wszech-wzrok któregokolwiek członka drużyny odsłania całą mapę
+            let omni = false;
+            for (const nation of this.nations) if (nation.team === team && nation.omni && !nation.defeated) { omni = true; break; }
+            if (omni) { vis.fill(1); exp.fill(1); continue; }
             vis.fill(0);
             for (const nation of this.nations) {
                 if (nation.team !== team) continue;
@@ -2950,7 +3024,7 @@ class Game {
         for (let i = 0; i < objs.length; i++) if (objs[i].drawOverlay) objs[i].drawOverlay(ctx, t);
         for (let i = 0; i < walls.length; i++) walls[i].drawOverlay(ctx, t);
         this.drawUnitBars(ctx, units);
-        for (let i = 0; i < units.length; i++) if (units[i].rank > 0 || units[i].healTarget || units[i].cfg.aura) units[i].drawOverlay(ctx, t);
+        for (let i = 0; i < units.length; i++) if (units[i].rank > 0 || units[i].healTarget || units[i].cfg.aura || units[i].cfg.hero) units[i].drawOverlay(ctx, t);
 
         this.drawEffects(ctx, view);
         if (dyn) this.drawGlows(ctx, view);
@@ -3145,6 +3219,9 @@ Game.prototype.dealDamage = function (source, target, amount, opts) {
     if (source && source.inspiredUntil !== undefined && source.inspiredUntil > this.time) dmg *= 1 + (source.inspireBonus || 0.2);
     // V3.5: desant z Konia Trojańskiego - premia zaskoczenia
     if (source && source.ambushUntil !== undefined && source.ambushUntil > this.time) dmg *= Unit.AMBUSH_MUL;
+    // V3.5 Final: Królewska Szarża - silniejszy cios zadaje, słabszy przyjmuje
+    if (source && source.royalUntil > this.time) dmg *= 1 + Unit.ROYAL.bonus;
+    if (target.royalUntil > this.time) dmg *= 1 - Unit.ROYAL.bonus;
     // V3.5: kolos - tylko artyleria, za to potrójnie
     if (target.unitType && target.cfg && target.cfg.colossal) {
         if (!(source && (source.unitType ? Unit.hurtsColossal(source.cfg) : (source.attackCfg && source.attackCfg.dtype === 'siege')))) return 0;
@@ -3174,6 +3251,15 @@ Game.prototype.dealDamage = function (source, target, amount, opts) {
         source.owner.stats.damage += dmg;
         this.lastCombatTime = this.time;
         if (target.owner.human) this.notifyAttack(target);
+        if (target.unitType && target.cfg.hero && target.hp > 0 && target.hp < target.maxHp * 0.6) {
+            // V3.5 Final: król w niebezpieczeństwie - ostrzeżenie co 20 s
+            const n = target.owner;
+            if (this.time - (n._kingHurtAt === undefined ? -99 : n._kingHurtAt) > 20) {
+                n._kingHurtAt = this.time;
+                this.tell(n, `Twój król jest w niebezpieczeństwie (${Math.ceil(target.hp)} życia)! Wycofaj go — poza walką sam leczy rany.`, 'alert');
+                this.cue(n, 'Warning');
+            }
+        }
     }
 
     if (target.hp <= 0) {
@@ -3211,6 +3297,11 @@ Game.prototype.killEntity = function (target, source) {
     if (target.destroy) target.destroy(); else target.isDestroyed = true;
     const hostile = !!(source && source.owner && target.owner && source.owner !== target.owner);
     target.deathCause = hostile ? 2 : 1;   // dla gości: 1 = stracony / rozebrany, 2 = zniszczony przez wroga
+    if (target.unitType && target.cfg && target.cfg.hero) {
+        // V3.5 Final: król poległ
+        if (hostile) { this.spawnParticle(target.x, target.y, 'levelup'); this.shake(target.x, target.y, 9); }
+        this.kingFallen(target, source);
+    }
 
     if (target.unitType) {
         if (target.owner) target.owner.stats.unitsLost++;
@@ -3262,7 +3353,7 @@ Game.prototype.deathFx = function (target, hostile, late) {
             if (!isWallType(target.type)) this.shake(x, y, 7, 50);
         }
         if (this.terrain && target.isConstructed) this.terrain.stamp(x, y, s, (c) => paintRubble(c, s, target.type));
-        if (!late && hostile && target.isConstructed && !isWallType(target.type) && target.type !== 'farm') {
+        if (!late && hostile && target.isConstructed && !isWallType(target.type) && !isFarmType(target.type)) {
             // zgliszcza: budynek zburzony przez wroga jeszcze przez kilkanaście sekund płonie i dymi (własna rozbiórka - bez ognia)
             const RU = this.ruins || (this.ruins = []);
             if (RU.length >= 14) RU.shift();
@@ -4517,6 +4608,79 @@ Game.prototype.ringBell = function (nation, on) {
     return k;
 };
 
+// ---------------- V3.5 Final: tryb Królowie ----------------
+// Każda nacja ma władcę (jednostka 'king'). Królewska Szarża dodaje okolicznemu wojsku drużyny +20% obrażeń, obrony
+// i szybkości; śmierć króla to natychmiastowa porażka nacji - wszystkie jej budynki i jednostki przepadają.
+
+Game.prototype.kingOf = function (nation) {
+    if (!nation) return null;
+    for (const u of nation.units) if (u.cfg.hero && !u.isDestroyed) return u;
+    return null;
+};
+
+// Uruchomienie Królewskiej Szarży (host / gra solo). Zwraca komunikat błędu albo null.
+Game.prototype.royalCharge = function (king) {
+    if (!king || king.isDestroyed || !king.cfg.royal) return 'Nie ma króla.';
+    if (king.inside) return null;
+    if ((king.royalReady || 0) > this.time) return `Królewska Szarża będzie gotowa za ${Math.ceil(king.royalReady - this.time)} s.`;
+    const R = king.cfg.royal;
+    king.royalOn = this.time + R.duration;
+    king.royalReady = this.time + R.cooldown;
+    king.royalT = 99;
+    this.royalAura(king, this.time);
+    this.spawnParticle(king.x, king.y, 'levelup');
+    this.spawnParticle(king.x, king.y, 'charge');
+    this.snd('Charge', king.x, king.y);
+    this.shake(king.x, king.y, 3);
+    const ow = king.owner;
+    this.floatFor(ow, king.x, king.y - 26, 'Królewska Szarża!', '#ffd94a');
+    if (ow.human) this.cue(ow, 'Complete');
+    if (this.relay) this.relay.toAll(['rc', king.id, Math.round(king.royalOn * 100) / 100]);
+    for (const n of this.nations) if (n !== ow && n.team === ow.team) this.tell(n, `Król nacji ${ow.shortName || ow.name} prowadzi Królewską Szarżę — trzymajcie się blisko!`, 'good');
+    return null;
+};
+
+// Aura szarży: jednostki drużyny króla w promieniu dostają premię na chwilę (odnawianą co 0,4 s, póki szarża trwa).
+// Gość wywołuje to samo dla obrazu (złota poświata) - u niego premia nie zmienia niczego w symulacji.
+Game.prototype.royalAura = function (king, now) {
+    const R = king.cfg.royal;
+    const near = this.spatialGrid.queryUnits(king.x, king.y, R.radius, Unit._qc);
+    const until = now + 0.6, team = king.owner.team;
+    king.royalUntil = until;
+    for (let i = 0; i < near.length; i++) {
+        const e = near[i];
+        if (!e.unitType || e.isDestroyed || e.inside || !e.owner || e.owner.team !== team || e.isShip) continue;
+        if (!e.cfg.military && e.cfg.cls !== 'support') continue;
+        if (Math.hypot(e.x - king.x, e.y - king.y) > R.radius) continue;
+        e.royalUntil = until;
+    }
+};
+
+// Król poległ: nacja przegrywa od razu, a jej osada obraca się w perzynę (bez czasu na odbudowę)
+Game.prototype.kingFallen = function (king, source) {
+    const n = king.owner;
+    if (!n || n.kingDead) return;
+    n.kingDead = true;
+    const by = source && source.owner && source.owner !== n ? source.owner : null;
+    this.tellAll(`Król nacji ${n.shortName || n.name} poległ${by ? ' z ręki nacji ' + (by.shortName || by.name) : ''}! Jego królestwo upada.`, 'alert', n);
+    this.tell(n, 'Twój król poległ! Królestwo upada — cała osada obraca się w perzynę.', 'alert');
+    this.cue(n, 'Warning');
+    if (this.ringBell && n.bell) n.bell = false;
+    for (const b of n.buildings.slice()) {
+        if (b.isDestroyed) continue;
+        b.hp = 0;
+        this.killEntity(b, null);
+        if (b.isConstructed && !isWallType(b.type) && !isFarmType(b.type)) {
+            // zgliszcza płoną jak po szturmie
+            const RU = this.ruins || (this.ruins = []);
+            if (RU.length >= 14) RU.shift();
+            RU.push({ x: b.x, y: b.y, s: b.size || 60, life: 16, t: 0 });
+        }
+    }
+    for (const u of n.units.slice()) if (!u.isDestroyed) { u.hp = 0; this.killEntity(u, null); }
+    n.graceUntil = null;
+};
+
 Game.prototype.applyCommand = function (nation, cmd) {
     const OK = { ok: true };
     const fail = (msg) => ({ ok: false, msg });
@@ -4558,7 +4722,7 @@ Game.prototype.applyCommand = function (nation, cmd) {
             const t = this.cmdTarget(nation, cmd.target);
             if (!t) return OK;
             const node = t.amount !== undefined && !t.owner;
-            const farm = t.type === 'farm' && t.owner === nation;
+            const farm = isFarmType(t.type) && t.owner === nation;
             if (!node && !farm) return OK;
             for (const u of units) { u.urgentPath = true; u.gather(t); }
             return OK;
@@ -4582,7 +4746,7 @@ Game.prototype.applyCommand = function (nation, cmd) {
                 if (u.cfg.builder) {
                     u.repair(b);
                     // uszkodzona własna farma: robotnik najpierw ją naprawia, a potem zostaje na niej pracować
-                    if (b.type === 'farm' && b.owner === nation && b.isConstructed) u.resumeGather = b;
+                    if (isFarmType(b.type) && b.owner === nation && b.isConstructed) u.resumeGather = b;
                 } else u.moveTo(x, y, false);
             }
             return OK;
@@ -4714,7 +4878,7 @@ Game.prototype.applyCommand = function (nation, cmd) {
             const x = clamp(cmd.x, 0, W), y = clamp(cmd.y, 0, H);
             let target = cmd.target != null ? this.cmdTarget(nation, cmd.target) : null;
             // punkt zbiórki na drzewie / złożu / własnej farmie: nowi robotnicy od razu pracują
-            if (target && !((target.amount !== undefined && !target.owner) || (target.type === 'farm' && target.owner === nation))) target = null;
+            if (target && !((target.amount !== undefined && !target.owner) || (isFarmType(target.type) && target.owner === nation))) target = null;
             for (const id of cmd.buildings) {
                 const b = this.cmdBuilding(nation, id);
                 if (!b || !b.cfg || !b.cfg.trains) continue;
@@ -4783,6 +4947,13 @@ Game.prototype.applyCommand = function (nation, cmd) {
             const r = this.ringBell(nation, !!cmd.on);
             if (cmd.on) return { ok: true, msg: r > 0 ? `Dzwon na trwogę! ${r} robotników biegnie do schronień.` : 'Dzwon na trwogę — nie ma robotników w pobliżu schronień.', type: r > 0 ? 'alert' : 'info' };
             return { ok: true, msg: r > 0 ? `Koniec alarmu — ${r} robotników wraca do pracy.` : 'Koniec alarmu.', type: 'good' };
+        }
+
+        case 'royal': {
+            const k = this.kingOf(nation);
+            if (!k) return OK;
+            const err = this.royalCharge(k);
+            return err ? fail(err) : OK;
         }
 
         case 'resign': {
@@ -5296,13 +5467,14 @@ function SfxModule() {
             D.grains(o, 0.01, 0.15, 4, 0.2, 3000, 7000, 0.002, 0.006);
             return D.normalize(o, 0.75);
         } },
-        pick_gold: { n: 4, render(D) {
-            const o = D.buf(0.5);
-            D.noise(o, 0, 0.004, 0.8, 'hp', 3500, 0.7, ENV.lin);
-            D.modal(o, 0.001, [[D.rr(2700, 3200), 0.1, 1], [D.rr(4300, 4800), 0.07, 0.6]], 0.3, 0.0012, 12000);
-            D.noise(o, 0, 0.04, 0.5, 'lp', 1000, 0.7, ENV.hit(0.012));
-            for (let i = 0; i < 2; i++) D.modal(o, 0.05 + i * D.rr(0.04, 0.07), [[D.rr(4800, 5400), 0.12, 1], [D.rr(6900, 7600), 0.08, 0.5]], 0.12, 0.001, 14000);   // brzęk samorodków
-            return D.normalize(o, 0.7);
+        pick_gold: { n: 4, render(D) {   // V3.5 Final: łagodniej - głuche stuknięcie w skałę i cichy, niski brzęk samorodka
+            const o = D.buf(0.4);
+            D.noise(o, 0, 0.004, 0.35, 'lp', 2600, 0.7, ENV.lin);
+            D.modal(o, 0.001, [[D.rr(1700, 2100), 0.045, 1], [D.rr(2900, 3300), 0.03, 0.45]], 0.2, 0.0016, 6500);
+            D.noise(o, 0, 0.05, 0.55, 'lp', 800, 0.7, ENV.hit(0.014));
+            D.thump(o, 0, 140, 80, 0.025, 0.3);
+            if (D.r() < 0.6) D.modal(o, 0.06 + D.rr(0, 0.05), [[D.rr(3000, 3500), 0.06, 1]], 0.05, 0.002, 7000);   // brzęk samorodka
+            return D.normalize(o, 0.5);
         } },
         hoe: { n: 4, render(D) {
             const o = D.buf(0.4);
@@ -5721,7 +5893,7 @@ class SoundManager {
         else if (type === 'stone') s = 'pick';
         else if (type === 'gold') s = 'pick_gold';
         else if (window.game && window.game.isWater(x, y)) s = 'net';
-        this.play(s, x, y, { gain: s === 'chop' ? 0.22 : 0.19, max: 2, key: 'gather', send: 0.06 });
+        this.play(s, x, y, { gain: s === 'chop' ? 0.22 : (s === 'pick_gold' ? 0.13 : 0.19), max: 2, key: 'gather', send: 0.06 });
     }
 
     // Organki: kule z kolejnych luf w odstępach 45 ms
@@ -5784,7 +5956,7 @@ class SoundManager {
         A.gustV += (this.rnd() - 0.5) * 0.05; A.gustV *= 0.9;
         A.gust = Math.max(0, Math.min(0.4, A.gust + A.gustV));
         if (!g || !g.camera || window.menuActive) {
-            set(A.wind.gain, 0.05 + A.gust * 0.15); set(A.water.gain, 0); set(A.rain.gain, 0); set(A.crick.gain, 0);
+            set(A.wind.gain, 0.04 + A.gust * 0.12); set(A.water.gain, 0); set(A.rain.gain, 0); set(A.crick.gain, 0);
             for (const f of A.wf) set(f.frequency, 420 + A.gust * 900, 0.8);
             return;
         }
@@ -5795,8 +5967,9 @@ class SoundManager {
         const storm = atmo && atmo.weather !== 'rain' ? atmo.intensity : 0;   // zamieć albo burza piaskowa
         const z = g.zoom || 1;
         const zk = z < 1 ? 1.25 - 0.25 * z : 1;   // z wysoka bardziej słychać wiatr
-        let wind = (0.1 + A.gust * 0.35) * (biome === 'winter' ? 1.35 : (biome === 'desert' ? 1.2 : 1)) * (1 + 1.6 * storm + 0.5 * wet) * zk;
-        set(A.wind.gain, Math.min(0.55, wind));
+        // V3.5 Final: szum wiatru o ok. 1/4 cichszy niż w Preview 2
+        let wind = (0.075 + A.gust * 0.27) * (biome === 'winter' ? 1.35 : (biome === 'desert' ? 1.2 : 1)) * (1 + 1.6 * storm + 0.5 * wet) * zk;
+        set(A.wind.gain, Math.min(0.45, wind));
         for (let i = 0; i < A.wf.length; i++) set(A.wf[i].frequency, 380 + A.gust * 1100 + storm * 700 + i * 160, 0.8);
         // woda w kadrze: ile z pięciu punktów wokół środka ekranu leży na wodzie
         const cx = g.camera.x + g.viewW / 2, cy = g.camera.y + g.viewH / 2, r = Math.min(260, g.viewW * 0.3);
@@ -5816,11 +5989,11 @@ class SoundManager {
         // ptaki za dnia, przy ładnej pogodzie i z dala od bitwy
         A.nextBird -= 0.25;
         if (A.nextBird <= 0) {
-            A.nextBird = 2.5 + this.rnd() * 6 * (biome === 'desert' ? 2 : (biome === 'winter' ? 3 : 1));
+            A.nextBird = 3.5 + this.rnd() * 7 * (biome === 'desert' ? 2 : (biome === 'winter' ? 3 : 1));
             const fight = g._fightAt !== undefined && g.renderTime - g._fightAt < 4;
             if (night < 0.35 && wet < 0.2 && storm < 0.3 && !fight && !g.isPaused) {
                 const sp = ctx.createStereoPanner ? (this.rnd() - 0.5) * 1.6 : 0;
-                this.playPanned('bird', sp, { gain: (0.1 + this.rnd() * 0.14) * (z < 0.7 ? 0.6 : 1), bus: 'amb', max: 3, send: 0.45, detune: 0.18 });
+                this.playPanned('bird', sp, { gain: (0.065 + this.rnd() * 0.08) * (z < 0.7 ? 0.6 : 1), bus: 'amb', max: 2, send: 0.45, detune: 0.18 });   // V3.5 Final: ciszej i rzadziej
             }
         }
     }
@@ -5889,7 +6062,7 @@ SoundManager.FX = {
     Error: ['ui_error', 0.32, 1, 0, 0.02, 250, true],
     Complete: ['ui_complete', 0.42, 2, 0, 0.2, 250, true],
     Warning: ['warning', 0.5, 1, 0, 0.25, 1500, true],
-    AgeUp: ['ageup', 0.78, 1, 0, 0.35, 1000, true, 4],
+    AgeUp: ['ageup', 0.6, 1, 0, 0.35, 1000, true, 4],   // V3.5 Final: fanfara awansu nieco ciszej
     Victory: ['victory', 0.82, 1, 0, 0.35, 1000, true, 5.5],
     Defeat: ['defeat', 0.82, 1, 0, 0.35, 1000, true, 5]
 };
@@ -6120,7 +6293,7 @@ class Pathfinder {
         for (const nation of game.nations) {
             const walls = [];
             for (const obs of nation.buildings) {
-                if (obs.isDestroyed || obs.type === 'farm') continue;
+                if (obs.isDestroyed || isFarmType(obs.type)) continue;
                 const wall = obs.type === 'wooden_wall' || obs.type === 'gate';
                 const radius = wall ? 12 : (obs.size / 2 || 10) * 0.75;
                 mark(obs.x - radius, obs.y - radius, obs.x + radius, obs.y + radius, obs.type === 'gate' ? obs.owner : null);
@@ -6738,7 +6911,7 @@ class UIManager {
         setIcon('ico-food', 'food'); setIcon('ico-wood', 'wood'); setIcon('ico-gold', 'gold'); setIcon('ico-stone', 'stone'); setIcon('ico-pop', 'pop');
         this.el = {};
         ['res-food', 'res-wood', 'res-gold', 'res-stone', 'res-pop', 'workers-food', 'workers-wood', 'workers-gold', 'workers-stone',
-         'workers-idle', 'age-badge', 'game-clock', 'speed-btn', 'mute-btn', 'menu-btn', 'idle-btn', 'army-btn', 'fps-counter',
+         'workers-idle', 'age-badge', 'game-clock', 'speed-btn', 'mute-btn', 'menu-btn', 'idle-btn', 'army-btn', 'king-btn', 'fps-counter',
          'nations-btn', 'results-top-btn', 'top-bar', 'grace-banner', 'nations-panel'].forEach(id => this.el[id] = document.getElementById(id));
         this.topCache = {};
     }
@@ -6777,6 +6950,15 @@ class UIManager {
         const popEl = this.el['res-pop'];
         if (popEl) popEl.classList.toggle('capped', used >= n.popCap);
         if (this.el['idle-btn']) this.el['idle-btn'].classList.toggle('active', c.idle > 0);
+        const kb = this.el['king-btn'];
+        if (kb) {
+            // V3.5 Final: przycisk króla - tylko w trybie Królowie; czerwieni się, gdy król jest ranny
+            const k = this.game.kings ? this.game.kingOf(n) : null;
+            const show = k ? '' : 'none', hurt = !!k && k.hp < k.maxHp * 0.5;
+            if (kb.style.display !== show) kb.style.display = show;
+            kb.classList.toggle('active', hurt);
+            if (k) kb.title = `Król: ${Math.ceil(k.hp)} / ${Math.round(k.maxHp)} życia — zaznacz i pokaż (klawisz ; )`;
+        }
         const a = GameConfig.ages[n.age];
         this.setText('age-badge', 'Era ' + a.roman + ' · ' + a.name);
         const t = Math.floor(this.game.time);
@@ -6849,12 +7031,15 @@ class UIManager {
         this.playerNation.buildings.forEach(b => b.isSelected = false);
         this.game.inspected = null;
         this.menuPage = null;
+        this.upgPage = 0;
     }
 
     computeSignature() {
         const n = this.playerNation;
-        let s = n.age + '|' + n.researchedUpgrades.length + '|' + n.researchingUpgrades.length + '|' + (this.menuPage || '') + '|' + (this.placementMode || '') + '|' + (this.attackArmed ? 1 : 0) + '|' + (n.autoReseed ? 1 : 0) + (this.locked ? 'L' : '') + '|' + this.formation + (this.formPace ? 1 : 0) + '|' + (n.bell ? 'B' : '') + '|';
-        for (const u of n.units) if (u.isSelected && !u.isDestroyed) s += u.id + 'r' + (u.rank || 0) + (u.passengers && u.passengers.length ? 'p' : '') + ',';
+        let s = n.age + '|' + n.researchedUpgrades.length + '|' + n.researchingUpgrades.length + '|' + (this.menuPage || '') + '|' + (this.upgPage || 0) + '|' + (this.placementMode || '') + '|' + (this.attackArmed ? 1 : 0) + '|' + (n.autoReseed ? 1 : 0) + (this.locked ? 'L' : '') + '|' + this.formation + (this.formPace ? 1 : 0) + '|' + (n.bell ? 'B' : '') + '|';
+        const gt = this.game.time;
+        for (const u of n.units) if (u.isSelected && !u.isDestroyed) s += u.id + 'r' + (u.rank || 0) + (u.passengers && u.passengers.length ? 'p' : '') +
+            (u.cfg.royal ? 'K' + Math.max(0, Math.ceil((u.royalReady || 0) - gt)) + (u.royalOn > gt ? 'o' + Math.ceil(u.royalOn - gt) : '') : '') + ',';
         s += '|';
         for (const b of n.buildings) {
             if (b.isSelected && !b.isDestroyed) s += b.id + (b.isConstructed ? 'c' : 'u') + b.trainingQueue.length + (b.trainingQueue[0] ? b.trainingQueue[0].type : '') + ',';
@@ -6904,6 +7089,7 @@ class UIManager {
 
     // Szczegóły do podpowiedzi i kodeksu: czas szkolenia, populacja, premie w liczbach
     static unitDetails(cfg) {
+        if (cfg.hero) return `Tylko w trybie Królowie · nie zajmuje populacji · Królewska Szarża: +${Math.round(cfg.royal.bonus * 100)}% obrażeń, obrony i szybkości wojska w promieniu ${cfg.royal.radius} przez ${cfg.royal.duration} s (co ${cfg.royal.cooldown} s) · ×${String(cfg.bonus.ranged).replace('.', ',')} na strzelców`;
         const clsName = { infantry: 'piechotę', ranged: 'strzelców', cavalry: 'kawalerię', siege: 'machiny', ship: 'okręty', civil: 'cywilów', support: 'wsparcie', armored: 'opancerzonych' };
         const parts = [`Szkolenie: ${cfg.trainTime} s`, `Populacja: ${cfg.pop || 1}`];
         if (cfg.bonus) for (const k in cfg.bonus) parts.push(`×${String(cfg.bonus[k]).replace('.', ',')} na ${clsName[k] || k}`);
@@ -6928,7 +7114,7 @@ class UIManager {
         if (u.state === 'boarding' && u.targetEntity && u.targetEntity.unitType) s = 'Wsiada do konia';
         if ((u.state === 'gathering' || u.state === 'moving_to_resource') && u.targetEntity) {
             const t = u.targetEntity.type;
-            s = 'Zbiera: ' + (t === 'farm' || t === 'food' ? 'żywność' : (GameConfig.resourceNames[t] || '').toLowerCase());
+            s = 'Zbiera: ' + (isFarmType(t) || t === 'food' ? (t === 'orchard' ? 'jabłka' : 'żywność') : (GameConfig.resourceNames[t] || '').toLowerCase());
         }
         return s;
     }
@@ -7163,6 +7349,18 @@ class UIManager {
                     onClick: () => { g.issue({ t: 'unload', units: this.ids(carriers) }); if (window.soundManager) window.soundManager.playCommand(); }
                 };
             }
+            const king = selUnits.find(u => u.cfg.royal);
+            if (king) {
+                // V3.5 Final: Królewska Szarża (Y)
+                const R = king.cfg.royal, on = king.royalOn > g.time, left = Math.max(0, Math.ceil((king.royalReady || 0) - g.time));
+                cmds[4] = {
+                    icon: Icons.url('royal_charge', 24), title: on ? `Królewska Szarża — trwa jeszcze ${Math.ceil(king.royalOn - g.time)} s` : (left > 0 ? `Królewska Szarża (za ${left} s)` : 'Królewska Szarża'), active: on,
+                    desc: `Król wznosi miecz i porywa wojsko: przez ${R.duration} s żołnierze twojej drużyny w promieniu ${R.radius} zadają o ${Math.round(R.bonus * 100)}% więcej obrażeń, otrzymują o ${Math.round(R.bonus * 100)}% mniej i biegają o ${Math.round(R.bonus * 100)}% szybciej. Kto wejdzie w złoty krąg później, też dostaje premię.`,
+                    extra: `Odnawia się ${R.cooldown} s. Ryzyko: jeśli król zginie, przegrywasz od razu i tracisz całą osadę.`,
+                    disabled: left > 0 && !on, reason: left > 0 ? `Królewska Szarża będzie gotowa za ${left} s.` : null,
+                    onClick: () => { g.issue({ t: 'royal' }); if (window.soundManager) window.soundManager.playCommand(); }
+                };
+            }
             cmds[11] = { icon: Icons.url('stop', 24), title: 'Stój', desc: 'Przerywa bieżące rozkazy.', onClick: () => { this.game.issue({ t: 'stop', units: this.ids(this.getSelectedUnits()) }); if (window.soundManager) window.soundManager.playCommand(); } };
             return cmds;
         }
@@ -7187,15 +7385,27 @@ class UIManager {
                         onClick: (ev) => this.trainUnit(same, t, ev && ev.shiftKey ? 5 : 1)
                     };
                 }
-                for (const id in GameConfig.upgrades) {
+                // V3.5 Final: gdy ulepszeń jest więcej niż wolnych pól, ostatnie pole przełącza strony listy
+                const ups = Object.keys(GameConfig.upgrades).filter(id => GameConfig.upgrades[id].at === type && !n.researchedUpgrades.includes(id));
+                let shown = ups;
+                if (ups.length > 14 - i) {
+                    const per = 13 - i, pages = Math.ceil(ups.length / per);
+                    const page = (this.upgPage || 0) % pages;
+                    shown = ups.slice(page * per, page * per + per);
+                    cmds[13] = {
+                        icon: Icons.url('upg_more', 24), title: `Więcej ulepszeń (strona ${page + 1}/${pages})`, badge: '→',
+                        desc: 'Pokazuje kolejną stronę ulepszeń tego budynku.',
+                        onClick: () => { this.upgPage = page + 1; this.signature = null; this.updateActionPanel(); }
+                    };
+                }
+                for (const id of shown) {
                     const up = GameConfig.upgrades[id];
-                    if (up.at !== type || n.researchedUpgrades.includes(id)) continue;
                     if (i >= 14) break;
                     const researching = n.researchingUpgrades.includes(id);
                     const locked = (up.age || 1) > n.age;
                     cmds[i++] = {
-                        icon: Icons.url(up.icon || 'unknown', 24), title: up.name, desc: up.desc, cost: up.cost, upgrade: true,
-                        extra: 'Czas badania: ' + up.time + ' s',
+                        icon: Icons.url(up.icon || 'unknown', 24), title: (up.ultra ? '★ ' : '') + up.name, desc: up.desc, cost: up.cost, upgrade: true,
+                        extra: 'Czas badania: ' + up.time + ' s' + (up.ultra ? ' · ultra-ulepszenie' : ''),
                         disabled: researching || locked,
                         reason: researching ? 'Badanie w toku…' : (locked ? 'Wymaga: ' + ageName(up.age) : null),
                         onClick: () => {
@@ -7541,11 +7751,24 @@ class UIManager {
 
     selectArmy() {
         if (this.locked) return;
-        const army = this.playerNation.units.filter(u => (u.cfg.military || u.unitType === 'monk' || u.cfg.aura) && !u.isShip && !u.inside);
+        const army = this.playerNation.units.filter(u => (u.cfg.military || u.unitType === 'monk' || u.cfg.aura) && !u.isShip && !u.inside && !u.cfg.hero);   // V3.5 Final: król osobno (;)
         if (army.length === 0) { this.showMessage('Nie masz jeszcze wojska.'); return; }
         this.clearSelection();
         army.forEach(u => u.isSelected = true);
         this.menuPage = null;
+        if (window.soundManager) window.soundManager.playSelect();
+        this.updateActionPanel();
+    }
+
+    // V3.5 Final: tryb Królowie - zaznacz króla; drugie naciśnięcie pokazuje go na mapie
+    selectKing() {
+        if (this.locked) return;
+        const k = this.game.kingOf(this.playerNation);
+        if (!k || k.netHidden && this.game.isClient && k.inside) { this.showMessage('Nie masz króla.'); return; }
+        const again = k.isSelected && this.getSelectedUnits().length === 1;
+        this.clearSelection();
+        k.isSelected = true;
+        if (again || !this.game.isOnScreen(k.x, k.y, -60)) this.game.centerOn(k.x, k.y);
         if (window.soundManager) window.soundManager.playSelect();
         this.updateActionPanel();
     }
@@ -7600,6 +7823,7 @@ class UIManager {
         bind('menu-btn', () => this.togglePause());
         bind('idle-btn', () => this.selectIdleWorker());
         bind('army-btn', () => this.selectArmy());
+        bind('king-btn', () => this.selectKing());
         bind('speed-btn', () => this.cycleSpeed());
         bind('nations-btn', () => this.showNations());
         bind('mute-btn', () => {
@@ -7733,6 +7957,7 @@ class UIManager {
 
             if (e.code === 'Period') { this.selectIdleWorker(); return; }
             if (e.code === 'Comma') { this.selectArmy(); return; }
+            if (e.code === 'Semicolon') { this.selectKing(); return; }
 
             // skróty siatki rozkazów
             if (e.code.startsWith('Key') && !e.repeat) {
@@ -7982,12 +8207,12 @@ class UIManager {
         if (pcfg.limit && n.countBuildings(this.placementMode) >= pcfg.limit) { err(`Osiągnięto limit (max ${pcfg.limit}): ${pcfg.name}`); this.cancelPlacement(true); return; }
         if (ghost && ghost.isValid === false) {
             if (ghost.placeError === 'farmDist') {
-                err(this.placementMode === 'farm' ? 'Farma musi stać dalej od Ratusza — poza czerwonym kręgiem. Krótsze kursy z plonem da Młyn postawiony niedaleko pól.'
+                err(isFarmType(this.placementMode) ? pcfg.name + ' musi stać dalej od Ratusza — poza czerwonym kręgiem. Krótsze kursy z plonem da Młyn postawiony niedaleko pól.'
                                                   : 'Ratusz musi stać dalej od twoich farm — poza czerwonymi kręgami.');
                 return;
             }
             if (ghost.placeError === 'millDist') {
-                err(this.placementMode === 'farm' ? 'Farma musi stać kawałek od Młyna — poza małym czerwonym kręgiem.'
+                err(isFarmType(this.placementMode) ? pcfg.name + ' musi stać kawałek od Młyna — poza małym czerwonym kręgiem.'
                                                   : 'Młyn musi stać kawałek od twoich farm — poza czerwonymi kręgami.');
                 return;
             }
@@ -8047,7 +8272,7 @@ class UIManager {
         // Punkt zbiórki dla zaznaczonych budynków produkcyjnych
         const producers = n.buildings.filter(b => b.isSelected && b.cfg && b.cfg.trains);
         if (producers.length > 0) {
-            const gatherTarget = clickedNode || (clickedBuilding && clickedBuilding.type === 'farm' && clickedBuilding.owner === n ? clickedBuilding : null);
+            const gatherTarget = clickedNode || (clickedBuilding && isFarmType(clickedBuilding.type) && clickedBuilding.owner === n ? clickedBuilding : null);
             g.issue({ t: 'rally', buildings: this.ids(producers), x: worldX, y: worldY, target: gatherTarget ? gatherTarget.id : null });
             g.clickMarker = { x: worldX, y: worldY, life: 0.45, color: '#5abeff' };
             if (window.soundManager) window.soundManager.playCommand();
@@ -8082,7 +8307,7 @@ class UIManager {
                 g.issue({ t: 'build', units, target: b.id });
             } else if (isFriendly(b.owner) && b.hp < b.maxHp && selectedUnits.some(u => u.cfg.builder)) {
                 g.issue({ t: 'repair', units, target: b.id, x: worldX, y: worldY });
-            } else if (b.owner === n && b.type === 'farm') {
+            } else if (b.owner === n && isFarmType(b.type)) {
                 g.issue({ t: 'gather', units, target: b.id });
                 marker = '#ffd94a';
             } else if (g.isEnemy(b.owner, n)) {
@@ -9641,6 +9866,7 @@ const Sprites = {
             case 'organ_gun': return [76, 60];
             case 'great_cannon': return [148, 82];
             case 'trojan_horse': return [172, 96];
+            case 'king': return [100, 60];
             default: return [56, 52];
         }
     },
@@ -9822,7 +10048,15 @@ const UnitPainter = {
         // pasek
         this.line(g, -1.2, -7.4, -1.2, 7.4, 'rgba(60,40,20,0.55)', 1.6);
 
-        if (work) {
+        if (work === 'apple') {
+            // V3.5 Final: zrywanie jabłek - ręce na zmianę sięgają w koronę drzewa, kosz przy biodrze
+            const f = frame & 3, up = [0, 1, 0.4, 1][f], up2 = [1, 0.3, 1, 0][f];
+            this.ell(g, 2.2, 9.2, 3.4, 2.6, '#a07a48', this.OUT, 0.8);
+            this.ell(g, 2.4, 8.6, 1, 1, '#d4342a'); this.ell(g, 3.6, 9.6, 0.9, 0.9, '#d4342a');
+            this.arm(g, -7.4, 6 + up * 4, -4.6 - up * 1.2, col.dark);
+            this.arm(g, 7.4, 6 + up2 * 4, 4.2 + up2 * 0.8, col.dark);
+            if (f === 1 || f === 3) this.ell(g, 10.6, f === 1 ? -5.8 : 5, 1.1, 1.1, '#d4342a', this.OUT, 0.5);
+        } else if (work) {
             // zamach narzędziem: kąt trzonka dla 4 klatek
             const ang = [-2.2, -1.25, 0.15, -0.6][frame & 3];
             const hx = 5.2, hy = 5.6;
@@ -10355,6 +10589,58 @@ const UnitPainter = {
         // szyszak z kitą
         this.helmet(g, -1.2, 4.5, col.light);
         this.ell(g, -1.2, 0, 1.3, 1.3, '#f4d46a', this.OUT, 0.6);
+    },
+
+    // ---------------- KRÓL (V3.5 Final) ----------------
+    // Siwy rumak w kropierzu nacji ze złotym obszyciem, jeździec w zbroi i purpurowym płaszczu z gronostajami,
+    // na głowie złota korona; miecz wznosi do ciosu (klatki ataku), w marszu płaszcz faluje za plecami.
+    p_king(g, col, pose, frame) {
+        const ph = this.phase(pose, frame);
+        this.horse(g, null, ph, '#e9e4da');
+        // kropierz w barwach nacji ze złotą lamówką i liliami
+        g.fillStyle = col.dark; g.strokeStyle = this.OUT; g.lineWidth = 1;
+        g.beginPath(); g.ellipse(-4, 0, 12.5, 8.4, 0, 0, Math.PI * 2); g.fill(); g.stroke();
+        g.strokeStyle = '#e6b83c'; g.lineWidth = 1.3;
+        g.beginPath(); g.ellipse(-4, 0, 11, 7, 0, 0, Math.PI * 2); g.stroke();
+        g.fillStyle = '#ffd94a';
+        for (const [lx, ly] of [[-1, -6.6], [-1, 6.6], [5, -5], [5, 5]]) { g.beginPath(); g.arc(lx, ly, 0.9, 0, Math.PI * 2); g.fill(); }
+        // płaszcz w barwach nacji z gronostajowym brzegiem, faluje w marszu
+        const w = [0, 1.2, 0, -1.2][frame & 3] * (pose === 'walk' ? 1 : 0.3);
+        g.fillStyle = col.main; g.strokeStyle = this.OUT; g.lineWidth = 1;
+        g.beginPath(); g.moveTo(-2, -5.6); g.quadraticCurveTo(-9, -7.6 + w, -13.5, -3.6 - w); g.quadraticCurveTo(-15, 0, -13.5, 3.6 + w); g.quadraticCurveTo(-9, 7.6 - w, -2, 5.6); g.closePath(); g.fill(); g.stroke();
+        g.strokeStyle = col.light; g.lineWidth = 0.8;
+        g.beginPath(); g.moveTo(-4, -4.4); g.quadraticCurveTo(-9, -5.6, -11.6, -2.4); g.stroke();
+        g.strokeStyle = '#f7f4ec'; g.lineWidth = 2;
+        g.beginPath(); g.moveTo(-13, -3.8 - w); g.quadraticCurveTo(-14.9, 0, -13, 3.8 + w); g.stroke();
+        g.fillStyle = '#1c1c1c';
+        for (const [ex, ey] of [[-13.9, -2], [-14.3, 1], [-13.4, 3.2]]) g.fillRect(ex - 0.35, ey - 0.35, 0.7, 0.9);
+        // jeździec w złoconej zbroi
+        this.ell(g, -2.5, 0, 5, 7.2, '#6c737d');
+        const gr = g.createLinearGradient(0, -6, 0, 6);
+        gr.addColorStop(0, '#fff3c4'); gr.addColorStop(0.5, '#d9b24a'); gr.addColorStop(1, '#8a6410');
+        this.ell(g, -2.2, -0.4, 4.4, 6.4, gr);
+        this.ell(g, -2.5, 0, 5, 7.2, null, this.OUT, 1);
+        this.line(g, -2.4, -5.6, -2.4, 5.6, col.main, 1.6);
+        // miecz: zamach (1), cios (2), powrót (3); w spoczynku wzniesiony skosem
+        const atk = pose === 'attack', f = frame & 3;
+        const ang = atk ? [-0.2, -1.5, 0.7, 0.2][f] : -0.35;
+        const hx = atk ? [4, 2, 7, 5][f] : 3.5, hy = 6.4;
+        g.save(); g.translate(hx, hy); g.rotate(ang);
+        this.line(g, -2.4, 0, 1.6, 0, '#5c4026', 1.8);
+        this.line(g, 2, -3.2, 2, 3.2, '#d9b24a', 1.6);
+        g.fillStyle = '#eef1f5'; g.strokeStyle = this.OUT; g.lineWidth = 0.8;
+        g.beginPath(); g.moveTo(2.6, -1.4); g.lineTo(17, -0.9); g.lineTo(19.5, 0); g.lineTo(17, 0.9); g.lineTo(2.6, 1.4); g.closePath(); g.fill(); g.stroke();
+        g.restore();
+        this.arm(g, 5.6, hx, hy, '#c9a03c', '#d9b24a');
+        this.arm(g, -5.6, 5, -5.2, '#c9a03c', '#d9b24a');   // druga ręka na wodzach
+        // głowa i złota korona z klejnotami
+        this.head(g, -1, 4.2, '#c8a27a');
+        this.face(g, -0.6, 3.7);
+        g.fillStyle = '#ffd94a'; g.strokeStyle = '#7a5410'; g.lineWidth = 0.8;
+        g.beginPath(); g.arc(-1, 0, 3.6, 0, Math.PI * 2); g.lineWidth = 1.5; g.strokeStyle = '#7a5410'; g.stroke();
+        g.strokeStyle = '#ffd94a'; g.lineWidth = 1.1; g.stroke();
+        for (let i = 0; i < 5; i++) { const a = i * Math.PI * 2 / 5 - Math.PI / 2; this.ell(g, -1 + Math.cos(a) * 3.8, Math.sin(a) * 3.8, 0.95, 0.95, '#ffd94a', '#7a5410', 0.5); }
+        this.ell(g, -1, 0, 1.3, 1.3, '#a31d3a', '#7a5410', 0.5);
     },
 
     // ---------------- RAJTAR ----------------
@@ -11581,81 +11867,276 @@ const BuildingPainter = {
     },
 
     // ---------------- RATUSZ ----------------
+    // V3.5 Final: ratusz to siedziba władz osady, a nie twierdza - bez murów obwodowych i baszt (te ma Zamek).
+    // Z każdą erą rośnie z niego coraz okazalszy budynek przy rynku:
+    //   I   - drewniany dom wiecowy pod strzechą, ognisko, spichlerz na palach, studnia z żurawiem,
+    //   II  - szachulcowy ratusz pod dachówką z drewnianą dzwonnicą na kalenicy, brukowany rynek, kram i studnia,
+    //   III - gotycki ratusz z cegły ze schodkowymi szczytami, podcieniami i wysoką wieżą zegarową, fontanna na rynku,
+    //   IV  - renesansowy pałac miejski z attyką, trzykondygnacyjną loggią i barokową kopułą, rynek z fontanną i latarniami.
+    // Punkt, na którym powiewa animowana chorągiew (Building.draw) i z którego leci dym (Building.updateFx):
+    TC_FLAG: { 1: [-25, 13], 2: [0, -22], 3: [25, -21], 4: [0, -23] },
+    TC_SMOKE: { 1: [1, -14], 2: [-21, -24], 3: [-26, -26], 4: null },
+
     town_center(g, col, age) {
-        const H = 45;
-        const stoneAge = age >= 2;
-        // dziedziniec: ubita ziemia osady, od II ery kamienne płyty
-        if (stoneAge) this.masonry(g, -H, -H, 90, 90, '#a8a293', 11, 7.5, 10);
-        else this.dirt(g, -H, -H, 90, 90, '#9c8a69', 11, 3);
-        // mur obwodowy
-        const imperial = age >= 4;
-        const wallC = stoneAge ? (age >= 3 ? (imperial ? '#cbc6ba' : '#b9b4a8') : '#8f8a80') : '#6f4c2a';
-        this.withShadow(g, 0.4, 2.6, () => { g.strokeStyle = this.OUT; g.lineWidth = 9; g.strokeRect(-H + 4, -H + 4, 82, 82); });
-        g.strokeStyle = wallC; g.lineWidth = 7; g.strokeRect(-H + 4, -H + 4, 82, 82);
-        // spoiny kamieni albo szczeliny między balami
-        g.strokeStyle = stoneAge ? 'rgba(40,34,26,0.3)' : 'rgba(30,18,8,0.4)'; g.lineWidth = 0.5; g.beginPath();
-        const js = stoneAge ? 6.5 : 3.2;
-        for (let i = -H + 2; i < H - 2; i += js) {
-            g.moveTo(i, -H + 0.8); g.lineTo(i, -H + 7.2); g.moveTo(i, H - 7.2); g.lineTo(i, H - 0.8);
-            g.moveTo(-H + 0.8, i); g.lineTo(-H + 7.2, i); g.moveTo(H - 7.2, i); g.lineTo(H - 0.8, i);
-        }
-        g.stroke();
-        g.strokeStyle = 'rgba(255,255,255,0.16)'; g.lineWidth = 0.8; g.strokeRect(-H + 1.2, -H + 1.2, 87.6, 87.6);
-        const step = stoneAge ? 8 : 5;
-        for (let i = -H + 3; i < H - 4; i += step) {
-            const s = stoneAge ? 4 : 2.6, mc = stoneAge ? shadeColor(wallC, 0.25) : '#9a7445';
-            this.merlon(g, i, -H + 2.2, s, s + 0.6, mc); this.merlon(g, i, H - 6, s, s + 0.6, mc);
-            this.merlon(g, -H + 2.2, i, s + 0.6, s, mc); this.merlon(g, H - 6, i, s + 0.6, s, mc);
-        }
-        // brama (dół)
-        this.rect(g, -9, H - 9, 18, 10, stoneAge ? '#a59f90' : '#9c8a69', null);
-        this.planks(g, -8, H - 8.5, 16, 8, '#4d321c', 2.7, true);
-        this.line(g, 0, H - 8.5, 0, H - 0.5, '#1c1208', 1);
-        this.circ(g, -1.6, H - 4.4, 0.7, '#d9c08a', null); this.circ(g, 1.6, H - 4.4, 0.7, '#d9c08a', null);
-        this.rect(g, -11.5, H - 10, 4, 11, shadeColor(wallC, -0.2), this.OUT, 1);
-        this.rect(g, 7.5, H - 10, 4, 11, shadeColor(wallC, -0.2), this.OUT, 1);
+        age = age || 1;
+        if (age >= 4) return this.tcImperial(g, col);
+        if (age === 3) return this.tcGothic(g, col);
+        if (age === 2) return this.tcTimber(g, col);
+        return this.tcVillage(g, col);
+    },
 
-        // siedziba
-        const k = age === 1 ? 46 : (age === 2 ? 50 : (imperial ? 56 : 54));
-        const roof = age === 1 ? this.THATCH : (imperial ? this.SLATE : this.TILE);
-        this.withShadow(g, 0.45, 3.4, () => this.rect(g, -k / 2 + 2, -k / 2, k - 4, k - 2, stoneAge ? '#c2bcae' : '#8a5e34', this.OUT, 1));
-        this.hip(g, -k / 2, -k / 2 - 2, k, k, roof);
-        if (imperial) {
-            // pałac Imperium: łupkowy dach, kopuła w barwach nacji ze złotą obręczą i latarnią
-            this.withShadow(g, 0.4, 2, () => this.circ(g, 0, -2, 15.5, '#d9d4c8', this.OUT, 1.1));
-            this.roundStone(g, 0, -2, 15.5, 12.6, '#d9d4c8', 13);
-            this.cone(g, 0, -2, 13, col.main, 12);
-            this.circ(g, 0, -2, 13, null, '#d9b24a', 1.5);
-            this.circ(g, 0, -2, 4, '#ffd94a', '#8a6410', 1);
-            this.circ(g, -0.8, -2.8, 1.5, '#fff3b0', null);
-        } else if (age === 3) {
-            this.withShadow(g, 0.36, 1.8, () => { g.fillStyle = '#4a3a2c'; g.fillRect(-15, -17, 30, 30); });
-            this.hip(g, -15, -17, 30, 30, col.main);
-            this.circ(g, 0, -2, 3.4, '#ffd94a', '#8a6410', 1);
-        } else if (age === 2) {
-            this.withShadow(g, 0.36, 1.6, () => this.rect(g, -8, -10, 16, 16, col.main, col.dark, 1));
-            this.line(g, -8, -2, 8, -2, col.light, 1.4); this.line(g, 0, -10, 0, 6, col.light, 1.4);
-            this.circ(g, 0, -2, 2.6, '#ffd94a', '#8a6410', 0.9);
+    // drzewko ozdobne (korona widziana z góry)
+    tcTree(g, x, y, r, seed) {
+        const rnd = mulberry32(seed), T = Math.PI * 2;
+        this.withShadow(g, 0.4, 2.2, () => { g.fillStyle = '#35602a'; g.beginPath(); g.arc(x, y, r, 0, T); g.fill(); });
+        for (let i = 0; i < 7; i++) {
+            const a = rnd() * T, d = r * 0.4 * rnd(), rr = r * (0.45 + rnd() * 0.2);
+            g.fillStyle = shadeColor('#4f8a36', -(Math.cos(a) * 0.6 + Math.sin(a) * 0.7) * 0.16 + (rnd() - 0.5) * 0.1);
+            g.beginPath(); g.arc(x + Math.cos(a) * d, y + Math.sin(a) * d, rr, 0, T); g.fill();
+        }
+        for (let i = 0; i < 30; i++) {
+            const a = rnd() * T, d = Math.sqrt(rnd()) * r * 0.9;
+            g.fillStyle = rnd() < 0.5 ? 'rgba(190,232,130,0.4)' : 'rgba(16,40,10,0.3)';
+            g.fillRect(x + Math.cos(a) * d - 0.4, y + Math.sin(a) * d - 0.4, 0.8, 0.8);
+        }
+        g.strokeStyle = 'rgba(16,34,10,0.55)'; g.lineWidth = 0.7; g.beginPath(); g.arc(x, y, r, 0, T); g.stroke();
+    },
+
+    // studnia z kamienną cembrowiną; roof: daszek nad korbą
+    tcWell(g, x, y, r, roof) {
+        const T = Math.PI * 2;
+        this.withShadow(g, 0.42, 2, () => this.circ(g, x, y, r, '#9a958b', this.OUT, 1));
+        this.roundStone(g, x, y, r, r * 0.62, '#a39e94', 61 + Math.round(x));
+        this.circ(g, x, y, r * 0.62, '#2f6a8f', '#3a3630', 0.9);
+        g.fillStyle = 'rgba(200,232,255,0.4)'; g.beginPath(); g.ellipse(x - r * 0.2, y - r * 0.22, r * 0.25, r * 0.11, -0.6, 0, T); g.fill();
+        if (roof) {
+            this.withShadow(g, 0.36, 1.4, () => this.rect(g, x - r - 1, y - r * 0.55, r * 2 + 2, r * 1.1, '#6a4a2a', this.OUT, 0.8));
+            this.gable(g, x - r - 1.5, y - r * 0.6, r * 2 + 3, r * 1.2, roof, true);
         } else {
-            this.circ(g, 0, -2, 3, col.main, col.dark, 1);
+            this.withShadow(g, 0.34, 1.2, () => this.line(g, x - r - 2, y, x + r + 2, y, '#5c3d1f', 1.8));
+            this.line(g, x - r - 2, y - 0.4, x + r + 2, y - 0.4, '#9a7445', 0.7);
+            this.circ(g, x + 1, y + 2.6, 1.3, '#7a5230', this.OUT, 0.5);
         }
+    },
 
-        // narożne wieże
-        const t = age === 1 ? 13 : 20;
-        const c = H - (age === 1 ? 5 : 7);
-        [[-c, -c], [c, -c], [-c, c], [c, c]].forEach(([x, y]) => {
-            if (age === 1) {
-                this.withShadow(g, 0.4, 2, () => this.rect(g, x - t / 2, y - t / 2, t, t, '#7a5632', this.OUT, 1));
-                this.planks(g, x - t / 2 + 2.5, y - t / 2 + 2.5, t - 5, t - 5, '#a07a48', 2.7, false);
-            } else {
-                this.withShadow(g, 0.42, 2.4, () => { g.fillStyle = '#5a554d'; g.fillRect(x - t / 2, y - t / 2, t, t); });
-                this.masonry(g, x - t / 2, y - t / 2, t, t, age >= 3 ? '#c9c4b8' : '#a39e94', 15 + Math.round(x + y * 2), 3.4, 5.6);
-                if (imperial) this.cone(g, x, y, t / 2 - 1.6, col.main, 10);   // IV era: baszty pod stożkowymi hełmami
-                else this.hip(g, x - t / 2 + 2, y - t / 2 + 2, t - 4, t - 4, col.main);
-                this.circ(g, x, y, imperial ? 1.9 : 1.6, age >= 3 ? '#ffd94a' : col.light, this.OUT, 0.6);
-            }
-        });
-        this.banner(g, -16, H - 9, col); this.banner(g, 16, H - 9, col);
+    // ławka targowa z płócienną markizą w pasy nacji
+    tcStall(g, x, y, w, h, col) {
+        this.withShadow(g, 0.4, 2, () => this.rect(g, x, y, w, h, '#f4f1e8', null));
+        g.fillStyle = col.main;
+        for (let i = 0; i < w; i += 5) g.fillRect(x + i, y, 2.5, h);
+        g.fillStyle = 'rgba(255,255,255,0.14)'; g.fillRect(x, y, w, h / 2);
+        g.fillStyle = 'rgba(0,0,0,0.18)'; g.fillRect(x, y + h / 2, w, h / 2);
+        this.rect(g, x, y, w, h, null, this.OUT, 0.9);
+        this.line(g, x + 0.6, y + h / 2, x + w - 0.6, y + h / 2, 'rgba(60,40,20,0.55)', 0.7);
+    },
+
+    // fontanna: kamienna misa (okrągła albo ośmioboczna), woda, w środku kolumna albo posąg
+    tcFountain(g, x, y, r, statue) {
+        const T = Math.PI * 2;
+        this.withShadow(g, 0.42, 2.2, () => this.circ(g, x, y, r, '#cfc8b8', this.OUT, 1.1));
+        this.circ(g, x, y, r - 1.8, '#3f86ad', '#7a756b', 0.9);
+        const gr = g.createRadialGradient(x - r * 0.3, y - r * 0.3, 0.5, x, y, r - 1.8);
+        gr.addColorStop(0, 'rgba(220,244,255,0.55)'); gr.addColorStop(1, 'rgba(30,80,120,0.2)');
+        g.fillStyle = gr; g.beginPath(); g.arc(x, y, r - 1.8, 0, T); g.fill();
+        g.strokeStyle = 'rgba(235,250,255,0.55)'; g.lineWidth = 0.5;
+        for (const k of [0.45, 0.72]) { g.beginPath(); g.arc(x, y, (r - 1.8) * k, 0, T); g.stroke(); }
+        this.withShadow(g, 0.4, 1.4, () => this.circ(g, x, y, statue ? 3.2 : 2.4, '#d9d4c8', this.OUT, 0.9));
+        if (statue) {
+            this.circ(g, x, y, 2, '#d9b24a', '#8a6410', 0.8);
+            this.line(g, x - 2.6, y - 1.4, x + 2.4, y + 1.8, '#c99a32', 0.9);   // trójząb posągu
+        } else this.circ(g, x, y, 1.2, '#eef7ff', null);
+    },
+
+    // latarnia na słupie
+    tcLamp(g, x, y) {
+        this.withShadow(g, 0.4, 1.2, () => this.circ(g, x, y, 1.6, '#2b2b30', this.OUT, 0.6));
+        this.circ(g, x, y, 1, '#ffe9a0', null);
+    },
+
+    // podcienia / loggia: pas arkad wzdłuż frontu (od dołu ciemne prześwity łuków)
+    tcArcade(g, x, y, w, h, wall, n) {
+        this.withShadow(g, 0.38, 1.6, () => this.rect(g, x, y, w, h, wall, this.OUT, 0.9));
+        const step = w / n;
+        for (let i = 0; i < n; i++) {
+            const cx = x + step * (i + 0.5), aw = step * 0.62;
+            g.fillStyle = 'rgba(30,22,16,0.72)';
+            g.beginPath(); g.moveTo(cx - aw / 2, y + h); g.lineTo(cx - aw / 2, y + h * 0.5); g.arc(cx, y + h * 0.5, aw / 2, Math.PI, 0); g.lineTo(cx + aw / 2, y + h); g.closePath(); g.fill();
+        }
+        g.fillStyle = 'rgba(255,255,255,0.25)'; g.fillRect(x, y, w, 0.6);
+    },
+
+    // I era: dom wiecowy osady
+    tcVillage(g, col) {
+        const H = 45, T = Math.PI * 2;
+        this.dirt(g, -H, -H, 90, 90, '#9a8664', 11, 16);
+        // kępy trawy na skrajach placu
+        for (const [x, y, r] of [[-38, -38, 9], [38, -36, 8], [-40, 40, 7], [40, 40, 9], [-41, 2, 5], [41, 6, 5]]) this.lawn(g, x - r, y - r, r * 2, r * 2, 'rgba(112,150,70,0.85)', 31 + x, r);
+        // wydeptane ścieżki do domu wiecowego
+        g.fillStyle = 'rgba(122,98,62,0.4)'; g.fillRect(-4, 0, 8, 45); g.fillRect(-45, 8, 90, 6);
+        // spichlerz na palach (prawy dół)
+        this.withShadow(g, 0.4, 2.2, () => this.rect(g, 20, 17, 18, 16, '#6e4c2a', this.OUT, 1));
+        this.hip(g, 18.5, 15.5, 21, 19, this.THATCH);
+        // dom wiecowy: zrębowe ściany i wysoki dach ze strzechy, na szczytach skrzyżowane rzeźbione "koniki"
+        this.withShadow(g, 0.46, 3.4, () => this.rect(g, -29, -31, 58, 30, '#6e4c2a', this.OUT, 1));
+        this.planks(g, -29, -31, 58, 30, '#7a5632', 3.2, false);
+        this.gable(g, -32, -35, 64, 37, this.THATCH, true, col);
+        for (const sx of [-32, 32]) {
+            const d = sx < 0 ? -1 : 1;
+            this.line(g, sx, -16.5, sx + d * 5, -21.5, '#3d2814', 2.4); this.line(g, sx, -16.5, sx + d * 5, -11.5, '#3d2814', 2.4);
+            this.line(g, sx, -16.5, sx + d * 5, -21.5, '#9a6a3a', 1.2); this.line(g, sx, -16.5, sx + d * 5, -11.5, '#9a6a3a', 1.2);
+            this.circ(g, sx + d * 5.4, -22, 1.2, '#9a6a3a', this.OUT, 0.5); this.circ(g, sx + d * 5.4, -11, 1.2, '#9a6a3a', this.OUT, 0.5);
+        }
+        // otwór dymny w strzesze
+        this.rect(g, -2.5, -17, 7, 3.6, '#2b1d12', this.OUT, 0.6);
+        g.fillStyle = 'rgba(255,150,60,0.45)'; g.fillRect(-1.5, -16.2, 5, 2);
+        // ganek z dwoma słupami
+        this.withShadow(g, 0.38, 1.6, () => this.rect(g, -8, 1, 16, 6.5, '#8a6238', this.OUT, 0.9));
+        this.planks(g, -8, 1, 16, 6.5, '#9a7445', 2.2, true);
+        this.circ(g, -7, 7, 1.3, '#4d321c', null); this.circ(g, 7, 7, 1.3, '#4d321c', null);
+        // ognisko w kręgu kamieni
+        const fx = -15, fy = 25;
+        for (let i = 0; i < 9; i++) { const a = i * T / 9; this.circ(g, fx + Math.cos(a) * 5.2, fy + Math.sin(a) * 5.2, 1.5, '#8f8a80', this.OUT, 0.5); }
+        this.circ(g, fx, fy, 3.8, '#2b1d12', null);
+        this.line(g, fx - 3, fy - 2, fx + 3, fy + 2, '#5c3d1f', 1.6); this.line(g, fx - 3, fy + 2, fx + 3, fy - 2, '#5c3d1f', 1.6);
+        this.circ(g, fx, fy, 1.9, '#ff9a3a', null); this.circ(g, fx, fy, 0.9, '#ffe08a', null);
+        // ławy przy ognisku
+        for (const [bx, by, a] of [[fx - 9, fy - 2, 1.2], [fx + 9, fy - 2, -1.2], [fx, fy + 9, 0]]) {
+            g.save(); g.translate(bx, by); g.rotate(a);
+            this.withShadow(g, 0.3, 1, () => this.rect(g, -4.5, -1.2, 9, 2.4, '#8a6238', this.OUT, 0.6));
+            g.restore();
+        }
+        // studnia z żurawiem
+        this.tcWell(g, 12, 31, 4.6, null);
+        this.withShadow(g, 0.3, 1, () => this.line(g, 17, 25, 6, 37, '#5c3d1f', 1.3));
+        // maszt z chorągwią nacji, drewno na opał, worki i beczki
+        this.withShadow(g, 0.4, 1.4, () => this.circ(g, -25, 13, 1.9, '#5c3d1f', this.OUT, 0.7));
+        for (const ly of [36, 38.4, 40.8]) { this.line(g, -40, ly, -28, ly, '#3d2814', 2.8); this.line(g, -40, ly, -28, ly, '#9a6a3a', 1.6); this.circ(g, -28, ly, 1, '#d9b27c', 'rgba(60,36,14,0.6)', 0.4); }
+        this.sack(g, 27, 39); this.sack(g, 32, 37); this.barrel(g, -38, -6); this.barrel(g, -38.5, -0.5);
+        this.banner(g, -12, 1, col); this.banner(g, 12, 1, col);
+    },
+
+    // II era: szachulcowy ratusz grodu z dzwonnicą
+    tcTimber(g, col) {
+        const H = 45;
+        this.masonry(g, -H, -H, 90, 90, '#ada596', 12, 4.4, 6.2);
+        // trawniki w narożnikach rynku
+        this.lawn(g, -45, 22, 16, 23, '#7fa04f', 14, 4); this.lawn(g, 31, -45, 14, 18, '#7fa04f', 15, 4);
+        this.tcTree(g, -37, 35, 7, 16); this.tcTree(g, 38, -37, 6.5, 17);
+        // ratusz: bielone ściany w ciemnej kratownicy belek, dachówka z kalenicą w barwach nacji
+        this.withShadow(g, 0.46, 3.4, () => this.rect(g, -31, -34, 62, 34, '#efe5cc', this.OUT, 1));
+        this.gable(g, -33, -37, 66, 31, this.TILE, true, col);
+        // szachulcowa fasada pod okapem: bielone pola w ramach ciemnych belek, okna z szybkami
+        g.strokeStyle = '#4d321c'; g.lineWidth = 1.3;
+        g.beginPath();
+        g.moveTo(-31, -5.6); g.lineTo(31, -5.6);
+        for (let x = -31; x <= 31.1; x += 7.75) { g.moveTo(x, -6); g.lineTo(x, 0); }
+        for (let x = -31; x < 31; x += 15.5) { g.moveTo(x, -5.6); g.lineTo(x + 7.75, 0); g.moveTo(x + 15.5, -5.6); g.lineTo(x + 7.75, 0); }
+        g.stroke();
+        for (const wx of [-26.5, -18.8, 12.2, 20]) { this.rect(g, wx, -4.4, 3.2, 2.6, '#9fc4dc', this.OUT, 0.5); this.line(g, wx + 1.6, -4.4, wx + 1.6, -1.8, '#4d321c', 0.4); }
+        // komin
+        this.withShadow(g, 0.4, 1.4, () => { g.fillStyle = '#5a554d'; g.fillRect(-24, -27, 6, 6); });
+        this.masonry(g, -24, -27, 6, 6, '#9a948a', 18, 2, 3);
+        // drewniana dzwonnica na kalenicy: hełm w barwach nacji, pod nim widać dzwon
+        this.withShadow(g, 0.44, 2.6, () => this.rect(g, -7, -28.5, 14, 14, '#6a4a2a', this.OUT, 1));
+        this.planks(g, -7, -28.5, 14, 14, '#8a6238', 2.3, true);
+        this.circ(g, 0, -21.5, 4.2, '#2b1d12', null);
+        this.circ(g, 0, -21.5, 3, '#d9b24a', '#8a6410', 0.8);
+        this.hip(g, -5.5, -27, 11, 11, col.main);
+        this.circ(g, 0, -21.5, 1.6, '#ffd94a', this.OUT, 0.6);
+        // schody i podest przed wejściem
+        this.withShadow(g, 0.36, 1.4, () => this.rect(g, -10, 0, 20, 7, '#c9c2b2', this.OUT, 0.9));
+        for (let y = 2.3; y < 7; y += 2.3) this.line(g, -10, y, 10, y, 'rgba(60,50,40,0.4)', 0.5);
+        this.rect(g, -3.5, -1.5, 7, 2, '#5c3d1f', this.OUT, 0.6);
+        // rynek: studnia pod daszkiem, kram, beczki i skrzynie
+        this.tcWell(g, -22, 24, 5.4, this.WOODROOF);
+        this.tcStall(g, 9, 19, 20, 10, col);
+        this.crate(g, 10, 31, 5); this.crate(g, 16, 31.5, 5); this.barrel(g, 25, 33); this.barrel(g, 31, 22);
+        this.sack(g, -8, 33); this.sack(g, -3, 36);
+        this.banner(g, -14, 0, col); this.banner(g, 14, 0, col);
+    },
+
+    // III era: gotycki ratusz z cegły i wieża zegarowa
+    tcGothic(g, col) {
+        const H = 45, T = Math.PI * 2;
+        this.masonry(g, -H, -H, 90, 90, '#bdb5a3', 21, 5, 7.6);
+        g.strokeStyle = 'rgba(90,80,64,0.35)'; g.lineWidth = 3; g.strokeRect(-H + 1.5, -H + 1.5, 87, 87);
+        // korpus z cegły pod stromym dachem; schodkowe szczyty na obu końcach
+        const BRICK = '#a5583c';
+        this.withShadow(g, 0.48, 3.6, () => this.rect(g, -36, -36, 54, 32, BRICK, this.OUT, 1));
+        this.masonry(g, -36, -36, 54, 32, BRICK, 22, 2.2, 4.4);
+        this.gable(g, -33.5, -33.5, 49, 27, this.TILE, true, col);
+        // ceglany gzyms dookoła dachu i gotyckie sterczyny na narożach i szczytach
+        for (const [px, py] of [[-36, -36], [18, -36], [-36, -4], [18, -4], [-36, -20]]) this.cone(g, px, py, 2.8, '#8a4630', 6);
+        // podcienia wzdłuż frontu
+        this.tcArcade(g, -36, -4, 54, 7, '#b86347', 7);
+        // wieża zegarowa: ceglany trzon, narożne sterczyny, tarcze zegara, wysoki ostrosłupowy hełm w barwach nacji
+        const tx = 25, ty = -21;
+        this.withShadow(g, 0.5, 4.2, () => this.rect(g, tx - 10, ty - 10, 20, 20, '#5a3324', this.OUT, 1.1));
+        this.masonry(g, tx - 10, ty - 10, 20, 20, BRICK, 23, 2, 4);
+        this.rect(g, tx - 10, ty - 10, 20, 20, null, this.OUT, 1.2);
+        for (const [cx, cy] of [[tx, ty - 10], [tx, ty + 10], [tx - 10, ty], [tx + 10, ty]]) {
+            this.circ(g, cx, cy, 2.6, '#f4ead0', this.OUT, 0.8);
+            this.line(g, cx, cy, cx, cy - 1.7, '#2b2118', 0.5); this.line(g, cx, cy, cx + 1.2, cy, '#2b2118', 0.5);
+        }
+        this.hip(g, tx - 7.5, ty - 7.5, 15, 15, col.main);
+        for (const [cx, cy] of [[tx - 8.5, ty - 8.5], [tx + 8.5, ty - 8.5], [tx - 8.5, ty + 8.5], [tx + 8.5, ty + 8.5]]) this.cone(g, cx, cy, 2.6, col.dark, 6);
+        this.circ(g, tx, ty, 1.5, '#ffd94a', this.OUT, 0.6);
+        // rynek: fontanna, kramy, donice z drzewkami, pręgierz
+        this.tcFountain(g, -16, 24, 10, false);
+        this.tcStall(g, 9, 20, 18, 9, col); this.tcStall(g, 9, 32, 18, 9, col);
+        this.tcTree(g, 37, 10, 6, 24); this.tcTree(g, -38, 6, 5.5, 25);
+        this.withShadow(g, 0.4, 1.6, () => this.circ(g, 36, 34, 2.4, '#8f8a80', this.OUT, 0.8));
+        this.circ(g, 36, 34, 1.2, '#5c5850', null);
+        this.barrel(g, 32, 24); this.crate(g, -40, 34, 5);
+        this.banner(g, -26, -4, col); this.banner(g, -2, -4, col);
+    },
+
+    // IV era: renesansowy pałac miejski z attyką, loggią i barokową kopułą
+    tcImperial(g, col) {
+        const H = 45, T = Math.PI * 2;
+        this.masonry(g, -H, -H, 90, 90, '#d6cfbd', 31, 4.6, 4.6);
+        // posadzka rynku: kręgi wokół fontanny
+        g.strokeStyle = 'rgba(120,108,88,0.35)'; g.lineWidth = 1.6;
+        for (const r of [14, 20]) { g.beginPath(); g.arc(0, 28, r, Math.PI, T); g.stroke(); }
+        // kwietniki po bokach rynku
+        for (const sx of [-1, 1]) {
+            this.lawn(g, sx * 33 - 9, 18, 18, 22, '#6f9a45', 33 + sx, 4);
+            const rnd = mulberry32(35 + sx);
+            for (let i = 0; i < 16; i++) { g.fillStyle = ['#e85f6a', '#ffd94a', '#f6f0ff', col.light][i % 4]; g.beginPath(); g.arc(sx * 33 - 7 + rnd() * 14, 20 + rnd() * 18, 0.9, 0, T); g.fill(); }
+        }
+        // korpus: niski dach z łupka schowany za attyką
+        const WALL = '#efe6d2';
+        this.withShadow(g, 0.5, 3.8, () => this.rect(g, -38, -38, 76, 34, WALL, this.OUT, 1.1));
+        this.hip(g, -34, -34, 68, 26, this.SLATE);
+        // attyka: kamienny pas z grzebieniem półokrągłych ozdób i sterczynami
+        g.strokeStyle = '#f6efde'; g.lineWidth = 4; g.strokeRect(-36, -36, 72, 30);
+        g.strokeStyle = this.OUT; g.lineWidth = 0.9; g.strokeRect(-38, -38, 76, 34); g.strokeRect(-34, -34, 68, 26);
+        g.fillStyle = '#e4d9bf'; g.strokeStyle = 'rgba(60,48,32,0.6)'; g.lineWidth = 0.5;
+        const crest = (x, y, horiz) => { g.beginPath(); if (horiz) g.arc(x, y, 1.6, Math.PI, 0); else g.arc(x, y, 1.6, -Math.PI / 2, Math.PI / 2); g.fill(); g.stroke(); };
+        for (let x = -33; x <= 33; x += 4.4) { crest(x, -36, true); }
+        for (const [px, py] of [[-36, -36], [36, -36], [-36, -6], [36, -6], [-12, -36], [12, -36]]) {
+            this.withShadow(g, 0.36, 1.2, () => this.circ(g, px, py, 2.2, '#f2ead6', this.OUT, 0.7));
+            this.circ(g, px, py, 0.9, '#d9b24a', null);
+        }
+        // loggia: trzy kondygnacje arkad na froncie
+        this.tcArcade(g, -30, -6, 60, 4, '#f4ecda', 9);
+        this.tcArcade(g, -30, -2, 60, 4, '#efe6d2', 9);
+        this.tcArcade(g, -30, 2, 60, 5, '#e8dec8', 9);
+        // wieża z barokowym hełmem: kopuła z miedzi z patyną, opaska w barwach nacji, złota latarnia
+        const tx = 0, ty = -23;
+        this.withShadow(g, 0.5, 4.2, () => this.rect(g, tx - 10, ty - 10, 20, 20, '#cfc6b2', this.OUT, 1.1));
+        this.masonry(g, tx - 10, ty - 10, 20, 20, '#e9e0cb', 32, 2.6, 4.2);
+        for (const [cx, cy] of [[tx, ty - 10], [tx, ty + 10], [tx - 10, ty], [tx + 10, ty]]) this.circ(g, cx, cy, 2.4, '#f4ead0', '#8a6410', 0.8);
+        this.withShadow(g, 0.42, 2, () => this.circ(g, tx, ty, 8.6, '#4f8f78', this.OUT, 1));
+        this.cone(g, tx, ty, 8.6, '#5aa58a', 12);
+        this.circ(g, tx, ty, 6, null, col.main, 1.6);
+        this.circ(g, tx, ty, 3.2, '#ffd94a', '#8a6410', 0.9);
+        this.circ(g, tx - 0.7, ty - 0.8, 1.2, '#fff3b0', null);
+        // rynek: fontanna z posągiem, latarnie, ławki
+        this.tcFountain(g, 0, 28, 11, true);
+        for (const [lx, ly] of [[-22, 12], [22, 12], [-22, 42], [22, 42]]) this.tcLamp(g, lx, ly);
+        for (const sx of [-1, 1]) this.withShadow(g, 0.3, 1, () => this.rect(g, sx * 16 - 3, 40, 6, 2, '#7a5632', this.OUT, 0.6));
+        this.banner(g, -32, -4, col); this.banner(g, 32, -4, col); this.banner(g, -8, 6.5, col); this.banner(g, 8, 6.5, col);
     },
 
     // ---------------- DOM ----------------
@@ -11987,6 +12468,111 @@ const BuildingPainter = {
             }
             if (!sheen) { g.fillStyle = 'rgba(255,244,190,0.45)'; g.fillRect(R.x0, R.y, len, 0.5); }
         }
+    },
+
+    // ---------------- PLANTACJA JABŁEK (V3.5 Final) ----------------
+    // Dziewięć jabłoni w trzech rzędach na skoszonej łące, obsadzonej żywopłotem z furtką. Warstwy: 1 - łąka i drzewa
+    // bez owoców, 2 - same jabłka, 3 - same kwiaty (sad, który właśnie odrasta). 0 - całość (ikony, tryb wydajności).
+    ORCHARD_TREES: [[-19, -19], [1, -20], [20, -18], [-20, 1], [0, -1], [19, 2], [-18, 20], [2, 19], [20, 20]],
+
+    orchard(g, col, variant) {
+        if (variant === 2 || variant === 3) return this.orchardFruit(g, variant === 3);
+        if (variant === 4) { this.ORCHARD_TREES.forEach(([tx, ty], i) => this.appleTree(g, tx, ty, 8.5 + ((i * 37) % 10) * 0.14, 300 + i * 13)); return; }   // same korony: sylwetka cienia
+        this.orchardBase(g, col);
+        if (!variant) this.orchardFruit(g, false);
+    },
+
+    orchardBase(g, col) {
+        const H = 33, T = Math.PI * 2;
+        this.lawn(g, -H, -H, 66, 66, '#719a46', 91, 6);
+        // ścieżki z wydeptanej trawy między rzędami
+        g.fillStyle = 'rgba(214,226,150,0.2)';
+        for (const p of [-10, 10]) { g.fillRect(-H + 4, p - 2.2, 58, 4.4); g.fillRect(p - 2.2, -H + 4, 4.4, 58); }
+        g.fillStyle = 'rgba(150,118,70,0.35)'; g.fillRect(-3, H - 9, 6, 9);                  // ścieżka od furtki
+        // żywopłot dookoła (z przerwą na furtkę u dołu)
+        const hedge = (x0, y0, x1, y1) => {
+            this.withShadow(g, 0.3, 1.4, () => this.line(g, x0, y0, x1, y1, '#2f5a22', 4.6));
+            this.line(g, x0, y0, x1, y1, '#4b7f32', 3.2);
+            const rnd = mulberry32(this.seedOf(x0, y0, x1, y1));
+            const L = Math.hypot(x1 - x0, y1 - y0), ux = (x1 - x0) / L, uy = (y1 - y0) / L;
+            for (let d = 1; d < L - 1; d += 1.6) {
+                g.fillStyle = rnd() < 0.5 ? 'rgba(160,210,100,0.55)' : 'rgba(26,54,18,0.4)';
+                g.beginPath(); g.arc(x0 + ux * d + (rnd() - 0.5) * 2.2, y0 + uy * d + (rnd() - 0.5) * 2.2, 0.8 + rnd() * 0.6, 0, T); g.fill();
+            }
+        };
+        hedge(-H + 2, -H + 2, H - 2, -H + 2); hedge(-H + 2, -H + 2, -H + 2, H - 2); hedge(H - 2, -H + 2, H - 2, H - 2);
+        hedge(-H + 2, H - 2, -5, H - 2); hedge(5, H - 2, H - 2, H - 2);
+        // furtka i dwa słupki z wstążkami w barwach nacji
+        this.line(g, -4.5, H - 2, 4.5, H - 2, '#5c3d1f', 1.6);
+        this.line(g, -4.5, H - 2, 4.5, H - 2, '#a07a48', 0.8);
+        for (const px of [-5.4, 5.4]) {
+            this.circ(g, px, H - 2, 1.7, '#6b4a2a', this.OUT, 0.6);
+            this.circ(g, px, H - 2, 0.8, col.main, null);
+        }
+        this.poly(g, [-1.6, H - 4.6, 1.6, H - 4.6, 1.6, H - 0.6, 0, H + 0.4, -1.6, H - 0.6], col.main, col.dark, 0.6);   // tabliczka w barwach nacji na furtce
+        // jabłonie: każda trochę inna (wielkość korony)
+        this.ORCHARD_TREES.forEach(([tx, ty], i) => this.appleTree(g, tx, ty, 8.5 + ((i * 37) % 10) * 0.14, 300 + i * 13));
+        // drabina oparta o drzewo, kosze z jabłkami, skrzynka
+        this.withShadow(g, 0.3, 1, () => { this.line(g, -11.5, 12.5, -6.2, 6.4, '#5c3d1f', 1.2); this.line(g, -9.1, 14.4, -3.8, 8.3, '#5c3d1f', 1.2); });
+        for (let k = 0.15; k < 1; k += 0.22) this.line(g, -11.5 + 5.3 * k, 12.5 - 6.1 * k, -9.1 + 5.3 * k, 14.4 - 6.1 * k, '#8a6238', 0.7);
+        const basket = (bx, by, cloth) => {
+            this.withShadow(g, 0.32, 1.2, () => this.circ(g, bx, by, 3.3, '#a07a48', this.OUT, 0.8));
+            this.circ(g, bx, by, 2.5, null, 'rgba(60,36,14,0.5)', 0.5);
+            for (const [ax, ay] of [[-0.9, -0.6], [0.9, -0.3], [0, 0.9], [-0.2, -1.6]]) this.circ(g, bx + ax, by + ay, 0.95, '#d4342a', null);
+            if (cloth) this.line(g, bx - 3, by + 2.2, bx + 3, by + 2.2, cloth, 1);
+        };
+        basket(9.5, 28.2, col.main); basket(15, 27.6, null); basket(-27.3, -9.6, null);
+        this.crate(g, 24.6, 9.6, 5.2);
+        for (const [ax, ay] of [[25.9, 11], [27.6, 12.4], [26.3, 13.4]]) this.circ(g, ax, ay, 0.9, '#d4342a', null);
+    },
+
+    // Korona jabłoni widziana z góry: kilka nakładających się kęp liści, jaśniejszych od strony słońca
+    appleTree(g, x, y, r, seed) {
+        const rnd = mulberry32(seed), T = Math.PI * 2;
+        this.withShadow(g, 0.4, 2.4, () => { g.fillStyle = '#3c6626'; g.beginPath(); g.arc(x, y, r, 0, T); g.fill(); });
+        // nieregularny obrys korony: kilka kęp wystających poza okrąg
+        for (let i = 0; i < 6; i++) {
+            const a = i * T / 6 + rnd() * 0.6, rr = r * (0.3 + rnd() * 0.12);
+            g.fillStyle = shadeColor('#4f8530', -(Math.cos(a) * 0.6 + Math.sin(a) * 0.7) * 0.14);
+            g.beginPath(); g.arc(x + Math.cos(a) * r * 0.78, y + Math.sin(a) * r * 0.78, rr, 0, T); g.fill();
+        }
+        for (let i = 0; i < 8; i++) {
+            const a = rnd() * T, d = r * 0.42 * rnd(), rr = r * (0.42 + rnd() * 0.2);
+            const lit = -(Math.cos(a) * 0.6 + Math.sin(a) * 0.7);
+            g.fillStyle = shadeColor('#5f9b3a', lit * 0.16 + (rnd() - 0.5) * 0.12);
+            g.beginPath(); g.arc(x + Math.cos(a) * d, y + Math.sin(a) * d, rr, 0, T); g.fill();
+        }
+        for (let i = 0; i < 46; i++) {
+            const a = rnd() * T, d = Math.sqrt(rnd()) * r * 0.92;
+            g.fillStyle = rnd() < 0.5 ? 'rgba(196,236,128,0.4)' : 'rgba(18,46,12,0.32)';
+            g.fillRect(x + Math.cos(a) * d - 0.4, y + Math.sin(a) * d - 0.4, 0.8, 0.8);
+        }
+        const gr = g.createRadialGradient(x - r * 0.38, y - r * 0.42, 0.4, x, y, r);
+        gr.addColorStop(0, 'rgba(255,255,214,0.3)'); gr.addColorStop(0.55, 'rgba(255,255,214,0)'); gr.addColorStop(1, 'rgba(0,0,0,0.2)');
+        g.fillStyle = gr; g.beginPath(); g.arc(x, y, r, 0, T); g.fill();
+        g.strokeStyle = 'rgba(18,36,10,0.6)'; g.lineWidth = 0.8; g.beginPath(); g.arc(x, y, r, 0, T); g.stroke();
+    },
+
+    // Owoce (blossom = false) albo kwiaty (true) na koronach - te same miejsca co roku (stałe ziarno)
+    orchardFruit(g, blossom) {
+        const T = Math.PI * 2;
+        this.ORCHARD_TREES.forEach(([tx, ty], i) => {
+            const rnd = mulberry32(700 + i * 31);
+            const n = blossom ? 16 : 10;
+            for (let k = 0; k < n; k++) {
+                const a = rnd() * T, d = Math.sqrt(rnd()) * 7.4;
+                const ax = tx + Math.cos(a) * d, ay = ty + Math.sin(a) * d;
+                if (blossom) {
+                    g.fillStyle = rnd() < 0.6 ? '#fff7f9' : '#f6b5ca';
+                    g.beginPath(); g.arc(ax, ay, 0.85, 0, T); g.fill();
+                    g.fillStyle = '#f2d24a'; g.fillRect(ax - 0.2, ay - 0.2, 0.4, 0.4);
+                } else {
+                    g.fillStyle = 'rgba(40,10,6,0.45)'; g.beginPath(); g.arc(ax + 0.45, ay + 0.55, 1.45, 0, T); g.fill();
+                    g.fillStyle = rnd() < 0.82 ? '#d8312a' : '#e6b232'; g.beginPath(); g.arc(ax, ay, 1.4, 0, T); g.fill();
+                    g.fillStyle = 'rgba(255,255,255,0.62)'; g.fillRect(ax - 0.75, ay - 0.8, 0.6, 0.5);
+                }
+            }
+        });
     },
 
     // ---------------- MŁYN (bez skrzydeł - te są animowane) ----------------
@@ -12478,7 +13064,7 @@ Sprites.building = function (type, colorKey, variant) {
         if (fn) fn.call(BuildingPainter, g, col, variant);
     };
     const tall = type === 'tower' || type === 'town_center' || type === 'castle' || type === 'bombard_tower' || type === 'outpost';
-    const flat = type === 'farm';
+    const flat = type === 'farm' || (type === 'orchard' && variant >= 2);   // warstwy owoców sadu - bez cienia
     s = flat ? this.crop(this.makeR(size + pad, size + pad, paint))
              : this.makeShadowed(size + pad, size + pad, paint, tall ? 9 : 6, tall ? 11 : 7, tall ? 7 : 6, 0.42);
     this.cache.set(key, s);
@@ -13033,6 +13619,82 @@ const Icons = {
             g.stroke();
             for (const [x, y] of [[9, 9], [13, 3], [-11, 10]]) { g.fillStyle = '#c94a3d'; g.strokeStyle = this.DARK; g.lineWidth = 1.2; g.beginPath(); g.arc(x, y, 3.2, 0, 7); g.fill(); g.stroke(); }
         },
+        // --- V3.5 Final ---
+        jerkin(g) {
+            g.fillStyle = '#9a6a3a'; g.strokeStyle = this.DARK; g.lineWidth = 1.8;
+            g.beginPath(); g.moveTo(-12, -11); g.lineTo(-5, -14); g.quadraticCurveTo(0, -9, 5, -14); g.lineTo(12, -11); g.lineTo(10, 13); g.lineTo(-10, 13); g.closePath(); g.fill(); g.stroke();
+            this.st(g, 'rgba(42,33,24,0.55)', 1.1); g.beginPath();
+            for (let y = -6; y <= 10; y += 4) { g.moveTo(-9, y); g.lineTo(9, y); }
+            g.moveTo(-3, -9); g.lineTo(-3, 13); g.moveTo(3, -9); g.lineTo(3, 13); g.stroke();
+            g.fillStyle = this.GOLD; for (const y of [-4, 1, 6]) { g.beginPath(); g.arc(0, y, 1.2, 0, 7); g.fill(); }
+        },
+        barding(g) {
+            g.fillStyle = '#7a5230'; g.strokeStyle = this.DARK; g.lineWidth = 1.6;
+            g.beginPath(); g.ellipse(-2, 3, 13, 7, 0, 0, 7); g.fill(); g.stroke();
+            g.beginPath(); g.moveTo(8, -1); g.lineTo(14, -12); g.lineTo(18, -10); g.lineTo(13, 3); g.closePath(); g.fill(); g.stroke();
+            g.fillStyle = '#c94a3d'; g.beginPath(); g.ellipse(-3, 3, 10, 8.5, 0, 0, 7); g.fill(); g.stroke();
+            this.st(g, '#f1c84b', 1.6); g.beginPath(); g.ellipse(-3, 3, 7.6, 6.2, 0, 0, 7); g.stroke();
+            g.fillStyle = '#aab1bb'; g.beginPath(); g.arc(-3, 3, 2.6, 0, 7); g.fill(); g.stroke();
+        },
+        bandage(g) {
+            g.fillStyle = '#f4f1e8'; g.strokeStyle = this.DARK; g.lineWidth = 1.6;
+            g.save(); g.rotate(-0.6); g.beginPath(); g.roundRect(-15, -5, 30, 10, 3); g.fill(); g.stroke();
+            this.st(g, 'rgba(42,33,24,0.25)', 1); g.beginPath(); for (let x = -11; x < 14; x += 4) { g.moveTo(x, -5); g.lineTo(x, 5); } g.stroke();
+            g.restore();
+            g.fillStyle = '#d9302a'; g.fillRect(-2.5, -8, 5, 16); g.fillRect(-8, -2.5, 16, 5);
+            this.st(g, this.DARK, 1); g.strokeRect(-2.5, -8, 5, 16);
+        },
+        ram_iron(g) {
+            g.fillStyle = '#8a5e34'; g.strokeStyle = this.DARK; g.lineWidth = 1.6;
+            g.beginPath(); g.roundRect(-15, -4.5, 24, 9, 3); g.fill(); g.stroke();
+            g.fillStyle = '#7f8792'; g.beginPath(); g.moveTo(8, -7); g.lineTo(16, -4); g.lineTo(16, 4); g.lineTo(8, 7); g.closePath(); g.fill(); g.stroke();
+            this.st(g, '#aab1bb', 2.4); g.beginPath(); for (const x of [-10, -3, 4]) { g.moveTo(x, -4.5); g.lineTo(x, 4.5); } g.stroke();
+            this.st(g, '#ffd94a', 1.6); g.beginPath(); g.moveTo(16, 0); g.lineTo(20, -3); g.moveTo(16, 0); g.lineTo(20, 3); g.stroke();
+        },
+        lance(g) {
+            this.st(g, this.DARK, 5.4); g.beginPath(); g.moveTo(-14, 14); g.lineTo(11, -11); g.stroke();
+            this.st(g, '#c94a3d', 3); g.beginPath(); g.moveTo(-14, 14); g.lineTo(11, -11); g.stroke();
+            this.st(g, '#f4f1e8', 1.4); g.beginPath(); for (let k = 0; k < 4; k++) { const t = -10 + k * 5; g.moveTo(t, -t + 1); g.lineTo(t + 2, -t - 1); } g.stroke();
+            g.fillStyle = this.STEEL; g.strokeStyle = this.DARK; g.lineWidth = 1.5;
+            g.beginPath(); g.moveTo(16, -16); g.lineTo(13, -6); g.lineTo(6, -13); g.closePath(); g.fill(); g.stroke();
+            g.fillStyle = '#ff9a3a'; g.beginPath(); g.arc(-8, 2, 2.2, 0, 7); g.fill();
+        },
+        anvil(g) {
+            g.fillStyle = '#5a5f68'; g.strokeStyle = this.DARK; g.lineWidth = 1.7;
+            g.beginPath(); g.moveTo(-15, -6); g.lineTo(9, -6); g.quadraticCurveTo(15, -6, 16, -10); g.lineTo(16, -3); g.lineTo(6, 0); g.lineTo(6, 6); g.lineTo(11, 12); g.lineTo(-11, 12); g.lineTo(-6, 6); g.lineTo(-6, 0); g.lineTo(-13, -1); g.closePath(); g.fill(); g.stroke();
+            this.st(g, '#9aa1ab', 1.4); g.beginPath(); g.moveTo(-13, -4.6); g.lineTo(9, -4.6); g.stroke();
+            g.fillStyle = '#ffd94a'; for (const [x, y] of [[-6, -12], [-1, -15], [4, -12], [1, -10]]) { g.beginPath(); g.arc(x, y, 1.2, 0, 7); g.fill(); }
+        },
+        omnisight(g) {
+            // oko w złotym słońcu nad kulą świata
+            g.fillStyle = '#2f6a8f'; g.strokeStyle = this.DARK; g.lineWidth = 1.6;
+            g.beginPath(); g.arc(0, 0, 15, 0, 7); g.fill(); g.stroke();
+            g.fillStyle = '#5c9a4c'; g.beginPath(); g.ellipse(-5, -4, 6, 4, 0.4, 0, 7); g.fill(); g.beginPath(); g.ellipse(6, 6, 5, 3, -0.3, 0, 7); g.fill();
+            this.st(g, '#f1c84b', 2); for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6; g.beginPath(); g.moveTo(Math.cos(a) * 15.5, Math.sin(a) * 15.5); g.lineTo(Math.cos(a) * 19, Math.sin(a) * 19); g.stroke(); }
+            g.fillStyle = '#f4f1e8'; g.strokeStyle = this.DARK; g.lineWidth = 1.5;
+            g.beginPath(); g.moveTo(-11, 0); g.quadraticCurveTo(0, -9, 11, 0); g.quadraticCurveTo(0, 9, -11, 0); g.closePath(); g.fill(); g.stroke();
+            g.fillStyle = '#b8862a'; g.beginPath(); g.arc(0, 0, 4.4, 0, 7); g.fill(); g.stroke();
+            g.fillStyle = this.DARK; g.beginPath(); g.arc(0, 0, 1.9, 0, 7); g.fill();
+            g.fillStyle = '#fff'; g.beginPath(); g.arc(-1.4, -1.4, 0.9, 0, 7); g.fill();
+        },
+        royal_charge(g) {
+            // korona nad skrzyżowanymi mieczami
+            for (const s of [-1, 1]) {
+                this.st(g, this.DARK, 4.6); g.beginPath(); g.moveTo(-13 * s, 15); g.lineTo(11 * s, -6); g.stroke();
+                this.st(g, this.STEEL, 2.4); g.beginPath(); g.moveTo(-13 * s, 15); g.lineTo(11 * s, -6); g.stroke();
+                this.st(g, this.GOLD, 3); g.beginPath(); g.moveTo(-12 * s, 8); g.lineTo(-6 * s, 14); g.stroke();
+            }
+            g.fillStyle = this.GOLD; g.strokeStyle = this.DARK; g.lineWidth = 1.6;
+            g.beginPath(); g.moveTo(-11, -2); g.lineTo(-12, -14); g.lineTo(-5.5, -8); g.lineTo(0, -17); g.lineTo(5.5, -8); g.lineTo(12, -14); g.lineTo(11, -2); g.closePath(); g.fill(); g.stroke();
+            g.fillStyle = '#d9302a'; g.beginPath(); g.arc(0, -6, 2, 0, 7); g.fill();
+            g.fillStyle = '#4d7fd0'; g.beginPath(); g.arc(-6.5, -5, 1.4, 0, 7); g.fill(); g.beginPath(); g.arc(6.5, -5, 1.4, 0, 7); g.fill();
+        },
+        upg_more(g) {
+            g.fillStyle = '#c58cff'; g.strokeStyle = this.DARK; g.lineWidth = 1.6;
+            for (const [x, y] of [[-8, -6], [-2, 0], [4, 6]]) { g.beginPath(); g.roundRect(x - 7, y - 7, 14, 14, 3); g.fill(); g.stroke(); }
+            this.st(g, this.DARK, 4.4); g.beginPath(); g.moveTo(-14, 13); g.lineTo(-4, 13); g.moveTo(-8, 9); g.lineTo(-4, 13); g.lineTo(-8, 17); g.stroke();
+            this.st(g, '#fff', 2); g.beginPath(); g.moveTo(-14, 13); g.lineTo(-4, 13); g.moveTo(-8, 9); g.lineTo(-4, 13); g.lineTo(-8, 17); g.stroke();
+        },
         board(g) {
             // wsiadanie: strzałka do środka konia
             g.fillStyle = '#8a5e34'; g.strokeStyle = this.DARK; g.lineWidth = 1.6;
@@ -13242,14 +13904,14 @@ class Unit extends Entity {
         const oldMaxHp = this.maxHp;
         let maxHp = config.maxHp, dmg = config.attackDamage, range = config.attackRange, speed = config.speed;
         let am = config.armor ? config.armor[0] : 0, ap = config.armor ? config.armor[1] : 0;
-        let carry = 10, heal = config.heal || 0, healRange = config.healRange || 0;
+        let carry = 10, heal = config.heal || 0, healRange = config.healRange || 0, regen = config.regen || 0, chargeMul = 0;
 
         if (this.owner) {
             for (const upgradeId of this.owner.researchedUpgrades) {
                 const upgData = GameConfig.upgrades[upgradeId];
                 if (!upgData || !upgData.effects) continue;
                 for (const ef of upgData.effects) {
-                    if (!ef.units || !ef.units.includes(this.unitType)) continue;
+                    if (!Unit.effectHits(ef, this.unitType, config)) continue;
                     switch (ef.stat) {
                         case 'maxHp': maxHp += ef.add; break;
                         case 'attackDamage': dmg += ef.add; break;
@@ -13260,6 +13922,8 @@ class Unit extends Entity {
                         case 'carryCapacity': carry += ef.add; break;
                         case 'heal': heal += ef.add; break;
                         case 'healRange': healRange += ef.add; break;
+                        case 'regen': regen += ef.add; break;
+                        case 'chargeMul': chargeMul += ef.add; break;
                     }
                 }
             }
@@ -13276,6 +13940,8 @@ class Unit extends Entity {
         this.carryCapacity = carry;
         this.healRate = heal;
         this.healRange = healRange;
+        this.regen = regen;             // V3.5 Final: samoleczenie poza walką (Polowe Opatrunki, król)
+        this.chargeBonus = chargeMul;   // V3.5 Final: Hartowane Kopie
         this.vision = config.vision || 300;
         this.aggroRadius = Math.max(config.ranged ? 350 : 300, range + 90);
 
@@ -13299,7 +13965,8 @@ class Unit extends Entity {
 
     // Faktyczna prędkość marszu: w szyku ze wspólnym tempem jednostka nie wyprzedza najwolniejszej z oddziału
     get moveSpeed() {
-        const v = (this.formSpeed && this.state === 'moving' && this.formSpeed < this.speed) ? this.formSpeed : this.speed;
+        let v = (this.formSpeed && this.state === 'moving' && this.formSpeed < this.speed) ? this.formSpeed : this.speed;
+        if (this.royalUntil > 0 && window.game && this.royalUntil > window.game.time) v *= 1 + Unit.ROYAL.bonus;   // V3.5 Final: Królewska Szarża
         return this.inStreets ? v * Unit.STREET_SLOW : v;   // V3.5: jazda w uliczkach wrogiej osady
     }
 
@@ -13379,24 +14046,27 @@ class Unit extends Entity {
         }
 
         this.formAngle = null; this.formHold = false;
-        if (resourceNode.type === 'farm') {
+        if (isFarmType(resourceNode.type)) {
             if (resourceNode.owner !== this.owner) {
                 this.notify('Na farmie sojusznika pracują tylko jego robotnicy.');
                 this.goIdle();
                 return;
             }
             if (!resourceNode.isConstructed) { this.build(resourceNode); return; }
-            if (this.farmCrew(resourceNode) >= 2) {
+            const seats = farmSeats(resourceNode), what = resourceNode.type === 'orchard' ? 'Plantacja' : 'Farma';
+            if (this.farmCrew(resourceNode) >= seats) {
                 // Farma pełna: robotnik idzie na najbliższą własną farmę z wolnym miejscem. Gdy takiej nie ma, rozkaz
                 // gracza nie przerywa dotychczasowej pracy (wcześniej robotnik porzucał zajęcie i stawał bezczynnie).
                 const other = this.freeFarm(resourceNode.x, resourceNode.y, 700, resourceNode);
                 if (!other) {
                     if (silent) this.goIdle();
-                    else this.notify('Farma jest pełna (max 2), a w pobliżu nie ma wolnej — postaw kolejną.');
+                    else this.notify(`${what} jest pełna (max ${seats}), a w pobliżu nie ma wolnego pola — postaw kolejne.`);
                     return;
                 }
-                if (!silent) this.notify('Ta farma jest pełna (max 2) — robotnik idzie na sąsiednią.', 'info');
+                if (!silent) this.notify(`${what} jest pełna (max ${seats}) — robotnik idzie na sąsiednie pole.`, 'info');
                 resourceNode = other;
+            } else if (!silent && !(resourceNode.amount > 0)) {
+                this.notify('Jabłonie zawiązują nowe owoce — robotnik zaczeka pod drzewami.', 'info');
             }
         } else if (!silent) {
             // Rozkaz na drzewo / złoże zamknięte w środku skupiska (nie da się do niego podejść): zamiast iść pod las
@@ -13430,9 +14100,9 @@ class Unit extends Entity {
     freeFarm(x, y, maxDist, except) {
         let best = null, bd = maxDist;
         for (const b of this.owner.buildings) {
-            if (b.type !== 'farm' || b === except || !b.isConstructed || b.isDestroyed) continue;
+            if (!isFarmType(b.type) || b === except || !b.isConstructed || b.isDestroyed || !(b.amount > 0)) continue;   // sad po zbiorze odrasta
             const d = Math.hypot(b.x - x, b.y - y);
-            if (d >= bd || this.farmCrew(b) >= 2) continue;
+            if (d >= bd || this.farmCrew(b) >= farmSeats(b)) continue;
             bd = d; best = b;
         }
         return best;
@@ -13536,7 +14206,7 @@ class Unit extends Entity {
         if (!g || !type) return null;
         const pf = g.pathfinder;
         let best = null, bestD = maxDist;
-        if (type === 'farm') return this.freeFarm(x, y, maxDist, null);
+        if (isFarmType(type)) return this.freeFarm(x, y, maxDist, null);
         const now = g.time, id = this.owner.id;
         const nodes = g.resourceNodes;
         for (let i = 0; i < nodes.length; i++) {
@@ -13644,7 +14314,7 @@ class Unit extends Entity {
             let dmg = this.attackDamage;
             const charging = cfg.charge && this.chargeDist >= cfg.charge.dist && !!t.unitType;   // V3.5: kopią nie rozbija się murów
             if (charging) {
-                dmg *= cfg.charge.mul;
+                dmg *= cfg.charge.mul + (this.chargeBonus || 0);
                 g.spawnParticle(hx, hy, 'charge');
                 g.shake(hx, hy, 3);
                 g.snd('Charge', this.x, this.y);
@@ -13940,6 +14610,15 @@ class Unit extends Entity {
                     g.floatFor(ow, this.x, this.y - 22, 'Ciasne uliczki — jazda zwalnia', '#ffc878');
                 }
             }
+        }
+        if (this.royalOn > g.time) {
+            // V3.5 Final: Królewska Szarża trwa - aura odnawiana co 0,4 s
+            this.royalT = (this.royalT || 0) + deltaTime;
+            if (this.royalT >= 0.4) { this.royalT = 0; g.royalAura(this, g.time); }
+        }
+        // V3.5 Final: samoleczenie poza walką (Polowe Opatrunki; król zawsze) - po 6 s bez otrzymanego ciosu
+        if (this.regen > 0 && this.hp < this.maxHp && g.time - (this.lastHitTime === undefined ? -99 : this.lastHitTime) > 6) {
+            this.hp = Math.min(this.maxHp, this.hp + this.regen * deltaTime);
         }
         const _ox = this.x, _oy = this.y;
         this._px = _ox; this._py = _oy; this._pa = this.angle;
@@ -14307,7 +14986,7 @@ class Unit extends Entity {
         if (!hasNode) {
             if (this.path && this.pathPartial) {
                 // doszliśmy najbliżej, jak się da - cel jest odcięty
-                if (this.state === 'moving_to_resource' && te && te.amount !== undefined && te.type !== 'farm') {
+                if (this.state === 'moving_to_resource' && te && te.amount !== undefined && !isFarmType(te.type)) {
                     // drzewo / złoże w środku skupiska: robotnik bierze najbliższe osiągalne tego samego rodzaju
                     const alt = this.findWork(te.type, te.x, te.y, 320);
                     if (alt && alt !== te) { this.gather(alt, true); return; }
@@ -14468,20 +15147,30 @@ class Unit extends Entity {
             }
         }
         else if (this.state === 'gathering') {
-            if (te && !te.isDestroyed) {
+            if (te && !te.isDestroyed && te.regrowUntil > 0) {
+                // V3.5 Final: sad zawiązuje nowe owoce - robotnik czeka pod drzewami (albo przechodzi na wolne pole)
+                this.gatherTimer = 0;
+                this.waitT = (this.waitT || 0) + deltaTime;
+                if (this.waitT > 2) {
+                    this.waitT = 0;
+                    const other = this.freeFarm(te.x, te.y, 700, te);
+                    if (other) { if (this.carryAmount > 0) { this.previousResource = other; this.returnGoods(); } else this.gather(other, true); }
+                }
+            } else if (te && !te.isDestroyed) {
                 this.gatherTimer += deltaTime;
                 if (this.gatherTimer >= this.gatherRate) {
                     this.gatherTimer = 0;
 
                     let resourceType = te.type;
-                    if (resourceType === 'farm') resourceType = 'food';
+                    if (isFarmType(resourceType)) resourceType = 'food';
 
                     g.snd('Gather', this.x, this.y, resourceType);
-                    if (te.type !== 'farm' && te.type !== 'food') {
+                    if (!isFarmType(te.type) && te.type !== 'food') {
                         g.spawnParticle((this.x + te.x) / 2, (this.y + te.y) / 2 - 3, te.type === 'wood' ? 'chips' : (te.type === 'gold' ? 'sparkle' : 'stonechips'));
                     }
 
                     if (this.carryType !== resourceType && this.carryAmount > 0) this.carryAmount = 0;
+                    if (this.carryAmount <= 0) this.carryApples = 0;
                     this.carryType = resourceType;
 
                     const spaceLeft = this.carryCapacity - this.carryAmount;
@@ -14489,15 +15178,17 @@ class Unit extends Entity {
 
                     te.amount -= taken;
                     this.carryAmount += taken;
+                    if (te.type === 'orchard') this.carryApples = (this.carryApples || 0) + taken;
 
                     if (te.amount <= 0) {
-                        // wyczerpana farma: ponowny obsiew albo komunikat (P8)
-                        if (!(te.type === 'farm' && te.owner && te.owner.reseedFarm(te))) {
+                        // wyczerpana farma: ponowny obsiew albo komunikat (P8); sad nie przepada - odrasta sam
+                        if (te.type === 'orchard') te.startRegrow();
+                        else if (!(te.type === 'farm' && te.owner && te.owner.reseedFarm(te))) {
                             if (te.destroy) te.destroy(); else te.isDestroyed = true;
                         }
                     }
 
-                    if (this.carryAmount >= this.carryCapacity || te.isDestroyed) {
+                    if (this.carryAmount >= this.carryCapacity || te.isDestroyed || te.regrowUntil > 0) {
                         this.previousResource = te.isDestroyed ? null : te;
                         this.returnGoods();
                     }
@@ -14510,11 +15201,21 @@ class Unit extends Entity {
             if (this.carryAmount > 0) {
                 this.owner.resources.add(this.carryType, this.carryAmount);
                 this.owner.stats.gathered[this.carryType] = (this.owner.stats.gathered[this.carryType] || 0) + this.carryAmount;
+                if (this.carryApples > 0) {
+                    // V3.5 Final: część jabłek z sadu idzie na targ - złoto ponad żywność
+                    const gold = this.carryApples * GameConfig.buildings.orchard.goldShare;
+                    this.owner.resources.add('gold', gold);
+                    this.owner.stats.gathered.gold += gold;
+                    this.carryApples = 0;
+                }
                 this.carryAmount = 0;
             }
             const prev = this.previousResource;
             if (prev && !prev.isDestroyed && prev.amount > 0) {
                 this.gather(prev, true);
+            } else if (prev && !prev.isDestroyed && prev.regrowUntil > 0) {
+                // sad odrasta: najpierw wolne pole w pobliżu, a gdy go nie ma - powrót pod jabłonie
+                this.gather(this.freeFarm(prev.x, prev.y, 700, prev) || prev, true);
             } else {
                 const type = this.lastGatherType || (this.carryType === 'food' ? (this.unitType === 'fishing_boat' ? 'food' : 'farm') : this.carryType);
                 const next = this.findWork(type, prev ? prev.x : this.x, prev ? prev.y : this.y, 900);
@@ -14540,7 +15241,7 @@ class Unit extends Entity {
                 let tool = 'hammer';
                 if (st === 'gathering' && this.targetEntity) {
                     const tt = this.targetEntity.type;
-                    tool = tt === 'wood' ? 'axe' : (tt === 'farm' ? 'hoe' : 'pick');
+                    tool = tt === 'wood' ? 'axe' : (tt === 'farm' ? 'hoe' : (tt === 'orchard' ? 'apple' : 'pick'));
                 }
                 return ['work_' + tool, Math.floor(t * 7 + this.seed * 4) & 3];
             }
@@ -14575,6 +15276,34 @@ class Unit extends Entity {
         if (!this.isShip && !Sprites.dyn) {
             const sh = Sprites.shadowFor(r);
             ctx.drawImage(sh.canvas, Math.round(x) + sh.ox, Math.round(y) + sh.oy);
+        }
+        if (g && (this.royalUntil > g.time || this.cfg.hero)) this.drawRoyal(ctx, g);
+    }
+
+    // V3.5 Final: król - złoty krąg pod władcą, a w czasie Królewskiej Szarży pulsujący zasięg aury;
+    // żołnierze z premią szarży świecą złotem
+    drawRoyal(ctx, g) {
+        const x = this.x, y = this.y, r = this.radius, t = g.renderTime;
+        if (this.royalUntil > g.time) {
+            const gl = Sprites.glow('royal', '255,210,80');
+            const s = r * 3.2 + Math.sin(t * 6 + this.seed * 9) * 2.5;
+            ctx.globalAlpha = 0.55;
+            ctx.drawImage(gl.canvas, x - s / 2, y - s / 2 + 1, s, s);
+            ctx.globalAlpha = 1;
+        }
+        if (!this.cfg.hero) return;
+        ctx.strokeStyle = 'rgba(255,214,80,0.85)'; ctx.lineWidth = 1.6;
+        ctx.setLineDash([5, 4]); ctx.lineDashOffset = -t * 8;
+        ctx.beginPath(); ctx.ellipse(x, y + 1.5, r + 9, (r + 9) * 0.82, 0, 0, Math.PI * 2); ctx.stroke();
+        ctx.setLineDash([]); ctx.lineDashOffset = 0;
+        if (this.royalOn > g.time) {
+            const R = this.cfg.royal.radius, k = (t * 0.8) % 1;
+            ctx.strokeStyle = 'rgba(255,214,80,' + (0.5 * (1 - k)).toFixed(3) + ')'; ctx.lineWidth = 3;
+            ctx.beginPath(); ctx.ellipse(x, y, R * (0.3 + 0.7 * k), R * (0.3 + 0.7 * k) * 0.9, 0, 0, Math.PI * 2); ctx.stroke();
+            ctx.strokeStyle = 'rgba(255,214,80,0.35)'; ctx.lineWidth = 1.4;
+            ctx.setLineDash([10, 8]); ctx.lineDashOffset = t * 14;
+            ctx.beginPath(); ctx.ellipse(x, y, R, R * 0.9, 0, 0, Math.PI * 2); ctx.stroke();
+            ctx.setLineDash([]); ctx.lineDashOffset = 0;
         }
     }
 
@@ -14612,6 +15341,14 @@ class Unit extends Entity {
 
     drawOverlay(ctx, t) {
         const x = this.x, y = this.y, r = this.radius;
+        if (this.cfg.hero) {
+            // V3.5 Final: korona nad królem (widać, kto jest władcą, także z daleka)
+            const cy = y - r - 16 - (this.rank || 0) * 3.6 + Math.sin(t * 2.2 + this.seed * 5) * 1.2;
+            ctx.fillStyle = '#ffd94a'; ctx.strokeStyle = 'rgba(40,26,0,0.95)'; ctx.lineWidth = 1.3;
+            ctx.beginPath(); ctx.moveTo(x - 7, cy + 4); ctx.lineTo(x - 8, cy - 4); ctx.lineTo(x - 3.5, cy); ctx.lineTo(x, cy - 6); ctx.lineTo(x + 3.5, cy); ctx.lineTo(x + 8, cy - 4); ctx.lineTo(x + 7, cy + 4); ctx.closePath();
+            ctx.fill(); ctx.stroke();
+            ctx.fillStyle = '#d9302a'; ctx.beginPath(); ctx.arc(x, cy + 1, 1.3, 0, Math.PI * 2); ctx.fill();
+        }
         if (this.rank > 0) {
             // szewrony weterana
             ctx.strokeStyle = 'rgba(40,26,0,0.9)'; ctx.lineWidth = 2.6;
@@ -14658,6 +15395,15 @@ class Unit extends Entity {
 // tablice wielokrotnego użytku do zapytań przestrzennych (bez alokacji co klatkę)
 Unit._qa = []; Unit._qb = []; Unit._qc = []; Unit._qd = [];
 
+// V3.5 Final: czy efekt ulepszenia dotyczy jednostki: lista typów, klasy (cls) albo całe wojsko lądowe poza machinami
+Unit.effectHits = function (ef, type, cfg) {
+    if (ef.units) return ef.units.includes(type);
+    if (!cfg) return false;
+    if (ef.cls) return ef.cls.includes(cfg.cls) && cfg.domain === 'land';
+    if (ef.landMilitary) return !!cfg.military && cfg.domain === 'land' && cfg.cls !== 'siege' && !cfg.colossal;
+    return false;
+};
+
 // V3.5: kolosa (Koń Trojański) ranią tylko działa i machiny miotające: jednostki oblężnicze i okręty strzelające
 // ciężkimi pociskami (katapulta, trebusz, działo, Wielkie Działo, galeon). Piechota, jazda, strzelcy, taran, balista
 // (bełty), Organki (kule muszkietowe) i petardnik - nie.
@@ -14667,6 +15413,7 @@ Unit.hurtsColossal = function (cfg) {
 Unit.COLOSSAL_MUL = 3;      // ogromny drewniany cel: każdy pocisk artylerii trafia całą siłą
 Unit.AMBUSH_MUL = 1.3;      // desant z konia: +30% obrażeń przez Unit.AMBUSH_TIME sekund
 Unit.AMBUSH_TIME = 12;
+Unit.ROYAL = GameConfig.units.king.royal;   // V3.5 Final: Królewska Szarża (promień, czas, odnowienie, premia)
 Unit.STREET_SLOW = 0.6;     // jazda w uliczkach wrogiej osady: 60% prędkości i bez rozpędu do szarży
 
 // Czy jeździec jest "w uliczkach" wrogiej osady: w pobliżu stoją co najmniej dwa ukończone wrogie budynki (poza
@@ -14676,7 +15423,7 @@ Unit.inEnemyStreets = function (g, u) {
     let n = 0, close = false;
     for (let i = 0; i < near.length; i++) {
         const e = near[i];
-        if (e.buildProgress === undefined || e.isDestroyed || !e.isConstructed || e.type === 'farm' || isWallType(e.type)) continue;
+        if (e.buildProgress === undefined || e.isDestroyed || !e.isConstructed || isFarmType(e.type) || isWallType(e.type)) continue;
         if (!g.isEnemy(e, u)) continue;
         n++;
         if (Math.hypot(e.x - u.x, e.y - u.y) - e.size / 2 < 70) close = true;
@@ -14684,7 +15431,7 @@ Unit.inEnemyStreets = function (g, u) {
     }
     return false;
 };
-Unit.FIELDS = ['owner', 'unitType', 'targetX', 'targetY', 'cfg', 'isShip', 'speed', 'radius', 'isSelected', 'targetEntity', 'state', 'leashTargetX', 'leashTargetY', 'explicitTarget', 'gatherTimer', 'carryType', 'carryAmount', 'carryCapacity', 'gatherRate', 'kills', 'rank', 'attackTimer', 'attackRate', 'angle', '_px', '_py', '_pa', 'walkDist', 'isMoving', 'seed', 'resumeTargetX', 'resumeTargetY', 'leashAnchorX', 'leashAnchorY', 'formAngle', 'formSpeed', 'formHold', 'attackDamage', 'attackRange', 'armorMelee', 'armorPierce', 'healRate', 'healRange', 'vision', 'aggroRadius', '_gridLayer', '_gridTeam', '_gridKey', '_faceX', '_grid', 'freeX', 'freeY', 'aggroTimer', '_sepX', '_sepY', '_sx', '_sy', '_sa', 'path', 'stuck', 'stuckT', 'stuckX', 'stuckY', 'moveFailCount', 'repathCooldown', '_gt', 'urgentPath', 'lastPathTargetX', 'lastPathTargetY', 'pathPartial', '_faceY', 'fxTimer', 'buildTimer', 'resumeGather', 'lastGatherType', 'previousResource', 'aggroEnabled', '_swing', 'hasDealtDamage', 'chargeDist', 'lastHitTime', 'ghostUntil', 'isDrafted', 'healTimer', 'inspiredUntil', 'inspireBonus', 'fuseFx', 'auraTimer', 'auraCount', 'healTarget', 'healFx', 'healSnd', 'lazT', 'chargeIdle', 'repairTimer', 'unreachableBy', 'netHidden', 'netFresh', 'deathCause', 'inside', 'passengers', 'ambushUntil', 'inStreets', 'streetT'];
+Unit.FIELDS = ['owner', 'unitType', 'targetX', 'targetY', 'cfg', 'isShip', 'speed', 'radius', 'isSelected', 'targetEntity', 'state', 'leashTargetX', 'leashTargetY', 'explicitTarget', 'gatherTimer', 'carryType', 'carryAmount', 'carryCapacity', 'gatherRate', 'kills', 'rank', 'attackTimer', 'attackRate', 'angle', '_px', '_py', '_pa', 'walkDist', 'isMoving', 'seed', 'resumeTargetX', 'resumeTargetY', 'leashAnchorX', 'leashAnchorY', 'formAngle', 'formSpeed', 'formHold', 'attackDamage', 'attackRange', 'armorMelee', 'armorPierce', 'healRate', 'healRange', 'vision', 'aggroRadius', '_gridLayer', '_gridTeam', '_gridKey', '_faceX', '_grid', 'freeX', 'freeY', 'aggroTimer', '_sepX', '_sepY', '_sx', '_sy', '_sa', 'path', 'stuck', 'stuckT', 'stuckX', 'stuckY', 'moveFailCount', 'repathCooldown', '_gt', 'urgentPath', 'lastPathTargetX', 'lastPathTargetY', 'pathPartial', '_faceY', 'fxTimer', 'buildTimer', 'resumeGather', 'lastGatherType', 'previousResource', 'aggroEnabled', '_swing', 'hasDealtDamage', 'chargeDist', 'lastHitTime', 'ghostUntil', 'isDrafted', 'healTimer', 'inspiredUntil', 'inspireBonus', 'fuseFx', 'auraTimer', 'auraCount', 'healTarget', 'healFx', 'healSnd', 'lazT', 'chargeIdle', 'repairTimer', 'unreachableBy', 'netHidden', 'netFresh', 'deathCause', 'inside', 'passengers', 'ambushUntil', 'inStreets', 'streetT', 'carryApples', 'waitT', 'regen', 'chargeBonus', 'royalOn', 'royalReady', 'royalUntil', 'royalT'];
 
 // Rodzaj dźwięku ciosu wręcz (V3.5): 0 - szczęk stali, 1 - drzewce i tarcza, 2 - topór, 3 - narzędzie / pięść, 4 - stal o mur
 Unit.MELEE_SND = { swordsman: 0, knight: 0, hussar: 0, royal_guard: 0, scout: 0, spearman: 1, halberdier: 1, axeman: 2, worker: 3 };
@@ -14716,7 +15463,7 @@ class Building extends Entity {
         this.applyUpgrades();
         this.hp = this.isConstructed ? this.maxHp : 1;
 
-        if (this.type === 'farm') {
+        if (isFarmType(this.type)) {
             this.amount = config && config.amount ? config.amount : 1500;
             this.maxAmount = this.amount;
         }
@@ -14970,10 +15717,31 @@ class Building extends Entity {
         this.healCount = n;
     }
 
+    // V3.5 Final: Plantacja Jabłek po zbiorze - jabłonie zawiązują nowe owoce (bez kosztu), robotnicy czekają albo przechodzą na wolne pola
+    startRegrow() {
+        const g = window.game;
+        this.amount = 0;
+        this.regrowUntil = (g ? g.time : 0) + ((this.cfg && this.cfg.regrow) || 40);
+        if (g && this.owner && this.owner.human && !this.owner._regrowTold) {
+            this.owner._regrowTold = true;
+            g.tell(this.owner, `Sad oberwany — jabłonie owocują na nowo za ${this.cfg.regrow} s, bez kosztu (robotnicy przejdą na wolne pola).`, 'info');
+        }
+    }
+
     update(deltaTime) {
         super.update(deltaTime);
 
         if (!this.isConstructed) return; // fundamenty czekają na robotników
+
+        if (this.regrowUntil > 0) {
+            const g = window.game;
+            if (g && g.time >= this.regrowUntil) {
+                this.regrowUntil = 0;
+                this.amount = this.maxAmount;
+                g.spawnParticle(this.x, this.y, 'complete');
+                g.floatFor(this.owner, this.x, this.y - 22, 'Nowe jabłka!', '#ff8f85');
+            }
+        }
 
         if (this.attackCfg) this.updateDefense(deltaTime);
         if (this.cfg && this.cfg.healAura) this.updateHealAura(deltaTime);
@@ -15017,6 +15785,10 @@ class Building extends Entity {
         } else if (this.fxTimer > 0.55) {
             this.fxTimer = 0;
             if (this.type === 'forge') g.spawnParticle(this.x + 17.5, this.y - 19, 'smoke');
+            else if (this.type === 'town_center' && this.seed < 70) {
+                const sp = BuildingPainter.TC_SMOKE[this.spriteVariant()];
+                if (sp) g.spawnParticle(this.x + sp[0] + 3, this.y + sp[1] + 3, 'smoke');
+            }
             else if (this.type === 'house' && this.seed < 60) {
                 const rot = (this.variant & 1) === 1;
                 g.spawnParticle(this.x + (rot ? 7 : 11), this.y + (rot ? 11 : -8), 'smoke');
@@ -15059,7 +15831,7 @@ class Building extends Entity {
                     for (const e of nearby) {
                         if (e.isDestroyed) continue;
                         const er = e.unitType ? (e.radius || 10) : (e.size ? e.size / 2 : (e.radius || 15));
-                        if (e.type === 'farm' || e.type === 'food') continue;
+                        if (isFarmType(e.type) || e.type === 'food') continue;
                         if (Math.hypot(e.x - tx, e.y - ty) < er + unitRadius) { collision = true; break; }
                     }
                     if (!collision) {
@@ -15080,7 +15852,7 @@ class Building extends Entity {
                     // złoże wskazane jako punkt zbiórki już wyczerpane: następne tego samego rodzaju w pobliżu
                     // (wcześniej każdy nowy robotnik szedł pod pień i stawał bezczynnie)
                     rt = unit.findWork(rt.type, rt.x, rt.y, 600);
-                    if (rt && rt.type !== 'farm') this.rallyTarget = rt;
+                    if (rt && !isFarmType(rt.type)) this.rallyTarget = rt;
                 }
                 if (rt) unit.gather(rt);
             }
@@ -15093,6 +15865,7 @@ class Building extends Entity {
     spriteVariant() {
         if (this.type === 'town_center') return this.owner ? this.owner.age : 1;
         if (this.type === 'farm') return window.game && window.game.biome ? window.game.biome.farmVariant || 0 : 0;
+        if (this.type === 'orchard') return this.amount > 0 || this.amount === undefined ? 0 : 1;
         if (this.type === 'house') { const a = this.owner ? this.owner.age : 1; return this.variant + (a >= 4 ? 4 : (a >= 2 ? 2 : 0)); }
         if (isWallType(this.type)) return this.stone ? 1 : 0;
         return 0;
@@ -15196,6 +15969,7 @@ class Building extends Entity {
 
         const lively = !(window.game && window.game.fastSprites);      // tryb wydajności: sam sprite, bez animacji
         if (this.type === 'farm' && lively) this.drawFarm(ctx, t, x, y, colorKey);
+        else if (this.type === 'orchard' && lively) this.drawOrchard(ctx, t, x, y, colorKey);
         else {
             const spr = Sprites.building(this.type, colorKey, this.spriteVariant());
             ctx.drawImage(spr.canvas, x + spr.dx, y + spr.dy, spr.dw, spr.dh);
@@ -15227,9 +16001,10 @@ class Building extends Entity {
             ctx.drawImage(br.canvas, br.dx + rec, br.dy, br.dw, br.dh);
             ctx.rotate(-a); ctx.translate(-x, -y);
         } else if ((this.type === 'town_center' || this.type === 'castle') && !(window.game && window.game.fastSprites)) {
-            // chorągiew na maszcie
+            // chorągiew na maszcie (V3.5 Final: każdy ratusz ma maszt gdzie indziej - na wieży, dzwonnicy, placu)
+            const fp = this.type === 'town_center' ? (BuildingPainter.TC_FLAG[this.spriteVariant()] || [0, -2]) : [0, -2];
             const fl = Sprites.flagFrame(colorKey, Math.floor(t * 5 + this.seed) & 3);
-            ctx.drawImage(fl.canvas, x + 11 + fl.dx, y - 1.2 + fl.dy, fl.dw, fl.dh);
+            ctx.drawImage(fl.canvas, x + fp[0] + 11 + fl.dx, y + fp[1] + 0.8 + fl.dy, fl.dw, fl.dh);
         }
 
         if (this.cfg && (this.cfg.healAura || this.repairOn) && this.healCount > 0) {
@@ -15369,6 +16144,37 @@ class Building extends Entity {
         }
     }
 
+    // V3.5 Final: sad - jabłka zostają na tylu drzewach, ile plonu zostało (zbiór idzie od dolnego rzędu), a gdy
+    // jabłonie odrastają, korony pokrywają się kwiatami coraz gęściej
+    drawOrchard(ctx, t, x, y, colorKey) {
+        const base = Sprites.building('orchard', colorKey, 1);
+        ctx.drawImage(base.canvas, x + base.dx, y + base.dy, base.dw, base.dh);
+        const g = window.game;
+        const TR = BuildingPainter.ORCHARD_TREES, S = Sprites.S;
+        const part = (spr, wx, wy, ww, wh) => {
+            const x0 = Math.max(wx, spr.dx), y0 = Math.max(wy, spr.dy);
+            const x1 = Math.min(wx + ww, spr.dx + spr.dw), y1 = Math.min(wy + wh, spr.dy + spr.dh);
+            if (x1 - x0 < 0.25 || y1 - y0 < 0.25) return;
+            ctx.drawImage(spr.canvas, (x0 - spr.dx) * S, (y0 - spr.dy) * S, (x1 - x0) * S, (y1 - y0) * S, x + x0, y + y0, x1 - x0, y1 - y0);
+        };
+        if (this.regrowUntil > 0) {
+            const left = g ? Math.max(0, this.regrowUntil - g.time) : 0;
+            const k = 1 - left / ((this.cfg && this.cfg.regrow) || 40);
+            if (k <= 0.05) return;
+            const bl = Sprites.building('orchard', colorKey, 3);
+            ctx.globalAlpha = Math.min(1, k * 1.2);
+            ctx.drawImage(bl.canvas, x + bl.dx, y + bl.dy, bl.dw, bl.dh);
+            ctx.globalAlpha = 1;
+            return;
+        }
+        const f = this.maxAmount > 0 && this.amount !== undefined ? Math.max(0, Math.min(1, this.amount / this.maxAmount)) : 1;
+        const n = Math.ceil(f * TR.length - 1e-6);
+        if (n <= 0) return;
+        const fruit = Sprites.building('orchard', colorKey, 2);
+        if (n >= TR.length) { ctx.drawImage(fruit.canvas, x + fruit.dx, y + fruit.dy, fruit.dw, fruit.dh); return; }
+        for (let i = 0; i < n; i++) { const [tx, ty] = TR[i]; part(fruit, tx - 10, ty - 10, 20, 20); }
+    }
+
     drawOverlay(ctx, t) {
         const g = window.game;
         const x = Math.round(this.x), y = Math.round(this.y), s = this.size;
@@ -15452,9 +16258,10 @@ class Building extends Entity {
             ctx.fillRect(x - w / 2, y - s / 2 - 15, w * progress, 4);
         }
 
-        if (this.type === 'farm' && (this.isSelected || (g && g.hover === this))) {
+        if (isFarmType(this.type) && (this.isSelected || (g && g.hover === this))) {
             const left = Math.max(0, Math.ceil((this.amount / this.maxAmount) * 100));
-            drawLabel(ctx, x, y - s / 2 - 22, `${this.currentWorkers || 0}/2 robotników · plon ${left}%`);
+            const grow = this.regrowUntil > 0 && g ? Math.max(0, Math.ceil(this.regrowUntil - g.time)) : 0;
+            drawLabel(ctx, x, y - s / 2 - 22, `${this.currentWorkers || 0}/${farmSeats(this)} robotników · ` + (this.regrowUntil > 0 ? `owoce za ${grow} s` : `plon ${left}%`));
         }
     }
 
@@ -15494,7 +16301,7 @@ class Building extends Entity {
             ctx.beginPath(); ctx.arc(x, y, this.cfg.repairAura, 0, Math.PI * 2); ctx.stroke();
             ctx.setLineDash([]);
         }
-        if ((this.type === 'farm' || this.type === 'town_center' || this.type === 'mill') && this.owner) {
+        if ((isFarmType(this.type) || this.type === 'town_center' || this.type === 'mill') && this.owner) {
             // strefy, w których tego budynku postawić nie wolno: wokół ratuszy i młynów (dla farmy) lub farm (dla ratusza i młyna)
             const g = window.game;
             const own = g ? g.farmGap(this.type) : 0;
@@ -15505,7 +16312,7 @@ class Building extends Entity {
             let labelAt = null;
             for (const b of this.owner.buildings) {
                 if (b.isDestroyed || !g) continue;
-                const D = this.type === 'farm' ? g.farmGap(b.type) : (b.type === 'farm' ? own : 0);
+                const D = isFarmType(this.type) ? g.farmGap(b.type) : (isFarmType(b.type) ? own : 0);
                 if (!D) continue;
                 const d = Math.hypot(b.x - x, b.y - y);
                 if (d > D + 700) continue;
@@ -15516,7 +16323,7 @@ class Building extends Entity {
                 if (hit && !labelAt) labelAt = b;
             }
             ctx.setLineDash([]); ctx.lineDashOffset = 0;
-            if (labelAt) drawLabel(ctx, x, y - s / 2 - 14, this.type !== 'farm' ? 'Za blisko farm' : (labelAt.type === 'mill' ? 'Za blisko Młyna' : 'Za blisko Ratusza'), '#ffb0a8');
+            if (labelAt) drawLabel(ctx, x, y - s / 2 - 14, !isFarmType(this.type) ? 'Za blisko pól' : (labelAt.type === 'mill' ? 'Za blisko Młyna' : 'Za blisko Ratusza'), '#ffb0a8');
         }
         ctx.restore();
     }
@@ -15528,7 +16335,7 @@ Building._q = [];
 Building.DRILL_TYPES = { swordsman: 1, axeman: 1, royal_guard: 1 };
 
 
-Building.FIELDS = ['owner', 'type', 'cfg', 'size', 'buildProgress', 'isConstructed', 'isSelected', 'variant', 'seed', 'stone', 'repairOn', 'attackCfg', 'attackDamage', 'attackRange', 'attackRate', 'vision', 'trainingQueue', 'trainingTimer', 'attackTimer', 'targetEntity', 'aggroTimer', 'fxTimer', '_gridLayer', '_gridTeam', '_gridKey', 'queueError', 'game', '_linksVer', 'amount', 'maxAmount', 'currentWorkers', 'unreachableBy', 'reseeds', 'healTimer', 'healCount', 'lastHitTime', 'extraTargets', 'deathCause', 'rallyPoint', 'fireAngle', 'fireTime', 'netHidden', 'passengers'];
+Building.FIELDS = ['owner', 'type', 'cfg', 'size', 'buildProgress', 'isConstructed', 'isSelected', 'variant', 'seed', 'stone', 'repairOn', 'attackCfg', 'attackDamage', 'attackRange', 'attackRate', 'vision', 'trainingQueue', 'trainingTimer', 'attackTimer', 'targetEntity', 'aggroTimer', 'fxTimer', '_gridLayer', '_gridTeam', '_gridKey', 'queueError', 'game', '_linksVer', 'amount', 'maxAmount', 'currentWorkers', 'unreachableBy', 'reseeds', 'healTimer', 'healCount', 'lastHitTime', 'extraTargets', 'deathCause', 'rallyPoint', 'fireAngle', 'fireTime', 'netHidden', 'passengers', 'regrowUntil'];
 
 /* --- nation/Nation.js --- */
 class Nation {
@@ -15641,7 +16448,7 @@ class Nation {
     // Zajęta populacja: żywe jednostki + jednostki w kolejkach
     popUsed() {
         let used = 0;
-        for (const u of this.units) if (!u.isDestroyed) used += (u.cfg.pop || 1);
+        for (const u of this.units) if (!u.isDestroyed) used += (u.cfg.pop === 0 ? 0 : (u.cfg.pop || 1));   // król nie zajmuje miejsca
         for (const b of this.buildings) {
             for (const q of b.trainingQueue) {
                 if (!q.isResearch) used += ((GameConfig.units[q.type] || {}).pop || 1);
@@ -15670,6 +16477,7 @@ class Nation {
         }
         this.trainSpeedMul = ts;
         this.buildingHpMul = hp;
+        this.omni = this.researchedUpgrades.includes('omnisight');   // V3.5 Final: Wszech-wzrok - cała mapa widoczna dla drużyny
     }
 
     completeResearch(id, building) {
@@ -15692,6 +16500,12 @@ class Nation {
             g.tell(this, `Wkraczasz w Erę ${an.roman} — ${an.name}!`, 'good');
             g.tellAll(`${this.name}: Era ${an.roman} — ${an.name}`, 'info', this);
             g.cue(this, 'AgeUp');
+        } else if (up.ultra) {
+            if (building) { g.spawnParticle(building.x, building.y, 'levelup'); g.spawnParticle(building.x, building.y, 'complete'); }
+            g.tell(this, `${up.name}! Ty i twoi sojusznicy widzicie teraz całą mapę.`, 'good');
+            g.tellAll(`${this.name} osiąga ${up.name} — widzi całą mapę, każdą jednostkę i każdy budynek!`, 'alert', this);
+            g.cue(this, 'AgeUp');
+            g.updateVisibility(); g.fogDirty = true;
         } else {
             g.tell(this, `Zbadano: ${up.name}`, 'good');
             g.cue(this, 'Complete');
@@ -15781,7 +16595,7 @@ class Nation {
                         if (targetRes === 'gold') c.gold++;
                         else if (targetRes === 'wood') c.wood++;
                         else if (targetRes === 'stone') c.stone++;
-                        else if (targetRes === 'food' || targetRes === 'farm') c.food++;
+                        else if (targetRes === 'food' || isFarmType(targetRes)) c.food++;
                     }
                 } else if (u.unitType === 'fishing_boat') {
                     if (u.state === 'idle') c.idle++;
@@ -16007,12 +16821,13 @@ class NationAI {
 
     // Miejsce na farmę: w kręgu tuż za zakazaną strefą młyna (GameConfig.millFarmMinDist), a gdy młyna jeszcze
     // nie ma - przy pierwszej farmie albo w pierścieniu tuż za strefą Ratusza (GameConfig.farmMinDist)
-    spawnFarm(tc, mills, farms) {
+    spawnFarm(tc, mills, farms, type) {
+        type = type || 'farm';
         const D = GameConfig.farmMinDist, M = GameConfig.millFarmMinDist;
         const mill = mills[0] || null;
         const anchor = mill || farms[0] || null;
-        const near = anchor ? (anchor.size / 2 + 30 + 8) : 0;
-        return this.trySpawn('farm', tc, 0, false, 8, (i, fails) => {
+        const near = anchor ? (anchor.size / 2 + GameConfig.buildings[type].size / 2 + 8) : 0;
+        return this.trySpawn(type, tc, 0, false, 8, (i, fails) => {
             if (mill && i < 24) {
                 // najbliżej młyna, jak wolno (najkrótsze kursy z plonem), z każdą próbą trochę szerszym kręgiem
                 const a = Math.random() * Math.PI * 2;
@@ -16056,6 +16871,14 @@ class NationAI {
         const visible = new Set();
         const q = NationAI._q;
         const myTeam = nation.team;
+        // V3.5 Final: Wszech-wzrok (własny albo sojusznika) - AI zna każdą wrogą jednostkę i budynek
+        if (game.nations.some(n => n.team === myTeam && n.omni && !n.defeated)) {
+            for (const n of game.nations) {
+                if (n.team === myTeam) continue;
+                for (const u of n.units) if (!u.isDestroyed && !u.inside) visible.add(u);
+                for (const b of n.buildings) if (!b.isDestroyed) visible.add(b);
+            }
+        }
         for (const u of nation.units) {
             const nearby = game.spatialGrid.queryEnemies(u.x, u.y, u.vision || 300, myTeam, q);
             for (let i = 0; i < nearby.length; i++) { const e = nearby[i]; if (e.owner && e.owner.team !== myTeam) visible.add(e); }
@@ -16100,7 +16923,7 @@ class NationAI {
         const byType = (t) => nation.buildings.filter(b => b.type === t && !b.isDestroyed);
         const barracksList = byType('barracks');
         const barracks = barracksList[0];
-        const farms = byType('farm');
+        const farms = nation.buildings.filter(b => isFarmType(b.type) && !b.isDestroyed);   // V3.5 Final: farmy i sady
         const ports = byType('port');
         const houses = byType('house');
         const stables = byType('stable');
@@ -16122,7 +16945,7 @@ class NationAI {
         const bearers = nation.units.filter(u => u.unitType === 'standard_bearer' && !u.inside);
         const military = nation.units.filter(u => u.cfg.military);
         const landArmyAll = military.filter(u => !u.isShip);
-        const landArmy = landArmyAll.filter(u => !u.inside && u.unitType !== 'trojan_horse');   // pasażerowie i koń mają własne rozkazy (manageHorse)
+        const landArmy = landArmyAll.filter(u => !u.inside && u.unitType !== 'trojan_horse' && !u.cfg.hero);   // pasażerowie, koń i król mają własne rozkazy (manageHorse, manageKing)
         const fleet = military.filter(u => u.isShip);
         const count = (t) => { let c = 0; for (const u of nation.units) if (u.unitType === t) c++; return c; };
 
@@ -16220,13 +17043,21 @@ class NationAI {
             }
         }
 
-        // --- Farmy: dwa miejsca pracy na farmę, potrzeba ich tyle, ilu robotników ma zbierać żywność ---
-        const farmSeats = farms.length * 2;
+        // --- Farmy: dwa miejsca pracy na farmę (trzy w sadzie), potrzeba ich tyle, ilu robotników ma zbierać żywność ---
+        // V3.5 Final: gdy pól jest już kilka, co trzecie nowe to Plantacja Jabłek (bez obsiewu, z dodatkiem złota);
+        // sad odrastający po zbiorze nie daje miejsc pracy, więc liczy się jak pół pola
+        let seats = 0;
+        for (const f of farms) seats += f.regrowUntil > 0 ? Math.floor(farmSeats(f) / 2) : farmSeats(f);
         const foodWorkersWanted = Math.max(2, Math.ceil(nW * 0.42));
         const mills = byType('mill');
-        if (tc && farmSeats < foodWorkersWanted && res.get('wood') >= GameConfig.buildings.farm.cost.wood && farms.filter(f => !f.isConstructed).length < 2) {
+        if (tc && seats < foodWorkersWanted && res.get('wood') >= GameConfig.buildings.farm.cost.wood && farms.filter(f => !f.isConstructed).length < 2) {
             if (barracks || res.get('wood') >= 200 || nW < 10) {
-                this.assignBuilder(workers, this.spawnFarm(tc, mills, farms));
+                const O = GameConfig.buildings.orchard;
+                let orchards = 0; for (const f of farms) if (f.type === 'orchard') orchards++;
+                const goldPoor = nation.age >= 3 && res.get('gold') < 300;   // w późnych erach złoża przy bazie są wybrane - sad daje też złoto
+                const sad = farms.length >= 3 && orchards < Math.floor(farms.length / 3) + (nation.age >= 3 ? 1 : 0) + (goldPoor ? 1 : 0) &&
+                    this.canSpend(O.cost) && res.get('wood') >= O.cost.wood + 120 && (this.spawnFails.orchard || 0) < 6;
+                this.assignBuilder(workers, this.spawnFarm(tc, mills, farms, sad ? 'orchard' : 'farm'));
             }
         }
         // Młyn niedaleko pól: farmy nie mogą stać pod Ratuszem, więc bez młyna robotnicy noszą plon z daleka.
@@ -16299,7 +17130,7 @@ class NationAI {
                     const onSite = w.state === 'gathering';
                     if (!onSite && !(late && (w.state === 'moving_to_resource' || w.state === 'returning'))) continue;
                     const te = w.state === 'returning' ? w.previousResource : w.targetEntity;
-                    if (te && !te.isDestroyed && !te.owner && te.amount !== undefined && te.type !== 'farm') {
+                    if (te && !te.isDestroyed && !te.owner && te.amount !== undefined && !isFarmType(te.type)) {
                         let nearest = Infinity;
                         for (const b of nation.buildings) {
                             if (b.cfg && b.cfg.dropOff && b.cfg.dropOff.includes(te.type)) nearest = Math.min(nearest, Math.hypot(b.x - te.x, b.y - te.y));
@@ -16319,10 +17150,15 @@ class NationAI {
             const up = GameConfig.upgrades[id];
             if (up && !nation.researchingUpgrades.includes(id)) {
                 let ready;
+                // V3.5 Final: nadwyżka (półtora kosztu awansu leży bezczynnie w skarbcu) pozwala awansować wcześniej niż
+                // w planie - w testach Średni w I erze trzymał po 2000 drewna i żywności, czekając na swoją minutę
+                let rich = this.difficulty !== 'easy' && this.difficulty !== 'tutorial' && !this.underThreat;
+                for (const k in up.cost) if (res.get(k) < up.cost[k] * 1.5) rich = false;
+                const due = (at) => time > at || (rich && time > at * 0.7);
                 if (nation.age === 1) {
-                    ready = barracks && barracks.isConstructed && nW >= p.ageWorkers && time > p.age2At;
+                    ready = barracks && barracks.isConstructed && nW >= p.ageWorkers && due(p.age2At);
                 } else if (nation.age === 2) {
-                    ready = nW >= p.ageWorkers + 3 && time > p.age3At && (stables.length + workshops.length > 0 || !p.cavalry);
+                    ready = nW >= p.ageWorkers + 3 && due(p.age3At) && (stables.length + workshops.length > 0 || !p.cavalry);
                 } else {
                     // IV era jest droga: najpierw zamek (jeśli profil go przewiduje; po 4 minutach czekania już bez niego),
                     // potem odkładanie na awans
@@ -16358,6 +17194,8 @@ class NationAI {
                 if ((up.age || 1) > nation.age) continue;
                 if (nation.researchedUpgrades.includes(upgradeId) || nation.researchingUpgrades.includes(upgradeId)) continue;
                 if (!p.researchAll && up.at !== 'forge' && up.at !== 'town_center' && up.at !== 'arsenal') continue;
+                // V3.5 Final: ultra-ulepszenie tylko z wyraźnej nadwyżki (silna armia, spokój w bazie, złoto ponad koszt)
+                if (up.ultra && (this.underThreat || this.armySize < this.armyFloor || res.get('gold') < up.cost.gold + 600 || res.get('food') < up.cost.food + 300)) continue;
                 if (up.at === 'arsenal' && up.effects) {
                     // ulepszenia broni palnej dopiero, gdy jest co ulepszać (co najmniej 4 jednostki lub wieże, których dotyczą)
                     let users = 0;
@@ -16447,7 +17285,7 @@ class NationAI {
             // IV era: wojsko prochowe kosztuje głównie złoto, a złoża przy bazie są już wybrane - nadwyżki idą na targ wcześniej
             else if (w > (nation.age >= 4 ? 700 : 900) && g < (nation.age >= 4 ? 320 : 250)) nation.trade('sell', 'wood');
             else if (f > (nation.age >= 4 ? 850 : 1300) && g < (nation.age >= 4 ? 320 : 250)) nation.trade('sell', 'food');
-            else if (st > (nation.age >= 4 && !needStone ? 450 : 700) && g < (nation.age >= 4 ? 320 : 250)) nation.trade('sell', 'stone');
+            else if (st > (needStone ? 700 : 300) && g < (nation.age >= 4 ? 320 : 250)) nation.trade('sell', 'stone');   // V3.5 Final: kamień bez planów nie leży, gdy brakuje złota
             else if (w < 60 && g > 260) nation.trade('buy', 'wood');
             else if (f < 60 && g > 300) nation.trade('buy', 'food');
             else if (needStone && st < 80 && g > 450) nation.trade('buy', 'stone');
@@ -16467,6 +17305,7 @@ class NationAI {
         this.manageWaves(landArmy, monks, bearers, time);
         this.manageHorse(landArmy, time);
         this.controlDefenders(landArmy, monks, bearers, baseThreats, barracksList);
+        if (game.kings) this.manageKing(landArmy, baseThreats, time);
         this.manageBell(workers, time);
 
         // --- Robotnicy ---
@@ -16669,6 +17508,7 @@ class NationAI {
     static power(u) {
         const c = u.cfg, cost = c.cost || {};
         let v = ((cost.food || 0) + (cost.wood || 0) + (cost.gold || 0) + (cost.stone || 0)) / 100;
+        if (c.hero) v = 14;   // V3.5 Final: król - siła kilkunastu żołnierzy
         if (!c.military) v *= 0.35;
         else if (c.cls === 'siege') v *= 0.6;
         return v * Math.max(0.15, u.hp / u.maxHp);
@@ -16988,6 +17828,7 @@ class NationAI {
                 const dist = Math.hypot(e.x - s.x, e.y - s.y);
                 let score = -dist;
                 if (e.cfg.colossal) score += 600;
+                if (e.cfg.hero) score += this.difficulty === 'easy' ? 80 : 260;   // V3.5 Final: wrogi król - jego śmierć kończy wojnę z tą nacją
                 if (s._flank && !e.cfg.military) score += 350;   // oskrzydlenie: najpierw robotnicy
                 if (this.smartTargeting) {
                     // skupienie ognia: ranni i ci, przeciw którym jednostka ma premię
@@ -17001,7 +17842,7 @@ class NationAI {
         }
 
         const siege = s.cfg.cls === 'siege' && (s.cfg.vsBuilding || 1) > 1;   // balista to broń przeciw wojsku, nie przeciw murom
-        const ECO = { farm: 1, mill: 1, storehouse: 1, house: 1, market: 1 };
+        const ECO = { farm: 1, orchard: 1, mill: 1, storehouse: 1, house: 1, market: 1 };
         let closestBuilding = null, minBldgDist = Infinity;
         for (const e of this.knownEnemies) {
             if (!e.type || e.isDestroyed || e.unitType) continue;
@@ -17133,7 +17974,7 @@ class NationAI {
 
     // Cel najazdu: budynek gospodarczy wroga (pole, młyn, skład, dom) z dala od jego wież, zamków i ratusza
     pickRaidTarget(home) {
-        const ECO = { farm: 2, mill: 3, storehouse: 3, house: 1, market: 1 };
+        const ECO = { farm: 2, orchard: 3, mill: 3, storehouse: 3, house: 1, market: 1 };
         let best = null, bestScore = -Infinity;
         for (const n of this.enemyNations()) {
             const etc = n.buildings.find(b => b.type === 'town_center' && !b.isDestroyed);
@@ -17304,6 +18145,118 @@ class NationAI {
                 }
             }
         }
+    }
+
+    // ---------------- V3.5 Final: król (tryb Królowie) ----------------
+    // Król ma własne rozkazy: domyślnie pilnuje osady przy punkcie zbiórki i staje do obrony, gdy obrońców jest dość;
+    // śmielsi dowódcy zabierają go z większą falą (trzyma się za środkiem armii). W bitwie dobywa Królewskiej Szarży,
+    // a ciężko ranny wycofuje się pod ratusz, aż rany się zagoją. Śmierć króla to przegrana - stąd ostrożność.
+    kingJoins(wave) {
+        if (wave.kingGo !== undefined) return wave.kingGo;
+        const ch = this.personality, size = wave.size0 || 0, d = this.difficulty;
+        let go = false;
+        if (d !== 'easy' && d !== 'tutorial' && wave.kind !== 'horse') {
+            if (ch === 'reckless') go = size >= 10;
+            else if (ch === 'offensive') go = size >= 14;
+            else if (ch !== 'defensive') go = size >= 18 && this.mood >= 0;
+        }
+        wave.kingGo = go;
+        if (go) this.log(`król rusza z falą #${wave.id}`);
+        return go;
+    }
+
+    manageKing(landArmy, baseThreats, time) {
+        const game = this.game, nation = this.nation;
+        const king = game.kingOf(nation);
+        if (!king || king.inside) return;
+        king.isDrafted = true;
+        const tc = this.tc;
+        const base = tc || this.homePos;
+        if (!base) return;
+        const rp = this.rallyPoint || base;
+        const home = { x: base.x + (rp.x - base.x) * 0.4, y: base.y + (rp.y - base.y) * 0.4 };
+        const st = this.kingSt || (this.kingSt = { mode: 'home', t: time });
+        const hpK = king.hp / king.maxHp;
+        const dist = (x, y) => Math.hypot(king.x - x, king.y - y);
+        const goTo = (x, y, aggro) => {
+            if (king.state === 'moving' && Math.hypot(king.targetX - x, king.targetY - y) < 90) return;
+            king.moveTo(x + (Math.random() - 0.5) * 50, y + (Math.random() - 0.5) * 50, aggro);
+        };
+        const tryCharge = (why) => {
+            if ((king.royalReady || 0) > time || king.royalOn > time) return;
+            const bal = this.localBalance(king.x, king.y, 380);
+            if (bal.theirs < 6) return;   // drobna utarczka - szkoda szarży
+            let allies = 0;
+            for (const u of landArmy) if (Math.hypot(u.x - king.x, u.y - king.y) < king.cfg.royal.radius) allies++;
+            if (allies < 4 && bal.theirs < 8) return;
+            if (!game.royalCharge(king)) this.log(`Królewska Szarża (${why}: ${allies} żołnierzy w zasięgu, siły ${bal.mine.toFixed(1)} : ${bal.theirs.toFixed(1)})`);
+        };
+
+        // 1. ciężko ranny: odwrót pod ratusz, aż rany się zagoją (poza walką król leczy się sam, lazaret i mnisi pomagają)
+        const low = this.personality === 'reckless' ? 0.3 : 0.45;
+        if (hpK < low && st.mode !== 'heal') { st.mode = 'heal'; st.t = time; this.log(`król ranny (${Math.round(hpK * 100)}%) — wycofuje się leczyć rany`); }
+        if (st.mode === 'heal') {
+            if (hpK > 0.85) { st.mode = 'home'; st.t = time; }
+            else {
+                const safe = tc || base;
+                if (dist(safe.x, safe.y) > 110) goTo(safe.x, safe.y + (safe.size || 0) * 0.6, false);
+                else if (hpK < 0.3) tryCharge('ostatnia obrona');
+                return;
+            }
+        }
+
+        // 2. wróg w osadzie: król walczy, gdy razem z obrońcami ma przewagę; inaczej trzyma się pod ratuszem
+        let best = null, bd = Infinity;
+        for (const e of baseThreats) {
+            if (!e.unitType || e.isDestroyed || e.inside || !e.cfg.military || e.cfg.colossal || e.isShip) continue;
+            const d = dist(e.x, e.y);
+            if (d < bd) { bd = d; best = e; }
+        }
+        if (best && bd < 1100) {
+            const bal = this.localBalance(best.x, best.y, 420);
+            const myPow = dist(best.x, best.y) > 420 ? NationAI.power(king) : 0;
+            if (bal.mine + myPow >= bal.theirs * 0.75) {
+                if (king.state === 'idle' || king.state === 'moving' || !king.targetEntity || king.targetEntity.isDestroyed) king.attack(best);
+                tryCharge('obrona osady');
+            } else {
+                const safe = tc || base;
+                if (dist(safe.x, safe.y) > 140) goTo(safe.x, safe.y + (safe.size || 0) * 0.6, false);
+                else tryCharge('obrona ratusza');
+            }
+            st.mode = 'defend';
+            return;
+        }
+
+        // 3. wyprawa z falą: król idzie za armią, w szturmie walczy u jej boku i dobywa szarży
+        const wave = this.wave;
+        if (wave && wave.phase !== 'retreat' && hpK > 0.65 && this.kingJoins(wave)) {
+            const fl = wave.units.filter(u => u.cfg.military && !u.isDestroyed && !u.inside);
+            if (fl.length >= 6) {
+                let cx = 0, cy = 0;
+                for (const u of fl) { cx += u.x; cy += u.y; }
+                cx /= fl.length; cy /= fl.length;
+                const bx = base.x - cx, by = base.y - cy, bl = Math.hypot(bx, by) || 1;
+                const back = wave.phase === 'attack' ? 70 : 110;     // za środkiem armii, od strony domu
+                const tx = cx + bx / bl * back, ty = cy + by / bl * back;
+                st.mode = 'wave';
+                if (wave.phase === 'attack') {
+                    const engaged = fl.some(u => u.state === 'attacking');
+                    if (engaged && dist(cx, cy) < 320) tryCharge('szturm');
+                    if (king.state === 'attacking' || king.state === 'moving_to_attack') {
+                        // pościg za daleko od armii - powrót do swoich
+                        if (dist(cx, cy) > 330) goTo(tx, ty, false);
+                        return;
+                    }
+                    if (dist(tx, ty) > 120) goTo(tx, ty, true);
+                } else if (dist(tx, ty) > 150) goTo(tx, ty, false);
+                return;
+            }
+        }
+
+        // 4. w domu: przy punkcie zbiórki, gotów do obrony; pościg za zwiadowcą daleko od osady - powrót
+        if (st.mode !== 'home') { st.mode = 'home'; st.t = time; }
+        if (dist(home.x, home.y) > 650 && king.state !== 'moving') { king.goIdle(); goTo(home.x, home.y, false); return; }
+        if ((king.state === 'idle' || king.state === 'moving') && dist(home.x, home.y) > 220) goTo(home.x, home.y, true);
     }
 
     // ---------------- V3.5: dzwon na trwogę ----------------
@@ -17491,7 +18444,7 @@ class NationAI {
             let ct = null;
             if (w.state === 'gathering' || w.state === 'moving_to_resource') ct = w.targetEntity ? w.targetEntity.type : null;
             else if (w.state === 'returning') ct = w.carryType;
-            if (ct === 'farm') ct = 'food';
+            if (isFarmType(ct)) ct = 'food';
             return cnt[ct] !== undefined ? ct : null;
         };
         let idleWorkers = 0;
@@ -17502,6 +18455,8 @@ class NationAI {
         }
         const totalGatherers = Math.max(1, cnt.wood + cnt.food + cnt.gold + cnt.stone + idleWorkers);
         const farmsReady = farms.filter(f => f.isConstructed && !this.isUnreachable(f));
+        let readySeats = 0;
+        for (const f of farmsReady) if (f.amount > 0) readySeats += farmSeats(f);
 
         // Udziały docelowe zależą od ery, zapasów i celu, na który AI właśnie odkłada.
         const sh = nation.age >= 2 ? { wood: 0.34, food: 0.35, gold: 0.26, stone: 0.05 } : { wood: 0.46, food: 0.42, gold: 0.12, stone: 0 };
@@ -17514,7 +18469,7 @@ class NationAI {
             if (this.saving) for (const k in this.saving) if (res.get(k) < this.saving[k]) sh[k] *= 1.7;
             // żywność ogranicza liczba miejsc na farmach (2 na farmę)
             let sum = sh.wood + sh.food + sh.gold + sh.stone;
-            const foodCap = (farmsReady.length * 2) / totalGatherers;
+            const foodCap = readySeats / totalGatherers;
             if (sh.food / sum > foodCap) sh.food = foodCap * (sum - sh.food) / Math.max(0.0001, 1 - foodCap);
             sum = sh.wood + sh.food + sh.gold + sh.stone;
             for (const k in sh) sh[k] /= sum;
@@ -17526,7 +18481,7 @@ class NationAI {
             if (type === 'food') {
                 let best = null, minDist = Infinity;
                 for (const f of farmsReady) {
-                    if ((f.currentWorkers || 0) >= 2) continue;
+                    if ((f.currentWorkers || 0) >= farmSeats(f) || !(f.amount > 0)) continue;
                     const d = Math.hypot(f.x - unit.x, f.y - unit.y);
                     if (d < minDist) { minDist = d; best = f; }
                 }
@@ -17543,7 +18498,7 @@ class NationAI {
             if (!target) return false;
             if (target !== unit.targetEntity) unit.gather(target, true);
             if (unit.state !== 'moving_to_resource' && unit.targetEntity !== target) return false;
-            if (target.type === 'farm') target.currentWorkers = (target.currentWorkers || 0) + 1;
+            if (isFarmType(target.type)) target.currentWorkers = (target.currentWorkers || 0) + 1;
             if (unit._gt) cnt[unit._gt]--;
             cnt[type]++;
             unit._gt = type;
@@ -17949,7 +18904,7 @@ class Atmosphere {
             case 'tower': case 'bombard_tower': return 96;
             case 'outpost': return 70;
             case 'gate': return 52;
-            case 'farm': return 0;
+            case 'farm': case 'orchard': return 0;
             default: return isWallType(e.type) ? 0 : 100;
         }
     }
@@ -18211,7 +19166,7 @@ Sprites.silOf = function (spr) {
 
 // Wysokość obiektów (w krokach świata) - od niej zależy długość cienia
 Game.SHADOW_H = {
-    town_center: 44, castle: 62, tower: 58, bombard_tower: 54, outpost: 42, house: 21, mill: 40, monastery: 34,
+    town_center: 44, castle: 62, tower: 58, orchard: 15, bombard_tower: 54, outpost: 42, house: 21, mill: 40, monastery: 34,
     gate: 15, wooden_wall: 11, market: 17, storehouse: 21, port: 17, forge: 25, barracks: 25, stable: 23,
     siege_workshop: 23, infirmary: 22, arsenal: 27
 };
@@ -18309,7 +19264,7 @@ Game.prototype.drawSunShadows = function (ctx, s, ox, oy, objs, units, walls) {
                 if (e.buildProgress <= 45) continue;                 // sam plac budowy jest płaski
                 h *= (e.buildProgress - 45) / 55;
             }
-            const spr = Sprites.buildingFlat(e.type, e.owner ? e.owner.colorKey : 'blue', e.spriteVariant());
+            const spr = Sprites.buildingFlat(e.type, e.owner ? e.owner.colorKey : 'blue', e.type === 'orchard' ? 4 : e.spriteVariant());   // sad: cień rzucają same drzewa
             let ang = 0;
             if (e.type === 'gate') { const l = e.getLinks(); if (l.length) ang = Math.atan2(l[0].y, l[0].x); }
             put(spr.sil || Sprites.silOf(spr), Math.round(e.x), Math.round(e.y), 1, h, ang);
@@ -19523,7 +20478,7 @@ class Tutorial {
     gatherers(kind) {
         return this.workers().filter(u => {
             const t = (u.state === 'returning') ? u.previousResource : u.targetEntity;
-            return t && t.type === kind && (u.state === 'gathering' || u.state === 'moving_to_resource' || u.state === 'returning');
+            return t && (t.type === kind || (kind === 'farm' && t.type === 'orchard')) && (u.state === 'gathering' || u.state === 'moving_to_resource' || u.state === 'returning');
         }).length;
     }
     nearestNode(type) {
@@ -19747,7 +20702,7 @@ class Tutorial {
 // Model: HOST LICZY, GOŚCIE OGLĄDAJĄ. Przeglądarka hosta prowadzi jedyną symulację (tę samą, co w grze solo),
 // goście wysyłają rozkazy i rysują stan świata przysłany przez hosta.
 const NetCodec = {
-    PROTOCOL: 4,                // V3.5 Preview 2: Koń Trojański, schronienia (zdarzenia 'in' / 'out', stan 'boarding')
+    PROTOCOL: 5,                // V3.5 Final: królowie ('rc'), sady (flaga odrastania), stan szarży w stanie nacji
     SNAP: 1,                    // rodzaj wiadomości binarnej: paczka stanu jednostek
 
     UNIT_TYPES: Object.keys(GameConfig.units),
@@ -20353,7 +21308,7 @@ class HostSession {
 
         const used = new Set();
         const pickColor = (want) => { let c = (want && !used.has(want)) ? want : ColorOrder.find(k => !used.has(k)); used.add(c); return c; };
-        this.settings = Object.assign({ mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false }, opts.settings || {});
+        this.settings = Object.assign({ mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false, kings: false }, opts.settings || {});
         this.slots = [];
         for (let i = 0; i < 4; i++) {
             this.slots.push({
@@ -20631,7 +21586,7 @@ class HostSession {
             else nations.push({ isPlayer: false, color: s.color, team: s.team, diff: s.diff, slot: s.idx });
         }
         const o = this.settings;
-        return { nations, playerCorner: 'random', mapSize: o.mapSize, mapType: o.mapType, biome: o.biome, rich: !!o.rich, reveal: !!o.reveal, atmosphere, mp: this };
+        return { nations, playerCorner: 'random', mapSize: o.mapSize, mapType: o.mapType, biome: o.biome, rich: !!o.rich, reveal: !!o.reveal, kings: !!o.kings, atmosphere, mp: this };
     }
 
     beginLoading() {
@@ -20740,7 +21695,7 @@ class HostSession {
             })),
             you: g.nations.indexOf(n),
             nodes, time: g.time, reveal: !!g.revealAll, explored: resume && !g.revealAll ? NetCodec.packGrid(tv.exp) : null,
-            graceTime: g.graceTime, hostName: this.hostName, slots: this.lobbyState().slots
+            graceTime: g.graceTime, kings: !!g.kings, hostName: this.hostName, slots: this.lobbyState().slots
         }]);
     }
 
@@ -20889,7 +21844,7 @@ class HostSession {
     // --- stan budynku wysyłany gościowi ---
     // detail: budynek własnej drużyny (albo obserwator) - dochodzi kolejka produkcji i punkt zbiórki
     bState(b, detail) {
-        const st = [Math.ceil(b.hp), Math.round(b.buildProgress), (b.isConstructed ? 1 : 0) | (b.healCount > 0 ? 2 : 0), b.amount !== undefined ? Math.ceil(b.amount) : -1];
+        const st = [Math.ceil(b.hp), Math.round(b.buildProgress), (b.isConstructed ? 1 : 0) | (b.healCount > 0 ? 2 : 0) | (b.regrowUntil > 0 ? 4 : 0), b.amount !== undefined ? Math.ceil(b.amount) : -1];
         if (detail) {
             st.push(b.trainingQueue.map(q => [q.type, q.isResearch ? 1 : 0, q.time]), Math.round(b.trainingTimer * 100) / 100,
                 b.rallyPoint ? [Math.round(b.rallyPoint.x), Math.round(b.rallyPoint.y), b.rallyTarget && !b.rallyTarget.isDestroyed ? b.rallyTarget.id : 0] : 0,
@@ -20900,7 +21855,7 @@ class HostSession {
 
     // "podpis" stanu: gdy się zmieni, wysyłamy stan od nowa (czas produkcji gość odlicza sam - synchronizacja co sekundę)
     bSig(b, detail) {
-        let s = Math.ceil(b.hp) + '|' + Math.round(b.buildProgress) + '|' + (b.isConstructed ? 1 : 0) + (b.healCount > 0 ? 1 : 0) + '|' + (b.amount !== undefined ? Math.ceil(b.amount / 15) : '');
+        let s = Math.ceil(b.hp) + '|' + Math.round(b.buildProgress) + '|' + (b.isConstructed ? 1 : 0) + (b.healCount > 0 ? 1 : 0) + (b.regrowUntil > 0 ? 'r' : '') + '|' + (b.amount !== undefined ? Math.ceil(b.amount / 15) : '');
         if (detail) {
             s += '|' + b.trainingQueue.length + (b.trainingQueue[0] ? b.trainingQueue[0].type + Math.floor(b.trainingTimer) : '') + '|' +
                 (b.rallyPoint ? Math.round(b.rallyPoint.x) + ',' + Math.round(b.rallyPoint.y) + (b.rallyTarget ? b.rallyTarget.id : '') : '') + '|' + (b.currentWorkers || 0);
@@ -20957,8 +21912,10 @@ class HostSession {
         if ((g.stepNo % (this.NET_EVERY * 2)) !== 0) return;
         if (n) {
             const r = n.resources, c = n.workerCounts;
+            const king = g.kings ? g.kingOf(n) : null;   // V3.5 Final: odnowienie Królewskiej Szarży (przycisk u gościa)
+            const kingRdy = king ? Math.round((king.royalReady || 0) * 10) / 10 : -1;
             const st = [Math.floor(r.get('food')), Math.floor(r.get('wood')), Math.floor(r.get('gold')), Math.floor(r.get('stone')), n.popCap, n.autoReseed ? 1 : 0,
-                n.graceUntil != null ? Math.round(n.graceUntil * 10) / 10 : -1, [c.food, c.wood, c.gold, c.stone, c.idle], n.researchingUpgrades, n.defeated ? 1 : 0, n.bell ? 1 : 0];
+                n.graceUntil != null ? Math.round(n.graceUntil * 10) / 10 : -1, [c.food, c.wood, c.gold, c.stone, c.idle], n.researchingUpgrades, n.defeated ? 1 : 0, n.bell ? 1 : 0, kingRdy];
             const sig = JSON.stringify(st);
             if (sig !== slot.natSig) { slot.natSig = sig; out.push(['n', st]); }
         }
@@ -21157,6 +22114,7 @@ class ClientSession {
         game.isClient = true;
         game.net = this;
         game.graceTime = w.graceTime;
+        game.kings = !!w.kings;
         game.time = w.time;
         this.renderT = w.time; this.newestT = w.time; this.newestAt = performance.now();
         this.frames = [];
@@ -21321,6 +22279,7 @@ class ClientSession {
                 if (u.state === 'attacking' && u.attackRate > 0) { u.attackTimer += adv; if (u.attackTimer >= u.attackRate) u.attackTimer -= u.attackRate; }
                 else if (u.state === 'gathering') { u.gatherTimer += adv; if (u.gatherTimer >= u.gatherRate) u.gatherTimer -= u.gatherRate; }
                 if (u.cfg.selfDestruct && !hidden) u.fuseSparks(g, adv);
+                if (u.royalOn > rt) { u.royalT = (u.royalT || 0) + adv; if (u.royalT >= 0.4) { u.royalT = 0; g.royalAura(u, rt); } }
             }
             // --- budynki: dym i ogień, odliczanie produkcji między wiadomościami hosta ---
             const bl = n.buildings;
@@ -21465,6 +22424,9 @@ class ClientSession {
                 n.researchingUpgrades = st[8];
                 n.defeated = !!st[9];
                 n.bell = !!st[10];
+                n.kingReady = st[11] !== undefined ? st[11] : -1;
+                const k = g.kingOf(n);
+                if (k && st[11] >= 0) k.royalReady = st[11];
                 break;
             }
             case 'up': {   // era i ulepszenia nacji: statystyki jej jednostek i budynków liczymy tym samym kodem co host
@@ -21484,6 +22446,11 @@ class ClientSession {
                     n.netSummary = { pop: row[0], cap: row[1], workers: row[2], army: row[3], res: row[4], score: row[5] };
                     if (!n.isPlayer) { n.defeated = !!row[6]; n.graceUntil = row[7] < 0 ? null : row[7]; }
                 });
+                break;
+            }
+            case 'rc': {   // V3.5 Final: Królewska Szarża - gość rysuje złotą aurę wokół króla
+                const k = byId.get(e[1]);
+                if (k && !k.isDestroyed) { k.royalOn = e[2]; k.royalT = 99; }
                 break;
             }
             case 'nl': { const n = g.nations[e[1]]; if (n) { n.aiLabel = NetCodec.clean(e[2]); n.human = !!e[3]; } break; }
@@ -21523,6 +22490,9 @@ class ClientSession {
         if (b.isConstructed) b.buildProgress = 100;
         b.healCount = (st[2] & 2) ? 1 : 0;
         if (st[3] >= 0) b.amount = st[3];
+        // V3.5 Final: sad odrasta - gość odlicza czas sam (do obrazu kwitnących jabłoni)
+        if (st[2] & 4) { if (!(b.regrowUntil > 0)) b.regrowUntil = g.time + ((b.cfg && b.cfg.regrow) || 40); }
+        else b.regrowUntil = 0;
         if (st.length > 4) {
             b.trainingQueue = st[4].map(q => ({ type: q[0], isResearch: !!q[1], time: q[2] }));
             // czas produkcji odliczamy sami; poprawka od hosta tylko przy wyraźnej różnicy
@@ -21760,7 +22730,7 @@ const MpUI = {
         const size = { 2400: 'mała', 3000: 'średnia', 3900: 'duża', 5100: 'gigantyczna' }[o.mapSize] || o.mapSize;
         const type = { random: 'losowe', lake: 'jezioro', lakes: 'pojezierze', plains: 'równiny', highlands: 'góry' }[o.mapType] || o.mapType;
         const biome = { random: 'losowa', meadow: 'łąki', autumn: 'jesień', winter: 'zima', desert: 'pustynia' }[o.biome] || o.biome;
-        return `Mapa: <b>${size}</b> · ukształtowanie: <b>${type}</b> · kraina: <b>${biome}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}`;
+        return `Mapa: <b>${size}</b> · ukształtowanie: <b>${type}</b> · kraina: <b>${biome}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}`;
     },
 
     // ================= Widok: host =================
@@ -21802,6 +22772,7 @@ const MpUI = {
                 <div><span class="opt-label">Kraina</span>${this.radios('mp-biome', o.biome, [['random', 'Losowa'], ['meadow', 'Łąki'], ['autumn', 'Jesień'], ['winter', 'Zima'], ['desert', 'Pustynia']], 'c5')}</div>
                 <div><span class="opt-label">Surowce na start</span>${this.radios('mp-rich', o.rich ? 1 : 0, [[0, 'Standardowe'], [1, 'Bogate']], 'c2')}</div>
                 <label class="check"><input type="checkbox" id="mp-reveal"${o.reveal ? ' checked' : ''}> Odkryta mapa (mgła wojny bez „czarnych plam”)</label>
+                <label class="check"><input type="checkbox" id="mp-kings"${o.kings ? ' checked' : ''}> <span title="Każda nacja ma króla — potężnego wojownika z Królewską Szarżą (+20% dla okolicznej armii). Gdy król zginie, jego nacja przegrywa i traci całą osadę."><b>Królowie</b> — każda nacja ma władcę; śmierć króla to porażka</span></label>
                 <p class="menu-note">Te ustawienia zobaczą goście w poczekalni. Im większa mapa i im więcej nacji, tym więcej pracy ma twój komputer.</p>
             </div></div>
             <div class="mp-nav"><button class="action-btn outline" data-act="quit">← ZREZYGNUJ</button>
@@ -21996,7 +22967,7 @@ const MpUI = {
         const pick = (v, list, def) => list.includes(v) ? v : def;
         const s = new HostSession({
             name: this.playerName('Host'), color: saved.color,
-            settings: { mapSize: Number(pick(String(saved.mapSize), ['2400', '3000', '3900', '5100'], '3000')), mapType: saved.mapType || 'random', biome: saved.biome || 'random', rich: saved.startRes === 'rich', reveal: !!saved.reveal }
+            settings: { mapSize: Number(pick(String(saved.mapSize), ['2400', '3000', '3900', '5100'], '3000')), mapType: saved.mapType || 'random', biome: saved.biome || 'random', rich: saved.startRes === 'rich', reveal: !!saved.reveal, kings: !!saved.kings }
         });
         s.onChange = () => this.refresh();
         s.startLobbyTimer();
@@ -22087,6 +23058,7 @@ const MpUI = {
         const s = this.session;
         if (!s || !s.isHost) return;
         if (t.id === 'mp-reveal') { s.setSettings({ reveal: t.checked }); return; }
+        if (t.id === 'mp-kings') { s.setSettings({ kings: t.checked }); return; }
         if (t.id === 'mp-loop') { if (t.checked) s.openLoopback(MpUI.loopRoom); this.render(); return; }
         if (t.type !== 'radio') return;
         const n = t.name;
@@ -22367,7 +23339,8 @@ document.addEventListener("DOMContentLoaded", () => {
         Settings.set('menu', {
             color: menu.color, corner: menu.corner, team: menu.team, ai: menu.ai,
             mapSize: val('mapsize', '3000'), mapType: val('maptype', 'random'), biome: val('biome', 'random'), startRes: val('startres', 'std'),
-            reveal: !!document.getElementById('opt-reveal').checked, atmo: !!document.getElementById('opt-atmo').checked
+            reveal: !!document.getElementById('opt-reveal').checked, atmo: !!document.getElementById('opt-atmo').checked,
+            kings: !!document.getElementById('opt-kings').checked
         });
     }
 
@@ -22429,6 +23402,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const restore = (name, value) => { if (value === undefined) return; const el = document.querySelector(`input[name="${name}"][value="${value}"]`); if (el) el.checked = true; };
     restore('mapsize', saved.mapSize); restore('maptype', saved.mapType); restore('biome', saved.biome); restore('startres', saved.startRes);
     if (saved.reveal !== undefined) document.getElementById('opt-reveal').checked = !!saved.reveal;
+    if (saved.kings !== undefined) document.getElementById('opt-kings').checked = !!saved.kings;
     if (saved.atmo !== undefined) document.getElementById('opt-atmo').checked = !!saved.atmo;
     document.querySelectorAll('#pane-play input').forEach(el => el.addEventListener('change', saveMenu));
 
@@ -22449,6 +23423,7 @@ document.addEventListener("DOMContentLoaded", () => {
             biome: val('biome', 'random'),
             rich: val('startres', 'std') === 'rich',
             reveal: !!document.getElementById('opt-reveal').checked,
+            kings: !!document.getElementById('opt-kings').checked,
             atmosphere: !!document.getElementById('opt-atmo').checked
         };
     }
@@ -22778,9 +23753,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 const u = nation.spawnUnit(game, pos.x + dx + i * 30, pos.y + dy, 'worker', {});
                 if (u) u.angle = dy < 0 ? -Math.PI / 2 : Math.PI / 2;
             }
+            if (o.kings) {
+                // V3.5 Final: tryb Królowie - władca staje przy Ratuszu, od strony środka mapy
+                const kx = pos.x + (pos.x < W / 2 ? 82 : -82), ky = pos.y + (pos.y < H / 2 ? 70 : -70);
+                const k = nation.spawnUnit(game, kx, ky, 'king', {});
+                if (k) k.angle = Math.atan2(H / 2 - ky, W / 2 - kx);
+            }
             if (spec.isPlayer) playerNation = nation;
         }
         if (!playerNation) { playerNation = game.nations[0]; playerNation.isPlayer = true; game._playerNation = null; }
+        game.kings = !!o.kings;
         // tryb pokazowy / testowy: nacją gracza też steruje AI, a cała mapa jest odkryta
         if (o.autoplay) {
             playerNation.setAI(new NationAI(game, o.autoplay));
@@ -22912,12 +23894,13 @@ document.addEventListener("DOMContentLoaded", () => {
             return s;
         };
         const era = (a) => `<span class="era era${a || 1}">Era ${GameConfig.ages[a || 1].roman}</span>`;
-        const NEW_UNITS = ['arquebusier', 'petardier', 'organ_gun', 'great_cannon', 'trojan_horse'];
-        const NEW_BUILDINGS = [];
+        const NEW_UNITS = ['arquebusier', 'petardier', 'organ_gun', 'great_cannon', 'trojan_horse', 'king'];
+        const NEW_BUILDINGS = ['orchard'];
         const isNew = (list, t) => list.includes(t) ? '<span class="codex-new">NOWOŚĆ</span>' : '';
 
         const trainedAt = {};
         for (const b in GameConfig.buildings) for (const t of (GameConfig.buildings[b].trains || [])) trainedAt[t] = GameConfig.buildings[b].name;
+        trainedAt.king = 'tryb Królowie';
 
         renderCodex = () => {
             const color = menu.color;
