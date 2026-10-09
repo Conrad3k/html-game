@@ -1134,6 +1134,44 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.14); border-radius: 5px; border: 2px solid transparent; background-clip: padding-box; }
 ::-webkit-scrollbar-thumb:hover { background-color: rgba(255, 255, 255, 0.24); }
+
+/* ===== Reloaded: tryb Dyplomacja - przełącznik trybu w menu, opcje kontynentu, panel dyplomacji w grze ===== */
+#pane-play[data-mode="diplomacy"] .classic-only, #pane-play[data-mode="classic"] .diplo-only { display: none !important; }
+#pane-play[data-mode="diplomacy"] .map-world .corner { display: none; }
+.mode-switch { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: 18px; background: var(--fill-3); box-shadow: inset 0 0 0 1px var(--hair); }
+.mode-switch button {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 9px 12px; border: 0; border-radius: 14px; cursor: pointer;
+    background: transparent; color: var(--label-2); font-family: var(--ui); text-align: left; transition: background 0.2s var(--ease), color 0.2s var(--ease);
+}
+.mode-switch button b { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; }
+.mode-switch button small { font-size: 11.5px; color: var(--label-3); }
+.mode-switch button:hover { color: var(--label); background: rgba(255, 255, 255, 0.04); }
+.mode-switch button.on { color: var(--accent-ink); background: linear-gradient(180deg, #f7d58a, var(--accent)); box-shadow: 0 6px 18px rgba(241, 197, 106, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+.mode-switch button.on small { color: rgba(36, 24, 3, 0.7); }
+.mode-switch button .main-tag { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 6px; font-size: 9.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: 2px; background: rgba(36, 24, 3, 0.16); }
+.mode-switch button:not(.on) .main-tag { background: var(--fill); color: var(--label-2); }
+.radio-group.c6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.dp-pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
+.dp-pill.war { background: rgba(255, 90, 77, 0.2); color: #ff8f85; box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.45); }
+.dp-pill.peace { background: rgba(235, 237, 245, 0.1); color: var(--label-2); box-shadow: inset 0 0 0 1px var(--hair-2); }
+.dp-pill.ally { background: rgba(50, 209, 93, 0.18); color: #7fe39a; box-shadow: inset 0 0 0 1px rgba(50, 209, 93, 0.45); }
+.dp-op { display: inline-block; width: 46px; height: 5px; border-radius: 3px; background: var(--fill); position: relative; overflow: hidden; vertical-align: middle; }
+.dp-op i { position: absolute; top: 0; bottom: 0; left: 50%; }
+.dp-act { display: inline-flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.dp-act button { padding: 4px 9px; border-radius: 8px; border: 0; cursor: pointer; font: 600 11.5px var(--ui); color: var(--label); background: var(--fill); }
+.dp-act button:hover:not(:disabled) { background: rgba(255, 255, 255, 0.16); }
+.dp-act button.war { background: rgba(255, 90, 77, 0.24); color: #ffb0a8; }
+.dp-act button.ok { background: rgba(50, 209, 93, 0.22); color: #9df0b2; }
+.dp-act button:disabled { opacity: 0.4; cursor: default; }
+.dp-props { margin: 10px 0 2px; display: flex; flex-direction: column; gap: 6px; }
+.dp-prop { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 12px; background: rgba(241, 197, 106, 0.12); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.35); font-size: 12.5px; }
+.dp-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 0 0 8px; }
+.dp-head b { font-size: 14px; }
+.dp-head small { color: var(--label-3); font-size: 11.5px; }
+.dp-badge { display: inline-block; min-width: 16px; height: 16px; margin-left: 5px; padding: 0 4px; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font: 800 10.5px/16px var(--ui); font-style: normal; text-align: center; }
+#nations-panel.diplo td { vertical-align: middle; }
+.dp-log { margin-top: 8px; font-size: 11.5px; color: var(--label-3); line-height: 1.5; }
+#nations-panel.diplo { pointer-events: auto; }
 </style>
 </head>
 <body>
@@ -1181,8 +1219,12 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <h1 class="game-title"><span>Artificial</span> <span>Battles</span></h1>
                             </div>
                             <div class="battle-card">
+                                <div class="mode-switch" id="mode-switch" role="tablist" aria-label="Tryb gry">
+                                    <button type="button" role="tab" data-mode="diplomacy" title="Tryb główny: kontynent 5× większy niż mapa Gigantyczna, rzeki, do 8 nacji i relacje, które zmieniają się w trakcie gry"><b>Dyplomacja<span class="main-tag">główny</span></b><small>Kontynent · rzeki · do 8 nacji</small></button>
+                                    <button type="button" role="tab" data-mode="classic" title="Klasyczny mecz: stałe drużyny, cztery rogi mapy, mapy od Małej do Gigantycznej"><b>Klasyczny mecz</b><small>Stałe drużyny · 4 rogi</small></button>
+                                </div>
                                 <div class="bc-head">
-                                    <div><div class="eyebrow">Bitwa z AI</div><h2>Nowa bitwa</h2></div>
+                                    <div><div class="eyebrow" id="bc-eyebrow">Bitwa z AI</div><h2 id="bc-title">Nowa bitwa</h2></div>
                                     <div class="sum-teams" id="sum-teams"></div>
                                 </div>
                                 <div class="map-frame" id="map-frame" title="Kliknij róg mapy, by wybrać pozycję startową">
@@ -1196,7 +1238,8 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 </div>
                                 <div class="map-caption">
                                     <div><b id="map-chip-land"></b><small id="map-chip-size"></small></div>
-                                    <button type="button" class="map-chip" data-corner="random" title="Ratusz stanie w losowym rogu mapy">Losowy róg</button>
+                                    <button type="button" class="map-chip classic-only" data-corner="random" title="Ratusz stanie w losowym rogu mapy">Losowy róg</button>
+                                    <button type="button" class="map-chip diplo-only" id="reroll-btn" title="Wylosuj inny kontynent — podgląd pokazuje dokładnie ten świat, który powstanie w grze">Nowy świat</button>
                                 </div>
                                 <dl class="spec" id="match-summary"></dl>
                                 <div class="stage-actions">
@@ -1211,17 +1254,41 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <article class="cfg">
                                 <header class="cfg-head">
                                     <span class="cfg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 22V3"/><path d="M5 4h12l-2.5 4.5L17 13H5"/></svg></span>
-                                    <h2>Nacje i drużyny</h2>
+                                    <h2><span class="classic-only">Nacje i drużyny</span><span class="diplo-only">Nacje na kontynencie</span></h2>
                                 </header>
                                 <div id="nation-rows" class="nation-list"></div>
-                                <div class="preset-row">
+                                <div class="cfg-group diplo-only" id="diplo-nations">
+                                    <div class="cfg-row">
+                                        <div class="cfg-label"><b>Rywale SI</b><small>Ile nacji SI dzieli z tobą kontynent</small></div>
+                                        <div class="radio-group c6">
+                                            <input type="radio" name="dnat" id="dn-2" value="2"><label for="dn-2">2</label>
+                                            <input type="radio" name="dnat" id="dn-3" value="3"><label for="dn-3">3</label>
+                                            <input type="radio" name="dnat" id="dn-4" value="4"><label for="dn-4">4</label>
+                                            <input type="radio" name="dnat" id="dn-5" value="5" checked><label for="dn-5">5</label>
+                                            <input type="radio" name="dnat" id="dn-6" value="6"><label for="dn-6">6</label>
+                                            <input type="radio" name="dnat" id="dn-7" value="7"><label for="dn-7">7</label>
+                                        </div>
+                                    </div>
+                                    <div class="cfg-row">
+                                        <div class="cfg-label"><b>Poziom SI</b><small>Dyplomata SI ma też własny charakter</small></div>
+                                        <div class="radio-group c5">
+                                            <input type="radio" name="dai" id="da-0" value="easy"><label for="da-0">Łatwy</label>
+                                            <input type="radio" name="dai" id="da-1" value="medium" checked><label for="da-1">Średni</label>
+                                            <input type="radio" name="dai" id="da-2" value="hard"><label for="da-2">Trudny</label>
+                                            <input type="radio" name="dai" id="da-3" value="brutal"><label for="da-3" title="Skandaliczny">Skand.</label>
+                                            <input type="radio" name="dai" id="da-4" value="mixed"><label for="da-4" title="Każda nacja SI dostaje inny poziom">Mieszany</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="cfg-foot diplo-only">W Dyplomacji nie ma stałych drużyn: wszyscy zaczynają w <b>pokoju</b>, a w trakcie gry nacje <b>wypowiadają wojny</b>, proszą o pokój i zawierają <b>sojusze</b> (wspólne pole widzenia i wspólne zwycięstwo). SI kieruje się siłą, sąsiedztwem i pamięcią — pamięta zdrady. Relacje i propozycje: klawisz <b>Tab</b> w grze. Start losuje się spośród miejsc zaznaczonych na podglądzie.</p>
+                                <div class="preset-row classic-only">
                                     <span class="opt-label">Szybki układ</span>
                                     <button class="mini-btn" data-preset="ffa" title="Każda nacja w osobnej drużynie">Każdy na każdego</button>
                                     <button class="mini-btn" data-preset="2v2" title="Ty i AI 1 przeciw AI 2 i AI 3">2 na 2</button>
                                     <button class="mini-btn" data-preset="1v3" title="Wszystkie AI w jednej drużynie przeciw tobie">Ty kontra reszta</button>
                                     <button class="mini-btn" data-preset="3v1" title="Ty i dwa AI przeciw jednemu">Trzech na jednego</button>
                                 </div>
-                                <p class="cfg-foot">Nacje z tym samym numerem drużyny są <b>sojusznikami</b>: dzielą pole widzenia, wspólnie wygrywają i przechodzą przez swoje bramy. Róg startowy wybierasz na podglądzie mapy — sojusznicy zaczynają w sąsiednich rogach. Obowiązuje także w samouczku.</p>
+                                <p class="cfg-foot classic-only">Nacje z tym samym numerem drużyny są <b>sojusznikami</b>: dzielą pole widzenia, wspólnie wygrywają i przechodzą przez swoje bramy. Róg startowy wybierasz na podglądzie mapy — sojusznicy zaczynają w sąsiednich rogach. Obowiązuje także w samouczku.</p>
                             </article>
 
                             <article class="cfg">
@@ -1230,7 +1297,24 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                     <h2>Świat</h2>
                                 </header>
                                 <div class="cfg-group">
-                                    <div class="cfg-row">
+                                    <div class="cfg-row diplo-only">
+                                        <div class="cfg-label"><b>Rzeki</b><small>Rzeki dzielą kontynent — wojsko przechodzi brodami</small></div>
+                                        <div class="radio-group c3">
+                                            <input type="radio" name="rivers" id="rv-0" value="few"><label for="rv-0">Mało</label>
+                                            <input type="radio" name="rivers" id="rv-1" value="normal" checked><label for="rv-1">Średnio</label>
+                                            <input type="radio" name="rivers" id="rv-2" value="many"><label for="rv-2">Dużo</label>
+                                        </div>
+                                    </div>
+                                    <div class="cfg-row diplo-only">
+                                        <div class="cfg-label"><b>Rozejm na start</b><small>Przez ten czas nikt nie może wypowiedzieć wojny</small></div>
+                                        <div class="radio-group c4">
+                                            <input type="radio" name="truce" id="tr-0" value="0"><label for="tr-0">Brak</label>
+                                            <input type="radio" name="truce" id="tr-1" value="180"><label for="tr-1">3 min</label>
+                                            <input type="radio" name="truce" id="tr-2" value="300" checked><label for="tr-2">5 min</label>
+                                            <input type="radio" name="truce" id="tr-3" value="600"><label for="tr-3">10 min</label>
+                                        </div>
+                                    </div>
+                                    <div class="cfg-row classic-only">
                                         <div class="cfg-label"><b>Rozmiar mapy</b><small>Większa mapa — dłuższe marsze</small></div>
                                         <div class="radio-group c4">
                                             <input type="radio" name="mapsize" id="ms-0" value="2400"><label for="ms-0">Mała</label>
@@ -1239,7 +1323,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                             <input type="radio" name="mapsize" id="ms-3" value="5100"><label for="ms-3" title="Najwięcej miejsca: długie marsze, wiele frontów. Świat generuje się dłużej i zajmuje więcej pamięci.">Gigantyczna</label>
                                         </div>
                                     </div>
-                                    <div class="cfg-row">
+                                    <div class="cfg-row classic-only">
                                         <div class="cfg-label"><b>Ukształtowanie</b><small>Woda i góry na mapie</small></div>
                                         <div class="radio-group c5">
                                             <input type="radio" name="maptype" id="mt-0" value="random" checked><label for="mt-0">Losowe</label>
@@ -1353,7 +1437,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <div><dt><kbd>,</kbd></dt><dd>Całe wojsko lądowe (bez króla)</dd></div>
                                 <div><dt><kbd>;</kbd></dt><dd>Król (tryb Królowie; 2× — pokaż go)</dd></div>
                                 <div><dt><kbd>Spacja</kbd></dt><dd>Skocz do ostatniego alarmu lub Ratusza</dd></div>
-                                <div><dt><kbd>Tab</kbd></dt><dd>Tabela nacji i drużyn</dd></div>
+                                <div><dt><kbd>Tab</kbd></dt><dd>Tabela nacji i drużyn; w Dyplomacji — panel Dyplomacji</dd></div>
                                 <div><dt><kbd>Esc</kbd></dt><dd>Anuluj lub pauza (po bitwie: wyniki i menu)</dd></div>
                                 <div><dt><kbd>P</kbd></dt><dd>Pauza i wznowienie</dd></div>
                                 <div><dt><kbd>M</kbd></dt><dd>Wycisz dźwięk</dd></div>
@@ -1367,6 +1451,30 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 <div class="menu-pane" id="pane-news" style="display:none">
                     <div class="news-wrap">
                     <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
+                    <div class="menu-card news-new">
+                        <div class="eyebrow">Nowy tryb główny · wczesna wersja</div>
+                        <h2>Dyplomacja — kontynent, rzeki i relacje, które zmieniają się w trakcie gry</h2>
+                        <p><b>Dyplomacja to od teraz główny tryb gry</b>, zupełnie osobny od Klasycznego meczu (ten został w menu jako druga opcja — działa dokładnie tak jak dotąd). To pierwsza odsłona: fundamenty pod dalszy rozwój trybu.</p>
+                        <ul>
+                            <li><b>Kontynent</b>: mapa 11 400 × 11 400 kroków — ok. <b>5 razy większa powierzchnia niż mapa Gigantyczna</b>. Na kontynencie mieści się do <b>8 nacji</b> (ty i do 7 nacji SI); miejsca startowe są rozłożone możliwie równo po całym lądzie.</li>
+                            <li><b>Rzeki</b>: zaczynają się u stóp gór albo w głębi lądu, meandrują, łączą się w dopływy i płyną do jezior albo za krawędź mapy. Z biegiem rzeki koryto się poszerza. Co mniej więcej 1–1,5 tys. kroków jest <b>bród</b> — płycizna z żwirowym przejściem, którędy przejdzie wojsko. Okręty pływają rzekami, w szerszych odcinkach są ryby. Ile rzek — wybierasz w karcie Świat.</li>
+                            <li><b>Bardziej szczegółowy świat</b>: pasma górskie z przełęczami zamiast pojedynczych gór, wielkie jeziora i pojezierza, puszcze z prześwitami, złoto i kamień częściej u podnóża gór.</li>
+                            <li><b>Relacje zamiast stałych drużyn</b>: wszyscy zaczynają w <b>pokoju</b>, a przez pierwsze minuty obowiązuje <b>rozejm</b> (do wyboru: brak, 3, 5 albo 10 minut). Potem nacje <b>wypowiadają wojny</b>, proszą o <b>pokój</b> i zawierają <b>sojusze</b>. W pokoju wojsko i wieże nie strzelają do siebie; sojusznicy dzielą pole widzenia. Zerwanie sojuszu albo atak na sojusznika (zdrada) inni zapamiętują.</li>
+                            <li><b>Panel Dyplomacji</b> (<kbd>Tab</kbd> albo przycisk w górnym pasku): relacja z każdą nacją, jej opinia o tobie, siła w porównaniu z twoją, przyciski Wojna / Zaproponuj pokój / Sojusz / Zerwij sojusz, propozycje czekające na odpowiedź i kronika wydarzeń.</li>
+                            <li><b>Nowa SI — dyplomata</b>: osobna warstwa SI, która decyduje, z kim walczyć i z kim trzymać. Ocenia siłę (wojsko, wieże, era), sąsiedztwo i to, co pamięta o każdej nacji; wypowiada wojnę słabszym sąsiadom, prosi o pokój, gdy przegrywa albo walczy na kilku frontach, szuka sojuszników przeciw wspólnemu wrogowi i przeciw rosnącej potędze, staje w obronie sojusznika. Na twoje propozycje odpowiada z uzasadnieniem. Śmiałość zależy od charakteru i poziomu SI.</li>
+                            <li><b>Zwycięstwo</b>: podbój (zostaje jedna nacja) albo <b>sojusz</b> — gdy wszyscy, którzy jeszcze grają, są ze sobą w sojuszu (i ktoś już odpadł). Cud Świata i Królowie działają jak dotąd; zwycięstwo Cudem dzielą sojusznicy budowniczego.</li>
+                            <li><b>Gra wieloosobowa</b>: host wybiera tryb w poczekalni. W Dyplomacji nie ma drużyn — każde z czterech miejsc to osobna nacja, a goście wypowiadają wojny i zawierają sojusze w trakcie gry, tak jak w grze solo.</li>
+                            <li><b>Podgląd kontynentu</b> w menu pokazuje dokładnie ten świat, który powstanie w grze (rzeki, góry, jeziora i miejsca startowe); <b>Nowy świat</b> losuje inny.</li>
+                        </ul>
+                        <h3>Silnik Raptor — nowy zestaw funkcji dla wielkich map</h3>
+                        <ul>
+                            <li><b>Raptor Atlas</b> — generator kontynentów: pasma gór, jeziora, rzeki z dopływami i brodami, rozmieszczenie wielu nacji i regionalne surowce. Układ wynika z ziarna, więc podgląd i gra (także u gości) pokazują ten sam świat.</li>
+                            <li><b>Strumieniowanie terenu</b>: na kontynencie teren nie jest malowany cały przy starcie (to byłoby ok. 650 MB obrazu). Gotowa jest okolica startu, resztę wątki robocze domalowują tam, gdzie patrzy kamera, a dawno niewidziane kawałki są zwalniane z pamięci. Zanim fragment będzie gotowy, w jego miejscu leży przeskalowany podgląd mapy. Wątki dostają tylko wycinki pól terenu, a nie całe pola.</li>
+                            <li><b>Indeks wody i gór</b>: zapytania „czy tu jest woda / góra” korzystają z kubełków przestrzennych zamiast przeglądać wszystkie jeziora i góry — wyniki są identyczne, a na mapach z rzekami to warunek płynnej gry. Szybciej działa też rozmieszczanie surowców na wielkich mapach.</li>
+                            <li><b>Pozycje w grze wieloosobowej</b> na mapach powyżej 8191 kroków są kodowane z dokładnością 1/4 kroku (dotąd 1/8 — kontynent by się nie zmieścił). Protokół sieciowy ma nowy numer: wszyscy gracze muszą mieć to wydanie.</li>
+                        </ul>
+                        <p class="menu-note">Wczesna wersja trybu: dalej planujemy m.in. więcej miejsc w grze wieloosobowej, mosty, kilka krain na jednym kontynencie, rozbudowę osad przez SI (drugie ratusze) i handel między nacjami w pokoju.</p>
+                    </div>
                     <div class="menu-card news-new">
                         <div class="eyebrow">Nowa odsłona</div>
                         <h2>Reloaded V1.0 — nowe menu i nowy wygląd</h2>
@@ -2127,27 +2235,19 @@ function wallAnchors(game, x, y, deep = 2) {
     if (x >= game.mapWidth - WALL_REACH) out.push({ x: game.mapWidth, y });
     if (y <= WALL_REACH) out.push({ x, y: 0 });
     if (y >= game.mapHeight - WALL_REACH) out.push({ x, y: game.mapHeight });
-    for (const m of (game.mountains || [])) {
-        for (const blob of (m.blobs || [{ dx: 0, dy: 0, r: m.r }])) {
-            const mx = m.x + blob.dx, my = m.y + blob.dy;
-            const dist = Math.hypot(mx - x, my - y);
-            if (dist > WALL_REACH + blob.r) continue;
-            const a = Math.atan2(y - my, x - mx), r = Math.max(0, blob.r - deep);
-            out.push({ x: mx + Math.cos(a) * r, y: my + Math.sin(a) * r });
-        }
-    }
+    // Raptor: plamy z indeksu terenu (na kontynencie z rzekami pętla po wszystkich plamach kosztowała za dużo)
+    game.forBlobsNear(1, x, y, WALL_REACH, (mx, my, br) => {
+        const a = Math.atan2(y - my, x - mx), r = Math.max(0, br - deep);
+        out.push({ x: mx + Math.cos(a) * r, y: my + Math.sin(a) * r });
+    });
     // brzeg jeziora: mur schodzi do samej wody (płytko - żeby nie zagradzać okrętom przybrzeżnego pasa)
-    for (const m of (game.lakes || [])) {
-        for (const blob of (m.blobs || [{ dx: 0, dy: 0, r: m.r }])) {
-            const mx = m.x + blob.dx, my = m.y + blob.dy;
-            if (Math.hypot(mx - x, my - y) > WALL_REACH + blob.r) continue;
-            const a = Math.atan2(y - my, x - mx), r = Math.max(0, blob.r - 2);
-            const ax = mx + Math.cos(a) * r, ay = my + Math.sin(a) * r;
-            // tylko gdy droga do wody nie prowadzi przez inny kawałek tego samego jeziora (zatoka za słupem)
-            if (game.isWater((x + ax) / 2, (y + ay) / 2) && Math.hypot(ax - x, ay - y) > 24) continue;
-            out.push({ x: ax, y: ay });
-        }
-    }
+    game.forBlobsNear(0, x, y, WALL_REACH, (mx, my, br) => {
+        const a = Math.atan2(y - my, x - mx), r = Math.max(0, br - 2);
+        const ax = mx + Math.cos(a) * r, ay = my + Math.sin(a) * r;
+        // tylko gdy droga do wody nie prowadzi przez inny kawałek tego samego jeziora (zatoka za słupem)
+        if (game.isWater((x + ax) / 2, (y + ay) / 2) && Math.hypot(ax - x, ay - y) > 24) return;
+        out.push({ x: ax, y: ay });
+    });
     return out;
 }
 function unitName(t) { const c = GameConfig.units[t]; return c ? c.name : t; }
@@ -2295,6 +2395,7 @@ class SpatialGrid {
         if (startCol < 0) startCol = 0; if (endCol > cols - 1) endCol = cols - 1;
         if (startRow < 0) startRow = 0; if (endRow > this.rows - 1) endRow = this.rows - 1;
         const rSq = radius * radius;
+        const H = this.hostile, hrow = (team & 15) * 16;   // Dyplomacja: tylko drużyny, z którymi jest wojna
         for (let col = startCol; col <= endCol; col++) {
             for (let row = startRow; row <= endRow; row++) {
                 const c = cells[col + row * cols];
@@ -2302,7 +2403,7 @@ class SpatialGrid {
                 const T = c[3];
                 for (let k = 0; k < T.length; k++) {
                     const list = T[k];
-                    if (k === team || !list) continue;
+                    if (k === team || !list || (H && H[hrow + (k & 15)] !== 1)) continue;
                     for (let i = 0; i < list.length; i++) {
                         const entity = list[i];
                         const dx = entity.x - x, dy = entity.y - y;
@@ -2325,14 +2426,24 @@ class Game {
         const ownerA = entityA.owner || entityA;
         const ownerB = entityB.owner || entityB;
         if (!ownerA || !ownerB) return false; // neutral isn't enemy
-        return ownerA.team !== ownerB.team;
+        return this.hostileTeams(ownerA.team, ownerB.team);
+    }
+    // Reloaded: wrogość drużyn - w Klasycznym meczu każda inna drużyna, w Dyplomacji tylko ta, z którą jest wojna
+    hostileTeams(ta, tb) {
+        if (ta === tb) return false;
+        const D = this.diplo;
+        return !D || D.mask[(ta & 15) * 16 + (tb & 15)] === 1;
+    }
+    alliedTeams(ta, tb) {
+        const D = this.diplo;
+        return !!D && ta !== tb && D.allyMask[(ta & 15) * 16 + (tb & 15)] === 1;
     }
     isAlly(entityA, entityB) {
         if (!entityA || !entityB) return false;
         const ownerA = entityA.owner || entityA;
         const ownerB = entityB.owner || entityB;
         if (!ownerA || !ownerB) return false; // neutral isn't ally
-        return ownerA.team === ownerB.team && ownerA !== ownerB;
+        return ownerA !== ownerB && (ownerA.team === ownerB.team || this.alliedTeams(ownerA.team, ownerB.team));
     }
 
     constructor(options = {}) {
@@ -2374,6 +2485,7 @@ class Game {
         // Mapa i Kamera
         this.mapWidth = options.mapSize || 3000;
         this.mapHeight = options.mapSize || 3000;
+        if (typeof NetCodec !== 'undefined') NetCodec.setMapSize(this.mapWidth);   // skala pozycji w paczkach stanu (kontynent > 8191 px)
         this.camera = { x: 0, y: 0 };
         this.camPad = options.camPad !== undefined ? options.camPad : GameConfig.cameraPad;   // zapas kamery poza mapą
         this.keys = {};
@@ -2550,6 +2662,17 @@ class Game {
     }
 
     addResourceNode(node, minDist = 15) {
+        if (this.resourceNodes.length > 600 && this.spatialGrid) {
+            // Raptor (kontynent): tysiące złóż - sąsiedzi z siatki przestrzennej zamiast pętli po wszystkich
+            const near = this.spatialGrid.queryArea(node.x, node.y, minDist, this._nodeQ || (this._nodeQ = []));
+            for (let i = 0; i < near.length; i++) {
+                const r = near[i];
+                if (r instanceof ResourceNode && Math.hypot(node.x - r.x, node.y - r.y) < minDist) return false;
+            }
+            this.resourceNodes.push(node);
+            this.addEntity(node);
+            return true;
+        }
         for (let r of this.resourceNodes) {
             if (Math.hypot(node.x - r.x, node.y - r.y) < minDist) {
                 return false;
@@ -3073,6 +3196,7 @@ class Game {
         }
 
         for (const nation of this.nations) nation.update(deltaTime);
+        if (this.diplo) this.diplo.update(deltaTime);
 
         const ents = this.entities;
         for (let i = 0; i < ents.length; i++) { const e = ents[i]; if (!e._static) e.update(deltaTime); }   // drzewa i złoża nie mają czego liczyć
@@ -3156,7 +3280,11 @@ class Game {
         // V3.5 Newest Final: Cud Świata, który przetrwał odliczanie, daje zwycięstwo drużynie budowniczego
         if (this.checkWonders()) return;
 
-        if (activeTeams.size <= 1 && new Set(this.nations.map(n => n.team)).size > 1) {
+        if (this.diplo) {
+            // Dyplomacja: wygrywa ostatnia nacja na placu boju albo sojusz, w którym są wszyscy, którzy jeszcze grają
+            const win = activeNations.length <= 1 ? activeNations : this.diplo.allianceVictory(activeNations);
+            if (win && this.nations.length > 1) { this.endGame(win.length ? win[0].team : null, false, win); return; }
+        } else if (activeTeams.size <= 1 && new Set(this.nations.map(n => n.team)).size > 1) {
             const winnerTeam = activeTeams.size === 1 ? [...activeTeams][0] : null;
             this.endGame(winnerTeam, false);
             return;
@@ -3185,16 +3313,19 @@ class Game {
 
     // Wynik meczu z punktu widzenia drużyny (każdy klient liczy go dla swojej)
     resultFor(team) {
+        if (this.winnerTeams) return this.winnerTeams.has(team) ? 'victory' : 'defeat';
         if (this.winnerTeam === null || this.winnerTeam === undefined) return 'draw';
         return this.winnerTeam === team ? 'victory' : 'defeat';
     }
 
-    endGame(winnerTeam, byPoints) {
+    // winners: lista zwycięskich nacji (Dyplomacja: sojusz), domyślnie cała drużyna winnerTeam
+    endGame(winnerTeam, byPoints, winners) {
         if (this.gameOver) return;
         this.gameOver = true;
         this.winnerTeam = winnerTeam;
+        this.winnerTeams = winners && winners.length ? new Set(winners.map(n => n.team)) : null;
         this.byPoints = !!byPoints;
-        this.winnerNames = this.nations.filter(n => n.team === winnerTeam).map(n => n.name).join(', ');
+        this.winnerNames = (winners && winners.length ? winners : this.nations.filter(n => n.team === winnerTeam)).map(n => n.name).join(', ');
         this.result = this.resultFor(this.playerTeam);
         if (this.relay) this.relay.onGameOver();   // goście dostają wynik i statystyki, zanim u hosta odsłoni się mapa
         this.observeAll = true;
@@ -3247,11 +3378,11 @@ class Game {
             const vis = tv.vis, exp = tv.exp;
             // V3.5 Final: Wszech-wzrok któregokolwiek członka drużyny odsłania całą mapę
             let omni = false;
-            for (const nation of this.nations) if (nation.team === team && nation.omni && !nation.defeated) { omni = true; break; }
+            for (const nation of this.nations) if ((nation.team === team || this.alliedTeams(nation.team, team)) && nation.omni && !nation.defeated) { omni = true; break; }
             if (omni) { vis.fill(1); exp.fill(1); continue; }
             vis.fill(0);
             for (const nation of this.nations) {
-                if (nation.team !== team) continue;
+                if (nation.team !== team && !this.alliedTeams(nation.team, team)) continue;   // Dyplomacja: sojusznicy dzielą pole widzenia
                 for (const u of nation.units) {
                     if (u.isDestroyed) continue;
                     this.markCircle(vis, null, u.x, u.y, u.vision || 300);
@@ -3466,37 +3597,85 @@ class Game {
         return entity.buildProgress !== undefined && entity.seenByPlayer && this.isExplored(entity.x, entity.y);
     }
 
-    isWater(x, y) {
-        if (!this.lakes) return false;
-        for (const lake of this.lakes) {
-            if (lake.blobs) {
-                for (const blob of lake.blobs) {
-                    const dx = (lake.x + blob.dx) - x, dy = (lake.y + blob.dy) - y;
-                    const r = blob.r + 2;
-                    if (dx * dx + dy * dy <= r * r) return true;
-                }
-            } else {
-                if (Math.hypot(lake.x - x, lake.y - y) <= lake.r + 2) return true;
-            }
+    // Raptor (Dyplomacja): indeks przestrzenny plam wody i gór. Dawniej każde zapytanie przechodziło przez wszystkie
+    // plamy wszystkich jezior i gór - na kontynencie z rzekami to tysiące plam, a siatka ścieżek pyta pięć razy na
+    // komórkę. Plamy trafiają do kubełków 128 px (format CSR: przesunięcia + indeksy), test odległości jest ten sam
+    // co wcześniej (r + 2 dla wody, r + 4 dla gór). Indeks odbudowuje się sam, gdy lista jezior / gór się zmieni
+    // (generator dopisuje je po kolei i w międzyczasie pyta o wodę).
+    terrainIndex(kind) {
+        const list = kind === 0 ? this.lakes : this.mountains;
+        if (!list || !list.length) return null;
+        const all = this._tix || (this._tix = [null, null]);
+        let I = all[kind];
+        if (I && I.src === list && I.n === list.length) return I;
+        const pad = kind === 0 ? 2 : 4, CS = 128;
+        const cols = Math.max(1, Math.ceil(this.mapWidth / CS)), rows = Math.max(1, Math.ceil(this.mapHeight / CS));
+        const cx = [], cy = [], rr = [], r2 = [];
+        for (const m of list) {
+            if (m.blobs) for (const b of m.blobs) { cx.push(m.x + b.dx); cy.push(m.y + b.dy); rr.push(b.r); r2.push((b.r + pad) * (b.r + pad)); }
+            else { cx.push(m.x); cy.push(m.y); rr.push(m.r); r2.push((m.r + pad) * (m.r + pad)); }
+        }
+        const nb = cx.length, cnt = new Int32Array(cols * rows + 1);
+        const span = (j, f) => {
+            const R = rr[j] + pad;
+            const c0 = clamp(Math.floor((cx[j] - R) / CS), 0, cols - 1), c1 = clamp(Math.floor((cx[j] + R) / CS), 0, cols - 1);
+            const q0 = clamp(Math.floor((cy[j] - R) / CS), 0, rows - 1), q1 = clamp(Math.floor((cy[j] + R) / CS), 0, rows - 1);
+            for (let q = q0; q <= q1; q++) for (let c = c0; c <= c1; c++) f(q * cols + c);
+        };
+        for (let j = 0; j < nb; j++) span(j, (k) => cnt[k + 1]++);
+        for (let k = 0; k < cols * rows; k++) cnt[k + 1] += cnt[k];
+        const fill = cnt.slice(0, cols * rows), ent = new Int32Array(cnt[cols * rows]);
+        for (let j = 0; j < nb; j++) span(j, (k) => { ent[fill[k]++] = j; });
+        I = all[kind] = {
+            src: list, n: list.length, CS, cols, rows, off: cnt, ent,
+            cx: Float64Array.from(cx), cy: Float64Array.from(cy), r: Float64Array.from(rr), r2: Float64Array.from(r2),
+            mark: new Uint32Array(nb), stamp: 0
+        };
+        return I;
+    }
+
+    _inBlobs(kind, x, y) {
+        const I = this.terrainIndex(kind);
+        if (!I) return false;
+        let c = Math.floor(x / I.CS), q = Math.floor(y / I.CS);
+        if (c < 0) c = 0; else if (c >= I.cols) c = I.cols - 1;
+        if (q < 0) q = 0; else if (q >= I.rows) q = I.rows - 1;
+        const k = q * I.cols + c, ent = I.ent, X = I.cx, Y = I.cy, R2 = I.r2;
+        for (let i = I.off[k], e = I.off[k + 1]; i < e; i++) {
+            const j = ent[i], dx = X[j] - x, dy = Y[j] - y;
+            if (dx * dx + dy * dy <= R2[j]) return true;
         }
         return false;
     }
 
-    isMountain(x, y) {
-        if (!this.mountains) return false;
-        for (const mountain of this.mountains) {
-            if (mountain.blobs) {
-                for (const blob of mountain.blobs) {
-                    const dx = (mountain.x + blob.dx) - x, dy = (mountain.y + blob.dy) - y;
-                    const r = blob.r + 4;
-                    if (dx * dx + dy * dy <= r * r) return true;
-                }
-            } else {
-                if (Math.hypot(mountain.x - x, mountain.y - y) <= mountain.r + 4) return true;
+    // Plamy (kind: 0 woda, 1 góry), których środek leży bliżej niż reach + r od punktu: fn(mx, my, r) - każda raz
+    forBlobsNear(kind, x, y, reach, fn) {
+        const I = this.terrainIndex(kind);
+        if (!I) return;
+        let maxR = 0;
+        if (I.maxR === undefined) { for (let j = 0; j < I.r.length; j++) if (I.r[j] > maxR) maxR = I.r[j]; I.maxR = maxR; }
+        const R = reach + I.maxR + 4, CS = I.CS;
+        const c0 = clamp(Math.floor((x - R) / CS), 0, I.cols - 1), c1 = clamp(Math.floor((x + R) / CS), 0, I.cols - 1);
+        const q0 = clamp(Math.floor((y - R) / CS), 0, I.rows - 1), q1 = clamp(Math.floor((y + R) / CS), 0, I.rows - 1);
+        const st = ++I.stamp;
+        if (st >= 0xFFFFFFF0) { I.mark.fill(0); I.stamp = 1; }
+        const found = [];
+        for (let q = q0; q <= q1; q++) for (let c = c0; c <= c1; c++) {
+            const k = q * I.cols + c;
+            for (let i = I.off[k], e = I.off[k + 1]; i < e; i++) {
+                const j = I.ent[i];
+                if (I.mark[j] === I.stamp) continue;
+                I.mark[j] = I.stamp;
+                if (Math.hypot(I.cx[j] - x, I.cy[j] - y) <= reach + I.r[j]) found.push(j);
             }
         }
-        return false;
+        found.sort((a, b) => a - b);   // kolejność jak dawniej: jeziora / góry i ich plamy po kolei
+        for (const j of found) fn(I.cx[j], I.cy[j], I.r[j]);
     }
+
+    isWater(x, y) { return this._inBlobs(0, x, y); }
+
+    isMountain(x, y) { return this._inBlobs(1, x, y); }
 
     // ---------------- Rysowanie ----------------
 
@@ -5471,7 +5650,7 @@ Game.prototype.checkWonders = function () {
     }
     if (!best) return false;
     this.byWonder = best.owner.shortName || best.owner.name;
-    this.endGame(best.owner.team, false);
+    this.endGame(best.owner.team, false, this.diplo ? this.nations.filter(n => n === best.owner || this.diplo.allied(n, best.owner)) : null);
     return true;
 };
 
@@ -5764,6 +5943,13 @@ Game.prototype.applyCommand = function (nation, cmd) {
             const k = this.kingOf(nation);
             if (!k) return OK;
             const err = this.royalCharge(k);
+            return err ? fail(err) : OK;
+        }
+
+        case 'diplo': {
+            // Reloaded: dyplomacja - wojna, propozycje pokoju i sojuszu, odpowiedzi na propozycje (game/Diplomacy.js)
+            if (!this.diplo) return OK;
+            const err = this.diplo.command(nation, cmd);
             return err ? fail(err) : OK;
         }
 
@@ -7927,6 +8113,28 @@ class UIManager {
             const w = this.game.wonderInfo().find(x => x.isConstructed && x.wonderUntil != null);
             if (w) this.game.centerOn(w.x, w.y);
         });
+        // Reloaded: w Dyplomacji tabela nacji jest panelem dyplomacji (relacje, propozycje, wypowiedzenie wojny)
+        if (this.game.diplo) {
+            const nb = this.el['nations-btn'];
+            if (nb) { nb.innerHTML = '⚖<span class="lbl"> Dyplomacja</span><i class="dp-badge" style="display:none"></i>'; nb.title = 'Dyplomacja: relacje z nacjami, propozycje pokoju i sojuszu (Tab)'; }
+            const np = this.el['nations-panel'];
+            if (np) {
+                np.classList.add('diplo');
+                // pointerdown, nie click: panel odświeża się co sekundę (odliczanie rozejmu) i klik mógłby trafić w podmieniony przycisk
+                np.addEventListener('pointerdown', (e) => {
+                    const b = e.target.closest ? e.target.closest('[data-dip]') : null;
+                    if (!b || b.disabled) return;
+                    e.preventDefault();
+                    if (b.dataset.dip === 'war' && !this._warArmed) { this._warArmed = b.dataset.to; this._nationsSig = ''; this.renderNations(); return; }
+                    const cmd = { t: 'diplo', act: b.dataset.dip };
+                    if (b.dataset.to !== undefined) cmd.to = Number(b.dataset.to);
+                    if (b.dataset.id !== undefined) cmd.id = Number(b.dataset.id);
+                    this._warArmed = null;
+                    this.game.issue(cmd);
+                    if (window.soundManager) window.soundManager.playKeypress();
+                });
+            }
+        }
     }
 
     setText(id, value) {
@@ -7951,6 +8159,7 @@ class UIManager {
         this.updateGraceBanner();
         this.updateWonderBanner();
         if (this.nationsOpen) this.renderNations();
+        if (g0.diplo) this.updateDiploBadge();
         this.setText('res-food', Math.floor(r.get('food')));
         this.setText('res-wood', Math.floor(r.get('wood')));
         this.setText('res-gold', Math.floor(r.get('gold')));
@@ -8033,6 +8242,7 @@ class UIManager {
     renderNations() {
         const el = this.el['nations-panel'];
         if (!el) return;
+        if (this.game.diplo) return this.renderDiplomacy();
         const g = this.game, me = this.playerNation;
         const full = !!(this.locked || g.gameOver);
         const ico = (k) => `<img src="${Icons.url(k, 12)}">`;
@@ -8054,6 +8264,69 @@ class UIManager {
             <th>${ico('food')}</th><th>${ico('wood')}</th><th>${ico('gold')}</th><th>${ico('stone')}</th><th>Wynik</th></tr></thead><tbody>${rows}</tbody></table>
             ${full ? '' : '<div class="np-hint">Szczegóły widać u sojuszników. Klawisz <b>Tab</b> zamyka tabelę.</div>'}`;
         if (html !== this._nationsSig) { this._nationsSig = html; el.innerHTML = html; }
+    }
+
+    // Reloaded: panel Dyplomacji (Tab) - relacja z każdą nacją, jej opinia o nas, siła w porównaniu z naszą,
+    // przyciski: wojna / pokój / sojusz / zerwanie sojuszu, propozycje czekające na odpowiedź i kronika zdarzeń.
+    renderDiplomacy() {
+        const el = this.el['nations-panel'];
+        const g = this.game, D = g.diplo, me = this.playerNation;
+        const full = !!(this.locked || g.gameOver);
+        const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const truce = D.truceUntil - g.time;
+        const mmss = (t) => Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+        const myS = g.isClient ? 0 : D.strength(me);
+        let props = '';
+        for (const p of D.proposals) {
+            if (p.to !== me || full) continue;
+            props += `<div class="dp-prop"><span><span class="dot" style="background:${p.from.color}"></span><b>${esc(D.name(p.from))}</b> proponuje ${p.kind === 'peace' ? 'pokój' : 'sojusz'} <small class="mut">· ${Math.max(0, Math.ceil(p.until - g.time))} s</small></span>
+                <span class="dp-act"><button class="ok" data-dip="accept" data-id="${p.id}">Przyjmij</button><button data-dip="decline" data-id="${p.id}">Odrzuć</button></span></div>`;
+        }
+        let rows = '';
+        for (const n of g.nations) {
+            if (n === me) continue;
+            const st = D.get(me, n), cls = ['war', 'peace', 'ally'][st];
+            const status = n.defeated ? '<span class="st-dead">pokonani</span>' : '';
+            const op = Math.round(D.op(n, me));
+            const opBar = `<span class="dp-op" title="Opinia tej nacji o tobie: ${op > 0 ? '+' : ''}${op}"><i style="${op >= 0 ? 'left:50%;width:' + (op / 2) + '%;background:#32d15d' : 'left:' + (50 + op / 2) + '%;width:' + (-op / 2) + '%;background:#ff5a4d'}"></i></span>`;
+            let str = '—';
+            if (!g.isClient && !n.defeated) {
+                const k = D.strength(n) / Math.max(1, myS);
+                str = k > 1.6 ? '<span style="color:#ff8f85">dużo silniejsi</span>' : k > 1.15 ? '<span style="color:#ffc58a">silniejsi</span>' : k > 0.87 ? 'podobna' : k > 0.6 ? '<span style="color:#b9e6a0">słabsi</span>' : '<span style="color:#7fe39a">dużo słabsi</span>';
+            }
+            let act = '';
+            if (!full && !n.defeated && !me.defeated) {
+                const idx = g.nations.indexOf(n);
+                const warErr = D.canDeclareWar(me, n);
+                const armed = this._warArmed === String(idx);
+                if (st === DIPLO.WAR) act = `<button data-dip="peace" data-to="${idx}">Zaproponuj pokój</button>`;
+                else {
+                    if (st === DIPLO.PEACE) act += `<button class="ok" data-dip="alliance" data-to="${idx}">Sojusz</button>`;
+                    else act += `<button data-dip="break" data-to="${idx}" title="Sojusz zostaje zerwany, ale pokój trwa dalej">Zerwij sojusz</button>`;
+                    act += `<button class="war" data-dip="war" data-to="${idx}"${warErr ? ' disabled' : ''} title="${esc(warErr || (st === DIPLO.ALLY ? 'Atak na sojusznika to zdrada — inne nacje to zapamiętają' : 'Wypowiedzenie wojny: jednostki i wieże zaczną walczyć'))}">${armed ? 'Na pewno? Kliknij' : 'Wojna'}</button>`;
+                }
+            }
+            rows += `<tr class="${n.defeated ? 'dead' : ''}"><td><span class="dot" style="background:${n.color}"></span>${esc(n.shortName || n.name)} ${status}</td>
+                <td><span class="dp-pill ${cls}">${DIPLO.NAMES[st]}</span></td><td>${!n.human || n.ai ? opBar : '<span class="mut">gracz</span>'}</td><td>${str}</td>
+                <td class="mut">${esc(n.controlLabel())}</td><td>${GameConfig.ages[n.age].roman}</td><td><b>${n.summary().score}</b></td><td><span class="dp-act">${act}</span></td></tr>`;
+        }
+        const nm = (i) => { const n = g.nations[i]; return n ? esc(n.shortName || n.name) : '?'; };
+        const KIND = { war: 'wypowiada wojnę', peace: 'zawiera pokój z', alliance: 'zawiera sojusz z', break: 'zrywa sojusz z' };
+        const log = D.history.slice(-5).reverse().map(h => `${mmss(h.t)} · ${nm(h.a)} ${KIND[h.kind] || h.kind}${h.kind === 'war' ? ' nacji' : ''} ${nm(h.b)}`).join('<br>');
+        const html = `<div class="dp-head"><b>Dyplomacja</b><small>${truce > 0 ? 'Rozejm: jeszcze ' + mmss(truce) + ' — nikt nie może wypowiedzieć wojny' : 'Wojny, pokoje i sojusze zmieniają się w trakcie gry'}${D.allianceWin ? ' · sojusz wszystkich, którzy przetrwali, wygrywa' : ''}</small></div>
+            ${props ? '<div class="dp-props">' + props + '</div>' : ''}
+            <table><thead><tr><th>Nacja</th><th>Relacja</th><th title="Co ta nacja myśli o tobie">Opinia</th><th title="Siła w porównaniu z twoją">Siła</th><th>Sterowanie</th><th>Era</th><th>Wynik</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+            ${log ? '<div class="dp-log">' + log + '</div>' : ''}`;
+        if (html !== this._nationsSig) { this._nationsSig = html; el.innerHTML = html; }
+    }
+
+    // znaczek na przycisku Dyplomacji: propozycje czekające na odpowiedź
+    updateDiploBadge() {
+        const D = this.game.diplo, nb = this.el['nations-btn'];
+        if (!D || !nb) return;
+        const k = D.proposals.filter(p => p.to === this.playerNation).length;
+        const b = nb.querySelector('.dp-badge');
+        if (b && b._k !== k) { b._k = k; b.textContent = k; b.style.display = k ? '' : 'none'; }
     }
 
     // ---------------- Zaznaczenie ----------------
@@ -9430,6 +9703,18 @@ class UIManager {
             }
         }
 
+        // Dyplomacja: PPM na nację, z którą jest pokój - zwykły marsz i podpowiedź, gdzie wypowiada się wojnę
+        const neutralOwner = g.diplo ? ((clickedBuilding && clickedBuilding.owner) || (clickedUnit && clickedUnit.owner)) : null;
+        if (neutralOwner && neutralOwner !== n && !isFriendly(neutralOwner) && !g.isEnemy(neutralOwner, n)) {
+            const now = performance.now();
+            if (!this._peaceHintAt || now - this._peaceHintAt > 6000) {
+                this._peaceHintAt = now;
+                this.showMessage(`Z nacją ${neutralOwner.shortName || neutralOwner.name} obowiązuje pokój — twoje wojsko jej nie zaatakuje. Wojnę wypowiesz w panelu Dyplomacji (Tab).`, 'info');
+            }
+            this.issueMoveOrder(worldX, worldY, false);
+            return;
+        }
+
         // Interfejs rozpoznaje, o jaki rozkaz chodzi, i wystawia go jako dane; wykonuje go symulacja (applyCommand)
         if (clickedNode) {
             g.issue({ t: 'gather', units, target: clickedNode.id });
@@ -9669,7 +9954,10 @@ const BiomeOrder = ['meadow', 'autumn', 'winter', 'desert'];
 //   scale 1 = kafelek bazowy, scale 2 = kafelek HD (dwa razy gęstsza faktura, liczona od nowa - nie rozciągana)
 function terrainPaint(T, ox, oy, cw, chh, scale) {
     const buf = new Uint32Array(cw * chh);
-    const F = T.F, fw = T.fw, pad = T.pad, W = T.W, H = T.H;
+    const F = T.F, fw = T.fw, W = T.W, H = T.H;
+    // Raptor: zlecenie może nieść tylko wycinek pól wokół kafelka (tryb strumieniowy) - wtedy przesunięcia
+    // wycinka w osiach są różne (padX / padY); bez wycinka oba to zwykły margines pól
+    const padX = T.padX !== undefined ? T.padX : T.pad, padY = T.padY !== undefined ? T.padY : T.pad;
     const wd = T.wd, md = T.md, gvF = T.gv, gmF = T.gm, dirtF = T.dirt;
     const mhF = T.mh, mgxF = T.mgx, mgyF = T.mgy, ggxF = T.ggx, ggyF = T.ggy, ghF = T.gh;
     const invF = 1 / F, step = 1 / scale;
@@ -9708,7 +9996,7 @@ function terrainPaint(T, ox, oy, cw, chh, scale) {
     const qx0 = Math.round(ox * scale), qy0 = Math.round(oy * scale);
     const fwMax = fw - 2, fhMax = T.fh - 2;
     const smp = (field, x, y) => {
-        let fx = (x + pad) * invF, fy = (y + pad) * invF;
+        let fx = (x + padX) * invF, fy = (y + padY) * invF;
         if (fx < 0) fx = 0; else if (fx > fwMax) fx = fwMax;
         if (fy < 0) fy = 0; else if (fy > fhMax) fy = fhMax;
         const ix = fx | 0, iy = fy | 0, tx = fx - ix, ty = fy - iy, i = iy * fw + ix;
@@ -9719,7 +10007,7 @@ function terrainPaint(T, ox, oy, cw, chh, scale) {
     // Pola mają komórki 10 px, a piksel czyta ich kilkanaście. Zamiast interpolować każde pole w obu kierunkach
     // dla każdego piksela, raz na wiersz liczymy ich wartości w węzłach kolumn (interpolacja w pionie) - piksel
     // robi już tylko jedną interpolację w poziomie.
-    const ixBase = Math.floor((ox + pad) * invF);
+    const ixBase = Math.floor((ox + padX) * invF);
     const nc = Math.ceil(cw * step * invF) + 3;
     const fwLast = fw - 1;
     const cMd = new Float32Array(nc), cWd = new Float32Array(nc), cGv = new Float32Array(nc), cGm = new Float32Array(nc);
@@ -9728,7 +10016,7 @@ function terrainPaint(T, ox, oy, cw, chh, scale) {
 
     for (let py = 0; py < chh; py++) {
         const wy = oy + py * step;
-        const fy = (wy + pad) * invF, iy = fy | 0, ty = fy - iy;
+        const fy = (wy + padY) * invF, iy = fy | 0, ty = fy - iy;
         const row0 = iy * fw, row1 = row0 + fw;
         {
             const u = 1 - ty;
@@ -9750,7 +10038,7 @@ function terrainPaint(T, ox, oy, cw, chh, scale) {
         const frow = (qy & 255) << 8, frU = ((qy - 1) & 255) << 8, frD = ((qy + 1) & 255) << 8;
         for (let px = 0; px < cw; px++) {
             const wx = ox + px * step;
-            const fx = (wx + pad) * invF, ix = fx | 0, tx = fx - ix;
+            const fx = (wx + padX) * invF, ix = fx | 0, tx = fx - ix;
             const k0 = ix - ixBase, k1 = k0 + 1;
             const sx = 1 - tx;
             const mx = Math.floor(wx * up), mxi = mx & NM;
@@ -9970,6 +10258,17 @@ class Terrain {
         this.queue = [];
         this.makeScenery();
 
+        // Raptor (Dyplomacja): na kontynencie kafelków jest ponad 600 (ok. 650 MB płócien) - nie malujemy ich naraz.
+        // Tryb strumieniowy: przy starcie powstaje okolica startu, resztę wątki robocze domalowują w biegu tam,
+        // gdzie patrzy kamera, a kafelki dawno niewidziane są zwalniane (ślady - pieńki, gruz - wracają przy
+        // ponownym malowaniu). Zanim kafelek będzie gotowy, w jego miejscu leży przeskalowany podgląd całej mapy.
+        this.stream = options.stream !== undefined ? !!options.stream : this.W * this.H > 8000 * 8000;
+        this.maxReady = 150;             // ile kafelków (po ok. 1 MB) trzymamy naraz w trybie strumieniowym
+        this.overview = null;            // podgląd całej mapy w niskiej rozdzielczości (tylko tryb strumieniowy)
+        this._sDone = [];                // kafelki odebrane od wątków, czekające na wykończenie (po jednym na klatkę)
+        this._sTodo = [];
+        this.evicted = 0;
+
         // kafelki HD (zbliżenie / ekran HiDPI): malowane w tle przez wątki robocze tylko dla okolicy kadru
         this.pool = null;
         this.hdOn = false;
@@ -9983,6 +10282,8 @@ class Terrain {
     }
 
     // odległość punktu od prostokąta mapy (0 = na mapie)
+    static get FIELDS() { return ['wd', 'md', 'gv', 'gm', 'dirt', 'mh', 'mgx', 'mgy', 'gh', 'ggx', 'ggy']; }
+
     outDist(x, y) {
         const dx = x < 0 ? -x : (x > this.W ? x - this.W : 0), dy = y < 0 ? -y : (y > this.H ? y - this.H : 0);
         return Math.sqrt(dx * dx + dy * dy);
@@ -10175,33 +10476,41 @@ class Terrain {
     }
 
     // --- Maski animowanej wody (1/4 rozdzielczości mapy) i miniatura do minimapy ---
+    // maska (1/4 rozdzielczości) dla prostokąta świata zaczynającego się w (x0, y0) - x0, y0 podzielne przez S
+    _mask(x0, y0, w, h, fn) {
+        const S = this.maskScale;
+        const mw = Math.max(1, Math.ceil(w / S)), mh = Math.max(1, Math.ceil(h / S));
+        const c = document.createElement('canvas');
+        c.width = mw; c.height = mh;
+        const cx = c.getContext('2d');
+        const img = cx.createImageData(mw, mh);
+        const d = img.data;
+        for (let y = 0; y < mh; y++) {
+            for (let x = 0; x < mw; x++) {
+                const wx = x0 + x * S + 2, wy = y0 + y * S + 2;
+                const a = fn(this.sample(this.wd, wx, wy), this.sample(this.md, wx, wy));
+                const i = (y * mw + x) * 4;
+                d[i] = 255; d[i + 1] = 255; d[i + 2] = 255; d[i + 3] = a;
+            }
+        }
+        cx.putImageData(img, 0, 0);
+        return c;
+    }
+
     buildMasks() {
         const S = 4;
-        const mw = Math.ceil(this.W / S), mh = Math.ceil(this.H / S);
-        const mk = (fn) => {
-            const c = document.createElement('canvas');
-            c.width = mw; c.height = mh;
-            const cx = c.getContext('2d');
-            const img = cx.createImageData(mw, mh);
-            const d = img.data;
-            for (let y = 0; y < mh; y++) {
-                for (let x = 0; x < mw; x++) {
-                    const wx = x * S + 2, wy = y * S + 2;
-                    const a = fn(this.sample(this.wd, wx, wy), this.sample(this.md, wx, wy));
-                    const i = (y * mw + x) * 4;
-                    d[i] = 255; d[i + 1] = 255; d[i + 2] = 255; d[i + 3] = a;
-                }
-            }
-            cx.putImageData(img, 0, 0);
-            return c;
-        };
         this.maskScale = S;
-        this.waterMask = mk((w, m) => (m < 3 || w > -3) ? 0 : Math.min(255, (-w - 3) * 14));
-        this.foamMask = mk((w, m) => {
+        this.waterFn = (w, m) => (m < 3 || w > -3) ? 0 : Math.min(255, (-w - 3) * 14);
+        this.foamFn = (w, m) => {
             if (m < 3 || w > 1 || w < -9) return 0;
             const t = 1 - Math.abs(w + 3) / 5;
             return t <= 0 ? 0 : t * 210;
-        });
+        };
+        // tryb strumieniowy: maski powstają osobno dla każdego kafelka z wodą (buildWaveLayer)
+        if (!this.stream) {
+            this.waterMask = this._mask(0, 0, this.W, this.H, this.waterFn);
+            this.foamMask = this._mask(0, 0, this.W, this.H, this.foamFn);
+        }
 
         // kafelek fal
         const P = 256;
@@ -10291,9 +10600,11 @@ class Terrain {
         if (!ch.ring) this.makeGlints(ch);
 
         this.decorate(ch.ctx, ch, 1);
+        if (!ch.ring) this.decorateFords(ch.ctx, ch, 1);
         if (ch.ring) this.decorateRing(ch.ctx, ch, 1);
 
         ch.ready = true;
+        ch.used = this.frame;
         this.readyCount++;
         for (const p of ch.pending) { this._stampInto(ch.ctx, ch, p[0], p[1], p[2], 1); ch.stamps.push(p); }
         ch.pending.length = 0;
@@ -10509,7 +10820,9 @@ class Terrain {
         try {
             const src = 'const terrainPaint = ' + terrainPaint.toString() + ';\nlet T = null;\n' +
                 'onmessage = function (e) { const m = e.data; if (m.t === "init") { T = m.T; return; }\n' +
-                'const r = terrainPaint(T, m.ox, m.oy, m.cw, m.ch, m.scale);\n' +
+                'let TT = T; if (m.win) { TT = Object.assign({}, T, m.win); }\n' +
+                'const r = terrainPaint(TT, m.ox, m.oy, m.cw, m.ch, m.scale);\n' +
+                'if (TT !== T && TT.dn2 && !T.dn2) T.dn2 = TT.dn2;\n' +
                 'postMessage({ id: m.id, buf: r.buf.buffer, water: r.water }, [r.buf.buffer]); };';
             const url = URL.createObjectURL(new Blob([src], { type: 'text/javascript' }));
             const pool = { slots: [], url, dead: false };
@@ -10522,7 +10835,8 @@ class Terrain {
                     if (job && e.data && e.data.id === job.id) job.cb(new Uint32Array(e.data.buf), e.data.water);
                 };
                 w.onerror = (e) => { if (e && e.preventDefault) e.preventDefault(); this._poolFailed(); };
-                w.postMessage({ t: 'init', T: this.T });
+                // tryb strumieniowy: wątek dostaje bez pól (kilkadziesiąt MB na wątek) - pola przychodzą wycinkami ze zleceniem
+                w.postMessage({ t: 'init', T: this.stream ? this._lightT() : this.T });
                 pool.slots.push(slot);
             }
             this.pool = pool;
@@ -10565,13 +10879,39 @@ class Terrain {
     _post(slot, ch, scale, cb) {
         const id = ++this._jobId;
         slot.job = { id, cb };
-        slot.w.postMessage({ t: 'job', id, ox: ch.x, oy: ch.y, cw: Math.round(ch.w * scale), ch: Math.round(ch.h * scale), scale });
+        const msg = { t: 'job', id, ox: ch.x, oy: ch.y, cw: Math.round(ch.w * scale), ch: Math.round(ch.h * scale), scale };
+        if (this.stream) {
+            msg.win = this._window(ch);
+            slot.w.postMessage(msg, Terrain.FIELDS.map(k => msg.win[k].buffer));
+        } else slot.w.postMessage(msg);
+    }
+
+    _lightT() {
+        const o = Object.assign({}, this.T);
+        for (const k of Terrain.FIELDS) o[k] = null;
+        return o;
+    }
+
+    // wycinek pól wokół kafelka (z zapasem 5 komórek - cień gór sięga kilkanaście kroków w bok)
+    _window(ch) {
+        const F = this.F, pad = this.pad, fw = this.fw, fh = this.fh;
+        const ix0 = Math.max(0, Math.floor((ch.x + pad) / F) - 5), iy0 = Math.max(0, Math.floor((ch.y + pad) / F) - 5);
+        const ix1 = Math.min(fw - 1, Math.ceil((ch.x + ch.w + pad) / F) + 5), iy1 = Math.min(fh - 1, Math.ceil((ch.y + ch.h + pad) / F) + 5);
+        const ww = ix1 - ix0 + 1, wh = iy1 - iy0 + 1;
+        const win = { fw: ww, fh: wh, padX: pad - ix0 * F, padY: pad - iy0 * F };
+        for (const k of Terrain.FIELDS) {
+            const src = this.T[k], dst = new Float32Array(ww * wh);
+            for (let y = 0; y < wh; y++) { const o = (iy0 + y) * fw + ix0; dst.set(src.subarray(o, o + ww), y * ww); }
+            win[k] = dst;
+        }
+        return win;
     }
 
     // --- Budowa wszystkiego (asynchronicznie, by pokazać pasek postępu) ---
     // Gra rusza, gdy gotowa jest cała mapa i ta część pasa za jej granicą, którą widać z okolicy startu;
     // resztę pasa wątki robocze domalowują już w trakcie gry (zanim kamera tam dotrze).
     buildAsync(focus, onProgress, onDone) {
+        if (this.stream) return this.buildStream(focus, onProgress, onDone);
         this.computeFields();
         this.buildMasks();
         const dist = (ch) => Math.hypot(ch.x + ch.w / 2 - focus.x, ch.y + ch.h / 2 - focus.y);
@@ -10650,7 +10990,174 @@ class Terrain {
     buildSync() {
         this.computeFields();
         this.buildMasks();
+        if (this.stream) {
+            this._streamPrep();
+            const f = this.game.camera;
+            const cx = f.x + (this.game.screenW || 1400) / 2, cy = f.y + (this.game.screenH || 900) / 2;
+            for (const ch of this.all) if (Math.hypot(ch.x + ch.w / 2 - cx, ch.y + ch.h / 2 - cy) < 1600) this.renderChunk(ch);
+            return;
+        }
         for (const ch of this.all) this.renderChunk(ch);
+    }
+
+    // ---------------- Raptor: strumieniowanie kafelków (mapy powyżej 8000 x 8000) ----------------
+
+    // wspólne przygotowanie: podgląd całej mapy (1 piksel na 8 kroków) i znacznik "ma wodę" dla każdego kafelka
+    _streamPrep() {
+        const size = Math.min(1600, Math.ceil(Math.max(this.W, this.H) / 8));
+        this.overview = this.renderMinimap(size);
+        this.ovK = size / this.W;
+    }
+
+    buildStream(focus, onProgress, onDone) {
+        this.computeFields();
+        this.buildMasks();
+        this._streamPrep();
+        const dist = (ch) => Math.hypot(ch.x + ch.w / 2 - focus.x, ch.y + ch.h / 2 - focus.y);
+        const need = this.all.filter(ch => dist(ch) < 1700).sort((a, b) => dist(a) - dist(b));
+        let left = need.length, started = false;
+        const begin = () => { if (started) return; started = true; this._onPoolFail = null; if (onDone) onDone(); };
+        const one = () => { left--; if (onProgress && !started) onProgress(1 - left / need.length); if (left <= 0) begin(); };
+        const mainLoop = () => {
+            const rest = need.filter(ch => !ch.ready);
+            left = rest.length;
+            let i = 0;
+            const step = () => {
+                const t0 = performance.now();
+                while (i < rest.length && (document.hidden || performance.now() - t0 < 30)) { this.renderChunk(rest[i++]); one(); }
+                if (i < rest.length) setTimeout(step, 0); else begin();
+            };
+            if (!rest.length) begin(); else step();
+        };
+        const hc = (typeof navigator !== 'undefined' && navigator.hardwareConcurrency) || 2;
+        if (!this.startWorkers(Math.max(1, Math.min(4, hc - 1)))) { mainLoop(); return; }
+        let failed = false;
+        this._onPoolFail = () => { if (failed || started) return; failed = true; mainLoop(); };
+        let next = 0;
+        const feed = () => {
+            if (failed || !this.pool) return;
+            let slot;
+            while (next < need.length && (slot = this._freeSlot())) {
+                const ch = need[next++];
+                ch.job = true;
+                this._post(slot, ch, 1, (buf, water) => {
+                    ch.job = false;
+                    if (failed) return;
+                    try { this.finishChunk(ch, buf, water); } catch (e) { console.error('Error during terrain build:', e); }
+                    one();
+                    feed();
+                });
+            }
+        };
+        feed();
+    }
+
+    // Co klatkę (z draw): zlecenia dla widocznych kafelków bez obrazu, potem uprzedzająco dla sąsiednich,
+    // wykończenie jednego odebranego kafelka i - co jakiś czas - zwolnienie najdawniej oglądanych.
+    _streamTick(list, view) {
+        const f = this.frame;
+        for (let i = 0; i < list.length; i++) list[i].used = f;
+        // 1) wykończenie (wgranie pikseli, detale, fale) - jeden kafelek na klatkę, dwa, gdy w kadrze są dziury
+        const D = this._sDone;
+        for (let n = 0; n < 2 && D.length; n++) {
+            const d = D.shift();
+            if (!d.ch.ready) this.finishChunk(d.ch, d.buf, d.water);
+            if (!this._holes) break;
+        }
+        // 2) zlecenia
+        const todo = this._sTodo;
+        todo.length = 0;
+        let holes = 0;
+        for (const ch of list) if (!ch.ready) { holes++; if (!ch.job) todo.push(ch); }
+        this._holes = holes;
+        const cx = view.x + view.w / 2, cy = view.y + view.h / 2;
+        if (!todo.length && !D.length) {
+            // uprzedzająco: pas jednego kafelka wokół kadru
+            const CS = this.CS, m = CS;
+            const c0 = Math.max(0, Math.floor((view.x - m) / CS)), c1 = Math.min(this.cols - 1, Math.floor((view.x + view.w + m) / CS));
+            const r0 = Math.max(0, Math.floor((view.y - m) / CS)), r1 = Math.min(this.rows - 1, Math.floor((view.y + view.h + m) / CS));
+            for (let r = r0; r <= r1; r++) for (let c = c0; c <= c1; c++) {
+                const ch = this.chunks[r * this.cols + c];
+                if (!ch.ready && !ch.job) todo.push(ch);
+            }
+        }
+        if (todo.length) {
+            const dist = (ch) => Math.abs(ch.x + ch.w / 2 - cx) + Math.abs(ch.y + ch.h / 2 - cy);
+            todo.sort((a, b) => dist(a) - dist(b));
+            if (this.pool) {
+                let slot = this._freeSlot();
+                for (let i = 0; i < todo.length && slot; i++) {
+                    const ch = todo[i];
+                    ch.job = true;
+                    this._post(slot, ch, 1, (buf, water) => { ch.job = false; this._sDone.push({ ch, buf, water }); });
+                    slot = this._freeSlot();
+                }
+            } else if (holes) {
+                this.renderChunk(todo[0]);   // bez wątków roboczych: jeden kafelek na klatkę w wątku głównym
+            }
+        }
+        // 3) zwalnianie pamięci: najdawniej oglądane kafelki poza kadrem
+        if (this.readyCount > this.maxReady && (f % 20) === 0) {
+            const old = this.all.filter(ch => ch.ready && ch.used < f - 120).sort((a, b) => a.used - b.used);
+            for (let i = 0; i < old.length && this.readyCount > this.maxReady - 10; i++) this.evict(old[i]);
+        }
+    }
+
+    // Zwolnienie kafelka: płótna idą do kosza, ślady wracają do kolejki - przy ponownym malowaniu zostaną odtworzone
+    evict(ch) {
+        if (!ch.ready) return;
+        if (ch.canvas) { ch.canvas.width = 0; ch.canvas.height = 0; }
+        if (ch.wave) { ch.wave.width = 0; ch.wave.height = 0; }
+        if (ch.hd) { if (ch.hd.canvas) { ch.hd.canvas.width = 0; ch.hd.canvas.height = 0; } if (ch.hd.ready) this.hdCount--; ch.hd = null; }
+        ch.canvas = null; ch.ctx = null; ch.wave = null; ch.glints = null;
+        ch.pending = ch.stamps.concat(ch.pending);
+        ch.stamps = [];
+        ch.ready = false;
+        this.readyCount--;
+        this.evicted++;
+    }
+
+    // Bród: płycizna wzdłuż koryta i pas żwiru z kamieniami w poprzek - widać, którędy wojsko przejdzie przez rzekę.
+    // Ten sam rysunek w każdym kafelku, przez który bród przechodzi (losowanie z ziarna brodu), więc szwów nie widać.
+    decorateFords(c, ch, scale) {
+        const FD = this.game.fords;
+        if (!FD || !FD.length) return;
+        const WA = this.biome.water, SA = this.biome.sand;
+        for (const f of FD) {
+            const R = f.w / 2 + f.r + 30;
+            if (f.x + R < ch.x || f.x - R > ch.x + ch.w || f.y + R < ch.y || f.y - R > ch.y + ch.h) continue;
+            const rnd = mulberry32(((f.x * 13) ^ (f.y * 7) ^ this.seed) | 0);
+            const L = f.w / 2 + f.r * 0.5, Wd = f.r * 0.92 + 4;
+            c.save();
+            c.setTransform(scale, 0, 0, scale, (f.x - ch.x) * scale, (f.y - ch.y) * scale);
+            c.rotate(f.a);
+            // płycizna (woda po kostki) - łączy oba końce koryta
+            const gr = c.createLinearGradient(0, -Wd, 0, Wd);
+            const wa = (a) => `rgba(${WA[0]}, ${WA[1]}, ${WA[2]}, ${a})`;
+            gr.addColorStop(0, wa(0)); gr.addColorStop(0.2, wa(0.62)); gr.addColorStop(0.8, wa(0.62)); gr.addColorStop(1, wa(0));
+            c.fillStyle = gr;
+            c.beginPath(); c.roundRect(-L, -Wd, L * 2, Wd * 2, Wd); c.fill();
+            c.fillStyle = wa(0.22);   // jaśniejszy środek: przez płyciznę prześwituje dno
+            c.beginPath(); c.roundRect(-L + Wd * 0.5, -Wd * 0.55, L * 2 - Wd, Wd * 1.1, Wd * 0.55); c.fill();
+            // żwirowy przejazd w poprzek koryta
+            const pw = 46;
+            c.fillStyle = `rgba(${SA[0]}, ${SA[1]}, ${SA[2]}, 0.55)`;
+            c.beginPath(); c.ellipse(0, 0, pw / 2, Wd + 10, 0, 0, Math.PI * 2); c.fill();
+            for (let i = 0; i < 26; i++) {
+                const x = (rnd() - 0.5) * pw, y = (rnd() - 0.5) * (Wd * 2 + 8), rr = 1.6 + rnd() * 3.2;
+                c.fillStyle = 'rgba(0, 0, 0, 0.22)';
+                c.beginPath(); c.ellipse(x + 1, y + 1, rr, rr * 0.75, 0, 0, Math.PI * 2); c.fill();
+                c.fillStyle = rnd() < 0.5 ? '#9a958a' : '#b5ad9c';
+                c.beginPath(); c.ellipse(x, y, rr, rr * 0.75, 0, 0, Math.PI * 2); c.fill();
+            }
+            // zmarszczki prądu przelewającego się przez płyciznę
+            c.strokeStyle = 'rgba(255, 255, 255, 0.35)'; c.lineWidth = 1.1; c.lineCap = 'round';
+            for (let i = 0; i < 7; i++) {
+                const y = (rnd() - 0.5) * Wd * 1.6, x = (rnd() < 0.5 ? -1 : 1) * (pw / 2 + 4 + rnd() * (L - pw / 2 - 8));
+                c.beginPath(); c.moveTo(x - 6, y); c.quadraticCurveTo(x, y - 2.5, x + 6, y); c.stroke();
+            }
+            c.restore();
+        }
     }
 
     tick() { /* kafelki powstają przy starcie - nic do zrobienia w trakcie gry */ }
@@ -10720,6 +11227,7 @@ class Terrain {
             } else {
                 this.hdDone.shift();
                 this.decorate(h.ctx, ch, 2);
+                if (!ch.ring) this.decorateFords(h.ctx, ch, 2);
                 if (ch.ring) this.decorateRing(h.ctx, ch, 2);
                 for (const p of ch.stamps) this._stampInto(h.ctx, ch, p[0], p[1], p[2], 2);
                 h.ready = true; h.fade = 0; h.used = this.frame;
@@ -10782,8 +11290,13 @@ class Terrain {
             const x0 = Math.round(ch.x * sx + tx), y0 = Math.round(ch.y * sy + ty);
             const w = Math.round((ch.x + ch.w) * sx + tx) - x0, h = Math.round((ch.y + ch.h) * sy + ty) - y0;
             if (!ch.ready) {
-                ctx.fillStyle = ch.ring ? '#05080d' : this.biome.fill;
-                ctx.fillRect(x0, y0, w, h);
+                if (this.overview && !ch.ring) {
+                    const k = this.ovK;
+                    ctx.drawImage(this.overview, ch.x * k, ch.y * k, ch.w * k, ch.h * k, x0, y0, w, h);
+                } else {
+                    ctx.fillStyle = ch.ring ? '#05080d' : this.biome.fill;
+                    ctx.fillRect(x0, y0, w, h);
+                }
                 continue;
             }
             const hq = hd ? ch.hd : null;
@@ -10802,6 +11315,7 @@ class Terrain {
         }
         if (water) this.drawWater(ctx, view, time, sx, sy, tx, ty);
         if (hd || this.hdCount) this._hdTick(list, view, hd);
+        if (this.stream) this._streamTick(list, view);
         ctx.setTransform(m);
     }
 
@@ -10827,15 +11341,22 @@ class Terrain {
         // część kafelka leżąca na mapie
         const cx0 = Math.max(0, x0), cy0 = Math.max(0, y0);
         const cx1 = Math.min(this.W, x0 + w), cy1 = Math.min(this.H, y0 + h);
+        // maski: całej mapy (zwykle) albo - w trybie strumieniowym - wycinek liczony tylko dla tego kafelka
+        let wm = this.waterMask, fm = this.foamMask, mx = 0, my = 0;
+        if (!wm) {
+            mx = Math.floor(cx0 / S) * S; my = Math.floor(cy0 / S) * S;
+            wm = this._mask(mx, my, cx1 - mx, cy1 - my, this.waterFn);
+            fm = this._mask(mx, my, cx1 - mx, cy1 - my, this.foamFn);
+        }
         g.globalCompositeOperation = 'destination-in';
-        g.drawImage(this.waterMask, cx0 / S, cy0 / S, (cx1 - cx0) / S, (cy1 - cy0) / S, cx0 - x0, cy0 - y0, cx1 - cx0, cy1 - cy0);
+        g.drawImage(wm, (cx0 - mx) / S, (cy0 - my) / S, (cx1 - cx0) / S, (cy1 - cy0) / S, cx0 - x0, cy0 - y0, cx1 - cx0, cy1 - cy0);
         g.globalCompositeOperation = 'source-over';
         if (cx0 > x0) g.clearRect(0, 0, cx0 - x0, h);
         if (cy0 > y0) g.clearRect(0, 0, w, cy0 - y0);
         if (cx1 < x0 + w) g.clearRect(cx1 - x0, 0, x0 + w - cx1, h);
         if (cy1 < y0 + h) g.clearRect(0, cy1 - y0, w, y0 + h - cy1);
         g.globalAlpha = 0.9;
-        g.drawImage(this.foamMask, cx0 / S, cy0 / S, (cx1 - cx0) / S, (cy1 - cy0) / S, cx0 - x0, cy0 - y0, cx1 - cx0, cy1 - cy0);
+        g.drawImage(fm, (cx0 - mx) / S, (cy0 - my) / S, (cx1 - cx0) / S, (cy1 - cy0) / S, cx0 - x0, cy0 - y0, cx1 - cx0, cy1 - cy0);
         ch.wave = c;
     }
 
@@ -10869,6 +11390,341 @@ class Terrain {
     }
 }
 
+
+/* --- engine/Atlas.js --- */
+// Raptor Atlas - generator wielkich map trybu Dyplomacja (feature-set silnika Raptor).
+//
+// Kontynent ma 11 400 x 11 400 kroków, czyli ok. 5 razy większą powierzchnię niż mapa Gigantyczna (5100 x 5100).
+// Świat opisują te same klocki co w Klasycznym meczu - plamy wody (game.lakes) i gór (game.mountains) - więc
+// ścieżki, kolizje, okręty, teren, minimapa i gra wieloosobowa działają bez osobnego kodu. Nowe są:
+//   - pasma górskie: łańcuchy plam wzdłuż łagodnie wygiętej linii, z przełęczami,
+//   - rzeki: od źródła w górach (albo w głębi lądu) do krawędzi mapy, jeziora lub innej rzeki (dopływy);
+//     szerokość rośnie z biegiem rzeki, a co ok. 1-1,5 tys. kroków jest bród (pas lądu, którym przejdzie wojsko),
+//   - rozmieszczenie dowolnej liczby nacji (2-8): punkty możliwie daleko od siebie na całym kontynencie,
+//   - surowce rozłożone regionami: puszcze, złoto i kamień częściej u podnóża gór, ryby w rzekach i jeziorach.
+// Układ (layout) zależy tylko od ziarna, rozmiaru i liczby nacji - podgląd w menu rysuje dokładnie to,
+// co potem powstaje w grze. Rzeki są zapisane jako jeziora z flagą river (plamy względem środka rzeki).
+const RaptorAtlas = {
+    SIZE: 11400,                                    // 5100 * sqrt(5) ~ 11 404
+    RIVERS: { few: 5, normal: 8, many: 12 },
+    MAX_NATIONS: 8,
+
+    // --- Układ świata: starty, góry, jeziora, rzeki, brody (bez surowców) ---
+    layout(W, H, nStarts, opts, seed) {
+        opts = opts || {};
+        const rnd = mulberry32((seed >>> 0) || 1);
+        const A = (W * H) / (this.SIZE * this.SIZE);   // skala powierzchni względem kontynentu
+        const K = Math.sqrt(A);                          // skala długości
+        const range = (a, b) => a + rnd() * (b - a);
+        const dist = (ax, ay, bx, by) => Math.hypot(ax - bx, ay - by);
+
+        // 1) Starty nacji: próbkowanie "najdalszego punktu" - kolejny start tam, gdzie do najbliższego jest najdalej
+        const M = Math.max(420, 700 * K);
+        const cand = [];
+        for (let i = 0; i < 700; i++) cand.push({ x: range(M, W - M), y: range(M, H - M) });
+        const starts = [cand[Math.floor(rnd() * cand.length)]];
+        while (starts.length < nStarts) {
+            let best = null, bestD = -1;
+            for (const c of cand) {
+                let d = Infinity;
+                for (const s of starts) d = Math.min(d, dist(c.x, c.y, s.x, s.y));
+                d *= 0.85 + rnd() * 0.3;
+                if (d > bestD) { bestD = d; best = c; }
+            }
+            starts.push(best);
+        }
+        const nearStart = (x, y, pad) => starts.some(s => dist(x, y, s.x, s.y) < pad);
+
+        const mountains = [], lakes = [], rivers = [], fords = [];
+        const inBlobs = (list, x, y, pad) => {
+            for (const m of list) {
+                if (Math.abs(m.x - x) > m.reach + pad || Math.abs(m.y - y) > m.reach + pad) continue;
+                for (const b of m.blobs) if (dist(m.x + b.dx, m.y + b.dy, x, y) < b.r + pad) return true;
+            }
+            return false;
+        };
+        // obiekt świata z plam o współrzędnych absolutnych: środek = środek prostokąta otaczającego
+        const pack = (abs, extra) => {
+            let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity, rs = 0;
+            for (const b of abs) { x0 = Math.min(x0, b.x - b.r); y0 = Math.min(y0, b.y - b.r); x1 = Math.max(x1, b.x + b.r); y1 = Math.max(y1, b.y + b.r); rs += b.r; }
+            const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2;
+            const o = { x: cx, y: cy, r: rs / abs.length, blobs: abs.map(b => ({ dx: b.x - cx, dy: b.y - cy, r: b.r })) };
+            Object.defineProperty(o, 'reach', { value: Math.max(x1 - x0, y1 - y0) / 2 + 10, enumerable: false, writable: true });
+            return Object.assign(o, extra || {});
+        };
+
+        // 2) Pasma górskie z przełęczami
+        const ranges = Math.round((opts.mountains === 'many' ? 13 : 9) * A);
+        for (let i = 0, tries = 0; i < ranges && tries < ranges * 40; tries++) {
+            let x = range(400, W - 400), y = range(400, H - 400), h = rnd() * Math.PI * 2;
+            const L = range(1500, 3600) * Math.max(0.5, K), r0 = range(140, 220);
+            const pts = [];
+            let walked = 0, ok = true, passAt = range(0.25, 0.75) * L, pass2 = rnd() < 0.55 ? range(0.1, 0.9) * L : -1;
+            while (walked < L) {
+                const r = r0 * (0.72 + 0.4 * Math.sin(walked / 420 + i) + 0.12 * rnd());
+                if (x < 220 || y < 220 || x > W - 220 || y > H - 220 || nearStart(x, y, r + 560)) { ok = false; break; }
+                const inPass = Math.abs(walked - passAt) < r * 1.1 + 90 || (pass2 > 0 && Math.abs(walked - pass2) < r * 1.1 + 90);
+                if (!inPass) {
+                    pts.push({ x, y, r });
+                    // poszarpany grzbiet: boczne plamy po obu stronach linii pasma
+                    for (const side of [1, -1]) if (rnd() < 0.6) { const a = h + side * Math.PI / 2, d = r * range(0.4, 0.85); pts.push({ x: x + Math.cos(a) * d, y: y + Math.sin(a) * d, r: r * range(0.5, 0.85) }); }
+                }
+                const st = r * 0.62;
+                x += Math.cos(h) * st; y += Math.sin(h) * st; walked += st;
+                h += (rnd() - 0.5) * 0.32;
+            }
+            if (!ok || pts.length < 6) continue;
+            if (pts.some(p => inBlobs(mountains, p.x, p.y, p.r + 160))) continue;
+            mountains.push(pack(pts, { range: true }));
+            i++;
+        }
+        // pojedyncze masywy
+        const massifs = Math.round(7 * A);
+        for (let i = 0, tries = 0; i < massifs && tries < massifs * 30; tries++) {
+            const x = range(500, W - 500), y = range(500, H - 500), r = range(120, 260);
+            if (nearStart(x, y, r + 600) || inBlobs(mountains, x, y, r + 200)) continue;
+            const pts = [];
+            const nb = 6 + Math.floor(rnd() * 5);
+            for (let b = 0; b < nb; b++) { const a = rnd() * Math.PI * 2, d = rnd() * r * 0.6; pts.push({ x: x + Math.cos(a) * d, y: y + Math.sin(a) * d, r: r * range(0.4, 0.8) }); }
+            mountains.push(pack(pts));
+            i++;
+        }
+
+        // 3) Jeziora: kilka wielkich i sporo małych
+        const addLake = (rMin, rMax, pad) => {
+            for (let t = 0; t < 60; t++) {
+                const r = range(rMin, rMax), x = range(r + 500, W - r - 500), y = range(r + 500, H - r - 500);
+                if (nearStart(x, y, r * 1.6 + 480) || inBlobs(mountains, x, y, r + 120) || inBlobs(lakes, x, y, r + pad)) continue;
+                const pts = [];
+                const nb = 9 + Math.floor(rnd() * 6);
+                for (let b = 0; b < nb; b++) { const a = rnd() * Math.PI * 2, d = rnd() * r * 0.7; pts.push({ x: x + Math.cos(a) * d, y: y + Math.sin(a) * d, r: r * 0.4 + rnd() * r * 0.5 }); }
+                lakes.push(pack(pts));
+                return;
+            }
+        };
+        for (let i = 0; i < Math.round(3 * A); i++) addLake(300, 560, 600);
+        for (let i = 0; i < Math.round((opts.lakes === 'many' ? 18 : 11) * A); i++) addLake(90, 200, 350);
+
+        // 4) Rzeki
+        const nRivers = Math.round((this.RIVERS[opts.rivers] || this.RIVERS.normal) * A);
+        const riverHit = (x, y, self) => {
+            for (const rv of rivers) {
+                if (rv === self) continue;
+                for (const p of rv.pts) if (Math.abs(p.x - x) < p.r + 10 && dist(p.x, p.y, x, y) < p.r * 0.8) return rv;
+            }
+            return null;
+        };
+        const angDiff = (a, b) => { let d = a - b; while (d > Math.PI) d -= Math.PI * 2; while (d < -Math.PI) d += Math.PI * 2; return d; };
+        for (let i = 0, tries = 0; i < nRivers && tries < nRivers * 25; tries++) {
+            // źródło: przy paśmie górskim (strumień spływa ze stoku) albo w głębi lądu
+            let sx, sy;
+            const fromHills = mountains.length && rnd() < 0.7;
+            if (fromHills) {
+                const m = mountains[Math.floor(rnd() * mountains.length)], b = m.blobs[Math.floor(rnd() * m.blobs.length)], a = rnd() * Math.PI * 2;
+                sx = m.x + b.dx + Math.cos(a) * (b.r + 60); sy = m.y + b.dy + Math.sin(a) * (b.r + 60);
+            } else { sx = range(1400 * K, W - 1400 * K); sy = range(1400 * K, H - 1400 * K); }
+            if (sx < 300 || sy < 300 || sx > W - 300 || sy > H - 300) continue;
+            if (nearStart(sx, sy, 900) || inBlobs(mountains, sx, sy, 20) || inBlobs(lakes, sx, sy, 60) || riverHit(sx, sy, null)) continue;
+            // ujście: najbliższa krawędź mapy (z przesunięciem) albo jezioro w zasięgu
+            let tx, ty;
+            const lk = lakes.filter(l => dist(l.x, l.y, sx, sy) > 1600 && dist(l.x, l.y, sx, sy) < 5200 * K + 1500);
+            if (lk.length && rnd() < 0.35) { const l = lk[Math.floor(rnd() * lk.length)]; tx = l.x; ty = l.y; }
+            else {
+                // krawędź nie za blisko źródła - krótkie strumyki przy brzegu mapy nic nie wnoszą
+                const e = [{ x: sx, y: 0 }, { x: sx, y: H }, { x: 0, y: sy }, { x: W, y: sy }].sort((p, q) => dist(p.x, p.y, sx, sy) - dist(q.x, q.y, sx, sy));
+                const far = e.filter(p => dist(p.x, p.y, sx, sy) > 2400 * K);
+                const pick = far.length ? far[rnd() < 0.65 || far.length < 2 ? 0 : 1] : e[e.length - 1];
+                if (pick.x === sx) { tx = clamp(sx + (rnd() - 0.5) * 3000 * K, 0, W); ty = pick.y; }
+                else { tx = pick.x; ty = clamp(sy + (rnd() - 0.5) * 3000 * K, 0, H); }
+            }
+            const self = { pts: [], mouth: null };
+            let x = sx, y = sy, h = Math.atan2(ty - y, tx - x), walked = 0, end = null;
+            const ph = rnd() * 10, fq = range(1 / 420, 1 / 260), r0 = range(26, 34), rMax = range(62, 84);
+            for (let step = 0; step < 900; step++) {
+                const r = Math.min(rMax, r0 + walked * 0.0075);
+                // kierunek: do ujścia + meander (sinusoida o zmiennej fazie) + drobny szum
+                let want = Math.atan2(ty - y, tx - x) + Math.sin(walked * fq + ph) * 0.75 + Math.sin(walked * fq * 2.7 + ph * 3) * 0.25;
+                // omijanie gór i osad (rzeka skręca, zanim w nie wpłynie)
+                for (const m of mountains) {
+                    if (Math.abs(m.x - x) > m.reach + 260 || Math.abs(m.y - y) > m.reach + 260) continue;
+                    for (const b of m.blobs) {
+                        const bx = m.x + b.dx, by = m.y + b.dy, d = dist(bx, by, x, y);
+                        if (d < b.r + r + 170) { const away = Math.atan2(y - by, x - bx); want += angDiff(away, want) * 0.55 * (1 - (d - b.r) / (r + 170 + 1)); }
+                    }
+                }
+                for (const s of starts) {
+                    const d = dist(s.x, s.y, x, y);
+                    if (d < 1000) { const away = Math.atan2(y - s.y, x - s.x); want += angDiff(away, want) * 0.7 * (1 - d / 1000); }
+                }
+                h += clamp(angDiff(want, h) * 0.22, -0.2, 0.2) + (rnd() - 0.5) * 0.06;
+                const st = Math.max(14, r * 0.62);
+                x += Math.cos(h) * st; y += Math.sin(h) * st; walked += st;
+                if (x < -r || y < -r || x > W + r || y > H + r) { end = 'edge'; break; }
+                if (inBlobs(mountains, x, y, r * 0.3)) { end = 'stuck'; break; }
+                if (nearStart(x, y, 520)) { end = 'stuck'; break; }
+                self.pts.push({ x, y, r: r * (0.94 + rnd() * 0.12), d: walked });
+                if (inBlobs(lakes, x, y, -r * 0.5)) { end = 'lake'; break; }
+                const other = riverHit(x, y, self);
+                if (other) { end = 'river'; self.mouth = other; break; }
+            }
+            if (!end || end === 'stuck' || walked < 2400 * Math.max(0.5, K)) continue;
+            // brody: przerwy w łańcuchu plam (pas lądu ~110 kroków), mniej więcej co 1000-1500 kroków
+            const total = walked, kept = [];
+            const cuts = [];
+            let at = range(600, 1000);
+            while (at < total - 450) { cuts.push(at); at += range(1000, 1500); }
+            for (const p of self.pts) {
+                const cut = cuts.find(c => Math.abs(p.d - c) < p.r + 2 + 56);
+                if (cut === undefined) kept.push(p);
+            }
+            for (const c of cuts) {
+                let best = null;
+                for (const p of self.pts) if (!best || Math.abs(p.d - c) < Math.abs(best.d - c)) best = p;
+                if (!best) continue;
+                const k = self.pts.indexOf(best), a = self.pts[Math.max(0, k - 1)], b = self.pts[Math.min(self.pts.length - 1, k + 1)];
+                fords.push({ x: best.x, y: best.y, a: Math.atan2(b.y - a.y, b.x - a.x), r: best.r, w: 2 * (best.r + 2 + 56) });
+            }
+            if (kept.length < 4) continue;
+            rivers.push(self);
+            lakes.push(pack(kept, { river: true }));
+            i++;
+        }
+        return { W, H, seed, starts, lakes, mountains, fords, rivers: rivers.length };
+    },
+
+    // --- Pełne generowanie świata w grze: układ + surowce + test spójności (kilka prób z kolejnymi ziarnami) ---
+    // opts: { nations, rivers, lakes, mountains, seed, startPackage(game, pos) }
+    generate(game, opts) {
+        const W = game.mapWidth, H = game.mapHeight;
+        let seed = (opts.seed >>> 0) || ((Math.random() * 0x7fffffff) >>> 0);
+        let L = null, ok = false, attempts = 0;
+        while (!ok && attempts < 12) {
+            attempts++;
+            L = this.layout(W, H, opts.nations, opts, seed);
+            game.lakes = L.lakes; game.mountains = L.mountains; game.fords = L.fords;
+            game.resourceNodes = []; game.entities = []; game.byId.clear(); game.spatialGrid.clear();
+            this.populate(game, L, opts.startPackage);
+            ok = this.connected(game, L.starts);
+            if (!ok) seed = (seed * 1103515245 + 12345) >>> 0;
+        }
+        game.atlas = { seed: L.seed, rivers: L.rivers, attempts, fords: L.fords.length };
+        return { bases: L.starts.map(s => ({ x: s.x, y: s.y })), seed: L.seed, attempts, ok };
+    },
+
+    populate(game, L, startPackage) {
+        const W = game.mapWidth, H = game.mapHeight;
+        const S2 = (W * H) / (3000 * 3000);
+        const bases = L.starts;
+        const blocked = (x, y) => game.isWater(x, y) || game.isMountain(x, y);
+        const nearFord = (x, y, pad) => L.fords.some(f => Math.abs(f.x - x) < f.w / 2 + pad && Math.hypot(f.x - x, f.y - y) < f.w / 2 + pad);
+        const free = (x, y, baseGap) => x > 40 && y > 40 && x < W - 40 && y < H - 40 && !blocked(x, y) && !nearFord(x, y, 90)
+            && !bases.some(b => Math.hypot(x - b.x, y - b.y) < baseGap);
+        const randomFree = (baseGap) => {
+            for (let t = 0; t < 80; t++) { const x = 100 + Math.random() * (W - 200), y = 100 + Math.random() * (H - 200); if (free(x, y, baseGap)) return { x, y }; }
+            return null;
+        };
+        const cluster = (c, type, count, radius, minDist) => {
+            if (!c) return;
+            for (let i = 0; i < count; i++) {
+                for (let tries = 0; tries < 6; tries++) {
+                    const a = Math.random() * Math.PI * 2, d = Math.sqrt(Math.random()) * radius;
+                    const x = c.x + Math.cos(a) * d, y = c.y + Math.sin(a) * d;
+                    if (!free(x, y, 420)) continue;
+                    if (game.addResourceNode(new ResourceNode(x, y, type), minDist)) break;
+                }
+            }
+        };
+        // u podnóża gór: punkt tuż za krawędzią losowej plamy pasma
+        const foothill = () => {
+            if (!L.mountains.length) return randomFree(600);
+            for (let t = 0; t < 30; t++) {
+                const m = L.mountains[Math.floor(Math.random() * L.mountains.length)], b = m.blobs[Math.floor(Math.random() * m.blobs.length)];
+                const a = Math.random() * Math.PI * 2, d = b.r + 70 + Math.random() * 160;
+                const x = m.x + b.dx + Math.cos(a) * d, y = m.y + b.dy + Math.sin(a) * d;
+                if (free(x, y, 600)) return { x, y };
+            }
+            return randomFree(600);
+        };
+        // puszcze: kilka wielkich lasów z prześwitami, potem zwykłe zagajniki i pojedyncze drzewa
+        for (let i = 0; i < Math.round(0.45 * S2); i++) cluster(randomFree(900), 'wood', 70 + Math.floor(Math.random() * 50), 300 + Math.random() * 160, 36);
+        for (let i = 0; i < Math.round(15 * S2); i++) cluster(randomFree(600), 'wood', 7 + Math.floor(Math.random() * 10), 60 + Math.random() * 80, 30);
+        for (let i = 0; i < Math.round(40 * S2); i++) { const c = randomFree(600); if (c) game.addResourceNode(new ResourceNode(c.x, c.y, 'wood'), 30); }
+        // złoto i kamień: częściej u stóp gór (regiony górnicze), reszta rozsiana
+        for (let i = 0; i < Math.round(12 * S2); i++) cluster(Math.random() < 0.6 ? foothill() : randomFree(600), 'gold', 2 + Math.floor(Math.random() * 3), 36, 30);
+        for (let i = 0; i < Math.round(9 * S2); i++) cluster(Math.random() < 0.65 ? foothill() : randomFree(600), 'stone', 2 + Math.floor(Math.random() * 3), 38, 32);
+        if (startPackage) for (const b of bases) startPackage(game, b);
+        // ryby: w jeziorach i w szerszych odcinkach rzek
+        const waters = game.lakes.filter(l => !l.river || l.r > 34);
+        for (let i = 0; i < Math.round(14 * S2) && waters.length; i++) {
+            const lk = waters[Math.floor(Math.random() * waters.length)], b = lk.blobs[Math.floor(Math.random() * lk.blobs.length)];
+            for (let t = 0; t < 20; t++) {
+                const a = Math.random() * Math.PI * 2, d = Math.random() * b.r * 0.7;
+                const x = lk.x + b.dx + Math.cos(a) * d, y = lk.y + b.dy + Math.sin(a) * d;
+                if (game.isWater(x, y) && !game.isMountain(x, y) && game.addResourceNode(new ResourceNode(x, y, 'food'), 40)) break;
+            }
+        }
+    },
+
+    // Czy wszystkie starty łączy ląd (ruchy proste po siatce 30 px, drzewa i złoża blokują jak w Pathfinderze)
+    connected(game, starts) {
+        const cs = 30, W = game.mapWidth, H = game.mapHeight;
+        const cols = Math.ceil(W / cs), rows = Math.ceil(H / cs);
+        const grid = new Uint8Array(cols * rows);
+        for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+            const x = c * cs + cs / 2, y = r * cs + cs / 2;
+            if (game.isWater(x, y) || game.isMountain(x, y)) grid[r * cols + c] = 1;
+        }
+        for (const n of game.resourceNodes) {
+            if (n.type === 'food') continue;
+            const rr = n.radius * 0.75;
+            const x0 = Math.max(0, Math.floor((n.x - rr) / cs)), x1 = Math.min(cols - 1, Math.floor((n.x + rr) / cs));
+            const y0 = Math.max(0, Math.floor((n.y - rr) / cs)), y1 = Math.min(rows - 1, Math.floor((n.y + rr) / cs));
+            for (let x = x0; x <= x1; x++) for (let y = y0; y <= y1; y++) grid[y * cols + x] = 1;
+        }
+        const s0 = Math.floor(starts[0].y / cs) * cols + Math.floor(starts[0].x / cs);
+        grid[s0] = 0;
+        const seen = new Uint8Array(cols * rows), q = new Int32Array(cols * rows);
+        let head = 0, tail = 0, count = 1;
+        q[tail++] = s0; seen[s0] = 1;
+        while (head < tail) {
+            const cur = q[head++], c = cur % cols, r = (cur - c) / cols;
+            const nb = [c > 0 ? cur - 1 : -1, c < cols - 1 ? cur + 1 : -1, r > 0 ? cur - cols : -1, r < rows - 1 ? cur + cols : -1];
+            for (const j of nb) if (j >= 0 && !grid[j] && !seen[j]) { seen[j] = 1; q[tail++] = j; count++; }
+        }
+        for (let i = 1; i < starts.length; i++) {
+            const j = Math.floor(starts[i].y / cs) * cols + Math.floor(starts[i].x / cs);
+            if (!seen[j]) return false;
+        }
+        return count >= cols * rows * 0.4;
+    },
+
+    // --- Podgląd układu (menu): rzuty gór, jezior, rzek, brodów i startów na płótno S x S ---
+    paint(g, L, S, biome) {
+        const B = biome || Biomes.meadow, M = B.mini, k = S / L.W;
+        const css = (c, a) => `rgba(${clamp(c[0], 0, 255) | 0}, ${clamp(c[1], 0, 255) | 0}, ${clamp(c[2], 0, 255) | 0}, ${a == null ? 1 : a})`;
+        g.fillStyle = css(M.grass); g.fillRect(0, 0, S, S);
+        let sd = (L.seed % 9973) + 7;
+        const r = () => { sd = (sd * 16807) % 2147483647; return (sd - 1) / 2147483646; };
+        for (let i = 0; i < 260; i++) {
+            const x = r() * S, y = r() * S, rad = S * (0.015 + r() * 0.05), kk = (r() - 0.5) * 2;
+            const c = M.grass.map((v, j) => v + M.grassV[j] * kk), gr = g.createRadialGradient(x, y, 0, x, y, rad);
+            gr.addColorStop(0, css(c, 0.5)); gr.addColorStop(1, css(c, 0));
+            g.fillStyle = gr; g.fillRect(x - rad, y - rad, rad * 2, rad * 2);
+        }
+        const blobs = (list, fill) => {
+            g.fillStyle = fill;
+            for (const m of list) for (const b of m.blobs) { g.beginPath(); g.arc((m.x + b.dx) * k, (m.y + b.dy) * k, Math.max(0.6, (b.r + 2) * k), 0, Math.PI * 2); g.fill(); }
+        };
+        blobs(L.mountains, css(B.rock.map(v => v * 0.62)));
+        blobs(L.mountains.map(m => ({ x: m.x - 18, y: m.y - 22, blobs: m.blobs.map(b => ({ dx: b.dx, dy: b.dy, r: b.r * 0.62 })) })), css(B.rock.map(v => Math.min(255, v * 1.08))));
+        blobs(L.lakes.filter(l => !l.river), css(M.sand));
+        blobs(L.lakes, css(M.water));
+        g.fillStyle = css(M.sand);
+        for (const f of L.fords) { g.beginPath(); g.arc(f.x * k, f.y * k, Math.max(1.2, f.r * k * 1.2), 0, Math.PI * 2); g.fill(); }
+        return L.starts.map(s => ({ x: s.x * k, y: s.y * k }));
+    }
+};
+window.RaptorAtlas = RaptorAtlas;
 
 /* --- graphics/Sprites.js --- */
 // Generator sprite'ów: wszystko malowane proceduralnie raz, w 2x rozdzielczości, i trzymane w cache.
@@ -15462,6 +16318,9 @@ class Unit extends Entity {
     // Rozkaz gracza lub AI kasuje jedno i drugie.
     attack(target, explicit = false, auto = false) {
         if (!target) return;
+        // Dyplomacja: nie atakujemy nacji, z którą jest pokój (np. rozkaz wydany tuż przed podpisaniem traktatu)
+        const gd = window.game;
+        if (gd && gd.diplo && target.owner && this.owner && !gd.isEnemy(target, this)) return;
         if (!(this.cfg.attackDamage > 0)) {
             // mnisi i chorążowie nie walczą - na wyraźny rozkaz idą za wojskiem i zatrzymują się przed celem
             if (explicit && !this.cfg.gatherer) {
@@ -18268,7 +19127,7 @@ class NationAI {
             }
         }
         // V3.5 Newest Final: Cud Świata (także w budowie) widać z każdego zakątka mapy
-        for (const w of game.wonderInfo()) if (w.owner.team !== myTeam && !w.isDestroyed) visible.add(w);
+        for (const w of game.wonderInfo()) if (w.owner.team !== myTeam && !w.isDestroyed && game.hostileTeams(myTeam, w.owner.team)) visible.add(w);
         for (const u of nation.units) {
             const nearby = game.spatialGrid.queryEnemies(u.x, u.y, u.vision || 300, myTeam, q);
             for (let i = 0; i < nearby.length; i++) { const e = nearby[i]; if (e.owner && e.owner.team !== myTeam) visible.add(e); }
@@ -19027,6 +19886,9 @@ class NationAI {
             for (const v of pw.values()) if (v > maxP) maxP = v;
             for (const c of scored) c.d *= 1 + 0.7 * (pw.get(c.n) || 0) / maxP;
         }
+        // Dyplomacja: wróg wskazany przez dyplomatę (DiplomatAI.focus) jest wyraźnie bliżej na liście celów
+        const foc = this.nation.diplomat && this.nation.diplomat.focus;
+        if (foc) for (const c of scored) if (c.n === foc) c.d *= 0.45;
         scored.sort((a, b) => a.d - b.d);
         const pick = (scored.length > 1 && Math.random() < 0.25) ? scored[1] : scored[0];
         if (pick.b) this.knownEnemies.add(pick.b);
@@ -19064,7 +19926,7 @@ class NationAI {
             if (e.unitType) { if (e.cfg.military && !e.isShip) v = NationAI.power(e); }
             else if (e.attackCfg && e.isConstructed) v = e.type === 'castle' ? 9 : (e.type === 'town_center' ? 4 : (e.type === 'bombard_tower' ? 5 : 3));
             if (!v) continue;
-            if (e.owner.team === team) mine += v; else theirs += v;
+            if (e.owner.team === team) mine += v; else if (game.hostileTeams(team, e.owner.team)) theirs += v;
         }
         return { mine, theirs };
     }
@@ -19391,7 +20253,7 @@ class NationAI {
             let best = null, bestScore = -Infinity;
             for (let i = 0; i < nearby.length; i++) {
                 const e = nearby[i];
-                if (!e.owner || !e.unitType || e.owner.team === myTeam || e.isDestroyed || e.isShip) continue;
+                if (!e.owner || !e.unitType || !game.hostileTeams(myTeam, e.owner.team) || e.isDestroyed || e.isShip) continue;
                 if (e.cfg.colossal ? !hurtsBig : onlyB) continue;   // Koń Trojański - tylko dla artylerii
                 if (this.isUnreachable(e)) continue;
                 const dist = Math.hypot(e.x - s.x, e.y - s.y);
@@ -20134,6 +20996,500 @@ NationAI._q = []; NationAI._q2 = [];
 
 
 /* --- graphics/Atmosphere.js --- */
+/* --- game/Diplomacy.js --- */
+// Reloaded: tryb Dyplomacja. Każda nacja gra na własny rachunek (osobna "drużyna"), a to, kto z kim walczy,
+// rozstrzygają relacje, które zmieniają się w trakcie gry:
+//   WOJNA  - jednostki i wieże atakują się nawzajem (jak wrogie drużyny w Klasycznym meczu),
+//   POKÓJ  - nikt nikogo nie atakuje; wojsko może przechodzić obok, wieże milczą,
+//   SOJUSZ - pokój + wspólne pole widzenia i wspólne zwycięstwo.
+// Na starcie wszyscy żyją w pokoju, a przez pierwsze minuty obowiązuje rozejm (nie da się wypowiedzieć wojny).
+// Całą logikę liczy symulacja (w grze wieloosobowej - host); goście dostają stan relacji w paczkach ('dp').
+// Wrogość działa na poziomie drużyn (macierz 16 x 16 bajtów), żeby gorące ścieżki - wyszukiwanie celów w siatce
+// przestrzennej, Game.isEnemy - kosztowały jedno odczytanie z tablicy.
+const DIPLO = {
+    WAR: 0, PEACE: 1, ALLY: 2,
+    NAMES: ['Wojna', 'Pokój', 'Sojusz'],
+    PEACE_MIN_WAR: 60,          // pokój można zawrzeć dopiero po minucie wojny
+    WAR_AFTER_PEACE: 120,       // po zawarciu pokoju przez 2 minuty obowiązuje traktat (bez wypowiadania wojny)
+    PROPOSAL_TTL: 60,           // propozycja dla człowieka czeka minutę
+    ASK_COOLDOWN: 45            // ta sama propozycja do tej samej nacji najwyżej co 45 s
+};
+
+class Diplomacy {
+    constructor(game, opts = {}) {
+        this.game = game;
+        const N = this.N = game.nations.length;
+        game.nations.forEach((n, i) => { n.dIdx = i; });
+        this.state = new Uint8Array(N * N).fill(DIPLO.PEACE);
+        this.since = new Float64Array(N * N);
+        this.opinion = new Float32Array(N * N);   // opinion[a * N + b] - co a myśli o b (-100..100)
+        this.asked = new Map();                    // 'a>b:rodzaj' -> czas ostatniej propozycji
+        this.proposals = [];                       // propozycje czekające na odpowiedź człowieka
+        this.history = [];                         // kronika: { t, a, b, kind }
+        this.truceUntil = opts.truce !== undefined ? opts.truce : 300;
+        this.allianceWin = opts.allianceWin !== false;
+        this.mask = new Uint8Array(256);           // wrogość drużyn: mask[ta * 16 + tb]
+        this.allyMask = new Uint8Array(256);
+        this.version = 0;
+        this._pid = 0;
+        this._str = new Map(); this._strAt = -1;
+        for (let i = 0; i < N; i++) this.state[i * N + i] = DIPLO.ALLY;
+        this.rebuild();
+        game.diplo = this;
+        game.spatialGrid.hostile = this.mask;
+        for (const n of game.nations) if (n.ai) n.diplomat = new DiplomatAI(game, n);
+    }
+
+    i(n) { return n && n.dIdx !== undefined ? n.dIdx : -1; }
+    get(a, b) { const i = this.i(a), j = this.i(b); return i < 0 || j < 0 ? DIPLO.PEACE : this.state[i * this.N + j]; }
+    atWar(a, b) { return a !== b && this.get(a, b) === DIPLO.WAR; }
+    allied(a, b) { return a !== b && this.get(a, b) === DIPLO.ALLY; }
+    sinceOf(a, b) { return this.since[this.i(a) * this.N + this.i(b)]; }
+    op(a, b) { return this.opinion[this.i(a) * this.N + this.i(b)]; }
+    addOp(a, b, v) { const k = this.i(a) * this.N + this.i(b); this.opinion[k] = clamp(this.opinion[k] + v, -100, 100); }
+    inTruce() { return this.game.time < this.truceUntil; }
+    alive(n) { return n && !n.defeated && !n.resigned; }
+
+    // macierze drużyn z relacji nacji (drużyna = nacja + 1 w tym trybie, ale liczymy ogólnie)
+    rebuild() {
+        const G = this.game.nations, M = this.mask, A = this.allyMask;
+        M.fill(0); A.fill(0);
+        for (const a of G) for (const b of G) {
+            if (a === b) continue;
+            const ta = a.team & 15, tb = b.team & 15;
+            if (ta === tb) continue;
+            const s = this.get(a, b);
+            if (s === DIPLO.WAR) M[ta * 16 + tb] = 1;
+            else if (s === DIPLO.ALLY) A[ta * 16 + tb] = 1;
+        }
+        this.version++;
+    }
+
+    _set(a, b, s) {
+        const N = this.N, i = this.i(a), j = this.i(b), t = this.game.time;
+        this.state[i * N + j] = this.state[j * N + i] = s;
+        this.since[i * N + j] = this.since[j * N + i] = t;
+        this.proposals = this.proposals.filter(p => !((p.from === a && p.to === b) || (p.from === b && p.to === a)));
+        this.rebuild();
+    }
+
+    name(n) { return n.shortName || n.name; }
+
+    // Komunikat: strony relacji dostają go wprost (z dźwiękiem), pozostali ludzie - jako wiadomość z kroniki
+    announce(a, b, kind, textA, textB, textAll, typeA, typeB) {
+        const g = this.game;
+        this.history.push({ t: g.time, a: this.i(a), b: this.i(b), kind });
+        if (this.history.length > 60) this.history.shift();
+        if (textA) g.tell(a, textA, typeA || 'info');
+        if (textB) { g.tell(b, textB, typeB || 'info'); if (typeB === 'alert') g.cue(b, 'Warning'); }
+        for (const n of g.nations) if (n !== a && n !== b && n.human && !n.defeated && textAll) g.tell(n, textAll, 'info');
+    }
+
+    // ---------------- Zmiany relacji ----------------
+
+    canDeclareWar(a, b) {
+        if (!this.alive(a) || !this.alive(b) || a === b) return 'Ta nacja nie bierze już udziału w grze.';
+        if (this.atWar(a, b)) return 'Już prowadzicie wojnę.';
+        if (this.inTruce()) return `Rozejm na początku gry: wojnę można wypowiedzieć za ${Math.ceil(this.truceUntil - this.game.time)} s.`;
+        const st = this.get(a, b), age = this.game.time - this.sinceOf(a, b);
+        if (st === DIPLO.PEACE && age < DIPLO.WAR_AFTER_PEACE && this.lastKind(a, b) === 'peace')
+            return `Traktat pokojowy obowiązuje jeszcze ${Math.ceil(DIPLO.WAR_AFTER_PEACE - age)} s.`;
+        return null;
+    }
+
+    lastKind(a, b) {
+        const i = this.i(a), j = this.i(b);
+        for (let k = this.history.length - 1; k >= 0; k--) { const h = this.history[k]; if ((h.a === i && h.b === j) || (h.a === j && h.b === i)) return h.kind; }
+        return null;
+    }
+
+    declareWar(a, b, why) {
+        const err = this.canDeclareWar(a, b);
+        if (err) return err;
+        const g = this.game, betrayal = this.allied(a, b);
+        this._set(a, b, DIPLO.WAR);
+        // reputacja: napadnięty zapamięta to najdłużej, świat patrzy na agresora nieufnie (zdrada sojusznika - dużo gorzej)
+        this.addOp(b, a, betrayal ? -85 : -50);
+        for (const c of g.nations) {
+            if (c === a || c === b) continue;
+            if (this.atWar(c, b)) this.addOp(c, a, 12);
+            else this.addOp(c, a, betrayal ? -25 : (this.allied(c, b) ? -30 : -8));
+        }
+        const na = this.name(a), nb = this.name(b);
+        this.announce(a, b, 'war',
+            `Wypowiedziałeś wojnę nacji ${nb}.` + (betrayal ? ' Sojusz zerwany — inni zapamiętają tę zdradę.' : ''),
+            `${na} wypowiada ci wojnę!` + (betrayal ? ' Zdrada sojusznika!' : '') + (why ? ' ' + why : ''),
+            `${na} wypowiada wojnę nacji ${nb}.` + (betrayal ? ' (zerwany sojusz)' : ''), 'warn', 'alert');
+        // sojusznicy napadniętego dostają wezwanie (SI rozważa je w DiplomatAI.think)
+        for (const c of g.nations) if (c !== a && this.allied(c, b) && c.diplomat) c.diplomat.callToArms(b, a);
+        return null;
+    }
+
+    makePeace(a, b) {
+        this._set(a, b, DIPLO.PEACE);
+        this.addOp(a, b, 10); this.addOp(b, a, 10);
+        this.calmUnits(a, b);
+        const na = this.name(a), nb = this.name(b);
+        this.announce(a, b, 'peace', `Zawarto pokój z nacją ${nb}.`, `Zawarto pokój z nacją ${na}.`, `${na} i ${nb} zawierają pokój.`, 'good', 'good');
+    }
+
+    makeAlliance(a, b) {
+        this._set(a, b, DIPLO.ALLY);
+        this.addOp(a, b, 25); this.addOp(b, a, 25);
+        this.calmUnits(a, b);
+        const na = this.name(a), nb = this.name(b);
+        this.announce(a, b, 'alliance', `Sojusz z nacją ${nb}! Dzielicie pole widzenia i zwycięstwo.`, `Sojusz z nacją ${na}! Dzielicie pole widzenia i zwycięstwo.`,
+            `${na} i ${nb} zawierają sojusz.`, 'good', 'good');
+        this.game.updateVisibility();
+    }
+
+    breakAlliance(a, b) {
+        if (!this.allied(a, b)) return 'Nie jesteście sojusznikami.';
+        this._set(a, b, DIPLO.PEACE);
+        this.addOp(b, a, -30);
+        const na = this.name(a), nb = this.name(b);
+        this.announce(a, b, 'break', `Zerwałeś sojusz z nacją ${nb} (zostaje pokój).`, `${na} zrywa sojusz z tobą (zostaje pokój).`, `${na} zrywa sojusz z nacją ${nb}.`, 'warn', 'warn');
+        this.game.updateVisibility();
+        return null;
+    }
+
+    // po zawarciu pokoju / sojuszu: nikt nie kończy rozpoczętego ataku na nową stronę porozumienia
+    calmUnits(a, b) {
+        for (const [x, y] of [[a, b], [b, a]]) {
+            if (x.ai && x.ai.knownEnemies) for (const e of x.ai.knownEnemies) if (e.owner === y) x.ai.knownEnemies.delete(e);
+            for (const u of x.units) {
+                const t = u.targetEntity;
+                if (t && t.owner === y && !u.isDestroyed) { if (u.stop) u.stop(); else u.targetEntity = null; }
+            }
+            for (const bd of x.buildings) if (bd.targetEntity && bd.targetEntity.owner === y) bd.targetEntity = null;
+        }
+    }
+
+    // ---------------- Propozycje ----------------
+    // kind: 'peace' | 'alliance'. Do SI - odpowiedź od razu (DiplomatAI.evaluate), do człowieka - czeka w panelu.
+    propose(from, to, kind) {
+        const g = this.game;
+        if (!this.alive(from) || !this.alive(to) || from === to) return 'Ta nacja nie bierze już udziału w grze.';
+        const st = this.get(from, to);
+        if (kind === 'peace') {
+            if (st !== DIPLO.WAR) return 'Nie prowadzicie wojny.';
+            const age = g.time - this.sinceOf(from, to);
+            if (age < DIPLO.PEACE_MIN_WAR) return `Wojna trwa dopiero ${Math.floor(age)} s — o pokój można prosić po minucie.`;
+        } else if (kind === 'alliance') {
+            if (st === DIPLO.ALLY) return 'Już jesteście sojusznikami.';
+            if (st === DIPLO.WAR) return 'Najpierw trzeba zawrzeć pokój.';
+            for (const c of g.nations) if (this.allied(c, to) && this.atWar(c, from)) return `${this.name(to)} jest sojusznikiem nacji ${this.name(c)}, z którą walczysz.`;
+            for (const c of g.nations) if (this.allied(c, from) && this.atWar(c, to)) return `Twój sojusznik ${this.name(c)} walczy z nacją ${this.name(to)}.`;
+        } else return 'Nieznana propozycja.';
+        const key = this.i(from) + '>' + this.i(to) + ':' + kind, last = this.asked.get(key);
+        if (last !== undefined && g.time - last < DIPLO.ASK_COOLDOWN) return `Poczekaj ${Math.ceil(DIPLO.ASK_COOLDOWN - (g.time - last))} s przed kolejną propozycją.`;
+        this.asked.set(key, g.time);
+        const what = kind === 'peace' ? 'pokój' : 'sojusz';
+        if (to.ai && to.diplomat) {
+            const r = to.diplomat.evaluate(kind, from);
+            if (r.ok) { if (kind === 'peace') this.makePeace(from, to); else this.makeAlliance(from, to); }
+            else {
+                g.tell(from, `${this.name(to)} odrzuca ${what}: ${r.why}`, 'warn');
+                if (kind === 'alliance') this.addOp(to, from, 2);   // samo zainteresowanie trochę ociepla stosunki
+            }
+            if (from.diplomat) from.diplomat.onAnswer(to, kind, r.ok);
+            return null;
+        }
+        if (this.proposals.some(p => p.from === from && p.to === to && p.kind === kind)) return null;
+        const p = { id: ++this._pid, from, to, kind, at: g.time, until: g.time + DIPLO.PROPOSAL_TTL };
+        this.proposals.push(p);
+        this.version++;
+        g.tell(to, `${this.name(from)} proponuje ${what}. Odpowiedz w panelu Dyplomacji (Tab).`, 'good');
+        g.cue(to, 'Complete');
+        if (from.human) g.tell(from, `Wysłano propozycję (${what}) do nacji ${this.name(to)}.`, 'info');
+        return null;
+    }
+
+    respond(nation, id, accept) {
+        const p = this.proposals.find(q => q.id === id && q.to === nation);
+        if (!p) return 'Ta propozycja już wygasła.';
+        this.proposals = this.proposals.filter(q => q !== p);
+        this.version++;
+        if (!this.alive(p.from)) return null;
+        if (accept) {
+            if (p.kind === 'peace' && this.atWar(p.from, p.to)) this.makePeace(p.from, p.to);
+            else if (p.kind === 'alliance' && this.get(p.from, p.to) === DIPLO.PEACE) this.makeAlliance(p.from, p.to);
+        } else {
+            this.addOp(p.from, nation, -6);
+            this.game.tell(p.from, `${this.name(nation)} odrzuca propozycję (${p.kind === 'peace' ? 'pokój' : 'sojusz'}).`, 'warn');
+        }
+        if (p.from.diplomat) p.from.diplomat.onAnswer(nation, p.kind, accept);
+        return null;
+    }
+
+    // Rozkaz dyplomatyczny gracza (core/Commands.js: { t: 'diplo', act, to, id })
+    command(nation, cmd) {
+        const g = this.game;
+        const to = Number.isInteger(cmd.to) ? g.nations[cmd.to] : null;
+        switch (cmd.act) {
+            case 'war': return to ? this.declareWar(nation, to) : null;
+            case 'peace': return to ? this.propose(nation, to, 'peace') : null;
+            case 'alliance': return to ? this.propose(nation, to, 'alliance') : null;
+            case 'break': return to ? this.breakAlliance(nation, to) : null;
+            case 'accept': return this.respond(nation, cmd.id, true);
+            case 'decline': return this.respond(nation, cmd.id, false);
+        }
+        return null;
+    }
+
+    // ---------------- Krok symulacji ----------------
+    update(dt) {
+        const g = this.game, t = g.time;
+        if (this.proposals.length && this.proposals.some(p => t > p.until || !this.alive(p.from) || !this.alive(p.to))) {
+            for (const p of this.proposals) if (t > p.until && this.alive(p.from)) g.tell(p.from, `${this.name(p.to)} nie odpowiedział na propozycję.`, 'info');
+            this.proposals = this.proposals.filter(p => t <= p.until && this.alive(p.from) && this.alive(p.to));
+            this.version++;
+        }
+        if (this.truceUntil > 0 && !this._truceTold && t >= this.truceUntil) {
+            this._truceTold = true;
+            for (const n of g.nations) if (n.human) g.tell(n, 'Rozejm dobiegł końca — od teraz każda nacja może wypowiedzieć wojnę.', 'warn');
+        }
+        // opinie: powolny powrót do zera; wspólny wróg zbliża, sojusz z czasem wzmacnia zaufanie
+        const N = this.N, G = g.nations, k = dt * 0.02;
+        for (let i = 0; i < N; i++) for (let j = 0; j < N; j++) {
+            if (i === j) continue;
+            const o = i * N + j;
+            let v = this.opinion[o];
+            v -= Math.sign(v) * Math.min(Math.abs(v), k);
+            if (this.state[o] === DIPLO.ALLY) v += dt * 0.03;
+            this.opinion[o] = clamp(v, -100, 100);
+        }
+        this._common = (this._common || 0) + dt;
+        if (this._common >= 5) {
+            this._common = 0;
+            for (const a of G) for (const b of G) {
+                if (a === b || !this.alive(a) || !this.alive(b)) continue;
+                for (const c of G) if (c !== a && c !== b && this.alive(c) && this.atWar(a, c) && this.atWar(b, c)) { this.addOp(a, b, 0.6); break; }
+            }
+        }
+        for (const n of G) {
+            if (!n.diplomat && n.ai) n.diplomat = new DiplomatAI(g, n);   // SI przejęła nację rozłączonego gracza (albo tryb pokazowy)
+            if (n.diplomat && n.ai && !n.defeated) n.diplomat.update(dt);
+        }
+    }
+
+    // ---------------- Oceny (dla SI i panelu) ----------------
+
+    // Siła nacji: wojsko (wartość jak w NationAI.power), budynki strzelające i trochę gospodarki. Liczone raz na sekundę.
+    strength(n) {
+        const t = Math.floor(this.game.time);
+        if (t !== this._strAt) { this._str.clear(); this._strAt = t; }
+        let v = this._str.get(n);
+        if (v !== undefined) return v;
+        v = 4;
+        for (const u of n.units) if (!u.isDestroyed) v += u.cfg.military ? NationAI.power(u) : 0.25;
+        for (const b of n.buildings) if (!b.isDestroyed && b.isConstructed) v += b.attackCfg ? 3 : 0.4;
+        v *= 1 + (n.age - 1) * 0.12;
+        this._str.set(n, v);
+        return v;
+    }
+
+    capital(n) {
+        return n.buildings.find(b => b.type === 'town_center' && !b.isDestroyed) || n.buildings.find(b => !b.isDestroyed) || n.units[0] || null;
+    }
+
+    // bliskość stolic: 1 = sąsiad za miedzą, 0 = drugi koniec kontynentu
+    proximity(a, b) {
+        const ca = this.capital(a), cb = this.capital(b);
+        if (!ca || !cb) return 0;
+        return clamp(1 - Math.hypot(ca.x - cb.x, ca.y - cb.y) / 7500, 0, 1);
+    }
+
+    // Zwycięstwo sojuszu: wszystkie nacje, które jeszcze grają, są ze sobą w sojuszu (i ktoś już odpadł z gry)
+    allianceVictory(active) {
+        if (!this.allianceWin || active.length < 2 || !this.game.nations.some(n => n.defeated)) return null;
+        for (const a of active) for (const b of active) if (a !== b && !this.allied(a, b)) return null;
+        return active;
+    }
+
+    // ---------------- Sieć: stan dla gościa ----------------
+    pack(forNation) {
+        return {
+            v: this.version, s: Array.from(this.state), o: Array.from(this.opinion, x => Math.round(x)), tr: this.truceUntil, aw: this.allianceWin ? 1 : 0,
+            h: this.history.slice(-12).map(h => [Math.round(h.t), h.a, h.b, h.kind]),
+            p: this.proposals.filter(p => !forNation || p.to === forNation || p.from === forNation).map(p => [p.id, this.i(p.from), this.i(p.to), p.kind, Math.round(p.until)])
+        };
+    }
+
+    unpack(d) {
+        if (!d || !Array.isArray(d.s) || d.s.length !== this.state.length) return;
+        this.state.set(d.s);
+        if (Array.isArray(d.o) && d.o.length === this.opinion.length) this.opinion.set(d.o);
+        this.truceUntil = Number(d.tr) || 0;
+        this.allianceWin = !!d.aw;
+        const G = this.game.nations;
+        this.history = (d.h || []).map(h => ({ t: h[0], a: h[1], b: h[2], kind: h[3] }));
+        this.proposals = (d.p || []).map(p => ({ id: p[0], from: G[p[1]], to: G[p[2]], kind: p[3], until: p[4] })).filter(p => p.from && p.to);
+        this.rebuild();
+    }
+}
+
+// ---------------- SI dyplomaty ----------------
+// Nowa, osobna warstwa SI trybu Dyplomacja. NationAI dalej prowadzi gospodarkę i wojsko (atakuje tylko nacje,
+// z którymi jest wojna - Game.isEnemy), a DiplomatAI decyduje, Z KIM walczyć i z kim trzymać:
+//   - ocenia każdą nację: siła (wojsko, wieże, era), bliskość stolic, opinia (pamięć zdrad, wojen, sojuszy),
+//   - wypowiada wojnę słabszemu sąsiadowi, gdy ma przewagę - śmiałość zależy od charakteru i poziomu SI,
+//   - prosi o pokój, gdy wojna idzie źle albo walczy na kilku frontach,
+//   - szuka sojuszników przeciw wspólnemu wrogowi i przeciw nacji, która rośnie za bardzo,
+//   - staje w obronie sojusznika (wezwanie do broni), a lojalność zależy od charakteru,
+//   - odpowiada na propozycje gracza - z uzasadnieniem, które gracz zobaczy.
+// Decyzje trafiają do dziennika dowódcy (NationAI.opLog), więc testy i podgląd widzą, dlaczego SI coś zrobiła.
+class DiplomatAI {
+    constructor(game, nation) {
+        this.game = game;
+        this.nation = nation;
+        const ai = nation.ai;
+        const pers = (ai && ai.personality) || 'defensive';
+        const T = {
+            defensive:   { aggro: 0.25, loyal: 0.9, caution: 0.8 },
+            offensive:   { aggro: 0.7, loyal: 0.65, caution: 0.45 },
+            reckless:    { aggro: 0.9, loyal: 0.35, caution: 0.2 },
+            raider:      { aggro: 0.6, loyal: 0.5, caution: 0.45 },
+            siegemaster: { aggro: 0.55, loyal: 0.7, caution: 0.55 }
+        }[pers] || { aggro: 0.5, loyal: 0.6, caution: 0.5 };
+        const d = ai ? ai.difficulty : 'medium';
+        const dk = { easy: 0.6, medium: 0.9, hard: 1.05, brutal: 1.2, tutorial: 0 }[d];
+        this.aggro = clamp(T.aggro * (dk === undefined ? 1 : dk), 0, 1);
+        this.loyal = T.loyal;
+        this.caution = T.caution;
+        this.personality = pers;
+        this.timer = 4 + Math.random() * 6;
+        this.lastWarAt = -999;
+        this.calls = [];          // wezwania do broni od sojuszników: { ally, enemy, at }
+        this.focus = null;        // główny wróg (cel fal NationAI)
+        this.asked = new Map();   // nacja -> czas ostatniej propozycji sojuszu (żeby nie nękać odmawiającego)
+        this.askedPeace = new Map();
+    }
+
+    log(msg) { if (this.nation.ai && this.nation.ai.log) this.nation.ai.log('[dyplomacja] ' + msg); }
+
+    callToArms(ally, enemy) { this.calls.push({ ally, enemy, at: this.game.time }); }
+
+    onAnswer(other, kind, ok) { this.log(`${kind === 'peace' ? 'pokój' : 'sojusz'} z ${other.shortName || other.name}: ${ok ? 'przyjęty' : 'odrzucony'}`); }
+
+    update(dt) {
+        this.timer -= dt;
+        if (this.timer > 0) return;
+        this.timer = 7 + Math.random() * 4;
+        this.think();
+    }
+
+    info(o) {
+        const D = this.game.diplo, me = this.nation;
+        return { n: o, s: D.strength(o), prox: D.proximity(me, o), op: D.op(me, o), rel: D.get(me, o), age: this.game.time - D.sinceOf(me, o) };
+    }
+
+    // siła nacji razem z jej sojusznikami (bliskimi - daleki sojusznik słabo pomoże)
+    bloc(o) {
+        const D = this.game.diplo;
+        let s = D.strength(o);
+        for (const c of this.game.nations) if (c !== o && D.alive(c) && D.allied(c, o)) s += D.strength(c) * (0.35 + 0.5 * D.proximity(c, o));
+        return s;
+    }
+
+    think() {
+        const g = this.game, D = g.diplo, me = this.nation;
+        if (!D || !D.alive(me)) return;
+        const others = g.nations.filter(o => o !== me && D.alive(o)).map(o => this.info(o));
+        if (!others.length) return;
+        const my = D.strength(me), myBloc = this.bloc(me);
+        const wars = others.filter(x => x.rel === DIPLO.WAR);
+        const allies = others.filter(x => x.rel === DIPLO.ALLY);
+
+        // 1) wezwania do broni od sojuszników
+        for (const c of this.calls.splice(0)) {
+            if (!D.allied(me, c.ally) || !D.alive(c.enemy) || D.atWar(me, c.enemy) || D.allied(me, c.enemy)) continue;
+            const e = this.info(c.enemy);
+            const will = this.loyal + (e.op < 0 ? 0.15 : 0) - (wars.length ? 0.35 : 0) - (my < e.s * 0.5 ? 0.3 : 0);
+            if (will > 0.5 && !D.canDeclareWar(me, c.enemy)) {
+                this.log(`dotrzymuje sojuszu: wojna z ${D.name(c.enemy)} w obronie ${D.name(c.ally)}`);
+                D.declareWar(me, c.enemy, `Sojusz z nacją ${D.name(c.ally)} zobowiązuje.`);
+                return;
+            }
+            this.log(`nie przystępuje do wojny sojusznika ${D.name(c.ally)} (za słaby albo zajęty)`);
+        }
+
+        // 2) pokój, gdy wojna idzie źle albo frontów jest za dużo
+        for (const w of wars) {
+            if (w.age < DIPLO.PEACE_MIN_WAR + 20) continue;
+            const losing = this.bloc(w.n) > myBloc * (1.15 - this.caution * 0.25);
+            const tooMany = wars.length >= 2 && w.n !== this.focus;
+            const tired = w.age > 900 - this.aggro * 400 && w.prox < 0.35;
+            if (losing || tooMany || tired) {
+                if (g.time - (this.askedPeace.get(w.n) || -999) < 150) continue;
+                this.askedPeace.set(w.n, g.time);
+                this.log(`prosi o pokój z ${D.name(w.n)} (${losing ? 'przegrywa' : tooMany ? 'za dużo frontów' : 'wojna bez celu'})`);
+                if (!D.propose(me, w.n, 'peace')) return;
+            }
+        }
+
+        // 3) sojusze: wspólny wróg, rosnące zagrożenie, dobra opinia
+        if (allies.length < 2) {
+            const strongest = others.reduce((a, b) => (b.s > a.s ? b : a));
+            const avg = others.reduce((a, b) => a + b.s, 0) / others.length;
+            let best = null, bestV = 0.55;
+            for (const o of others) {
+                if (o.rel !== DIPLO.PEACE || g.time - (this.asked.get(o.n) || -999) < 240) continue;
+                let v = o.op / 60;
+                if (wars.some(w => D.atWar(o.n, w.n))) v += 0.6;                                       // wspólny wróg
+                if (strongest.n !== o.n && strongest.n !== me && strongest.s > avg * 1.6 && strongest.prox > 0.3) v += 0.35;   // przeciw hegemonowi
+                v += o.prox * 0.15 - (o.n.human ? 0.05 : 0);
+                if (v > bestV) { bestV = v; best = o; }
+            }
+            if (best) {
+                this.asked.set(best.n, g.time);
+                if (!D.propose(me, best.n, 'alliance')) { this.log(`proponuje sojusz nacji ${D.name(best.n)}`); return; }
+            }
+        }
+
+        // 4) wojna: słabszy sąsiad, z którym nie łączy nas przyjaźń
+        this.focus = wars.length ? wars.reduce((a, b) => (b.prox > a.prox ? b : a)).n : null;
+        if (D.inTruce() || wars.length >= (this.aggro > 0.8 ? 2 : 1)) return;
+        if (g.time - this.lastWarAt < 240 - this.aggro * 120) return;
+        let pick = null, pickV = -Infinity;
+        for (const o of others) {
+            if (o.rel !== DIPLO.PEACE || D.canDeclareWar(me, o.n)) continue;
+            const ratio = myBloc / Math.max(1, this.bloc(o.n));
+            let v = o.prox * 1.3 + (ratio - 1) * 0.9 - o.op / 50 + this.aggro * 0.5;
+            if (allies.some(a => D.atWar(a.n, o.n))) v += 0.6;                                         // wróg sojusznika
+            if (ratio < 1.15 + this.caution * 0.5 - this.aggro * 0.35) continue;                      // za mało przewagi
+            if (v > pickV) { pickV = v; pick = o; }
+        }
+        if (pick && pickV > 1.25 - this.aggro * 0.6) {
+            this.lastWarAt = g.time;
+            this.focus = pick.n;
+            this.log(`wypowiada wojnę nacji ${D.name(pick.n)} (przewaga ${(myBloc / Math.max(1, this.bloc(pick.n))).toFixed(1)}x, bliskość ${pick.prox.toFixed(2)})`);
+            D.declareWar(me, pick.n);
+        }
+    }
+
+    // Odpowiedź na propozycję: { ok, why } - uzasadnienie zobaczy proszący
+    evaluate(kind, from) {
+        const D = this.game.diplo, me = this.nation;
+        const o = this.info(from), my = this.bloc(me), their = this.bloc(from);
+        const wars = this.game.nations.filter(n => n !== me && D.alive(n) && D.atWar(me, n)).length;
+        if (kind === 'peace') {
+            const v = their / Math.max(1, my) + (wars - 1) * 0.4 + o.op / 80 + o.age / 900 - this.aggro * 0.6 + (this.focus === from ? -0.2 : 0);
+            if (v > 0.9) return { ok: true, why: '' };
+            return { ok: false, why: my > their * 1.3 ? 'czuje przewagę i chce tę wojnę wygrać.' : 'wojna jeszcze się nie rozstrzygnęła.' };
+        }
+        // sojusz
+        if (o.op < -10) return { ok: false, why: 'nie ufa ci (pamięta dawne krzywdy).' };
+        let v = o.op / 50 + this.loyal * 0.2;
+        if (this.game.nations.some(c => c !== me && c !== from && D.atWar(me, c) && D.atWar(from, c))) v += 0.7;   // wspólny wróg
+        const strongest = this.game.nations.filter(n => D.alive(n) && n !== me).reduce((a, b) => (D.strength(b) > D.strength(a) ? b : a), from);
+        if (strongest !== from && D.strength(strongest) > D.strength(me) * 1.4) v += 0.35;                        // razem przeciw silniejszemu
+        if (o.prox > 0.6) v -= 0.15;                                                                                  // za blisko: sąsiad to też rywal
+        if (v >= 0.45) return { ok: true, why: '' };
+        return { ok: false, why: 'nie widzi w tym korzyści (brak wspólnego wroga, za słabe zaufanie).' };
+    }
+}
+
 // Atmosfera: cykl dnia i nocy ze światłami osad, pogoda zależna od krainy, klucze ptaków.
 // Wszystko jest czysto wizualne (nie wpływa na rozgrywkę) i wyłącza się w trybie wydajności.
 // Wyłączenie cyklu w ustawieniach (enabled = false) zostawia dzień z wędrującym słońcem i ptaki - patrz updateCalm.
@@ -22311,7 +23667,7 @@ class Tutorial {
 // Model: HOST LICZY, GOŚCIE OGLĄDAJĄ. Przeglądarka hosta prowadzi jedyną symulację (tę samą, co w grze solo),
 // goście wysyłają rozkazy i rysują stan świata przysłany przez hosta.
 const NetCodec = {
-    PROTOCOL: 7,                // V3.5: wozy kupieckie (stan 'trading'), lisowczycy, Cud Świata ('wd'), Cud jako opcja meczu
+    PROTOCOL: 8,                // Reloaded: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy)
     SNAP: 1,                    // rodzaj wiadomości binarnej: paczka stanu jednostek
 
     UNIT_TYPES: Object.keys(GameConfig.units),
@@ -22323,6 +23679,10 @@ const NetCodec = {
     PROJECTILES: ['arrow', 'bolt', 'javelin', 'ballista', 'bullet', 'grenade', 'cannonball', 'boulder', 'great_ball'],
 
     POS_SCALE: 8,               // pozycja: 1/8 piksela w uint16 (mapy do 8191 px - mapa gigantyczna ma 5100)
+    // Raptor (Dyplomacja): kontynent ma 11 400 px - powyżej 8191 px pozycja idzie w 1/4 piksela (do 16 383 px).
+    // Host i gość znają rozmiar mapy ze świata, więc obaj ustawiają tę samą skalę przed pierwszą paczką stanu.
+    scaleFor(mapSize) { return mapSize > 8191 ? 4 : 8; },
+    setMapSize(mapSize) { this.POS_SCALE = this.scaleFor(mapSize || 0); },
     MAX_SNAP_UNITS: 700,        // jednostek w jednej wiadomości (poniżej ok. 16 KB)
 
     // ---------------- Paczka stanu jednostek ----------------
@@ -22917,7 +24277,7 @@ class HostSession {
 
         const used = new Set();
         const pickColor = (want) => { let c = (want && !used.has(want)) ? want : ColorOrder.find(k => !used.has(k)); used.add(c); return c; };
-        this.settings = Object.assign({ mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false, kings: false, wonders: true }, opts.settings || {});
+        this.settings = Object.assign({ mode: 'diplomacy', rivers: 'normal', truce: 300, mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false, kings: false, wonders: true }, opts.settings || {});
         this.slots = [];
         for (let i = 0; i < 4; i++) {
             this.slots.push({
@@ -22995,7 +24355,7 @@ class HostSession {
         const active = this.slots.filter(s => s.kind !== 'closed');
         for (const s of active) if (s.kind === 'human' && this.slotState(s) !== 'joined') return `Miejsce ${s.idx + 1} czeka na gracza. Połącz go, zamień to miejsce na AI albo je zamknij.`;
         if (active.length < 2) return 'Do gry potrzeba co najmniej dwóch nacji.';
-        if (new Set(active.map(s => s.team)).size < 2) return 'Wszystkie nacje są w jednej drużynie. Przypisz co najmniej jedną do innej drużyny.';
+        if (this.settings.mode !== 'diplomacy' && new Set(active.map(s => s.team)).size < 2) return 'Wszystkie nacje są w jednej drużynie. Przypisz co najmniej jedną do innej drużyny.';
         return null;
     }
 
@@ -23195,7 +24555,10 @@ class HostSession {
             else nations.push({ isPlayer: false, color: s.color, team: s.team, diff: s.diff, slot: s.idx });
         }
         const o = this.settings;
-        return { nations, playerCorner: 'random', mapSize: o.mapSize, mapType: o.mapType, biome: o.biome, rich: !!o.rich, reveal: !!o.reveal, kings: !!o.kings, wonders: o.wonders !== false, atmosphere, mp: this };
+        // Dyplomacja: każde miejsce to osobna nacja (bez drużyn), świat to kontynent z rzekami
+        if (o.mode === 'diplomacy') nations.forEach((n, i) => { n.team = i + 1; });
+        return { mode: o.mode === 'diplomacy' ? 'diplomacy' : 'classic', rivers: o.rivers || 'normal', truce: Number(o.truce) || 0,
+            nations, playerCorner: 'random', mapSize: o.mapSize, mapType: o.mapType, biome: o.biome, rich: !!o.rich, reveal: !!o.reveal, kings: !!o.kings, wonders: o.wonders !== false, atmosphere, mp: this };
     }
 
     beginLoading() {
@@ -23282,7 +24645,7 @@ class HostSession {
         peer.ready = false; peer.inGame = false; peer.out = [];
         peer.observer = false;
         const r1 = (v) => Math.round(v * 10) / 10;
-        const blob = (list) => (list || []).map(m => ({ x: r1(m.x), y: r1(m.y), r: r1(m.r), blobs: (m.blobs || []).map(b => ({ dx: r1(b.dx), dy: r1(b.dy), r: r1(b.r) })) }));
+        const blob = (list) => (list || []).map(m => ({ x: r1(m.x), y: r1(m.y), r: r1(m.r), river: m.river ? 1 : undefined, blobs: (m.blobs || []).map(b => ({ dx: r1(b.dx), dy: r1(b.dy), r: r1(b.r) })) }));
         const nodes = [];
         for (const nd of g.resourceNodes) {
             if (nd.isDestroyed) continue;
@@ -23298,6 +24661,8 @@ class HostSession {
             mapSize: g.mapWidth, mapType: g.mapType, biome: g.biome.id, seed: g.terrain.seed,
             dirt: g.terrain.dirtSpots.map(d => [Math.round(d.x), Math.round(d.y), d.r]),
             lakes: blob(g.lakes), mountains: blob(g.mountains),
+            mode: g.mode || 'classic', fords: (g.fords || []).map(f => ({ x: r1(f.x), y: r1(f.y), a: Math.round(f.a * 1000) / 1000, r: r1(f.r), w: r1(f.w) })),
+            diplo: g.diplo ? g.diplo.pack(n) : null,
             nations: g.nations.map(x => ({
                 name: x.name, short: x.shortName, color: x.colorKey, team: x.team, label: x.teamLabel,
                 human: !!x.human, ctl: x.controlLabel(), age: x.age, ups: x.researchedUpgrades, defeated: !!x.defeated
@@ -23412,11 +24777,20 @@ class HostSession {
         for (const p of this.peers) if (p.inGame) this.pushEnd(p);
     }
 
+    // Dyplomacja: relacje, opinie i propozycje - po każdej zmianie, a opinie (płyną powoli) i tak co 5 s
+    syncDiplo(peer) {
+        const D = this.game.diplo, t = this.game.time;
+        if (peer.dpv === D.version && t - (peer.dpAt || 0) < 5) return;
+        peer.dpv = D.version; peer.dpAt = t;
+        peer.out.push(['dp', D.pack(peer.nation)]);
+    }
+
     pushEnd(peer) {
         const g = this.game;
         peer.observer = true;   // po meczu każdy może obejrzeć całą mapę
         peer.out.push(['end', g.winnerTeam === undefined ? null : g.winnerTeam, !!g.byPoints, g.winnerNames || '',
-            g.nations.map(n => ({ age: n.age, defeated: !!n.defeated, score: n.score(), ctl: n.controlLabel(), stats: n.stats })), g.byWonder || '']);
+            g.nations.map(n => ({ age: n.age, defeated: !!n.defeated, score: n.score(), ctl: n.controlLabel(), stats: n.stats })), g.byWonder || '',
+            g.winnerTeams ? [...g.winnerTeams] : null]);
     }
 
     // ---------------- Po każdym kroku symulacji ----------------
@@ -23427,7 +24801,7 @@ class HostSession {
         for (const peer of this.peers) {
             if (!peer.inGame) continue;
             if (this.fxBuf.length) this.flushFx(peer);
-            if (netTick) { this.syncWorld(peer); this.syncNations(peer); }
+            if (netTick) { this.syncWorld(peer); this.syncNations(peer); if (g.diplo) this.syncDiplo(peer); }
             if (peer.out.length) { peer.send(['f', g.time, peer.out]); peer.out = []; }
             if (netTick) this.sendSnapshot(peer);
         }
@@ -24079,6 +25453,10 @@ class ClientSession {
                 break;
             }
             case 'nl': { const n = g.nations[e[1]]; if (n) { n.aiLabel = NetCodec.clean(e[2]); n.human = !!e[3]; } break; }
+            case 'dp': {   // Dyplomacja: stan relacji od hosta (wrogość, sojusze = wspólne pole widzenia)
+                if (g.diplo) { g.diplo.unpack(e[1]); g.updateVisibility(); g.fogDirty = true; this.dirty = true; }
+                break;
+            }
             case 'def': {  // nasza nacja pokonana: tryb obserwatora
                 g.playerDefeated = true;
                 if (window.uiManager && !g.gameOver) window.uiManager.showObserverPrompt();
@@ -24088,6 +25466,7 @@ class ClientSession {
                 if (g.gameOver) return;
                 g.gameOver = true;
                 g.winnerTeam = e[1];
+                g.winnerTeams = Array.isArray(e[6]) ? new Set(e[6]) : null;   // Dyplomacja: zwycięski sojusz
                 g.byPoints = !!e[2];
                 g.byWonder = e[5] ? NetCodec.clean(e[5]) : null;
                 g.winnerNames = NetCodec.clean(e[3], 200);
@@ -24364,7 +25743,15 @@ const MpUI = {
         return h + `<span class="mp-role">${role}</span></div>`;
     },
 
+    // tryb rundy widziany z poczekalni (host: własne ustawienia, gość: ustawienia przysłane przez hosta)
+    lobbyMode() {
+        const s = this.session;
+        const o = s && (s.isHost ? s.settings : (s.lobby && s.lobby.settings));
+        return o && o.mode === 'diplomacy' ? 'diplomacy' : 'classic';
+    },
+
     teamPick(slot, team, enabled) {
+        if (this.lobbyMode() === 'diplomacy') return '';   // Dyplomacja: bez drużyn - sojusze zawiera się w trakcie gry
         let h = '<div class="team-pick"><span>Drużyna</span><div class="tp">';
         for (let t = 1; t <= 4; t++) h += `<button type="button" class="t${t}${team === t ? ' on' : ''}" ${enabled ? `data-act="team" data-slot="${slot}" data-team="${t}"` : 'disabled'} title="Drużyna ${t}">${t}</button>`;
         return h + '</div></div>';
@@ -24379,6 +25766,11 @@ const MpUI = {
     },
 
     worldSummary(o) {
+        if (o.mode === 'diplomacy') {
+            const biomeD = { random: 'losowa', meadow: 'łąki', autumn: 'jesień', winter: 'zima', desert: 'pustynia' }[o.biome] || o.biome;
+            const riv = { few: 'mało', normal: 'średnio', many: 'dużo' }[o.rivers] || 'średnio';
+            return `Tryb: <b>Dyplomacja</b> · mapa: <b>kontynent</b> (5× Gigantyczna) · rzeki: <b>${riv}</b> · kraina: <b>${biomeD}</b> · rozejm: <b>${o.truce > 0 ? Math.round(o.truce / 60) + ' min' : 'brak'}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}${o.wonders !== false ? ' · <b>Cud Świata</b>' : ''}`;
+        }
         const size = { 2400: 'mała', 3000: 'średnia', 3900: 'duża', 5100: 'gigantyczna' }[o.mapSize] || o.mapSize;
         const type = { random: 'losowe', lake: 'jezioro', lakes: 'pojezierze', plains: 'równiny', highlands: 'góry' }[o.mapType] || o.mapType;
         const biome = { random: 'losowa', meadow: 'łąki', autumn: 'jesień', winter: 'zima', desert: 'pustynia' }[o.biome] || o.biome;
@@ -24416,11 +25808,15 @@ const MpUI = {
         const humans = s.slots.filter(x => x.kind === 'human').length;
         return `<div class="mp-grid">
             <div class="menu-card"><h2>Kto gra</h2>
-                <p class="menu-note" style="margin:0">Cztery miejsca na mapie. Każde może zająć <b>gracz</b> (zaprosisz go kodem), <b>AI</b> albo może zostać <b>zamknięte</b>. Nacje z tym samym numerem drużyny są sojusznikami.</p>
+                <p class="menu-note" style="margin:0">Cztery miejsca na mapie. Każde może zająć <b>gracz</b> (zaprosisz go kodem), <b>AI</b> albo może zostać <b>zamknięte</b>. ${o.mode === 'diplomacy' ? 'W Dyplomacji nie ma drużyn: wszyscy zaczynają w pokoju, a wojny i sojusze zawiera się w trakcie gry (Tab).' : 'Nacje z tym samym numerem drużyny są sojusznikami.'}</p>
                 ${rows}</div>
             <div class="menu-card"><h2>Świat</h2>
+                <div><span class="opt-label">Tryb gry</span>${this.radios('mp-mode', o.mode === 'diplomacy' ? 'diplomacy' : 'classic', [['diplomacy', 'Dyplomacja', 'Kontynent 5× większy niż Gigantyczna, rzeki, relacje zmieniające się w trakcie gry'], ['classic', 'Klasyczny mecz', 'Stałe drużyny, mapy od Małej do Gigantycznej']], 'c2')}</div>
+                ${o.mode === 'diplomacy' ? `
+                <div><span class="opt-label">Rzeki na kontynencie</span>${this.radios('mp-rivers', o.rivers || 'normal', [['few', 'Mało'], ['normal', 'Średnio'], ['many', 'Dużo']], 'c3')}</div>
+                <div><span class="opt-label">Rozejm na start</span>${this.radios('mp-truce', Number(o.truce) || 0, [[0, 'Brak'], [180, '3 min'], [300, '5 min'], [600, '10 min']], 'c4')}</div>` : `
                 <div><span class="opt-label">Rozmiar mapy</span>${this.radios('mp-mapSize', o.mapSize, [[2400, 'Mała'], [3000, 'Średnia'], [3900, 'Duża'], [5100, 'Gigantyczna']], 'c4')}</div>
-                <div><span class="opt-label">Ukształtowanie</span>${this.radios('mp-mapType', o.mapType, [['random', 'Losowe'], ['lake', 'Jezioro'], ['lakes', 'Pojezierze'], ['plains', 'Równiny'], ['highlands', 'Góry']], 'c5')}</div>
+                <div><span class="opt-label">Ukształtowanie</span>${this.radios('mp-mapType', o.mapType, [['random', 'Losowe'], ['lake', 'Jezioro'], ['lakes', 'Pojezierze'], ['plains', 'Równiny'], ['highlands', 'Góry']], 'c5')}</div>`}
                 <div><span class="opt-label">Kraina</span>${this.radios('mp-biome', o.biome, [['random', 'Losowa'], ['meadow', 'Łąki'], ['autumn', 'Jesień'], ['winter', 'Zima'], ['desert', 'Pustynia']], 'c5')}</div>
                 <div><span class="opt-label">Surowce na start</span>${this.radios('mp-rich', o.rich ? 1 : 0, [[0, 'Standardowe'], [1, 'Bogate']], 'c2')}</div>
                 ${matchOptionsHtml('mp', o, s.slots[0].color, false)}
@@ -24599,7 +25995,7 @@ const MpUI = {
                 body = `<div class="mp-grid">
                     <div class="menu-card"><h2>Poczekalnia</h2>
                         <div class="mp-status ok">✔ Połączono z hostem${s.hostName ? ' (' + this.esc(s.hostName) + ')' : ''}</div>${lines}
-                        <p class="menu-note">Możesz zmienić swój kolor i drużynę. Nacje z tym samym numerem drużyny są sojusznikami.</p></div>
+                        <p class="menu-note">${lb.settings && lb.settings.mode === 'diplomacy' ? 'Możesz zmienić swój kolor. Tryb Dyplomacja: bez drużyn — wojny, pokoje i sojusze zawiera się w trakcie gry (Tab).' : 'Możesz zmienić swój kolor i drużynę. Nacje z tym samym numerem drużyny są sojusznikami.'}</p></div>
                     <div class="menu-card"><h2>Ustawienia hosta</h2>
                         <p class="mp-summary">${this.worldSummary(lb.settings)}</p>
                         <div class="mp-status wait"><span class="mp-spin"></span>${s.phase === 'loading' ? 'Host generuje świat…' : 'Czekasz, aż host rozpocznie grę.'}</div>
@@ -24618,7 +26014,8 @@ const MpUI = {
         const pick = (v, list, def) => list.includes(v) ? v : def;
         const s = new HostSession({
             name: this.playerName('Host'), color: saved.color,
-            settings: { mapSize: Number(pick(String(saved.mapSize), ['2400', '3000', '3900', '5100'], '3000')), mapType: saved.mapType || 'random', biome: saved.biome || 'random', rich: saved.startRes === 'rich', reveal: !!saved.reveal, kings: !!saved.kings, wonders: saved.wonders !== false }
+            settings: { mode: saved.mode === 'classic' ? 'classic' : 'diplomacy', rivers: pick(String(saved.rivers), ['few', 'normal', 'many'], 'normal'), truce: Number(pick(String(saved.truce), ['0', '180', '300', '600'], '300')),
+                mapSize: Number(pick(String(saved.mapSize), ['2400', '3000', '3900', '5100'], '3000')), mapType: saved.mapType || 'random', biome: saved.biome || 'random', rich: saved.startRes === 'rich', reveal: !!saved.reveal, kings: !!saved.kings, wonders: saved.wonders !== false }
         });
         s.onChange = () => this.refresh();
         s.startLobbyTimer();
@@ -24716,6 +26113,9 @@ const MpUI = {
         const n = t.name;
         if (n.startsWith('mpk')) s.setSlotKind(Number(n.slice(3)), t.value);
         else if (n.startsWith('mpd')) s.setSlot(Number(n.slice(3)), { diff: t.value });
+        else if (n === 'mp-mode') s.setSettings({ mode: t.value === 'diplomacy' ? 'diplomacy' : 'classic' });
+        else if (n === 'mp-rivers') s.setSettings({ rivers: t.value });
+        else if (n === 'mp-truce') s.setSettings({ truce: Number(t.value) || 0 });
         else if (n === 'mp-mapSize') s.setSettings({ mapSize: Number(t.value) });
         else if (n === 'mp-mapType') s.setSettings({ mapType: t.value });
         else if (n === 'mp-biome') s.setSettings({ biome: t.value });
@@ -24967,6 +26367,9 @@ document.addEventListener("DOMContentLoaded", () => {
         color: TeamPalette[saved.color] ? saved.color : 'blue',
         corner: START_CORNERS[saved.corner] ? saved.corner : 'bl',   // róg startowy gracza (domyślnie lewy dolny)
         team: saved.team >= 1 && saved.team <= 4 ? saved.team : 1,
+        // Reloaded: Dyplomacja jest trybem głównym; ziarno kontynentu - podgląd pokazuje dokładnie ten świat, który powstanie
+        mode: saved.mode === 'classic' ? 'classic' : 'diplomacy',
+        seed: (saved.seed >>> 0) || ((Math.random() * 0x7fffffff) >>> 0),
         ai: [0, 1, 2].map(i => {
             const a = (saved.ai && saved.ai[i]) || {};
             const def = i === 0 ? 'easy' : 'none';
@@ -24992,7 +26395,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function saveMenu() {
         const val = (name, def) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : def; };
         Settings.set('menu', {
-            color: menu.color, corner: menu.corner, team: menu.team, ai: menu.ai,
+            color: menu.color, corner: menu.corner, team: menu.team, ai: menu.ai, mode: menu.mode, seed: menu.seed,
+            dnat: val('dnat', '5'), dai: val('dai', 'medium'), rivers: val('rivers', 'normal'), truce: val('truce', '300'),
             mapSize: val('mapsize', '3000'), mapType: val('maptype', 'random'), biome: val('biome', 'random'), startRes: val('startres', 'std'),
             reveal: !!document.getElementById('opt-reveal').checked, atmo: atmoOn(),
             kings: !!document.getElementById('opt-kings').checked, wonders: !!document.getElementById('opt-wonder').checked
@@ -25019,6 +26423,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 `<i class="${n.isPlayer ? 'me' : ''}" style="background:${TeamPalette[n.color].main}" title="${n.isPlayer ? 'Ty' : 'AI — ' + Difficulty.names[n.diff]} · drużyna ${t}"></i>`).join('') + '</span>').join('<em>vs</em>');
         }
         const row = (dt, dd, wide) => `<div${wide ? ' class="wide"' : ''}><dt>${dt}</dt><dd title="${dd.replace(/<[^>]+>/g, '')}">${dd}</dd></div>`;
+        if (o.mode === 'diplomacy') {
+            if (tbox) {
+                tbox.className = 'sum-teams';
+                tbox.title = `Nacje: ${o.nations.length} — każda na własny rachunek`;
+                tbox.innerHTML = '<span class="sum-team">' + o.nations.map(n => `<i class="${n.isPlayer ? 'me' : ''}" style="background:${TeamPalette[n.color].main}" title="${n.isPlayer ? 'Ty' : 'SI — ' + Difficulty.names[n.diff]}"></i>`).join('') + '</span>';
+            }
+            const winD = ['Podbój', '<span class="gold">Sojusz</span>'].concat(o.kings ? ['<span class="gold">Królowie</span>'] : [], o.wonders ? ['<span class="gold">Cud Świata</span>'] : []).join(' · ');
+            box.innerHTML = row('Mapa', `Kontynent${o.reveal ? ' · odkryta' : ''}`) + row('Rzeki', label('rivers')) + row('Kraina', label('biome'))
+                + row('Rozejm', o.truce > 0 ? label('truce') : 'Brak') + row('Surowce', o.rich ? 'Bogate' : 'Standardowe') + row('Pora dnia', o.atmosphere ? 'Dzień i noc' : 'Wieczny dzień')
+                + row('Zwycięstwo', winD, true);
+            renderPreview(o);
+            return;
+        }
         const win = ['Podbój'].concat(o.kings ? ['<span class="gold">Królowie</span>'] : [], o.wonders ? ['<span class="gold">Cud Świata</span>'] : []).join(' · ');
         box.innerHTML = row('Mapa', `${label('mapsize')} · ${label('maptype')}${o.reveal ? ' · odkryta' : ''}`) + row('Kraina', label('biome'))
             + row('Surowce', o.rich ? 'Bogate' : 'Standardowe') + row('Pora dnia', o.atmosphere ? 'Dzień i noc' : 'Wieczny dzień') + row('Zwycięstwo', win, true);
@@ -25141,12 +26558,42 @@ document.addEventListener("DOMContentLoaded", () => {
         g.fillStyle = gr; g.fillRect(0, 0, S, S);
     }
 
+    // Dyplomacja: podgląd to prawdziwy układ kontynentu z generatora Raptor Atlas (ten sam, który powstanie w grze)
+    let atlasKey = '', atlasL = null;
+    function paintAtlasPreview(cv, S, o) {
+        const key = o.seed + '|' + o.nations.length + '|' + o.rivers;
+        if (key !== atlasKey) { atlasKey = key; atlasL = RaptorAtlas.layout(RaptorAtlas.SIZE, RaptorAtlas.SIZE, o.nations.length, { rivers: o.rivers }, o.seed); }
+        const dpr = Math.min(2, window.devicePixelRatio || 1);
+        cv.width = cv.height = Math.round(S * dpr);
+        const g = cv.getContext('2d');
+        g.setTransform(dpr, 0, 0, dpr, 0, 0);
+        const biome = Biomes[o.biome] || Biomes.meadow;
+        const starts = RaptorAtlas.paint(g, atlasL, S, biome);
+        // miejsca startowe (które przypadnie komu - losuje się przy starcie gry)
+        for (const p of starts) {
+            g.fillStyle = 'rgba(0, 0, 0, 0.35)'; g.beginPath(); g.arc(p.x + 1, p.y + 1.5, 6.5, 0, Math.PI * 2); g.fill();
+            g.fillStyle = '#f5f5f7'; g.beginPath(); g.arc(p.x, p.y, 5.5, 0, Math.PI * 2); g.fill();
+            g.fillStyle = TeamPalette[menu.color].main; g.beginPath(); g.arc(p.x, p.y, 3, 0, Math.PI * 2); g.fill();
+        }
+    }
+
     function renderPreview(o) {
         o = o || readOptions();
-        setMenuTerrain(o.biome, o.mapType);
+        setMenuTerrain(o.biome, o.mapType || 'lakes');
         const frame = document.getElementById('map-frame'), world = document.getElementById('map-world'), cv = document.getElementById('map-preview');
         if (!frame || !world || !cv || !frame.clientWidth) return;
         const side = Math.max(120, Math.floor(Math.min(frame.clientWidth - 36, frame.clientHeight - 36)));
+        if (o.mode === 'diplomacy') {
+            world.style.setProperty('--ms', 1);
+            world.style.width = world.style.height = side + 'px';
+            const key = 'D|' + o.seed + '|' + o.nations.length + '|' + o.rivers + '|' + o.biome + '|' + side + '|' + menu.color;
+            if (key !== previewKey) { previewKey = key; previewSide = side; world.classList.remove('swap'); paintAtlasPreview(cv, side, o); }
+            const land = document.getElementById('map-chip-land'), size = document.getElementById('map-chip-size');
+            const bl = (() => { const el = document.querySelector('input[name="biome"]:checked'); const l = el && document.querySelector(`label[for="${el.id}"]`); return l ? l.textContent : ''; })();
+            if (land) land.textContent = `Kontynent · ${o.biome === 'random' ? 'losowa kraina' : bl.toLowerCase()}`;
+            if (size) size.textContent = `${RaptorAtlas.SIZE.toLocaleString('pl-PL')} × ${RaptorAtlas.SIZE.toLocaleString('pl-PL')} kroków (5× Gigantyczna) · rzek: ${atlasL ? atlasL.rivers : '?'} · brodów: ${atlasL ? atlasL.fords.length : '?'}`;
+            return;
+        }
         world.style.setProperty('--ms', MAP_SCALE[o.mapSize] || 0.82);
         world.style.setProperty('--pc', TeamPalette[menu.color].main);
         world.style.width = world.style.height = side + 'px';
@@ -25190,7 +26637,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!box) return;
         const colors = aiColors();
         const teamPick = (slot, team) => {
-            let h = '<div class="team-pick"><span>Drużyna</span><div class="tp">';
+            let h = '<div class="team-pick classic-only"><span>Drużyna</span><div class="tp">';
             for (let t = 1; t <= 4; t++) h += `<button type="button" class="t${t}${team === t ? ' on' : ''}" data-slot="${slot}" data-team="${t}" title="Drużyna ${t}">${t}</button>`;
             return h + '</div></div>';
         };
@@ -25201,7 +26648,7 @@ document.addEventListener("DOMContentLoaded", () => {
         menu.ai.forEach((a, i) => {
             const levels = (i === 0 ? [] : ['none']).concat(Difficulty.order);
             const cls = levels.length === 5 ? 'c5' : 'c4', c = TeamPalette[colors[i]];
-            html += `<div class="nation-row${a.diff === 'none' ? ' off' : ''}" style="--nc:${c.main}"><div class="nation-head">${crest(c)}
+            html += `<div class="nation-row classic-only${a.diff === 'none' ? ' off' : ''}" style="--nc:${c.main}"><div class="nation-head">${crest(c)}
                 <div class="nation-id"><b>AI ${i + 1}</b><small>${a.diff === 'none' ? 'nie gra' : c.nation + ' · ' + Difficulty.names[a.diff].toLowerCase()}</small></div>${teamPick(i, a.team)}</div>
                 <div class="radio-group ${cls}">${levels.map(l => `<input type="radio" name="ai${i}" id="ai${i}-${l}" value="${l}"${a.diff === l ? ' checked' : ''}><label for="ai${i}-${l}" title="${l === 'none' ? 'Ta nacja nie bierze udziału w grze' : Difficulty.hints[l]}">${l === 'none' ? 'Brak' : Difficulty.names[l]}</label>`).join('')}</div>
                 ${a.diff !== 'none' ? `<div class="diff-hint">${Difficulty.hints[a.diff].replace(/^[^:]+: (.)/, (m, c) => c.toUpperCase())}</div>` : ''}</div>`;
@@ -25214,7 +26661,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }));
         box.querySelectorAll('.color-pick button').forEach(b => b.addEventListener('click', () => {
             menu.color = b.dataset.color;
-            renderNationRows(); saveMenu(); renderCodex();
+            renderNationRows(); saveMenu(); renderCodex(); previewKey = '';
         }));
         box.querySelectorAll('input[type=radio]').forEach(r => r.addEventListener('change', () => {
             menu.ai[Number(r.name.slice(2))].diff = r.value;
@@ -25236,6 +26683,32 @@ document.addEventListener("DOMContentLoaded", () => {
     // przywrócenie zapamiętanych opcji świata
     const restore = (name, value) => { if (value === undefined) return; const el = document.querySelector(`input[name="${name}"][value="${value}"]`); if (el) el.checked = true; };
     restore('mapsize', saved.mapSize); restore('maptype', saved.mapType); restore('biome', saved.biome); restore('startres', saved.startRes);
+    restore('dnat', saved.dnat); restore('dai', saved.dai); restore('rivers', saved.rivers); restore('truce', saved.truce);
+
+    // Reloaded: przełącznik trybu gry - Dyplomacja (główny) albo Klasyczny mecz
+    function applyMode() {
+        const pane = document.getElementById('pane-play');
+        if (pane) pane.dataset.mode = menu.mode;
+        const d = menu.mode === 'diplomacy';
+        document.querySelectorAll('#mode-switch button').forEach(b => { const on = b.dataset.mode === menu.mode; b.classList.toggle('on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); });
+        const t = document.getElementById('bc-title'), e = document.getElementById('bc-eyebrow');
+        if (t) t.textContent = d ? 'Nowa kampania' : 'Nowa bitwa';
+        if (e) e.textContent = d ? 'Dyplomacja · kontynent' : 'Klasyczny mecz';
+        const sb = document.getElementById('start-btn');
+        if (sb && sb.lastChild) sb.lastChild.textContent = d ? 'Rozpocznij kampanię' : 'Rozpocznij bitwę';
+        const fr = document.getElementById('map-frame');
+        if (fr) fr.title = d ? 'Podgląd kontynentu — miejsca startowe nacji; „Nowy świat” losuje inny układ' : 'Kliknij róg mapy, by wybrać pozycję startową';
+        previewKey = '';
+        if (menuError) menuError.style.display = 'none';
+    }
+    document.querySelectorAll('#mode-switch button').forEach(b => b.addEventListener('click', () => {
+        if (menu.mode === b.dataset.mode) return;
+        menu.mode = b.dataset.mode;
+        applyMode(); saveMenu();
+    }));
+    const reroll = document.getElementById('reroll-btn');
+    if (reroll) reroll.addEventListener('click', () => { menu.seed = (Math.random() * 0x7fffffff) >>> 0; saveMenu(); });
+    applyMode();
     // V3.5: warunki zwycięstwa, odkryta mapa i pora dnia - kafelki (matchOptionsHtml, wspólne z poczekalnią)
     const matchBox = document.getElementById('match-options');
     if (matchBox) matchBox.innerHTML = matchOptionsHtml('opt', { kings: !!saved.kings, wonders: saved.wonders !== false, reveal: !!saved.reveal, atmo: saved.atmo !== false }, menu.color, true);
@@ -25249,10 +26722,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function readOptions() {
         const val = (name, def) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : def; };
+        if (menu.mode === 'diplomacy') {
+            // Dyplomacja: ty + N nacji SI, każda w innym kolorze i - na razie - bez drużyn (relacje zmieniają się w grze)
+            const k = clamp(Number(val('dnat', '5')) || 5, 1, RaptorAtlas.MAX_NATIONS - 1), lvl = val('dai', 'medium');
+            const free = ColorOrder.filter(c => c !== menu.color);
+            const mix = ['medium', 'hard', 'easy', 'brutal', 'medium', 'hard', 'easy'];
+            const nations = [{ isPlayer: true, color: menu.color, team: 1 }];
+            for (let i = 0; i < k; i++) nations.push({ isPlayer: false, color: free[i], team: i + 2, diff: lvl === 'mixed' ? mix[i] : (Difficulty.order.includes(lvl) ? lvl : 'medium') });
+            return {
+                mode: 'diplomacy', nations, seed: menu.seed,
+                rivers: val('rivers', 'normal'), truce: Number(val('truce', '300')),
+                biome: val('biome', 'random'), rich: val('startres', 'std') === 'rich',
+                reveal: !!document.getElementById('opt-reveal').checked,
+                kings: !!document.getElementById('opt-kings').checked,
+                wonders: !!document.getElementById('opt-wonder').checked,
+                atmosphere: atmoOn()
+            };
+        }
         const colors = aiColors();
         const nations = [{ isPlayer: true, color: menu.color, team: menu.team }];
         menu.ai.forEach((a, i) => { if (a.diff !== 'none') nations.push({ isPlayer: false, color: colors[i], team: a.team, diff: a.diff }); });
         return {
+            mode: 'classic',
             nations,
             playerCorner: menu.corner,
             mapSize: Number(val('mapsize', '3000')),
@@ -25310,12 +26801,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function initGame(o) {
         const randomize = (val, range) => val + (Math.random() * range * 2 - range);
         const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
-        const game = new Game({ mapSize: o.mapSize });
+        // Reloaded: tryb Dyplomacja - kontynent z generatora Raptor Atlas (5x powierzchni mapy Gigantycznej, rzeki)
+        const diplo = o.mode === 'diplomacy';
+        const game = new Game({ mapSize: diplo ? RaptorAtlas.SIZE : o.mapSize });
         window.game = game;
+        game.mode = diplo ? 'diplomacy' : 'classic';
         const W = game.mapWidth, H = game.mapHeight;
         const S2 = (W * H) / (3000 * 3000);   // skala powierzchni względem mapy standardowej
 
-        const mapType = (!o.mapType || o.mapType === 'random') ? pick(['lake', 'lakes', 'plains', 'highlands']) : o.mapType;
+        const mapType = diplo ? 'continent' : (!o.mapType || o.mapType === 'random') ? pick(['lake', 'lakes', 'plains', 'highlands']) : o.mapType;
         const biome = Biomes[o.biome] || Biomes[pick(BiomeOrder)];
         game.mapType = mapType;
         game.biome = biome;
@@ -25328,7 +26822,8 @@ document.addEventListener("DOMContentLoaded", () => {
             { x: randomize(W - 400, 100), y: randomize(400, 100) },       // prawy górny
             { x: randomize(400, 100), y: randomize(400, 100) }            // lewy górny
         ];
-        const specs = o.nations.slice(0, 4);
+        const specs = o.nations.slice(0, diplo ? RaptorAtlas.MAX_NATIONS : 4);
+        if (!diplo) {
         const teamIds = [...new Set(specs.map(n => n.team))].sort((a, b) => a - b);
         const ordered = specs.map((n, i) => ({ n, i })).sort((a, b) => (a.n.team - b.n.team) || (a.i - b.i));
         let slots;
@@ -25343,8 +26838,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const playerSlot = ordered.findIndex(e => e.n.isPlayer);
         if (wantCorner !== undefined && playerSlot >= 0) rot = (((wantCorner - dir * slots[playerSlot]) % 4) + 4) % 4;
         ordered.forEach((e, k) => { e.n.pos = corners[(((rot + dir * slots[k]) % 4) + 4) % 4]; });
-        const bases = specs.map(n => n.pos);
-        const playerPos = (specs.find(n => n.isPlayer) || specs[0]).pos;
+        }
+        const bases = diplo ? [] : specs.map(n => n.pos);
+        let playerPos = diplo ? null : (specs.find(n => n.isPlayer) || specs[0]).pos;
         const blocked = (x, y) => game.isWater(x, y) || game.isMountain(x, y);
 
         function checkMapConnectivity(game) {
@@ -25475,7 +26971,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let mapConnected = false;
         let mapGenerationAttempts = 0;
-        while (!mapConnected && mapGenerationAttempts < 100) {
+        if (diplo) {
+            // starty z generatora rozdane nacjom w losowej kolejności (gracz nie wybiera rogu - kontynent nie ma rogów)
+            const res = RaptorAtlas.generate(game, { nations: specs.length, rivers: o.rivers, lakes: o.lakes, mountains: o.mountains, seed: o.seed, startPackage: spawnStartPackage });
+            const pos = res.bases.slice();
+            for (let i = pos.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); const t = pos[i]; pos[i] = pos[j]; pos[j] = t; }
+            specs.forEach((n, i) => { n.pos = pos[i]; bases.push(pos[i]); });
+            playerPos = (specs.find(n => n.isPlayer) || specs[0]).pos;
+            mapConnected = res.ok;
+            mapGenerationAttempts = res.attempts;
+        }
+        while (!diplo && !mapConnected && mapGenerationAttempts < 100) {
             mapGenerationAttempts++;
             game.lakes = [];
             game.mountains = [];
@@ -25563,7 +27069,7 @@ document.addEventListener("DOMContentLoaded", () => {
             mapConnected = checkMapConnectivity(game);
         }
 
-        if (!mapConnected) {
+        if (!mapConnected && !diplo) {
             game.lakes = [];
             game.mountains = [];
             console.warn('Fallback map used');
@@ -25571,6 +27077,7 @@ document.addEventListener("DOMContentLoaded", () => {
         game.mapAttempts = mapGenerationAttempts;
 
         const startRes = o.rich ? { gold: 600, wood: 1000, food: 800, stone: 300 } : { gold: 100, wood: 300, food: 200, stone: 0 };
+        if (diplo) specs.forEach((n, i) => { n.team = i + 1; });   // Dyplomacja: każda nacja na własny rachunek - o wojnach decydują relacje
         let playerNation = null;
         for (const spec of specs) {
             const pal = TeamPalette[spec.color] || TeamPalette.blue;
@@ -25609,6 +27116,7 @@ document.addEventListener("DOMContentLoaded", () => {
             playerNation.setAI(new NationAI(game, o.autoplay));
             game.observeAll = true;
         }
+        if (diplo) new Diplomacy(game, { truce: o.truce !== undefined ? Number(o.truce) : 300, allianceWin: o.allianceWin !== false });
 
         if (o.reveal) game.revealMap();
 
@@ -25636,6 +27144,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (!o.autoplay) {
                     const allies = game.nations.filter(n => n !== playerNation && n.team === playerNation.team).map(n => n.shortName);
                     uiManager.showMessage(`Mapa: ${biome.name} · ${MAP_NAMES[mapType]}.` + (allies.length ? ` Sojusznicy: ${allies.join(', ')}.` : ''), 'info');
+                    if (game.diplo) uiManager.showMessage(`Dyplomacja: ${game.nations.length} nacji na kontynencie, wszyscy zaczynają w pokoju` + (game.diplo.truceUntil > 0 ? ` (rozejm: ${Math.round(game.diplo.truceUntil / 60)} min)` : '') + '. Relacje i propozycje — klawisz Tab.', 'info');
                     uiManager.showMessage('Zaznacz robotników i wyślij ich po drewno (PPM na drzewo).', 'good');
                 }
                 window.abReady = true;
@@ -25651,7 +27160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else terrain.buildAsync(playerPos, (p) => { if (loadingBar) loadingBar.style.width = Math.round(p * 100) + '%'; }, finish);
     }
 
-    const MAP_NAMES = { lake: 'Jezioro', lakes: 'Pojezierze', plains: 'Równiny', highlands: 'Góry' };
+    const MAP_NAMES = { lake: 'Jezioro', lakes: 'Pojezierze', plains: 'Równiny', highlands: 'Góry', continent: 'Kontynent' };
 
     // ---------------- Gra wieloosobowa: start u gościa ----------------
     // Gość nie generuje świata - dostaje go od hosta (wiadomość 'world'): kształt mapy, surowce, nacje. Teren maluje
@@ -25667,12 +27176,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const game = new Game({ mapSize: w.mapSize });
         window.game = game;
         const biome = Biomes[w.biome] || Biomes.meadow;
+        game.mode = w.mode === 'diplomacy' ? 'diplomacy' : 'classic';
+        game.fords = Array.isArray(w.fords) ? w.fords : [];
         game.mapType = w.mapType;
         game.biome = biome;
         Sprites.biome = biome;
         game.lakes = w.lakes;
         game.mountains = w.mountains;
         const playerNation = session.buildWorld(game, w);
+        if (w.diplo) { const D = new Diplomacy(game, { truce: w.diplo.tr }); D.unpack(w.diplo); game.updateVisibility(); }
         const terrain = new Terrain(game, { biome, seed: w.seed, dirtSpots: w.dirt.map(d => ({ x: d[0], y: d[1], r: d[2] })) });
         game.terrain = terrain;
         game.atmo = new Atmosphere(game, biome);
