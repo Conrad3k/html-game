@@ -16,4 +16,10 @@ Poprzednie wydanie, V3.5, przyniosło osiem nowych jednostek (m.in. Wielkie Dzia
 i Lisowczyk), Cud Świata i Plantację Jabłek, warunki zwycięstwa do wyboru, obronę królestwa, AI z dowódcą, nowy dźwięk
 i ok. 3× szybszą symulację silnika Raptor.
 
-Gra wieloosobowa: wszyscy gracze muszą mieć wydanie Reloaded V1.0. Szczegóły: menu gry → „Co nowego”.
+**Nowy tryb główny: Dyplomacja** (wczesna wersja) — osobny od Klasycznego meczu, który został w menu jako druga opcja.
+Kontynent 11 400 × 11 400 kroków (ok. 5× powierzchni mapy Gigantycznej) z rzekami, brodami, pasmami gór i jeziorami,
+do 8 nacji, relacje wojna / pokój / sojusz zmieniające się w trakcie gry (panel Dyplomacji pod klawiszem Tab), nowa SI
+dyplomaty i gra wieloosobowa. Silnik Raptor dostał zestaw funkcji pod wielkie mapy: generator kontynentów Raptor Atlas,
+strumieniowanie terenu, indeks wody i gór oraz pozycje sieciowe dla map powyżej 8191 kroków.
+
+Gra wieloosobowa: wszyscy gracze muszą mieć to samo (najnowsze) wydanie pliku Reloaded V1.0. Szczegóły: menu gry → „Co nowego”.
