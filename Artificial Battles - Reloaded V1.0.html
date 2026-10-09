@@ -1470,6 +1470,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <ul>
                             <li><b>Raptor Atlas</b> — generator kontynentów: pasma gór, jeziora, rzeki z dopływami i brodami, rozmieszczenie wielu nacji i regionalne surowce. Układ wynika z ziarna, więc podgląd i gra (także u gości) pokazują ten sam świat.</li>
                             <li><b>Strumieniowanie terenu</b>: na kontynencie teren nie jest malowany cały przy starcie (to byłoby ok. 650 MB obrazu). Gotowa jest okolica startu, resztę wątki robocze domalowują tam, gdzie patrzy kamera, a dawno niewidziane kawałki są zwalniane z pamięci. Zanim fragment będzie gotowy, w jego miejscu leży przeskalowany podgląd mapy. Wątki dostają tylko wycinki pól terenu, a nie całe pola.</li>
+                            <li><b>Teren HD na całej mapie</b>: kafelki wysokiej jakości przy zbliżeniu działają na całym kontynencie. Nie gasną już po chwilowym spadku płynności (tryb Auto obniżał poziom efektów i HD znikało do końca gry — teraz HD działa od poziomu 1, bo i tak malują je wątki w tle). Przy dużym kadrze (duży ekran, HiDPI) HD dostaje środek widoku, zamiast wyłączać się całkiem po przekroczeniu 30 kafelków. Kafelki HD są malowane z wyprzedzeniem w kierunku ruchu kamery, a puste miejsca w kadrze mają pierwszeństwo przed HD. Naprawiony błąd strumieniowania, przez który kafelki zlecane były wątkom wielokrotnie i duży kadr długo pozostawał rozmyty. Przy mocnym oddaleniu teren rysowany jest z kafelków w połowie rozdzielczości (mniej pracy na klatkę, mniej migotania).</li>
                             <li><b>Indeks wody i gór</b>: zapytania „czy tu jest woda / góra” korzystają z kubełków przestrzennych zamiast przeglądać wszystkie jeziora i góry — wyniki są identyczne, a na mapach z rzekami to warunek płynnej gry. Szybciej działa też rozmieszczanie surowców na wielkich mapach.</li>
                             <li><b>Pozycje w grze wieloosobowej</b> na mapach powyżej 8191 kroków są kodowane z dokładnością 1/4 kroku (dotąd 1/8 — kontynent by się nie zmieścił). Protokół sieciowy ma nowy numer: wszyscy gracze muszą mieć to wydanie.</li>
                         </ul>
@@ -2848,8 +2849,8 @@ class Game {
 
     // Poziom efektów (fxLevel) - ile "dodatków" rysujemy ponad samą grę:
     //   0 - Wydajność: bez cieni chmur, pogody i ozdobników; jednostki jako gotowe blity
-    //   1 - obraz podstawowy: cienie chmur, dzień i noc, pogoda, ptaki, mgła na krańcach świata
-    //   2 - do tego teren HD przy zbliżeniu, lśnienie wody i śniegu, motyle i świetliki
+    //   1 - obraz podstawowy: cienie chmur, dzień i noc, pogoda, ptaki, mgła na krańcach świata, teren HD przy zbliżeniu
+    //   2 - do tego lśnienie wody i śniegu, motyle i świetliki
     //   3 - do tego podmuchy wiatru na trawie i smugi światła o świcie i zmierzchu
     //   4 - "Słońce i woda" (V3.1): cienie rzucane przez słońce wędrujące po niebie, migotanie wody, kołysane
     //       wiatrem drzewa, dym z kominów, kurz spod nóg, kręgi deszczu, poświata ognia
@@ -2870,7 +2871,9 @@ class Game {
         A.t = 0; A.n = 0; A.slow = 0;
         A.warm = Game.FX_AUTO.WARM;
         this._slowTime = 0;
-        if (this.terrain) this.terrain.setHD(level >= 2);
+        // Teren HD od poziomu 1: kafelki HD malują wątki robocze, a liczba rysowań na klatkę się nie zmienia - nie ma
+        // powodu, by chwilowe zejście trybu Auto o stopień (np. przy oddalonym widoku kontynentu) gasiło HD do końca gry.
+        if (this.terrain) this.terrain.setHD(level >= 1);
         // tryb Wydajność: warstwy poziomów 4-7 oddają pamięć (przy chwilowym zejściu o stopień zostają - powrót nie szarpie)
         if (level === 0 && was >= 4) { this.dropCinema(); this.dropSpectacle(); }
     }
@@ -10271,8 +10274,10 @@ class Terrain {
 
         // kafelki HD (zbliżenie / ekran HiDPI): malowane w tle przez wątki robocze tylko dla okolicy kadru
         this.pool = null;
-        this.hdOn = false;
+        this.hdOn = (game.fxLevel || 0) >= 1;   // jak Game.setFx: teren HD od poziomu efektów 1
         this.hdMin = 1.3;                // od tej skali rysowania bazowy kafelek jest już wyraźnie rozciągany
+        this.hdBudget = 36;              // najwięcej kafelków HD naraz (po 4 MB) - przy większym kadrze HD dostaje jego środek
+        this._vel = null;                // ruch kamery (kroki świata na klatkę) - kafelki HD malowane z wyprzedzeniem
         this.hdCount = 0;
         this.hdDone = [];
         this.frame = 0;
@@ -10854,6 +10859,9 @@ class Terrain {
         for (const s of p.slots) { try { s.w.terminate(); } catch (e) { /* już zamknięty */ } }
         this.pool = null;
         this.dropHD();
+        // tryb strumieniowy: zlecenia, które przepadły razem z wątkami, wracają do kolejki (maluje je wątek główny)
+        for (const ch of this.all) ch.job = false;
+        this._sDone.length = 0;
         if (this._onPoolFail) this._onPoolFail();
     }
 
@@ -10927,7 +10935,7 @@ class Terrain {
             if (finished) return;
             finished = true;
             this._onPoolFail = null;
-            this.trimWorkers(2);
+            this.trimWorkers(3);   // zostają do kafelków HD
             begin();
         };
 
@@ -11030,7 +11038,8 @@ class Terrain {
             if (!rest.length) begin(); else step();
         };
         const hc = (typeof navigator !== 'undefined' && navigator.hardwareConcurrency) || 2;
-        if (!this.startWorkers(Math.max(1, Math.min(4, hc - 1)))) { mainLoop(); return; }
+        // wątki dostają tylko wycinki pól (kilkaset KB na zlecenie), więc może ich być więcej - kafelki i HD nadążają za kamerą
+        if (!this.startWorkers(Math.max(1, Math.min(6, hc - 1)))) { mainLoop(); return; }
         let failed = false;
         this._onPoolFail = () => { if (failed || started) return; failed = true; mainLoop(); };
         let next = 0;
@@ -11058,11 +11067,18 @@ class Terrain {
         const f = this.frame;
         for (let i = 0; i < list.length; i++) list[i].used = f;
         // 1) wykończenie (wgranie pikseli, detale, fale) - jeden kafelek na klatkę, dwa, gdy w kadrze są dziury
-        const D = this._sDone;
-        for (let n = 0; n < 2 && D.length; n++) {
+        // (flaga ch.job schodzi dopiero tutaj - inaczej kafelek czekający na wykończenie wyglądałby jak dziura bez
+        // zlecenia i co klatkę trafiałby do wątków od nowa, a duplikaty zjadałyby limit wykańczania)
+        const D = this._sDone, t0 = performance.now();
+        let n = 0;
+        while (D.length && n < 4) {
             const d = D.shift();
-            if (!d.ch.ready) this.finishChunk(d.ch, d.buf, d.water);
-            if (!this._holes) break;
+            d.ch.job = false;
+            if (d.ch.ready) continue;
+            this.finishChunk(d.ch, d.buf, d.water);
+            n++;
+            // jeden kafelek na klatkę, gdy kadr jest pełny; przy dziurach - więcej, dopóki starcza czasu klatki
+            if (!this._holes || performance.now() - t0 > 8) break;
         }
         // 2) zlecenia
         const todo = this._sTodo;
@@ -11089,7 +11105,7 @@ class Terrain {
                 for (let i = 0; i < todo.length && slot; i++) {
                     const ch = todo[i];
                     ch.job = true;
-                    this._post(slot, ch, 1, (buf, water) => { ch.job = false; this._sDone.push({ ch, buf, water }); });
+                    this._post(slot, ch, 1, (buf, water) => { this._sDone.push({ ch, buf, water }); });
                     slot = this._freeSlot();
                 }
             } else if (holes) {
@@ -11109,6 +11125,7 @@ class Terrain {
         if (ch.canvas) { ch.canvas.width = 0; ch.canvas.height = 0; }
         if (ch.wave) { ch.wave.width = 0; ch.wave.height = 0; }
         if (ch.hd) { if (ch.hd.canvas) { ch.hd.canvas.width = 0; ch.hd.canvas.height = 0; } if (ch.hd.ready) this.hdCount--; ch.hd = null; }
+        if (ch.mip) { ch.mip.width = 0; ch.mip = null; }
         ch.canvas = null; ch.ctx = null; ch.wave = null; ch.glints = null;
         ch.pending = ch.stamps.concat(ch.pending);
         ch.stamps = [];
@@ -11173,6 +11190,7 @@ class Terrain {
                 const p = [x, y, fn];
                 if (ch.ready) {
                     this._stampInto(ch.ctx, ch, x, y, fn, 1);
+                    if (ch.mip) { ch.mip.width = 0; ch.mip = null; }   // mipmapa powstanie od nowa - już ze śladem
                     ch.stamps.push(p);                               // kafelek HD odtworzy ślady przy malowaniu
                     if (ch.hd && ch.hd.ready) this._stampInto(ch.hd.ctx, ch, x, y, fn, 2);
                 } else ch.pending.push(p);
@@ -11191,8 +11209,10 @@ class Terrain {
     // Przy zbliżeniu (albo na ekranie HiDPI) kafelek bazowy jest rozciągany i ziemia się rozmywa. Dla kafelków
     // w kadrze wątki robocze malują wtedy wersję o podwójnej gęstości; gdy jest gotowa, płynnie zastępuje bazową.
     // Liczba blitów na klatkę się nie zmienia - koszt to pamięć (kilkanaście kafelków naraz) i praca w tle.
+    // Włącznik zapamiętuje samo życzenie (poziom efektów), niezależnie od wątków: poziom bywa ustawiany, zanim
+    // wątki robocze powstaną - draw() i tak rysuje HD tylko wtedy, gdy wątki są (this.pool)
     setHD(on) {
-        on = !!on && !!this.pool;
+        on = !!on;
         if (on === this.hdOn) return;
         this.hdOn = on;
         if (!on) this.dropHD();
@@ -11216,12 +11236,19 @@ class Terrain {
             return;
         }
         this._hdIdle = 0;
-        // 1) jeden etap wykańczania na klatkę (wgranie pikseli albo detale), żeby nie było szarpnięcia
-        const d = this.hdDone[0];
-        if (d) {
+        const cx = view.x + view.w / 2, cy = view.y + view.h / 2;
+        const dist = (ch) => Math.abs(ch.x + ch.w / 2 - cx) + Math.abs(ch.y + ch.h / 2 - cy);
+        // Raptor: zamiast wyłączać HD, gdy w kadrze jest dużo kafelków (dawniej: ponad 30 = HD nigdzie),
+        // wersję HD dostaje budżet kafelków najbliżej środka kadru - reszta zostaje bazowa
+        const B = this.hdBudget;
+        // 1) wykańczanie (wgranie pikseli albo detale): etap na klatkę, przy zapasie czasu - do trzech
+        const t0 = performance.now();
+        for (let n = 0; n < 3 && this.hdDone.length; n++) {
+            if (n && performance.now() - t0 > 3) break;
+            const d = this.hdDone[0];
             const ch = d.ch, h = ch.hd;
-            if (!h || h !== d.h) this.hdDone.shift();
-            else if (!h.canvas) {
+            if (!h || h !== d.h || !ch.ready) { this.hdDone.shift(); if (h && h === d.h && !ch.ready) ch.hd = null; continue; }
+            if (!h.canvas) {
                 const cv = this._canvasFrom(d.buf, ch.w * 2, ch.h * 2);
                 h.canvas = cv.canvas; h.ctx = cv.ctx; d.buf = null;
             } else {
@@ -11232,7 +11259,7 @@ class Terrain {
                 for (const p of ch.stamps) this._stampInto(h.ctx, ch, p[0], p[1], p[2], 2);
                 h.ready = true; h.fade = 0; h.used = this.frame;
                 this.hdCount++;
-                const cap = Math.max(16, list.length + 6);
+                const cap = Math.max(16, Math.min(list.length, B) + 10);
                 while (this.hdCount > cap) {
                     let old = null;
                     for (const c2 of this.all) if (c2.hd && c2.hd.ready && c2.hd.used < this.frame - 30 && (!old || c2.hd.used < old.hd.used)) old = c2;
@@ -11242,16 +11269,28 @@ class Terrain {
                 }
             }
         }
-        // 2) zlecenia dla widocznych kafelków bez wersji HD - najpierw te najbliżej środka kadru
+        // 2) zlecenia: widoczne kafelki bez wersji HD (najpierw środek kadru, w ramach budżetu), a gdy zostaną
+        //    wolne wątki - kafelki, na które kamera właśnie najeżdża (wyprzedzenie ruchu o ok. pół sekundy)
         let slot = this._freeSlot();
         if (!slot) return;
-        const cx = view.x + view.w / 2, cy = view.y + view.h / 2;
         const todo = this._hdTodo || (this._hdTodo = []);
         todo.length = 0;
-        for (const ch of list) if (ch.ready && !ch.hd) todo.push(ch);
-        if (!todo.length) return;
-        const dist = (ch) => Math.abs(ch.x + ch.w / 2 - cx) + Math.abs(ch.y + ch.h / 2 - cy);
+        const near = list.length > B ? list.slice().sort((a, b) => dist(a) - dist(b)).slice(0, B) : list;
+        for (const ch of near) if (ch.ready && !ch.hd) todo.push(ch);
         todo.sort((a, b) => dist(a) - dist(b));
+        const v = this._vel;
+        if (v && (Math.abs(v.x) > 1 || Math.abs(v.y) > 1) && this.hdCount + todo.length < B) {
+            const ax = view.x + v.x * 30, ay = view.y + v.y * 30, CS = this.CS;
+            const c0 = Math.max(0, Math.floor(ax / CS)), c1 = Math.min(this.cols - 1, Math.floor((ax + view.w) / CS));
+            const r0 = Math.max(0, Math.floor(ay / CS)), r1 = Math.min(this.rows - 1, Math.floor((ay + view.h) / CS));
+            const ahead = [];
+            for (let r = r0; r <= r1; r++) for (let c = c0; c <= c1; c++) {
+                const ch = this.chunks[r * this.cols + c];
+                if (ch.ready && !ch.hd && !list.includes(ch)) ahead.push(ch);
+            }
+            ahead.sort((a, b) => dist(a) - dist(b));
+            for (const ch of ahead) todo.push(ch);
+        }
         for (let i = 0; i < todo.length && slot; i++) {
             const ch = todo[i];
             const h = ch.hd = { canvas: null, ctx: null, ready: false, fade: 0, used: this.frame };
@@ -11282,8 +11321,19 @@ class Terrain {
                 if (ch.x < vx1 && ch.x + ch.w > view.x && ch.y < vy1 && ch.y + ch.h > view.y) list.push(ch);
             }
         }
-        // wersja HD tylko wtedy, gdy bazowy kafelek byłby rozciągany, a kadr nie jest ogromny (ogranicza pamięć)
-        const hd = this.hdOn && !!this.pool && sx >= this.hdMin && list.length <= 30;
+        // wersja HD tylko wtedy, gdy bazowy kafelek byłby rozciągany (ile kafelków naraz - pilnuje budżet w _hdTick)
+        const hd = this.hdOn && !!this.pool && sx >= this.hdMin;
+        const mip = sx < 0.62;           // skala rysowania tak mała, że pół rozdzielczości kafelka w zupełności wystarcza
+        let mipBudget = 4;               // nowe mipmapy na klatkę (każda to jedno pomniejszenie kafelka)
+        const pv = this._pv;
+        if (pv) {
+            // skok kamery (minimapa, Spacja) to nie ruch - wyprzedzenie liczy się tylko z płynnego przesuwania
+            let dx = view.x - pv.x, dy = view.y - pv.y;
+            if (Math.abs(dx) > 300 || Math.abs(dy) > 300) { dx = 0; dy = 0; this._vel = null; }
+            const k = 0.25, o = this._vel || { x: 0, y: 0 };
+            this._vel = { x: o.x * (1 - k) + dx * k, y: o.y * (1 - k) + dy * k };
+        }
+        this._pv = { x: view.x, y: view.y };
         let water = false;
         for (let i = 0; i < list.length; i++) {
             const ch = list[i];
@@ -11300,6 +11350,22 @@ class Terrain {
                 continue;
             }
             const hq = hd ? ch.hd : null;
+            if (mip && !(hq && hq.ready)) {
+                // Raptor: mocno oddalony widok - kafelek w połowie rozdzielczości (mipmapa): 4x mniej pikseli do
+                // pomniejszenia na klatkę i mniej migotania drobnej faktury. Powstaje raz, z gotowego kafelka.
+                let mp = ch.mip;
+                if (!mp && mipBudget > 0) {
+                    mipBudget--;
+                    mp = ch.mip = document.createElement('canvas');
+                    mp.width = Math.max(1, ch.w >> 1); mp.height = Math.max(1, ch.h >> 1);
+                    const mc = mp.getContext('2d');
+                    mc.imageSmoothingQuality = 'high';
+                    mc.drawImage(ch.canvas, 0, 0, mp.width, mp.height);
+                }
+                ctx.drawImage(mp || ch.canvas, x0, y0, w, h);
+                if (ch.hasWater) water = true;
+                continue;
+            }
             if (hq && hq.ready) {
                 hq.used = this.frame;
                 if (hq.fade < 1) {
@@ -11314,8 +11380,9 @@ class Terrain {
             if (ch.hasWater) water = true;
         }
         if (water) this.drawWater(ctx, view, time, sx, sy, tx, ty);
-        if (hd || this.hdCount) this._hdTick(list, view, hd);
+        // najpierw dziury w kadrze (brakujące kafelki bazowe), dopiero potem wolne wątki dostają zlecenia HD
         if (this.stream) this._streamTick(list, view);
+        if (hd || this.hdCount) this._hdTick(list, view, hd);
         ctx.setTransform(m);
     }
 
