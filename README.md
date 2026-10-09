@@ -29,4 +29,9 @@ trybutu, mądrzejsza SI dyplomaty (sąsiedztwo, księga strat i zmęczenie wojn�
 zdrady w końcówce) i lepszy teren (morze o poszarpanym brzegu, Złote wzgórza ze spornymi złożami, zapas surowców przy
 każdej stolicy). Partia trwa zwykle 20–30 minut.
 
+**Aktualizacja V1.0 — Cuda Świata**: cztery unikatowe Cuda (każdy tylko raz na mapie) — Wiszące Ogrody, Kolos i Wielka
+Biblioteka w III erze z własnymi premiami oraz Wielka Bazylika w IV erze. Ukończone Cuda co sekundę dają drużynie Chwałę;
+1000 Chwały = zwycięstwo. Zburzenie Cudu odbiera właścicielowi 25% Chwały, a burzącemu daje 100. Paski Chwały na ekranie,
+nowa SI budująca i zwalczająca Cuda. Działa w obu trybach.
+
 Gra wieloosobowa (protokół 9): wszyscy gracze muszą mieć to samo (najnowsze) wydanie pliku Reloaded V1.0. Szczegóły: menu gry → „Co nowego”.

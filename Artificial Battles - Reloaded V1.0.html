@@ -206,7 +206,7 @@ button { font-family: inherit; }
     box-shadow: 0 0 18px rgba(255, 70, 50, 0.4); animation: pulse-red 1.2s ease-in-out infinite;
 }
 #grace-banner b { color: #fff; font-size: 17px; font-variant-numeric: tabular-nums; }
-/* V3.5 Newest Final: odliczanie Cudu Świata */
+/* Cuda Świata: paski Chwały (V1.0; dawniej odliczanie Cudu) */
 #wonder-banner {
     position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); pointer-events: auto; cursor: pointer;
     display: flex; flex-direction: column; gap: 5px; align-items: center; max-width: calc(100% - 28px);
@@ -217,6 +217,11 @@ button { font-family: inherit; }
 }
 #wonder-banner div.theirs { background: rgba(58, 12, 8, 0.94); border-color: rgba(255, 107, 91, 0.75); color: #ffe2dc; box-shadow: 0 0 18px rgba(255, 70, 50, 0.4); }
 #wonder-banner b { color: #fff; font-size: 16px; font-variant-numeric: tabular-nums; }
+#wonder-banner div.glory { min-width: 360px; }
+#wonder-banner small { font-weight: 500; opacity: 0.8; }
+#wonder-banner .gbar { display: block; height: 5px; margin-top: 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.14); overflow: hidden; }
+#wonder-banner .gbar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, #e8b14e, #ffe08a); }
+#wonder-banner div.theirs .gbar i { background: linear-gradient(90deg, #ff6b5b, #ffb0a8); }
 #grace-banner small { display: block; font-weight: 400; color: #ffc4bd; margin-top: 2px; }
 @keyframes pulse-red { 0%, 100% { box-shadow: 0 0 10px rgba(255, 70, 50, 0.3); } 50% { box-shadow: 0 0 24px rgba(255, 70, 50, 0.65); } }
 
@@ -1293,7 +1298,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                         </div>
                                     </div>
                                 </div>
-                                <p class="cfg-foot diplo-only">W Dyplomacji nie ma stałych drużyn: wszyscy zaczynają w <b>pokoju</b>, a w trakcie gry nacje <b>wypowiadają wojny</b>, proszą o pokój (także <b>za okup</b>), żądają <b>trybutu</b> i zawierają <b>sojusze</b> (wspólne pole widzenia i wspólne zwycięstwo). SI kieruje się siłą, sąsiedztwem i pamięcią — pamięta zdrady, a przeciw zbyt potężnej nacji zawiązuje koalicje. <b>Zwycięstwo:</b> podbój, sojusz (najwyżej połowa nacji, 3 minuty jako jedyni na placu boju), Cud Świata albo — po limicie czasu — najwyższy Wynik. Relacje i warunki: klawisz <b>Tab</b> w grze. Start losuje się spośród miejsc zaznaczonych na podglądzie, złote romby to bogate złoża.</p>
+                                <p class="cfg-foot diplo-only">W Dyplomacji nie ma stałych drużyn: wszyscy zaczynają w <b>pokoju</b>, a w trakcie gry nacje <b>wypowiadają wojny</b>, proszą o pokój (także <b>za okup</b>), żądają <b>trybutu</b> i zawierają <b>sojusze</b> (wspólne pole widzenia i wspólne zwycięstwo). SI kieruje się siłą, sąsiedztwem i pamięcią — pamięta zdrady, a przeciw zbyt potężnej nacji zawiązuje koalicje. <b>Zwycięstwo:</b> podbój, sojusz (najwyżej połowa nacji, 3 minuty jako jedyni na placu boju), 1000 Chwały z Cudów Świata albo — po limicie czasu — najwyższy Wynik. Relacje i warunki: klawisz <b>Tab</b> w grze. Start losuje się spośród miejsc zaznaczonych na podglądzie, złote romby to bogate złoża.</p>
                                 <div class="preset-row classic-only">
                                     <span class="opt-label">Szybki układ</span>
                                     <button class="mini-btn" data-preset="ffa" title="Każda nacja w osobnej drużynie">Każdy na każdego</button>
@@ -1330,7 +1335,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                     <div class="cfg-row diplo-only">
                                         <div class="cfg-label"><b>Limit czasu</b><small>Potem wygrywa najwyższy Wynik (razem z sojusznikami)</small></div>
                                         <div class="radio-group c4">
-                                            <input type="radio" name="tlimit" id="tl-0" value="0"><label for="tl-0" title="Gra trwa, dopóki ktoś nie zwycięży podbojem, sojuszem albo Cudem Świata">Brak</label>
+                                            <input type="radio" name="tlimit" id="tl-0" value="0"><label for="tl-0" title="Gra trwa, dopóki ktoś nie zwycięży podbojem, sojuszem albo Chwałą Cudów Świata">Brak</label>
                                             <input type="radio" name="tlimit" id="tl-1" value="1800" checked><label for="tl-1">30 min</label>
                                             <input type="radio" name="tlimit" id="tl-2" value="2700"><label for="tl-2">45 min</label>
                                             <input type="radio" name="tlimit" id="tl-3" value="3600"><label for="tl-3">60 min</label>
@@ -1404,7 +1409,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <div class="menu-card guide-goal">
                             <div>
                                 <h2><span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span>Cel gry</h2>
-                                <p>Zbieraj <b>żywność, drewno, złoto i kamień</b>, stawiaj domy, by powiększać populację, i awansuj w Ratuszu do kolejnych er. Zniszcz Ratusze wszystkich wrogich drużyn, by zwyciężyć! Z warunkiem <b>Królowie</b> wystarczy też pokonać wrogiego króla, a z warunkiem <b>Cud Świata</b> wygrywa drużyna, której Cud przetrwa 10 minut (oba wybierzesz w sekcji Zasady).</p>
+                                <p>Zbieraj <b>żywność, drewno, złoto i kamień</b>, stawiaj domy, by powiększać populację, i awansuj w Ratuszu do kolejnych er. Zniszcz Ratusze wszystkich wrogich drużyn, by zwyciężyć! Z warunkiem <b>Królowie</b> wystarczy też pokonać wrogiego króla, a z warunkiem <b>Cuda Świata</b> wygrywa drużyna, która pierwsza zbierze 1000 Chwały — wytwarzają ją ukończone Cuda (oba warunki wybierzesz w sekcji Zasady).</p>
                                 <div class="tutorial-box">
                                     <div><b>Pierwszy raz w grze?</b><br><span>Samouczek krok po kroku przeprowadzi cię przez zbieranie surowców, budowę, szkolenie wojska i pierwszy atak. Przeciwnik w samouczku nie atakuje.</span></div>
                                     <button class="action-btn gold" data-tutorial>Zagraj samouczek</button>
@@ -1474,17 +1479,30 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="news-wrap">
                     <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
                     <div class="menu-card news-new">
+                        <div class="eyebrow">Aktualizacja V1.0 · Cuda Świata</div>
+                        <h2>Cuda Świata — cztery unikatowe budowle i Chwała</h2>
+                        <p>Dotąd wystarczyło postawić jeden Cud i przetrwać 10 minut. Teraz Cudów jest więcej, każdy coś daje, a zwycięstwo trzeba wywalczyć <b>Chwałą</b>. Działa w Klasycznym meczu i w Dyplomacji (warunek „Cuda Świata” w karcie Świat).</p>
+                        <ul>
+                            <li><b>Cztery unikatowe Cuda</b> — każdy może stać na mapie <b>tylko raz</b>: kto pierwszy położy fundamenty, ten go ma, a inni mogą go zbudować dopiero, gdy legnie w gruzach.
+                                <b>Wiszące Ogrody</b> (III era): +25% zbierania żywności i +20 populacji. <b>Kolos</b> (III era): +2 złota co sekundę i +15% zbierania złota. <b>Wielka Biblioteka</b> (III era): badania i awanse er o połowę krótsze. <b>Wielka Bazylika</b> (IV era, dawny Cud Świata): najwięcej Chwały.</li>
+                            <li><b>Chwała</b>: każdy ukończony Cud co sekundę dodaje twojej drużynie Chwałę — mniejsze Cuda po 0,5, Wielka Bazylika 1,5. Kto pierwszy zbierze <b>1000 Chwały</b>, wygrywa (w Dyplomacji razem z sojusznikami). Sama Bazylika albo trzy mniejsze Cuda zrobią to w ok. 11 minut, wszystkie cztery naraz — w niespełna 6.</li>
+                            <li><b>Burzenie Cudów się opłaca</b>: zburzenie ukończonego Cudu odbiera właścicielowi <b>25% Chwały</b> i premię, a burzącemu daje <b>+100 Chwały</b>. Zebranej Chwały nie traci się inaczej — można ją odbudować.</li>
+                            <li><b>Na widoku</b>: na dole ekranu paski Chwały drużyn, które ją wytwarzają (ile mają, tempo i za ile wygrają), ostrzeżenia przy 50, 75 i 90%, cel „Cuda Świata” w panelu Dyplomacji, nowe budowle w encyklopedii. Cuda widać przez mgłę wojny.</li>
+                            <li><b>SI</b> stawia mniejsze Cuda w III erze (każdy charakter ma ulubiony), a Bazylikę w IV. Wrogie Cuda są dla niej ważnym celem, ale wszystkie siły rzuca na nie dopiero, gdy ich właściciel zbliża się do zwycięstwa (ponad 55% Chwały) albo stoi Bazylika. W Dyplomacji nacje wypowiadają wojnę temu, czyja Chwała zagraża kontynentowi, i nie zawierają z nim pokoju.</li>
+                        </ul>
+                    </div>
+                    <div class="menu-card news-new">
                         <div class="eyebrow">Aktualizacja V1.0 · Dyplomacja</div>
                         <h2>Dyplomacja — jasne warunki zwycięstwa, mądrzejsza SI i dłuższe partie</h2>
                         <p>Tryb Dyplomacja dostał pierwszą dużą porcję usprawnień. Partia na kontynencie trwa teraz zwykle <b>20–30 minut</b> (wcześniej nawet kilkanaście) i zawsze wiadomo, co trzeba zrobić, żeby wygrać.</p>
                         <ul>
-                            <li><b>Warunki zwycięstwa na widoku</b>: w panelu Dyplomacji (<kbd>Tab</kbd>) na górze stoją wszystkie cztery drogi do zwycięstwa z bieżącym stanem — <b>Podbój</b> (ile nacji jeszcze gra), <b>Sojusz</b>, <b>Cud Świata</b> (jeśli włączony) i <b>Limit czasu</b> (ile zostało i kto prowadzi). Te same warunki pokazuje podsumowanie meczu w menu i komunikat na starcie gry, a ekran końca meczu mówi, jak go rozstrzygnięto.</li>
+                            <li><b>Warunki zwycięstwa na widoku</b>: w panelu Dyplomacji (<kbd>Tab</kbd>) na górze stoją wszystkie cztery drogi do zwycięstwa z bieżącym stanem — <b>Podbój</b> (ile nacji jeszcze gra), <b>Sojusz</b>, <b>Cuda Świata</b> (jeśli włączone) i <b>Limit czasu</b> (ile zostało i kto prowadzi). Te same warunki pokazuje podsumowanie meczu w menu i komunikat na starcie gry, a ekran końca meczu mówi, jak go rozstrzygnięto.</li>
                             <li><b>Sojusz zwycięzców</b> ma teraz jasne zasady: sojusz może liczyć <b>najwyżej połowę nacji</b>, które zaczęły grę, a gdy jako jedyny zostanie na placu boju, musi <b>wytrwać 3 minuty</b> — odliczanie widać na ekranie. Zerwany sojusz przerywa odliczanie. Koniec z wygraną „bo wszyscy się polubili” po kilkunastu minutach.</li>
                             <li><b>Limit czasu</b> (nowa opcja w karcie Świat i w poczekalni: brak, 30, 45 albo 60 minut, domyślnie 30): gdy czas minie, wygrywa nacja z <b>najwyższym Wynikiem</b> razem ze swoimi sojusznikami. Ostrzeżenia na 10, 5, 2 i 1 minutę przed końcem, a w ostatnich 5 minutach odliczanie na ekranie.</li>
                             <li><b>Pokój za okup</b>: przegrywający może kupić pokój — przycisk „Pokój za okup” oddaje 20% twojego złota, żywności i drewna. SI, która odrzuca zwykły pokój, często podpowiada, że zgodzi się za okup; sama też płaci okup, gdy przegrywa.</li>
                             <li><b>Trybut</b>: silna nacja SI może zażądać trybutu od słabszego sąsiada. Zapłata daje <b>4 minuty traktatu</b> (żadna ze stron nie może wypowiedzieć wojny), odmowa — wojnę przy najbliższej okazji. Żądanie czeka na odpowiedź w panelu Dyplomacji.</li>
                             <li><b>Mądrzejsza SI dyplomaty</b>: każda nacja ma własną cierpliwość, więc po rozejmie nie rzucają się wszyscy naraz na jednego. Wojny toczy z sąsiadami, a nie przez pół kontynentu, i niechętnie dołącza do kogoś, kogo już szarpie kilku innych. Prowadzi <b>księgę strat</b> każdej wojny: zmęczona wojną albo przegrywająca prosi o pokój, wygrywająca wyraźnie go nie przyjmie (chyba że za duży okup). Im dłużej trwa pokój, tym śmielsza się robi.</li>
-                            <li><b>Hegemon i koalicje</b>: nacja, która urośnie ponad miarę, zostaje <b>hegemonem</b> (znaczek w panelu). Inne nacje patrzą na nią coraz nieufniej, chętniej zawierają przeciw niej sojusze i wzywają sojuszników do wspólnej wojny — także ciebie. Na <b>Cud Świata</b> rywala reagują wszyscy poza jego sojusznikami: wojna, zanim skończy się odliczanie.</li>
+                            <li><b>Hegemon i koalicje</b>: nacja, która urośnie ponad miarę, zostaje <b>hegemonem</b> (znaczek w panelu). Inne nacje patrzą na nią coraz nieufniej, chętniej zawierają przeciw niej sojusze i wzywają sojuszników do wspólnej wojny — także ciebie. Na rywala, którego <b>Chwała z Cudów Świata</b> zbliża się do zwycięstwa, ruszają wszyscy poza jego sojusznikami — i nie zawierają z nim pokoju.</li>
                             <li><b>Końcówka z charakterem</b>: zbyt liczny sojusz (który nie może wygrać) rozwiązuje najsilniejszy z sojuszników, a ambitna, mało lojalna SI potrafi zdradzić tuż przed wspólnym zwycięstwem — „tylko jeden władca może rządzić kontynentem”. SI nie przyjmie też sojuszu, który dałby ci darmowe wspólne zwycięstwo, jeśli sama jest silniejsza.</li>
                             <li><b>Lepszy teren</b>: kontynent otacza <b>morze o poszarpanym brzegu</b> z zatokami i półwyspami, a rzeki uchodzą do morza. Pośrodku lądu leżą <b>Złote wzgórza</b> — bogate złoża złota i kamienia z dala od wszystkich stolic (złote romby na podglądzie), o które warto się bić. Każda nacja ma też <b>zapas złota, kamienia i lasu</b> nieco dalej od Ratusza, a na przybrzeżnych wodach są ryby.</li>
                             <li>Po zawarciu pokoju traktat trwa teraz 3 minuty (było 2). Gracze sieciowi muszą mieć to samo wydanie pliku (protokół 9).</li>
@@ -1501,7 +1519,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li><b>Relacje zamiast stałych drużyn</b>: wszyscy zaczynają w <b>pokoju</b>, a przez pierwsze minuty obowiązuje <b>rozejm</b> (do wyboru: brak, 3, 5 albo 10 minut). Potem nacje <b>wypowiadają wojny</b>, proszą o <b>pokój</b> i zawierają <b>sojusze</b>. W pokoju wojsko i wieże nie strzelają do siebie; sojusznicy dzielą pole widzenia. Zerwanie sojuszu albo atak na sojusznika (zdrada) inni zapamiętują.</li>
                             <li><b>Panel Dyplomacji</b> (<kbd>Tab</kbd> albo przycisk w górnym pasku): relacja z każdą nacją, jej opinia o tobie, siła w porównaniu z twoją, przyciski Wojna / Zaproponuj pokój / Sojusz / Zerwij sojusz, propozycje czekające na odpowiedź i kronika wydarzeń.</li>
                             <li><b>Nowa SI — dyplomata</b>: osobna warstwa SI, która decyduje, z kim walczyć i z kim trzymać. Ocenia siłę (wojsko, wieże, era), sąsiedztwo i to, co pamięta o każdej nacji; wypowiada wojnę słabszym sąsiadom, prosi o pokój, gdy przegrywa albo walczy na kilku frontach, szuka sojuszników przeciw wspólnemu wrogowi i przeciw rosnącej potędze, staje w obronie sojusznika. Na twoje propozycje odpowiada z uzasadnieniem. Śmiałość zależy od charakteru i poziomu SI.</li>
-                            <li><b>Zwycięstwo</b>: podbój (zostaje jedna nacja) albo <b>sojusz</b> (zasady w aktualizacji powyżej). Cud Świata i Królowie działają jak dotąd; zwycięstwo Cudem dzielą sojusznicy budowniczego.</li>
+                            <li><b>Zwycięstwo</b>: podbój (zostaje jedna nacja) albo <b>sojusz</b> (zasady w aktualizacji powyżej). Cuda Świata (zasady w aktualizacji powyżej) i Królowie; zwycięstwo Chwałą dzielą sojusznicy.</li>
                             <li><b>Gra wieloosobowa</b>: host wybiera tryb w poczekalni. W Dyplomacji nie ma drużyn — każde z czterech miejsc to osobna nacja, a goście wypowiadają wojny i zawierają sojusze w trakcie gry, tak jak w grze solo.</li>
                             <li><b>Podgląd kontynentu</b> w menu pokazuje dokładnie ten świat, który powstanie w grze (rzeki, góry, jeziora i miejsca startowe); <b>Nowy świat</b> losuje inny.</li>
                         </ul>
@@ -2144,11 +2162,22 @@ const GameConfig = {
             desc: "Brama. Przepuszcza tylko jednostki twojej drużyny. Stawiana na istniejącym murze." },
         arsenal: { name: 'Arsenał', maxHp: 750, size: 60, cost: { wood: 200, stone: 150, gold: 100 }, age: 4, vision: 300, trains: ['organ_gun', 'great_cannon'], menu: 'mil',
             desc: "Prochownia i ludwisarnia Imperium. Odlewa Organki i Wielkie Działa, a tu zbadasz Ziarnisty Proch, Bagnety i Spiżowe Lufy — ulepszenia broni palnej, dział, galeonów i wież bombardowych." },
-        // V3.5 Newest Final: Cud Świata - drugi sposób na zwycięstwo. Po ukończeniu rusza odliczanie (wonder: sekundy);
-        // jeśli Cud przetrwa, drużyna jego budowniczego wygrywa (Game.checkWonders). Widać go przez mgłę wojny.
-        wonder: { name: 'Cud Świata', maxHp: 9000, size: 120, cost: { food: 1000, wood: 1000, gold: 1200, stone: 1000 }, buildRate: 0.07, age: 4, vision: 420, limit: 1, menu: 'eco',
-            wonder: 600,
-            desc: "Bazylika z wielką złotą kopułą — największa budowla w grze i drugi sposób na zwycięstwo. Gdy ją ukończysz, wszystkie nacje dowiedzą się o niej i zobaczą ją przez mgłę wojny, a ruszy odliczanie 10 minut: jeśli Cud przetrwa, twoja drużyna wygrywa. Budowa długo trwa — przyślij wielu robotników i przygotuj obronę, bo wszyscy wrogowie rzucą się, by go zburzyć. Jeden na nację." }
+        // Cuda Świata (V1.0): cztery unikatowe budowle - każda może stać na mapie tylko raz (unique), u jednej nacji.
+        // Ukończony Cud co sekundę dodaje drużynie Chwałę (glory/s); 1000 Chwały = zwycięstwo (Game.checkWonders).
+        // Trzy mniejsze Cuda (III era) dają też własną premię (bonus / income), Wielka Bazylika (IV era) - najwięcej Chwały.
+        // Zburzenie ukończonego Cudu odbiera właścicielowi 25% Chwały, a burzącemu daje 100. Cuda widać przez mgłę wojny.
+        hanging_gardens: { name: 'Wiszące Ogrody', maxHp: 4200, size: 96, cost: { food: 300, wood: 500, gold: 300, stone: 350 }, buildRate: 0.14, age: 3, vision: 360, limit: 1, unique: true, menu: 'eco',
+            wonder: true, glory: 0.5, pop: 20, bonus: { gather: { food: 0.25 } },
+            desc: "Cud Świata: tarasowe ogrody z kaskadami wody. +25% zbierania żywności i +20 populacji, a co sekundę +0,5 Chwały (1000 Chwały = zwycięstwo). Na mapie może stać tylko jeden — kto pierwszy położy fundamenty, ten go ma." },
+        colossus: { name: 'Kolos', maxHp: 4200, size: 84, cost: { food: 200, wood: 400, gold: 400, stone: 450 }, buildRate: 0.14, age: 3, vision: 420, limit: 1, unique: true, menu: 'eco',
+            wonder: true, glory: 0.5, income: { gold: 2 }, bonus: { gather: { gold: 0.15 } },
+            desc: "Cud Świata: spiżowy olbrzym z pochodnią na kamiennym cokole. Daniny i cła: +2 złota co sekundę i +15% zbierania złota, a co sekundę +0,5 Chwały (1000 Chwały = zwycięstwo). Na mapie może stać tylko jeden." },
+        library: { name: 'Wielka Biblioteka', maxHp: 4200, size: 96, cost: { food: 200, wood: 500, gold: 450, stone: 300 }, buildRate: 0.14, age: 3, vision: 360, limit: 1, unique: true, menu: 'eco',
+            wonder: true, glory: 0.5, bonus: { research: 1 },
+            desc: "Cud Świata: kolumnady pełne zwojów wokół dziedzińca. Badania i awanse er trwają o połowę krócej, a co sekundę +0,5 Chwały (1000 Chwały = zwycięstwo). Na mapie może stać tylko jedna." },
+        wonder: { name: 'Wielka Bazylika', maxHp: 9000, size: 120, cost: { food: 1000, wood: 1000, gold: 1200, stone: 1000 }, buildRate: 0.07, age: 4, vision: 420, limit: 1, unique: true, menu: 'eco',
+            wonder: true, glory: 1.5,
+            desc: "Największy Cud Świata: bazylika z wielką złotą kopułą. Co sekundę +1,5 Chwały — sama przyniesie zwycięstwo (1000 Chwały) w ok. 11 minut, razem z innymi Cudami szybciej. Wszystkie nacje widzą ją przez mgłę wojny i ruszą, by ją zburzyć. Na mapie może stać tylko jedna." }
     },
 
     // effects: { units:[...] | buildings:[...], stat, add }  lub  { gather: 'wood', add: 0.25 }
@@ -5623,16 +5652,16 @@ Game.prototype.setTradeRoute = function (u, t) {
 
 // ---------------- V3.5 Newest Final: Cud Świata ----------------
 // Cud widać przez mgłę wojny od chwili położenia fundamentów - wszyscy wiedzą, gdzie rośnie. Po ukończeniu rusza
-// odliczanie (cfg.wonder sekund); jeśli Cud przetrwa, a jego budowniczy nie przegra wcześniej, drużyna budowniczego
-// wygrywa (checkWonders). Gość gry wieloosobowej dostaje listę Cudów z odliczaniem od hosta ('wd' - net/Host.js).
+// produkcja Chwały (cfg.glory na sekundę); drużyna, która zbierze Game.GLORY_WIN Chwały, wygrywa (checkWonders).
+// Gość gry wieloosobowej dostaje listę Cudów i Chwałę drużyn od hosta ('wd' - net/Host.js).
 Game.NO_WONDERS = [];
 
 // V3.5: Cud Świata to opcjonalny warunek zwycięstwa (ustawienia meczu, domyślnie włączony). Wyłączony: Cudu nie ma
 // w menu budowy, rozkaz postawienia jest odrzucany, AI go nie planuje, a odliczanie nie rusza.
 Game.prototype.wondersOn = true;
-Game.prototype.buildingOff = function (type) { return type === 'wonder' && !this.wondersOn; };
+Game.prototype.buildingOff = function (type) { const c = GameConfig.buildings[type]; return !!(c && c.wonder) && !this.wondersOn; };
 
-// Cuda na mapie: u hosta budynki, u gościa obiekty z tymi samymi polami (owner, x, y, size, isConstructed, wonderUntil, buildProgress)
+// Cuda na mapie: u hosta budynki, u gościa obiekty z tymi samymi polami (owner, x, y, size, isConstructed, type, cfg, buildProgress)
 Game.prototype.wonderInfo = function () {
     if (this.isClient) return this.netWonders || Game.NO_WONDERS;
     const W = this.wonders;
@@ -5643,60 +5672,109 @@ Game.prototype.wonderInfo = function () {
 
 Game.prototype.wonderStarted = function (b) {
     (this.wonders || (this.wonders = [])).push(b);
-    const n = b.owner;
-    this.tell(n, 'Fundamenty Cudu Świata położone! Przyślij wielu robotników — i szykuj obronę: budowę widać z każdego zakątka mapy.', 'good');
-    this.tellAll(`Nacja ${n.shortName || n.name} kładzie fundamenty pod Cud Świata! Budowę widać przez mgłę wojny.`, 'alert', n);
+    const n = b.owner, nm = b.cfg.name;
+    this.tell(n, `Fundamenty: ${nm}! Przyślij wielu robotników — i szykuj obronę: Cuda widać z każdego zakątka mapy.`, 'good');
+    this.tellAll(`Nacja ${n.shortName || n.name} kładzie fundamenty: ${nm}. Budowę widać przez mgłę wojny.`, 'info', n);
     this.updateVisibility(); this.fogDirty = true;
 };
 
+// Unikatowe Cuda: kto już ma (albo buduje) ten Cud - nacja albo null
+Game.prototype.wonderTaken = function (type, nation) {
+    const cfg = GameConfig.buildings[type];
+    if (!cfg || !cfg.unique) return null;
+    for (const w of this.wonderInfo()) if (w.type === type && !w.isDestroyed && w.owner !== nation) return w.owner;
+    return null;
+};
+Game.prototype.wonderBlock = function (type, nation) {
+    const o = this.wonderTaken(type, nation);
+    return o ? `${GameConfig.buildings[type].name} — ten Cud już stoi (albo powstaje) u nacji ${o.shortName || o.name}. Na mapie może być tylko jeden.` : null;
+};
+
 Game.prototype.wonderBuilt = function (b) {
-    const n = b.owner, mins = Math.round(b.cfg.wonder / 60);
-    b.wonderAt = this.time;
-    b.wonderUntil = this.time + b.cfg.wonder;
+    const n = b.owner, nm = b.cfg.name, rate = String(b.cfg.glory).replace('.', ',');
     this.spawnParticle(b.x, b.y, 'levelup');
     this.shake(b.x, b.y, 5, 80);
+    n.recomputeBonuses(); n.recomputePopulation();
     for (const o of this.nations) {
-        if (o === n) { this.tell(o, `Cud Świata ukończony! Jeśli przetrwa ${mins} minut, twoja drużyna zwycięży. Wszyscy wrogowie już ruszają, by go zburzyć.`, 'good'); this.cue(o, 'AgeUp'); }
-        else if (o.team === n.team) { this.tell(o, `Sojusznik ${n.shortName || n.name} ukończył Cud Świata! Brońcie go przez ${mins} minut, a drużyna zwycięży.`, 'good'); this.cue(o, 'Complete'); }
-        else { this.tell(o, `Nacja ${n.shortName || n.name} ukończyła Cud Świata! Za ${mins} minut jej drużyna zwycięży — zburzcie go!`, 'alert'); this.cue(o, 'Warning'); }
+        if (o === n) { this.tell(o, `${nm} ukończony! +${rate} Chwały na sekundę — 1000 Chwały daje zwycięstwo. Brońcie go!`, 'good'); this.cue(o, 'AgeUp'); }
+        else if (this.isAlly(o, n)) { this.tell(o, `Sojusznik ${n.shortName || n.name} ukończył Cud: ${nm} (+${rate} Chwały/s dla niego).`, 'good'); this.cue(o, 'Complete'); }
+        else { this.tell(o, `Nacja ${n.shortName || n.name} ukończyła Cud: ${nm} (+${rate} Chwały/s). Zburz go, a zabierzesz jej część Chwały!`, 'alert'); this.cue(o, 'Warning'); }
     }
 };
 
 Game.prototype.wonderFallen = function (b, source) {
-    const n = b.owner, nm = n.shortName || n.name;
-    if (!b.isConstructed) { this.tellAll(`Budowa Cudu Świata nacji ${nm} przerwana.`, 'info'); return; }
-    const by = source && source.owner && source.owner !== n ? ' z ręki nacji ' + (source.owner.shortName || source.owner.name) : '';
-    this.tell(n, 'Twój Cud Świata legł w gruzach! Odliczanie przerwane.', 'alert');
+    const n = b.owner, nm = n.shortName || n.name, wn = b.cfg.name;
+    if (!b.isConstructed) { this.tellAll(`Budowa przerwana: ${wn} nacji ${nm}.`, 'info'); return; }
+    n.recomputeBonuses(); n.recomputePopulation();
+    // utrata Chwały: 25% dla właściciela, 100 dla burzącego
+    const G = this.glory || (this.glory = new Map());
+    const lost = Math.round((G.get(n.team) || 0) * 0.25);
+    G.set(n.team, (G.get(n.team) || 0) - lost);
+    const by = source && source.owner && source.owner !== n ? source.owner : null;
+    if (by && this.isEnemy(by, n)) G.set(by.team, (G.get(by.team) || 0) + 100);
+    this.tell(n, `${wn} legł w gruzach! Tracisz ${lost} Chwały i premię Cudu.`, 'alert');
     this.cue(n, 'Warning');
-    this.tellAll(`Cud Świata nacji ${nm} legł w gruzach${by}! Odliczanie do zwycięstwa przerwane.`, 'alert', n);
+    this.tellAll(`${wn} nacji ${nm} legł w gruzach${by ? ' z ręki nacji ' + (by.shortName || by.name) + ' (+100 Chwały)' : ''}!`, 'alert', n);
 };
 
-// Zwycięstwo przez Cud: ostrzeżenia na 5, 2 i 1 minutę przed końcem odliczania, potem koniec meczu
-Game.WONDER_WARN = [[300, '5 minut'], [120, '2 minuty'], [60, 'minuta']];
+// Chwała (V1.0): każdy ukończony Cud dodaje drużynie Chwałę co sekundę; 1000 = zwycięstwo. Ostrzeżenia przy 50, 75 i 90%.
+Game.GLORY_WIN = 1000;
+Game.GLORY_WARN = [0.5, 0.75, 0.9];
+Game.prototype.gloryOf = function (team) {
+    if (this.isClient) { const r = this.netGlory && this.netGlory[team]; return r ? r[0] : 0; }
+    return (this.glory && this.glory.get(team)) || 0;
+};
+Game.prototype.gloryRate = function (team) {
+    if (this.isClient) { const r = this.netGlory && this.netGlory[team]; return r ? r[1] : 0; }
+    let v = 0;
+    for (const w of this.wonderInfo()) if (w.isConstructed && !w.isDestroyed && w.owner.team === team && !w.owner.defeated) v += w.cfg.glory || 0;
+    return v;
+};
+// Drużyny z Chwałą: [{ team, glory, rate, names }] od najwyższej
+Game.prototype.gloryTable = function () {
+    const out = [];
+    for (const n of this.nations) {
+        if (n.defeated) continue;
+        let e = out.find(x => x.team === n.team);
+        if (!e) { e = { team: n.team, glory: this.gloryOf(n.team), rate: this.gloryRate(n.team), names: [] }; out.push(e); }
+        e.names.push(n.shortName || n.name);
+    }
+    return out.filter(e => e.glory > 0 || e.rate > 0).sort((a, b) => b.glory - a.glory);
+};
 Game.prototype.checkWonders = function () {
     if (!this.wondersOn) return false;
+    const dt = this.time - (this._gloryAt === undefined ? this.time : this._gloryAt);
+    this._gloryAt = this.time;
     const W = this.wonderInfo();
-    if (!W.length) return false;
-    let best = null;
+    if (!W.length && !this.glory) return false;
+    const G = this.glory || (this.glory = new Map());
     for (const b of W) {
-        if (b.isDestroyed || !b.isConstructed || b.wonderUntil == null || b.owner.defeated) continue;
-        const left = b.wonderUntil - this.time;
-        for (const [m, label] of Game.WONDER_WARN) {
-            if (left <= m && left > 0 && (b.wonderTold === undefined || b.wonderTold > m)) {
-                b.wonderTold = m;
-                const nm = b.owner.shortName || b.owner.name;
+        if (b.isDestroyed || !b.isConstructed || b.owner.defeated) continue;
+        G.set(b.owner.team, (G.get(b.owner.team) || 0) + (b.cfg.glory || 0) * dt);
+        if (b.cfg.income) for (const k in b.cfg.income) b.owner.resources.add(k, b.cfg.income[k] * dt);   // Kolos: daniny
+    }
+    const told = this._gloryTold || (this._gloryTold = new Map());
+    let best = null, bestG = 0;
+    for (const [team, v] of G) {
+        const owners = this.nations.filter(n => n.team === team && !n.defeated);
+        if (!owners.length) continue;
+        const k = v / Game.GLORY_WIN;
+        for (const th of Game.GLORY_WARN) {
+            if (k >= th && (told.get(team) || 0) < th) {
+                told.set(team, th);
+                const nm = owners.map(n => n.shortName || n.name).join(', '), pct = Math.round(th * 100);
                 for (const o of this.nations) {
-                    if (o.team === b.owner.team) this.tell(o, `Cud Świata: do zwycięstwa ${m > 60 ? 'zostało' : 'została'} ${label}! Nie dajcie go zburzyć.`, 'good');
-                    else { this.tell(o, `Cud Świata nacji ${nm}: do jej zwycięstwa ${m > 60 ? 'zostało' : 'została'} ${label}!`, 'alert'); this.cue(o, 'Warning'); }
+                    if (o.team === team || this.isAlly(o, owners[0])) this.tell(o, `Chwała: ${pct}% drogi do zwycięstwa (${Math.floor(v)} / ${Game.GLORY_WIN}). Brońcie Cudów!`, 'good');
+                    else { this.tell(o, `Chwała nacji ${nm}: ${pct}% drogi do zwycięstwa! Zburzcie jej Cuda.`, 'alert'); if (th >= 0.75) this.cue(o, 'Warning'); }
                 }
             }
         }
-        if (left <= 0 && (!best || b.wonderUntil < best.wonderUntil)) best = b;
+        if (v >= Game.GLORY_WIN && v > bestG) { bestG = v; best = owners[0]; }
     }
     if (!best) return false;
-    this.byWonder = best.owner.shortName || best.owner.name;
+    this.byWonder = this.nations.filter(n => n.team === best.team && !n.defeated).map(n => n.shortName || n.name).join(', ');
     this.winReason = 'wonder';
-    this.endGame(best.owner.team, false, this.diplo ? this.nations.filter(n => n === best.owner || this.diplo.allied(n, best.owner)) : null);
+    this.endGame(best.team, false, this.diplo ? this.nations.filter(n => !n.defeated && (n.team === best.team || this.diplo.allied(n, best))) : null);
     return true;
 };
 
@@ -5809,6 +5887,7 @@ Game.prototype.applyCommand = function (nation, cmd) {
             if (this.buildingOff(type)) return fail(`${cfg.name} jest wyłączony w ustawieniach tego meczu.`);
             if ((cfg.age || 1) > nation.age) return fail('Wymagana wyższa era!');
             if (cfg.limit && nation.countBuildings(type) >= cfg.limit) return fail(`Osiągnięto limit (max ${cfg.limit}): ${cfg.name}`);
+            if (cfg.unique && this.wonderBlock(type, nation)) return fail(this.wonderBlock(type, nation));
             if (!this.teamExplored(nation.team, x, y)) return fail('Nie możesz budować w nieodkrytej mgle!');
             const cost = cfg.cost || { wood: 150 };
             if (!nation.resources.canAfford(cost)) return fail('Brakuje surowców!');
@@ -8156,7 +8235,8 @@ class UIManager {
         const wb = this.el['wonder-banner'];
         if (wb) wb.addEventListener('click', () => {
             // klik w odliczanie: kamera na Cud Świata
-            const w = this.game.wonderInfo().find(x => x.isConstructed && x.wonderUntil != null);
+            const top = this.game.gloryTable()[0];
+            const w = top && this.game.wonderInfo().find(x => x.isConstructed && x.owner.team === top.team);
             if (w) this.game.centerOn(w.x, w.y);
         });
         // Reloaded: w Dyplomacji tabela nacji jest panelem dyplomacji (relacje, propozycje, wypowiedzenie wojny)
@@ -8258,14 +8338,19 @@ class UIManager {
         const el = this.el['wonder-banner'];
         if (!el) return;
         const g = this.game;
-        const list = g.gameOver ? [] : g.wonderInfo().filter(w => w.isConstructed && w.wonderUntil != null && !w.owner.defeated);
+        // Chwała Cudów: drużyny, które ją wytwarzają (albo mają ponad 40%), najwyżej trzy - z paskiem postępu
         let html = '';
-        for (const w of list) {
-            const left = Math.max(0, Math.ceil(w.wonderUntil - g.time));
-            const tm = Math.floor(left / 60) + ':' + String(left % 60).padStart(2, '0');
-            const ours = w.owner.team === g.playerTeam && !g.observeAll;
-            const nm = w.owner.shortName || w.owner.name;
-            html += `<div class="${ours ? 'ours' : 'theirs'}">⛪ Cud Świata — ${nm}: <b>${tm}</b> ${ours ? 'do zwycięstwa. Brońcie go!' : 'do ich zwycięstwa. Zburzcie go!'}</div>`;
+        if (!g.gameOver && g.wondersOn) {
+            const me = this.playerNation;
+            for (const e of g.gloryTable().filter(x => x.rate > 0 || x.glory >= Game.GLORY_WIN * 0.4).slice(0, 3)) {
+                const ours = !g.observeAll && (e.team === me.team || (g.diplo && g.nations.some(n => n.team === e.team && g.diplo.allied(n, me))));
+                const pct = Math.min(100, e.glory / Game.GLORY_WIN * 100);
+                const eta = e.rate > 0 ? Math.max(0, Math.ceil((Game.GLORY_WIN - e.glory) / e.rate)) : 0;
+                const tm = Math.floor(eta / 60) + ':' + String(eta % 60).padStart(2, '0');
+                html += `<div class="${ours ? 'ours' : 'theirs'} glory">⛪ Chwała — ${e.team === me.team && !g.observeAll ? 'twoja' + (e.names.length > 1 ? ' drużyna' : ' nacja') : e.names.join(', ')}: <b>${Math.floor(e.glory)}</b> / ${Game.GLORY_WIN}`
+                    + (e.rate > 0 ? ` <small>(+${String(Math.round(e.rate * 10) / 10).replace('.', ',')}/s · zwycięstwo za ~${tm})</small>` : ' <small>(Cuda zburzone)</small>')
+                    + `<i class="gbar"><i style="width:${pct.toFixed(1)}%"></i></i></div>`;
+            }
         }
         // Dyplomacja: odliczanie Sojuszu zwycięzców i ostatnie 5 minut limitu czasu
         const D = g.diplo;
@@ -8353,8 +8438,9 @@ class UIManager {
             goals += goal('❖', 'Sojusz', `zostańcie sami na placu boju jako sojusz (najwyżej ${D.allyCap} nacji) i wytrwajcie ${DIPLO.ALLIANCE_HOLD / 60} min`, st, D.allianceAt >= 0);
         }
         if (g.wondersOn) {
-            const w = g.wonderInfo().filter(x => x.isConstructed && x.wonderUntil != null && !x.owner.defeated).sort((a, b) => a.wonderUntil - b.wonderUntil)[0];
-            goals += goal('⛪', 'Cud Świata', 'zbuduj Cud (IV era) i utrzymaj go do końca odliczania', w ? `${esc(D.name(w.owner))}: <b>${mmss(w.wonderUntil - g.time)}</b>` : 'nikt nie ukończył Cudu', !!w);
+            const top = g.gloryTable()[0];
+            goals += goal('⛪', 'Cuda Świata', `zbierz ${Game.GLORY_WIN} Chwały — wytwarzają ją ukończone Cuda (III i IV era)`,
+                top ? `${top.team === me.team ? 'ty' : esc(top.names.join(', '))}: <b>${Math.floor(top.glory)}</b>` : 'nikt nie ma Cudu', !!top && top.glory >= Game.GLORY_WIN * 0.5);
         }
         if (D.timeLimit > 0) {
             const lead = D.leader(act), left = D.timeLimit - g.time;
@@ -8709,13 +8795,14 @@ class UIManager {
                     const cfg = GameConfig.buildings[t];
                     const locked = (cfg.age || 1) > n.age;
                     const tcLimit = !!cfg.limit && n.countBuildings(t) >= cfg.limit;
+                    const taken = cfg.unique ? g.wonderBlock(t, n) : null;
                     cmds[i] = {
                         icon: Icons.entityUrl('building', t, n.colorKey, 24), title: cfg.name, desc: cfg.desc, cost: cfg.cost,
                         extra: (cfg.pop ? `+${cfg.pop} populacji. ` : '') + `Wytrzymałość: ${cfg.maxHp}` +
                             (cfg.attack ? ` · Atak: ${cfg.attack.damage}${cfg.attack.volley ? ' ×' + cfg.attack.volley : ''} co ${cfg.attack.rate} s · Zasięg: ${cfg.attack.range}` : '') +
                             (cfg.vision >= 450 ? ` · Widzenie: ${cfg.vision}` : ''),
-                        disabled: locked || tcLimit,
-                        reason: locked ? 'Wymaga: ' + ageName(cfg.age) : (tcLimit ? `Osiągnięto limit (max ${cfg.limit}): ${cfg.name}` : null),
+                        disabled: locked || tcLimit || !!taken,
+                        reason: locked ? 'Wymaga: ' + ageName(cfg.age) : (tcLimit ? `Osiągnięto limit (max ${cfg.limit}): ${cfg.name}` : taken),
                         onClick: () => this.startPlacement(t)
                     };
                 });
@@ -8725,7 +8812,7 @@ class UIManager {
 
             let i = 0;
             if (hasWorker) {
-                cmds[i++] = { icon: Icons.url('build_eco', 24), title: 'Budynki gospodarcze', desc: 'Ratusz, dom, farma, sad, młyn, skład, targ, port' + (g.wondersOn ? ' i Cud Świata.' : '.'), onClick: () => { this.menuPage = 'eco'; this.updateActionPanel(); } };
+                cmds[i++] = { icon: Icons.url('build_eco', 24), title: 'Budynki gospodarcze', desc: 'Ratusz, dom, farma, sad, młyn, skład, targ, port' + (g.wondersOn ? ' i Cuda Świata.' : '.'), onClick: () => { this.menuPage = 'eco'; this.updateActionPanel(); } };
                 cmds[i++] = { icon: Icons.url('build_mil', 24), title: 'Budynki wojskowe', desc: 'Koszary, stajnia, warsztat, kuźnia, klasztor, lazaret, wieże, posterunek, zamek, mury, arsenał.', onClick: () => { this.menuPage = 'mil'; this.updateActionPanel(); } };
             }
             if (hasFighter) {
@@ -9694,6 +9781,7 @@ class UIManager {
 
         const pcfg = GameConfig.buildings[this.placementMode];
         if (pcfg.limit && n.countBuildings(this.placementMode) >= pcfg.limit) { err(`Osiągnięto limit (max ${pcfg.limit}): ${pcfg.name}`); this.cancelPlacement(true); return; }
+        if (pcfg.unique && g.wonderBlock(this.placementMode, n)) { err(g.wonderBlock(this.placementMode, n)); this.cancelPlacement(true); return; }
         if (ghost && ghost.isValid === false) {
             if (ghost.placeError === 'farmDist') {
                 err(isFarmType(this.placementMode) ? pcfg.name + ' musi stać dalej od Ratusza — poza czerwonym kręgiem. Krótsze kursy z plonem da Młyn postawiony niedaleko pól.'
@@ -9875,14 +9963,14 @@ class UIManager {
         const sub = document.getElementById('end-sub');
         el.className = 'overlay ' + result;
         const pts = g.byPoints ? ' Pat: od 10 minut nikt nie walczył, więc bitwę rozstrzygnięto na punkty.' : '';
-        const wonder = g.byWonder ? ` Cud Świata nacji ${g.byWonder} przetrwał odliczanie.` : '';
+        const wonder = g.byWonder ? ` Cuda Świata przyniosły ${Game.GLORY_WIN} Chwały: ${g.byWonder}.` : '';
         const dw = g.diplo ? { conquest: 'Podbój — wszystkie inne Ratusze legły w gruzach.', alliance: `Sojusz zwycięzców — sojusz przetrwał ${DIPLO.ALLIANCE_HOLD / 60} minuty jako jedyny na placu boju.`,
-            limit: `Limit czasu — najwyższy Wynik${g.winLeader ? ': ' + g.winLeader : ''}.`, wonder: 'Cud Świata przetrwał odliczanie.' }[g.winReason] : null;
+            limit: `Limit czasu — najwyższy Wynik${g.winLeader ? ': ' + g.winLeader : ''}.`, wonder: `Cuda Świata — ${Game.GLORY_WIN} Chwały${g.byWonder ? ': ' + g.byWonder : ''}.` }[g.winReason] : null;
         if (dw) {
             // Dyplomacja: zwycięzcą jest nacja albo sojusz - zawsze z powodem rozstrzygnięcia
             if (result === 'victory') { title.textContent = 'ZWYCIĘSTWO'; sub.textContent = dw + (g.winnerTeams && g.winnerTeams.size > 1 ? ' Zwycięzcy: ' + winnerNames + '.' : ''); }
             else if (result === 'defeat') { title.textContent = 'PORAŻKA'; sub.textContent = 'Zwyciężyli: ' + winnerNames + '. ' + dw; }
-        } else if (result === 'victory') { title.textContent = 'ZWYCIĘSTWO'; sub.textContent = (g.byWonder ? 'Cud Świata przetrwał — twoja drużyna zwycięża!' : (g.byPoints ? 'Twoja drużyna wygrywa na punkty.' : 'Wszystkie wrogie Ratusze legły w gruzach.')) + pts + (g.byWonder ? wonder : ''); }
+        } else if (result === 'victory') { title.textContent = 'ZWYCIĘSTWO'; sub.textContent = (g.byWonder ? `Cuda Świata przyniosły ${Game.GLORY_WIN} Chwały — twoja drużyna zwycięża!` : (g.byPoints ? 'Twoja drużyna wygrywa na punkty.' : 'Wszystkie wrogie Ratusze legły w gruzach.')) + pts; }
         else if (result === 'defeat') { title.textContent = 'PORAŻKA'; sub.textContent = 'Zwyciężyła drużyna: ' + winnerNames + '.' + pts + wonder; }
         else { title.textContent = 'REMIS'; sub.textContent = 'Nikt nie ocalał.'; }
 
@@ -15412,6 +15500,122 @@ const BuildingPainter = {
         this.banner(g, -21, 38, col); this.banner(g, 21, 38, col); this.banner(g, -52, -2, col); this.banner(g, 52, -2, col);
     },
 
+    // ---------------- WISZĄCE OGRODY (V1.0) ----------------
+    // Trzy tarasy z cegły mułowej, każdy obrzeżony zielenią i pnączami, kaskada wody spływająca z górnego tarasu
+    // do sadzawki przed schodami, palmy i cyprysy w narożach, na szczycie pawilon z dachem w barwach nacji.
+    hanging_gardens(g, col) {
+        const BRICK = '#c9a273', T = Math.PI * 2;
+        this.lawn(g, -48, -48, 96, 96, '#7aa04c', 301, 10);
+        // sadzawka i schody (dół)
+        this.withShadow(g, 0.35, 2, () => this.rect(g, -14, 33, 28, 13, '#cfc6b1', this.OUT, 0.9));
+        this.rect(g, -12, 35, 24, 9, '#3f86ad', '#7a756b', 0.6);
+        g.fillStyle = 'rgba(220,244,255,0.45)'; g.fillRect(-10, 36, 9, 1.4);
+        const tiers = [[38, 0, BRICK], [27, 1, '#d2ad7f'], [16, 2, '#dbb98c']];
+        for (const [h, k, c] of tiers) {
+            this.withShadow(g, 0.5, 4 - k, () => this.rect(g, -h, -h - 4, h * 2, h * 2, c, this.OUT, 1.1));
+            this.masonry(g, -h, -h - 4, h * 2, h * 2, c, 302 + k, 3, 6);
+            this.rect(g, -h, -h - 4, h * 2, h * 2, null, this.OUT, 1.1);
+            // zielone obrzeże tarasu z pnączami zwisającymi na niższy poziom
+            g.strokeStyle = '#4f8a36'; g.lineWidth = 4.2; g.strokeRect(-h + 2.4, -h - 1.6, h * 2 - 4.8, h * 2 - 4.8);
+            g.strokeStyle = 'rgba(190,232,130,0.55)'; g.lineWidth = 1; g.strokeRect(-h + 1.6, -h - 2.4, h * 2 - 3.2, h * 2 - 3.2);
+            const rnd = mulberry32(310 + k);
+            for (let i = 0; i < 22; i++) {
+                const side = i % 4, u = rnd() * (h * 2 - 6) - h + 3;
+                const px = side === 0 ? u : side === 1 ? h - 1 : side === 2 ? u : -h + 1, py = (side === 0 ? -h - 3 : side === 1 ? u - 4 : side === 2 ? h - 5 : u - 4);
+                g.fillStyle = rnd() < 0.3 ? ['#f3a6c0', '#ffe066', '#fbf7e6'][i % 3] : shadeColor('#4f8a36', (rnd() - 0.5) * 0.3);
+                g.beginPath(); g.arc(px, py, 1.1 + rnd() * 1.3, 0, T); g.fill();
+            }
+        }
+        // kaskada: kanał od górnego tarasu po sadzawkę
+        g.fillStyle = '#4a9cc6'; g.fillRect(-2.6, 10, 5.2, 25);
+        g.fillStyle = 'rgba(230,248,255,0.65)';
+        for (let yy = 12; yy < 34; yy += 5.5) g.fillRect(-2, yy, 4, 1.3);
+        this.rect(g, -2.6, 10, 5.2, 25, null, 'rgba(40,60,80,0.6)', 0.6);
+        // palmy i cyprysy w narożach
+        for (const [tx, ty] of [[-41, -41], [41, -41], [-41, 37], [41, 37]]) this.tcTree(g, tx, ty, 6.5, 320 + tx + ty);
+        // pawilon na szczycie
+        this.withShadow(g, 0.45, 2.6, () => this.rect(g, -9, -13, 18, 18, '#efe7d4', this.OUT, 1));
+        this.hip(g, -8, -12, 16, 16, col.main);
+        this.circ(g, 0, -4, 1.6, '#ffd94a', this.OUT, 0.6);
+        this.banner(g, -20, 40, col); this.banner(g, 20, 40, col);
+    },
+
+    // ---------------- KOLOS (V1.0) ----------------
+    // Okrągły cokół z ciosów na kamiennym placu z kolumnadą; na nim spiżowy olbrzym widziany z góry - ramiona,
+    // głowa w koronie promienistej, prawica z pochodnią (płomień dorysowuje Building.draw), lewica z włócznią.
+    colossus(g, col) {
+        const T = Math.PI * 2, BR = '#b07a3a';
+        this.masonry(g, -42, -42, 84, 84, '#cfc6b1', 401, 6, 8);
+        g.strokeStyle = 'rgba(110,96,74,0.45)'; g.lineWidth = 2; g.strokeRect(-39, -39, 78, 78);
+        // kolumnada wokół cokołu
+        for (let i = 0; i < 16; i++) {
+            const a = i / 16 * T, x = Math.cos(a) * 36, y = Math.sin(a) * 36;
+            this.withShadow(g, 0.4, 1.4, () => this.circ(g, x, y, 2.6, '#efe7d4', this.OUT, 0.8));
+            this.circ(g, x - 0.6, y - 0.6, 1, 'rgba(255,255,255,0.5)', null);
+        }
+        // cokół
+        this.withShadow(g, 0.55, 5, () => this.circ(g, 0, 0, 27, '#bdb39c', this.OUT, 1.2));
+        this.roundStone(g, 0, 0, 27, 19, '#d6cdb8', 402);
+        this.circ(g, 0, 0, 19, '#c7bda6', this.OUT, 1);
+        // posąg: barki i tułów (spiż z patyną), głowa, korona promienista
+        const gr = g.createRadialGradient(-5, -6, 2, 0, 0, 18);
+        gr.addColorStop(0, '#f0c27a'); gr.addColorStop(0.5, BR); gr.addColorStop(1, '#5d3c18');
+        // płaszcz w barwach nacji spływa z barków
+        g.fillStyle = col.main; g.strokeStyle = col.dark; g.lineWidth = 0.9;
+        g.beginPath(); g.moveTo(-14, 2); g.quadraticCurveTo(-2, 32, 13, 4); g.lineTo(9, 1); g.lineTo(-10, 1); g.closePath(); g.fill(); g.stroke();
+        this.withShadow(g, 0.5, 4, () => { g.fillStyle = gr; g.strokeStyle = this.OUT; g.lineWidth = 1.1; g.beginPath(); g.ellipse(0, 1, 16.5, 10.5, 0, 0, T); g.fill(); g.stroke(); });
+        g.fillStyle = 'rgba(95,154,134,0.4)'; g.beginPath(); g.ellipse(5, 4, 8, 4, 0.4, 0, T); g.fill();
+        g.strokeStyle = 'rgba(70,40,10,0.45)'; g.lineWidth = 0.8; g.beginPath(); g.moveTo(-6, -4); g.quadraticCurveTo(0, 0, 6, -4); g.stroke();
+        // prawe ramię uniesione z pochodnią (w stronę prawego górnego rogu)
+        g.strokeStyle = this.OUT; g.lineWidth = 6.4; g.beginPath(); g.moveTo(11, -2); g.lineTo(21, -24); g.stroke();
+        g.strokeStyle = BR; g.lineWidth = 4.6; g.beginPath(); g.moveTo(11, -2); g.lineTo(21, -24); g.stroke();
+        this.circ(g, 21, -25, 3.6, '#8a6410', this.OUT, 0.9);
+        this.circ(g, 21, -27, 2.4, '#ffd94a', null);
+        // lewe ramię z włócznią
+        g.strokeStyle = this.OUT; g.lineWidth = 6; g.beginPath(); g.moveTo(-12, 0); g.lineTo(-19, 12); g.stroke();
+        g.strokeStyle = BR; g.lineWidth = 4.2; g.beginPath(); g.moveTo(-12, 0); g.lineTo(-19, 12); g.stroke();
+        this.line(g, -26, -16, -14, 26, '#5d3c18', 1.6);
+        this.poly(g, [-26, -16, -28, -21, -24, -18], '#e8e2d2', this.OUT, 0.6);
+        // głowa i korona
+        for (let i = 0; i < 9; i++) { const a = i / 9 * T; this.line(g, Math.cos(a) * 5, -1 + Math.sin(a) * 5, Math.cos(a) * 9, -1 + Math.sin(a) * 9, '#ffd94a', 1.4); }
+        this.circ(g, 0, -1, 5.4, '#c99a52', this.OUT, 1);
+        this.circ(g, -1.4, -2.4, 1.6, 'rgba(255,240,200,0.5)', null);
+        this.banner(g, -34, 30, col); this.banner(g, 34, 30, col);
+    },
+
+    // ---------------- WIELKA BIBLIOTEKA (V1.0) ----------------
+    // Prostokątny gmach z kolumnadą dookoła, dachy z dachówki, pośrodku dziedziniec z ogrodem, fontanną i stołami
+    // ze zwojami; od frontu schody, posągi uczonych i chorągwie w barwach nacji.
+    library(g, col) {
+        const WALL = '#ece3cc', T = Math.PI * 2;
+        this.masonry(g, -48, -48, 96, 96, '#d4cbb5', 501, 6, 8);
+        // schody (dół)
+        for (let i = 0; i < 3; i++) this.rect(g, -24 + i * 1.5, 36 + i * 3.4, 48 - i * 3, 3.4, shadeColor('#ddd4bf', -i * 0.05), 'rgba(60,48,32,0.55)', 0.6);
+        // gmach: cztery skrzydła wokół dziedzińca
+        this.withShadow(g, 0.5, 4, () => this.rect(g, -40, -40, 80, 76, WALL, this.OUT, 1.1));
+        this.softRoof(g, -40, -40, 80, 20, this.TILE, true, 502);
+        this.softRoof(g, -40, 16, 80, 20, this.TILE, true, 503, false, true);
+        this.softRoof(g, -40, -20, 18, 36, this.TILE, false, 504);
+        this.softRoof(g, 22, -20, 18, 36, this.TILE, false, 505, false, true);
+        this.rect(g, -40, -40, 80, 76, null, this.OUT, 1.1);
+        // dziedziniec
+        this.lawn(g, -22, -20, 44, 36, '#7aa04c', 506, 3);
+        g.strokeStyle = '#d9d0bb'; g.lineWidth = 2.4; g.beginPath(); g.moveTo(-22, -2); g.lineTo(22, -2); g.moveTo(0, -20); g.lineTo(0, 16); g.stroke();
+        this.tcFountain(g, 0, -2, 6, true);
+        // stoły ze zwojami
+        for (const [x, y] of [[-13, -12], [13, -12], [-13, 9], [13, 9]]) {
+            this.rect(g, x - 4, y - 2, 8, 4, '#8a5e34', this.OUT, 0.6);
+            this.line(g, x - 3, y - 0.6, x + 3, y - 0.6, '#f4ecd2', 1.1); this.line(g, x - 2.4, y + 1, x + 2, y + 1, '#efe1b8', 0.9);
+        }
+        // kolumnada od frontu i z boków
+        for (let i = 0; i < 9; i++) { const x = -36 + i * 9; this.withShadow(g, 0.35, 1.2, () => this.circ(g, x, 38.5, 2.2, '#f6f0e0', this.OUT, 0.7)); }
+        for (let i = 0; i < 8; i++) { const y = -34 + i * 9.5; for (const x of [-43, 43]) this.withShadow(g, 0.35, 1.2, () => this.circ(g, x, y, 2, '#f6f0e0', this.OUT, 0.7)); }
+        // posągi uczonych przy schodach
+        for (const sx of [-30, 30]) { this.withShadow(g, 0.4, 1.6, () => this.rect(g, sx - 3, 43, 6, 6, '#bdb39c', this.OUT, 0.8)); this.circ(g, sx, 46, 1.8, '#e9e0ca', this.OUT, 0.6); }
+        this.banner(g, -12, 37, col); this.banner(g, 12, 37, col);
+        this.circ(g, 0, -40, 3, col.main, col.dark, 0.9);
+    },
+
     // ---------------- BRAMA ----------------
     gate(g, col, stone) {
         const H = 20;
@@ -15458,7 +15662,7 @@ Sprites.building = function (type, colorKey, variant) {
         const fn = BuildingPainter[type === 'wooden_wall' ? 'wall_post' : type];
         if (fn) fn.call(BuildingPainter, g, col, variant);
     };
-    const tall = type === 'tower' || type === 'town_center' || type === 'castle' || type === 'bombard_tower' || type === 'outpost' || type === 'wonder';
+    const tall = type === 'tower' || type === 'town_center' || type === 'castle' || type === 'bombard_tower' || type === 'outpost' || !!(cfg && cfg.wonder);
     const flat = type === 'farm' || (type === 'orchard' && variant >= 2);   // warstwy owoców sadu - bez cienia
     s = flat ? this.crop(this.makeR(size + pad, size + pad, paint))
              : this.makeShadowed(size + pad, size + pad, paint, tall ? 9 : 6, tall ? 11 : 7, tall ? 7 : 6, 0.42);
@@ -17958,7 +18162,7 @@ class Building extends Entity {
                 g.cue(this.owner, 'Complete');
             }
             if (this.owner) this.owner.recomputePopulation();
-            if (this.cfg && this.cfg.wonder) g.wonderBuilt(this);   // V3.5 Newest Final: rusza odliczanie do zwycięstwa
+            if (this.cfg && this.cfg.wonder) g.wonderBuilt(this);   // Cud Świata: premia i Chwała co sekundę
         }
     }
 
@@ -18190,7 +18394,7 @@ class Building extends Entity {
         if (g) this.updateFx(g, deltaTime);
 
         if (this.trainingQueue.length > 0) {
-            this.trainingTimer -= deltaTime * (this.owner.trainSpeedMul || 1);
+            this.trainingTimer -= deltaTime * (this.owner.trainSpeedMul || 1) * (this.trainingQueue[0].isResearch ? (this.owner.researchMul || 1) : 1);
             if (this.trainingTimer <= 0) {
                 const itemData = this.trainingQueue.shift();
 
@@ -18457,10 +18661,17 @@ class Building extends Entity {
             const fp = this.type === 'town_center' ? (BuildingPainter.TC_FLAG[this.spriteVariant()] || [0, -2]) : [0, -2];
             const fl = Sprites.flagFrame(colorKey, Math.floor(t * 5 + this.seed) & 3);
             ctx.drawImage(fl.canvas, x + fp[0] + 11 + fl.dx, y + fp[1] + 0.8 + fl.dy, fl.dw, fl.dh);
+        } else if (this.type === 'colossus' && this.isConstructed) {
+            // Kolos: płonąca pochodnia w uniesionej dłoni
+            const gl = Sprites.glow('fire', '255,170,60');
+            const s = 22 + Math.sin(t * 9 + this.seed) * 4;
+            ctx.globalAlpha = 0.85;
+            ctx.drawImage(gl.canvas, x + 21 - s / 2, y - 27 - s / 2, s, s);
+            ctx.globalAlpha = 1;
         } else if (this.type === 'wonder') {
-            // V3.5 Newest Final: złota kopuła lśni; w czasie odliczania blask pulsuje mocniej
+            // złota kopuła lśni; ukończona (wytwarza Chwałę) - blask pulsuje mocniej
             const g = window.game;
-            const counting = this.wonderUntil != null && g && !g.gameOver;
+            const counting = this.isConstructed && g && !g.gameOver;
             const gl = Sprites.glow('wonder', '255,214,90');
             const s = 62 + Math.sin(t * (counting ? 3.2 : 1.4) + this.seed) * (counting ? 10 : 5);
             ctx.globalAlpha = counting ? 0.6 : 0.4;
@@ -18926,6 +19137,15 @@ class Nation {
             if (!up || !up.effects) continue;
             for (const ef of up.effects) if (ef.gather) m[ef.gather] += ef.add;
         }
+        // Cuda Świata (V1.0): premie ukończonych Cudów - zbieranie i tempo badań
+        let rm = 1;
+        for (const b of this.buildings) {
+            const B = b.cfg && b.cfg.bonus;
+            if (!B || !b.isConstructed || b.isDestroyed) continue;
+            if (B.gather) for (const k in B.gather) m[k] += B.gather[k];
+            if (B.research) rm += B.research;
+        }
+        this.researchMul = rm;
         for (const k in m) m[k] *= this.gatherBonus;
         this.gatherMult = m;
         let ts = this.aiTrainSpeed || 1, hp = 1;
@@ -19258,6 +19478,7 @@ class NationAI {
         if ((cfg.age || 1) > nation.age || game.buildingOff(type)) return null;
         if (!nation.resources.canAfford(cost)) return null;
         if (cfg.limit && nation.countBuildings(type) >= cfg.limit) return null;
+        if (cfg.unique && game.wonderTaken(type, nation)) return null;
         const tc = this.tc;
         const ringOpen = this.p.walls && this.wallRingStatus < 100 && tc;
         // każda nieudana próba poszerza obszar poszukiwań - zatłoczona baza nie blokuje rozbudowy
@@ -19418,21 +19639,23 @@ class NationAI {
         const fleet = military.filter(u => u.isShip);
         const count = (t) => { let c = 0; for (const u of nation.units) if (u.unitType === t) c++; return c; };
 
-        // V3.5 Newest Final: Cuda Świata - wrogi (najpilniejszy: ukończony z najkrótszym odliczaniem, potem najdalej
-        // posunięta budowa) i własny
-        this.enemyWonder = null; this.myWonder = null;
+        // Cuda Świata - wrogi (najpilniejszy: drużyna najbliżej zwycięstwa Chwałą, Wielka Bazylika, ukończony przed
+        // budowanym) i własne (myWonder: ten w budowie, inaczej największy)
+        this.enemyWonder = null; this.myWonder = null; this.myWonders = [];
         {
             let bs = -Infinity;
             for (const w of game.wonderInfo()) {
                 if (w.isDestroyed || w.owner.defeated) continue;
-                if (w.owner === nation) { this.myWonder = w; continue; }
+                if (w.owner === nation) { this.myWonders.push(w); continue; }
                 if (!game.isEnemy(w.owner, nation)) continue;
-                const s = w.isConstructed ? 1000 - (w.wonderUntil - time) : w.buildProgress;
+                const s = game.gloryOf(w.owner.team) + (w.cfg.glory || 0) * 150 + (w.isConstructed ? 300 : w.buildProgress * 2);
                 if (s > bs) { bs = s; this.enemyWonder = w; }
             }
+            const mws = this.myWonders;
+            this.myWonder = mws.find(w => !w.isConstructed) || mws.find(w => w.type === 'wonder') || mws[0] || null;
             if (this.enemyWonder && this.enemyWonder !== this._wonderSeen) {
                 this._wonderSeen = this.enemyWonder;
-                this.log(`wrogi Cud Świata (${this.enemyWonder.owner.shortName || this.enemyWonder.owner.name}) — cel numer jeden`);
+                this.log(`wrogi Cud: ${this.enemyWonder.cfg.name} (${this.enemyWonder.owner.shortName || this.enemyWonder.owner.name}) — ważny cel`);
             }
         }
         const traders = nation.units.filter(u => u.cfg.trader);
@@ -19672,18 +19895,31 @@ class NationAI {
         // V3.5 Newest Final: Cud Świata - AI, które chce go postawić, odkłada na niego w IV erze i buduje go wieloma rękami
         const WD = GameConfig.buildings.wonder;
         if (this.wantsWonder === undefined) this.wantsWonder = Math.random() < (p.wonder || 0) * (this.personality === 'defensive' ? 1.5 : 1);
-        const wonderPlan = !!tc && this.wantsWonder && game.wondersOn && nation.age >= WD.age && !this.myWonder && time > p.age4At + 300 &&
-            !(this.enemyWonder && this.enemyWonder.isConstructed) && nation.countBuildings('wonder') < WD.limit;
+        const building = this.myWonders.some(w => !w.isConstructed);
+        const wonderPlan = !!tc && this.wantsWonder && game.wondersOn && nation.age >= WD.age && !building && time > p.age4At + 300 &&
+            nation.countBuildings('wonder') < WD.limit && !game.wonderTaken('wonder', nation);
         if (wonderPlan && !this.underThreat && !this.agingUp && this.armySize >= this.armyFloor && this.mood > -0.3) {
             if (res.canAfford(WD.cost)) {
                 const w = this.trySpawn('wonder', tc, 560, false, 24);
-                if (w) { this.assignBuilder(workers, w, 8); this.log('kładzie fundamenty pod Cud Świata'); }
+                if (w) { this.assignBuilder(workers, w, 8); this.log('kładzie fundamenty pod Wielką Bazylikę'); }
             } else reserve(WD.cost);
+        }
+        // mniejsze Cuda (III era): premia i Chwała; każdy charakter ma ulubiony, ale bierze ten, który jest wolny
+        if (!wonderPlan && !building && !!tc && game.wondersOn && (p.wonder || 0) > 0 && nation.age >= 3 && time > p.age3At + 200
+            && this.myWonders.length < (nation.age >= 4 ? 3 : 2) && !this.underThreat && !this.agingUp && this.armySize >= this.armyFloor && this.mood > -0.3
+            && (this.richT > 0 || this.wantsWonder)) {
+            const fav = { defensive: 'hanging_gardens', offensive: 'colossus', reckless: 'colossus', raider: 'colossus', siegemaster: 'library' }[this.personality] || 'library';
+            const list = [fav, 'library', 'hanging_gardens', 'colossus'].filter((t, i, a) => a.indexOf(t) === i && nation.countBuildings(t) < 1 && !game.wonderTaken(t, nation));
+            const t = list[0], cfg = t && GameConfig.buildings[t];
+            if (cfg && res.canAfford(cfg.cost)) {
+                const w = this.trySpawn(t, tc, 520, false, 24);
+                if (w) { this.assignBuilder(workers, w, 6); this.log(`kładzie fundamenty: ${cfg.name}`); }
+            }
         }
         if (this.myWonder && !this.myWonder.isConstructed) {
             const w = this.myWonder;
             const busy = workers.filter(u => u.targetEntity === w).length;
-            const want = Math.min(14, Math.max(6, Math.floor(nW * 0.45))) - (this.underThreat ? 3 : 0);
+            const want = (w.type === 'wonder' ? Math.min(14, Math.max(6, Math.floor(nW * 0.45))) : Math.min(9, Math.max(4, Math.floor(nW * 0.3)))) - (this.underThreat ? 3 : 0);
             if (busy < want) this.assignBuilder(workers.filter(u => u.targetEntity !== w), w, want - busy);
         }
         const needStone = (wonderPlan && res.get('stone') < WD.cost.stone + 50) || nation.age >= 2 && res.get('stone') < Math.max(200, ageStone + 40) &&
@@ -20292,15 +20528,20 @@ class NationAI {
         // V3.5 Newest Final: Cud Świata. Wróg go ukończył - wszystko, co nie strzeże bazy, rusza na niego co pół minuty
         // (bez czekania na przerwę między falami i bez oceny sił: przegrana i tak jest pewna). Własny Cud - armia zostaje
         // w domu i go broni (nowych fal nie ma, trwająca dobiega końca).
+        // Cuda (V1.0): wszystko na wrogie Cuda dopiero, gdy ich drużyna jest blisko zwycięstwa Chwałą (ponad 55%) albo
+        // stoi Wielka Bazylika; armia zostaje w domu przy własnej Bazylice albo gdy sami jesteśmy blisko zwycięstwa
         const ew = this.enemyWonder;
-        const rush = !!ew && ew.isConstructed && this.difficulty !== 'tutorial' && time - (this.lastRushAt || -99) > 30;
-        const hold = !!this.myWonder && (this.myWonder.isConstructed || this.myWonder.buildProgress > 30);
+        const ewTeam = ew ? game.gloryOf(ew.owner.team) : 0;
+        const rush = !!ew && ew.isConstructed && (ewTeam >= Game.GLORY_WIN * 0.55 || ew.type === 'wonder') && this.difficulty !== 'tutorial' && time - (this.lastRushAt || -99) > 30;
+        const myBas = this.myWonders.find(w => w.type === 'wonder');
+        const hold = (!!myBas && (myBas.isConstructed || myBas.buildProgress > 30)) || game.gloryOf(nation.team) >= Game.GLORY_WIN * 0.7;
         if (!hold && (time >= this.nextWaveAt || early || rush)) {
             let size = Math.min(p.waveMax, this.waveSizeNow);
             const avail = fresh.length - this.guardSize();
             if (atCap && avail > size) size = Math.min(avail, Math.round(p.waveMax * 1.5), size * 2);
             // szturm na Cud w sile co najmniej 10 jednostek (posiłki do trwającego - od 6); garstką tylko, gdy czasu brak
-            const rushMin = ew && ew.wonderUntil - time < 150 ? 4 : (wave && wave.phase === 'attack' ? 6 : 10);
+            const ewRate = ew ? game.gloryRate(ew.owner.team) : 0;
+            const rushMin = ew && ewRate > 0 && (Game.GLORY_WIN - ewTeam) / ewRate < 150 ? 4 : (wave && wave.phase === 'attack' ? 6 : 10);
             if (rush && avail >= rushMin) {
                 const picked = fresh.slice(0, avail);
                 const tgt = { n: ew.owner, x: ew.x, y: ew.y, d: 0, b: ew };
@@ -20312,7 +20553,7 @@ class NationAI {
                     this.log(`posiłki na Cud Świata (${picked.length})`);
                 } else {
                     wave = this.startWave(picked, [], time, 'wonder', tgt);
-                    this.log(`szturm na Cud Świata nacji ${ew.owner.shortName || ew.owner.name}: ${picked.length} jednostek`);
+                    this.log(`szturm na Cud (${ew.cfg.name}) nacji ${ew.owner.shortName || ew.owner.name}: ${picked.length} jednostek`);
                 }
                 this.wavesSent++;
                 this.warnPlayer(time);
@@ -21669,11 +21910,16 @@ class Diplomacy {
         return best;
     }
 
-    // Cud Świata nacji n, który zagraża zwycięstwem (ukończony albo w ponad połowie budowy) - albo null
+    // Cud nacji n, który zagraża zwycięstwem Chwałą - albo null: jej drużyna ma ponad 45% Chwały i ukończony Cud,
+    // albo stoi (lub jest w ponad połowie) jej Wielka Bazylika
     wonderOf(n) {
         const g = this.game;
         if (!g.wondersOn) return null;
-        for (const w of g.wonderInfo()) if (w.owner === n && !w.isDestroyed && (w.isConstructed || w.buildProgress > 50)) return w;
+        const high = g.gloryOf(n.team) >= Game.GLORY_WIN * 0.45;
+        for (const w of g.wonderInfo()) {
+            if (w.owner !== n || w.isDestroyed) continue;
+            if ((high && w.isConstructed) || (w.type === 'wonder' && (w.isConstructed || w.buildProgress > 50))) return w;
+        }
         return null;
     }
 
@@ -21927,17 +22173,17 @@ class DiplomatAI {
             this.log(`nie przystępuje do wojny sojusznika ${D.name(c.ally)} (za słaby, za daleko albo zajęty)`);
         }
 
-        // 2) Cud Świata rywala (ukończony albo w ponad połowie budowy): zwycięstwo Cudem kończy grę dla wszystkich,
-        //    więc każdy, kto nie jest sojusznikiem budowniczego, wypowiada mu wojnę - choćby z drugiego końca kontynentu
-        if (g.wondersOn) for (const w of g.wonderInfo()) {
-            const o = w.owner;
-            if (w.isDestroyed || o === me || !D.alive(o) || D.allied(me, o) || D.atWar(me, o)) continue;
-            if (!D.wonderOf(o) || D.canDeclareWar(me, o)) continue;
-            this.log(`wypowiada wojnę nacji ${D.name(o)}: Cud Świata (${w.isConstructed ? 'ukończony' : Math.round(w.buildProgress) + '%'})`);
+        // 2) Cuda rywala, które grożą zwycięstwem Chwałą (D.wonderOf): zwycięstwo kończy grę dla wszystkich, więc każdy,
+        //    kto nie jest sojusznikiem budowniczego, wypowiada mu wojnę - choćby z drugiego końca kontynentu
+        if (g.wondersOn) for (const o of g.nations) {
+            if (o === me || !D.alive(o) || D.allied(me, o) || D.atWar(me, o)) continue;
+            const w = D.wonderOf(o);
+            if (!w || D.canDeclareWar(me, o)) continue;
+            this.log(`wypowiada wojnę nacji ${D.name(o)}: Chwała ${Math.floor(g.gloryOf(o.team))}, ${w.cfg.name} (${w.isConstructed ? 'ukończony' : Math.round(w.buildProgress) + '%'})`);
             this.lastWarAt = g.time;
             this.focus = o;
             this.setGoal(o, 300);
-            D.declareWar(me, o, 'Wasz Cud Świata nie może przetrwać!');
+            D.declareWar(me, o, 'Wasze Cuda nie dadzą wam władzy nad kontynentem!');
             return;
         }
 
@@ -22097,7 +22343,7 @@ class DiplomatAI {
         // okup: wartość względem gospodarki przyjmującego, najwyżej 0,6 (okup nie przeważy przegranej wojny)
         let payV = pay ? Math.min(0.6, ((pay.gold || 0) * 1.5 + (pay.food || 0) + (pay.wood || 0)) / (600 + 500 * me.age)) : 0;
         if (kind === 'peace') {
-            if (D.wonderOf(from)) return { ok: false, why: 'dopóki stoi twój Cud Świata, nie ma mowy o pokoju.' };
+            if (D.wonderOf(from)) return { ok: false, why: 'dopóki twoje Cuda grożą zwycięstwem, nie ma mowy o pokoju.' };
             const losing = their > my * 1.15;
             if (!losing && this.hasGoal(from)) return { ok: false, why: 'dopiero zaczęła tę wojnę i chce coś na niej zyskać.' };
             if (!losing && from === D.hegemon() && wars <= 2) return { ok: false, why: 'koalicja przeciw najpotężniejszej nacji trwa.' };
@@ -25548,13 +25794,15 @@ class HostSession {
             const sig = JSON.stringify(st);
             if (sig !== slot.natSig) { slot.natSig = sig; out.push(['n', st]); }
         }
-        // V3.5 Newest Final: Cuda Świata (widoczne dla wszystkich) z odliczaniem do zwycięstwa
+        // Cuda Świata (widoczne dla wszystkich) i Chwała drużyn
         const wl = g.wonderInfo();
-        const wsig = wl.map(w => w.id + ':' + (w.isConstructed ? 1 : 0) + ':' + Math.round(w.wonderUntil || 0) + ':' + Math.round(w.buildProgress / 4)).join('|');
+        const gt = {};
+        for (const n of g.nations) if (gt[n.team] === undefined) gt[n.team] = [Math.floor(g.gloryOf(n.team)), g.gloryRate(n.team)];
+        const wsig = wl.map(w => w.id + ':' + (w.isConstructed ? 1 : 0) + ':' + Math.round(w.buildProgress / 4)).join('|') + '#' + JSON.stringify(gt);
         if (wsig !== slot.wdSig) {
             slot.wdSig = wsig;
             out.push(['wd', wl.map(w => [w.id, g.nations.indexOf(w.owner), Math.round(w.x * 10) / 10, Math.round(w.y * 10) / 10, w.size, w.isConstructed ? 1 : 0,
-                w.wonderUntil != null ? Math.round(w.wonderUntil * 10) / 10 : -1, Math.round(w.buildProgress)])]);
+                w.type, Math.round(w.buildProgress)]), gt]);
         }
         for (let i = 0; i < g.nations.length; i++) {
             const x = g.nations[i];
@@ -26086,10 +26334,11 @@ class ClientSession {
                 });
                 break;
             }
-            case 'wd': {   // V3.5 Newest Final: Cuda Świata i odliczanie do zwycięstwa
+            case 'wd': {   // Cuda Świata i Chwała drużyn
                 g.netWonders = e[1].map(a => ({ id: a[0], owner: g.nations[a[1]], x: a[2], y: a[3], size: a[4], isConstructed: !!a[5],
-                    wonderUntil: a[6] < 0 ? null : a[6], buildProgress: a[7] })).filter(w => w.owner);
-                for (const w of g.netWonders) { const b = byId.get(w.id); if (b) { b.wonderUntil = w.wonderUntil; } }
+                    type: GameConfig.buildings[a[6]] && GameConfig.buildings[a[6]].wonder ? a[6] : 'wonder', buildProgress: a[7] })).filter(w => w.owner);
+                for (const w of g.netWonders) w.cfg = GameConfig.buildings[w.type];
+                g.netGlory = e[2] && typeof e[2] === 'object' ? e[2] : {};
                 g.updateVisibility(); g.fogDirty = true;
                 break;
             }
@@ -26179,7 +26428,7 @@ function matchOptionsHtml(p, o, color, sky) {
     let h = `<div><span class="opt-label">Warunki zwycięstwa</span><div class="win-grid">
         <div class="win-tile fixed" title="Drużyna, która jako ostatnia zachowa Ratusz, wygrywa. Ten warunek obowiązuje zawsze.">${img('building', 'town_center')}<span class="wt-text"><b>Podbój</b><small>Zniszcz Ratusze wszystkich wrogów</small></span><span class="win-lock">ZAWSZE</span></div>
         ${tile('kings', o.kings, 'unit', 'king', 'Królowie', 'Każda nacja ma władcę — jego śmierć to porażka', 'Każda nacja zaczyna z królem: potężnym wojownikiem z Królewską Szarżą (+20% dla okolicznej armii). Gdy król zginie, jego nacja przegrywa i traci całą osadę.')}
-        ${tile('wonder', o.wonders !== false, 'building', 'wonder', 'Cud Świata', 'Cud, który przetrwa 10 minut, daje zwycięstwo', 'W IV erze można zbudować Cud Świata (jeden na nację). Jeśli po ukończeniu przetrwa 10 minut, drużyna budowniczego wygrywa. Wyłączone: Cudu nie ma w menu budowy, a AI go nie stawia.')}
+        ${tile('wonder', o.wonders !== false, 'building', 'wonder', 'Cuda Świata', '1000 Chwały z Cudów daje zwycięstwo', 'Cztery unikatowe Cuda (każdy może stać na mapie tylko raz): Wiszące Ogrody, Kolos i Wielka Biblioteka w III erze — z premiami — oraz Wielka Bazylika w IV erze. Ukończone Cuda co sekundę dają Chwałę; drużyna, która pierwsza zbierze 1000, wygrywa. Zburzenie Cudu odbiera właścicielowi 25% Chwały. Wyłączone: Cudów nie ma w menu budowy, a AI ich nie stawia.')}
     </div></div>
     <label class="reveal-row" title="Odkryta mapa: od początku znasz teren i rozmieszczenie surowców; wrogie wojsko nadal kryje mgła wojny."><input type="checkbox" id="${p}-reveal"${o.reveal ? ' checked' : ''}><i class="win-switch"></i><span>Odkryta mapa <small>Teren znany od startu</small></span></label>`;
     if (sky) h += `<div><span class="opt-label">Pora dnia i pogoda</span><div class="sky-pick">
@@ -26417,12 +26666,12 @@ const MpUI = {
         if (o.mode === 'diplomacy') {
             const biomeD = { random: 'losowa', meadow: 'łąki', autumn: 'jesień', winter: 'zima', desert: 'pustynia' }[o.biome] || o.biome;
             const riv = { few: 'mało', normal: 'średnio', many: 'dużo' }[o.rivers] || 'średnio';
-            return `Tryb: <b>Dyplomacja</b> · mapa: <b>kontynent</b> (5× Gigantyczna) · rzeki: <b>${riv}</b> · kraina: <b>${biomeD}</b> · rozejm: <b>${o.truce > 0 ? Math.round(o.truce / 60) + ' min' : 'brak'}</b> · limit czasu: <b>${o.limit > 0 ? Math.round(o.limit / 60) + ' min' : 'brak'}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}${o.wonders !== false ? ' · <b>Cud Świata</b>' : ''}`;
+            return `Tryb: <b>Dyplomacja</b> · mapa: <b>kontynent</b> (5× Gigantyczna) · rzeki: <b>${riv}</b> · kraina: <b>${biomeD}</b> · rozejm: <b>${o.truce > 0 ? Math.round(o.truce / 60) + ' min' : 'brak'}</b> · limit czasu: <b>${o.limit > 0 ? Math.round(o.limit / 60) + ' min' : 'brak'}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}${o.wonders !== false ? ' · <b>Cuda Świata</b>' : ''}`;
         }
         const size = { 2400: 'mała', 3000: 'średnia', 3900: 'duża', 5100: 'gigantyczna' }[o.mapSize] || o.mapSize;
         const type = { random: 'losowe', lake: 'jezioro', lakes: 'pojezierze', plains: 'równiny', highlands: 'góry' }[o.mapType] || o.mapType;
         const biome = { random: 'losowa', meadow: 'łąki', autumn: 'jesień', winter: 'zima', desert: 'pustynia' }[o.biome] || o.biome;
-        return `Mapa: <b>${size}</b> · ukształtowanie: <b>${type}</b> · kraina: <b>${biome}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}${o.wonders !== false ? ' · <b>Cud Świata</b>' : ' · bez Cudu Świata'}`;
+        return `Mapa: <b>${size}</b> · ukształtowanie: <b>${type}</b> · kraina: <b>${biome}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}${o.wonders !== false ? ' · <b>Cuda Świata</b>' : ' · bez Cudów Świata'}`;
     },
 
     // ================= Widok: host =================
@@ -27080,14 +27329,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 tbox.title = `Nacje: ${o.nations.length} — każda na własny rachunek`;
                 tbox.innerHTML = '<span class="sum-team">' + o.nations.map(n => `<i class="${n.isPlayer ? 'me' : ''}" style="background:${TeamPalette[n.color].main}" title="${n.isPlayer ? 'Ty' : 'SI — ' + Difficulty.names[n.diff]}"></i>`).join('') + '</span>';
             }
-            const winD = ['Podbój', '<span class="gold">Sojusz</span>'].concat(o.kings ? ['<span class="gold">Królowie</span>'] : [], o.wonders ? ['<span class="gold">Cud Świata</span>'] : [], o.limit > 0 ? [`<span class="gold">Wynik po ${Math.round(o.limit / 60)} min</span>`] : []).join(' · ');
+            const winD = ['Podbój', '<span class="gold">Sojusz</span>'].concat(o.kings ? ['<span class="gold">Królowie</span>'] : [], o.wonders ? ['<span class="gold">Cuda Świata</span>'] : [], o.limit > 0 ? [`<span class="gold">Wynik po ${Math.round(o.limit / 60)} min</span>`] : []).join(' · ');
             box.innerHTML = row('Mapa', `Kontynent${o.reveal ? ' · odkryta' : ''}`) + row('Rzeki', label('rivers')) + row('Kraina', label('biome'))
                 + row('Rozejm', o.truce > 0 ? label('truce') : 'Brak') + row('Surowce', o.rich ? 'Bogate' : 'Standardowe') + row('Pora dnia', o.atmosphere ? 'Dzień i noc' : 'Wieczny dzień')
                 + row('Zwycięstwo', winD, true);
             renderPreview(o);
             return;
         }
-        const win = ['Podbój'].concat(o.kings ? ['<span class="gold">Królowie</span>'] : [], o.wonders ? ['<span class="gold">Cud Świata</span>'] : []).join(' · ');
+        const win = ['Podbój'].concat(o.kings ? ['<span class="gold">Królowie</span>'] : [], o.wonders ? ['<span class="gold">Cuda Świata</span>'] : []).join(' · ');
         box.innerHTML = row('Mapa', `${label('mapsize')} · ${label('maptype')}${o.reveal ? ' · odkryta' : ''}`) + row('Kraina', label('biome'))
             + row('Surowce', o.rich ? 'Bogate' : 'Standardowe') + row('Pora dnia', o.atmosphere ? 'Dzień i noc' : 'Wieczny dzień') + row('Zwycięstwo', win, true);
         renderPreview(o);
@@ -27798,7 +28047,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (game.diplo) {
                         const D = game.diplo;
                         uiManager.showMessage(`Dyplomacja: ${game.nations.length} nacji na kontynencie, wszyscy zaczynają w pokoju` + (D.truceUntil > 0 ? ` (rozejm: ${Math.round(D.truceUntil / 60)} min)` : '') + '. Relacje, propozycje i warunki zwycięstwa — klawisz Tab.', 'info');
-                        uiManager.showMessage('Zwycięstwo: Podbój' + (D.allianceWin ? ` · Sojusz (najwyżej ${D.allyCap} nacji, ${DIPLO.ALLIANCE_HOLD / 60} min jako jedyni)` : '') + (game.wondersOn ? ' · Cud Świata' : '') + (D.timeLimit > 0 ? ` · po ${Math.round(D.timeLimit / 60)} min najwyższy Wynik` : '') + '.', 'info');
+                        uiManager.showMessage('Zwycięstwo: Podbój' + (D.allianceWin ? ` · Sojusz (najwyżej ${D.allyCap} nacji, ${DIPLO.ALLIANCE_HOLD / 60} min jako jedyni)` : '') + (game.wondersOn ? ` · Cuda Świata (${Game.GLORY_WIN} Chwały)` : '') + (D.timeLimit > 0 ? ` · po ${Math.round(D.timeLimit / 60)} min najwyższy Wynik` : '') + '.', 'info');
                     }
                     uiManager.showMessage('Zaznacz robotników i wyślij ich po drewno (PPM na drzewo).', 'good');
                 }
@@ -27863,7 +28112,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 uiManager.showMessage(`Mapa: ${biome.name} · ${MAP_NAMES[w.mapType] || ''}.` + (allies.length ? ` Sojusznicy: ${allies.join(', ')}.` : ''), 'info');
                 if (game.diplo && !w.resume) {
                     const D = game.diplo;
-                    uiManager.showMessage('Dyplomacja — zwycięstwo: Podbój' + (D.allianceWin ? ` · Sojusz (najwyżej ${D.allyCap} nacji, ${DIPLO.ALLIANCE_HOLD / 60} min jako jedyni)` : '') + (game.wondersOn ? ' · Cud Świata' : '') + (D.timeLimit > 0 ? ` · po ${Math.round(D.timeLimit / 60)} min najwyższy Wynik` : '') + '. Relacje i warunki — klawisz Tab.', 'info');
+                    uiManager.showMessage('Dyplomacja — zwycięstwo: Podbój' + (D.allianceWin ? ` · Sojusz (najwyżej ${D.allyCap} nacji, ${DIPLO.ALLIANCE_HOLD / 60} min jako jedyni)` : '') + (game.wondersOn ? ` · Cuda Świata (${Game.GLORY_WIN} Chwały)` : '') + (D.timeLimit > 0 ? ` · po ${Math.round(D.timeLimit / 60)} min najwyższy Wynik` : '') + '. Relacje i warunki — klawisz Tab.', 'info');
                 }
                 uiManager.showMessage(w.resume ? 'Jesteś z powrotem w grze — znów dowodzisz swoją nacją.' : 'Zaznacz robotników i wyślij ich po drewno (PPM na drzewo).', 'good');
                 window.abReady = true;
@@ -27936,7 +28185,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         const era = (a) => `<span class="era era${a || 1}">Era ${GameConfig.ages[a || 1].roman}</span>`;
         const NEW_UNITS = ['arquebusier', 'petardier', 'organ_gun', 'great_cannon', 'trojan_horse', 'king', 'trade_cart', 'lisowczyk'];
-        const NEW_BUILDINGS = ['orchard', 'wonder'];
+        const NEW_BUILDINGS = ['hanging_gardens', 'colossus', 'library', 'wonder'];
         const isNew = (list, t) => list.includes(t) ? '<span class="codex-new">Nowość</span>' : '';
 
         const trainedAt = {};
@@ -28008,7 +28257,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const bPane = document.getElementById('pane-buildings');
             if (bPane) {
-                let h = codexHead('buildings', 'Budynki', `${Object.keys(GameConfig.buildings).length} budowli — od domu i farmy po zamek, arsenał i Cud Świata. Co szkolą, co badają i ile wytrzymają.`) + `<div class="codex" data-era="${codexEra.buildings}">`;
+                let h = codexHead('buildings', 'Budynki', `${Object.keys(GameConfig.buildings).length} budowli — od domu i farmy po zamek, arsenał i Cuda Świata. Co szkolą, co badają i ile wytrzymają.`) + `<div class="codex" data-era="${codexEra.buildings}">`;
                 for (const t in GameConfig.buildings) {
                     const b = GameConfig.buildings[t];
                     let st = `<span class="chip" title="Wytrzymałość">♥ ${b.maxHp}</span>`;
@@ -28022,7 +28271,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div><div class="codex-name">${b.name} ${era(b.age)}${isNew(NEW_BUILDINGS, t)}</div>
                         <div class="codex-meta">${cost(b.cost)}</div>
                         <div class="chips">${st}</div><div class="codex-desc">${b.desc}</div>
-                        <div class="codex-extra">${trains.length ? 'Szkoli: ' + trains.join(', ') + '. ' : ''}${ups.length ? 'Badania: ' + ups.join(', ') + '.' : ''}${b.limit ? ' Limit: ' + b.limit + '.' : ''}${b.wonder ? ' Tylko z warunkiem zwycięstwa „Cud Świata” (karta Świat, domyślnie włączony).' : ''}</div></div></div>`;
+                        <div class="codex-extra">${trains.length ? 'Szkoli: ' + trains.join(', ') + '. ' : ''}${ups.length ? 'Badania: ' + ups.join(', ') + '.' : ''}${b.limit ? ' Limit: ' + b.limit + '.' : ''}${b.wonder ? ` Cud Świata: +${String(b.glory).replace('.', ',')} Chwały/s, jeden na całą mapę; tylko z warunkiem zwycięstwa „Cuda Świata” (karta Świat, domyślnie włączony).` : ''}</div></div></div>`;
                 }
                 bPane.innerHTML = h + '</div><div class="codex-empty">Nic nie pasuje do wyszukiwania.</div>';
                 codexFilter('buildings');
