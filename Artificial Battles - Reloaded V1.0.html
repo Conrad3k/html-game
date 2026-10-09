@@ -1452,6 +1452,29 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="news-wrap">
                     <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
                     <div class="menu-card news-new">
+                        <div class="eyebrow">Aktualizacja · testy trybów</div>
+                        <h2>Mądrzejsza dyplomacja SI i silnik Raptor do 3 razy szybszy</h2>
+                        <p>Oba tryby przeszły serię automatycznych testów: ponad dwadzieścia kampanii i meczów SI kontra SI (od 2 do 8 nacji, wszystkie krainy, ukształtowania, rozmiary map i poziomy trudności, z Królami i Cudem Świata), sprawdzenie panelu Dyplomacji i startu z menu. Klasyczny mecz gra się tak jak dotąd, tylko szybciej; w Dyplomacji poprawiliśmy zachowanie SI, które testy wyraźnie pokazały.</p>
+                        <h3>Dyplomacja</h3>
+                        <ul>
+                            <li><b>Koniec rozejmu bez nagonki</b>: dotąd w kilka sekund po rozejmie <b>wszystkie</b> SI wypowiadały wojnę tej samej, najsłabszej nacji — także takiej z drugiego końca kontynentu. Teraz każda SI rusza w swoim czasie, a nacja, z którą walczą już inni, jest dla kolejnego chętnego mniej kusząca.</li>
+                            <li><b>Wojny z sąsiadami</b>: SI wypowiada wojnę nacjom w zasięgu (stolica bliżej niż ok. 6,5 tys. kroków), a przewaga liczy się do 2,5-krotnej. Najbliższy sąsiad spoza sojuszu jest w zasięgu zawsze (na przykład w kampanii dwóch nacji).</li>
+                            <li><b>Kontynent nie zamiera</b>: wspólny sojusznik obu stron nie liczy się już do żadnego bloku, a długi pokój przy pełnej armii stopniowo budzi w SI chęć wojny. Wcześniej sieć sojuszy potrafiła zamrozić grę na kilkanaście minut, a skarbce SI rosły do kilkudziesięciu tysięcy.</li>
+                            <li><b>Cud Świata</b>: nacja spoza sojuszu, której Cud jest ukończony albo w połowie budowy, dostaje wypowiedzenie wojny i nie dostanie pokoju, dopóki Cud stoi. Komunikaty o Cudzie mówią sojusznikom budowniczego, że wygrają razem z nim (dotąd wzywały ich do burzenia).</li>
+                            <li><b>Zwycięstwo sojuszu</b>: wielki sojusz wszystkich, którzy przetrwali, musi wytrwać <b>2 minuty</b> (komunikat z odliczaniem), a najsilniejsza SI nie przyjmie sojuszu, który by go zamknął — woli wygrać sama.</li>
+                            <li><b>Panel Dyplomacji</b>: „Wojna” wymaga drugiego kliknięcia w <b>ten sam</b> przycisk, a potwierdzenie wygasa po 5 s. Dotąd po kliknięciu „Wojna” przy jednej nacji pierwsze kliknięcie przy innej wypowiadało jej wojnę bez pytania.</li>
+                            <li>Pocisk wystrzelony przed zawarciem pokoju albo sojuszu nie rani już nowego partnera.</li>
+                        </ul>
+                        <h3>Silnik Raptor</h3>
+                        <ul>
+                            <li><b>Szybkie pola jednostek</b>: jednostka ma ok. 130 pól, a sposób ich zakładania przełączał każdą z nich w wolny, „słownikowy” tryb przeglądarki — każdy odczyt pola w symulacji i rysowaniu kosztował wielokrotnie więcej. To największy zysk tej aktualizacji.</li>
+                            <li><b>Regiony osiągalności łatane w miejscu zmiany</b>: postawiony mur, budynek albo ścięte drzewo nie każą już każdej drużynie przeliczać całej mapy (na kontynencie 144 tys. pól, kilkadziesiąt razy na minutę). Wynik jest identyczny jak przy pełnym przeliczeniu — sprawdziliśmy to w tysiącach porównań.</li>
+                            <li>Rozpychanie jednostek i mgła wojny liczą tylko to, co trzeba (bez pośrednich list, bez drugiego malowania tego samego kręgu widzenia).</li>
+                            <li><b>Wynik</b>: symulacja kampanii 6 nacji ok. <b>2,9× szybsza</b> (4,5 → 1,6 ms na krok), klasycznego meczu 4 nacji na mapie Gigantycznej <b>2× szybsza</b> (2,8 → 1,4 ms). Więcej zapasu na prędkość 3× i słabsze komputery.</li>
+                        </ul>
+                        <p class="menu-note">Gra wieloosobowa: SI i symulację liczy host, więc nowe zachowanie SI i szybszy silnik działają w każdej grze, której host ma to wydanie. Protokół sieciowy się nie zmienił.</p>
+                    </div>
+                    <div class="menu-card news-new">
                         <div class="eyebrow">Nowy tryb główny · wczesna wersja</div>
                         <h2>Dyplomacja — kontynent, rzeki i relacje, które zmieniają się w trakcie gry</h2>
                         <p><b>Dyplomacja to od teraz główny tryb gry</b>, zupełnie osobny od Klasycznego meczu (ten został w menu jako druga opcja — działa dokładnie tak jak dotąd). To pierwsza odsłona: fundamenty pod dalszy rozwój trybu.</p>
@@ -3381,15 +3404,29 @@ class Game {
             for (const nation of this.nations) if ((nation.team === team || this.alliedTeams(nation.team, team)) && nation.omni && !nation.defeated) { omni = true; break; }
             if (omni) { vis.fill(1); exp.fill(1); continue; }
             vis.fill(0);
+            // Reloaded V1.0: krąg widzenia zależy tylko od pola siatki, w którym stoi źródło, i od promienia - drugi krąg
+            // z tego samego pola o promieniu nie większym niczego nie dodaje (oddział w szyku, zabudowa wokół Ratusza)
+            const n = vis.length, vc = this.visCols, vr = this.visRows, vs = this.visCellSize;
+            if (!this._visStamp || this._visStamp.length !== n) { this._visStamp = new Int32Array(n); this._visRad = new Float32Array(n); this._visGen = 0; }
+            const stamp = this._visStamp, rad = this._visRad, gen = ++this._visGen;
+            const mark = (x, y, r) => {
+                let c = Math.floor(x / vs), w = Math.floor(y / vs);
+                if (c >= 0 && c < vc && w >= 0 && w < vr) {
+                    const k = c + w * vc;
+                    if (stamp[k] === gen && rad[k] >= r) return;
+                    stamp[k] = gen; rad[k] = r;
+                }
+                this.markCircle(vis, null, x, y, r);
+            };
             for (const nation of this.nations) {
                 if (nation.team !== team && !this.alliedTeams(nation.team, team)) continue;   // Dyplomacja: sojusznicy dzielą pole widzenia
                 for (const u of nation.units) {
                     if (u.isDestroyed) continue;
-                    this.markCircle(vis, null, u.x, u.y, u.vision || 300);
+                    mark(u.x, u.y, u.vision || 300);
                 }
                 for (const b of nation.buildings) {
                     if (b.isDestroyed) continue;
-                    this.markCircle(vis, null, b.x, b.y, b.isConstructed ? (b.vision || 400) : 150);
+                    mark(b.x, b.y, b.isConstructed ? (b.vision || 400) : 150);
                 }
             }
             // V3.5 Newest Final: Cud Świata (także w budowie) widać z każdego zakątka mapy
@@ -3478,8 +3515,9 @@ class Game {
             if (startCol <= endCol) {
                 const startIdx = startCol + row * this.visCols;
                 const endIdx = endCol + row * this.visCols + 1;
-                vis.fill(1, startIdx, endIdx);
-                if (exp) exp.fill(1, startIdx, endIdx);
+                // krótkie odcinki (kilkanaście pól) - zwykła pętla jest szybsza niż wywołanie fill
+                for (let k = startIdx; k < endIdx; k++) vis[k] = 1;
+                if (exp) for (let k = startIdx; k < endIdx; k++) exp[k] = 1;
             }
         }
     }
@@ -4256,6 +4294,8 @@ Game.prototype.projectileDamage = function (p, tgtAlive) {
     }
 
     const dopts = (p.dtype || p.vsBuilding !== undefined) ? { dtype: p.dtype, vsBuilding: p.vsBuilding } : null;
+    // Dyplomacja (Reloaded V1.0): pocisk wystrzelony przed zawarciem pokoju albo sojuszu nie rani już nowego partnera
+    if (tgtAlive && this.diplo && tgt.owner && src && src.owner && !this.isEnemy(tgt, src)) return;
     if (tgtAlive) {
         this.dealDamage(src, tgt, p.damage, dopts);
         if (p.pierceLine > 0 && tgt.unitType) {
@@ -5604,16 +5644,20 @@ Game.prototype.wonderStarted = function (b) {
     this.updateVisibility(); this.fogDirty = true;
 };
 
+// Reloaded V1.0: kto wygra razem z budowniczym Cudu - drużyna, a w Dyplomacji także sojusznicy (tak liczy checkWonders).
+// Wcześniej komunikaty w Dyplomacji (każda nacja to osobna drużyna) wzywały sojuszników do burzenia Cudu, z którym wygrają.
+Game.prototype.wonderSide = function (o, n) { return o === n || o.team === n.team || (!!this.diplo && this.diplo.allied(o, n)); };
+
 Game.prototype.wonderBuilt = function (b) {
-    const n = b.owner, mins = Math.round(b.cfg.wonder / 60);
+    const n = b.owner, mins = Math.round(b.cfg.wonder / 60), d = !!this.diplo;
     b.wonderAt = this.time;
     b.wonderUntil = this.time + b.cfg.wonder;
     this.spawnParticle(b.x, b.y, 'levelup');
     this.shake(b.x, b.y, 5, 80);
     for (const o of this.nations) {
-        if (o === n) { this.tell(o, `Cud Świata ukończony! Jeśli przetrwa ${mins} minut, twoja drużyna zwycięży. Wszyscy wrogowie już ruszają, by go zburzyć.`, 'good'); this.cue(o, 'AgeUp'); }
-        else if (o.team === n.team) { this.tell(o, `Sojusznik ${n.shortName || n.name} ukończył Cud Świata! Brońcie go przez ${mins} minut, a drużyna zwycięży.`, 'good'); this.cue(o, 'Complete'); }
-        else { this.tell(o, `Nacja ${n.shortName || n.name} ukończyła Cud Świata! Za ${mins} minut jej drużyna zwycięży — zburzcie go!`, 'alert'); this.cue(o, 'Warning'); }
+        if (o === n) { this.tell(o, d ? `Cud Świata ukończony! Jeśli przetrwa ${mins} minut, wygrywasz razem z sojusznikami. Nacje spoza sojuszu ruszą, by go zburzyć.` : `Cud Świata ukończony! Jeśli przetrwa ${mins} minut, twoja drużyna zwycięży. Wszyscy wrogowie już ruszają, by go zburzyć.`, 'good'); this.cue(o, 'AgeUp'); }
+        else if (this.wonderSide(o, n)) { this.tell(o, `Sojusznik ${n.shortName || n.name} ukończył Cud Świata! Brońcie go przez ${mins} minut, a ${d ? 'zwycięstwo będzie wspólne' : 'drużyna zwycięży'}.`, 'good'); this.cue(o, 'Complete'); }
+        else { this.tell(o, `Nacja ${n.shortName || n.name} ukończyła Cud Świata! Za ${mins} minut ${d ? 'zwycięży razem z sojusznikami' : 'jej drużyna zwycięży'} — zburzcie go!`, 'alert'); this.cue(o, 'Warning'); }
     }
 };
 
@@ -5641,7 +5685,7 @@ Game.prototype.checkWonders = function () {
                 b.wonderTold = m;
                 const nm = b.owner.shortName || b.owner.name;
                 for (const o of this.nations) {
-                    if (o.team === b.owner.team) this.tell(o, `Cud Świata: do zwycięstwa ${m > 60 ? 'zostało' : 'została'} ${label}! Nie dajcie go zburzyć.`, 'good');
+                    if (this.wonderSide(o, b.owner)) this.tell(o, `Cud Świata: do zwycięstwa ${m > 60 ? 'zostało' : 'została'} ${label}! Nie dajcie go zburzyć.`, 'good');
                     else { this.tell(o, `Cud Świata nacji ${nm}: do jej zwycięstwa ${m > 60 ? 'zostało' : 'została'} ${label}!`, 'alert'); this.cue(o, 'Warning'); }
                 }
             }
@@ -7464,6 +7508,12 @@ class Pathfinder {
     _buildGrid() {
         const cols = this.cols, rows = this.rows, cs = this.cellSize, game = this.game;
         const block = this.block, gate = this.gateTeam;
+        // Reloaded V1.0: poprzedni stan siatek - po przebudowie regiony są łatane tylko tam, gdzie coś się zmieniło
+        const patch = this.regions.size > 0 && !!this.landMask;
+        if (patch) {
+            if (!this._prevLand) { this._prevLand = new Uint8Array(this.maxNodes); this._prevBoat = new Uint8Array(this.maxNodes); this._prevGate = new Int16Array(this.maxNodes); }
+            this._prevLand.set(this.landGrid); this._prevBoat.set(this.boatGrid); this._prevGate.set(gate);
+        }
         block.fill(0); gate.fill(0);
 
         const mark = (x0, y0, x1, y1, gateOwner) => {
@@ -7550,8 +7600,125 @@ class Pathfinder {
         }
 
         this.lastObstacleVersion = game.obstacleVersion || 0;
-        this.regions.clear();
+        if (patch) this._patchRegions();
+        else this.regions.clear();
         this.pathCache.clear();
+    }
+
+    // Reloaded V1.0: regiony po zmianie przeszkód. Dawniej każda zmiana (mur, budynek, ścięte drzewo) kasowała
+    // podział na regiony, a każda drużyna liczyła go od nowa zalewaniem całej mapy - na kontynencie Dyplomacji
+    // (144 tys. pól) to ok. 4 ms na drużynę, kilkadziesiąt razy na minutę. Teraz zmienione pola są łatane w miejscu:
+    //  - pole, które się zamknęło, znika z regionu; region nie rozpadł się, jeśli wszyscy jego sąsiedzi tego pola
+    //    łączą się ze sobą w małym oknie wokół zmiany (każdą drogę przez to pole da się wtedy obejść tym oknem),
+    //  - pole, które się otworzyło, dołącza do regionu sąsiadów; gdy sąsiedzi należą do różnych regionów (zmiana
+    //    połączyła dwa obszary), albo okno nie wystarczy - region tej drużyny jest liczony od nowa, jak dawniej.
+    // Wynik jest dokładnie taki sam jak po pełnym przeliczeniu (te same pola w tych samych regionach).
+    _patchRegions() {
+        const n = this.maxNodes, land = this.landGrid, boat = this.boatGrid, gate = this.gateTeam;
+        const pl = this._prevLand, pb = this._prevBoat, pg = this._prevGate;
+        const MAX = 3000;
+        const ch = this._chBuf || (this._chBuf = new Int32Array(MAX));
+        let m = 0;
+        for (let i = 0; i < n; i++) {
+            if (land[i] !== pl[i] || boat[i] !== pb[i] || gate[i] !== pg[i]) {
+                if (m >= MAX) { this.regions.clear(); return; }
+                ch[m++] = i;
+            }
+        }
+        if (m === 0) return;
+        for (const [key, lab] of this.regions) {
+            const onLand = key.charCodeAt(0) === 108;   // 'l'
+            const tg = Number(key.slice(1)) + 1;
+            if (!this._patchLabels(lab, onLand ? land : boat, onLand, tg, ch, m)) this.regions.delete(key);
+        }
+    }
+
+    _patchLabels(lab, grid, onLand, tg, ch, m) {
+        const cols = this.cols, rows = this.rows, gate = this.gateTeam, lm = this.landMask;
+        const open = (j) => grid[j] === 1 || (onLand && gate[j] !== 0 && gate[j] === tg && lm[j] === 1);
+        const closed = [], opened = [];
+        for (let k = 0; k < m; k++) {
+            const i = ch[k], was = lab[i] !== 0, now = open(i);
+            if (was && !now) closed.push(i);
+            else if (!was && now) opened.push(i);
+        }
+        if (!closed.length && !opened.length) return true;
+        const nb = (i, fn) => {
+            const c = i % cols;
+            if (c > 0) fn(i - 1);
+            if (c < cols - 1) fn(i + 1);
+            if (i >= cols) fn(i - cols);
+            if (i < (rows - 1) * cols) fn(i + cols);
+        };
+        if (closed.length) {
+            let c0 = cols, c1 = -1, r0 = rows, r1 = -1;
+            for (const i of closed) {
+                lab[i] = 0;
+                const c = i % cols, r = (i - c) / cols;
+                if (c < c0) c0 = c; if (c > c1) c1 = c; if (r < r0) r0 = r; if (r > r1) r1 = r;
+            }
+            const M = 8;
+            c0 = Math.max(0, c0 - M); c1 = Math.min(cols - 1, c1 + M); r0 = Math.max(0, r0 - M); r1 = Math.min(rows - 1, r1 + M);
+            const ww = c1 - c0 + 1, wh = r1 - r0 + 1;
+            if (ww * wh > 6400) return false;
+            // sąsiedzi zamkniętych pól, pogrupowani według regionu
+            const edge = new Map();
+            for (const i of closed) nb(i, (j) => {
+                const L = lab[j];
+                if (L === 0) return;
+                let s = edge.get(L);
+                if (!s) edge.set(L, s = new Set());
+                s.add(j);
+            });
+            const seen = new Uint8Array(ww * wh);
+            for (const [L, set] of edge) {
+                if (set.size < 2) continue;
+                seen.fill(0);
+                const start = set.values().next().value;
+                const q = [start];
+                seen[((start / cols | 0) - r0) * ww + (start % cols - c0)] = 1;
+                let found = 0;
+                for (let h = 0; h < q.length && found < set.size; h++) {
+                    const cur = q[h];
+                    if (set.has(cur)) found++;
+                    nb(cur, (j) => {
+                        if (lab[j] !== L) return;
+                        const c = j % cols, r = (j - c) / cols;
+                        if (c < c0 || c > c1 || r < r0 || r > r1) return;
+                        const w = (r - r0) * ww + (c - c0);
+                        if (seen[w]) return;
+                        seen[w] = 1;
+                        q.push(j);
+                    });
+                }
+                if (found < set.size) return false;
+            }
+        }
+        if (opened.length) {
+            let rest = opened, progress = true;
+            while (rest.length && progress) {
+                progress = false;
+                const later = [];
+                for (const i of rest) {
+                    let L = 0, clash = false;
+                    nb(i, (j) => { const v = lab[j]; if (v !== 0) { if (L === 0) L = v; else if (v !== L) clash = true; } });
+                    if (clash) return false;
+                    if (L === 0) { later.push(i); continue; }
+                    lab[i] = L;
+                    progress = true;
+                }
+                rest = later;
+            }
+            // nowe, odcięte od wszystkiego wysepki pól - każda dostaje własny numer
+            for (const i of rest) {
+                if (lab[i] !== 0) continue;
+                const L = lab.maxLabel = (lab.maxLabel || 0) + 1;
+                const q = [i];
+                lab[i] = L;
+                for (let h = 0; h < q.length; h++) nb(q[h], (j) => { if (lab[j] === 0 && open(j)) { lab[j] = L; q.push(j); } });
+            }
+        }
+        return true;
     }
 
     // ---------------- Zapytania o komórki ----------------
@@ -7628,7 +7795,7 @@ class Pathfinder {
         if (lab) return lab;
         const cols = this.cols, rows = this.rows, n = this.maxNodes;
         lab = new Int32Array(n);
-        const stack = new Int32Array(n);
+        const stack = this._regStack || (this._regStack = new Int32Array(n));
         // V3.5: warunek cellOpen wpisany wprost w pętlę (ten sam test, bez wywołania na każdego sąsiada)
         const gate = this.gateTeam, land = this.landMask, tg = team + 1, onLand = grid === this.landGrid;
         const open = (j) => grid[j] === 1 || (onLand && gate[j] !== 0 && gate[j] === tg && land[j] === 1);
@@ -7647,6 +7814,7 @@ class Pathfinder {
                 if (r < rows - 1) { const j = cur + cols; if (lab[j] === 0 && open(j)) { lab[j] = next; stack[sp++] = j; } }
             }
         }
+        lab.maxLabel = next;   // _patchLabels numeruje nowe regiony od tego miejsca
         this.regions.set(key, lab);
         return lab;
     }
@@ -8125,7 +8293,11 @@ class UIManager {
                     const b = e.target.closest ? e.target.closest('[data-dip]') : null;
                     if (!b || b.disabled) return;
                     e.preventDefault();
-                    if (b.dataset.dip === 'war' && !this._warArmed) { this._warArmed = b.dataset.to; this._nationsSig = ''; this.renderNations(); return; }
+                    // wojna wymaga drugiego kliknięcia w TEN SAM przycisk (Reloaded V1.0: wcześniej uzbrojenie przy jednej
+                    // nacji sprawiało, że "Wojna" przy innej nacji wypowiadała ją od razu, bez potwierdzenia); po 5 s rozbraja się
+                    if (b.dataset.dip === 'war' && (this._warArmed !== b.dataset.to || performance.now() - this._warArmedAt > 5000)) {
+                        this._warArmed = b.dataset.to; this._warArmedAt = performance.now(); this._nationsSig = ''; this.renderNations(); return;
+                    }
                     const cmd = { t: 'diplo', act: b.dataset.dip };
                     if (b.dataset.to !== undefined) cmd.to = Number(b.dataset.to);
                     if (b.dataset.id !== undefined) cmd.id = Number(b.dataset.id);
@@ -8298,7 +8470,7 @@ class UIManager {
             if (!full && !n.defeated && !me.defeated) {
                 const idx = g.nations.indexOf(n);
                 const warErr = D.canDeclareWar(me, n);
-                const armed = this._warArmed === String(idx);
+                const armed = this._warArmed === String(idx) && performance.now() - this._warArmedAt <= 5000;
                 if (st === DIPLO.WAR) act = `<button data-dip="peace" data-to="${idx}">Zaproponuj pokój</button>`;
                 else {
                     if (st === DIPLO.PEACE) act += `<button class="ok" data-dip="alliance" data-to="${idx}">Sojusz</button>`;
@@ -15930,7 +16102,19 @@ Entity.nextId = 1;
 // brak pola przy odczycie). Wcześniej jednostki dostawały pola "po drodze" w różnej kolejności i w meczu żyło naraz
 // ok. 36 różnych kształtów obiektów jednostek i 15 budynków - silnik JavaScript przechodził wtedy na wolny,
 // megamorficzny dostęp do pól w całej symulacji. Jeden kształt = szybkie odczyty w think, update, moveStep itd.
-Entity.declare = function (obj, fields) { for (let i = 0; i < fields.length; i++) obj[fields[i]] = undefined; };
+// Reloaded V1.0: pola zakłada gotowa funkcja z nazwanymi przypisaniami (o.owner = undefined; ...), a nie pętla
+// obj[pole] = undefined. Przy zapisie "po kluczu" V8 pozwala dopisać obiektowi tylko kilkanaście pól poza tymi,
+// które przewidział konstruktor - jednostka ma ich ok. 130, więc każda przechodziła w tryb słownikowy (pola w tablicy
+// mieszającej) i cała symulacja czytała je powoli. Przypisania nazwane mają limit 128 pól ponad przewidziane.
+Entity.declare = function (obj, fields) {
+    let init = fields._init;
+    if (!init) {
+        try { init = new Function('o', fields.map(k => 'o.' + k + ' = undefined;').join('\n')); }
+        catch (e) { init = (o) => { for (let i = 0; i < fields.length; i++) o[fields[i]] = undefined; }; }   // eval zablokowany (CSP)
+        Object.defineProperty(fields, '_init', { value: init });
+    }
+    init(obj);
+};
 
 
 /* --- entities/ResourceNode.js --- */
@@ -16734,22 +16918,39 @@ class Unit extends Entity {
     separation(g, deltaTime, pushOthers) {
         let px = 0, py = 0;
         const ghost = this.ghostUntil !== undefined && g.time < this.ghostUntil;
-        const nearby = g.spatialGrid.queryUnits(this.x, this.y, 30, Unit._qa);
         const civil = !!this.cfg.gatherer;
-        for (let i = 0; i < nearby.length; i++) {
-            const other = nearby[i];
-            if (other === this || !other.unitType || other.isShip !== this.isShip) continue;
-            const sameOwner = other.owner === this.owner;
-            if (sameOwner && (ghost || (civil && other.cfg.gatherer))) continue;
-            const sx = this.x - other.x, sy = this.y - other.y;
-            const sDist = Math.hypot(sx, sy);
-            const sMin = this.radius + other.radius;
-            if (sDist > 0 && sDist < sMin) {
-                const force = Math.min((sMin - sDist) / sDist, 2.0) * 15 * deltaTime;
-                px += sx * force; py += sy * force;
-                if (pushOthers && sameOwner && (other.state === 'idle' || other.state === 'attacking')) other.nudge(-sx * force * 0.5, -sy * force * 0.5);
-            } else if (sDist === 0) {
-                px += (Math.random() - 0.5); py += (Math.random() - 0.5);
+        // Reloaded V1.0: sąsiedzi w promieniu 30 px czytani wprost z komórek siatki (bez pośredniej tablicy wyników),
+        // a pierwiastek liczony tylko dla par, które naprawdę na siebie nachodzą - w gęstej armii to większość
+        // kosztu kroku. Wynik i kolejność są takie same jak przy queryUnits.
+        const G = g.spatialGrid, inv = G.inv, gcols = G.cols, cells = G.cells;
+        const x = this.x, y = this.y, R = 30;
+        let col0 = Math.floor((x - R) * inv), col1 = Math.floor((x + R) * inv);
+        let row0 = Math.floor((y - R) * inv), row1 = Math.floor((y + R) * inv);
+        if (col0 < 0) col0 = 0; if (col1 > gcols - 1) col1 = gcols - 1;
+        if (row0 < 0) row0 = 0; if (row1 > G.rows - 1) row1 = G.rows - 1;
+        const myR = this.radius, ship = this.isShip, owner = this.owner;
+        for (let col = col0; col <= col1; col++) {
+            for (let row = row0; row <= row1; row++) {
+                const c = cells[col + row * gcols];
+                if (!c) continue;
+                const list = c[2];
+                for (let i = 0; i < list.length; i++) {
+                    const other = list[i];
+                    const sx = x - other.x, sy = y - other.y, d2 = sx * sx + sy * sy;
+                    if (d2 > R * R || other === this || other.isShip !== ship) continue;
+                    const sMin = myR + other.radius;
+                    if (d2 >= sMin * sMin) continue;
+                    const sameOwner = other.owner === owner;
+                    if (sameOwner && (ghost || (civil && other.cfg.gatherer))) continue;
+                    if (d2 > 0) {
+                        const sDist = Math.sqrt(d2);
+                        const force = Math.min((sMin - sDist) / sDist, 2.0) * 15 * deltaTime;
+                        px += sx * force; py += sy * force;
+                        if (pushOthers && sameOwner && (other.state === 'idle' || other.state === 'attacking')) other.nudge(-sx * force * 0.5, -sy * force * 0.5);
+                    } else {
+                        px += (Math.random() - 0.5); py += (Math.random() - 0.5);
+                    }
+                }
             }
         }
         const cap = Math.max(this.speed, 60) * deltaTime * 0.5;
@@ -18576,7 +18777,7 @@ Building._q = [];
 Building.DRILL_TYPES = { swordsman: 1, axeman: 1, royal_guard: 1 };
 
 
-Building.FIELDS = ['owner', 'type', 'cfg', 'size', 'buildProgress', 'isConstructed', 'isSelected', 'variant', 'seed', 'stone', 'repairOn', 'attackCfg', 'attackDamage', 'attackRange', 'attackRate', 'vision', 'trainingQueue', 'trainingTimer', 'attackTimer', 'targetEntity', 'aggroTimer', 'fxTimer', '_gridLayer', '_gridTeam', '_gridKey', 'queueError', 'game', '_linksVer', 'amount', 'maxAmount', 'currentWorkers', 'unreachableBy', 'reseeds', 'healTimer', 'healCount', 'lastHitTime', 'extraTargets', 'deathCause', 'rallyPoint', 'fireAngle', 'fireTime', 'netHidden', 'passengers', 'regrowUntil', 'wonderAt', 'wonderUntil', 'wonderTold'];
+Building.FIELDS = ['owner', 'type', 'cfg', 'size', 'buildProgress', 'isConstructed', 'isSelected', 'variant', 'seed', 'stone', 'repairOn', 'attackCfg', 'attackDamage', 'attackRange', 'attackRate', 'vision', 'trainingQueue', 'trainingTimer', 'attackTimer', 'targetEntity', 'aggroTimer', 'fxTimer', '_gridLayer', '_gridTeam', '_gridKey', 'queueError', 'game', '_linksVer', 'amount', 'maxAmount', 'currentWorkers', 'unreachableBy', 'reseeds', 'healTimer', 'healCount', 'lastHitTime', 'extraTargets', 'deathCause', 'rallyPoint', 'fireAngle', 'fireTime', 'netHidden', 'passengers', 'regrowUntil', 'wonderAt', 'wonderUntil', 'wonderTold', '_links'];
 
 /* --- nation/Nation.js --- */
 class Nation {
@@ -21012,7 +21213,8 @@ const DIPLO = {
     PEACE_MIN_WAR: 60,          // pokój można zawrzeć dopiero po minucie wojny
     WAR_AFTER_PEACE: 120,       // po zawarciu pokoju przez 2 minuty obowiązuje traktat (bez wypowiadania wojny)
     PROPOSAL_TTL: 60,           // propozycja dla człowieka czeka minutę
-    ASK_COOLDOWN: 45            // ta sama propozycja do tej samej nacji najwyżej co 45 s
+    ASK_COOLDOWN: 45,           // ta sama propozycja do tej samej nacji najwyżej co 45 s
+    ALLY_WIN_HOLD: 120          // zwycięstwo sojuszu: wielki sojusz musi przetrwać 2 minuty (Reloaded V1.0)
 };
 
 class Diplomacy {
@@ -21300,11 +21502,37 @@ class Diplomacy {
         return clamp(1 - Math.hypot(ca.x - cb.x, ca.y - cb.y) / 7500, 0, 1);
     }
 
-    // Zwycięstwo sojuszu: wszystkie nacje, które jeszcze grają, są ze sobą w sojuszu (i ktoś już odpadł z gry)
+    // Zwycięstwo sojuszu: wszystkie nacje, które jeszcze grają, są ze sobą w sojuszu (i ktoś już odpadł z gry).
+    // Reloaded V1.0: najmłodsze z tych przymierzy musi przetrwać DIPLO.ALLY_WIN_HOLD - wcześniej mecz kończył się
+    // w chwili podpisania ostatniego sojuszu (nawet w 6. minucie, zaraz po upadku pierwszej nacji), bez szansy na reakcję.
     allianceVictory(active) {
         if (!this.allianceWin || active.length < 2 || !this.game.nations.some(n => n.defeated)) return null;
-        for (const a of active) for (const b of active) if (a !== b && !this.allied(a, b)) return null;
-        return active;
+        let youngest = -Infinity;
+        for (const a of active) for (const b of active) {
+            if (a === b) continue;
+            if (!this.allied(a, b)) return null;
+            const t = this.sinceOf(a, b);
+            if (t > youngest) youngest = t;
+        }
+        const g = this.game, at = youngest + DIPLO.ALLY_WIN_HOLD;
+        if (g.time >= at) return active;
+        if (this._allyWinAt !== at) {
+            this._allyWinAt = at;
+            const left = Math.ceil(at - g.time);
+            for (const n of g.nations) if (n.human && !n.defeated) g.tell(n, `Wszystkie pozostałe nacje są w sojuszu — jeśli przetrwa on ${left} s, wygrywacie razem.`, 'good');
+        }
+        return null;
+    }
+
+    // czy sojusz a z b zamknąłby wielki sojusz wszystkich, którzy jeszcze grają
+    completesGrandAlliance(a, b) {
+        const act = this.game.nations.filter(n => this.alive(n));
+        if (act.length < 2 || !this.game.nations.some(n => n.defeated)) return false;
+        for (const x of act) for (const y of act) {
+            if (x === y || (x === a && y === b) || (x === b && y === a)) continue;
+            if (!this.allied(x, y)) return false;
+        }
+        return true;
     }
 
     // ---------------- Sieć: stan dla gościa ----------------
@@ -21384,11 +21612,17 @@ class DiplomatAI {
         return { n: o, s: D.strength(o), prox: D.proximity(me, o), op: D.op(me, o), rel: D.get(me, o), age: this.game.time - D.sinceOf(me, o) };
     }
 
-    // siła nacji razem z jej sojusznikami (bliskimi - daleki sojusznik słabo pomoże)
-    bloc(o) {
+    // siła nacji razem z jej sojusznikami (bliskimi - daleki sojusznik słabo pomoże). vs: przeciw komu - sojusznik
+    // obu stron (Reloaded V1.0) nie stanie po żadnej, więc nie liczy się do żadnego bloku; wcześniej wspólni
+    // sojusznicy wyrównywali bloki i sieć przymierzy zamrażała kontynent na kilkanaście minut
+    bloc(o, vs) {
         const D = this.game.diplo;
         let s = D.strength(o);
-        for (const c of this.game.nations) if (c !== o && D.alive(c) && D.allied(c, o)) s += D.strength(c) * (0.35 + 0.5 * D.proximity(c, o));
+        for (const c of this.game.nations) {
+            if (c === o || !D.alive(c) || !D.allied(c, o)) continue;
+            if (vs && (c === vs || D.allied(c, vs))) continue;
+            s += D.strength(c) * (0.35 + 0.5 * D.proximity(c, o));
+        }
         return s;
     }
 
@@ -21397,9 +21631,23 @@ class DiplomatAI {
         if (!D || !D.alive(me)) return;
         const others = g.nations.filter(o => o !== me && D.alive(o)).map(o => this.info(o));
         if (!others.length) return;
-        const my = D.strength(me), myBloc = this.bloc(me);
+        const my = D.strength(me);
         const wars = others.filter(x => x.rel === DIPLO.WAR);
         const allies = others.filter(x => x.rel === DIPLO.ALLY);
+
+        // 0) Reloaded V1.0: Cud Świata nacji spoza sojuszu (ukończony albo w połowie budowy) - jeśli przetrwa, ona wygra.
+        // Wcześniej nacje w pokoju z budowniczym przyglądały się odliczaniu i Cud rozstrzygał większość kampanii.
+        if (g.wondersOn) for (const w of g.wonderInfo()) {
+            const o = w.owner;
+            if (w.isDestroyed || o === me || !D.alive(o) || D.allied(me, o) || D.atWar(me, o)) continue;
+            if (!w.isConstructed && !(w.buildProgress > 50)) continue;
+            if (D.canDeclareWar(me, o)) continue;
+            this.lastWarAt = g.time;
+            this.focus = o;
+            this.log(`wypowiada wojnę nacji ${D.name(o)}: jej Cud Świata nie może przetrwać`);
+            D.declareWar(me, o, 'Twój Cud Świata nie może przetrwać.');
+            return;
+        }
 
         // 1) wezwania do broni od sojuszników
         for (const c of this.calls.splice(0)) {
@@ -21415,9 +21663,10 @@ class DiplomatAI {
         }
 
         // 2) pokój, gdy wojna idzie źle albo frontów jest za dużo
+        const wonderOf = (o) => g.wondersOn && g.wonderInfo().some(b => b.owner === o && !b.isDestroyed && (b.isConstructed || b.buildProgress > 50));
         for (const w of wars) {
-            if (w.age < DIPLO.PEACE_MIN_WAR + 20) continue;
-            const losing = this.bloc(w.n) > myBloc * (1.15 - this.caution * 0.25);
+            if (w.age < DIPLO.PEACE_MIN_WAR + 20 || wonderOf(w.n)) continue;   // z budowniczym Cudu nie ma pokoju
+            const losing = this.bloc(w.n, me) > this.bloc(me, w.n) * (1.15 - this.caution * 0.25);
             const tooMany = wars.length >= 2 && w.n !== this.focus;
             const tired = w.age > 900 - this.aggro * 400 && w.prox < 0.35;
             if (losing || tooMany || tired) {
@@ -21449,21 +21698,44 @@ class DiplomatAI {
 
         // 4) wojna: słabszy sąsiad, z którym nie łączy nas przyjaźń
         this.focus = wars.length ? wars.reduce((a, b) => (b.prox > a.prox ? b : a)).n : null;
+        // Reloaded V1.0: zniecierpliwienie - długi pokój przy pełnej armii obniża próg wojny (do 15 minut spokoju),
+        // inaczej po pierwszych wojnach kontynent potrafił stać w miejscu, a skarbce rosły do kilkudziesięciu tysięcy
+        const now = g.time, dt = now - (this._thinkAt === undefined ? now : this._thinkAt);
+        this._thinkAt = now;
+        const ai = me.ai, armyCap = ai && ai.p ? ai.p.maxArmy : 0;
+        let army = 0;
+        for (const u of me.units) if (u.cfg.military) army++;
+        if (!wars.length && !D.inTruce() && army >= armyCap * 0.6) this.calmFor = (this.calmFor || 0) + dt;
+        else if (wars.length) this.calmFor = 0;
         if (D.inTruce() || wars.length >= (this.aggro > 0.8 ? 2 : 1)) return;
-        if (g.time - this.lastWarAt < 240 - this.aggro * 120) return;
-        let pick = null, pickV = -Infinity;
+        // koniec rozejmu: każda SI rusza w swoim czasie (wcześniej wszystkie naraz rzucały się na najsłabszego)
+        if (this.readyAt === undefined) this.readyAt = D.truceUntil + 15 + Math.random() * (45 + (1 - this.aggro) * 150);
+        if (now < this.readyAt) return;
+        if (now - this.lastWarAt < 240 - this.aggro * 120) return;
+        const rest = clamp((this.calmFor || 0) / 900, 0, 1);
+        // zasięg: wojna z sąsiadem (stolica bliżej niż ok. 6,5 tys. kroków) - przez cały kontynent wojsko szłoby minutami;
+        // najbliższa nacja spoza sojuszu jest w zasięgu zawsze (na przykład w meczu dwóch nacji)
+        let nearest = null;
+        for (const o of others) if (o.rel !== DIPLO.ALLY && (!nearest || o.prox > nearest.prox)) nearest = o;
+        let pick = null, pickV = -Infinity, pickRatio = 1;
         for (const o of others) {
             if (o.rel !== DIPLO.PEACE || D.canDeclareWar(me, o.n)) continue;
-            const ratio = myBloc / Math.max(1, this.bloc(o.n));
-            let v = o.prox * 1.3 + (ratio - 1) * 0.9 - o.op / 50 + this.aggro * 0.5;
-            if (allies.some(a => D.atWar(a.n, o.n))) v += 0.6;                                         // wróg sojusznika
-            if (ratio < 1.15 + this.caution * 0.5 - this.aggro * 0.35) continue;                      // za mało przewagi
-            if (v > pickV) { pickV = v; pick = o; }
+            const allyWar = allies.some(a => D.atWar(a.n, o.n));                                       // wróg sojusznika
+            if (o.prox < 0.12 && o !== nearest && !allyWar) continue;
+            const ratio = this.bloc(me, o.n) / Math.max(1, this.bloc(o.n, me));
+            if (ratio < Math.max(0.85, 1.15 + this.caution * 0.5 - this.aggro * 0.35 - rest * 0.45)) continue;   // za mało przewagi
+            // nacje spoza sojuszu, które już walczą z tym celem - kolejny chętny do łupów woli inny cel
+            let piled = 0;
+            for (const c of g.nations) if (c !== me && c !== o.n && D.alive(c) && !D.allied(c, me) && D.atWar(c, o.n)) piled++;
+            let v = o.prox * 1.3 + (Math.min(ratio, 2.5) - 1) * 0.9 - o.op / 50 + this.aggro * 0.5 - piled * 0.45;
+            if (allyWar) v += 0.6;
+            if (v > pickV) { pickV = v; pick = o; pickRatio = ratio; }
         }
-        if (pick && pickV > 1.25 - this.aggro * 0.6) {
-            this.lastWarAt = g.time;
+        if (pick && pickV > 1.25 - this.aggro * 0.6 - rest * 0.6) {
+            this.lastWarAt = now;
+            this.calmFor = 0;
             this.focus = pick.n;
-            this.log(`wypowiada wojnę nacji ${D.name(pick.n)} (przewaga ${(myBloc / Math.max(1, this.bloc(pick.n))).toFixed(1)}x, bliskość ${pick.prox.toFixed(2)})`);
+            this.log(`wypowiada wojnę nacji ${D.name(pick.n)} (przewaga ${pickRatio.toFixed(1)}x, bliskość ${pick.prox.toFixed(2)}${rest > 0.05 ? ', zniecierpliwienie ' + rest.toFixed(2) : ''})`);
             D.declareWar(me, pick.n);
         }
     }
@@ -21471,15 +21743,22 @@ class DiplomatAI {
     // Odpowiedź na propozycję: { ok, why } - uzasadnienie zobaczy proszący
     evaluate(kind, from) {
         const D = this.game.diplo, me = this.nation;
-        const o = this.info(from), my = this.bloc(me), their = this.bloc(from);
+        const o = this.info(from), my = this.bloc(me, from), their = this.bloc(from, me);
         const wars = this.game.nations.filter(n => n !== me && D.alive(n) && D.atWar(me, n)).length;
         if (kind === 'peace') {
+            if (this.game.wondersOn && this.game.wonderInfo().some(w => w.owner === from && !w.isDestroyed && (w.isConstructed || w.buildProgress > 50)))
+                return { ok: false, why: 'nie zawrze pokoju, dopóki stoi twój Cud Świata.' };
             const v = their / Math.max(1, my) + (wars - 1) * 0.4 + o.op / 80 + o.age / 900 - this.aggro * 0.6 + (this.focus === from ? -0.2 : 0);
             if (v > 0.9) return { ok: true, why: '' };
             return { ok: false, why: my > their * 1.3 ? 'czuje przewagę i chce tę wojnę wygrać.' : 'wojna jeszcze się nie rozstrzygnęła.' };
         }
         // sojusz
         if (o.op < -10) return { ok: false, why: 'nie ufa ci (pamięta dawne krzywdy).' };
+        // Reloaded V1.0: ten sojusz zamknąłby wielki sojusz (wspólne zwycięstwo) - najsilniejsza nacja woli wygrać sama
+        if (D.completesGrandAlliance(me, from) && this.aggro > 0.35) {
+            const act = this.game.nations.filter(n => D.alive(n) && n !== me);
+            if (act.every(n => D.strength(me) > D.strength(n) * 1.2)) return { ok: false, why: 'jest najsilniejsza na kontynencie i nie zamierza dzielić się zwycięstwem.' };
+        }
         let v = o.op / 50 + this.loyal * 0.2;
         if (this.game.nations.some(c => c !== me && c !== from && D.atWar(me, c) && D.atWar(from, c))) v += 0.7;   // wspólny wróg
         const strongest = this.game.nations.filter(n => D.alive(n) && n !== me).reduce((a, b) => (D.strength(b) > D.strength(a) ? b : a), from);

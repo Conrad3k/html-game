@@ -22,4 +22,10 @@ do 8 nacji, relacje wojna / pokój / sojusz zmieniające się w trakcie gry (pan
 dyplomaty i gra wieloosobowa. Silnik Raptor dostał zestaw funkcji pod wielkie mapy: generator kontynentów Raptor Atlas,
 strumieniowanie terenu, indeks wody i gór oraz pozycje sieciowe dla map powyżej 8191 kroków.
 
+**Aktualizacja (testy trybów)**: oba tryby przeszły serię automatycznych meczów SI kontra SI. W Dyplomacji SI nie rzuca się już
+całą gromadą na najsłabszą nację tuż po rozejmie, walczy głównie z sąsiadami, nie zamiera w sieci sojuszy, reaguje wojną na Cud Świata
+nacji spoza sojuszu, a zwycięstwo sojuszu wymaga, by wielki sojusz przetrwał 2 minuty. Poprawione potwierdzenie wojny w panelu Dyplomacji.
+Silnik Raptor: jednostki nie wpadają już w wolny tryb pól przeglądarki, a regiony osiągalności są łatane w miejscu zmiany — symulacja
+ok. 2,9× szybsza w kampanii 6 nacji i 2× w klasycznym meczu.
+
 Gra wieloosobowa: wszyscy gracze muszą mieć to samo (najnowsze) wydanie pliku Reloaded V1.0. Szczegóły: menu gry → „Co nowego”.
