@@ -30012,6 +30012,18 @@ document.addEventListener("DOMContentLoaded", () => {
         game.obstacleVersion = 1;
         if (game.diplo) game.spatialGrid.hostile = game.diplo.mask;
         for (const n of game.nations) for (const b of n.buildings) b._linksVer = -1;
+        // Siatka ścieżek i regiony osiągalności liczone od razu, na ekranie wczytywania - a nie w pierwszych krokach
+        // gry, gdzie na kontynencie Dyplomacji (144 tys. pól) dokładały się do i tak ciężkich pierwszych klatek.
+        // Liczniki zatoru jednostek startują od zera: zator to brak postępu w marszu, a pierwsze sekundy po wczytaniu
+        // nie mogą skończyć się porzuceniem rozkazu (Unit.moveStep - 6 kolejnych zatorów = goIdle).
+        const pf = game.pathfinder;
+        pf.ensureGrid();
+        for (const n of game.nations) {
+            if (n.defeated) continue;
+            pf.getRegions(pf.landGrid, n.team);
+            if (n.units.some(u => u.isShip)) pf.getRegions(pf.boatGrid, n.team);
+            for (const u of n.units) { if (!u.isDestroyed && u.resetStuck) u.resetStuck(); }
+        }
         // odkryta mapa każdej drużyny
         for (const [team, b64] of data.explored || []) {
             const tv = game.teamGrids(team), src = SaveGame.unb64('Uint8Array', b64);
