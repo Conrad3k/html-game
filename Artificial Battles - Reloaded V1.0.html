@@ -1280,6 +1280,10 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 .dp-btn.war { background: rgba(255, 90, 77, 0.2); color: #ffb0a8; } .dp-btn.war:hover:not(:disabled) { background: rgba(255, 90, 77, 0.3); }
 .dp-btn.war.armed { background: #e2483c; color: #fff; animation: dp-armed 0.6s ease-in-out infinite alternate; }
 .dp-btn:disabled { opacity: 0.4; cursor: default; }
+/* V1.0: główna akcja w wierszu nacji - stonowana (kilka wierszy jeden pod drugim), pełny kolor po najechaniu */
+.dp-btn.soft { background: transparent; box-shadow: inset 0 0 0 1px currentColor; opacity: 0.8; }
+.dp-btn.soft:hover:not(:disabled) { opacity: 1; }
+.dp-btn.soft:disabled { opacity: 0.35; }
 @keyframes dp-armed { to { background: #ff6a5c; } }
 
 /* nacje: zwinięty wiersz, szczegóły po kliknięciu */
@@ -1295,9 +1299,21 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 .dp-row { display: flex; align-items: center; gap: 9px; min-height: 34px; padding: 6px 8px 6px 11px; border-radius: 12px; cursor: pointer; }
 .dp-row:hover { background: rgba(255, 255, 255, 0.04); }
 .dp-name { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; filter: brightness(1.25); white-space: nowrap; }
-.dp-sum { flex: 1; min-width: 0; display: flex; justify-content: flex-end; gap: 12px; overflow: hidden; font-size: 12px; white-space: nowrap; }
-.dp-sum small { color: var(--label-3); font-size: 11px; }
+/* V1.0: nazwa nacji i pod nią jedno zdanie o niej (nastawienie, siła, jak długo trwa wojna / sojusz) */
+.dp-who { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.dp-nl { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.dp-sum { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 11.5px; line-height: 1.35; color: var(--label-3); white-space: nowrap; }
+.dp-sum > span + span::before { content: '·'; margin: 0 6px; color: var(--label-3); }
 .dp-sum b { font-weight: 600; }
+.dp-threat { padding: 1px 6px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; background: rgba(255, 90, 77, 0.16); color: #ff9b91; box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.35); white-space: nowrap; cursor: help; }
+/* V1.0: twoja sytuacja w jednym zdaniu, pod nagłówkiem panelu */
+.dp-now { display: flex; align-items: flex-start; gap: 9px; margin: 0 0 10px; padding: 8px 11px; border-radius: 12px; font-size: 12.5px; line-height: 1.45; color: var(--label-2); background: rgba(255, 255, 255, 0.04); box-shadow: inset 0 0 0 1px var(--hair); }
+.dp-now > i { flex: none; width: 8px; height: 8px; margin-top: 5px; border-radius: 50%; background: #8fe9a8; box-shadow: 0 0 0 3px rgba(50, 209, 93, 0.18); }
+.dp-now b { color: #ffe08a; font-variant-numeric: tabular-nums; }
+.dp-now.warn { background: rgba(241, 197, 106, 0.09); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.3); }
+.dp-now.warn > i { background: #f1c56a; box-shadow: 0 0 0 3px rgba(241, 197, 106, 0.2); }
+.dp-now.war { background: rgba(255, 90, 77, 0.08); box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.28); }
+.dp-now.war > i { background: #ff5a4d; box-shadow: 0 0 0 3px rgba(255, 90, 77, 0.2); }
 .dp-chev { flex: none; width: 14px; text-align: center; font-size: 11px; color: var(--label-3); transition: transform 0.15s; }
 .dp-card.open .dp-chev { transform: rotate(180deg); }
 .dp-heg { padding: 1px 6px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(241, 197, 106, 0.2); color: #ffd98a; white-space: nowrap; }
@@ -1341,11 +1357,11 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 .dp-ev small { min-width: 34px; font-size: 11px; font-variant-numeric: tabular-nums; color: var(--label-3); }
 .dp-ev.new small { color: var(--accent); font-weight: 700; }
 .dp-ev-i { flex: none; width: 7px; height: 7px; border-radius: 2px; background: var(--label-3); transform: rotate(45deg); }
+.dp-ev.hg .dp-ev-i { background: #ffd98a; border-radius: 50%; transform: none; }
 .dp-ev.war .dp-ev-i { background: #ff5a4d; } .dp-ev.pc .dp-ev-i { background: #0a84ff; } .dp-ev.al .dp-ev-i { background: #32d15d; } .dp-ev.tr .dp-ev-i { background: #f1c56a; }
 @media (max-width: 640px) {
     .dp-chips { display: none; }
     .dp-gchips { grid-template-columns: minmax(0, 1fr); }
-    .dp-sum small { display: none; }
     .dp-body { padding-left: 12px; }
 }
 </style>
@@ -1651,15 +1667,18 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li><b>Relacje zamiast stałych drużyn</b>: wszyscy zaczynają w pokoju, po <b>rozejmie</b> (brak, 3, 5 albo 10 minut) nacje wypowiadają <b>wojny</b>, zawierają <b>pokój</b> (potem 3 minuty traktatu) i <b>sojusze</b> (wspólne pole widzenia). Zdradę inni zapamiętują. Przegrywający może kupić pokój <b>za okup</b>, a silniejszy zażądać <b>trybutu</b> — zapłata to 4 minuty traktatu, odmowa grozi wojną.</li>
                             <li><b>Cztery drogi do zwycięstwa</b>: <b>Podbój</b>, <b>Sojusz zwycięzców</b> (najwyżej połowa nacji musi jako jedyna na placu boju wytrwać 3 minuty), <b>Cuda Świata</b> (1000 Chwały i 5-minutowy Triumf) i <b>limit czasu</b> (30, 45 albo 60 minut, domyślnie 45 — wygrywa najwyższy Wynik razem z sojusznikami).</li>
                             <li><b>SI — dyplomata</b>: ocenia siłę, sąsiedztwo i pamięć o każdej nacji, ma własną cierpliwość i prowadzi księgę strat każdej wojny — zmęczona albo przegrywająca prosi o pokój, wygrywająca go nie przyjmie (chyba że za duży okup). Nacja, która urośnie ponad miarę, zostaje <b>hegemonem</b> i reszta zawiera przeciw niej <b>koalicje</b>; na lidera Chwały ruszają wszyscy poza jego sojusznikami. W końcówce zbyt liczny sojusz się rozpada, a ambitna SI potrafi zdradzić tuż przed wspólnym zwycięstwem.</li>
+                            <li><b>Spokojniejsze tempo po rozejmie</b>: SI nie rusza wszystkimi naraz — pierwsza wojna wybucha najwcześniej po niecałej minucie, kolejne jedna po drugiej (odstęp ok. 1,5 minuty, z czasem krótszy), a sojusze i żądania trybutu też mają swoje odstępy. Sojusznik odpowiada na wezwanie do broni po chwili namysłu, a na budowniczego Cudu nacje ruszają po kolei. Do ciebie SI kieruje <b>najwyżej jedną propozycję naraz</b>, nie częściej niż co 75 sekund.</li>
                         </ul>
 
                         <h3>Panel Dyplomacji, komunikaty i władcy</h3>
                         <ul>
                             <li><b>Panel Dyplomacji</b> (<kbd>Tab</kbd> albo przycisk w górnym pasku) pokazuje najpierw to, co ważne: <b>warunki zwycięstwa</b> jako krótkie pastylki ze stanem (klik rozwija opisy), propozycje czekające na odpowiedź i nacje <b>pogrupowane według relacji z tobą</b> — wojna, sojusz, pokój, pokonani.</li>
-                            <li>Każda nacja to <b>jeden wiersz</b>: herb, nazwa, opinia o tobie, siła wobec twojej i jedna główna akcja (Pokój albo Sojusz). <b>Klik w wiersz rozwija szczegóły</b>: władcę, charakter dowódcy, erę, wynik, paski opinii i siły, z kim nacja walczy i trzyma sojusz, odpowiedź na twoją ostatnią propozycję (z uzasadnieniem) oraz pozostałe akcje — pokój za okup, trybut, zerwanie sojuszu i wojnę (z potwierdzeniem drugim kliknięciem).</li>
+                            <li><b>Twoja sytuacja w jednym zdaniu</b> pod nagłówkiem panelu: ile trwa jeszcze rozejm, z kim toczysz wojnę i na kogo uważać. Znacznik <b>„może napaść”</b> stoi przy nacji, która jest blisko, czuje przewagę i nie darzy cię sympatią — według tych samych reguł, którymi SI wybiera cel wojny.</li>
+                            <li>Każda nacja to <b>jeden wiersz</b>: herb, nazwa, pod nią krótkie zdanie (np. „obojętni wobec ciebie · dużo silniejsi · wojna od 3 min”) i jedna główna akcja — <b>Zaproponuj pokój</b> albo <b>Zaproponuj sojusz</b> (gdy na pokój jeszcze za wcześnie, przycisk mówi, za ile sekund). <b>Klik w wiersz rozwija szczegóły</b>: władcę, charakter dowódcy, erę, wynik, paski opinii i siły, z kim nacja walczy i trzyma sojusz, odpowiedź na twoją ostatnią propozycję (z uzasadnieniem) oraz pozostałe akcje — pokój za okup, trybut, zerwanie sojuszu i wojnę (z potwierdzeniem drugim kliknięciem).</li>
                             <li><b>Liczniki relacji</b> z ikonami — wojny, sojusze i pokoje — na przycisku Dyplomacji w górnym pasku i w nagłówku panelu.</li>
                             <li><b>Propozycje bez otwierania panelu</b>: propozycja pokoju, sojuszu albo żądanie trybutu pojawia się w prawym górnym rogu jako karta z przyciskami <b>Przyjmij / Odrzuć</b> (albo Zapłać / Odmów) i paskiem czasu na odpowiedź.</li>
-                            <li><b>Mniej komunikatów</b>: wiadomość dostajesz tylko o tym, co cię dotyczy — twoje relacje, sprawy twoich sojuszników i sojusze zawierane przez twoich wrogów. Wojny i traktaty innych nacji trafiają do <b>kroniki</b> w panelu (nowe wpisy wyróżnione, kropka na przycisku Dyplomacji), a o erach innych nacji słyszysz tylko od sojuszników i wrogów. Komunikaty mówią po polsku pełnymi zdaniami: „Zieloni proponują sojusz”, „Czerwoni wypowiadają wojnę Żółtym”, „Pokój z Fioletowymi”.</li>
+                            <li><b>Mniej komunikatów</b>: wiadomość dostajesz tylko o tym, co cię dotyczy — twoje relacje, sprawy twoich sojuszników i sojusze zawierane przez twoich wrogów. Wojny i traktaty innych nacji trafiają do <b>kroniki</b> w panelu (nowe wpisy wyróżnione, kropka na przycisku Dyplomacji), a o erach innych nacji słyszysz tylko od tych, z którymi walczysz. Wieści o sprawach sojuszników przychodzą najwyżej raz na 25 sekund (reszta w kronice), hegemon trafia do kroniki, „Chodzą słuchy…” słyszysz tylko wtedy, gdy fala idzie na ciebie, o trwającej w jednym miejscu bitwie gra przypomina najwyżej co 45 s, a kilka budynków straconych naraz to jeden komunikat z listą. Komunikaty mówią po polsku pełnymi zdaniami: „Zieloni proponują sojusz”, „Czerwoni wypowiadają wojnę Żółtym”, „Pokój z Fioletowymi”.</li>
+                            <li><b>Łagodne dźwięki dyplomacji</b>: propozycja pokoju lub sojuszu, żądanie trybutu (niżej, bez rogu alarmu), zawarty sojusz i zawarty pokój mają własne, ciche i miękkie dźwięki. Róg alarmu zostaje tylko dla wypowiedzenia wojny.</li>
                             <li><b>Portrety władców</b>: herb w kolorze nacji z jednym z dziewięciu godeł oraz władca z imieniem i przydomkiem, np. <i>Książę Bolesław Śmiały</i>. Tytuł rośnie z erą, a przydomek SI zdradza charakter jej dowódcy. Herby są w panelu Dyplomacji, tabeli nacji, na ekranie wyników i przy Ratuszu nacji SI.</li>
                         </ul>
 
@@ -4414,8 +4433,12 @@ Game.prototype.attackAlert = function (x, y, isBase) {
         this._lastPing = now;
         this.addPing(x, y, '#ff4a3d');
     }
-    if (now - (this._lastAlert || -99) > 12 && !this.isOnScreen(x, y, -40)) {
+    // Dyplomacja (V1.0): długie wojny na ogromnej mapie - o bitwie, która trwa w tym samym miejscu, przypominamy
+    // najwyżej co 45 s (nowe miejsce albo pierwszy atak na bazę - jak dawniej, po 12 s)
+    const lp = this.lastAlertPos, same = this.diplo && lp && Math.hypot(x - lp.x, y - lp.y) < 1100 && (!isBase || this._lastAlertBase);
+    if (now - (this._lastAlert || -99) > (same ? 45 : 12) && !this.isOnScreen(x, y, -40)) {
         this._lastAlert = now;
+        this._lastAlertBase = !!isBase;
         this.lastAlertPos = { x, y };
         if (window.uiManager) window.uiManager.showMessage(isBase ? 'Twoja baza jest atakowana! (Spacja — pokaż)' : 'Twoje wojska są atakowane! (Spacja — pokaż)', 'alert');
         if (window.soundManager) window.soundManager.playWarning();
@@ -6583,6 +6606,16 @@ function SfxModule() {
             this.modal(out, t0, [[f, 0.9 * L, 1], [f * 2.0, 0.5 * L, 0.35], [f * 2.76, 0.32 * L, 0.3], [f * 5.4, 0.12 * L, 0.12]], gain, 0.0015, 9000);
         },
 
+        // Miękki ton (V1.0, dyplomacja): sinus z dwiema słabymi harmonicznymi, wolne narastanie i długi zanik
+        softTone(out, t0, f, dur, gain, attack) {
+            const sr = this.sr, i0 = this.idx(t0), len = Math.min(out.length - i0, Math.ceil(dur * sr));
+            const A = Math.max(0.005, attack || 0.05), w = 2 * Math.PI * f / sr;
+            for (let j = 0; j < len; j++) {
+                const t = j / sr, env = Math.min(1, t / A) * Math.exp(-t / (dur * 0.35)) * (j > len - 400 ? (len - j) / 400 : 1);
+                out[i0 + j] += (Math.sin(w * j) + 0.16 * Math.sin(2 * w * j) + 0.05 * Math.sin(3 * w * j)) * env * gain;
+            }
+        },
+
         // Marimba: drewniana sztabka z rezonatorem
         marimba(out, t0, f, gain) {
             this.modal(out, t0, [[f, 0.42, 1], [f * 3.93, 0.09, 0.32], [f * 9.2, 0.03, 0.1]], gain, 0.002, 4500);
@@ -6953,6 +6986,36 @@ function SfxModule() {
             D.marimba(o, 0, 523.25, 0.8); D.bell(o, 0, 1046.5, 0.06, 0.4);
             D.marimba(o, 0.12, 783.99, 0.9); D.bell(o, 0.12, 1568, 0.07, 0.45);
             return D.normalize(o, 0.55);
+        } },
+        // V1.0: dyplomacja - łagodne dźwięki (miękka pałeczka i ciepły, wolno narastający ton zamiast rogu i dzwonka)
+        dip_offer: { n: 1, render(D) {    // propozycja pokoju albo sojuszu: dwa miękkie tony w górę (G4 - D5)
+            const o = D.buf(1.5);
+            D.modal(o, 0, [[392, 0.5, 1], [392 * 2.01, 0.16, 0.18]], 0.5, 0.006, 1500);
+            D.modal(o, 0.14, [[587.3, 0.65, 1], [587.3 * 2.01, 0.2, 0.16]], 0.55, 0.006, 1600);
+            D.softTone(o, 0.14, 587.3, 1.2, 0.12, 0.08);
+            return D.normalize(o, 0.4);
+        } },
+        dip_demand: { n: 1, render(D) {   // żądanie trybutu, zerwany sojusz: dwa niższe tony w dół (D4 - A3), spokojnie
+            const o = D.buf(1.4);
+            D.modal(o, 0, [[293.7, 0.45, 1], [293.7 * 2.01, 0.14, 0.15]], 0.5, 0.007, 1200);
+            D.modal(o, 0.17, [[220, 0.6, 1], [220 * 2.01, 0.18, 0.14]], 0.55, 0.007, 1100);
+            D.softTone(o, 0.17, 220, 1.0, 0.1, 0.1);
+            return D.normalize(o, 0.38);
+        } },
+        dip_ally: { n: 1, render(D) {     // zawarty sojusz: ciepłe arpeggio C5 - E5 - G5 i cichy akord
+            const o = D.buf(2.6);
+            [[0, 523.25], [0.11, 659.25], [0.22, 783.99]].forEach(([t, f], i) => D.modal(o, t, [[f, 0.7, 1], [f * 2.01, 0.22, 0.14]], 0.45 + i * 0.05, 0.006, 1700));
+            for (const f of [261.63, 523.25, 783.99]) D.softTone(o, 0.22, f, 2.2, 0.1, 0.18);
+            D.bell(o, 0.34, 1046.5, 0.035, 0.6);
+            return D.normalize(o, 0.44);
+        } },
+        dip_peace: { n: 1, render(D) {    // zawarty pokój (i otrzymany trybut): opadające rozwiązanie F5 - C5 nad cichym C4
+            const o = D.buf(2.2);
+            D.modal(o, 0, [[698.46, 0.5, 1], [698.46 * 2.01, 0.15, 0.12]], 0.42, 0.006, 1600);
+            D.modal(o, 0.16, [[523.25, 0.8, 1], [523.25 * 2.01, 0.24, 0.12]], 0.5, 0.006, 1600);
+            D.softTone(o, 0.16, 261.63, 1.8, 0.12, 0.2);
+            D.softTone(o, 0.16, 523.25, 1.6, 0.07, 0.15);
+            return D.normalize(o, 0.4);
         } },
         warning: { n: 1, render(D) {   // róg wojenny: alarm
             const o = D.buf(2.0);
@@ -7620,7 +7683,7 @@ SoundManager._none = {};
 
 // kolejność syntezy: najpierw interfejs i najczęstsze odgłosy bitwy, na końcu fanfary
 SoundManager.ORDER = ['ui_click', 'ui_select', 'ui_command', 'ui_error', 'reverb_ir', 'clash', 'thud', 'bow', 'hammer', 'chop', 'pick', 'pick_gold', 'hoe',
-    'death', 'musket', 'spawn', 'ui_complete', 'warning', 'amb_wind', 'amb_water', 'amb_rain', 'amb_crickets', 'bird', 'javelin', 'impact', 'destroy',
+    'death', 'musket', 'spawn', 'ui_complete', 'warning', 'dip_offer', 'dip_demand', 'dip_ally', 'dip_peace', 'amb_wind', 'amb_water', 'amb_rain', 'amb_crickets', 'bird', 'javelin', 'impact', 'destroy',
     'cannon', 'catapult', 'ram', 'ballista', 'charge', 'heal', 'wallhit', 'net', 'musket_light', 'arquebus', 'blast', 'great_cannon', 'great_impact',
     'reload', 'roll', 'ageup', 'thunder', 'victory', 'defeat'];
 
@@ -7653,6 +7716,11 @@ SoundManager.FX = {
     Error: ['ui_error', 0.32, 1, 0, 0.02, 250, true],
     Complete: ['ui_complete', 0.42, 2, 0, 0.2, 250, true],
     Warning: ['warning', 0.3, 1, 0, 0.2, 1500, true],   // V3.5 Final 2: róg alarmu ciszej
+    // V1.0: dyplomacja - łagodne dźwięki propozycji, żądania trybutu, sojuszu i pokoju (cichsze niż Complete)
+    DiploOffer: ['dip_offer', 0.34, 1, 0, 0.28, 1200, true],
+    DiploDemand: ['dip_demand', 0.32, 1, 0, 0.25, 1200, true],
+    DiploAlly: ['dip_ally', 0.38, 1, 0, 0.32, 1500, true],
+    DiploPeace: ['dip_peace', 0.36, 1, 0, 0.3, 1500, true],
     AgeUp: ['ageup', 0.6, 1, 0, 0.35, 1000, true, 4],   // V3.5 Final: fanfara awansu nieco ciszej
     Victory: ['victory', 0.82, 1, 0, 0.35, 1000, true, 5.5],
     Defeat: ['defeat', 0.82, 1, 0, 0.35, 1000, true, 5]
@@ -8577,10 +8645,26 @@ class UIManager {
             last.dataset.t = now;
             return;
         }
+        // V1.0: kilka budynków straconych w krótkim czasie (najazd) - jeden komunikat z listą zamiast serii
+        const LOST = 'Stracono budynek: ';
+        if (text.startsWith(LOST)) {
+            const prev = Array.from(this.msgBox.children).reverse().find(d => d.dataset.lost && !d.classList.contains('out') && now - Number(d.dataset.t) < 8000);
+            if (prev) {
+                const names = JSON.parse(prev.dataset.lost);
+                names.push(text.slice(LOST.length));
+                const cnt = new Map();
+                for (const n of names) cnt.set(n, (cnt.get(n) || 0) + 1);
+                prev.dataset.lost = JSON.stringify(names);
+                prev.dataset.t = now;
+                prev.textContent = `Stracono budynki (${names.length}): ` + Array.from(cnt, ([n, k]) => k > 1 ? `${n} ×${k}` : n).join(', ');
+                return;
+            }
+        }
         const div = document.createElement('div');
         div.className = 'toast ' + type;
         div.dataset.text = text;
         div.dataset.t = now;
+        if (text.startsWith(LOST)) div.dataset.lost = JSON.stringify([text.slice(LOST.length)]);
         div.textContent = text;
         this.msgBox.appendChild(div);
         while (this.msgBox.children.length > 5) this.msgBox.removeChild(this.msgBox.firstChild);
@@ -8889,6 +8973,9 @@ class UIManager {
     //     i siły, z kim nacja walczy i trzyma sojusz, odpowiedź na twoją ostatnią propozycję i pozostałe akcje
     //     (okup, trybut, zerwanie sojuszu, wojna - z potwierdzeniem drugim kliknięciem),
     //   - kronika: ostatnie zdarzenia (nowe od poprzedniego otwarcia panelu wyróżnione), klik pokazuje więcej.
+    // V1.0 (przejrzyściej): pod nagłówkiem jedno zdanie o twojej sytuacji (rozejm, wojny, kto może napaść), w wierszu
+    // nacji zamiast etykiet krótkie zdanie ("obojętni wobec ciebie · dużo silniejsi"), przyciski z czasownikiem
+    // ("Zaproponuj sojusz") i znacznik "może napaść" przy nacji, która realnie rozważa wojnę z tobą (DiplomatAI.eyes).
     renderDiplomacy() {
         const el = this.el['nations-panel'];
         const g = this.game, D = g.diplo, me = this.playerNation;
@@ -8936,9 +9023,10 @@ class UIManager {
 
         // --- nacje ---
         const offer = D.offerFor(me), offerT = offer ? Diplomacy.payText(offer) : '';
-        const OPW = [[-50, 'wrogość', '#ff7b70'], [-15, 'niechęć', '#ffb08a'], [15, 'obojętność', 'var(--label-2)'], [50, 'sympatia', '#a6e6a0'], [101, 'przyjaźń', '#7fe39a']];
+        const OPW = [[-50, 'wrogość', '#ff7b70', 'wrodzy'], [-15, 'niechęć', '#ffb08a', 'nieufni'], [15, 'obojętność', 'var(--label-2)', 'obojętni'], [50, 'sympatia', '#a6e6a0', 'życzliwi'], [101, 'przyjaźń', '#7fe39a', 'przyjaźni']];
         const groups = { war: [], ally: [], peace: [], dead: [] };
         const counts = [0, 0, 0];
+        const threats = [], wars = [];
         for (const n of g.nations) {
             if (n === me) continue;
             const st = D.get(me, n);
@@ -8949,16 +9037,22 @@ class UIManager {
             // opinia o tobie i siła w porównaniu z twoją - słowo w wierszu, pasek i liczba po rozwinięciu
             const ai = !n.human || n.ai;
             const op = ai ? Math.round(D.op(n, me)) : 0, ow = OPW.find(x => op < x[0]) || OPW[4];
-            let sum = ai ? `<span title="Opinia o tobie: ${op > 0 ? '+' : ''}${op}"><small>opinia</small> <b style="color:${ow[2]}">${ow[1]}</b></span>` : '<span><small>steruje człowiek</small></span>';
+            // opis w jednym zdaniu: nastawienie do ciebie i siła wobec twojej (+ jak długo trwa wojna albo sojusz)
+            let sum = ai ? `<span title="Opinia o tobie: ${op > 0 ? '+' : ''}${op}"><b style="color:${ow[2]}">${ow[3]}</b> wobec ciebie</span>` : '<span>steruje człowiek</span>';
             let k = 1, pw = null;
             if (!g.isClient) {
                 k = D.strength(n) / Math.max(1, myS);
-                pw = k > 1.6 ? ['dużo silniejsi', '#ff8f85'] : k > 1.15 ? ['silniejsi', '#ffc58a'] : k > 0.87 ? ['podobna', 'var(--label-2)'] : k > 0.6 ? ['słabsi', '#b9e6a0'] : ['dużo słabsi', '#7fe39a'];
-                sum += `<span title="Ich siła (wojsko, wieże, era) wobec twojej"><small>siła</small> <b style="color:${pw[1]}">${pw[0]}</b></span>`;
+                pw = k > 1.6 ? ['dużo silniejsi', '#ff8f85'] : k > 1.15 ? ['silniejsi', '#ffc58a'] : k > 0.87 ? ['podobna siła', 'var(--label-2)'] : k > 0.6 ? ['słabsi', '#b9e6a0'] : ['dużo słabsi', '#7fe39a'];
+                sum += `<span title="Ich siła (wojsko, wieże, era) wobec twojej">${'<b style="color:' + pw[1] + '">' + pw[0] + '</b>'}</span>`;
             }
+            if (st !== DIPLO.PEACE) sum += `<span>${st === DIPLO.WAR ? 'wojna' : 'sojusz'} ${ago(D.sinceOf(me, n))}</span>`;
+            if (st === DIPLO.WAR) wars.push(n);
             const pl = D.pactLeft(me, n);
             const reply = live && D.replyOf ? D.replyOf(me, n) : null;
+            const threat = live && !g.isClient && n.diplomat && n.ai && n.diplomat.eyes(me);
+            if (threat) threats.push(n);
             const tags = (n === heg ? '<span class="dp-heg" title="Hegemon: najpotężniejsza nacja kontynentu — inne łączą się przeciw niej w koalicje">hegemon</span>' : '')
+                + (threat ? '<span class="dp-threat" title="Są blisko, czują przewagę i nie darzą cię sympatią — mogą wypowiedzieć ci wojnę. Sojusz z kimś silnym, trybut albo wojsko przy granicy ich zniechęcą.">może napaść</span>' : '')
                 + (pl > 0 && st !== DIPLO.WAR ? `<span class="dp-pact" title="Traktat po zapłaconym trybucie — nikt z was nie może wypowiedzieć wojny">traktat ${mmss(pl)}</span>` : '')
                 + (reply ? `<span class="dp-rmark ${reply.ok === null ? 'wait' : reply.ok ? 'ok' : 'no'}" title="${esc(reply.text)}">${reply.ok === null ? '⏳' : reply.ok ? '✓' : '✕'}</span>` : '');
             // akcje: jedna główna w wierszu, reszta po rozwinięciu
@@ -8970,11 +9064,11 @@ class UIManager {
                 if (st === DIPLO.WAR) {
                     const age = g.time - D.sinceOf(me, n), early = age < DIPLO.PEACE_MIN_WAR;
                     const earlyT = early ? `O pokój można prosić po minucie wojny (za ${Math.ceil(DIPLO.PEACE_MIN_WAR - age)} s)` : '';
-                    main = `<button class="dp-btn pc" data-dip="peace" data-to="${idx}"${early ? ' disabled' : ''} title="${esc(earlyT || 'Propozycja pokoju — odpowiedź przyjdzie od razu')}">Pokój</button>`;
+                    main = `<button class="dp-btn pc soft" data-dip="peace" data-to="${idx}"${early ? ' disabled' : ''} title="${esc(earlyT || 'Propozycja pokoju — odpowiedź przyjdzie od razu')}">${early ? 'Pokój za ' + Math.ceil(DIPLO.PEACE_MIN_WAR - age) + ' s' : 'Zaproponuj pokój'}</button>`;
                     btns = `<button class="dp-btn ok" data-dip="peace" data-pay="1" data-to="${idx}"${offer && !early ? '' : ' disabled'} title="${esc(earlyT || (offer ? 'Zapłacisz 20% swoich zapasów' : 'Nie masz z czego zapłacić okupu'))}">Pokój za okup${offer ? ' · ' + esc(offerT) : ''}</button>`;
                 } else {
                     if (st === DIPLO.PEACE) {
-                        main = `<button class="dp-btn ok" data-dip="alliance" data-to="${idx}" title="Propozycja sojuszu: wspólne pole widzenia, obrona i zwycięstwo">Sojusz</button>`;
+                        main = `<button class="dp-btn ok soft" data-dip="alliance" data-to="${idx}" title="Propozycja sojuszu: wspólne pole widzenia, obrona i zwycięstwo — odpowiedź przyjdzie od razu">Zaproponuj sojusz</button>`;
                         btns = `<button class="dp-btn" data-dip="tribute" data-to="${idx}" title="${esc('Zapłaci tylko nacja wyraźnie słabsza od ciebie (razem z sojusznikami); odmowa psuje stosunki. Zapłata = ' + DIPLO.PACT / 60 + ' min traktatu.')}">Żądaj trybutu · ${esc(Diplomacy.payText(D.demandFor(me)))}</button>`;
                     } else btns = `<button class="dp-btn" data-dip="break" data-to="${idx}" title="Sojusz zostaje zerwany, ale pokój trwa dalej">Zerwij sojusz</button>`;
                     btns += warBtn;
@@ -9002,18 +9096,19 @@ class UIManager {
                     + (btns ? `<div class="dp-btns">${btns}</div>` : '') + note + '</div>';
             }
             groups[cls].push(`<div class="dp-card ${cls}${open ? ' open' : ''}" style="--nc:${n.color}">
-                <div class="dp-row" data-dpx="${idx}">${Rulers.img(n, g, 30)}<b class="dp-name" style="color:${n.color}">${nm(n)}</b>${tags}
-                    <span class="dp-sum">${sum}</span>${main}<span class="dp-chev">▾</span></div>${body}</div>`);
+                <div class="dp-row" data-dpx="${idx}">${Rulers.img(n, g, 30)}<span class="dp-who"><span class="dp-nl"><b class="dp-name" style="color:${n.color}">${nm(n)}</b>${tags}</span>
+                    <span class="dp-sum">${sum}</span></span>${main}<span class="dp-chev">▾</span></div>${body}</div>`);
         }
         const sec = (title, list, cls) => list.length ? `<div class="dp-sec ${cls}"><span>${title}</span><i>${list.length}</i></div>${list.join('')}` : '';
         const dead = groups.dead.length ? `<div class="dp-sec dead"><span>Pokonani</span><i>${groups.dead.length}</i></div><div class="dp-dead">${groups.dead.map(n => `<span>${Rulers.img(n, g, 20)}${nm(n)}</span>`).join('')}</div>` : '';
 
         // --- kronika ---
-        const EVC = { war: 'war', peace: 'pc', alliance: 'al', break: 'br', tribute: 'tr' };
+        const EVC = { war: 'war', peace: 'pc', alliance: 'al', break: 'br', tribute: 'tr', hegemon: 'hg' };
         const EVT = {
             war: (a, b) => `${tag(a)} wypowiadają wojnę ${tag(b, 'dat')}`, peace: (a, b) => `${tag(a)} i ${tag(b)} zawierają pokój`,
             alliance: (a, b) => `${tag(a)} i ${tag(b)} zawierają sojusz`, break: (a, b) => `${tag(a)} zrywają sojusz z ${tag(b, 'ins')}`,
-            tribute: (a, b) => `${tag(a)} płacą trybut ${tag(b, 'dat')}`
+            tribute: (a, b) => `${tag(a)} płacą trybut ${tag(b, 'dat')}`,
+            hegemon: (a) => a === me ? 'Twoja potęga budzi strach — możliwe koalicje przeciw tobie' : `${tag(a)} urastają na hegemona — inni chętniej łączą się przeciw nim`
         };
         const since = this._dpNewSince === undefined ? Infinity : this._dpNewSince;
         const hist = D.history.slice(-(this._dpLogAll ? 12 : 4)).reverse();
@@ -9027,12 +9122,26 @@ class UIManager {
 
         const status = (truce > 0 ? `<span class="dp-chip truce" title="Na początku gry nikt nie może wypowiedzieć wojny">Rozejm · ${mmss(truce)}</span>` : '')
             + `<span class="dp-chip">${this.diploCountsHtml(counts)}</span>`;
+        // twoja sytuacja w jednym zdaniu: co się dzieje i na kogo uważać
+        const list = (a, c) => a.slice(0, 3).map(n => tag(n, c)).join(', ') + (a.length > 3 ? ` i ${a.length - 3} inne` : '');
+        let now = '', nowCls = '';
+        if (live) {
+            if (truce > 0) {
+                now = `Rozejm jeszcze <b>${mmss(truce)}</b> — nikt nie może wypowiedzieć wojny. ` + (threats.length ? `Po rozejmie uważaj na: ${list(threats, 'gen')}.` : 'Dobry czas na sojusze.');
+                nowCls = threats.length ? 'warn' : 'calm';
+            } else if (wars.length) {
+                now = `Toczysz wojnę z: ${list(wars, 'ins')}.` + (threats.length ? ` Napaść mogą też: ${list(threats)}.` : '');
+                nowCls = 'war';
+            } else if (threats.length) { now = `Pokój, ale napaść mogą: ${list(threats)}. Sojusz albo silniejsza armia ich zniechęcą.`; nowCls = 'warn'; }
+            else { now = counts[2] ? 'Pokój — nikt nie szykuje się do wojny z tobą.' : 'Pokój ze wszystkimi — nikt nie szykuje się do wojny z tobą.'; nowCls = 'calm'; }
+        }
         const html = `<div class="dp-head">${Rulers.img(me, g, 30)}<b>Dyplomacja</b><div class="dp-chips">${status}</div></div>
+            ${now ? `<div class="dp-now ${nowCls}"><i></i><span>${now}</span></div>` : ''}
             ${goals}
             ${props ? '<div class="dp-props">' + props + '</div>' : ''}
             <div class="dp-list">${sec('Wojna z tobą', groups.war, 'war')}${sec('Twoi sojusznicy', groups.ally, 'ally')}${sec('W pokoju z tobą', groups.peace, 'peace')}${dead}</div>
             ${log ? '<div class="dp-log"><div class="dp-sec"><span>Kronika</span>' + more + '</div>' + log + '</div>' : ''}
-            <div class="np-hint">Kliknij nację, by zobaczyć szczegóły i wszystkie akcje · <b>Tab</b> zamyka</div>`;
+            <div class="np-hint">Kliknij nację: szczegóły i pozostałe akcje (okup, trybut, wojna) · <b>Tab</b> zamyka</div>`;
         if (html !== this._nationsSig) { this._nationsSig = html; el.innerHTML = html; }
     }
 
@@ -19832,7 +19941,8 @@ class Nation {
             if (building) { g.spawnParticle(building.x, building.y, 'levelup'); g.spawnParticle(building.x, building.y, 'complete'); }
             g.tell(this, `Wkraczasz w Erę ${an.roman} — ${an.name}!`, 'good');
             // Dyplomacja (do 8 nacji): o erze innej nacji słyszą tylko jej sojusznicy i wrogowie - resztę widać w panelu (Tab)
-            if (g.diplo) { for (const n of g.nations) if (n !== this && n.human && (g.diplo.allied(n, this) || g.diplo.atWar(n, this))) g.tell(n, `${this.name}: Era ${an.roman} — ${an.name}`, 'info'); }
+            // Dyplomacja (V1.0): o nowej erze rywala słyszą tylko ci, z którymi jest wojna (sojusznik nie jest zagrożeniem)
+            if (g.diplo) { for (const n of g.nations) if (n !== this && n.human && g.diplo.atWar(n, this)) g.tell(n, `${this.name}: Era ${an.roman} — ${an.name}`, 'info'); }
             else g.tellAll(`${this.name}: Era ${an.roman} — ${an.name}`, 'info', this);
             g.cue(this, 'AgeUp');
         } else if (up.ultra) {
@@ -21274,7 +21384,7 @@ class NationAI {
                     this.log(`szturm na Cud (${ew.cfg.name}) nacji ${ew.owner.shortName || ew.owner.name}: ${picked.length} jednostek`);
                 }
                 this.wavesSent++;
-                this.warnPlayer(time);
+                this.warnPlayer(time, ew.owner);
             } else if (rush) { /* za mało wojska - czekamy na posiłki */ }
             else if (avail >= size && (!early || avail >= 8) && this.enemyNations().length > 0) {
                 // najpierw jednostki stojące najbliżej punktu zbiórki
@@ -21396,12 +21506,16 @@ class NationAI {
         }
     }
 
-    warnPlayer(time) {
+    warnPlayer(time, target) {
         const game = this.game, nation = this.nation;
         if (time - (this.lastWarnTime || -999) < 75) return;
+        // Dyplomacja (V1.0): fala idzie na konkretnego wroga (szturm na Cud - jego właściciela, zwykła fala - głównego
+        // wroga z DiplomatAI.focus); człowiek, z którym ta nacja też walczy, ale nie jest celem, nie dostaje alarmu
+        const aim = game.diplo ? (target || (nation.diplomat && nation.diplomat.focus)) : null;
         // ostrzeżenie dostaje każdy człowiek, którego ta nacja jest wrogiem (lokalny i zdalni)
         for (const pl of game.nations) {
             if (!pl.human || pl.defeated || !game.isEnemy(pl, nation)) continue;
+            if (aim && aim !== pl && game.diplo.alive(aim) && !game.diplo.allied(aim, pl)) continue;
             this.lastWarnTime = time;
             game.tell(pl, `Chodzą słuchy, że wojska nacji ${nation.name} ruszyły do ataku!`, 'alert');
             game.cue(pl, 'Warning');
@@ -22200,6 +22314,15 @@ const DIPLO = {
     ASK_COOLDOWN: 45,           // ta sama propozycja do tej samej nacji najwyżej co 45 s
     ALLIANCE_HOLD: 180,         // Sojusz zwycięzców: 3 minuty jako jedyni na placu boju
     PACT: 240,                  // zapłacony trybut: 4 minuty traktatu między stronami
+    // Tempo świata (V1.0): po rozejmie SI nie rusza wszystkimi naraz. Pierwsza dobrowolna wojna najwcześniej
+    // FIRST_WAR s po rozejmie, kolejne co WAR_GAP s (odstęp maleje z każdą minutą do WAR_GAP_MIN), sojusze
+    // i żądania trybutu między nacjami SI też mają swoje odstępy (Diplomacy.paceOk / paceUse)
+    FIRST_WAR: 50,
+    WAR_GAP: 100, WAR_GAP_MIN: 45,
+    ALLY_GAP: 35,
+    TRIBUTE_GAP: 90,
+    HUMAN_GAP: 75,              // do człowieka SI wysyła najwyżej jedną propozycję naraz i nie częściej niż co 75 s
+    NEWS_GAP: 25,               // wiadomości o cudzych sprawach (sojusznicy, wrogowie) - najwyżej jedna na 25 s, reszta w kronice
     LIMIT_WARN: [[600, '10 minut'], [300, '5 minut'], [120, '2 minuty'], [60, 'minuta']],
     KIND: { war: 'wypowiada wojnę nacji', peace: 'zawiera pokój z', alliance: 'zawiera sojusz z', break: 'zrywa sojusz z', tribute: 'płaci trybut nacji' }
 };
@@ -22222,6 +22345,7 @@ class Diplomacy {
         this.timeLimit = Math.max(0, Number(opts.limit) || 0);   // 0 = bez limitu czasu
         this.allyCap = Math.max(2, Math.ceil(N / 2));            // Sojusz zwycięzców: najwyżej połowa nacji
         this.allianceAt = -1;                      // początek odliczania Sojuszu zwycięzców (-1: nie trwa)
+        this.pacing();
         this.limitTold = Infinity;
         this.mask = new Uint8Array(256);           // wrogość drużyn: mask[ta * 16 + tb]
         this.allyMask = new Uint8Array(256);
@@ -22247,6 +22371,36 @@ class Diplomacy {
     ledgerOf(a, b) { return this.ledger[this.i(a) * this.N + this.i(b)]; }
     inTruce() { return this.game.time < this.truceUntil; }
     alive(n) { return n && !n.defeated && !n.resigned; }
+
+    // ---------------- Tempo świata i uwaga gracza (V1.0) ----------------
+    // pace[rodzaj] - najwcześniejszy czas kolejnej dobrowolnej decyzji SI tego rodzaju (wspólny dla wszystkich nacji SI):
+    // dzięki temu po rozejmie wojny wybuchają jedna po drugiej, a nie pięć w pół minuty
+    pacing() {
+        const t0 = this.truceUntil;
+        this.pace = { war: t0 + DIPLO.FIRST_WAR, ally: 0, tribute: t0 + DIPLO.FIRST_WAR + 40, wonder: 0 };
+    }
+    paceOk(kind) { if (!this.pace) this.pacing(); return this.game.time >= (this.pace[kind] || 0); }
+    paceGap(kind) {
+        if (kind === 'war') return Math.max(DIPLO.WAR_GAP_MIN, DIPLO.WAR_GAP - 4 * Math.max(0, this.game.time - this.truceUntil) / 60);
+        return kind === 'ally' ? DIPLO.ALLY_GAP : kind === 'tribute' ? DIPLO.TRIBUTE_GAP : 25;
+    }
+    paceUse(kind) {
+        if (!this.pace) this.pacing();
+        const t = this.game.time;
+        this.pace[kind] = Math.max(this.pace[kind] || 0, t + this.paceGap(kind) * (0.8 + Math.random() * 0.4));
+        if (kind === 'wonder') this.pace.war = Math.max(this.pace.war || 0, t + 20);   // po wojnie o Cud - chwila oddechu
+    }
+
+    // Propozycje do tej nacji czekają na odpowiedź w panelu (człowiek), a nie są rozpatrywane od razu (SI)
+    inbox(n) { return !(n.ai && n.diplomat); }
+
+    // Czy SI może teraz złożyć propozycję nacji n: człowiekowi najwyżej jedną naraz i nie częściej niż co HUMAN_GAP s
+    humanFree(n) {
+        if (!this.inbox(n)) return true;
+        if (this.proposals.some(p => p.to === n)) return false;
+        const m = this.toHuman || (this.toHuman = new Map());
+        return !m.has(n) || this.game.time - m.get(n) >= DIPLO.HUMAN_GAP;
+    }
 
     // macierze drużyn z relacji nacji (drużyna = nacja + 1 w tym trybie, ale liczymy ogólnie)
     rebuild() {
@@ -22290,17 +22444,26 @@ class Diplomacy {
     // gdy sprawa ich dotyczy (zdarzenie z udziałem ich sojusznika albo sojusz zawierany przez ich wroga) - reszta trafia
     // tylko do kroniki w panelu Dyplomacji (przy 8 nacjach komunikaty o cudzych wojnach zasypywały ekran).
     // textAll: tekst albo funkcja (n) => tekst / [tekst, typ] / null - wiadomość dopasowana do odbiorcy.
+    //   V1.0 (spokojniej): wiadomości o cudzych sprawach dostaje się najwyżej jedną na NEWS_GAP s - kolejne czekają
+    //   w kronice (kropka na przycisku Dyplomacji); ostrzeżenia ('warn': napadnięto twojego sojusznika) zawsze.
+    //   Strony porozumienia słyszą łagodny dźwięk: sojusz, pokój, trybut; wypowiedzenie wojny - róg alarmu.
     announce(a, b, kind, textA, textB, textAll, typeA, typeB) {
         const g = this.game;
         this.history.push({ t: g.time, a: this.i(a), b: this.i(b), kind });
         if (this.history.length > 60) this.history.shift();
-        if (textA) g.tell(a, textA, typeA || 'info');
-        if (textB) { g.tell(b, textB, typeB || 'info'); if (typeB === 'alert') g.cue(b, 'Warning'); }
+        const snd = { alliance: 'DiploAlly', peace: 'DiploPeace', tribute: 'DiploPeace', break: 'DiploDemand' }[kind];
+        if (textA) { g.tell(a, textA, typeA || 'info'); if (kind === 'alliance' || kind === 'peace') g.cue(a, snd); }
+        if (textB) { g.tell(b, textB, typeB || 'info'); if (typeB === 'alert') g.cue(b, 'Warning'); else if (snd) g.cue(b, snd); }
         if (!textAll) return;
+        const news = this.news || (this.news = new Map());
         for (const n of g.nations) {
             if (n === a || n === b || !n.human || n.defeated) continue;
             const t = typeof textAll === 'function' ? textAll(n) : this.concerns(n, a, b, kind) ? textAll : null;
-            if (t) g.tell(n, Array.isArray(t) ? t[0] : t, Array.isArray(t) ? t[1] : 'info');
+            if (!t) continue;
+            const type = Array.isArray(t) ? t[1] : 'info';
+            if (type !== 'warn' && news.has(n) && g.time - news.get(n) < DIPLO.NEWS_GAP) continue;
+            news.set(n, g.time);
+            g.tell(n, Array.isArray(t) ? t[0] : t, type);
         }
     }
 
@@ -22501,6 +22664,7 @@ class Diplomacy {
             if (st !== DIPLO.PEACE || !pay) return 'Trybutu można żądać tylko od nacji, z którą jest pokój.';
         } else return 'Nieznana propozycja.';
         if (kind === 'peace' && pay && !(pay.gold + pay.food + pay.wood > 0)) pay = null;
+        if (from.ai && from.diplomat && !this.humanFree(to)) return 'Ta nacja rozważa już inną propozycję.';
         const key = this.i(from) + '>' + this.i(to) + ':' + kind + (pay ? '$' : ''), last = this.asked.get(key);
         if (last !== undefined && g.time - last < DIPLO.ASK_COOLDOWN) return `Poczekaj ${Math.ceil(DIPLO.ASK_COOLDOWN - (g.time - last))} s przed kolejną propozycją.`;
         this.asked.set(key, g.time);
@@ -22526,8 +22690,10 @@ class Diplomacy {
         const p = { id: ++this._pid, from, to, kind, at: g.time, until: g.time + DIPLO.PROPOSAL_TTL, pay: pay || null };
         this.proposals.push(p);
         this.version++;
+        if (from.ai) (this.toHuman || (this.toHuman = new Map())).set(to, g.time);
         // V1.0: bez komunikatu dla adresata - propozycja pojawia się od razu jako karta z przyciskami (UIManager.renderDiploInbox)
-        g.cue(to, kind === 'tribute' ? 'Warning' : 'Complete');
+        // i łagodnym dźwiękiem (żądanie trybutu - niższym, ale bez rogu alarmu)
+        g.cue(to, kind === 'tribute' ? 'DiploDemand' : 'DiploOffer');
         if (from.human) this.setReply(from, to, null, `Czekasz na odpowiedź (${what}).`);
         return null;
     }
@@ -22740,11 +22906,13 @@ class Diplomacy {
         if (h !== this._heg) {
             this._heg = h;
             const g = this.game;
-            if (h && (h !== this._hegTold || g.time - (this._hegToldAt || -999) > 300)) for (const n of g.nations) {
+            // V1.0: komunikat dostaje tylko sam hegemon; reszta widzi wpis w kronice i znacznik w panelu Dyplomacji
+            if (h && (h !== this._hegTold || g.time - (this._hegToldAt || -999) > 300)) {
                 this._hegTold = h; this._hegToldAt = g.time;
-                if (!n.human || n.defeated) continue;
-                if (n === h) g.tell(n, 'Twoja potęga budzi strach — inne nacje mogą zawiązać przeciw tobie koalicję.', 'warn');
-                else g.tell(n, `${this.name(h)} urastają na hegemona kontynentu — inne nacje chętniej łączą się przeciw nim.`, 'info');
+                this.history.push({ t: g.time, a: this.i(h), b: this.i(h), kind: 'hegemon' });
+                if (this.history.length > 60) this.history.shift();
+                this.version++;
+                if (h.human) g.tell(h, 'Twoja potęga budzi strach — inne nacje mogą zawiązać przeciw tobie koalicję.', 'warn');
             }
         }
         return h;
@@ -22806,6 +22974,9 @@ class Diplomacy {
 //   - w końcówce: za duży sojusz (zwycięstwo niemożliwe) rozwiązuje najsilniejszy, a ambitny może zdradzić
 //     w trakcie odliczania zwycięstwa sojuszu ("tylko jeden władca"),
 //   - odpowiada na propozycje gracza - z uzasadnieniem, które gracz zobaczy.
+// V1.0 (spokojniejsze tempo): dobrowolne wojny, sojusze i żądania trybutu idą przez wspólne "tempo świata"
+// (Diplomacy.paceOk / paceUse) - po rozejmie konflikty wybuchają jeden po drugim, nie seriami; sojusznik odpowiada
+// na wezwanie do broni po chwili namysłu; człowiekowi SI składa najwyżej jedną propozycję naraz (Diplomacy.humanFree).
 // Decyzje trafiają do dziennika dowódcy (NationAI.opLog), więc testy i podgląd widzą, dlaczego SI coś zrobiła.
 class DiplomatAI {
     constructor(game, nation) {
@@ -22840,12 +23011,13 @@ class DiplomatAI {
         // pierwsza wojna nie w sekundę po rozejmie: każdy dyplomata ma własną cierpliwość (bez zmasowanego
         // napadu wszystkich na jednego), śmiali szybciej, ostrożni później
         const D = game.diplo;
-        this.warFrom = (D ? D.truceUntil : 0) + (40 + Math.random() * 160) * (1.35 - this.aggro);
+        this.warFrom = (D ? D.truceUntil : 0) + (60 + Math.random() * 200) * (1.35 - this.aggro);
     }
 
     log(msg) { if (this.nation.ai && this.nation.ai.log) this.nation.ai.log('[dyplomacja] ' + msg); }
 
-    callToArms(ally, enemy) { this.calls.push({ ally, enemy, at: this.game.time }); }
+    // wezwanie do broni rozważane po chwili namysłu (10-30 s), a nie w tej samej sekundzie co napaść
+    callToArms(ally, enemy) { this.calls.push({ ally, enemy, at: this.game.time + 10 + Math.random() * 20 }); }
 
     // Wojna, którą sami zaczęliśmy, ma cel: przez kilka minut nie przyjmujemy pokoju (ani okupu) - wojsko musi
     // zdążyć przejść kontynent i coś zdobyć. Bez tego przegrywający kupował pokój po minucie i nikt nie odpadał.
@@ -22904,7 +23076,7 @@ class DiplomatAI {
     aggroNow() {
         const g = this.game, D = g.diplo, me = this.nation;
         const quiet = g.time - Math.max(this.lastWarAt, this.lastPeaceAt, D.truceUntil, this.warFrom);
-        let a = this.aggro + clamp((quiet - 180) / 1000, 0, 0.4);
+        let a = this.aggro + clamp((quiet - 240) / 1200, 0, 0.4);
         const act = g.nations.filter(n => D.alive(n));
         if (act.length <= 3) a += 0.15;
         if (D.timeLimit > 0 && D.timeLimit - g.time < 600 && D.leader(act) !== me) a += 0.2;
@@ -22922,8 +23094,10 @@ class DiplomatAI {
         const heg = D.hegemon();
         const byN = new Map(others.map(x => [x.n, x]));
 
-        // 1) wezwania do broni od sojuszników
-        for (const c of this.calls.splice(0)) {
+        // 1) wezwania do broni od sojuszników (te, których czas namysłu minął)
+        const due = this.calls.filter(c => g.time >= c.at);
+        this.calls = this.calls.filter(c => g.time < c.at);
+        for (const c of due) {
             if (!D.allied(me, c.ally) || !D.alive(c.enemy) || D.atWar(me, c.enemy) || D.allied(me, c.enemy)) continue;
             const e = byN.get(c.enemy);
             if (!e) continue;
@@ -22953,10 +23127,11 @@ class DiplomatAI {
                 return;
             }
         }
-        if (g.wondersOn) for (const o of g.nations) {
+        if (g.wondersOn && D.paceOk('wonder')) for (const o of g.nations) {
             if (o === me || !D.alive(o) || D.allied(me, o) || D.atWar(me, o)) continue;
             const w = D.wonderOf(o);
             if (!w || D.canDeclareWar(me, o)) continue;
+            D.paceUse('wonder');                                             // kolejna nacja dołączy po chwili, nie w tej samej sekundzie
             this.log(`wypowiada wojnę nacji ${D.name(o)}: Chwała ${Math.floor(g.gloryOf(o.team))}, ${w.cfg.name} (${w.isConstructed ? 'ukończony' : Math.round(w.buildProgress) + '%'})`);
             this.lastWarAt = g.time;
             this.focus = o;
@@ -22981,6 +23156,7 @@ class DiplomatAI {
             if (winning && !tooMany) continue;
             if (this.hasGoal(w.n) && !losing) continue;                        // wojna dopiero się zaczęła
             if (losing || tooMany || tired) {
+                if (!D.humanFree(w.n)) continue;                                // człowiek rozważa inną propozycję - za chwilę
                 this.askedPeace.set(w.n, g.time);
                 const pay = losing ? D.offerFor(me) : null;
                 this.log(`prosi o pokój z ${D.name(w.n)} (${losing ? 'przegrywa' : tooMany ? 'za dużo frontów' : 'zmęczenie wojną'}${pay ? ', z okupem' : ''})`);
@@ -22990,13 +23166,13 @@ class DiplomatAI {
 
         // 5) sojusze: wspólny wróg, koalicja przeciw hegemonowi, dobra opinia
         const maxAllies = Math.min(2, D.allyCap - 1);
-        if (allies.length < maxAllies) {
+        if (allies.length < maxAllies && D.paceOk('ally')) {
             let best = null, bestV = 0.5;
             // V1.0: lider Chwały (od 40%) spoza naszego sojuszu - razem przeciw niemu, zanim zacznie Triumf
             const gTop = g.wondersOn ? g.gloryTable()[0] : null;
             const gLead = gTop && gTop.glory >= Game.GLORY_WIN * 0.4 && gTop.team !== me.team ? g.nations.find(n => n.team === gTop.team && D.alive(n)) : null;
             for (const o of others) {
-                if (o.rel !== DIPLO.PEACE || g.time - (this.asked.get(o.n) || -999) < 240) continue;
+                if (o.rel !== DIPLO.PEACE || g.time - (this.asked.get(o.n) || -999) < 240 || !D.humanFree(o.n)) continue;
                 if (gLead && (o.n === gLead || D.allied(o.n, gLead))) continue;      // nie z liderem Chwały ani jego sojusznikiem
                 if (D.op(o.n, me) < -10) continue;                                // i tak nam nie zaufają
                 if (D.completesAlliance(me, o.n) && my >= o.s * 0.8) continue;   // nie oddajemy wspólnego zwycięstwa za darmo
@@ -23011,6 +23187,7 @@ class DiplomatAI {
             }
             if (best) {
                 this.asked.set(best.n, g.time);
+                D.paceUse('ally');
                 if (!D.propose(me, best.n, 'alliance')) { this.log(`proponuje sojusz nacji ${D.name(best.n)}`); return; }
             }
         }
@@ -23029,15 +23206,16 @@ class DiplomatAI {
         const aggro = this.aggroNow();
 
         // 6) żądanie trybutu od wyraźnie słabszego sąsiada (gdy nie toczymy wojen)
-        if (!wars.length && aggro >= 0.35 && !D.proposals.some(p => p.from === me && p.kind === 'tribute')) {
+        if (!wars.length && aggro >= 0.35 && D.paceOk('tribute') && !D.proposals.some(p => p.from === me && p.kind === 'tribute')) {
             for (const o of others) {
-                if (o.rel !== DIPLO.PEACE || o.rank > 1 || o.prox < 0.3 || D.canDeclareWar(me, o.n) || this.grudge.has(o.n)) continue;
+                if (o.rel !== DIPLO.PEACE || o.rank > 1 || o.prox < 0.3 || D.canDeclareWar(me, o.n) || this.grudge.has(o.n) || !D.humanFree(o.n)) continue;
                 if (g.time - (this.demanded.get(o.n) || -999) < 420) continue;
                 if (myBloc < o.bloc * 1.8 || o.op > 25) continue;
                 this.demanded.set(o.n, g.time);
                 if (Math.random() > 0.3 + aggro * 0.35) continue;
                 const pay = D.demandFor(me);
                 this.log(`żąda trybutu od ${D.name(o.n)} (${Diplomacy.payText(pay)})`);
+                D.paceUse('tribute');
                 D.propose(me, o.n, 'tribute', pay);
                 return;
             }
@@ -23046,32 +23224,17 @@ class DiplomatAI {
         // 7) wojna
         if (wars.length >= (aggro > 0.8 ? 2 : 1)) return;
         if (g.time - this.lastWarAt < 240 - aggro * 120) return;
+        if (!D.paceOk('war')) return;                                   // tempo świata: inna nacja dopiero co zaczęła wojnę
         if (me.ai && me.ai.underThreat) return;                      // najpierw obrona własnej osady
         let pick = null, pickV = -Infinity, pickWhy = '';
         for (const o of others) {
             if (o.rel !== DIPLO.PEACE || D.canDeclareWar(me, o.n)) continue;
-            const grudge = this.grudge.has(o.n), vsHeg = !!heg && o.n === heg;
-            // zasięg: dwóch najbliższych sąsiadów (choćby daleko - marsz przez kontynent to ok. 2 minuty) albo ktoś
-            // naprawdę blisko; hegemon i dłużnik trybutu - zawsze
-            if (!(o.rank <= 1 || o.prox >= 0.45 || vsHeg || grudge)) continue;
-            const ratio = myBloc / Math.max(1, o.bloc);
-            const allyWar = allies.some(a => D.atWar(a.n, o.n));
-            // w końcówce (zostało najwyżej trzech) ktoś musi zaryzykować - wystarczy mniejsza przewaga
-            const need = (vsHeg ? (allyWar ? 0.6 : 0.75) : grudge ? 0.95 : 1.2) + this.caution * 0.4 - aggro * 0.45 - (others.length <= 2 ? 0.15 : 0);
-            if (ratio < need) continue;                                                                  // za mało przewagi
-            let v = o.prox * 1.2 + (ratio - 1) * 0.8 - o.op / 50 + aggro * 0.5 - o.rank * 0.12;
-            if (allyWar) v += 0.6;                                                                       // wróg sojusznika
-            if (vsHeg) v += 0.7;
-            if (grudge) v += 0.8;
-            v -= Math.max(0, o.attackers - (vsHeg ? 2 : 0)) * 0.45;                                       // na już napadniętego - niechętnie
-            if (v > pickV) {
-                pickV = v; pick = o;
-                pickWhy = grudge ? 'Odmówiliście trybutu — teraz zapłacicie więcej.' : vsHeg ? 'Wasza potęga zagraża całemu kontynentowi.'
-                    : o.op < -30 ? 'Czas wyrównać stare rachunki.' : 'Wasze ziemie leżą zbyt blisko naszych granic.';
-            }
+            const r = this.warScore(o, heg, allies, aggro, others.length, myBloc);
+            if (r && r.v > pickV) { pickV = r.v; pick = o; pickWhy = r.why; }
         }
         if (pick && pickV > 1.25 - aggro * 0.6) {
             this.lastWarAt = g.time;
+            D.paceUse('war');
             this.focus = pick.n;
             this.grudge.delete(pick.n);
             this.setGoal(pick.n, 240 + this.aggro * 200);
@@ -23083,6 +23246,51 @@ class DiplomatAI {
                 if (a.n.diplomat && a.n.ai) a.n.diplomat.callToArms(me, pick.n);   // ludzie: wezwanie jest w komunikacie Diplomacy.declareWar
             }
         }
+    }
+
+    // Ocena celu wojny (think, krok 7; panel gracza - DiplomatAI.eyes): { v, why } albo null - poza zasięgiem
+    // albo za mało przewagi. o - wpis z survey(), allies - nasi sojusznicy (wpisy z survey())
+    warScore(o, heg, allies, aggro, nOthers, myBloc) {
+        const D = this.game.diplo;
+        if (o.rel !== DIPLO.PEACE) return null;
+        const grudge = this.grudge.has(o.n), vsHeg = !!heg && o.n === heg;
+        // zasięg: dwóch najbliższych sąsiadów (choćby daleko - marsz przez kontynent to ok. 2 minuty) albo ktoś
+        // naprawdę blisko; hegemon i dłużnik trybutu - zawsze
+        if (!(o.rank <= 1 || o.prox >= 0.45 || vsHeg || grudge)) return null;
+        const ratio = myBloc / Math.max(1, o.bloc);
+        const allyWar = allies.some(a => D.atWar(a.n, o.n));
+        // w końcówce (zostało najwyżej trzech) ktoś musi zaryzykować - wystarczy mniejsza przewaga
+        const need = (vsHeg ? (allyWar ? 0.6 : 0.75) : grudge ? 0.95 : 1.2) + this.caution * 0.4 - aggro * 0.45 - (nOthers <= 2 ? 0.15 : 0);
+        if (ratio < need) return null;                                                               // za mało przewagi
+        let v = o.prox * 1.2 + (ratio - 1) * 0.8 - o.op / 50 + aggro * 0.5 - o.rank * 0.12;
+        if (allyWar) v += 0.6;                                                                       // wróg sojusznika
+        if (vsHeg) v += 0.7;
+        if (grudge) v += 0.8;
+        v -= Math.max(0, o.attackers - (vsHeg ? 2 : 0)) * 0.45;                                       // na już napadniętego - niechętnie
+        const why = grudge ? 'Odmówiliście trybutu — teraz zapłacicie więcej.' : vsHeg ? 'Wasza potęga zagraża całemu kontynentowi.'
+            : o.op < -30 ? 'Czas wyrównać stare rachunki.' : 'Wasze ziemie leżą zbyt blisko naszych granic.';
+        return { v, why };
+    }
+
+    // Panel Dyplomacji gracza (V1.0, znacznik "może napaść"): czy ta nacja realnie rozważa wojnę z n - te same progi
+    // co przy wyborze celu wojny (warScore), bez losowości i tempa świata; także w ostatniej minucie rozejmu.
+    // Przegląd sytuacji liczony najwyżej raz na 2 s gry.
+    eyes(n) {
+        const g = this.game, D = g.diplo, me = this.nation;
+        if (!D.alive(me) || !D.alive(n) || D.get(me, n) !== DIPLO.PEACE) return false;
+        const truceSoon = D.inTruce() && D.truceUntil - g.time < 60;
+        if (D.inTruce() ? !truceSoon : D.canDeclareWar(me, n)) return false;
+        if (!this._eye || g.time - this._eye.t > 2 || g.time < this._eye.t) {
+            const others = this.survey();
+            this._eye = { t: g.time, others, allies: others.filter(x => x.rel === DIPLO.ALLY), heg: D.hegemon(), aggro: this.aggroNow(), bloc: this.bloc(me), r: new Map() };
+        }
+        const E = this._eye;
+        if (E.r.has(n)) return E.r.get(n);
+        const o = E.others.find(x => x.n === n);
+        const s = o ? this.warScore(o, E.heg, E.allies, E.aggro, E.others.length, E.bloc) : null;
+        const r = !!s && s.v > 1.1 - E.aggro * 0.6;
+        E.r.set(n, r);
+        return r;
     }
 
     // Końcówka: wszyscy, którzy zostali, to nasi sojusznicy
@@ -28445,7 +28653,10 @@ const SaveGame = {
         '_slowTime _okTime _fastAt _fxA unitsOnScreen _bFlat _bObjs _bUnits _bWalls screenW screenH _tix _nodeQ _playerNation placeError ' +
         'terrain minimap started _visTeams _localAdopted _visStamp _visRad _visGen visRowSpans _fullGrid _pumpLast _budgetExternal ' +
         'fogUpdateTimer drawScale nearK cloudSprite cloudSize clouds rawFogCanvas rawFogCtx fogImageData fogSettled fogEmpty fogDirty ' +
-        '_trk _fogVis _fogExp _mist intro stuck ruins hostPaused byId obstacleVersion zoom zoomTarget lastAutosave').split(' ')),
+        '_trk _fogVis _fogExp _mist intro stuck ruins hostPaused byId obstacleVersion zoom zoomTarget lastAutosave ' +
+        // pamięci podręczne efektów (płótna, konteksty, wzory) - V1.0: wcześniej _bloom, _shine, _stk i _glare trafiały
+        // do zapisu jako puste szkielety bez płócien i po wczytaniu każda klatka przerywała się wyjątkiem w drawPost
+        '_bloom _shine _stk _glare _wsL _wsG _spL _spG _glit _sparkPat _cloudHi _gust _shL _shG _mistPat _vig').split(' ')),
     // pola encji, które są tylko pamięcią podręczną obrazu albo przynależnością do siatek odtwarzanych przy wczytaniu
     ENTITY_SKIP: new Set(['_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf', '_gridLayer', '_gridTeam', '_gridKey', '_grid',
         '_links', '_linksVer', 'isSelected', 'netHidden', 'netFresh']),
@@ -28522,7 +28733,18 @@ const SaveGame = {
             const keys = Object.keys(o);
             return (k === 'class' && o instanceof Entity) ? keys.filter(f => !ES.has(f)) : keys;
         };
-        const gameKeys = Object.keys(g).filter(k => !GS.has(k));
+        // Pole, które trzyma płótno, kontekst albo wzór (także w obiekcie lub tablicy, do 3 poziomów w głąb), to pamięć
+        // podręczna obrazu: nie da się jej zapisać, a pusty szkielet po wczytaniu psuje rysowanie - pomijamy je całe
+        const holdsGfx = (v, d) => {
+            if (!v || typeof v !== 'object') return false;
+            const k = kind(v);
+            if (k === 'drop') return true;
+            if (d >= 3 || (k !== 'arr' && k !== 'obj')) return false;
+            const vals = k === 'arr' ? v : Object.values(v);
+            for (let i = 0; i < vals.length && i < 64; i++) if (holdsGfx(vals[i], d + 1)) return true;
+            return false;
+        };
+        const gameKeys = Object.keys(g).filter(k => !GS.has(k) && !holdsGfx(g[k], 0));
 
         // 1. przejście: ile odwołań prowadzi do każdego obiektu (obiekty z kilkoma odwołaniami dostaną numer)
         const count = new Map(), stack = [];
@@ -28688,8 +28910,10 @@ const SaveGame = {
             for (const k in v) o[k] = dec(v[k]);
             return o;
         };
-        // kolejność odczytu taka sama jak zapisu: najpierw pola gry, potem tablica obiektów
-        for (const k in data.game) g[k] = dec(data.game[k]);
+        // kolejność odczytu taka sama jak zapisu: najpierw pola gry, potem tablica obiektów. Pola z listy GAME_SKIP
+        // (np. pamięci podręczne efektów w zapisach sprzed poprawki) są odczytywane, ale nie trafiają do gry - gra
+        // zbuduje je od nowa przy rysowaniu
+        for (const k in data.game) { const v = dec(data.game[k]); if (!this.GAME_SKIP.has(k)) g[k] = v; }
         for (let i = 0; i < T.length; i++) {
             const f = data.table[i].f, o = T[i];
             for (const k in f) o[k] = dec(f[k]);

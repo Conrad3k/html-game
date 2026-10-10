@@ -18,7 +18,9 @@ hegemon i koalicje, SI dyplomaty z cierpliwością, księgą strat i zmęczeniem
 pogrupowane według relacji z tobą (herb władcy, opinia o tobie, siła i jedna główna akcja; klik rozwija szczegóły i
 pozostałe akcje), liczniki wojen, sojuszy i pokojów z ikonami na przycisku w górnym pasku, propozycje z przyciskami
 Przyjmij / Odrzuć w rogu ekranu bez otwierania panelu i kronika zdarzeń. Komunikaty tylko o tym, co cię dotyczy —
-wojny i traktaty innych nacji trafiają do kroniki.
+wojny i traktaty innych nacji trafiają do kroniki. Pod nagłówkiem panelu twoja sytuacja w jednym zdaniu, przy nacjach
+znacznik „może napaść”, a propozycje, sojusze i pokój mają własne łagodne dźwięki. Po rozejmie SI nie rusza wszystkimi
+naraz: wojny wybuchają jedna po drugiej, a do gracza trafia najwyżej jedna propozycja naraz.
 
 **Cuda Świata** — Wiszące Ogrody, Kolos i Wielka Biblioteka (III era) oraz Wielka Bazylika (IV era), każdy tylko raz na
 mapie i z własną premią. Ukończone Cuda dają Chwałę (każdy kolejny 70%), ale nie gdy są oblężone albo właściciel nie ma
