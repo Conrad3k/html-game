@@ -19946,7 +19946,9 @@ class NationAI {
         // V3.5 Final: Wszech-wzrok (własny albo sojusznika) - AI zna każdą wrogą jednostkę i budynek
         if (game.nations.some(n => n.team === myTeam && n.omni && !n.defeated)) {
             for (const n of game.nations) {
-                if (n.team === myTeam) continue;
+                // Dyplomacja (V1.0): tylko nacje, z którymi jest wojna - wcześniej wojsko sąsiadów w pokoju liczyło się
+                // jako zagrożenie osady i SI z Wszech-wzrokiem latami "broniła się", zamiast prowadzić politykę
+                if (n.team === myTeam || !game.hostileTeams(myTeam, n.team)) continue;
                 for (const u of n.units) if (!u.isDestroyed && !u.inside) visible.add(u);
                 for (const b of n.buildings) if (!b.isDestroyed) visible.add(b);
             }
