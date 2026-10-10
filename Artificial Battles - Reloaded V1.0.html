@@ -1155,23 +1155,89 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 .dp-pill.war { background: rgba(255, 90, 77, 0.2); color: #ff8f85; box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.45); }
 .dp-pill.peace { background: rgba(235, 237, 245, 0.1); color: var(--label-2); box-shadow: inset 0 0 0 1px var(--hair-2); }
 .dp-pill.ally { background: rgba(50, 209, 93, 0.18); color: #7fe39a; box-shadow: inset 0 0 0 1px rgba(50, 209, 93, 0.45); }
-.dp-op { display: inline-block; width: 46px; height: 5px; border-radius: 3px; background: var(--fill); position: relative; overflow: hidden; vertical-align: middle; }
-.dp-op i { position: absolute; top: 0; bottom: 0; left: 50%; }
 .dp-act { display: inline-flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
 .dp-act button { padding: 4px 9px; border-radius: 8px; border: 0; cursor: pointer; font: 600 11.5px var(--ui); color: var(--label); background: var(--fill); }
 .dp-act button:hover:not(:disabled) { background: rgba(255, 255, 255, 0.16); }
 .dp-act button.war { background: rgba(255, 90, 77, 0.24); color: #ffb0a8; }
 .dp-act button.ok { background: rgba(50, 209, 93, 0.22); color: #9df0b2; }
 .dp-act button:disabled { opacity: 0.4; cursor: default; }
-.dp-props { margin: 10px 0 2px; display: flex; flex-direction: column; gap: 6px; }
-.dp-prop { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; border-radius: 12px; background: rgba(241, 197, 106, 0.12); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.35); font-size: 12.5px; }
-.dp-head { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin: 0 0 8px; }
-.dp-head b { font-size: 14px; }
-.dp-head small { color: var(--label-3); font-size: 11.5px; }
 .dp-badge { display: inline-block; min-width: 16px; height: 16px; margin-left: 5px; padding: 0 4px; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font: 800 10.5px/16px var(--ui); font-style: normal; text-align: center; }
 #nations-panel.diplo td { vertical-align: middle; }
-.dp-log { margin-top: 8px; font-size: 11.5px; color: var(--label-3); line-height: 1.5; }
 #nations-panel.diplo { pointer-events: auto; }
+
+
+/* ===== Reloaded V1.0: panel Dyplomacji - karty nacji z portretami władców ===== */
+.ruler-ico { display: inline-block; flex: none; border-radius: 50%; vertical-align: middle; filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.45)); }
+#nations-panel.diplo { width: min(620px, calc(100% - 24px)); max-height: calc(100% - 92px); overflow-y: auto; padding: 14px 14px 10px; box-sizing: border-box; overscroll-behavior: contain; }
+#mid-layer.with-tutorial #nations-panel.diplo { width: min(620px, calc(100% - 376px)); }
+.dp-head { display: flex; align-items: center; gap: 11px; margin: 0 0 12px; }
+.dp-ht { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.dp-ht b { font-family: var(--display); font-size: 17px; letter-spacing: 0.08em; color: var(--accent); font-weight: 700; }
+.dp-ht small { color: var(--label-3); font-size: 11.5px; line-height: 1.35; }
+.dp-chips { display: flex; gap: 5px; flex: none; }
+.dp-chip { padding: 4px 9px; border-radius: 999px; font: 700 12px var(--ui); color: var(--label-2); background: var(--fill-2); box-shadow: inset 0 0 0 1px var(--hair); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dp-chip.war { color: #ffb0a8; } .dp-chip.ally { color: #9df0b2; }
+.dp-chip.truce { color: #ffe3a3; background: rgba(241, 197, 106, 0.14); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.4); }
+.dp-props { margin: 0 0 12px; display: flex; flex-direction: column; gap: 6px; }
+.dp-prop { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 14px; background: linear-gradient(90deg, rgba(241, 197, 106, 0.16), rgba(241, 197, 106, 0.06)); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.4); font-size: 13px; animation: dp-glow 2.4s ease-in-out infinite; }
+@keyframes dp-glow { 50% { box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.75), 0 0 18px rgba(241, 197, 106, 0.12); } }
+@media (prefers-reduced-motion: reduce) { .dp-prop { animation: none; } }
+.dp-prop-t { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.dp-prop-t small { color: var(--label-3); font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dp-prop b.pc { color: #cfe0ff; } .dp-prop b.al { color: #9df0b2; }
+.dp-sec { display: flex; align-items: center; gap: 8px; margin: 10px 2px 6px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--label-3); }
+.dp-sec::after { content: ''; flex: 1; height: 1px; background: var(--hair); }
+.dp-sec i { font-style: normal; min-width: 16px; padding: 0 5px; border-radius: 8px; background: var(--fill-2); text-align: center; letter-spacing: 0; }
+.dp-sec.war span { color: #ff9b91; } .dp-sec.ally span { color: #8fe9a8; }
+.dp-list > .dp-sec:first-child { margin-top: 0; }
+.dp-card { display: flex; align-items: center; gap: 11px; padding: 10px 11px 10px 12px; margin-bottom: 6px; border-radius: 16px; background: rgba(255, 255, 255, 0.035); box-shadow: inset 0 0 0 1px var(--hair), inset 3px 0 0 var(--nc); }
+.dp-card.war { background: linear-gradient(90deg, rgba(255, 90, 77, 0.1), rgba(255, 255, 255, 0.03) 60%); }
+.dp-card.ally { background: linear-gradient(90deg, rgba(50, 209, 93, 0.09), rgba(255, 255, 255, 0.03) 60%); }
+.dp-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.dp-l1 { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.dp-name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; filter: brightness(1.25); white-space: nowrap; }
+.dp-ruler { font-size: 12px; color: var(--label-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-style: italic; }
+.dp-l2 { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; font-size: 11.5px; }
+.dp-meta { color: var(--label-3); }
+.dp-meta b { color: var(--label-2); }
+.dp-l3 { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; }
+.dp-stat { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.dp-k { color: var(--label-3); font-size: 11px; }
+.dp-op, .dp-pw { display: inline-block; width: 54px; height: 6px; border-radius: 3px; background: var(--fill); position: relative; overflow: hidden; }
+.dp-op::after { content: ''; position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1px; background: rgba(255, 255, 255, 0.35); }
+.dp-op i, .dp-pw i { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 3px; }
+.dp-pw::after { content: ''; position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1px; background: rgba(255, 255, 255, 0.35); }
+.dp-l4 { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 11.5px; color: var(--label-3); }
+.dp-web { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.dp-n { display: inline-flex; align-items: center; gap: 4px; color: var(--label-2); font-weight: 600; }
+.dp-n::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--nc); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3); }
+.dp-web .dp-n + .dp-n { margin-left: 4px; }
+.dp-side { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex: none; max-width: 170px; }
+.dp-act { flex-direction: column; align-items: stretch; }
+.dp-act button { padding: 6px 11px; font-size: 12px; border-radius: 9px; white-space: nowrap; }
+.dp-act button.pc { background: rgba(10, 132, 255, 0.24); color: #b8d9ff; }
+.dp-act button.war.armed { background: #e2483c; color: #fff; animation: dp-armed 0.6s ease-in-out infinite alternate; }
+@keyframes dp-armed { to { background: #ff6a5c; } }
+.dp-prop .dp-act { flex-direction: row; }
+.dp-note { font-size: 10.5px; color: var(--label-3); text-align: right; line-height: 1.3; }
+.dp-dead { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 0 2px 4px; font-size: 12px; color: var(--label-3); }
+.dp-dead span { display: inline-flex; align-items: center; gap: 6px; text-decoration: line-through; text-decoration-color: rgba(255, 255, 255, 0.25); }
+.dp-dead .ruler-ico { filter: grayscale(0.7) brightness(0.7); }
+.dp-log { margin-top: 4px; display: flex; flex-direction: column; gap: 3px; }
+.dp-log .dp-sec { margin-top: 8px; }
+.dp-ev { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--label-3); padding: 2px 2px; }
+.dp-ev small { font-variant-numeric: tabular-nums; min-width: 34px; color: var(--label-3); font-size: 11px; }
+.dp-ev-i { width: 7px; height: 7px; border-radius: 2px; flex: none; background: var(--label-3); transform: rotate(45deg); }
+.dp-ev.war .dp-ev-i { background: #ff5a4d; } .dp-ev.pc .dp-ev-i { background: #0a84ff; } .dp-ev.al .dp-ev-i { background: #32d15d; }
+#nations-panel td .ruler-ico { margin-right: 7px; vertical-align: -6px; }
+#end-stats td .ruler-ico { margin-right: 9px; vertical-align: -7px; float: left; margin-top: 3px; }
+#end-stats .end-ruler { font-size: 11px; font-style: italic; }
+@media (max-width: 640px) {
+    .dp-card { flex-wrap: wrap; }
+    .dp-side { max-width: none; width: 100%; align-items: stretch; }
+    .dp-act { flex-direction: row; justify-content: flex-end; }
+    .dp-chips { display: none; }
+}
 
 /* ===== Reloaded V1.0: zapis i wczytywanie gry ===== */
 .stage-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -8500,7 +8566,7 @@ class UIManager {
             const showRes = (full || ally) && sm.pop >= 0 && !!sm.res;
             const status = n.defeated ? '<span class="st-dead">pokonani</span>' : (n.graceUntil != null ? `<span class="st-warn">bez Ratusza ${Math.max(0, Math.ceil(n.graceUntil - g.time))} s</span>` : '');
             const diff = n.controlLabel();
-            rows += `<tr class="${n.defeated ? 'dead' : ''}"><td><span class="dot" style="background:${n.color}"></span>${n.shortName || n.name} ${status}</td>
+            rows += `<tr class="${n.defeated ? 'dead' : ''}"><td>${Rulers.img(n, g, 24)}${n.shortName || n.name}${n === me ? ' <span class="mut">(ty)</span>' : ''} ${status}</td>
                 <td><span class="team-tag t${n.teamLabel || 1}">${n.teamLabel || 1}</span></td><td class="mut">${diff}</td><td>${GameConfig.ages[n.age].roman}</td>
                 <td>${showRes ? sm.pop + '/' + sm.cap : '—'}</td><td>${showRes ? sm.workers : '—'}</td><td>${showRes ? sm.army : '—'}</td>
                 <td>${showRes ? sm.res[0] : '—'}</td><td>${showRes ? sm.res[1] : '—'}</td><td>${showRes ? sm.res[2] : '—'}</td><td>${showRes ? sm.res[3] : '—'}</td>
@@ -8512,8 +8578,10 @@ class UIManager {
         if (html !== this._nationsSig) { this._nationsSig = html; el.innerHTML = html; }
     }
 
-    // Reloaded: panel Dyplomacji (Tab) - relacja z każdą nacją, jej opinia o nas, siła w porównaniu z naszą,
-    // przyciski: wojna / pokój / sojusz / zerwanie sojuszu, propozycje czekające na odpowiedź i kronika zdarzeń.
+    // Reloaded: panel Dyplomacji (Tab). V1.0: nacje jako karty z portretem władcy, pogrupowane według relacji z tobą
+    // (wojna, sojusz, pokój, pokonani); przy każdej opinia o tobie (pasek i słowo), siła w porównaniu z twoją, z kim
+    // ta nacja walczy i trzyma sojusz, oraz przyciski: wojna / pokój / sojusz / zerwanie sojuszu. U góry propozycje
+    // czekające na odpowiedź, na dole kronika zdarzeń.
     renderDiplomacy() {
         const el = this.el['nations-panel'];
         const g = this.game, D = g.diplo, me = this.playerNation;
@@ -8521,48 +8589,90 @@ class UIManager {
         const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
         const truce = D.truceUntil - g.time;
         const mmss = (t) => Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+        const ago = (t) => { const s = Math.max(0, g.time - t); return s < 60 ? 'od chwili' : 'od ' + Math.floor(s / 60) + ' min'; };
         const myS = g.isClient ? 0 : D.strength(me);
+        const nm = (n) => esc(n.shortName || n.name);
+        const tag = (n) => `<span class="dp-n" style="--nc:${n.color}">${nm(n)}</span>`;
         let props = '';
         for (const p of D.proposals) {
             if (p.to !== me || full) continue;
-            props += `<div class="dp-prop"><span><span class="dot" style="background:${p.from.color}"></span><b>${esc(D.name(p.from))}</b> proponuje ${p.kind === 'peace' ? 'pokój' : 'sojusz'} <small class="mut">· ${Math.max(0, Math.ceil(p.until - g.time))} s</small></span>
+            props += `<div class="dp-prop">${Rulers.img(p.from, g, 30)}<span class="dp-prop-t"><span><b>${nm(p.from)}</b> proponuje ci ${p.kind === 'peace' ? '<b class="pc">pokój</b>' : '<b class="al">sojusz</b>'}</span><small>${esc(Rulers.title(p.from, g))} · odpowiedź w ciągu ${Math.max(0, Math.ceil(p.until - g.time))} s</small></span>
                 <span class="dp-act"><button class="ok" data-dip="accept" data-id="${p.id}">Przyjmij</button><button data-dip="decline" data-id="${p.id}">Odrzuć</button></span></div>`;
         }
-        let rows = '';
+        const OPW = [[-50, 'wrogość', '#ff7b70'], [-15, 'niechęć', '#ffb08a'], [15, 'obojętność', 'var(--label-2)'], [50, 'sympatia', '#a6e6a0'], [101, 'przyjaźń', '#7fe39a']];
+        const groups = { war: [], ally: [], peace: [], dead: [] };
+        let counts = [0, 0, 0];
         for (const n of g.nations) {
             if (n === me) continue;
-            const st = D.get(me, n), cls = ['war', 'peace', 'ally'][st];
-            const status = n.defeated ? '<span class="st-dead">pokonani</span>' : '';
-            const op = Math.round(D.op(n, me));
-            const opBar = `<span class="dp-op" title="Opinia tej nacji o tobie: ${op > 0 ? '+' : ''}${op}"><i style="${op >= 0 ? 'left:50%;width:' + (op / 2) + '%;background:#32d15d' : 'left:' + (50 + op / 2) + '%;width:' + (-op / 2) + '%;background:#ff5a4d'}"></i></span>`;
-            let str = '—';
-            if (!g.isClient && !n.defeated) {
-                const k = D.strength(n) / Math.max(1, myS);
-                str = k > 1.6 ? '<span style="color:#ff8f85">dużo silniejsi</span>' : k > 1.15 ? '<span style="color:#ffc58a">silniejsi</span>' : k > 0.87 ? 'podobna' : k > 0.6 ? '<span style="color:#b9e6a0">słabsi</span>' : '<span style="color:#7fe39a">dużo słabsi</span>';
+            const st = D.get(me, n);
+            if (n.defeated) { groups.dead.push(n); continue; }
+            counts[st]++;
+            const cls = ['war', 'peace', 'ally'][st];
+            // opinia o tobie
+            let opinion = '<span class="dp-k">Opinia</span><span class="mut">gracz</span>';
+            if (!n.human || n.ai) {
+                const op = Math.round(D.op(n, me)), w = OPW.find(x => op < x[0]) || OPW[4];
+                opinion = `<span class="dp-k">Opinia o tobie</span><span class="dp-op" title="Co ta nacja myśli o tobie: ${op > 0 ? '+' : ''}${op} (od −100 do +100)"><i style="${op >= 0 ? 'left:50%;width:' + (op / 2) + '%;background:#32d15d' : 'left:' + (50 + op / 2) + '%;width:' + (-op / 2) + '%;background:#ff5a4d'}"></i></span><b style="color:${w[2]}">${w[1]}</b> <small class="mut">${op > 0 ? '+' : ''}${op}</small>`;
             }
-            let act = '';
-            if (!full && !n.defeated && !me.defeated) {
+            // siła w porównaniu z twoją
+            let power = '';
+            if (!g.isClient) {
+                const k = D.strength(n) / Math.max(1, myS);
+                const word = k > 1.6 ? ['dużo silniejsi', '#ff8f85'] : k > 1.15 ? ['silniejsi', '#ffc58a'] : k > 0.87 ? ['podobna siła', 'var(--label-2)'] : k > 0.6 ? ['słabsi', '#b9e6a0'] : ['dużo słabsi', '#7fe39a'];
+                const f = Math.round(100 * k / (1 + k));
+                power = `<span class="dp-k">Siła</span><span class="dp-pw" title="Ich siła (wojsko, wieże, era) wobec twojej: ${k.toFixed(1).replace('.', ',')}×"><i style="width:${f}%;background:${word[1]}"></i></span><b style="color:${word[1]}">${word[0]}</b>`;
+            }
+            // z kim ta nacja walczy i trzyma sojusz (bez ciebie - to widać w relacji)
+            const wars = [], allies = [];
+            for (const o of g.nations) {
+                if (o === n || o === me || o.defeated) continue;
+                const s2 = D.get(n, o);
+                if (s2 === DIPLO.WAR) wars.push(o); else if (s2 === DIPLO.ALLY) allies.push(o);
+            }
+            const web = (wars.length ? `<span class="dp-web war"><span class="dp-k">walczy z</span>${wars.map(tag).join('')}</span>` : '') +
+                (allies.length ? `<span class="dp-web ally"><span class="dp-k">sojusz z</span>${allies.map(tag).join('')}</span>` : '');
+            const ch = Rulers.character(n);
+            const meta = [esc(n.controlLabel()), ch ? `<span title="${esc(ch.desc)}">${esc(ch.name)}</span>` : '', 'Era ' + GameConfig.ages[n.age].roman, 'wynik <b>' + n.summary().score + '</b>'].filter(Boolean).join(' · ');
+            let act = '', note = '';
+            if (!full && !me.defeated) {
                 const idx = g.nations.indexOf(n);
                 const warErr = D.canDeclareWar(me, n);
                 const armed = this._warArmed === String(idx) && performance.now() - this._warArmedAt <= 5000;
-                if (st === DIPLO.WAR) act = `<button data-dip="peace" data-to="${idx}">Zaproponuj pokój</button>`;
+                if (st === DIPLO.WAR) act = `<button class="pc" data-dip="peace" data-to="${idx}" title="Propozycja pokoju — nacja odpowie od razu (z uzasadnieniem)">Zaproponuj pokój</button>`;
                 else {
-                    if (st === DIPLO.PEACE) act += `<button class="ok" data-dip="alliance" data-to="${idx}">Sojusz</button>`;
+                    if (st === DIPLO.PEACE) act += `<button class="ok" data-dip="alliance" data-to="${idx}" title="Propozycja sojuszu: wspólne pole widzenia i obrona">Sojusz</button>`;
                     else act += `<button data-dip="break" data-to="${idx}" title="Sojusz zostaje zerwany, ale pokój trwa dalej">Zerwij sojusz</button>`;
-                    act += `<button class="war" data-dip="war" data-to="${idx}"${warErr ? ' disabled' : ''} title="${esc(warErr || (st === DIPLO.ALLY ? 'Atak na sojusznika to zdrada — inne nacje to zapamiętają' : 'Wypowiedzenie wojny: jednostki i wieże zaczną walczyć'))}">${armed ? 'Na pewno? Kliknij' : 'Wojna'}</button>`;
+                    act += `<button class="war${armed ? ' armed' : ''}" data-dip="war" data-to="${idx}"${warErr ? ' disabled' : ''} title="${esc(warErr || (st === DIPLO.ALLY ? 'Atak na sojusznika to zdrada — inne nacje to zapamiętają' : 'Wypowiedzenie wojny: jednostki i wieże zaczną walczyć'))}">${armed ? 'Na pewno? Kliknij' : 'Wojna'}</button>`;
+                    if (warErr && truce <= 0) note = `<small class="dp-note">${esc(warErr)}</small>`;
                 }
             }
-            rows += `<tr class="${n.defeated ? 'dead' : ''}"><td><span class="dot" style="background:${n.color}"></span>${esc(n.shortName || n.name)} ${status}</td>
-                <td><span class="dp-pill ${cls}">${DIPLO.NAMES[st]}</span></td><td>${!n.human || n.ai ? opBar : '<span class="mut">gracz</span>'}</td><td>${str}</td>
-                <td class="mut">${esc(n.controlLabel())}</td><td>${GameConfig.ages[n.age].roman}</td><td><b>${n.summary().score}</b></td><td><span class="dp-act">${act}</span></td></tr>`;
+            groups[cls].push(`<div class="dp-card ${cls}" style="--nc:${n.color}">
+                ${Rulers.img(n, g, 42)}
+                <div class="dp-main">
+                    <div class="dp-l1"><b class="dp-name" style="color:${n.color}">${nm(n)}</b><span class="dp-ruler">${esc(Rulers.title(n, g))}</span></div>
+                    <div class="dp-l2"><span class="dp-pill ${cls}">${DIPLO.NAMES[st]}</span><small class="mut">${ago(D.sinceOf(me, n))}</small><span class="dp-meta">${meta}</span></div>
+                    <div class="dp-l3"><span class="dp-stat">${opinion}</span>${power ? '<span class="dp-stat">' + power + '</span>' : ''}</div>
+                    ${web ? '<div class="dp-l4">' + web + '</div>' : ''}
+                </div>
+                <div class="dp-side"><span class="dp-act">${act}</span>${note}</div>
+            </div>`);
         }
-        const nm = (i) => { const n = g.nations[i]; return n ? esc(n.shortName || n.name) : '?'; };
-        const KIND = { war: 'wypowiada wojnę', peace: 'zawiera pokój z', alliance: 'zawiera sojusz z', break: 'zrywa sojusz z' };
-        const log = D.history.slice(-5).reverse().map(h => `${mmss(h.t)} · ${nm(h.a)} ${KIND[h.kind] || h.kind}${h.kind === 'war' ? ' nacji' : ''} ${nm(h.b)}`).join('<br>');
-        const html = `<div class="dp-head"><b>Dyplomacja</b><small>${truce > 0 ? 'Rozejm: jeszcze ' + mmss(truce) + ' — nikt nie może wypowiedzieć wojny' : 'Wojny, pokoje i sojusze zmieniają się w trakcie gry'}${D.allianceWin ? ' · sojusz wszystkich, którzy przetrwali, wygrywa' : ''}</small></div>
+        const sec = (title, list, cls) => list.length ? `<div class="dp-sec ${cls}"><span>${title}</span><i>${list.length}</i></div>${list.join('')}` : '';
+        const dead = groups.dead.length ? `<div class="dp-sec dead"><span>Pokonani</span><i>${groups.dead.length}</i></div><div class="dp-dead">${groups.dead.map(n => `<span>${Rulers.img(n, g, 20)}${nm(n)}</span>`).join('')}</div>` : '';
+        const KIND = { war: ['wypowiada wojnę', 'war'], peace: ['zawiera pokój z', 'pc'], alliance: ['zawiera sojusz z', 'al'], break: ['zrywa sojusz z', 'br'] };
+        const log = D.history.slice(-6).reverse().map(h => {
+            const a = g.nations[h.a], b = g.nations[h.b], k = KIND[h.kind] || [h.kind, ''];
+            if (!a || !b) return '';
+            return `<div class="dp-ev ${k[1]}"><small>${mmss(h.t)}</small><span class="dp-ev-i"></span><span>${tag(a)} ${k[0]}${h.kind === 'war' ? ' nacji' : ''} ${tag(b)}</span></div>`;
+        }).join('');
+        const status = truce > 0
+            ? `<span class="dp-chip truce" title="Na początku gry nikt nie może wypowiedzieć wojny">Rozejm · ${mmss(truce)}</span>`
+            : `<span class="dp-chip war" title="Nacje w wojnie z tobą">Wojna ${counts[0]}</span><span class="dp-chip ally" title="Twoi sojusznicy">Sojusz ${counts[2]}</span><span class="dp-chip" title="Nacje w pokoju z tobą">Pokój ${counts[1]}</span>`;
+        const html = `<div class="dp-head">${Rulers.img(me, g, 36)}<div class="dp-ht"><b>Dyplomacja</b><small>${D.allianceWin ? 'Wygrywa ostatnia nacja albo sojusz wszystkich, którzy przetrwali (przez 2 min)' : 'Wygrywa ostatnia nacja na kontynencie'}</small></div><div class="dp-chips">${status}</div></div>
             ${props ? '<div class="dp-props">' + props + '</div>' : ''}
-            <table><thead><tr><th>Nacja</th><th>Relacja</th><th title="Co ta nacja myśli o tobie">Opinia</th><th title="Siła w porównaniu z twoją">Siła</th><th>Sterowanie</th><th>Era</th><th>Wynik</th><th></th></tr></thead><tbody>${rows}</tbody></table>
-            ${log ? '<div class="dp-log">' + log + '</div>' : ''}`;
+            <div class="dp-list">${sec('Wojna z tobą', groups.war, 'war')}${sec('Twoi sojusznicy', groups.ally, 'ally')}${sec('W pokoju z tobą', groups.peace, 'peace')}${dead}</div>
+            ${log ? '<div class="dp-log"><div class="dp-sec"><span>Kronika</span></div>' + log + '</div>' : ''}
+            <div class="np-hint"><b>Tab</b> zamyka panel · wojnę potwierdzasz drugim kliknięciem</div>`;
         if (html !== this._nationsSig) { this._nationsSig = html; el.innerHTML = html; }
     }
 
@@ -8789,7 +8899,7 @@ class UIManager {
             const a = GameConfig.ages[e.owner.age];
             const diff = Difficulty.names[e.owner.ai.difficulty] || '';
             const ch = AI_CHARACTERS[e.owner.ai.personality];
-            extra = `<div class="sel-desc">AI: ${diff} · Era ${a.roman} · Jednostek: ${e.owner.units.length}</div>` +
+            extra = `<div class="sel-desc">Władca: <b>${Rulers.title(e.owner, g)}</b></div><div class="sel-desc">AI: ${diff} · Era ${a.roman} · Jednostek: ${e.owner.units.length}</div>` +
                 (ch && e.owner.ai.difficulty !== 'easy' && e.owner.ai.difficulty !== 'tutorial' ? `<div class="sel-desc">Charakter dowódcy: <b>${ch.name}</b> — ${ch.desc}.</div>` : '');
         }
         return `<div class="sel-row"><img class="portrait" src="${Icons.entityUrl(kind, e.unitType || e.type, e.owner.colorKey, 34, e.spriteVariant ? e.spriteVariant() : 0)}">
@@ -10051,7 +10161,7 @@ class UIManager {
             const gathered = Math.round(s.gathered.wood + s.gathered.gold + s.gathered.stone + s.gathered.food);
             const win = n.team === g.winnerTeam;
             const diff = n.controlLabel();
-            rows += `<tr class="${win ? 'win' : ''}"><td><span class="dot" style="background:${n.color}"></span>${n.shortName || n.name}${n.defeated ? ' <small>(pokonani)</small>' : ''}</td>
+            rows += `<tr class="${win ? 'win' : ''}"><td>${Rulers.img(n, g, 26)}${n.shortName || n.name}${n.defeated ? ' <small>(pokonani)</small>' : ''}<br><small class="end-ruler">${Rulers.title(n, g)}</small></td>
                 <td><span class="team-tag t${n.teamLabel || 1}">${n.teamLabel || 1}</span></td><td><small>${diff}</small></td>
                 <td>${GameConfig.ages[n.age].roman}</td><td>${s.trained}</td><td>${s.kills}</td><td>${s.unitsLost}</td><td>${s.razed}</td><td>${s.buildingsLost}</td><td>${gathered}</td><td><b>${n.score()}</b></td></tr>`;
         }
@@ -26703,6 +26813,93 @@ window.MpUI = MpUI;
 
 /* --- main.js --- */
 // Ustawienia zapamiętywane między grami (localStorage; gdy niedostępne - po prostu wartości domyślne)
+/* --- ui/Rulers.js --- */
+// Reloaded V1.0: władcy nacji - portret (herb na tarczy w okrągłej ramce) i imię z przydomkiem. Herb i imię wynikają
+// z koloru nacji i ziarna mapy, więc gość gry wieloosobowej i wczytany zapis widzą tych samych władców bez wysyłania
+// czegokolwiek. Tytuł rośnie z erą (książę -> król), przydomek SI odpowiada jej charakterowi, gdy ten jest jawny.
+const Rulers = {
+    MALE: ['Bolesław', 'Mieszko', 'Kazimierz', 'Władysław', 'Przemysł', 'Siemowit', 'Leszek', 'Ziemowit', 'Racibor', 'Bogusław', 'Warcisław', 'Dobiesław'],
+    FEMALE: ['Dobrawa', 'Jadwiga', 'Ryksa', 'Świętosława', 'Bona', 'Elżbieta', 'Wanda', 'Ludmiła', 'Zofia', 'Anna'],
+    EPITHET: {
+        defensive: ['Roztropny', 'Roztropna'], offensive: ['Śmiały', 'Śmiała'], reckless: ['Porywczy', 'Porywcza'],
+        raider: ['Łupieżca', 'Łupieżczyni'], siegemaster: ['Burzyciel', 'Burzycielka']
+    },
+    PLAIN: [['Pobożny', 'Pobożna'], ['Szczodry', 'Szczodra'], ['Stary', 'Stara'], ['Młody', 'Młoda'], ['Sprawiedliwy', 'Sprawiedliwa'], ['Wielki', 'Wielka']],
+    _cache: new Map(),
+
+    hash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; },
+    seedOf(g) { return g && g.terrain ? g.terrain.seed : (g ? g.mapWidth : 0); },
+    // stałe cechy władcy nacji w tej grze
+    traits(n, g) {
+        const seed = this.seedOf(g), key = n.colorKey + ':' + seed;
+        let t = this._cache.get(key);
+        if (t) return t;
+        const i = Math.max(0, ColorOrder.indexOf(n.colorKey)), h0 = this.hash('r' + seed), h1 = this.hash('s' + seed);
+        const female = ((h0 >>> 5) + i * 2) % 5 < 2;
+        const names = female ? this.FEMALE : this.MALE;
+        t = {
+            female, name: names[(h0 + i * (female ? 3 : 5)) % names.length],
+            plain: this.PLAIN[((h0 >>> 9) + i) % this.PLAIN.length][female ? 1 : 0],
+            charge: (h1 + i * 2) % 9, pattern: ((h1 >>> 7) + i) % 3
+        };
+        this._cache.set(key, t);
+        return t;
+    },
+    // "Król Bolesław Śmiały"; gracz: jego nazwa (gra wieloosobowa) albo "Ty"
+    title(n, g) {
+        const t = this.traits(n, g);
+        if (n.isPlayer) return n.playerName ? n.playerName : 'Ty';
+        if (n.human && n.playerName && !n.ai) return n.playerName;
+        const ai = n.ai, hidden = !ai || ai.difficulty === 'easy' || ai.difficulty === 'tutorial';
+        const ep = !hidden && this.EPITHET[ai.personality] ? this.EPITHET[ai.personality][t.female ? 1 : 0] : t.plain;
+        const rank = (n.age || 1) >= 3 ? (t.female ? 'Królowa' : 'Król') : (t.female ? 'Księżna' : 'Książę');
+        return rank + ' ' + t.name + ' ' + ep;
+    },
+    // charakter dowódcy SI do opisu (null, gdy ukryty - poziom Łatwy i samouczek)
+    character(n) {
+        const ai = n.ai;
+        if (!ai || ai.difficulty === 'easy' || ai.difficulty === 'tutorial') return null;
+        return AI_CHARACTERS[ai.personality] || null;
+    },
+
+    CHARGES: [
+        '<path d="M19 40 17 23l8 7 7-11 7 11 8-7-2 17z"/><rect x="19" y="42" width="26" height="5" rx="1.5"/>',                       // korona
+        '<path d="M22 47V28h-2v-8h5v4h4v-4h6v4h4v-4h5v8h-2v19z"/><path d="M29 47v-6a3 3 0 0 1 6 0v6z" fill="rgba(0,0,0,0.45)"/>',   // wieża
+        '<g stroke="#fff4d6" stroke-width="4.2" stroke-linecap="round"><path d="M21 21 43 43M43 21 21 43"/></g><g stroke="#fff4d6" stroke-width="3" stroke-linecap="round"><path d="M17 41l6 6M47 41l-6 6"/></g>',   // skrzyżowane miecze
+        '<path d="M32 17l4.1 9.3 10.1 1-7.6 6.7 2.2 9.9L32 38.8l-8.8 5.1 2.2-9.9-7.6-6.7 10.1-1z"/>',                                   // gwiazda
+        '<circle cx="32" cy="32" r="7.5"/><g stroke="#fff4d6" stroke-width="3" stroke-linecap="round"><path d="M32 16v5M32 43v5M16 32h5M43 32h5M20.7 20.7l3.5 3.5M39.8 39.8l3.5 3.5M43.3 20.7l-3.5 3.5M24.2 39.8l-3.5 3.5"/></g>',   // słońce
+        '<path d="M42 18A15 15 0 1 0 42 46A18 18 0 0 1 42 18z"/>',                                                                     // półksiężyc
+        '<path d="M15 45 32 22l17 23h-7.5L32 32.5 22.5 45z"/>',                                                                        // krokiew
+        '<circle cx="32" cy="22" r="6"/><circle cx="24.5" cy="32" r="6"/><circle cx="39.5" cy="32" r="6"/><rect x="29.5" y="31" width="5" height="17" rx="2"/>',   // trójliść
+        '<rect x="21" y="18" width="22" height="9" rx="2"/><rect x="29.5" y="25" width="5" height="23" rx="2"/>'                      // młot
+    ],
+    // portret władcy: herb nacji w okrągłej ramce w jej kolorze (data URL obrazu SVG, z pamięcią podręczną)
+    icon(n, g) {
+        const t = this.traits(n, g);
+        const pal = TeamPalette[n.colorKey] || TeamPalette.blue;
+        const key = 'i' + n.colorKey + t.charge + t.pattern + (n.defeated ? 'd' : '');
+        let url = this._cache.get(key);
+        if (url) return url;
+        const shield = 'M32 9 50 15.5V31c0 12-8 20-18 25-10-5-18-13-18-25V15.5z';
+        const part = t.pattern === 1 ? '<path d="M32 9 50 15.5V31c0 12-8 20-18 25z" fill="rgba(0,0,0,0.24)"/>'
+            : t.pattern === 2 ? '<path d="M14 15.5 32 9l18 6.5V23H14z" fill="rgba(0,0,0,0.26)"/>' : '';
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<defs><radialGradient id="b" cx="0.5" cy="0.35" r="0.75"><stop offset="0" stop-color="#2a3346"/><stop offset="1" stop-color="#0c1018"/></radialGradient>
+<linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${pal.light}"/><stop offset="0.35" stop-color="${pal.main}"/><stop offset="1" stop-color="${pal.dark}"/></linearGradient></defs>
+<circle cx="32" cy="32" r="30.5" fill="url(#b)" stroke="${pal.main}" stroke-width="3"/>
+<path d="${shield}" fill="url(#s)" stroke="#f1d27a" stroke-width="2" stroke-linejoin="round"/>${part}
+<g fill="#fff4d6" transform="translate(32 33) scale(0.62) translate(-32 -32)">${this.CHARGES[t.charge]}</g>
+${n.defeated ? '<path d="M14 14 50 50" stroke="#ff5a4d" stroke-width="4" stroke-linecap="round" opacity="0.85"/>' : ''}</svg>`;
+        url = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+        this._cache.set(key, url);
+        return url;
+    },
+    img(n, g, size, cls) {
+        return `<img class="ruler-ico${cls ? ' ' + cls : ''}" src="${this.icon(n, g)}" width="${size}" height="${size}" alt="" title="${this.title(n, g).replace(/"/g, '&quot;')}">`;
+    }
+};
+window.Rulers = Rulers;
+
 /* --- core/SaveGame.js --- */
 // Reloaded V1.0: zapis i wczytywanie stanu gry (gra solo, oba tryby). Zapis to cały graf obiektów symulacji: nacje,
 // jednostki, budynki, złoża, pociski, SI (dowódca i dyplomata), relacje Dyplomacji, odkryta mapa i pora dnia.
