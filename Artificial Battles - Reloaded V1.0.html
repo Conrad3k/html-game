@@ -1703,6 +1703,14 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li><b>Pewniejsze łączenie i start meczu</b>: kilku dostawców STUN, lepszy dobór adresów, świat wysyłany porcjami, a wolniejszy komputer nie jest wyrzucany przy wczytywaniu. Na dole strony Gra wieloosobowa jest <b>test sieci</b> i pole na własny <b>serwer TURN</b> dla trudnych sieci.</li>
                         </ul>
 
+                        <h3>Testy przed premierą: balans i poprawki</h3>
+                        <ul>
+                            <li><b>Balans jednostek</b> sprawdzony pojedynkami oddziałów za równe koszty (20 rodzajów wojska, każdy z każdym). <b>Husarz</b> wygrywał z prawie wszystkimi, także ze swoimi kontrami — teraz ma 230 życia, szarżę ×2,2 (z Hartowanymi Kopiami ×2,7) i kosztuje 100 żywności + 110 złota: nadal rozbija łuczników, harcowników i machiny, ale przegrywa z muszkieterami, arkebuzerami, rajtarami, halabardnikami i włócznikami. <b>Muszkieter</b> strzela co 1,55 s (było 1,7 s). <b>Grenadier</b> ma większy wybuch i zadaje piechocie ×1,25 obrażeń — naprawdę rozbija zwarte szyki. <b>Arkebuzer</b> zadaje kawalerii ×1,8 obrażeń (było ×1,4) i strzela co 2,2 s — wreszcie powstrzymuje rycerzy i husarię.</li>
+                            <li><b>Pokonana nacja znika z mapy</b>: resztki jej wojska się rozpierzchają, a osada obraca się w perzynę. Wcześniej nacja bez Ratusza zostawiała bezpańskie oddziały (w kampaniach SI nawet ponad 50 żołnierzy) i wieże, które walczyły dalej, choć już przegrała. Gdy porażka kończy mecz, osada zostaje do obejrzenia po bitwie.</li>
+                            <li><b>Gra wieloosobowa w jednej sieci</b>: kod mieści do 6 adresów lokalnych (komputery z Wi-Fi i kablem, VPN, wirtualnymi kartami WSL / Hyper-V / VirtualBox i IPv6 — wcześniej właściwy adres potrafił wypaść z kodu), a gość czeka, aż szyfrowanie połączenia zacznie host — w jednej sieci łączy się pewnie, nawet gdy host wkleja odpowiedź po kilku minutach. Gra rozpoznaje graczy w tej samej sieci i przy niepowodzeniu podaje wskazówki właśnie dla niej (Zapora Windows i sieć prywatna, sieć dla gości, VPN, ukrywanie adresów „.local”); test sieci pokazuje adresy lokalne. Protokół 11 — oboje gracze potrzebują tego samego, nowego pliku gry.</li>
+                            <li>Sprawdzone automatycznie: kilkadziesiąt meczów i kampanii SI kontra SI na wszystkich mapach, krainach i poziomach trudności (także 8 × Skandaliczny, Królowie, bez rozejmu, samouczek), wszystkie poziomy grafiki, panel Dyplomacji z propozycjami, zapis i wczytanie gry oraz połączenie dwóch przeglądarek — bez błędów.</li>
+                        </ul>
+
                         <h3>Nowy wygląd i silnik Raptor</h3>
                         <ul>
                             <li><b>Menu od nowa</b>: pasek zakładek, ekran nowej bitwy z podglądem mapy i przyciskiem startu zawsze na widoku, ustawienia w sekcjach Nacje / Świat / Zasady, encyklopedia z wyszukiwarką, „Jak grać” ze wszystkimi skrótami i dryfujące tło z mapą świata. Menu obsłużysz też klawiaturą.</li>
@@ -2202,18 +2210,18 @@ const GameConfig = {
         axeman: { name: 'Topornik', cls: 'infantry', domain: 'land', military: true, maxHp: 88, speed: 112, attackDamage: 12, attackRange: 20, attackRate: 1.0, radius: 8,
             armor: [0, 0], dtype: 'melee', vsBuilding: 1.8, bonus: { siege: 1.5 }, cost: { food: 55, wood: 35 }, trainTime: 5, age: 2, pop: 1, vision: 300,
             desc: "Szybka piechota szturmowa bez złota w koszcie. Topór rąbie budynki (×1,8) i machiny (×1,5); bez tarczy ginie od strzał i ustępuje miecznikom." },
-        hussar: { name: 'Husarz', cls: 'cavalry', domain: 'land', military: true, maxHp: 240, speed: 172, attackDamage: 21, attackRange: 26, attackRate: 1.1, radius: 11,
-            armor: [3, 3], armored: true, dtype: 'melee', vsBuilding: 0.3, bonus: { ranged: 1.3, siege: 2.0 }, charge: { dist: 150, mul: 2.5 }, cost: { food: 100, gold: 100 }, trainTime: 10, age: 3, pop: 1, vision: 380,
-            desc: "Skrzydlata jazda Królestwa. Po rozpędzeniu (150 kroków galopu) pierwsze uderzenie kopii zadaje ×2,5 obrażeń. Miażdży strzelców i machiny; ginie na halabardach i od kul. Murów i domów kopią nie zburzysz (×0,3 na budynki), a w ciasnych uliczkach wrogiej osady jazda zwalnia i nie nabierze rozpędu." },
+        hussar: { name: 'Husarz', cls: 'cavalry', domain: 'land', military: true, maxHp: 230, speed: 172, attackDamage: 21, attackRange: 26, attackRate: 1.1, radius: 11,
+            armor: [3, 3], armored: true, dtype: 'melee', vsBuilding: 0.3, bonus: { ranged: 1.3, siege: 2.0 }, charge: { dist: 150, mul: 2.2 }, cost: { food: 100, gold: 110 }, trainTime: 10, age: 3, pop: 1, vision: 380,
+            desc: "Skrzydlata jazda Królestwa. Po rozpędzeniu (150 kroków galopu) pierwsze uderzenie kopii zadaje ×2,2 obrażeń. Miażdży łuczników, harcowników i machiny; ginie na halabardach i od kul (muszkieterzy, arkebuzerzy, rajtarzy). Murów i domów kopią nie zburzysz (×0,3 na budynki), a w ciasnych uliczkach wrogiej osady jazda zwalnia i nie nabierze rozpędu." },
         halberdier: { name: 'Halabardnik', cls: 'infantry', domain: 'land', military: true, maxHp: 150, speed: 100, attackDamage: 12, attackRange: 32, attackRate: 1.0, radius: 8,
             armor: [1, 2], armored: true, dtype: 'melee', vsBuilding: 0.6, bonus: { cavalry: 3.0 }, cost: { food: 60, wood: 30, gold: 30 }, trainTime: 6, age: 3, pop: 1, vision: 300,
             desc: "Opancerzony następca włócznika. Halabarda ściąga jeźdźców z siodeł (×3 przeciw kawalerii). Ustępuje miecznikom, kusznikom i muszkieterom." },
-        musketeer: { name: 'Muszkieter', cls: 'ranged', domain: 'land', military: true, maxHp: 120, speed: 92, attackDamage: 36, attackRange: 180, attackRate: 1.7, radius: 8,
+        musketeer: { name: 'Muszkieter', cls: 'ranged', domain: 'land', military: true, maxHp: 120, speed: 92, attackDamage: 36, attackRange: 180, attackRate: 1.55, radius: 8,
             armor: [1, 2], dtype: 'pierce', armorPen: 1.0, ranged: true, projectile: 'bullet', vsBuilding: 0.3, bonus: { armored: 1.4 }, cost: { food: 80, gold: 90 }, trainTime: 7, age: 4, pop: 1, vision: 320,
             desc: "Elitarny strzelec Imperium w kirysie. Kula ignoruje pancerz i zadaje ×1,4 obrażeń opancerzonym — kontra na gwardię, halabardników, husarię i rajtarów. Drogi; bez osłony piechoty ginie w zwarciu." },
         grenadier: { name: 'Grenadier', cls: 'ranged', domain: 'land', military: true, maxHp: 80, speed: 96, attackDamage: 22, attackRange: 92, attackRate: 2.6, radius: 8,
-            armor: [0, 0], dtype: 'siege', ranged: true, projectile: 'grenade', groundTarget: true, splash: 28, splashFactor: 1.0, vsBuilding: 1.5, cost: { food: 75, gold: 65 }, trainTime: 7, age: 4, pop: 1, vision: 300,
-            desc: "Miota granaty na krótki dystans. Wybuch rani wszystkich w miejscu upadku i ignoruje pancerz — rozbija zwarte szyki włóczników, toporników i halabardników, kruszy budynki (×1,5). Ginie od kawalerii i od strzelców o dłuższym zasięgu." },
+            armor: [0, 0], dtype: 'siege', ranged: true, projectile: 'grenade', groundTarget: true, splash: 32, splashFactor: 1.0, vsBuilding: 1.5, bonus: { infantry: 1.25 }, cost: { food: 75, gold: 65 }, trainTime: 7, age: 4, pop: 1, vision: 300,
+            desc: "Miota granaty na krótki dystans. Wybuch rani wszystkich w miejscu upadku, ignoruje pancerz i zadaje piechocie ×1,25 obrażeń — rozbija zwarte szyki włóczników, toporników i halabardników, kruszy budynki (×1,5). Ginie od kawalerii i od strzelców o dłuższym zasięgu." },
         royal_guard: { name: 'Gwardzista', cls: 'infantry', domain: 'land', military: true, maxHp: 230, speed: 92, attackDamage: 21, attackRange: 24, attackRate: 1.0, radius: 9,
             armor: [4, 3], armored: true, dtype: 'melee', vsBuilding: 0.8, cost: { food: 95, gold: 95 }, trainTime: 10, age: 3, pop: 1, vision: 320,
             desc: "Gwardia królewska z Zamku: pełna zbroja płytowa i miecz dwuręczny. Najtwardsza piechota w grze — jeden gwardzista zajmuje jedno miejsce populacji, a wart jest dwóch mieczników. Zbroję przebijają tylko bełty i kule." },
@@ -2254,9 +2262,9 @@ const GameConfig = {
             armor: [0, 3], dtype: 'siege', selfDestruct: true, splash: 62, splashFactor: 0.5, vsBuilding: 1.4, cost: { wood: 90, gold: 40 }, trainTime: 6, age: 2, pop: 1, vision: 320,
             desc: "Łódź wyładowana smołą i prochem. Podpływa do celu i wybucha, raniąc wszystko wokół — tania odpowiedź na triery i galeony. Jednorazowa." },
         // --- V3.5 ---
-        arquebusier: { name: 'Arkebuzer', cls: 'ranged', domain: 'land', military: true, maxHp: 100, speed: 95, attackDamage: 34, attackRange: 150, attackRate: 2.4, radius: 8,
-            armor: [0, 1], dtype: 'pierce', armorPen: 0.7, ranged: true, projectile: 'bullet', heavyGun: true, vsBuilding: 0.3, bonus: { cavalry: 1.4 }, cost: { food: 50, wood: 30, gold: 50 }, trainTime: 6, age: 3, pop: 1, vision: 310,
-            desc: "Pierwsza broń palna Królestwa: ciężki rusznik oparty na widełkach. Strzela rzadko, ale kula przebija 70% pancerza, a huk i dym płoszą konie — ×1,4 obrażeń kawalerii. W IV erze ustępuje muszkieterom; bezbronny w zwarciu." },
+        arquebusier: { name: 'Arkebuzer', cls: 'ranged', domain: 'land', military: true, maxHp: 100, speed: 95, attackDamage: 34, attackRange: 150, attackRate: 2.2, radius: 8,
+            armor: [0, 1], dtype: 'pierce', armorPen: 0.7, ranged: true, projectile: 'bullet', heavyGun: true, vsBuilding: 0.3, bonus: { cavalry: 1.8 }, cost: { food: 50, wood: 30, gold: 50 }, trainTime: 6, age: 3, pop: 1, vision: 310,
+            desc: "Pierwsza broń palna Królestwa: ciężki rusznik oparty na widełkach. Strzela rzadko, ale kula przebija 70% pancerza, a huk i dym płoszą konie — ×1,8 obrażeń kawalerii. W IV erze ustępuje muszkieterom; bezbronny w zwarciu." },
         petardier: { name: 'Petardnik', cls: 'infantry', domain: 'land', military: true, maxHp: 75, speed: 118, attackDamage: 240, attackRange: 14, attackRate: 1.0, radius: 8,
             armor: [0, 1], dtype: 'siege', selfDestruct: true, onlyBuildings: true, splash: 55, splashFactor: 0.35, vsBuilding: 3.0, cost: { food: 60, gold: 65 }, trainTime: 6, age: 3, pop: 1, vision: 300,
             desc: "Saper z dzwonem prochu na dębowej desce. Biegnie pod mur, bramę albo wieżę, przykłada petardę i wysadza ją razem z sobą: ×3 obrażeń budynkom, a fala rani też wszystko wokół. Atakuje tylko budynki. Jednorazowy — osłaniaj go, bo ginie od kilku strzał." },
@@ -2413,7 +2421,7 @@ const GameConfig = {
             desc: "Żelazne okucia i mocniejszy proch: tarany +15 ataku i +80 życia, Koń Trojański +400 życia, petarda petardnika +60 obrażeń." },
         tempered_lances: { name: 'Hartowane Kopie', at: 'forge', age: 3, cost: { food: 200, gold: 250 }, time: 20, icon: 'lance',
             effects: [{ units: ['knight', 'hussar'], stat: 'attackDamage', add: 2 }, { units: ['hussar'], stat: 'chargeMul', add: 0.5 }],
-            desc: "+2 do ataku rycerzy i husarzy, a rozpędzona husaria uderza z siłą ×3 zamiast ×2,5." },
+            desc: "+2 do ataku rycerzy i husarzy, a rozpędzona husaria uderza z siłą ×2,7 zamiast ×2,2." },
         master_smiths: { name: 'Mistrzowie Kuźni', at: 'forge', age: 3, cost: { food: 300, gold: 300, stone: 100 }, time: 30, icon: 'anvil',
             effects: [{ landMilitary: true, stat: 'attackDamage', add: 1 }, { landMilitary: true, stat: 'armorMelee', add: 1 }, { landMilitary: true, stat: 'armorPierce', add: 1 }],
             desc: "Cech mistrzów kowalskich: każdy żołnierz lądowy (poza machinami) dostaje +1 do ataku i +1 do obu pancerzy." },
@@ -3483,6 +3491,9 @@ class Game {
     checkWinConditions() {
         if (this.gameOver) return;
         const tcCost = GameConfig.buildings.town_center.cost;
+        // Pokonana nacja nie zostawia na mapie bezpańskiego wojska i wież, które dalej walczą (Game.dissolveNation).
+        // Gdy porażka zakończyła mecz, osada zostaje do obejrzenia po bitwie.
+        for (const n of this.nations) if (n.dissolvePending) { n.dissolvePending = false; this.dissolveNation(n); }
 
         // Komunikaty idą do ludzi przez tell / tellAll (core/Events.js): lokalnie na ekran, a u hosta gry
         // wieloosobowej także siecią do gości. Symulacja nie zakłada już, że gracz jest jeden.
@@ -3519,6 +3530,7 @@ class Game {
             n.defeatedAt = this.time;
             n.graceUntil = null;
             this.tellAll(n.resigned ? `Nacja ${n.name} poddała się.` : `Nacja ${n.name} została pokonana!`, 'info', n);
+            n.dissolvePending = true;   // resztki osady i wojska znikają w następnym kroku - chyba że ta porażka kończy mecz
         }
 
         const activeNations = this.nations.filter(n => !n.defeated);
@@ -4364,7 +4376,7 @@ Game.prototype.killEntity = function (target, source) {
     } else if (target.buildProgress !== undefined) {
         if (target.owner) target.owner.stats.buildingsLost++;
         if (hostile) source.owner.stats.razed++;
-        if (target.owner && !isWallType(target.type)) this.tell(target.owner, `Stracono budynek: ${buildingName(target.type)}`, 'warn');
+        if (target.owner && !target.owner.dissolving && !isWallType(target.type)) this.tell(target.owner, `Stracono budynek: ${buildingName(target.type)}`, 'warn');
         if (target.cfg && target.cfg.wonder) this.wonderFallen(target, hostile ? source : null);
     }
 
@@ -5741,6 +5753,14 @@ Game.prototype.kingFallen = function (king, source) {
     this.tell(n, 'Twój król poległ! Królestwo upada — cała osada obraca się w perzynę.', 'alert');
     this.cue(n, 'Warning');
     if (this.ringBell && n.bell) n.bell = false;
+    this.dissolveNation(n);
+    n.graceUntil = null;
+};
+
+// Upadek nacji (śmierć króla albo porażka): osada obraca się w perzynę, a resztki wojska się rozpierzchają.
+// Bez tego pokonana nacja zostawiała na mapie bezpańskie wojsko i wieże, które dalej walczyły - choć już przegrała.
+Game.prototype.dissolveNation = function (n) {
+    n.dissolving = true;     // bez komunikatu "Stracono budynek" o każdym budynku z osobna
     for (const b of n.buildings.slice()) {
         if (b.isDestroyed) continue;
         b.hp = 0;
@@ -5753,7 +5773,7 @@ Game.prototype.kingFallen = function (king, source) {
         }
     }
     for (const u of n.units.slice()) if (!u.isDestroyed) { u.hp = 0; this.killEntity(u, null); }
-    n.graceUntil = null;
+    n.dissolving = false;
 };
 
 // ---------------- V3.5 Newest Final: szlak handlowy ----------------
@@ -25549,7 +25569,7 @@ class Tutorial {
 // Model: HOST LICZY, GOŚCIE OGLĄDAJĄ. Przeglądarka hosta prowadzi jedyną symulację (tę samą, co w grze solo),
 // goście wysyłają rozkazy i rysują stan świata przysłany przez hosta.
 const NetCodec = {
-    PROTOCOL: 10,               // Reloaded: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy); 9: okup, trybut, limit czasu
+    PROTOCOL: 11,               // 11: gość jako serwer DTLS, więcej adresów lokalnych w kodzie, balans V1.0; 10: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy); 9: okup, trybut, limit czasu
                                 // 10: koniec bety - krótsze kody zaproszeń (postać 3), kontrola przepływu, TURN
     SNAP: 1,                    // rodzaj wiadomości binarnej: paczka stanu jednostek
 
@@ -25875,9 +25895,25 @@ const InviteCode = {
         take(c => c.type === 2 && c.kind === 0, 1);            // przekaźnik TURN
         if (!pick.some(c => c.type === 2)) take(c => c.type === 2, 1);
         take(c => c.type === 1 && c.kind === 1, 1);            // publiczny IPv6
-        take(c => c.type === 0 && c.kind !== 1, 2);            // sieć lokalna (zwykle adres ukryty .local)
+        // sieć lokalna (zwykle adres ukryty .local): do 6 adresów. Komputer z kilkoma kartami (Wi-Fi + kabel, VPN,
+        // wirtualne karty WSL / Hyper-V / VirtualBox) i z IPv6 ma ich kilka, a ukryty adres nie zdradza, który jest
+        // właściwy - przy dawnym limicie 2 adres karty Wi-Fi potrafił wypaść z kodu i gracze w jednej sieci się nie łączyli
+        take(c => c.type === 0 && c.kind !== 1, 6);
         take(c => c.type === 0 && c.kind === 1, 1);
         return pick;
+    },
+
+    // Adresy publiczne (STUN) z opisu połączenia - ten sam adres po obu stronach znaczy, że gracze są w jednej sieci
+    publicAddrs(sdp) {
+        const out = new Set(), re = /^a=candidate:\S+ \d+ \S+ \d+ (\S+) \d+ typ srflx/gm;
+        let m;
+        while ((m = re.exec(sdp || ''))) out.add(m[1].toLowerCase());
+        return out;
+    },
+    sameNetwork(a, b) {
+        const A = this.publicAddrs(a);
+        for (const x of this.publicAddrs(b)) if (A.has(x)) return true;
+        return false;
     },
 
     // --- poświadczenia ICE: 0 = znaki ICE po 6 bitów, 1 = małe cyfry szesnastkowe po 4 bity, 2 = zwykły tekst ---
@@ -26184,10 +26220,22 @@ class RtcLink extends NetLink {
     }
 
     // GOŚĆ: przyjęcie zaproszenia. Zwraca opis odpowiedzi (SDP).
+    // Gość jest serwerem DTLS (a=setup:passive): w jednej sieci jego próby ICE docierają do hosta od razu, na długo
+    // przed wklejeniem odpowiedzi. Jako klient DTLS (domyślnie) zaczynałby wtedy uzgadnianie szyfrowania, którego
+    // host nie może jeszcze dokończyć - nie każda przeglądarka ponawia je tak długo, jak trwa przesłanie kodu.
+    // Serwer DTLS po prostu czeka, a uzgadnianie zaczyna host, gdy ma już odpowiedź gościa.
     async acceptOffer(sdp) {
         this.pc.ondatachannel = (e) => this._bind(e.channel);
         await this.pc.setRemoteDescription({ type: 'offer', sdp });
-        await this.pc.setLocalDescription(await this.pc.createAnswer());
+        const answer = await this.pc.createAnswer();
+        let done = false;
+        if (/^a=setup:active\r?$/m.test(answer.sdp)) {
+            try {
+                await this.pc.setLocalDescription({ type: 'answer', sdp: answer.sdp.replace(/^a=setup:active(\r?)$/gm, 'a=setup:passive$1') });
+                done = true;
+            } catch (e) { /* przeglądarka nie pozwala zmienić roli - zostaje domyślna */ }
+        }
+        if (!done) await this.pc.setLocalDescription(answer);
         await this._gathered();
         return this.pc.localDescription.sdp;
     }
@@ -26481,7 +26529,7 @@ class HostSession {
         s.invite = inv;
         this.changed();
         link.onOpen = () => { if (s.invite === inv) this.attach(link, s); };
-        link.onClose = () => { if (s.invite === inv && inv.state === 'connecting') { inv.state = 'failed'; inv.error = 'noroute'; this.changed(); } };
+        link.onClose = () => { if (s.invite === inv && inv.state === 'connecting') { inv.state = 'failed'; inv.error = inv.sameNet ? 'noroutelan' : 'noroute'; this.changed(); } };
         try {
             const sdp = await link.createOffer();
             inv.code = await InviteCode.pack({ kind: 'offer', sdp, version: this.version, nonce: inv.nonce });
@@ -26507,13 +26555,15 @@ class HostSession {
         if (info.version !== this.version) throw fail('version', info.version);
         if (info.nonce !== inv.nonce) throw fail('mismatch');
         try { await inv.link.acceptAnswer(info.sdp); } catch (err) { throw fail('apply'); }
+        // ten sam adres publiczny = gracze w jednej sieci: przy niepowodzeniu inne wskazówki niż dla połączenia przez internet
+        try { inv.sameNet = InviteCode.sameNetwork(inv.link.pc.localDescription.sdp, info.sdp); } catch (e) { inv.sameNet = false; }
         inv.state = 'connecting';
         inv.error = null;
         this.changed();
         // sieć nie pozwala na połączenie bezpośrednie? - po kilkunastu sekundach mówimy o tym wprost
         clearTimeout(inv.timer);
         inv.timer = setTimeout(() => {
-            if (s.invite === inv && inv.state === 'connecting') { inv.state = 'failed'; inv.error = 'noroute'; try { inv.link.close(); } catch (e) { /* zamknięte */ } this.changed(); }
+            if (s.invite === inv && inv.state === 'connecting') { inv.state = 'failed'; inv.error = inv.sameNet ? 'noroutelan' : 'noroute'; try { inv.link.close(); } catch (e) { /* zamknięte */ } this.changed(); }
         }, HostSession.connectTimeout);
     }
 
@@ -27122,6 +27172,7 @@ class ClientSession {
         this.bind(link);
         let sdp;
         try { sdp = await link.acceptOffer(info.sdp); } catch (err) { throw fail('apply'); }
+        try { this.sameNet = InviteCode.sameNetwork(sdp, info.sdp); } catch (e) { this.sameNet = false; }
         const code = await InviteCode.pack({ kind: 'answer', sdp, version: this.version, nonce: info.nonce });
         this.phase = 'waiting';
         this.changed();
@@ -27143,7 +27194,7 @@ class ClientSession {
         link.onOpen = () => { this.lastHeard = performance.now(); this.send(['hello', this.version, this.name, NetCodec.PROTOCOL]); this.startTimer(); };
         link.onMessage = (m) => this.onMessage(m);
         link.onState = (buf) => this.onSnapshot(buf);
-        link.onClose = (why) => this.lost(why === 'failed' ? 'noroute' : 'lost');
+        link.onClose = (why) => this.lost(why === 'failed' ? (this.sameNet ? 'noroutelan' : 'noroute') : 'lost');
     }
 
     startTimer() {
@@ -27691,6 +27742,7 @@ const MpUI = {
         mismatch: 'Ten kod odpowiedzi pochodzi z innego zaproszenia. Znajomy musi użyć kodu wygenerowanego dla tego miejsca — a jeśli zaproszenie było tworzone kilka razy, wyślij mu najnowszy kod.',
         noinvite: 'Najpierw utwórz kod zaproszenia.',
         noroute: '<b>Nie udało się połączyć.</b> Najczęstsza przyczyna: sieć jednej ze stron (akademik, firma, część sieci komórkowych, VPN) nie przepuszcza połączeń bezpośrednich. Co można zrobić: zamieńcie się rolami (niech grę założy druga osoba), wyłączcie VPN albo użyjcie innej sieci, np. hotspotu z telefonu. Test sieci i ustawienie serwera TURN znajdziesz na dole strony Gra wieloosobowa.',
+        noroutelan: '<b>Nie udało się połączyć, choć jesteście w tej samej sieci.</b> Przeglądarki ukrywają adresy komputerów w sieci lokalnej (jako adresy „.local”), a część routerów i zapór nie przepuszcza takiego ruchu. Sprawdźcie po kolei: <b>1.</b> Windows: sieć ustawiona jako <b>prywatna</b>, a przeglądarka dopuszczona w Zaporze systemu Windows (okno „Zezwól na dostęp” przy pierwszym połączeniu — jeśli je zamknięto, zezwólcie ręcznie). <b>2.</b> Oba komputery w tej samej sieci domowej — nie w sieci dla gości ani w Wi-Fi z izolacją klientów; wyłączcie VPN. <b>3.</b> Zamieńcie się rolami. <b>4.</b> Gdy nadal nic: wyłączcie ukrywanie adresów lokalnych — w Chrome <code>chrome://flags/#enable-webrtc-hide-local-ips-with-mdns</code> (w Edge <code>edge://flags/…</code> to samo) → Disabled, w Firefoksie <code>about:config</code> → <code>media.peerconnection.ice.obfuscate_host_addresses</code> → false; uruchomcie przeglądarkę ponownie i wymieńcie nowe kody. Często pomaga też hotspot z jednego telefonu dla obu komputerów, a niezawodnie — serwer TURN (na dole strony).',
         full: 'W tej grze nie ma już wolnego miejsca dla gracza.',
         denied: 'Host odrzucił połączenie.',
         kicked: 'Host zamknął twoje miejsce w grze.',
@@ -27885,6 +27937,7 @@ const MpUI = {
                 if (cls === 'ok' && !r.relay) cls = 'wait';
                 lines.push('⚠ <b>Trudna sieć</b> (NAT symetryczny — częsty w sieciach komórkowych, akademikach i firmach): dla każdego połączenia wychodzisz innym portem. Z graczem w zwykłej sieci domowej połączysz się, ale dwie takie sieci zwykle się nie dogadają — niech hostem będzie ktoś z siecią domową albo użyjcie serwera TURN.');
             } else lines.push(`✔ <b>Sieć wygląda dobrze</b> — przeglądarka zna swój adres publiczny${r.v6 ? ' (także IPv6)' : ''}, połączenia bezpośrednie powinny działać.`);
+            if (r.lan) lines.push(`Adresy w sieci lokalnej: ${r.lan}${r.hidden ? ' (przeglądarka ukrywa je jako „.local” — gdy gracze w jednej sieci nie mogą się połączyć, zobacz wskazówki w komunikacie o błędzie)' : ''}.`);
             if (r.len) lines.push(`Kod zaproszenia z tej sieci ma ${r.len} znaków.`);
             res = `<div class="mp-status ${cls}"><span>${lines.join('<br>')}</span></div>`;
         }
@@ -27927,6 +27980,7 @@ const MpUI = {
             for (const m of sdp.matchAll(/^a=candidate:\S+ 1 (\S+) \d+ (\S+) (\d+) typ (\S+)/gm)) {
                 if (m[1].toLowerCase() !== 'udp') continue;
                 if (m[4] === 'relay') r.relay = true;
+                if (m[4] === 'host') { r.lan = (r.lan || 0) + 1; if (/\.local$/i.test(m[2])) r.hidden = true; }
                 if (m[4] !== 'srflx') continue;
                 r.pub = true;
                 if (m[2].includes(':')) r.v6 = true;
