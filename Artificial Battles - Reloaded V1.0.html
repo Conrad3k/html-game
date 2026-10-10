@@ -206,7 +206,7 @@ button { font-family: inherit; }
     box-shadow: 0 0 18px rgba(255, 70, 50, 0.4); animation: pulse-red 1.2s ease-in-out infinite;
 }
 #grace-banner b { color: #fff; font-size: 17px; font-variant-numeric: tabular-nums; }
-/* V3.5 Newest Final: odliczanie Cudu Świata */
+/* Cuda Świata: paski Chwały (V1.0; dawniej odliczanie Cudu) */
 #wonder-banner {
     position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); pointer-events: auto; cursor: pointer;
     display: flex; flex-direction: column; gap: 5px; align-items: center; max-width: calc(100% - 28px);
@@ -217,6 +217,11 @@ button { font-family: inherit; }
 }
 #wonder-banner div.theirs { background: rgba(58, 12, 8, 0.94); border-color: rgba(255, 107, 91, 0.75); color: #ffe2dc; box-shadow: 0 0 18px rgba(255, 70, 50, 0.4); }
 #wonder-banner b { color: #fff; font-size: 16px; font-variant-numeric: tabular-nums; }
+#wonder-banner div.glory { min-width: 360px; }
+#wonder-banner small { font-weight: 500; opacity: 0.8; }
+#wonder-banner .gbar { display: block; height: 5px; margin-top: 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.14); overflow: hidden; }
+#wonder-banner .gbar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, #e8b14e, #ffe08a); }
+#wonder-banner div.theirs .gbar i { background: linear-gradient(90deg, #ff6b5b, #ffb0a8); }
 #grace-banner small { display: block; font-weight: 400; color: #ffc4bd; margin-top: 2px; }
 @keyframes pulse-red { 0%, 100% { box-shadow: 0 0 10px rgba(255, 70, 50, 0.3); } 50% { box-shadow: 0 0 24px rgba(255, 70, 50, 0.65); } }
 
@@ -1172,6 +1177,19 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 #nations-panel.diplo td { vertical-align: middle; }
 .dp-log { margin-top: 8px; font-size: 11.5px; color: var(--label-3); line-height: 1.5; }
 #nations-panel.diplo { pointer-events: auto; }
+/* Dyplomacja V1.0: warunki zwycięstwa, trybut, hegemon */
+.dp-goals { margin: 0 0 10px; padding: 8px 10px; border-radius: 12px; background: rgba(255, 255, 255, 0.04); box-shadow: inset 0 0 0 1px var(--hair); display: flex; flex-direction: column; gap: 3px; }
+.dp-gt { font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label-3); margin-bottom: 2px; }
+.dp-goal { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; font-size: 12px; color: var(--label-2); }
+.dp-goal i { font-style: normal; text-align: center; color: var(--accent); }
+.dp-goal b { color: var(--label); }
+.dp-goal em { font-style: normal; font-size: 11.5px; color: var(--label-3); white-space: nowrap; text-align: right; }
+.dp-goal em b { color: #ffe08a; font-variant-numeric: tabular-nums; }
+.dp-goal.hot em { color: #ffd98a; }
+.dp-prop.tribute { background: rgba(255, 90, 77, 0.1); box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.38); }
+.dp-heg { display: inline-block; margin-left: 4px; padding: 1px 6px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(241, 197, 106, 0.2); color: #ffd98a; }
+.dp-sub { display: block; margin-top: 2px; font-size: 10.5px; color: var(--label-3); }
+#nations-panel.diplo table { min-width: 640px; }
 </style>
 </head>
 <body>
@@ -1280,7 +1298,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                         </div>
                                     </div>
                                 </div>
-                                <p class="cfg-foot diplo-only">W Dyplomacji nie ma stałych drużyn: wszyscy zaczynają w <b>pokoju</b>, a w trakcie gry nacje <b>wypowiadają wojny</b>, proszą o pokój i zawierają <b>sojusze</b> (wspólne pole widzenia i wspólne zwycięstwo). SI kieruje się siłą, sąsiedztwem i pamięcią — pamięta zdrady. Relacje i propozycje: klawisz <b>Tab</b> w grze. Start losuje się spośród miejsc zaznaczonych na podglądzie.</p>
+                                <p class="cfg-foot diplo-only">W Dyplomacji nie ma stałych drużyn: wszyscy zaczynają w <b>pokoju</b>, a w trakcie gry nacje <b>wypowiadają wojny</b>, proszą o pokój (także <b>za okup</b>), żądają <b>trybutu</b> i zawierają <b>sojusze</b> (wspólne pole widzenia i wspólne zwycięstwo). SI kieruje się siłą, sąsiedztwem i pamięcią — pamięta zdrady, a przeciw zbyt potężnej nacji zawiązuje koalicje. <b>Zwycięstwo:</b> podbój, sojusz (najwyżej połowa nacji, 3 minuty jako jedyni na placu boju), 1000 Chwały z Cudów Świata albo — po limicie czasu — najwyższy Wynik. Relacje i warunki: klawisz <b>Tab</b> w grze. Start losuje się spośród miejsc zaznaczonych na podglądzie, złote romby to bogate złoża.</p>
                                 <div class="preset-row classic-only">
                                     <span class="opt-label">Szybki układ</span>
                                     <button class="mini-btn" data-preset="ffa" title="Każda nacja w osobnej drużynie">Każdy na każdego</button>
@@ -1312,6 +1330,15 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                             <input type="radio" name="truce" id="tr-1" value="180"><label for="tr-1">3 min</label>
                                             <input type="radio" name="truce" id="tr-2" value="300" checked><label for="tr-2">5 min</label>
                                             <input type="radio" name="truce" id="tr-3" value="600"><label for="tr-3">10 min</label>
+                                        </div>
+                                    </div>
+                                    <div class="cfg-row diplo-only">
+                                        <div class="cfg-label"><b>Limit czasu</b><small>Potem wygrywa najwyższy Wynik (razem z sojusznikami)</small></div>
+                                        <div class="radio-group c4">
+                                            <input type="radio" name="tlimit" id="tl-0" value="0"><label for="tl-0" title="Gra trwa, dopóki ktoś nie zwycięży podbojem, sojuszem albo Chwałą Cudów Świata">Brak</label>
+                                            <input type="radio" name="tlimit" id="tl-1" value="1800" checked><label for="tl-1">30 min</label>
+                                            <input type="radio" name="tlimit" id="tl-2" value="2700"><label for="tl-2">45 min</label>
+                                            <input type="radio" name="tlimit" id="tl-3" value="3600"><label for="tl-3">60 min</label>
                                         </div>
                                     </div>
                                     <div class="cfg-row classic-only">
@@ -1382,7 +1409,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <div class="menu-card guide-goal">
                             <div>
                                 <h2><span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span>Cel gry</h2>
-                                <p>Zbieraj <b>żywność, drewno, złoto i kamień</b>, stawiaj domy, by powiększać populację, i awansuj w Ratuszu do kolejnych er. Zniszcz Ratusze wszystkich wrogich drużyn, by zwyciężyć! Z warunkiem <b>Królowie</b> wystarczy też pokonać wrogiego króla, a z warunkiem <b>Cud Świata</b> wygrywa drużyna, której Cud przetrwa 10 minut (oba wybierzesz w sekcji Zasady).</p>
+                                <p>Zbieraj <b>żywność, drewno, złoto i kamień</b>, stawiaj domy, by powiększać populację, i awansuj w Ratuszu do kolejnych er. Zniszcz Ratusze wszystkich wrogich drużyn, by zwyciężyć! Z warunkiem <b>Królowie</b> wystarczy też pokonać wrogiego króla, a z warunkiem <b>Cuda Świata</b> wygrywa drużyna, która pierwsza zbierze 1000 Chwały — wytwarzają ją ukończone Cuda (oba warunki wybierzesz w sekcji Zasady).</p>
                                 <div class="tutorial-box">
                                     <div><b>Pierwszy raz w grze?</b><br><span>Samouczek krok po kroku przeprowadzi cię przez zbieranie surowców, budowę, szkolenie wojska i pierwszy atak. Przeciwnik w samouczku nie atakuje.</span></div>
                                     <button class="action-btn gold" data-tutorial>Zagraj samouczek</button>
@@ -1475,6 +1502,36 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <p class="menu-note">Gra wieloosobowa: SI i symulację liczy host, więc nowe zachowanie SI i szybszy silnik działają w każdej grze, której host ma to wydanie. Protokół sieciowy się nie zmienił.</p>
                     </div>
                     <div class="menu-card news-new">
+                        <div class="eyebrow">Aktualizacja V1.0 · Cuda Świata</div>
+                        <h2>Cuda Świata — cztery unikatowe budowle i Chwała</h2>
+                        <p>Dotąd wystarczyło postawić jeden Cud i przetrwać 10 minut. Teraz Cudów jest więcej, każdy coś daje, a zwycięstwo trzeba wywalczyć <b>Chwałą</b>. Działa w Klasycznym meczu i w Dyplomacji (warunek „Cuda Świata” w karcie Świat).</p>
+                        <ul>
+                            <li><b>Cztery unikatowe Cuda</b> — każdy może stać na mapie <b>tylko raz</b>: kto pierwszy położy fundamenty, ten go ma, a inni mogą go zbudować dopiero, gdy legnie w gruzach.
+                                <b>Wiszące Ogrody</b> (III era): +25% zbierania żywności i +20 populacji. <b>Kolos</b> (III era): +2 złota co sekundę i +15% zbierania złota. <b>Wielka Biblioteka</b> (III era): badania i awanse er o połowę krótsze. <b>Wielka Bazylika</b> (IV era, dawny Cud Świata): najwięcej Chwały.</li>
+                            <li><b>Chwała</b>: każdy ukończony Cud co sekundę dodaje twojej drużynie Chwałę — mniejsze Cuda po 0,5, Wielka Bazylika 1,5. Kto pierwszy zbierze <b>1000 Chwały</b>, wygrywa (w Dyplomacji razem z sojusznikami). Sama Bazylika albo trzy mniejsze Cuda zrobią to w ok. 11 minut, wszystkie cztery naraz — w niespełna 6.</li>
+                            <li><b>Burzenie Cudów się opłaca</b>: zburzenie ukończonego Cudu odbiera właścicielowi <b>25% Chwały</b> i premię, a burzącemu daje <b>+100 Chwały</b>. Zebranej Chwały nie traci się inaczej — można ją odbudować.</li>
+                            <li><b>Na widoku</b>: na dole ekranu paski Chwały drużyn, które ją wytwarzają (ile mają, tempo i za ile wygrają), ostrzeżenia przy 50, 75 i 90%, cel „Cuda Świata” w panelu Dyplomacji, nowe budowle w encyklopedii. Cuda widać przez mgłę wojny.</li>
+                            <li><b>SI</b> stawia mniejsze Cuda w III erze (każdy charakter ma ulubiony), a Bazylikę w IV. Wrogie Cuda są dla niej ważnym celem, ale wszystkie siły rzuca na nie dopiero, gdy ich właściciel zbliża się do zwycięstwa (ponad 55% Chwały) albo stoi Bazylika. W Dyplomacji nacje wypowiadają wojnę temu, czyja Chwała zagraża kontynentowi, i nie zawierają z nim pokoju.</li>
+                        </ul>
+                    </div>
+                    <div class="menu-card news-new">
+                        <div class="eyebrow">Aktualizacja V1.0 · Dyplomacja</div>
+                        <h2>Dyplomacja — jasne warunki zwycięstwa, mądrzejsza SI i dłuższe partie</h2>
+                        <p>Tryb Dyplomacja dostał pierwszą dużą porcję usprawnień. Partia na kontynencie trwa teraz zwykle <b>20–30 minut</b> (wcześniej nawet kilkanaście) i zawsze wiadomo, co trzeba zrobić, żeby wygrać.</p>
+                        <ul>
+                            <li><b>Warunki zwycięstwa na widoku</b>: w panelu Dyplomacji (<kbd>Tab</kbd>) na górze stoją wszystkie cztery drogi do zwycięstwa z bieżącym stanem — <b>Podbój</b> (ile nacji jeszcze gra), <b>Sojusz</b>, <b>Cuda Świata</b> (jeśli włączone) i <b>Limit czasu</b> (ile zostało i kto prowadzi). Te same warunki pokazuje podsumowanie meczu w menu i komunikat na starcie gry, a ekran końca meczu mówi, jak go rozstrzygnięto.</li>
+                            <li><b>Sojusz zwycięzców</b> ma teraz jasne zasady: sojusz może liczyć <b>najwyżej połowę nacji</b>, które zaczęły grę, a gdy jako jedyny zostanie na placu boju, musi <b>wytrwać 3 minuty</b> — odliczanie widać na ekranie. Zerwany sojusz przerywa odliczanie. Koniec z wygraną „bo wszyscy się polubili” po kilkunastu minutach.</li>
+                            <li><b>Limit czasu</b> (nowa opcja w karcie Świat i w poczekalni: brak, 30, 45 albo 60 minut, domyślnie 30): gdy czas minie, wygrywa nacja z <b>najwyższym Wynikiem</b> razem ze swoimi sojusznikami. Ostrzeżenia na 10, 5, 2 i 1 minutę przed końcem, a w ostatnich 5 minutach odliczanie na ekranie.</li>
+                            <li><b>Pokój za okup</b>: przegrywający może kupić pokój — przycisk „Pokój za okup” oddaje 20% twojego złota, żywności i drewna. SI, która odrzuca zwykły pokój, często podpowiada, że zgodzi się za okup; sama też płaci okup, gdy przegrywa.</li>
+                            <li><b>Trybut</b>: silna nacja SI może zażądać trybutu od słabszego sąsiada. Zapłata daje <b>4 minuty traktatu</b> (żadna ze stron nie może wypowiedzieć wojny), odmowa — wojnę przy najbliższej okazji. Żądanie czeka na odpowiedź w panelu Dyplomacji.</li>
+                            <li><b>Mądrzejsza SI dyplomaty</b>: każda nacja ma własną cierpliwość, więc po rozejmie nie rzucają się wszyscy naraz na jednego. Wojny toczy z sąsiadami, a nie przez pół kontynentu, i niechętnie dołącza do kogoś, kogo już szarpie kilku innych. Prowadzi <b>księgę strat</b> każdej wojny: zmęczona wojną albo przegrywająca prosi o pokój, wygrywająca wyraźnie go nie przyjmie (chyba że za duży okup). Im dłużej trwa pokój, tym śmielsza się robi.</li>
+                            <li><b>Hegemon i koalicje</b>: nacja, która urośnie ponad miarę, zostaje <b>hegemonem</b> (znaczek w panelu). Inne nacje patrzą na nią coraz nieufniej, chętniej zawierają przeciw niej sojusze i wzywają sojuszników do wspólnej wojny — także ciebie. Na rywala, którego <b>Chwała z Cudów Świata</b> zbliża się do zwycięstwa, ruszają wszyscy poza jego sojusznikami — i nie zawierają z nim pokoju.</li>
+                            <li><b>Końcówka z charakterem</b>: zbyt liczny sojusz (który nie może wygrać) rozwiązuje najsilniejszy z sojuszników, a ambitna, mało lojalna SI potrafi zdradzić tuż przed wspólnym zwycięstwem — „tylko jeden władca może rządzić kontynentem”. SI nie przyjmie też sojuszu, który dałby ci darmowe wspólne zwycięstwo, jeśli sama jest silniejsza.</li>
+                            <li><b>Lepszy teren</b>: kontynent otacza <b>morze o poszarpanym brzegu</b> z zatokami i półwyspami, a rzeki uchodzą do morza. Pośrodku lądu leżą <b>Złote wzgórza</b> — bogate złoża złota i kamienia z dala od wszystkich stolic (złote romby na podglądzie), o które warto się bić. Każda nacja ma też <b>zapas złota, kamienia i lasu</b> nieco dalej od Ratusza, a na przybrzeżnych wodach są ryby.</li>
+                            <li>Po zawarciu pokoju traktat trwa teraz 3 minuty (było 2). Gracze sieciowi muszą mieć to samo wydanie pliku (protokół 9).</li>
+                        </ul>
+                    </div>
+                    <div class="menu-card">
                         <div class="eyebrow">Nowy tryb główny · wczesna wersja</div>
                         <h2>Dyplomacja — kontynent, rzeki i relacje, które zmieniają się w trakcie gry</h2>
                         <p><b>Dyplomacja to od teraz główny tryb gry</b>, zupełnie osobny od Klasycznego meczu (ten został w menu jako druga opcja — działa dokładnie tak jak dotąd). To pierwsza odsłona: fundamenty pod dalszy rozwój trybu.</p>
@@ -1485,7 +1542,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li><b>Relacje zamiast stałych drużyn</b>: wszyscy zaczynają w <b>pokoju</b>, a przez pierwsze minuty obowiązuje <b>rozejm</b> (do wyboru: brak, 3, 5 albo 10 minut). Potem nacje <b>wypowiadają wojny</b>, proszą o <b>pokój</b> i zawierają <b>sojusze</b>. W pokoju wojsko i wieże nie strzelają do siebie; sojusznicy dzielą pole widzenia. Zerwanie sojuszu albo atak na sojusznika (zdrada) inni zapamiętują.</li>
                             <li><b>Panel Dyplomacji</b> (<kbd>Tab</kbd> albo przycisk w górnym pasku): relacja z każdą nacją, jej opinia o tobie, siła w porównaniu z twoją, przyciski Wojna / Zaproponuj pokój / Sojusz / Zerwij sojusz, propozycje czekające na odpowiedź i kronika wydarzeń.</li>
                             <li><b>Nowa SI — dyplomata</b>: osobna warstwa SI, która decyduje, z kim walczyć i z kim trzymać. Ocenia siłę (wojsko, wieże, era), sąsiedztwo i to, co pamięta o każdej nacji; wypowiada wojnę słabszym sąsiadom, prosi o pokój, gdy przegrywa albo walczy na kilku frontach, szuka sojuszników przeciw wspólnemu wrogowi i przeciw rosnącej potędze, staje w obronie sojusznika. Na twoje propozycje odpowiada z uzasadnieniem. Śmiałość zależy od charakteru i poziomu SI.</li>
-                            <li><b>Zwycięstwo</b>: podbój (zostaje jedna nacja) albo <b>sojusz</b> — gdy wszyscy, którzy jeszcze grają, są ze sobą w sojuszu (i ktoś już odpadł). Cud Świata i Królowie działają jak dotąd; zwycięstwo Cudem dzielą sojusznicy budowniczego.</li>
+                            <li><b>Zwycięstwo</b>: podbój (zostaje jedna nacja) albo <b>sojusz</b> (zasady w aktualizacji powyżej). Cuda Świata (zasady w aktualizacji powyżej) i Królowie; zwycięstwo Chwałą dzielą sojusznicy.</li>
                             <li><b>Gra wieloosobowa</b>: host wybiera tryb w poczekalni. W Dyplomacji nie ma drużyn — każde z czterech miejsc to osobna nacja, a goście wypowiadają wojny i zawierają sojusze w trakcie gry, tak jak w grze solo.</li>
                             <li><b>Podgląd kontynentu</b> w menu pokazuje dokładnie ten świat, który powstanie w grze (rzeki, góry, jeziora i miejsca startowe); <b>Nowy świat</b> losuje inny.</li>
                         </ul>
@@ -2128,11 +2185,22 @@ const GameConfig = {
             desc: "Brama. Przepuszcza tylko jednostki twojej drużyny. Stawiana na istniejącym murze." },
         arsenal: { name: 'Arsenał', maxHp: 750, size: 60, cost: { wood: 200, stone: 150, gold: 100 }, age: 4, vision: 300, trains: ['organ_gun', 'great_cannon'], menu: 'mil',
             desc: "Prochownia i ludwisarnia Imperium. Odlewa Organki i Wielkie Działa, a tu zbadasz Ziarnisty Proch, Bagnety i Spiżowe Lufy — ulepszenia broni palnej, dział, galeonów i wież bombardowych." },
-        // V3.5 Newest Final: Cud Świata - drugi sposób na zwycięstwo. Po ukończeniu rusza odliczanie (wonder: sekundy);
-        // jeśli Cud przetrwa, drużyna jego budowniczego wygrywa (Game.checkWonders). Widać go przez mgłę wojny.
-        wonder: { name: 'Cud Świata', maxHp: 9000, size: 120, cost: { food: 1000, wood: 1000, gold: 1200, stone: 1000 }, buildRate: 0.07, age: 4, vision: 420, limit: 1, menu: 'eco',
-            wonder: 600,
-            desc: "Bazylika z wielką złotą kopułą — największa budowla w grze i drugi sposób na zwycięstwo. Gdy ją ukończysz, wszystkie nacje dowiedzą się o niej i zobaczą ją przez mgłę wojny, a ruszy odliczanie 10 minut: jeśli Cud przetrwa, twoja drużyna wygrywa. Budowa długo trwa — przyślij wielu robotników i przygotuj obronę, bo wszyscy wrogowie rzucą się, by go zburzyć. Jeden na nację." }
+        // Cuda Świata (V1.0): cztery unikatowe budowle - każda może stać na mapie tylko raz (unique), u jednej nacji.
+        // Ukończony Cud co sekundę dodaje drużynie Chwałę (glory/s); 1000 Chwały = zwycięstwo (Game.checkWonders).
+        // Trzy mniejsze Cuda (III era) dają też własną premię (bonus / income), Wielka Bazylika (IV era) - najwięcej Chwały.
+        // Zburzenie ukończonego Cudu odbiera właścicielowi 25% Chwały, a burzącemu daje 100. Cuda widać przez mgłę wojny.
+        hanging_gardens: { name: 'Wiszące Ogrody', maxHp: 4200, size: 96, cost: { food: 300, wood: 500, gold: 300, stone: 350 }, buildRate: 0.14, age: 3, vision: 360, limit: 1, unique: true, menu: 'eco',
+            wonder: true, glory: 0.5, pop: 20, bonus: { gather: { food: 0.25 } },
+            desc: "Cud Świata: tarasowe ogrody z kaskadami wody. +25% zbierania żywności i +20 populacji, a co sekundę +0,5 Chwały (1000 Chwały = zwycięstwo). Na mapie może stać tylko jeden — kto pierwszy położy fundamenty, ten go ma." },
+        colossus: { name: 'Kolos', maxHp: 4200, size: 84, cost: { food: 200, wood: 400, gold: 400, stone: 450 }, buildRate: 0.14, age: 3, vision: 420, limit: 1, unique: true, menu: 'eco',
+            wonder: true, glory: 0.5, income: { gold: 2 }, bonus: { gather: { gold: 0.15 } },
+            desc: "Cud Świata: spiżowy olbrzym z pochodnią na kamiennym cokole. Daniny i cła: +2 złota co sekundę i +15% zbierania złota, a co sekundę +0,5 Chwały (1000 Chwały = zwycięstwo). Na mapie może stać tylko jeden." },
+        library: { name: 'Wielka Biblioteka', maxHp: 4200, size: 96, cost: { food: 200, wood: 500, gold: 450, stone: 300 }, buildRate: 0.14, age: 3, vision: 360, limit: 1, unique: true, menu: 'eco',
+            wonder: true, glory: 0.5, bonus: { research: 1 },
+            desc: "Cud Świata: kolumnady pełne zwojów wokół dziedzińca. Badania i awanse er trwają o połowę krócej, a co sekundę +0,5 Chwały (1000 Chwały = zwycięstwo). Na mapie może stać tylko jedna." },
+        wonder: { name: 'Wielka Bazylika', maxHp: 9000, size: 120, cost: { food: 1000, wood: 1000, gold: 1200, stone: 1000 }, buildRate: 0.07, age: 4, vision: 420, limit: 1, unique: true, menu: 'eco',
+            wonder: true, glory: 1.5,
+            desc: "Największy Cud Świata: bazylika z wielką złotą kopułą. Co sekundę +1,5 Chwały — sama przyniesie zwycięstwo (1000 Chwały) w ok. 11 minut, razem z innymi Cudami szybciej. Wszystkie nacje widzą ją przez mgłę wojny i ruszą, by ją zburzyć. Na mapie może stać tylko jedna." }
     },
 
     // effects: { units:[...] | buildings:[...], stat, add }  lub  { gather: 'wood', add: 0.25 }
@@ -3304,9 +3372,14 @@ class Game {
         if (this.checkWonders()) return;
 
         if (this.diplo) {
-            // Dyplomacja: wygrywa ostatnia nacja na placu boju albo sojusz, w którym są wszyscy, którzy jeszcze grają
-            const win = activeNations.length <= 1 ? activeNations : this.diplo.allianceVictory(activeNations);
-            if (win && this.nations.length > 1) { this.endGame(win.length ? win[0].team : null, false, win); return; }
+            // Dyplomacja: Podbój, Sojusz zwycięzców (3 minuty jako jedyni na placu boju) albo Limit czasu (Diplomacy.victory)
+            const v = this.nations.length > 1 ? this.diplo.victory(activeNations) : null;
+            if (v) {
+                this.winReason = v.why;
+                if (v.lead) this.winLeader = v.lead.shortName || v.lead.name;
+                this.endGame(v.win.length ? v.win[0].team : null, false, v.win);
+                return;
+            }
         } else if (activeTeams.size <= 1 && new Set(this.nations.map(n => n.team)).size > 1) {
             const winnerTeam = activeTeams.size === 1 ? [...activeTeams][0] : null;
             this.endGame(winnerTeam, false);
@@ -4121,6 +4194,7 @@ Game.prototype.killEntity = function (target, source) {
         this.kingFallen(target, source);
     }
 
+    if (hostile && this.diplo) this.diplo.onKill(source.owner, target);   // Dyplomacja: księga strat wojny
     if (target.unitType) {
         if (target.owner) target.owner.stats.unitsLost++;
         if (hostile) source.owner.stats.kills++;
@@ -5618,16 +5692,16 @@ Game.prototype.setTradeRoute = function (u, t) {
 
 // ---------------- V3.5 Newest Final: Cud Świata ----------------
 // Cud widać przez mgłę wojny od chwili położenia fundamentów - wszyscy wiedzą, gdzie rośnie. Po ukończeniu rusza
-// odliczanie (cfg.wonder sekund); jeśli Cud przetrwa, a jego budowniczy nie przegra wcześniej, drużyna budowniczego
-// wygrywa (checkWonders). Gość gry wieloosobowej dostaje listę Cudów z odliczaniem od hosta ('wd' - net/Host.js).
+// produkcja Chwały (cfg.glory na sekundę); drużyna, która zbierze Game.GLORY_WIN Chwały, wygrywa (checkWonders).
+// Gość gry wieloosobowej dostaje listę Cudów i Chwałę drużyn od hosta ('wd' - net/Host.js).
 Game.NO_WONDERS = [];
 
 // V3.5: Cud Świata to opcjonalny warunek zwycięstwa (ustawienia meczu, domyślnie włączony). Wyłączony: Cudu nie ma
 // w menu budowy, rozkaz postawienia jest odrzucany, AI go nie planuje, a odliczanie nie rusza.
 Game.prototype.wondersOn = true;
-Game.prototype.buildingOff = function (type) { return type === 'wonder' && !this.wondersOn; };
+Game.prototype.buildingOff = function (type) { const c = GameConfig.buildings[type]; return !!(c && c.wonder) && !this.wondersOn; };
 
-// Cuda na mapie: u hosta budynki, u gościa obiekty z tymi samymi polami (owner, x, y, size, isConstructed, wonderUntil, buildProgress)
+// Cuda na mapie: u hosta budynki, u gościa obiekty z tymi samymi polami (owner, x, y, size, isConstructed, type, cfg, buildProgress)
 Game.prototype.wonderInfo = function () {
     if (this.isClient) return this.netWonders || Game.NO_WONDERS;
     const W = this.wonders;
@@ -5638,63 +5712,109 @@ Game.prototype.wonderInfo = function () {
 
 Game.prototype.wonderStarted = function (b) {
     (this.wonders || (this.wonders = [])).push(b);
-    const n = b.owner;
-    this.tell(n, 'Fundamenty Cudu Świata położone! Przyślij wielu robotników — i szykuj obronę: budowę widać z każdego zakątka mapy.', 'good');
-    this.tellAll(`Nacja ${n.shortName || n.name} kładzie fundamenty pod Cud Świata! Budowę widać przez mgłę wojny.`, 'alert', n);
+    const n = b.owner, nm = b.cfg.name;
+    this.tell(n, `Fundamenty: ${nm}! Przyślij wielu robotników — i szykuj obronę: Cuda widać z każdego zakątka mapy.`, 'good');
+    this.tellAll(`Nacja ${n.shortName || n.name} kładzie fundamenty: ${nm}. Budowę widać przez mgłę wojny.`, 'info', n);
     this.updateVisibility(); this.fogDirty = true;
 };
 
-// Reloaded V1.0: kto wygra razem z budowniczym Cudu - drużyna, a w Dyplomacji także sojusznicy (tak liczy checkWonders).
-// Wcześniej komunikaty w Dyplomacji (każda nacja to osobna drużyna) wzywały sojuszników do burzenia Cudu, z którym wygrają.
-Game.prototype.wonderSide = function (o, n) { return o === n || o.team === n.team || (!!this.diplo && this.diplo.allied(o, n)); };
+// Unikatowe Cuda: kto już ma (albo buduje) ten Cud - nacja albo null
+Game.prototype.wonderTaken = function (type, nation) {
+    const cfg = GameConfig.buildings[type];
+    if (!cfg || !cfg.unique) return null;
+    for (const w of this.wonderInfo()) if (w.type === type && !w.isDestroyed && w.owner !== nation) return w.owner;
+    return null;
+};
+Game.prototype.wonderBlock = function (type, nation) {
+    const o = this.wonderTaken(type, nation);
+    return o ? `${GameConfig.buildings[type].name} — ten Cud już stoi (albo powstaje) u nacji ${o.shortName || o.name}. Na mapie może być tylko jeden.` : null;
+};
 
 Game.prototype.wonderBuilt = function (b) {
-    const n = b.owner, mins = Math.round(b.cfg.wonder / 60), d = !!this.diplo;
-    b.wonderAt = this.time;
-    b.wonderUntil = this.time + b.cfg.wonder;
+    const n = b.owner, nm = b.cfg.name, rate = String(b.cfg.glory).replace('.', ',');
     this.spawnParticle(b.x, b.y, 'levelup');
     this.shake(b.x, b.y, 5, 80);
+    n.recomputeBonuses(); n.recomputePopulation();
     for (const o of this.nations) {
-        if (o === n) { this.tell(o, d ? `Cud Świata ukończony! Jeśli przetrwa ${mins} minut, wygrywasz razem z sojusznikami. Nacje spoza sojuszu ruszą, by go zburzyć.` : `Cud Świata ukończony! Jeśli przetrwa ${mins} minut, twoja drużyna zwycięży. Wszyscy wrogowie już ruszają, by go zburzyć.`, 'good'); this.cue(o, 'AgeUp'); }
-        else if (this.wonderSide(o, n)) { this.tell(o, `Sojusznik ${n.shortName || n.name} ukończył Cud Świata! Brońcie go przez ${mins} minut, a ${d ? 'zwycięstwo będzie wspólne' : 'drużyna zwycięży'}.`, 'good'); this.cue(o, 'Complete'); }
-        else { this.tell(o, `Nacja ${n.shortName || n.name} ukończyła Cud Świata! Za ${mins} minut ${d ? 'zwycięży razem z sojusznikami' : 'jej drużyna zwycięży'} — zburzcie go!`, 'alert'); this.cue(o, 'Warning'); }
+        if (o === n) { this.tell(o, `${nm} ukończony! +${rate} Chwały na sekundę — 1000 Chwały daje zwycięstwo. Brońcie go!`, 'good'); this.cue(o, 'AgeUp'); }
+        else if (this.isAlly(o, n)) { this.tell(o, `Sojusznik ${n.shortName || n.name} ukończył Cud: ${nm} (+${rate} Chwały/s dla niego).`, 'good'); this.cue(o, 'Complete'); }
+        else { this.tell(o, `Nacja ${n.shortName || n.name} ukończyła Cud: ${nm} (+${rate} Chwały/s). Zburz go, a zabierzesz jej część Chwały!`, 'alert'); this.cue(o, 'Warning'); }
     }
 };
 
 Game.prototype.wonderFallen = function (b, source) {
-    const n = b.owner, nm = n.shortName || n.name;
-    if (!b.isConstructed) { this.tellAll(`Budowa Cudu Świata nacji ${nm} przerwana.`, 'info'); return; }
-    const by = source && source.owner && source.owner !== n ? ' z ręki nacji ' + (source.owner.shortName || source.owner.name) : '';
-    this.tell(n, 'Twój Cud Świata legł w gruzach! Odliczanie przerwane.', 'alert');
+    const n = b.owner, nm = n.shortName || n.name, wn = b.cfg.name;
+    if (!b.isConstructed) { this.tellAll(`Budowa przerwana: ${wn} nacji ${nm}.`, 'info'); return; }
+    n.recomputeBonuses(); n.recomputePopulation();
+    // utrata Chwały: 25% dla właściciela, 100 dla burzącego
+    const G = this.glory || (this.glory = new Map());
+    const lost = Math.round((G.get(n.team) || 0) * 0.25);
+    G.set(n.team, (G.get(n.team) || 0) - lost);
+    const by = source && source.owner && source.owner !== n ? source.owner : null;
+    if (by && this.isEnemy(by, n)) G.set(by.team, (G.get(by.team) || 0) + 100);
+    this.tell(n, `${wn} legł w gruzach! Tracisz ${lost} Chwały i premię Cudu.`, 'alert');
     this.cue(n, 'Warning');
-    this.tellAll(`Cud Świata nacji ${nm} legł w gruzach${by}! Odliczanie do zwycięstwa przerwane.`, 'alert', n);
+    this.tellAll(`${wn} nacji ${nm} legł w gruzach${by ? ' z ręki nacji ' + (by.shortName || by.name) + ' (+100 Chwały)' : ''}!`, 'alert', n);
 };
 
-// Zwycięstwo przez Cud: ostrzeżenia na 5, 2 i 1 minutę przed końcem odliczania, potem koniec meczu
-Game.WONDER_WARN = [[300, '5 minut'], [120, '2 minuty'], [60, 'minuta']];
+// Chwała (V1.0): każdy ukończony Cud dodaje drużynie Chwałę co sekundę; 1000 = zwycięstwo. Ostrzeżenia przy 50, 75 i 90%.
+Game.GLORY_WIN = 1000;
+Game.GLORY_WARN = [0.5, 0.75, 0.9];
+Game.prototype.gloryOf = function (team) {
+    if (this.isClient) { const r = this.netGlory && this.netGlory[team]; return r ? r[0] : 0; }
+    return (this.glory && this.glory.get(team)) || 0;
+};
+Game.prototype.gloryRate = function (team) {
+    if (this.isClient) { const r = this.netGlory && this.netGlory[team]; return r ? r[1] : 0; }
+    let v = 0;
+    for (const w of this.wonderInfo()) if (w.isConstructed && !w.isDestroyed && w.owner.team === team && !w.owner.defeated) v += w.cfg.glory || 0;
+    return v;
+};
+// Drużyny z Chwałą: [{ team, glory, rate, names }] od najwyższej
+Game.prototype.gloryTable = function () {
+    const out = [];
+    for (const n of this.nations) {
+        if (n.defeated) continue;
+        let e = out.find(x => x.team === n.team);
+        if (!e) { e = { team: n.team, glory: this.gloryOf(n.team), rate: this.gloryRate(n.team), names: [] }; out.push(e); }
+        e.names.push(n.shortName || n.name);
+    }
+    return out.filter(e => e.glory > 0 || e.rate > 0).sort((a, b) => b.glory - a.glory);
+};
 Game.prototype.checkWonders = function () {
     if (!this.wondersOn) return false;
+    const dt = this.time - (this._gloryAt === undefined ? this.time : this._gloryAt);
+    this._gloryAt = this.time;
     const W = this.wonderInfo();
-    if (!W.length) return false;
-    let best = null;
+    if (!W.length && !this.glory) return false;
+    const G = this.glory || (this.glory = new Map());
     for (const b of W) {
-        if (b.isDestroyed || !b.isConstructed || b.wonderUntil == null || b.owner.defeated) continue;
-        const left = b.wonderUntil - this.time;
-        for (const [m, label] of Game.WONDER_WARN) {
-            if (left <= m && left > 0 && (b.wonderTold === undefined || b.wonderTold > m)) {
-                b.wonderTold = m;
-                const nm = b.owner.shortName || b.owner.name;
+        if (b.isDestroyed || !b.isConstructed || b.owner.defeated) continue;
+        G.set(b.owner.team, (G.get(b.owner.team) || 0) + (b.cfg.glory || 0) * dt);
+        if (b.cfg.income) for (const k in b.cfg.income) b.owner.resources.add(k, b.cfg.income[k] * dt);   // Kolos: daniny
+    }
+    const told = this._gloryTold || (this._gloryTold = new Map());
+    let best = null, bestG = 0;
+    for (const [team, v] of G) {
+        const owners = this.nations.filter(n => n.team === team && !n.defeated);
+        if (!owners.length) continue;
+        const k = v / Game.GLORY_WIN;
+        for (const th of Game.GLORY_WARN) {
+            if (k >= th && (told.get(team) || 0) < th) {
+                told.set(team, th);
+                const nm = owners.map(n => n.shortName || n.name).join(', '), pct = Math.round(th * 100);
                 for (const o of this.nations) {
-                    if (this.wonderSide(o, b.owner)) this.tell(o, `Cud Świata: do zwycięstwa ${m > 60 ? 'zostało' : 'została'} ${label}! Nie dajcie go zburzyć.`, 'good');
-                    else { this.tell(o, `Cud Świata nacji ${nm}: do jej zwycięstwa ${m > 60 ? 'zostało' : 'została'} ${label}!`, 'alert'); this.cue(o, 'Warning'); }
+                    if (o.team === team || this.isAlly(o, owners[0])) this.tell(o, `Chwała: ${pct}% drogi do zwycięstwa (${Math.floor(v)} / ${Game.GLORY_WIN}). Brońcie Cudów!`, 'good');
+                    else { this.tell(o, `Chwała nacji ${nm}: ${pct}% drogi do zwycięstwa! Zburzcie jej Cuda.`, 'alert'); if (th >= 0.75) this.cue(o, 'Warning'); }
                 }
             }
         }
-        if (left <= 0 && (!best || b.wonderUntil < best.wonderUntil)) best = b;
+        if (v >= Game.GLORY_WIN && v > bestG) { bestG = v; best = owners[0]; }
     }
     if (!best) return false;
-    this.byWonder = best.owner.shortName || best.owner.name;
-    this.endGame(best.owner.team, false, this.diplo ? this.nations.filter(n => n === best.owner || this.diplo.allied(n, best.owner)) : null);
+    this.byWonder = this.nations.filter(n => n.team === best.team && !n.defeated).map(n => n.shortName || n.name).join(', ');
+    this.winReason = 'wonder';
+    this.endGame(best.team, false, this.diplo ? this.nations.filter(n => !n.defeated && (n.team === best.team || this.diplo.allied(n, best))) : null);
     return true;
 };
 
@@ -5807,6 +5927,7 @@ Game.prototype.applyCommand = function (nation, cmd) {
             if (this.buildingOff(type)) return fail(`${cfg.name} jest wyłączony w ustawieniach tego meczu.`);
             if ((cfg.age || 1) > nation.age) return fail('Wymagana wyższa era!');
             if (cfg.limit && nation.countBuildings(type) >= cfg.limit) return fail(`Osiągnięto limit (max ${cfg.limit}): ${cfg.name}`);
+            if (cfg.unique && this.wonderBlock(type, nation)) return fail(this.wonderBlock(type, nation));
             if (!this.teamExplored(nation.team, x, y)) return fail('Nie możesz budować w nieodkrytej mgle!');
             const cost = cfg.cost || { wood: 150 };
             if (!nation.resources.canAfford(cost)) return fail('Brakuje surowców!');
@@ -8278,7 +8399,8 @@ class UIManager {
         const wb = this.el['wonder-banner'];
         if (wb) wb.addEventListener('click', () => {
             // klik w odliczanie: kamera na Cud Świata
-            const w = this.game.wonderInfo().find(x => x.isConstructed && x.wonderUntil != null);
+            const top = this.game.gloryTable()[0];
+            const w = top && this.game.wonderInfo().find(x => x.isConstructed && x.owner.team === top.team);
             if (w) this.game.centerOn(w.x, w.y);
         });
         // Reloaded: w Dyplomacji tabela nacji jest panelem dyplomacji (relacje, propozycje, wypowiedzenie wojny)
@@ -8301,6 +8423,7 @@ class UIManager {
                     const cmd = { t: 'diplo', act: b.dataset.dip };
                     if (b.dataset.to !== undefined) cmd.to = Number(b.dataset.to);
                     if (b.dataset.id !== undefined) cmd.id = Number(b.dataset.id);
+                    if (b.dataset.pay) cmd.pay = 1;
                     this._warArmed = null;
                     this.game.issue(cmd);
                     if (window.soundManager) window.soundManager.playKeypress();
@@ -8383,14 +8506,36 @@ class UIManager {
         const el = this.el['wonder-banner'];
         if (!el) return;
         const g = this.game;
-        const list = g.gameOver ? [] : g.wonderInfo().filter(w => w.isConstructed && w.wonderUntil != null && !w.owner.defeated);
+        // Chwała Cudów: drużyny, które ją wytwarzają (albo mają ponad 40%), najwyżej trzy - z paskiem postępu
         let html = '';
-        for (const w of list) {
-            const left = Math.max(0, Math.ceil(w.wonderUntil - g.time));
-            const tm = Math.floor(left / 60) + ':' + String(left % 60).padStart(2, '0');
-            const ours = w.owner.team === g.playerTeam && !g.observeAll;
-            const nm = w.owner.shortName || w.owner.name;
-            html += `<div class="${ours ? 'ours' : 'theirs'}">⛪ Cud Świata — ${nm}: <b>${tm}</b> ${ours ? 'do zwycięstwa. Brońcie go!' : 'do ich zwycięstwa. Zburzcie go!'}</div>`;
+        if (!g.gameOver && g.wondersOn) {
+            const me = this.playerNation;
+            for (const e of g.gloryTable().filter(x => x.rate > 0 || x.glory >= Game.GLORY_WIN * 0.4).slice(0, 3)) {
+                const ours = !g.observeAll && (e.team === me.team || (g.diplo && g.nations.some(n => n.team === e.team && g.diplo.allied(n, me))));
+                const pct = Math.min(100, e.glory / Game.GLORY_WIN * 100);
+                const eta = e.rate > 0 ? Math.max(0, Math.ceil((Game.GLORY_WIN - e.glory) / e.rate)) : 0;
+                const tm = Math.floor(eta / 60) + ':' + String(eta % 60).padStart(2, '0');
+                html += `<div class="${ours ? 'ours' : 'theirs'} glory">⛪ Chwała — ${e.team === me.team && !g.observeAll ? 'twoja' + (e.names.length > 1 ? ' drużyna' : ' nacja') : e.names.join(', ')}: <b>${Math.floor(e.glory)}</b> / ${Game.GLORY_WIN}`
+                    + (e.rate > 0 ? ` <small>(+${String(Math.round(e.rate * 10) / 10).replace('.', ',')}/s · zwycięstwo za ~${tm})</small>` : ' <small>(Cuda zburzone)</small>')
+                    + `<i class="gbar"><i style="width:${pct.toFixed(1)}%"></i></i></div>`;
+            }
+        }
+        // Dyplomacja: odliczanie Sojuszu zwycięzców i ostatnie 5 minut limitu czasu
+        const D = g.diplo;
+        if (D && !g.gameOver) {
+            const me = this.playerNation, alive = !me.defeated && !g.observeAll;
+            const mmss = (t) => { t = Math.max(0, Math.ceil(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
+            if (D.allianceAt >= 0) {
+                const tm = mmss(DIPLO.ALLIANCE_HOLD - (g.time - D.allianceAt));
+                html += `<div class="${alive ? 'ours' : 'theirs'}">❖ Sojusz zwycięzców: <b>${tm}</b> ${alive ? 'do waszego wspólnego zwycięstwa. Trzymajcie się razem!' : 'do ich zwycięstwa.'}</div>`;
+            }
+            if (D.timeLimit > 0 && D.timeLimit - g.time <= 300) {
+                const lead = D.leader(g.nations.filter(n => !n.defeated));
+                if (lead) {
+                    const mine = alive && (lead === me || D.allied(lead, me));
+                    html += `<div class="${mine ? 'ours' : 'theirs'}">⌛ Koniec czasu za <b>${mmss(D.timeLimit - g.time)}</b> — prowadzi ${lead === me && alive ? 'twoja nacja' : (lead.shortName || lead.name) + (mine ? ' (twój sojusznik)' : '')}, Wynik ${lead.summary().score}</div>`;
+                }
+            }
         }
         if (html !== this._wonderHtml) { this._wonderHtml = html; el.innerHTML = html; }
         const show = html ? 'flex' : 'none';
@@ -8438,27 +8583,60 @@ class UIManager {
         if (html !== this._nationsSig) { this._nationsSig = html; el.innerHTML = html; }
     }
 
-    // Reloaded: panel Dyplomacji (Tab) - relacja z każdą nacją, jej opinia o nas, siła w porównaniu z naszą,
-    // przyciski: wojna / pokój / sojusz / zerwanie sojuszu, propozycje czekające na odpowiedź i kronika zdarzeń.
+    // Reloaded: panel Dyplomacji (Tab) - warunki zwycięstwa z bieżącym stanem, relacja z każdą nacją, jej opinia o nas,
+    // siła w porównaniu z naszą, przyciski: wojna / pokój (także za okup) / sojusz / zerwanie sojuszu, propozycje
+    // i żądania trybutu czekające na odpowiedź oraz kronika zdarzeń.
     renderDiplomacy() {
         const el = this.el['nations-panel'];
         const g = this.game, D = g.diplo, me = this.playerNation;
         const full = !!(this.locked || g.gameOver);
         const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
         const truce = D.truceUntil - g.time;
-        const mmss = (t) => Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0');
+        const mmss = (t) => { t = Math.max(0, Math.ceil(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
         const myS = g.isClient ? 0 : D.strength(me);
+        const heg = g.isClient ? null : D.hegemon();
+        const act = g.nations.filter(n => !n.defeated);
+
+        // --- warunki zwycięstwa (z bieżącym stanem) ---
+        const goal = (ico, name, desc, st, hot) => `<div class="dp-goal${hot ? ' hot' : ''}"><i>${ico}</i><span><b>${name}</b> — ${desc}</span><em>${st}</em></div>`;
+        let goals = goal('⚔', 'Podbój', 'zniszcz Ratusze wszystkich rywali', `w grze: ${act.length}`, act.length === 2);
+        if (D.allianceWin) {
+            const st = D.allianceAt >= 0 ? `zwycięstwo za <b>${mmss(DIPLO.ALLIANCE_HOLD - (g.time - D.allianceAt))}</b>`
+                : act.length > D.allyCap ? `musi odpaść jeszcze ${act.length - D.allyCap}` : 'pozostali muszą być w sojuszu';
+            goals += goal('❖', 'Sojusz', `zostańcie sami na placu boju jako sojusz (najwyżej ${D.allyCap} nacji) i wytrwajcie ${DIPLO.ALLIANCE_HOLD / 60} min`, st, D.allianceAt >= 0);
+        }
+        if (g.wondersOn) {
+            const top = g.gloryTable()[0];
+            goals += goal('⛪', 'Cuda Świata', `zbierz ${Game.GLORY_WIN} Chwały — wytwarzają ją ukończone Cuda (III i IV era)`,
+                top ? `${top.team === me.team ? 'ty' : esc(top.names.join(', '))}: <b>${Math.floor(top.glory)}</b>` : 'nikt nie ma Cudu', !!top && top.glory >= Game.GLORY_WIN * 0.5);
+        }
+        if (D.timeLimit > 0) {
+            const lead = D.leader(act), left = D.timeLimit - g.time;
+            goals += goal('⌛', 'Limit czasu', `po ${Math.round(D.timeLimit / 60)} min wygrywa najwyższy Wynik (razem z sojusznikami)`,
+                `zostało <b>${mmss(left)}</b>${lead ? ' · prowadzi ' + (lead === me ? 'twoja nacja' : esc(D.name(lead))) : ''}`, left < 300);
+        }
+
+        // --- propozycje i żądania czekające na naszą odpowiedź ---
         let props = '';
         for (const p of D.proposals) {
             if (p.to !== me || full) continue;
-            props += `<div class="dp-prop"><span><span class="dot" style="background:${p.from.color}"></span><b>${esc(D.name(p.from))}</b> proponuje ${p.kind === 'peace' ? 'pokój' : 'sojusz'} <small class="mut">· ${Math.max(0, Math.ceil(p.until - g.time))} s</small></span>
+            const pt = esc(Diplomacy.payText(p.pay)), left = `<small class="mut">· ${Math.max(0, Math.ceil(p.until - g.time))} s</small>`;
+            const who = `<span class="dot" style="background:${p.from.color}"></span><b>${esc(D.name(p.from))}</b>`;
+            if (p.kind === 'tribute') {
+                const can = me.resources.get('gold') >= (p.pay.gold || 0) && me.resources.get('food') >= (p.pay.food || 0) && me.resources.get('wood') >= (p.pay.wood || 0);
+                props += `<div class="dp-prop tribute"><span>${who} żąda trybutu: <b>${pt}</b> ${left}<br><small class="mut">Zapłata = ${DIPLO.PACT / 60} min traktatu. Odmowa może oznaczać wojnę.${can ? '' : ' Nie masz tyle — zapłacisz, ile masz.'}</small></span>
+                    <span class="dp-act"><button class="ok" data-dip="accept" data-id="${p.id}">Zapłać</button><button class="war" data-dip="decline" data-id="${p.id}">Odmów</button></span></div>`;
+            } else props += `<div class="dp-prop"><span>${who} proponuje ${p.kind === 'peace' ? 'pokój' : 'sojusz'}${p.pay ? ' i oferuje okup: <b>' + pt + '</b>' : ''} ${left}</span>
                 <span class="dp-act"><button class="ok" data-dip="accept" data-id="${p.id}">Przyjmij</button><button data-dip="decline" data-id="${p.id}">Odrzuć</button></span></div>`;
         }
+
+        // --- nacje ---
+        const offer = D.offerFor(me), offerT = offer ? Diplomacy.payText(offer) : '';
         let rows = '';
         for (const n of g.nations) {
             if (n === me) continue;
             const st = D.get(me, n), cls = ['war', 'peace', 'ally'][st];
-            const status = n.defeated ? '<span class="st-dead">pokonani</span>' : '';
+            const status = n.defeated ? '<span class="st-dead">pokonani</span>' : (n === heg ? '<span class="dp-heg" title="Hegemon: najpotężniejsza nacja kontynentu — inne łączą się przeciw niej w koalicje">hegemon</span>' : '');
             const op = Math.round(D.op(n, me));
             const opBar = `<span class="dp-op" title="Opinia tej nacji o tobie: ${op > 0 ? '+' : ''}${op}"><i style="${op >= 0 ? 'left:50%;width:' + (op / 2) + '%;background:#32d15d' : 'left:' + (50 + op / 2) + '%;width:' + (-op / 2) + '%;background:#ff5a4d'}"></i></span>`;
             let str = '—';
@@ -8466,28 +8644,30 @@ class UIManager {
                 const k = D.strength(n) / Math.max(1, myS);
                 str = k > 1.6 ? '<span style="color:#ff8f85">dużo silniejsi</span>' : k > 1.15 ? '<span style="color:#ffc58a">silniejsi</span>' : k > 0.87 ? 'podobna' : k > 0.6 ? '<span style="color:#b9e6a0">słabsi</span>' : '<span style="color:#7fe39a">dużo słabsi</span>';
             }
+            const pl = D.pactLeft(me, n);
+            const sub = !n.defeated && pl > 0 && st !== DIPLO.WAR ? `<small class="dp-sub" title="Traktat po zapłaconym trybucie — nikt z was nie może wypowiedzieć wojny">traktat ${mmss(pl)}</small>` : '';
             let act = '';
             if (!full && !n.defeated && !me.defeated) {
                 const idx = g.nations.indexOf(n);
                 const warErr = D.canDeclareWar(me, n);
                 const armed = this._warArmed === String(idx) && performance.now() - this._warArmedAt <= 5000;
-                if (st === DIPLO.WAR) act = `<button data-dip="peace" data-to="${idx}">Zaproponuj pokój</button>`;
+                if (st === DIPLO.WAR) act = `<button data-dip="peace" data-to="${idx}">Pokój</button><button class="ok" data-dip="peace" data-pay="1" data-to="${idx}"${offer ? '' : ' disabled'} title="${esc(offer ? 'Pokój za okup: ' + offerT + ' (20% twoich zapasów)' : 'Nie masz z czego zapłacić okupu')}">Pokój za okup</button>`;
                 else {
-                    if (st === DIPLO.PEACE) act += `<button class="ok" data-dip="alliance" data-to="${idx}">Sojusz</button>`;
+                    if (st === DIPLO.PEACE) act += `<button class="ok" data-dip="alliance" data-to="${idx}">Sojusz</button><button data-dip="tribute" data-to="${idx}" title="${esc('Zażądaj trybutu: ' + Diplomacy.payText(D.demandFor(me)) + '. Zapłaci tylko nacja wyraźnie słabsza od ciebie (razem z sojusznikami); odmowa psuje stosunki. Zapłata = ' + DIPLO.PACT / 60 + ' min traktatu.')}">Trybut</button>`;
                     else act += `<button data-dip="break" data-to="${idx}" title="Sojusz zostaje zerwany, ale pokój trwa dalej">Zerwij sojusz</button>`;
                     act += `<button class="war" data-dip="war" data-to="${idx}"${warErr ? ' disabled' : ''} title="${esc(warErr || (st === DIPLO.ALLY ? 'Atak na sojusznika to zdrada — inne nacje to zapamiętają' : 'Wypowiedzenie wojny: jednostki i wieże zaczną walczyć'))}">${armed ? 'Na pewno? Kliknij' : 'Wojna'}</button>`;
                 }
             }
             rows += `<tr class="${n.defeated ? 'dead' : ''}"><td><span class="dot" style="background:${n.color}"></span>${esc(n.shortName || n.name)} ${status}</td>
-                <td><span class="dp-pill ${cls}">${DIPLO.NAMES[st]}</span></td><td>${!n.human || n.ai ? opBar : '<span class="mut">gracz</span>'}</td><td>${str}</td>
+                <td><span class="dp-pill ${cls}">${DIPLO.NAMES[st]}</span>${sub}</td><td>${!n.human || n.ai ? opBar : '<span class="mut">gracz</span>'}</td><td>${str}</td>
                 <td class="mut">${esc(n.controlLabel())}</td><td>${GameConfig.ages[n.age].roman}</td><td><b>${n.summary().score}</b></td><td><span class="dp-act">${act}</span></td></tr>`;
         }
         const nm = (i) => { const n = g.nations[i]; return n ? esc(n.shortName || n.name) : '?'; };
-        const KIND = { war: 'wypowiada wojnę', peace: 'zawiera pokój z', alliance: 'zawiera sojusz z', break: 'zrywa sojusz z' };
-        const log = D.history.slice(-5).reverse().map(h => `${mmss(h.t)} · ${nm(h.a)} ${KIND[h.kind] || h.kind}${h.kind === 'war' ? ' nacji' : ''} ${nm(h.b)}`).join('<br>');
-        const html = `<div class="dp-head"><b>Dyplomacja</b><small>${truce > 0 ? 'Rozejm: jeszcze ' + mmss(truce) + ' — nikt nie może wypowiedzieć wojny' : 'Wojny, pokoje i sojusze zmieniają się w trakcie gry'}${D.allianceWin ? ' · sojusz wszystkich, którzy przetrwali, wygrywa' : ''}</small></div>
+        const log = D.history.slice(-5).reverse().map(h => `${mmss(h.t)} · ${nm(h.a)} ${DIPLO.KIND[h.kind] || h.kind} ${nm(h.b)}`).join('<br>');
+        const html = `<div class="dp-head"><b>Dyplomacja</b><small>${truce > 0 ? 'Rozejm: jeszcze ' + mmss(truce) + ' — nikt nie może wypowiedzieć wojny' : 'Wojny, pokoje, sojusze i trybuty zmieniają się w trakcie gry'}</small></div>
+            <div class="dp-goals"><div class="dp-gt">Warunki zwycięstwa</div>${goals}</div>
             ${props ? '<div class="dp-props">' + props + '</div>' : ''}
-            <table><thead><tr><th>Nacja</th><th>Relacja</th><th title="Co ta nacja myśli o tobie">Opinia</th><th title="Siła w porównaniu z twoją">Siła</th><th>Sterowanie</th><th>Era</th><th>Wynik</th><th></th></tr></thead><tbody>${rows}</tbody></table>
+            <table><thead><tr><th>Nacja</th><th>Relacja</th><th title="Co ta nacja myśli o tobie">Opinia</th><th title="Siła w porównaniu z twoją">Siła</th><th>Sterowanie</th><th>Era</th><th title="Wynik decyduje po upływie limitu czasu">Wynik</th><th></th></tr></thead><tbody>${rows}</tbody></table>
             ${log ? '<div class="dp-log">' + log + '</div>' : ''}`;
         if (html !== this._nationsSig) { this._nationsSig = html; el.innerHTML = html; }
     }
@@ -8783,13 +8963,14 @@ class UIManager {
                     const cfg = GameConfig.buildings[t];
                     const locked = (cfg.age || 1) > n.age;
                     const tcLimit = !!cfg.limit && n.countBuildings(t) >= cfg.limit;
+                    const taken = cfg.unique ? g.wonderBlock(t, n) : null;
                     cmds[i] = {
                         icon: Icons.entityUrl('building', t, n.colorKey, 24), title: cfg.name, desc: cfg.desc, cost: cfg.cost,
                         extra: (cfg.pop ? `+${cfg.pop} populacji. ` : '') + `Wytrzymałość: ${cfg.maxHp}` +
                             (cfg.attack ? ` · Atak: ${cfg.attack.damage}${cfg.attack.volley ? ' ×' + cfg.attack.volley : ''} co ${cfg.attack.rate} s · Zasięg: ${cfg.attack.range}` : '') +
                             (cfg.vision >= 450 ? ` · Widzenie: ${cfg.vision}` : ''),
-                        disabled: locked || tcLimit,
-                        reason: locked ? 'Wymaga: ' + ageName(cfg.age) : (tcLimit ? `Osiągnięto limit (max ${cfg.limit}): ${cfg.name}` : null),
+                        disabled: locked || tcLimit || !!taken,
+                        reason: locked ? 'Wymaga: ' + ageName(cfg.age) : (tcLimit ? `Osiągnięto limit (max ${cfg.limit}): ${cfg.name}` : taken),
                         onClick: () => this.startPlacement(t)
                     };
                 });
@@ -8799,7 +8980,7 @@ class UIManager {
 
             let i = 0;
             if (hasWorker) {
-                cmds[i++] = { icon: Icons.url('build_eco', 24), title: 'Budynki gospodarcze', desc: 'Ratusz, dom, farma, sad, młyn, skład, targ, port' + (g.wondersOn ? ' i Cud Świata.' : '.'), onClick: () => { this.menuPage = 'eco'; this.updateActionPanel(); } };
+                cmds[i++] = { icon: Icons.url('build_eco', 24), title: 'Budynki gospodarcze', desc: 'Ratusz, dom, farma, sad, młyn, skład, targ, port' + (g.wondersOn ? ' i Cuda Świata.' : '.'), onClick: () => { this.menuPage = 'eco'; this.updateActionPanel(); } };
                 cmds[i++] = { icon: Icons.url('build_mil', 24), title: 'Budynki wojskowe', desc: 'Koszary, stajnia, warsztat, kuźnia, klasztor, lazaret, wieże, posterunek, zamek, mury, arsenał.', onClick: () => { this.menuPage = 'mil'; this.updateActionPanel(); } };
             }
             if (hasFighter) {
@@ -9768,6 +9949,7 @@ class UIManager {
 
         const pcfg = GameConfig.buildings[this.placementMode];
         if (pcfg.limit && n.countBuildings(this.placementMode) >= pcfg.limit) { err(`Osiągnięto limit (max ${pcfg.limit}): ${pcfg.name}`); this.cancelPlacement(true); return; }
+        if (pcfg.unique && g.wonderBlock(this.placementMode, n)) { err(g.wonderBlock(this.placementMode, n)); this.cancelPlacement(true); return; }
         if (ghost && ghost.isValid === false) {
             if (ghost.placeError === 'farmDist') {
                 err(isFarmType(this.placementMode) ? pcfg.name + ' musi stać dalej od Ratusza — poza czerwonym kręgiem. Krótsze kursy z plonem da Młyn postawiony niedaleko pól.'
@@ -9949,8 +10131,14 @@ class UIManager {
         const sub = document.getElementById('end-sub');
         el.className = 'overlay ' + result;
         const pts = g.byPoints ? ' Pat: od 10 minut nikt nie walczył, więc bitwę rozstrzygnięto na punkty.' : '';
-        const wonder = g.byWonder ? ` Cud Świata nacji ${g.byWonder} przetrwał odliczanie.` : '';
-        if (result === 'victory') { title.textContent = 'ZWYCIĘSTWO'; sub.textContent = (g.byWonder ? 'Cud Świata przetrwał — twoja drużyna zwycięża!' : (g.byPoints ? 'Twoja drużyna wygrywa na punkty.' : 'Wszystkie wrogie Ratusze legły w gruzach.')) + pts + (g.byWonder ? wonder : ''); }
+        const wonder = g.byWonder ? ` Cuda Świata przyniosły ${Game.GLORY_WIN} Chwały: ${g.byWonder}.` : '';
+        const dw = g.diplo ? { conquest: 'Podbój — wszystkie inne Ratusze legły w gruzach.', alliance: `Sojusz zwycięzców — sojusz przetrwał ${DIPLO.ALLIANCE_HOLD / 60} minuty jako jedyny na placu boju.`,
+            limit: `Limit czasu — najwyższy Wynik${g.winLeader ? ': ' + g.winLeader : ''}.`, wonder: `Cuda Świata — ${Game.GLORY_WIN} Chwały${g.byWonder ? ': ' + g.byWonder : ''}.` }[g.winReason] : null;
+        if (dw) {
+            // Dyplomacja: zwycięzcą jest nacja albo sojusz - zawsze z powodem rozstrzygnięcia
+            if (result === 'victory') { title.textContent = 'ZWYCIĘSTWO'; sub.textContent = dw + (g.winnerTeams && g.winnerTeams.size > 1 ? ' Zwycięzcy: ' + winnerNames + '.' : ''); }
+            else if (result === 'defeat') { title.textContent = 'PORAŻKA'; sub.textContent = 'Zwyciężyli: ' + winnerNames + '. ' + dw; }
+        } else if (result === 'victory') { title.textContent = 'ZWYCIĘSTWO'; sub.textContent = (g.byWonder ? `Cuda Świata przyniosły ${Game.GLORY_WIN} Chwały — twoja drużyna zwycięża!` : (g.byPoints ? 'Twoja drużyna wygrywa na punkty.' : 'Wszystkie wrogie Ratusze legły w gruzach.')) + pts; }
         else if (result === 'defeat') { title.textContent = 'PORAŻKA'; sub.textContent = 'Zwyciężyła drużyna: ' + winnerNames + '.' + pts + wonder; }
         else { title.textContent = 'REMIS'; sub.textContent = 'Nikt nie ocalał.'; }
 
@@ -9960,14 +10148,17 @@ class UIManager {
         for (const n of list) {
             const s = n.stats;
             const gathered = Math.round(s.gathered.wood + s.gathered.gold + s.gathered.stone + s.gathered.food);
-            const win = n.team === g.winnerTeam;
+            const win = g.winnerTeams ? g.winnerTeams.has(n.team) : n.team === g.winnerTeam;
             const diff = n.controlLabel();
+            // Dyplomacja: bez drużyn - zamiast numeru drużyny status nacji w meczu
+            const teamCell = g.diplo ? (win ? '<b style="color:#ffd98a">zwycięzca</b>' : n.defeated ? '<small>pokonani</small>' : '<small>w grze</small>')
+                : `<span class="team-tag t${n.teamLabel || 1}">${n.teamLabel || 1}</span>`;
             rows += `<tr class="${win ? 'win' : ''}"><td><span class="dot" style="background:${n.color}"></span>${n.shortName || n.name}${n.defeated ? ' <small>(pokonani)</small>' : ''}</td>
-                <td><span class="team-tag t${n.teamLabel || 1}">${n.teamLabel || 1}</span></td><td><small>${diff}</small></td>
+                <td>${teamCell}</td><td><small>${diff}</small></td>
                 <td>${GameConfig.ages[n.age].roman}</td><td>${s.trained}</td><td>${s.kills}</td><td>${s.unitsLost}</td><td>${s.razed}</td><td>${s.buildingsLost}</td><td>${gathered}</td><td><b>${n.score()}</b></td></tr>`;
         }
         document.getElementById('end-stats').innerHTML =
-            `<table><thead><tr><th>Nacja</th><th>Drużyna</th><th>Poziom</th><th>Era</th><th>Wyszkolono</th><th>Zabito</th><th>Stracono</th><th>Zburzono</th><th>Utracone bud.</th><th>Zebrano</th><th>Wynik</th></tr></thead><tbody>${rows}</tbody></table>
+            `<table><thead><tr><th>Nacja</th><th>${g.diplo ? 'Status' : 'Drużyna'}</th><th>Poziom</th><th>Era</th><th>Wyszkolono</th><th>Zabito</th><th>Stracono</th><th>Zburzono</th><th>Utracone bud.</th><th>Zebrano</th><th>Wynik</th></tr></thead><tbody>${rows}</tbody></table>
              <div class="end-time">Czas gry: ${String(Math.floor(t / 60)).padStart(2, '0')}:${String(t % 60).padStart(2, '0')}</div>`;
         el.style.display = 'flex';
         this.hideTooltip();
@@ -11573,7 +11764,10 @@ class Terrain {
 //   - rzeki: od źródła w górach (albo w głębi lądu) do krawędzi mapy, jeziora lub innej rzeki (dopływy);
 //     szerokość rośnie z biegiem rzeki, a co ok. 1-1,5 tys. kroków jest bród (pas lądu, którym przejdzie wojsko),
 //   - rozmieszczenie dowolnej liczby nacji (2-8): punkty możliwie daleko od siebie na całym kontynencie,
-//   - surowce rozłożone regionami: puszcze, złoto i kamień częściej u podnóża gór, ryby w rzekach i jeziorach.
+//   - surowce rozłożone regionami: puszcze, złoto i kamień częściej u podnóża gór, ryby w rzekach i jeziorach,
+//   - (Dyplomacja, ulepszenia V1.0) wybrzeże: kontynent otacza morze o poszarpanym brzegu - zatoki i półwyspy,
+//     rzeki uchodzą do morza; bogate złoża ("Złote wzgórza") w miejscach najdalszych od wszystkich stolic - o nie
+//     toczą się wojny w środku gry; każda nacja ma też zapas złota, kamienia i lasu nieco dalej od Ratusza.
 // Układ (layout) zależy tylko od ziarna, rozmiaru i liczby nacji - podgląd w menu rysuje dokładnie to,
 // co potem powstaje w grze. Rzeki są zapisane jako jeziora z flagą river (plamy względem środka rzeki).
 const RaptorAtlas = {
@@ -11589,25 +11783,6 @@ const RaptorAtlas = {
         const K = Math.sqrt(A);                          // skala długości
         const range = (a, b) => a + rnd() * (b - a);
         const dist = (ax, ay, bx, by) => Math.hypot(ax - bx, ay - by);
-
-        // 1) Starty nacji: próbkowanie "najdalszego punktu" - kolejny start tam, gdzie do najbliższego jest najdalej
-        const M = Math.max(420, 700 * K);
-        const cand = [];
-        for (let i = 0; i < 700; i++) cand.push({ x: range(M, W - M), y: range(M, H - M) });
-        const starts = [cand[Math.floor(rnd() * cand.length)]];
-        while (starts.length < nStarts) {
-            let best = null, bestD = -1;
-            for (const c of cand) {
-                let d = Infinity;
-                for (const s of starts) d = Math.min(d, dist(c.x, c.y, s.x, s.y));
-                d *= 0.85 + rnd() * 0.3;
-                if (d > bestD) { bestD = d; best = c; }
-            }
-            starts.push(best);
-        }
-        const nearStart = (x, y, pad) => starts.some(s => dist(x, y, s.x, s.y) < pad);
-
-        const mountains = [], lakes = [], rivers = [], fords = [];
         const inBlobs = (list, x, y, pad) => {
             for (const m of list) {
                 if (Math.abs(m.x - x) > m.reach + pad || Math.abs(m.y - y) > m.reach + pad) continue;
@@ -11625,6 +11800,65 @@ const RaptorAtlas = {
             return Object.assign(o, extra || {});
         };
 
+        // 0) Wybrzeże: pas morza wzdłuż krawędzi, którego głębokość faluje (zatoki i półwyspy). Głębokość to suma
+        //    trzech sinusoid o całkowitych częstotliwościach na obwodzie, więc brzeg domyka się w narożnikach bez skoku.
+        //    Morze to zwykłe plamy wody (game.lakes, flaga sea) - ścieżki, okręty, ryby i teren działają bez zmian.
+        const sea = [];
+        if (opts.coast !== false) {
+            const per = 2 * (W + H), step = 290 * Math.max(0.6, K);
+            const f = [3 + Math.floor(rnd() * 3), 7 + Math.floor(rnd() * 5), 15 + Math.floor(rnd() * 7)], ph = [rnd() * 6.28, rnd() * 6.28, rnd() * 6.28];
+            // 2-4 głębokie zatoki (lokalne wcięcia brzegu) na tle łagodnego falowania
+            const gulfs = [];
+            for (let i = 2 + Math.floor(rnd() * 3); i > 0; i--) gulfs.push({ at: rnd() * per, w: range(500, 900), d: range(900, 1500) });
+            const depth = (p) => {
+                const u = p / per * Math.PI * 2;
+                let d = 640 + 460 * Math.sin(u * f[0] + ph[0]) + 230 * Math.sin(u * f[1] + ph[1]) + 100 * Math.sin(u * f[2] + ph[2]);
+                for (const gf of gulfs) { let q = Math.abs(p - gf.at); q = Math.min(q, per - q); d += gf.d * Math.exp(-(q * q) / (2 * gf.w * gf.w)); }
+                return Math.max(150, d * Math.max(0.5, K));
+            };
+            let chunk = [];
+            for (let p = 0; p < per; p += step) {
+                // punkt na obwodzie i normalna do środka mapy
+                let ex, ey, nx, ny;
+                if (p < W) { ex = p; ey = 0; nx = 0; ny = 1; }
+                else if (p < W + H) { ex = W; ey = p - W; nx = -1; ny = 0; }
+                else if (p < 2 * W + H) { ex = W - (p - W - H); ey = H; nx = 0; ny = -1; }
+                else { ex = 0; ey = H - (p - 2 * W - H); nx = 1; ny = 0; }
+                const d = depth(p) + (rnd() - 0.5) * 90;
+                const r = clamp(d * 0.32 + 120, 190, 470);
+                // łańcuch plam od linii brzegu (głębokość d) aż za krawędź mapy
+                for (let c = d - r; c > -r * 0.6; c -= r * 1.15) {
+                    const j = (rnd() - 0.5) * r * 0.35;
+                    chunk.push({ x: ex + nx * c + ny * j, y: ey + ny * c + nx * j, r: r * (0.92 + rnd() * 0.16) });
+                }
+                if (chunk.length >= 14) { sea.push(pack(chunk, { sea: true })); chunk = []; }
+            }
+            if (chunk.length) sea.push(pack(chunk, { sea: true }));
+        }
+
+        // 1) Starty nacji: próbkowanie "najdalszego punktu" - kolejny start tam, gdzie do najbliższego jest najdalej
+        //    (tylko na lądzie, z dala od brzegu morza)
+        const M = Math.max(420, 700 * K);
+        const cand = [];
+        for (let i = 0; i < 1400 && cand.length < 700; i++) {
+            const c = { x: range(M, W - M), y: range(M, H - M) };
+            if (!sea.length || !inBlobs(sea, c.x, c.y, 640 * Math.max(0.6, K))) cand.push(c);
+        }
+        const starts = [cand[Math.floor(rnd() * cand.length)]];
+        while (starts.length < nStarts) {
+            let best = null, bestD = -1;
+            for (const c of cand) {
+                let d = Infinity;
+                for (const s of starts) d = Math.min(d, dist(c.x, c.y, s.x, s.y));
+                d *= 0.85 + rnd() * 0.3;
+                if (d > bestD) { bestD = d; best = c; }
+            }
+            starts.push(best);
+        }
+        const nearStart = (x, y, pad) => starts.some(s => dist(x, y, s.x, s.y) < pad);
+
+        const mountains = [], lakes = sea.slice(), rivers = [], fords = [];
+
         // 2) Pasma górskie z przełęczami
         const ranges = Math.round((opts.mountains === 'many' ? 13 : 9) * A);
         for (let i = 0, tries = 0; i < ranges && tries < ranges * 40; tries++) {
@@ -11634,7 +11868,7 @@ const RaptorAtlas = {
             let walked = 0, ok = true, passAt = range(0.25, 0.75) * L, pass2 = rnd() < 0.55 ? range(0.1, 0.9) * L : -1;
             while (walked < L) {
                 const r = r0 * (0.72 + 0.4 * Math.sin(walked / 420 + i) + 0.12 * rnd());
-                if (x < 220 || y < 220 || x > W - 220 || y > H - 220 || nearStart(x, y, r + 560)) { ok = false; break; }
+                if (x < 220 || y < 220 || x > W - 220 || y > H - 220 || nearStart(x, y, r + 560) || inBlobs(sea, x, y, r + 120)) { ok = false; break; }
                 const inPass = Math.abs(walked - passAt) < r * 1.1 + 90 || (pass2 > 0 && Math.abs(walked - pass2) < r * 1.1 + 90);
                 if (!inPass) {
                     pts.push({ x, y, r });
@@ -11654,7 +11888,7 @@ const RaptorAtlas = {
         const massifs = Math.round(7 * A);
         for (let i = 0, tries = 0; i < massifs && tries < massifs * 30; tries++) {
             const x = range(500, W - 500), y = range(500, H - 500), r = range(120, 260);
-            if (nearStart(x, y, r + 600) || inBlobs(mountains, x, y, r + 200)) continue;
+            if (nearStart(x, y, r + 600) || inBlobs(mountains, x, y, r + 200) || inBlobs(sea, x, y, r + 140)) continue;
             const pts = [];
             const nb = 6 + Math.floor(rnd() * 5);
             for (let b = 0; b < nb; b++) { const a = rnd() * Math.PI * 2, d = rnd() * r * 0.6; pts.push({ x: x + Math.cos(a) * d, y: y + Math.sin(a) * d, r: r * range(0.4, 0.8) }); }
@@ -11761,7 +11995,26 @@ const RaptorAtlas = {
             lakes.push(pack(kept, { river: true }));
             i++;
         }
-        return { W, H, seed, starts, lakes, mountains, fords, rivers: rivers.length };
+        // 5) Złote wzgórza: bogate złoża w miejscach najdalszych od wszystkich stolic (na lądzie, z dala od brodów).
+        //    Po jednym na każde 3 nacje (co najmniej jedno) - cel wypraw i sporów w środku gry.
+        const hotspots = [];
+        const nHot = Math.max(1, Math.round(nStarts / 3));
+        const solid = (x, y, pad) => inBlobs(lakes, x, y, pad) || inBlobs(mountains, x, y, pad) || fords.some(f => dist(f.x, f.y, x, y) < f.w / 2 + 200);
+        for (let h = 0; h < nHot; h++) {
+            let best = null, bestD = -1;
+            for (let t = 0; t < 500; t++) {
+                const x = range(900 * K, W - 900 * K), y = range(900 * K, H - 900 * K);
+                if (solid(x, y, 240)) continue;
+                let d = Infinity;
+                for (const s of starts) d = Math.min(d, dist(x, y, s.x, s.y));
+                for (const o of hotspots) d = Math.min(d, dist(x, y, o.x, o.y) * 0.8);
+                if (d < 1300 * K) continue;
+                const v = d - 0.45 * dist(x, y, W / 2, H / 2);   // raczej w głębi kontynentu niż na wybrzeżu
+                if (v > bestD) { bestD = v; best = { x, y }; }
+            }
+            if (best) hotspots.push(best);
+        }
+        return { W, H, seed, starts, lakes, mountains, fords, hotspots, rivers: rivers.length };
     },
 
     // --- Pełne generowanie świata w grze: układ + surowce + test spójności (kilka prób z kolejnymi ziarnami) ---
@@ -11779,7 +12032,7 @@ const RaptorAtlas = {
             ok = this.connected(game, L.starts);
             if (!ok) seed = (seed * 1103515245 + 12345) >>> 0;
         }
-        game.atlas = { seed: L.seed, rivers: L.rivers, attempts, fords: L.fords.length };
+        game.atlas = { seed: L.seed, rivers: L.rivers, attempts, fords: L.fords.length, hotspots: (L.hotspots || []).map(h => ({ x: h.x, y: h.y })) };
         return { bases: L.starts.map(s => ({ x: s.x, y: s.y })), seed: L.seed, attempts, ok };
     },
 
@@ -11824,9 +12077,52 @@ const RaptorAtlas = {
         // złoto i kamień: częściej u stóp gór (regiony górnicze), reszta rozsiana
         for (let i = 0; i < Math.round(12 * S2); i++) cluster(Math.random() < 0.6 ? foothill() : randomFree(600), 'gold', 2 + Math.floor(Math.random() * 3), 36, 30);
         for (let i = 0; i < Math.round(9 * S2); i++) cluster(Math.random() < 0.65 ? foothill() : randomFree(600), 'stone', 2 + Math.floor(Math.random() * 3), 38, 32);
+        // złote wzgórza: kilka skupisk złota i kamienia z zagajnikiem dookoła
+        for (const h of (L.hotspots || [])) {
+            const at = (a, d) => ({ x: h.x + Math.cos(a) * d, y: h.y + Math.sin(a) * d });
+            const a0 = Math.random() * Math.PI * 2;
+            cluster(at(a0, 40), 'gold', 6, 70, 30);
+            cluster(at(a0 + 2.1, 150), 'gold', 4, 50, 30);
+            cluster(at(a0 + 4.2, 150), 'stone', 5, 55, 32);
+            for (let k = 0; k < 4; k++) cluster(at(a0 + k * 1.57 + 0.8, 330), 'wood', 6, 70, 30);
+        }
         if (startPackage) for (const b of bases) startPackage(game, b);
-        // ryby: w jeziorach i w szerszych odcinkach rzek
-        const waters = game.lakes.filter(l => !l.river || l.r > 34);
+        // zapas przy stolicy: złoto, kamień i las 650-1000 kroków od Ratusza (gdy pierwsze złoża się wyczerpią,
+        // nie trzeba od razu ruszać przez pół kontynentu); każda nacja dostaje tyle samo
+        for (const b of bases) {
+            const a0 = Math.random() * Math.PI * 2;
+            const near = (a, dMin, dMax) => {
+                for (let t = 0; t < 14; t++) {
+                    const aa = a + (Math.random() - 0.5) * 1.2, d = dMin + Math.random() * (dMax - dMin);
+                    const x = b.x + Math.cos(aa) * d, y = b.y + Math.sin(aa) * d;
+                    if (x > 60 && y > 60 && x < W - 60 && y < H - 60 && !blocked(x, y) && !nearFord(x, y, 90)) return { x, y };
+                }
+                return null;
+            };
+            const put = (c, type, count, radius, minDist) => {
+                if (!c) return;
+                for (let i = 0; i < count; i++) for (let tries = 0; tries < 8; tries++) {
+                    const a = Math.random() * Math.PI * 2, d = Math.sqrt(Math.random()) * radius;
+                    const x = c.x + Math.cos(a) * d, y = c.y + Math.sin(a) * d;
+                    if (blocked(x, y) || bases.some(o => Math.hypot(x - o.x, y - o.y) < 480)) continue;
+                    if (game.addResourceNode(new ResourceNode(x, y, type), minDist)) break;
+                }
+            };
+            put(near(a0, 650, 900), 'gold', 5, 50, 30);
+            put(near(a0 + 2.2, 650, 900), 'stone', 4, 45, 32);
+            put(near(a0 + 4.1, 700, 1000), 'wood', 14, 120, 30);
+        }
+        // ryby: w jeziorach i w szerszych odcinkach rzek, osobno na przybrzeżnych wodach morza
+        const coast = game.lakes.filter(l => l.sea);
+        for (let i = 0; i < Math.round(5 * S2) && coast.length; i++) {
+            const lk = coast[Math.floor(Math.random() * coast.length)], b = lk.blobs[Math.floor(Math.random() * lk.blobs.length)];
+            for (let t = 0; t < 20; t++) {
+                const a = Math.random() * Math.PI * 2, d = Math.random() * b.r * 0.8;
+                const x = lk.x + b.dx + Math.cos(a) * d, y = lk.y + b.dy + Math.sin(a) * d;
+                if (x > 40 && y > 40 && x < W - 40 && y < H - 40 && game.isWater(x, y) && game.addResourceNode(new ResourceNode(x, y, 'food'), 40)) break;
+            }
+        }
+        const waters = game.lakes.filter(l => !l.sea && (!l.river || l.r > 34));
         for (let i = 0; i < Math.round(14 * S2) && waters.length; i++) {
             const lk = waters[Math.floor(Math.random() * waters.length)], b = lk.blobs[Math.floor(Math.random() * lk.blobs.length)];
             for (let t = 0; t < 20; t++) {
@@ -11893,6 +12189,14 @@ const RaptorAtlas = {
         blobs(L.lakes, css(M.water));
         g.fillStyle = css(M.sand);
         for (const f of L.fords) { g.beginPath(); g.arc(f.x * k, f.y * k, Math.max(1.2, f.r * k * 1.2), 0, Math.PI * 2); g.fill(); }
+        // złote wzgórza (bogate złoża)
+        for (const h of (L.hotspots || [])) {
+            const x = h.x * k, y = h.y * k, q = Math.max(2.5, S * 0.016);
+            g.fillStyle = 'rgba(40, 28, 4, 0.55)';
+            g.beginPath(); g.moveTo(x, y - q - 1.5); g.lineTo(x + q + 1.5, y); g.lineTo(x, y + q + 1.5); g.lineTo(x - q - 1.5, y); g.closePath(); g.fill();
+            g.fillStyle = '#f2c94c';
+            g.beginPath(); g.moveTo(x, y - q); g.lineTo(x + q, y); g.lineTo(x, y + q); g.lineTo(x - q, y); g.closePath(); g.fill();
+        }
         return L.starts.map(s => ({ x: s.x * k, y: s.y * k }));
     }
 };
@@ -15364,6 +15668,122 @@ const BuildingPainter = {
         this.banner(g, -21, 38, col); this.banner(g, 21, 38, col); this.banner(g, -52, -2, col); this.banner(g, 52, -2, col);
     },
 
+    // ---------------- WISZĄCE OGRODY (V1.0) ----------------
+    // Trzy tarasy z cegły mułowej, każdy obrzeżony zielenią i pnączami, kaskada wody spływająca z górnego tarasu
+    // do sadzawki przed schodami, palmy i cyprysy w narożach, na szczycie pawilon z dachem w barwach nacji.
+    hanging_gardens(g, col) {
+        const BRICK = '#c9a273', T = Math.PI * 2;
+        this.lawn(g, -48, -48, 96, 96, '#7aa04c', 301, 10);
+        // sadzawka i schody (dół)
+        this.withShadow(g, 0.35, 2, () => this.rect(g, -14, 33, 28, 13, '#cfc6b1', this.OUT, 0.9));
+        this.rect(g, -12, 35, 24, 9, '#3f86ad', '#7a756b', 0.6);
+        g.fillStyle = 'rgba(220,244,255,0.45)'; g.fillRect(-10, 36, 9, 1.4);
+        const tiers = [[38, 0, BRICK], [27, 1, '#d2ad7f'], [16, 2, '#dbb98c']];
+        for (const [h, k, c] of tiers) {
+            this.withShadow(g, 0.5, 4 - k, () => this.rect(g, -h, -h - 4, h * 2, h * 2, c, this.OUT, 1.1));
+            this.masonry(g, -h, -h - 4, h * 2, h * 2, c, 302 + k, 3, 6);
+            this.rect(g, -h, -h - 4, h * 2, h * 2, null, this.OUT, 1.1);
+            // zielone obrzeże tarasu z pnączami zwisającymi na niższy poziom
+            g.strokeStyle = '#4f8a36'; g.lineWidth = 4.2; g.strokeRect(-h + 2.4, -h - 1.6, h * 2 - 4.8, h * 2 - 4.8);
+            g.strokeStyle = 'rgba(190,232,130,0.55)'; g.lineWidth = 1; g.strokeRect(-h + 1.6, -h - 2.4, h * 2 - 3.2, h * 2 - 3.2);
+            const rnd = mulberry32(310 + k);
+            for (let i = 0; i < 22; i++) {
+                const side = i % 4, u = rnd() * (h * 2 - 6) - h + 3;
+                const px = side === 0 ? u : side === 1 ? h - 1 : side === 2 ? u : -h + 1, py = (side === 0 ? -h - 3 : side === 1 ? u - 4 : side === 2 ? h - 5 : u - 4);
+                g.fillStyle = rnd() < 0.3 ? ['#f3a6c0', '#ffe066', '#fbf7e6'][i % 3] : shadeColor('#4f8a36', (rnd() - 0.5) * 0.3);
+                g.beginPath(); g.arc(px, py, 1.1 + rnd() * 1.3, 0, T); g.fill();
+            }
+        }
+        // kaskada: kanał od górnego tarasu po sadzawkę
+        g.fillStyle = '#4a9cc6'; g.fillRect(-2.6, 10, 5.2, 25);
+        g.fillStyle = 'rgba(230,248,255,0.65)';
+        for (let yy = 12; yy < 34; yy += 5.5) g.fillRect(-2, yy, 4, 1.3);
+        this.rect(g, -2.6, 10, 5.2, 25, null, 'rgba(40,60,80,0.6)', 0.6);
+        // palmy i cyprysy w narożach
+        for (const [tx, ty] of [[-41, -41], [41, -41], [-41, 37], [41, 37]]) this.tcTree(g, tx, ty, 6.5, 320 + tx + ty);
+        // pawilon na szczycie
+        this.withShadow(g, 0.45, 2.6, () => this.rect(g, -9, -13, 18, 18, '#efe7d4', this.OUT, 1));
+        this.hip(g, -8, -12, 16, 16, col.main);
+        this.circ(g, 0, -4, 1.6, '#ffd94a', this.OUT, 0.6);
+        this.banner(g, -20, 40, col); this.banner(g, 20, 40, col);
+    },
+
+    // ---------------- KOLOS (V1.0) ----------------
+    // Okrągły cokół z ciosów na kamiennym placu z kolumnadą; na nim spiżowy olbrzym widziany z góry - ramiona,
+    // głowa w koronie promienistej, prawica z pochodnią (płomień dorysowuje Building.draw), lewica z włócznią.
+    colossus(g, col) {
+        const T = Math.PI * 2, BR = '#b07a3a';
+        this.masonry(g, -42, -42, 84, 84, '#cfc6b1', 401, 6, 8);
+        g.strokeStyle = 'rgba(110,96,74,0.45)'; g.lineWidth = 2; g.strokeRect(-39, -39, 78, 78);
+        // kolumnada wokół cokołu
+        for (let i = 0; i < 16; i++) {
+            const a = i / 16 * T, x = Math.cos(a) * 36, y = Math.sin(a) * 36;
+            this.withShadow(g, 0.4, 1.4, () => this.circ(g, x, y, 2.6, '#efe7d4', this.OUT, 0.8));
+            this.circ(g, x - 0.6, y - 0.6, 1, 'rgba(255,255,255,0.5)', null);
+        }
+        // cokół
+        this.withShadow(g, 0.55, 5, () => this.circ(g, 0, 0, 27, '#bdb39c', this.OUT, 1.2));
+        this.roundStone(g, 0, 0, 27, 19, '#d6cdb8', 402);
+        this.circ(g, 0, 0, 19, '#c7bda6', this.OUT, 1);
+        // posąg: barki i tułów (spiż z patyną), głowa, korona promienista
+        const gr = g.createRadialGradient(-5, -6, 2, 0, 0, 18);
+        gr.addColorStop(0, '#f0c27a'); gr.addColorStop(0.5, BR); gr.addColorStop(1, '#5d3c18');
+        // płaszcz w barwach nacji spływa z barków
+        g.fillStyle = col.main; g.strokeStyle = col.dark; g.lineWidth = 0.9;
+        g.beginPath(); g.moveTo(-14, 2); g.quadraticCurveTo(-2, 32, 13, 4); g.lineTo(9, 1); g.lineTo(-10, 1); g.closePath(); g.fill(); g.stroke();
+        this.withShadow(g, 0.5, 4, () => { g.fillStyle = gr; g.strokeStyle = this.OUT; g.lineWidth = 1.1; g.beginPath(); g.ellipse(0, 1, 16.5, 10.5, 0, 0, T); g.fill(); g.stroke(); });
+        g.fillStyle = 'rgba(95,154,134,0.4)'; g.beginPath(); g.ellipse(5, 4, 8, 4, 0.4, 0, T); g.fill();
+        g.strokeStyle = 'rgba(70,40,10,0.45)'; g.lineWidth = 0.8; g.beginPath(); g.moveTo(-6, -4); g.quadraticCurveTo(0, 0, 6, -4); g.stroke();
+        // prawe ramię uniesione z pochodnią (w stronę prawego górnego rogu)
+        g.strokeStyle = this.OUT; g.lineWidth = 6.4; g.beginPath(); g.moveTo(11, -2); g.lineTo(21, -24); g.stroke();
+        g.strokeStyle = BR; g.lineWidth = 4.6; g.beginPath(); g.moveTo(11, -2); g.lineTo(21, -24); g.stroke();
+        this.circ(g, 21, -25, 3.6, '#8a6410', this.OUT, 0.9);
+        this.circ(g, 21, -27, 2.4, '#ffd94a', null);
+        // lewe ramię z włócznią
+        g.strokeStyle = this.OUT; g.lineWidth = 6; g.beginPath(); g.moveTo(-12, 0); g.lineTo(-19, 12); g.stroke();
+        g.strokeStyle = BR; g.lineWidth = 4.2; g.beginPath(); g.moveTo(-12, 0); g.lineTo(-19, 12); g.stroke();
+        this.line(g, -26, -16, -14, 26, '#5d3c18', 1.6);
+        this.poly(g, [-26, -16, -28, -21, -24, -18], '#e8e2d2', this.OUT, 0.6);
+        // głowa i korona
+        for (let i = 0; i < 9; i++) { const a = i / 9 * T; this.line(g, Math.cos(a) * 5, -1 + Math.sin(a) * 5, Math.cos(a) * 9, -1 + Math.sin(a) * 9, '#ffd94a', 1.4); }
+        this.circ(g, 0, -1, 5.4, '#c99a52', this.OUT, 1);
+        this.circ(g, -1.4, -2.4, 1.6, 'rgba(255,240,200,0.5)', null);
+        this.banner(g, -34, 30, col); this.banner(g, 34, 30, col);
+    },
+
+    // ---------------- WIELKA BIBLIOTEKA (V1.0) ----------------
+    // Prostokątny gmach z kolumnadą dookoła, dachy z dachówki, pośrodku dziedziniec z ogrodem, fontanną i stołami
+    // ze zwojami; od frontu schody, posągi uczonych i chorągwie w barwach nacji.
+    library(g, col) {
+        const WALL = '#ece3cc', T = Math.PI * 2;
+        this.masonry(g, -48, -48, 96, 96, '#d4cbb5', 501, 6, 8);
+        // schody (dół)
+        for (let i = 0; i < 3; i++) this.rect(g, -24 + i * 1.5, 36 + i * 3.4, 48 - i * 3, 3.4, shadeColor('#ddd4bf', -i * 0.05), 'rgba(60,48,32,0.55)', 0.6);
+        // gmach: cztery skrzydła wokół dziedzińca
+        this.withShadow(g, 0.5, 4, () => this.rect(g, -40, -40, 80, 76, WALL, this.OUT, 1.1));
+        this.softRoof(g, -40, -40, 80, 20, this.TILE, true, 502);
+        this.softRoof(g, -40, 16, 80, 20, this.TILE, true, 503, false, true);
+        this.softRoof(g, -40, -20, 18, 36, this.TILE, false, 504);
+        this.softRoof(g, 22, -20, 18, 36, this.TILE, false, 505, false, true);
+        this.rect(g, -40, -40, 80, 76, null, this.OUT, 1.1);
+        // dziedziniec
+        this.lawn(g, -22, -20, 44, 36, '#7aa04c', 506, 3);
+        g.strokeStyle = '#d9d0bb'; g.lineWidth = 2.4; g.beginPath(); g.moveTo(-22, -2); g.lineTo(22, -2); g.moveTo(0, -20); g.lineTo(0, 16); g.stroke();
+        this.tcFountain(g, 0, -2, 6, true);
+        // stoły ze zwojami
+        for (const [x, y] of [[-13, -12], [13, -12], [-13, 9], [13, 9]]) {
+            this.rect(g, x - 4, y - 2, 8, 4, '#8a5e34', this.OUT, 0.6);
+            this.line(g, x - 3, y - 0.6, x + 3, y - 0.6, '#f4ecd2', 1.1); this.line(g, x - 2.4, y + 1, x + 2, y + 1, '#efe1b8', 0.9);
+        }
+        // kolumnada od frontu i z boków
+        for (let i = 0; i < 9; i++) { const x = -36 + i * 9; this.withShadow(g, 0.35, 1.2, () => this.circ(g, x, 38.5, 2.2, '#f6f0e0', this.OUT, 0.7)); }
+        for (let i = 0; i < 8; i++) { const y = -34 + i * 9.5; for (const x of [-43, 43]) this.withShadow(g, 0.35, 1.2, () => this.circ(g, x, y, 2, '#f6f0e0', this.OUT, 0.7)); }
+        // posągi uczonych przy schodach
+        for (const sx of [-30, 30]) { this.withShadow(g, 0.4, 1.6, () => this.rect(g, sx - 3, 43, 6, 6, '#bdb39c', this.OUT, 0.8)); this.circ(g, sx, 46, 1.8, '#e9e0ca', this.OUT, 0.6); }
+        this.banner(g, -12, 37, col); this.banner(g, 12, 37, col);
+        this.circ(g, 0, -40, 3, col.main, col.dark, 0.9);
+    },
+
     // ---------------- BRAMA ----------------
     gate(g, col, stone) {
         const H = 20;
@@ -15410,7 +15830,7 @@ Sprites.building = function (type, colorKey, variant) {
         const fn = BuildingPainter[type === 'wooden_wall' ? 'wall_post' : type];
         if (fn) fn.call(BuildingPainter, g, col, variant);
     };
-    const tall = type === 'tower' || type === 'town_center' || type === 'castle' || type === 'bombard_tower' || type === 'outpost' || type === 'wonder';
+    const tall = type === 'tower' || type === 'town_center' || type === 'castle' || type === 'bombard_tower' || type === 'outpost' || !!(cfg && cfg.wonder);
     const flat = type === 'farm' || (type === 'orchard' && variant >= 2);   // warstwy owoców sadu - bez cienia
     s = flat ? this.crop(this.makeR(size + pad, size + pad, paint))
              : this.makeShadowed(size + pad, size + pad, paint, tall ? 9 : 6, tall ? 11 : 7, tall ? 7 : 6, 0.42);
@@ -17939,7 +18359,7 @@ class Building extends Entity {
                 g.cue(this.owner, 'Complete');
             }
             if (this.owner) this.owner.recomputePopulation();
-            if (this.cfg && this.cfg.wonder) g.wonderBuilt(this);   // V3.5 Newest Final: rusza odliczanie do zwycięstwa
+            if (this.cfg && this.cfg.wonder) g.wonderBuilt(this);   // Cud Świata: premia i Chwała co sekundę
         }
     }
 
@@ -18171,7 +18591,7 @@ class Building extends Entity {
         if (g) this.updateFx(g, deltaTime);
 
         if (this.trainingQueue.length > 0) {
-            this.trainingTimer -= deltaTime * (this.owner.trainSpeedMul || 1);
+            this.trainingTimer -= deltaTime * (this.owner.trainSpeedMul || 1) * (this.trainingQueue[0].isResearch ? (this.owner.researchMul || 1) : 1);
             if (this.trainingTimer <= 0) {
                 const itemData = this.trainingQueue.shift();
 
@@ -18438,10 +18858,17 @@ class Building extends Entity {
             const fp = this.type === 'town_center' ? (BuildingPainter.TC_FLAG[this.spriteVariant()] || [0, -2]) : [0, -2];
             const fl = Sprites.flagFrame(colorKey, Math.floor(t * 5 + this.seed) & 3);
             ctx.drawImage(fl.canvas, x + fp[0] + 11 + fl.dx, y + fp[1] + 0.8 + fl.dy, fl.dw, fl.dh);
+        } else if (this.type === 'colossus' && this.isConstructed) {
+            // Kolos: płonąca pochodnia w uniesionej dłoni
+            const gl = Sprites.glow('fire', '255,170,60');
+            const s = 22 + Math.sin(t * 9 + this.seed) * 4;
+            ctx.globalAlpha = 0.85;
+            ctx.drawImage(gl.canvas, x + 21 - s / 2, y - 27 - s / 2, s, s);
+            ctx.globalAlpha = 1;
         } else if (this.type === 'wonder') {
-            // V3.5 Newest Final: złota kopuła lśni; w czasie odliczania blask pulsuje mocniej
+            // złota kopuła lśni; ukończona (wytwarza Chwałę) - blask pulsuje mocniej
             const g = window.game;
-            const counting = this.wonderUntil != null && g && !g.gameOver;
+            const counting = this.isConstructed && g && !g.gameOver;
             const gl = Sprites.glow('wonder', '255,214,90');
             const s = 62 + Math.sin(t * (counting ? 3.2 : 1.4) + this.seed) * (counting ? 10 : 5);
             ctx.globalAlpha = counting ? 0.6 : 0.4;
@@ -18907,6 +19334,15 @@ class Nation {
             if (!up || !up.effects) continue;
             for (const ef of up.effects) if (ef.gather) m[ef.gather] += ef.add;
         }
+        // Cuda Świata (V1.0): premie ukończonych Cudów - zbieranie i tempo badań
+        let rm = 1;
+        for (const b of this.buildings) {
+            const B = b.cfg && b.cfg.bonus;
+            if (!B || !b.isConstructed || b.isDestroyed) continue;
+            if (B.gather) for (const k in B.gather) m[k] += B.gather[k];
+            if (B.research) rm += B.research;
+        }
+        this.researchMul = rm;
         for (const k in m) m[k] *= this.gatherBonus;
         this.gatherMult = m;
         let ts = this.aiTrainSpeed || 1, hp = 1;
@@ -19239,6 +19675,7 @@ class NationAI {
         if ((cfg.age || 1) > nation.age || game.buildingOff(type)) return null;
         if (!nation.resources.canAfford(cost)) return null;
         if (cfg.limit && nation.countBuildings(type) >= cfg.limit) return null;
+        if (cfg.unique && game.wonderTaken(type, nation)) return null;
         const tc = this.tc;
         const ringOpen = this.p.walls && this.wallRingStatus < 100 && tc;
         // każda nieudana próba poszerza obszar poszukiwań - zatłoczona baza nie blokuje rozbudowy
@@ -19399,21 +19836,23 @@ class NationAI {
         const fleet = military.filter(u => u.isShip);
         const count = (t) => { let c = 0; for (const u of nation.units) if (u.unitType === t) c++; return c; };
 
-        // V3.5 Newest Final: Cuda Świata - wrogi (najpilniejszy: ukończony z najkrótszym odliczaniem, potem najdalej
-        // posunięta budowa) i własny
-        this.enemyWonder = null; this.myWonder = null;
+        // Cuda Świata - wrogi (najpilniejszy: drużyna najbliżej zwycięstwa Chwałą, Wielka Bazylika, ukończony przed
+        // budowanym) i własne (myWonder: ten w budowie, inaczej największy)
+        this.enemyWonder = null; this.myWonder = null; this.myWonders = [];
         {
             let bs = -Infinity;
             for (const w of game.wonderInfo()) {
                 if (w.isDestroyed || w.owner.defeated) continue;
-                if (w.owner === nation) { this.myWonder = w; continue; }
+                if (w.owner === nation) { this.myWonders.push(w); continue; }
                 if (!game.isEnemy(w.owner, nation)) continue;
-                const s = w.isConstructed ? 1000 - (w.wonderUntil - time) : w.buildProgress;
+                const s = game.gloryOf(w.owner.team) + (w.cfg.glory || 0) * 150 + (w.isConstructed ? 300 : w.buildProgress * 2);
                 if (s > bs) { bs = s; this.enemyWonder = w; }
             }
+            const mws = this.myWonders;
+            this.myWonder = mws.find(w => !w.isConstructed) || mws.find(w => w.type === 'wonder') || mws[0] || null;
             if (this.enemyWonder && this.enemyWonder !== this._wonderSeen) {
                 this._wonderSeen = this.enemyWonder;
-                this.log(`wrogi Cud Świata (${this.enemyWonder.owner.shortName || this.enemyWonder.owner.name}) — cel numer jeden`);
+                this.log(`wrogi Cud: ${this.enemyWonder.cfg.name} (${this.enemyWonder.owner.shortName || this.enemyWonder.owner.name}) — ważny cel`);
             }
         }
         const traders = nation.units.filter(u => u.cfg.trader);
@@ -19653,18 +20092,31 @@ class NationAI {
         // V3.5 Newest Final: Cud Świata - AI, które chce go postawić, odkłada na niego w IV erze i buduje go wieloma rękami
         const WD = GameConfig.buildings.wonder;
         if (this.wantsWonder === undefined) this.wantsWonder = Math.random() < (p.wonder || 0) * (this.personality === 'defensive' ? 1.5 : 1);
-        const wonderPlan = !!tc && this.wantsWonder && game.wondersOn && nation.age >= WD.age && !this.myWonder && time > p.age4At + 300 &&
-            !(this.enemyWonder && this.enemyWonder.isConstructed) && nation.countBuildings('wonder') < WD.limit;
+        const building = this.myWonders.some(w => !w.isConstructed);
+        const wonderPlan = !!tc && this.wantsWonder && game.wondersOn && nation.age >= WD.age && !building && time > p.age4At + 300 &&
+            nation.countBuildings('wonder') < WD.limit && !game.wonderTaken('wonder', nation);
         if (wonderPlan && !this.underThreat && !this.agingUp && this.armySize >= this.armyFloor && this.mood > -0.3) {
             if (res.canAfford(WD.cost)) {
                 const w = this.trySpawn('wonder', tc, 560, false, 24);
-                if (w) { this.assignBuilder(workers, w, 8); this.log('kładzie fundamenty pod Cud Świata'); }
+                if (w) { this.assignBuilder(workers, w, 8); this.log('kładzie fundamenty pod Wielką Bazylikę'); }
             } else reserve(WD.cost);
+        }
+        // mniejsze Cuda (III era): premia i Chwała; każdy charakter ma ulubiony, ale bierze ten, który jest wolny
+        if (!wonderPlan && !building && !!tc && game.wondersOn && (p.wonder || 0) > 0 && nation.age >= 3 && time > p.age3At + 200
+            && this.myWonders.length < (nation.age >= 4 ? 3 : 2) && !this.underThreat && !this.agingUp && this.armySize >= this.armyFloor && this.mood > -0.3
+            && (this.richT > 0 || this.wantsWonder)) {
+            const fav = { defensive: 'hanging_gardens', offensive: 'colossus', reckless: 'colossus', raider: 'colossus', siegemaster: 'library' }[this.personality] || 'library';
+            const list = [fav, 'library', 'hanging_gardens', 'colossus'].filter((t, i, a) => a.indexOf(t) === i && nation.countBuildings(t) < 1 && !game.wonderTaken(t, nation));
+            const t = list[0], cfg = t && GameConfig.buildings[t];
+            if (cfg && res.canAfford(cfg.cost)) {
+                const w = this.trySpawn(t, tc, 520, false, 24);
+                if (w) { this.assignBuilder(workers, w, 6); this.log(`kładzie fundamenty: ${cfg.name}`); }
+            }
         }
         if (this.myWonder && !this.myWonder.isConstructed) {
             const w = this.myWonder;
             const busy = workers.filter(u => u.targetEntity === w).length;
-            const want = Math.min(14, Math.max(6, Math.floor(nW * 0.45))) - (this.underThreat ? 3 : 0);
+            const want = (w.type === 'wonder' ? Math.min(14, Math.max(6, Math.floor(nW * 0.45))) : Math.min(9, Math.max(4, Math.floor(nW * 0.3)))) - (this.underThreat ? 3 : 0);
             if (busy < want) this.assignBuilder(workers.filter(u => u.targetEntity !== w), w, want - busy);
         }
         const needStone = (wonderPlan && res.get('stone') < WD.cost.stone + 50) || nation.age >= 2 && res.get('stone') < Math.max(200, ageStone + 40) &&
@@ -20273,15 +20725,20 @@ class NationAI {
         // V3.5 Newest Final: Cud Świata. Wróg go ukończył - wszystko, co nie strzeże bazy, rusza na niego co pół minuty
         // (bez czekania na przerwę między falami i bez oceny sił: przegrana i tak jest pewna). Własny Cud - armia zostaje
         // w domu i go broni (nowych fal nie ma, trwająca dobiega końca).
+        // Cuda (V1.0): wszystko na wrogie Cuda dopiero, gdy ich drużyna jest blisko zwycięstwa Chwałą (ponad 55%) albo
+        // stoi Wielka Bazylika; armia zostaje w domu przy własnej Bazylice albo gdy sami jesteśmy blisko zwycięstwa
         const ew = this.enemyWonder;
-        const rush = !!ew && ew.isConstructed && this.difficulty !== 'tutorial' && time - (this.lastRushAt || -99) > 30;
-        const hold = !!this.myWonder && (this.myWonder.isConstructed || this.myWonder.buildProgress > 30);
+        const ewTeam = ew ? game.gloryOf(ew.owner.team) : 0;
+        const rush = !!ew && ew.isConstructed && (ewTeam >= Game.GLORY_WIN * 0.55 || ew.type === 'wonder') && this.difficulty !== 'tutorial' && time - (this.lastRushAt || -99) > 30;
+        const myBas = this.myWonders.find(w => w.type === 'wonder');
+        const hold = (!!myBas && (myBas.isConstructed || myBas.buildProgress > 30)) || game.gloryOf(nation.team) >= Game.GLORY_WIN * 0.7;
         if (!hold && (time >= this.nextWaveAt || early || rush)) {
             let size = Math.min(p.waveMax, this.waveSizeNow);
             const avail = fresh.length - this.guardSize();
             if (atCap && avail > size) size = Math.min(avail, Math.round(p.waveMax * 1.5), size * 2);
             // szturm na Cud w sile co najmniej 10 jednostek (posiłki do trwającego - od 6); garstką tylko, gdy czasu brak
-            const rushMin = ew && ew.wonderUntil - time < 150 ? 4 : (wave && wave.phase === 'attack' ? 6 : 10);
+            const ewRate = ew ? game.gloryRate(ew.owner.team) : 0;
+            const rushMin = ew && ewRate > 0 && (Game.GLORY_WIN - ewTeam) / ewRate < 150 ? 4 : (wave && wave.phase === 'attack' ? 6 : 10);
             if (rush && avail >= rushMin) {
                 const picked = fresh.slice(0, avail);
                 const tgt = { n: ew.owner, x: ew.x, y: ew.y, d: 0, b: ew };
@@ -20293,7 +20750,7 @@ class NationAI {
                     this.log(`posiłki na Cud Świata (${picked.length})`);
                 } else {
                     wave = this.startWave(picked, [], time, 'wonder', tgt);
-                    this.log(`szturm na Cud Świata nacji ${ew.owner.shortName || ew.owner.name}: ${picked.length} jednostek`);
+                    this.log(`szturm na Cud (${ew.cfg.name}) nacji ${ew.owner.shortName || ew.owner.name}: ${picked.length} jednostek`);
                 }
                 this.wavesSent++;
                 this.warnPlayer(time);
@@ -21207,14 +21664,23 @@ NationAI._q = []; NationAI._q2 = [];
 // Całą logikę liczy symulacja (w grze wieloosobowej - host); goście dostają stan relacji w paczkach ('dp').
 // Wrogość działa na poziomie drużyn (macierz 16 x 16 bajtów), żeby gorące ścieżki - wyszukiwanie celów w siatce
 // przestrzennej, Game.isEnemy - kosztowały jedno odczytanie z tablicy.
+//
+// Ulepszenia V1.0 (dłuższe, czytelniejsze partie):
+//   - jasne warunki zwycięstwa (Diplomacy.victory): Podbój, Sojusz zwycięzców (najwyżej połowa nacji, 3 minuty
+//     jako jedyni na placu boju - z odliczaniem), Cud Świata (opcja) i Limit czasu (wtedy wygrywa najwyższy Wynik),
+//   - pokój za okup i żądanie trybutu (z traktatem po zapłacie), księga strat każdej wojny (zmęczenie wojną),
+//   - hegemon: nacja, która urosła ponad miarę - reszta zawiera przeciw niej koalicje.
 const DIPLO = {
     WAR: 0, PEACE: 1, ALLY: 2,
     NAMES: ['Wojna', 'Pokój', 'Sojusz'],
     PEACE_MIN_WAR: 60,          // pokój można zawrzeć dopiero po minucie wojny
-    WAR_AFTER_PEACE: 120,       // po zawarciu pokoju przez 2 minuty obowiązuje traktat (bez wypowiadania wojny)
+    WAR_AFTER_PEACE: 180,       // po zawarciu pokoju przez 3 minuty obowiązuje traktat (bez wypowiadania wojny)
     PROPOSAL_TTL: 60,           // propozycja dla człowieka czeka minutę
     ASK_COOLDOWN: 45,           // ta sama propozycja do tej samej nacji najwyżej co 45 s
-    ALLY_WIN_HOLD: 120          // zwycięstwo sojuszu: wielki sojusz musi przetrwać 2 minuty (Reloaded V1.0)
+    ALLIANCE_HOLD: 180,         // Sojusz zwycięzców: 3 minuty jako jedyni na placu boju
+    PACT: 240,                  // zapłacony trybut: 4 minuty traktatu między stronami
+    LIMIT_WARN: [[600, '10 minut'], [300, '5 minut'], [120, '2 minuty'], [60, 'minuta']],
+    KIND: { war: 'wypowiada wojnę nacji', peace: 'zawiera pokój z', alliance: 'zawiera sojusz z', break: 'zrywa sojusz z', tribute: 'płaci trybut nacji' }
 };
 
 class Diplomacy {
@@ -21225,16 +21691,23 @@ class Diplomacy {
         this.state = new Uint8Array(N * N).fill(DIPLO.PEACE);
         this.since = new Float64Array(N * N);
         this.opinion = new Float32Array(N * N);   // opinion[a * N + b] - co a myśli o b (-100..100)
+        this.pact = new Float64Array(N * N);      // do kiedy obowiązuje traktat po zapłaconym trybucie
+        this.ledger = new Float32Array(N * N);    // ledger[a * N + b] - co a zniszczył nacji b w bieżącej wojnie (wartość)
         this.asked = new Map();                    // 'a>b:rodzaj' -> czas ostatniej propozycji
         this.proposals = [];                       // propozycje czekające na odpowiedź człowieka
         this.history = [];                         // kronika: { t, a, b, kind }
         this.truceUntil = opts.truce !== undefined ? opts.truce : 300;
         this.allianceWin = opts.allianceWin !== false;
+        this.timeLimit = Math.max(0, Number(opts.limit) || 0);   // 0 = bez limitu czasu
+        this.allyCap = Math.max(2, Math.ceil(N / 2));            // Sojusz zwycięzców: najwyżej połowa nacji
+        this.allianceAt = -1;                      // początek odliczania Sojuszu zwycięzców (-1: nie trwa)
+        this.limitTold = Infinity;
         this.mask = new Uint8Array(256);           // wrogość drużyn: mask[ta * 16 + tb]
         this.allyMask = new Uint8Array(256);
         this.version = 0;
         this._pid = 0;
-        this._str = new Map(); this._strAt = -1;
+        this._str = new Map(); this._army = new Map(); this._strAt = -1;
+        this._hegAt = -1; this._heg = null;
         for (let i = 0; i < N; i++) this.state[i * N + i] = DIPLO.ALLY;
         this.rebuild();
         game.diplo = this;
@@ -21249,6 +21722,8 @@ class Diplomacy {
     sinceOf(a, b) { return this.since[this.i(a) * this.N + this.i(b)]; }
     op(a, b) { return this.opinion[this.i(a) * this.N + this.i(b)]; }
     addOp(a, b, v) { const k = this.i(a) * this.N + this.i(b); this.opinion[k] = clamp(this.opinion[k] + v, -100, 100); }
+    pactLeft(a, b) { return this.pact[this.i(a) * this.N + this.i(b)] - this.game.time; }
+    ledgerOf(a, b) { return this.ledger[this.i(a) * this.N + this.i(b)]; }
     inTruce() { return this.game.time < this.truceUntil; }
     alive(n) { return n && !n.defeated && !n.resigned; }
 
@@ -21271,6 +21746,7 @@ class Diplomacy {
         const N = this.N, i = this.i(a), j = this.i(b), t = this.game.time;
         this.state[i * N + j] = this.state[j * N + i] = s;
         this.since[i * N + j] = this.since[j * N + i] = t;
+        if (s === DIPLO.WAR) this.ledger[i * N + j] = this.ledger[j * N + i] = 0;   // nowa wojna - nowa księga strat
         this.proposals = this.proposals.filter(p => !((p.from === a && p.to === b) || (p.from === b && p.to === a)));
         this.rebuild();
     }
@@ -21287,6 +21763,47 @@ class Diplomacy {
         for (const n of g.nations) if (n !== a && n !== b && n.human && !n.defeated && textAll) g.tell(n, textAll, 'info');
     }
 
+    // ---------------- Okup i trybut ----------------
+
+    // Okup, który nacja oferuje za pokój: 20% jej złota, żywności i drewna (w dziesiątkach)
+    offerFor(n) {
+        const r = n.resources, f = (k) => Math.floor(Math.max(0, r.get(k)) * 0.2 / 10) * 10;
+        const pay = { gold: f('gold'), food: f('food'), wood: f('wood') };
+        return pay.gold + pay.food + pay.wood >= 40 ? pay : null;
+    }
+
+    // Trybut, którego nacja żąda (gracz i SI tak samo): rośnie z jej erą
+    demandFor(n) { const a = n.age; return { gold: 50 + 40 * a, food: 80 + 50 * a, wood: 50 + 30 * a }; }
+
+    static payText(p) {
+        if (!p) return '';
+        const parts = [];
+        if (p.gold) parts.push(p.gold + ' złota');
+        if (p.food) parts.push(p.food + ' żywności');
+        if (p.wood) parts.push(p.wood + ' drewna');
+        return parts.length > 1 ? parts.slice(0, -1).join(', ') + ' i ' + parts[parts.length - 1] : (parts[0] || 'nic');
+    }
+
+    // Przekazanie surowców (najwyżej tyle, ile płacący ma); zwraca to, co faktycznie przeszło
+    transfer(from, to, pay) {
+        const out = { gold: 0, food: 0, wood: 0 };
+        if (!pay) return out;
+        for (const k of ['gold', 'food', 'wood']) {
+            const amt = Math.floor(Math.min(pay[k] || 0, Math.max(0, from.resources.get(k))));
+            if (amt <= 0) continue;
+            from.resources.spend(k, amt);
+            to.resources.add(k, amt);
+            out[k] = amt;
+        }
+        return out;
+    }
+
+    setPact(a, b) {
+        const N = this.N, i = this.i(a), j = this.i(b), until = this.game.time + DIPLO.PACT;
+        this.pact[i * N + j] = this.pact[j * N + i] = until;
+        this.version++;
+    }
+
     // ---------------- Zmiany relacji ----------------
 
     canDeclareWar(a, b) {
@@ -21296,6 +21813,8 @@ class Diplomacy {
         const st = this.get(a, b), age = this.game.time - this.sinceOf(a, b);
         if (st === DIPLO.PEACE && age < DIPLO.WAR_AFTER_PEACE && this.lastKind(a, b) === 'peace')
             return `Traktat pokojowy obowiązuje jeszcze ${Math.ceil(DIPLO.WAR_AFTER_PEACE - age)} s.`;
+        const pl = this.pactLeft(a, b);
+        if (pl > 0) return `Traktat po zapłaconym trybucie obowiązuje jeszcze ${Math.ceil(pl)} s.`;
         return null;
     }
 
@@ -21312,27 +21831,35 @@ class Diplomacy {
         this._set(a, b, DIPLO.WAR);
         // reputacja: napadnięty zapamięta to najdłużej, świat patrzy na agresora nieufnie (zdrada sojusznika - dużo gorzej)
         this.addOp(b, a, betrayal ? -85 : -50);
+        const heg = this.hegemon();
         for (const c of g.nations) {
             if (c === a || c === b) continue;
             if (this.atWar(c, b)) this.addOp(c, a, 12);
+            else if (b === heg && c !== heg) this.addOp(c, a, 6);   // wojna z hegemonem - świat raczej kibicuje
             else this.addOp(c, a, betrayal ? -25 : (this.allied(c, b) ? -30 : -8));
         }
         const na = this.name(a), nb = this.name(b);
         this.announce(a, b, 'war',
             `Wypowiedziałeś wojnę nacji ${nb}.` + (betrayal ? ' Sojusz zerwany — inni zapamiętają tę zdradę.' : ''),
-            `${na} wypowiada ci wojnę!` + (betrayal ? ' Zdrada sojusznika!' : '') + (why ? ' ' + why : ''),
-            `${na} wypowiada wojnę nacji ${nb}.` + (betrayal ? ' (zerwany sojusz)' : ''), 'warn', 'alert');
-        // sojusznicy napadniętego dostają wezwanie (SI rozważa je w DiplomatAI.think)
-        for (const c of g.nations) if (c !== a && this.allied(c, b) && c.diplomat) c.diplomat.callToArms(b, a);
+            `${na} wypowiada ci wojnę!` + (betrayal ? ' Zdrada sojusznika!' : '') + (why ? ' „' + why + '”' : ''),
+            `${na} wypowiada wojnę nacji ${nb}.` + (betrayal ? ' (zerwany sojusz)' : '') + (why ? ' „' + why + '”' : ''), 'warn', 'alert');
+        // sojusznicy napadniętego dostają wezwanie (SI rozważa je w DiplomatAI.think, ludzie - komunikat)
+        for (const c of g.nations) {
+            if (c === a || !this.alive(c) || !this.allied(c, b)) continue;
+            if (c.diplomat && c.ai) c.diplomat.callToArms(b, a);
+            else if (c.human) g.tell(c, `Twój sojusznik ${nb} został napadnięty przez nację ${na}. Możesz przyłączyć się do wojny w panelu Dyplomacji (Tab).`, 'warn');
+        }
         return null;
     }
 
-    makePeace(a, b) {
+    makePeace(a, b, paid) {
         this._set(a, b, DIPLO.PEACE);
         this.addOp(a, b, 10); this.addOp(b, a, 10);
         this.calmUnits(a, b);
         const na = this.name(a), nb = this.name(b);
-        this.announce(a, b, 'peace', `Zawarto pokój z nacją ${nb}.`, `Zawarto pokój z nacją ${na}.`, `${na} i ${nb} zawierają pokój.`, 'good', 'good');
+        const ok = paid && (paid.gold + paid.food + paid.wood) > 0 ? Diplomacy.payText(paid) : '';
+        this.announce(a, b, 'peace', `Zawarto pokój z nacją ${nb}.` + (ok ? ` Zapłaciłeś okup: ${ok}.` : ''), `Zawarto pokój z nacją ${na}.` + (ok ? ` Otrzymujesz okup: ${ok}.` : ''),
+            `${na} i ${nb} zawierają pokój${ok ? ' (za okup)' : ''}.`, 'good', 'good');
     }
 
     makeAlliance(a, b) {
@@ -21345,14 +21872,25 @@ class Diplomacy {
         this.game.updateVisibility();
     }
 
-    breakAlliance(a, b) {
+    breakAlliance(a, b, why) {
         if (!this.allied(a, b)) return 'Nie jesteście sojusznikami.';
         this._set(a, b, DIPLO.PEACE);
         this.addOp(b, a, -30);
         const na = this.name(a), nb = this.name(b);
-        this.announce(a, b, 'break', `Zerwałeś sojusz z nacją ${nb} (zostaje pokój).`, `${na} zrywa sojusz z tobą (zostaje pokój).`, `${na} zrywa sojusz z nacją ${nb}.`, 'warn', 'warn');
+        this.announce(a, b, 'break', `Zerwałeś sojusz z nacją ${nb} (zostaje pokój).`, `${na} zrywa sojusz z tobą (zostaje pokój).` + (why ? ' „' + why + '”' : ''), `${na} zrywa sojusz z nacją ${nb}.`, 'warn', 'warn');
         this.game.updateVisibility();
         return null;
+    }
+
+    // Trybut zapłacony: payer płaci nacji to (zgoda na żądanie), obie strony obowiązuje traktat
+    payTribute(payer, to, pay) {
+        const paid = this.transfer(payer, to, pay);
+        this.setPact(payer, to);
+        this.addOp(to, payer, 15);
+        this.addOp(payer, to, -10);
+        const np = this.name(payer), nt = this.name(to), txt = Diplomacy.payText(paid);
+        this.announce(payer, to, 'tribute', `Zapłacono trybut nacji ${nt}: ${txt}. Przez ${DIPLO.PACT / 60} minuty obowiązuje traktat.`,
+            `${np} płaci ci trybut: ${txt}. Przez ${DIPLO.PACT / 60} minuty obowiązuje traktat.`, `${np} płaci trybut nacji ${nt}.`, 'info', 'good');
     }
 
     // po zawarciu pokoju / sojuszu: nikt nie kończy rozpoczętego ataku na nową stronę porozumienia
@@ -21367,9 +21905,23 @@ class Diplomacy {
         }
     }
 
+    // Księga strat: co kto komu zniszczył w bieżącej wojnie (Game.killEntity) - podstawa zmęczenia wojną
+    onKill(killer, target) {
+        const victim = target.owner;
+        if (!killer || !victim || !this.atWar(killer, victim)) return;
+        let v;
+        if (target.unitType) {
+            const c = target.cfg || {}, cost = c.cost || {};
+            v = c.hero ? 14 : ((cost.food || 0) + (cost.wood || 0) + (cost.gold || 0) + (cost.stone || 0)) / 100;
+            if (!c.military) v *= 0.5;
+        } else v = target.type === 'town_center' ? 10 : (isWallType(target.type) ? 0.3 : 2);
+        this.ledger[this.i(killer) * this.N + this.i(victim)] += v;
+    }
+
     // ---------------- Propozycje ----------------
-    // kind: 'peace' | 'alliance'. Do SI - odpowiedź od razu (DiplomatAI.evaluate), do człowieka - czeka w panelu.
-    propose(from, to, kind) {
+    // kind: 'peace' (pay - okup od proponującego) | 'alliance' | 'tribute' (pay - żądanie od adresata).
+    // Do SI - odpowiedź od razu (DiplomatAI.evaluate), do człowieka - czeka w panelu.
+    propose(from, to, kind, pay) {
         const g = this.game;
         if (!this.alive(from) || !this.alive(to) || from === to) return 'Ta nacja nie bierze już udziału w grze.';
         const st = this.get(from, to);
@@ -21382,27 +21934,36 @@ class Diplomacy {
             if (st === DIPLO.WAR) return 'Najpierw trzeba zawrzeć pokój.';
             for (const c of g.nations) if (this.allied(c, to) && this.atWar(c, from)) return `${this.name(to)} jest sojusznikiem nacji ${this.name(c)}, z którą walczysz.`;
             for (const c of g.nations) if (this.allied(c, from) && this.atWar(c, to)) return `Twój sojusznik ${this.name(c)} walczy z nacją ${this.name(to)}.`;
+        } else if (kind === 'tribute') {
+            if (st !== DIPLO.PEACE || !pay) return 'Trybutu można żądać tylko od nacji, z którą jest pokój.';
         } else return 'Nieznana propozycja.';
-        const key = this.i(from) + '>' + this.i(to) + ':' + kind, last = this.asked.get(key);
+        if (kind === 'peace' && pay && !(pay.gold + pay.food + pay.wood > 0)) pay = null;
+        const key = this.i(from) + '>' + this.i(to) + ':' + kind + (pay ? '$' : ''), last = this.asked.get(key);
         if (last !== undefined && g.time - last < DIPLO.ASK_COOLDOWN) return `Poczekaj ${Math.ceil(DIPLO.ASK_COOLDOWN - (g.time - last))} s przed kolejną propozycją.`;
         this.asked.set(key, g.time);
-        const what = kind === 'peace' ? 'pokój' : 'sojusz';
+        const what = kind === 'peace' ? (pay ? 'pokój za okup' : 'pokój') : kind === 'alliance' ? 'sojusz' : 'trybut';
         if (to.ai && to.diplomat) {
-            const r = to.diplomat.evaluate(kind, from);
-            if (r.ok) { if (kind === 'peace') this.makePeace(from, to); else this.makeAlliance(from, to); }
-            else {
-                g.tell(from, `${this.name(to)} odrzuca ${what}: ${r.why}`, 'warn');
+            const r = to.diplomat.evaluate(kind, from, pay);
+            if (r.ok) {
+                if (kind === 'peace') this.makePeace(from, to, pay ? this.transfer(from, to, pay) : null);
+                else if (kind === 'alliance') this.makeAlliance(from, to);
+                else this.payTribute(to, from, pay);
+            } else {
+                g.tell(from, kind === 'tribute' ? `${this.name(to)} odmawia trybutu: ${r.why}` : `${this.name(to)} odrzuca ${what}: ${r.why}`, 'warn');
                 if (kind === 'alliance') this.addOp(to, from, 2);   // samo zainteresowanie trochę ociepla stosunki
+                if (kind === 'tribute') this.addOp(to, from, -8);
             }
             if (from.diplomat) from.diplomat.onAnswer(to, kind, r.ok);
             return null;
         }
         if (this.proposals.some(p => p.from === from && p.to === to && p.kind === kind)) return null;
-        const p = { id: ++this._pid, from, to, kind, at: g.time, until: g.time + DIPLO.PROPOSAL_TTL };
+        const p = { id: ++this._pid, from, to, kind, at: g.time, until: g.time + DIPLO.PROPOSAL_TTL, pay: pay || null };
         this.proposals.push(p);
         this.version++;
-        g.tell(to, `${this.name(from)} proponuje ${what}. Odpowiedz w panelu Dyplomacji (Tab).`, 'good');
-        g.cue(to, 'Complete');
+        const pt = Diplomacy.payText(pay);
+        if (kind === 'tribute') g.tell(to, `${this.name(from)} żąda trybutu: ${pt}. Odmowa może oznaczać wojnę — odpowiedz w panelu Dyplomacji (Tab).`, 'warn');
+        else g.tell(to, `${this.name(from)} proponuje ${kind === 'peace' ? 'pokój' : 'sojusz'}${pay ? ' i oferuje okup: ' + pt : ''}. Odpowiedz w panelu Dyplomacji (Tab).`, 'good');
+        g.cue(to, kind === 'tribute' ? 'Warning' : 'Complete');
         if (from.human) g.tell(from, `Wysłano propozycję (${what}) do nacji ${this.name(to)}.`, 'info');
         return null;
     }
@@ -21414,24 +21975,31 @@ class Diplomacy {
         this.version++;
         if (!this.alive(p.from)) return null;
         if (accept) {
-            if (p.kind === 'peace' && this.atWar(p.from, p.to)) this.makePeace(p.from, p.to);
+            if (p.kind === 'peace' && this.atWar(p.from, p.to)) this.makePeace(p.from, p.to, p.pay ? this.transfer(p.from, p.to, p.pay) : null);
             else if (p.kind === 'alliance' && this.get(p.from, p.to) === DIPLO.PEACE) this.makeAlliance(p.from, p.to);
+            else if (p.kind === 'tribute' && this.get(p.from, p.to) === DIPLO.PEACE) this.payTribute(nation, p.from, p.pay);
         } else {
-            this.addOp(p.from, nation, -6);
-            this.game.tell(p.from, `${this.name(nation)} odrzuca propozycję (${p.kind === 'peace' ? 'pokój' : 'sojusz'}).`, 'warn');
+            this.addOp(p.from, nation, p.kind === 'tribute' ? -15 : -6);
+            this.game.tell(p.from, `${this.name(nation)} odrzuca ${p.kind === 'tribute' ? 'żądanie trybutu' : 'propozycję (' + (p.kind === 'peace' ? 'pokój' : 'sojusz') + ')'}.`, 'warn');
         }
         if (p.from.diplomat) p.from.diplomat.onAnswer(nation, p.kind, accept);
         return null;
     }
 
-    // Rozkaz dyplomatyczny gracza (core/Commands.js: { t: 'diplo', act, to, id })
+    // Rozkaz dyplomatyczny gracza (core/Commands.js: { t: 'diplo', act, to, id, pay })
     command(nation, cmd) {
         const g = this.game;
         const to = Number.isInteger(cmd.to) ? g.nations[cmd.to] : null;
         switch (cmd.act) {
             case 'war': return to ? this.declareWar(nation, to) : null;
-            case 'peace': return to ? this.propose(nation, to, 'peace') : null;
+            case 'peace': {
+                if (!to) return null;
+                const pay = cmd.pay ? this.offerFor(nation) : null;
+                if (cmd.pay && !pay) return 'Nie masz z czego zapłacić okupu.';
+                return this.propose(nation, to, 'peace', pay);
+            }
             case 'alliance': return to ? this.propose(nation, to, 'alliance') : null;
+            case 'tribute': return to ? this.propose(nation, to, 'tribute', this.demandFor(nation)) : null;
             case 'break': return to ? this.breakAlliance(nation, to) : null;
             case 'accept': return this.respond(nation, cmd.id, true);
             case 'decline': return this.respond(nation, cmd.id, false);
@@ -21443,7 +22011,15 @@ class Diplomacy {
     update(dt) {
         const g = this.game, t = g.time;
         if (this.proposals.length && this.proposals.some(p => t > p.until || !this.alive(p.from) || !this.alive(p.to))) {
-            for (const p of this.proposals) if (t > p.until && this.alive(p.from)) g.tell(p.from, `${this.name(p.to)} nie odpowiedział na propozycję.`, 'info');
+            for (const p of this.proposals) {
+                if (!(t > p.until) || !this.alive(p.from)) continue;
+                if (p.kind === 'tribute') {
+                    // brak odpowiedzi na żądanie trybutu to odmowa
+                    g.tell(p.from, `${this.name(p.to)} zignorował żądanie trybutu.`, 'info');
+                    if (this.alive(p.to)) { g.tell(p.to, `Nie odpowiedziałeś na żądanie trybutu nacji ${this.name(p.from)} — uznano to za odmowę.`, 'warn'); this.addOp(p.from, p.to, -15); }
+                    if (p.from.diplomat && this.alive(p.to)) p.from.diplomat.onAnswer(p.to, 'tribute', false);
+                } else g.tell(p.from, `${this.name(p.to)} nie odpowiedział na propozycję.`, 'info');
+            }
             this.proposals = this.proposals.filter(p => t <= p.until && this.alive(p.from) && this.alive(p.to));
             this.version++;
         }
@@ -21464,9 +22040,12 @@ class Diplomacy {
         this._common = (this._common || 0) + dt;
         if (this._common >= 5) {
             this._common = 0;
+            const heg = this.hegemon();
             for (const a of G) for (const b of G) {
                 if (a === b || !this.alive(a) || !this.alive(b)) continue;
                 for (const c of G) if (c !== a && c !== b && this.alive(c) && this.atWar(a, c) && this.atWar(b, c)) { this.addOp(a, b, 0.6); break; }
+                // potęga budzi strach: o hegemonie myśli się coraz gorzej (sojusznicy hegemona - nie)
+                if (b === heg && !this.allied(a, b)) this.addOp(a, b, -0.5);
             }
         }
         for (const n of G) {
@@ -21475,20 +22054,132 @@ class Diplomacy {
         }
     }
 
+    // ---------------- Warunki zwycięstwa ----------------
+    // Wołane z Game.checkWinConditions (po odpadnięciu pokonanych). Zwraca { win: [nacje], why } albo null.
+    //   Podbój  - zostaje jedna nacja,
+    //   Sojusz  - zostały tylko nacje związane wzajemnym sojuszem (najwyżej allyCap) i wytrwały ALLIANCE_HOLD sekund,
+    //   Limit   - minął limit czasu: wygrywa nacja z najwyższym Wynikiem razem ze swoimi sojusznikami.
+    // (Cud Świata rozstrzyga osobno Game.checkWonders.)
+    victory(active) {
+        const g = this.game, t = g.time;
+        if (active.length <= 1) return { win: active, why: 'conquest' };
+        let all = this.allianceWin && active.length <= this.allyCap && g.nations.some(n => n.defeated);
+        if (all) for (const a of active) { for (const b of active) if (a !== b && !this.allied(a, b)) { all = false; break; } if (!all) break; }
+        if (all) {
+            if (this.allianceAt < 0) {
+                this.allianceAt = t; this.version++;
+                const names = active.map(n => this.name(n)).join(', '), m = DIPLO.ALLIANCE_HOLD / 60;
+                for (const n of g.nations) {
+                    if (!n.human) continue;
+                    if (active.includes(n)) { g.tell(n, `Na placu boju zostaliście tylko wy — sojusz ${names}. Wytrwajcie razem ${m} minuty, a sojusz zwycięży!`, 'good'); g.cue(n, 'Complete'); }
+                    else g.tell(n, `Sojusz ${names} jako jedyny został na placu boju — za ${m} minuty zwycięży.`, 'info');
+                }
+            } else if (t - this.allianceAt >= DIPLO.ALLIANCE_HOLD) return { win: active, why: 'alliance' };
+        } else if (this.allianceAt >= 0) {
+            this.allianceAt = -1; this.version++;
+            for (const n of g.nations) if (n.human && !n.defeated) g.tell(n, 'Odliczanie zwycięstwa sojuszu przerwane — sojusz się rozpadł.', 'warn');
+        }
+        if (this.timeLimit > 0) {
+            const left = this.timeLimit - t;
+            for (const [m, label] of DIPLO.LIMIT_WARN) {
+                if (left <= m && left > 0 && this.limitTold > m) {
+                    this.limitTold = m;
+                    const lead = this.leader(active);
+                    for (const n of g.nations) {
+                        if (!n.human) continue;
+                        const mine = n === lead || this.allied(n, lead);
+                        g.tell(n, `Limit czasu: do końca ${m > 60 ? 'zostało' : 'została'} ${label}. Prowadzi ${mine && n === lead ? 'twoja nacja' : this.name(lead)} (Wynik ${lead.score()})${mine && n !== lead ? ' — twój sojusznik' : ''}.`, mine ? 'good' : 'warn');
+                        if (m <= 120 && !mine) g.cue(n, 'Warning');
+                    }
+                }
+            }
+            if (left <= 0) {
+                const lead = this.leader(active);
+                return { win: active.filter(n => n === lead || this.allied(n, lead)), why: 'limit', lead };
+            }
+        }
+        return null;
+    }
+
+    leader(active) {
+        let best = null, bs = -1;
+        for (const n of active) { const s = n.score(); if (s > bs) { bs = s; best = n; } }
+        return best;
+    }
+
+    // Cud nacji n, który zagraża zwycięstwem Chwałą - albo null: jej drużyna ma ponad 45% Chwały i ukończony Cud,
+    // albo stoi (lub jest w ponad połowie) jej Wielka Bazylika
+    wonderOf(n) {
+        const g = this.game;
+        if (!g.wondersOn) return null;
+        const high = g.gloryOf(n.team) >= Game.GLORY_WIN * 0.45;
+        for (const w of g.wonderInfo()) {
+            if (w.owner !== n || w.isDestroyed) continue;
+            if ((high && w.isConstructed) || (w.type === 'wonder' && (w.isConstructed || w.buildProgress > 50))) return w;
+        }
+        return null;
+    }
+
+    // Czy sojusz a-b skończyłby grę (wszyscy pozostali w sojuszu, w limicie liczby nacji)
+    completesAlliance(a, b) {
+        const g = this.game, act = g.nations.filter(n => this.alive(n));
+        if (!this.allianceWin || act.length > this.allyCap || !g.nations.some(n => n.defeated)) return false;
+        const al = (x, y) => this.allied(x, y) || (x === a && y === b) || (x === b && y === a);
+        for (const x of act) for (const y of act) if (x !== y && !al(x, y)) return false;
+        return true;
+    }
+
     // ---------------- Oceny (dla SI i panelu) ----------------
 
     // Siła nacji: wojsko (wartość jak w NationAI.power), budynki strzelające i trochę gospodarki. Liczone raz na sekundę.
     strength(n) {
         const t = Math.floor(this.game.time);
-        if (t !== this._strAt) { this._str.clear(); this._strAt = t; }
+        if (t !== this._strAt) { this._str.clear(); this._army.clear(); this._strAt = t; }
         let v = this._str.get(n);
         if (v !== undefined) return v;
         v = 4;
-        for (const u of n.units) if (!u.isDestroyed) v += u.cfg.military ? NationAI.power(u) : 0.25;
+        let a = 0;
+        for (const u of n.units) {
+            if (u.isDestroyed) continue;
+            if (u.cfg.military) { const p = NationAI.power(u); v += p; if (!u.isShip) a += p; }
+            else v += 0.25;
+        }
         for (const b of n.buildings) if (!b.isDestroyed && b.isConstructed) v += b.attackCfg ? 3 : 0.4;
         v *= 1 + (n.age - 1) * 0.12;
         this._str.set(n, v);
+        this._army.set(n, a);
         return v;
+    }
+
+    // samo wojsko lądowe (wartość bojowa)
+    army(n) { this.strength(n); return this._army.get(n) || 0; }
+
+    // Hegemon: nacja, która urosła ponad miarę (co najmniej 1,3× druga i 1,6× średnia pozostałych). Reszta świata
+    // patrzy na nią coraz nieufniej i chętnie łączy się przeciw niej w koalicje. Liczone raz na sekundę.
+    hegemon() {
+        const t = Math.floor(this.game.time);
+        if (t === this._hegAt) return this._heg;
+        this._hegAt = t;
+        let h = null;
+        const A = this.game.nations.filter(n => this.alive(n));
+        if (A.length >= 3 && !this.inTruce()) {
+            const s = A.map(n => ({ n, s: this.strength(n) })).sort((a, b) => b.s - a.s);
+            const rest = s.slice(1).reduce((a, b) => a + b.s, 0) / (s.length - 1);
+            // histereza: obecny hegemon traci tytuł dopiero wyraźnie poniżej progu (bez migania statusu)
+            const k = s[0].n === this._heg ? 0.85 : 1;
+            if (s[0].s >= s[1].s * 1.3 * k && s[0].s >= rest * 1.6 * k && s[0].s > 60) h = s[0].n;
+        }
+        if (h !== this._heg) {
+            this._heg = h;
+            const g = this.game;
+            if (h && (h !== this._hegTold || g.time - (this._hegToldAt || -999) > 300)) for (const n of g.nations) {
+                this._hegTold = h; this._hegToldAt = g.time;
+                if (!n.human || n.defeated) continue;
+                if (n === h) g.tell(n, 'Twoja potęga budzi strach — inne nacje mogą zawiązać przeciw tobie koalicję.', 'warn');
+                else g.tell(n, `${this.name(h)} urasta na potęgę kontynentu — pozostałe nacje coraz chętniej łączą się przeciw niej.`, 'info');
+            }
+        }
+        return h;
     }
 
     capital(n) {
@@ -21502,45 +22193,15 @@ class Diplomacy {
         return clamp(1 - Math.hypot(ca.x - cb.x, ca.y - cb.y) / 7500, 0, 1);
     }
 
-    // Zwycięstwo sojuszu: wszystkie nacje, które jeszcze grają, są ze sobą w sojuszu (i ktoś już odpadł z gry).
-    // Reloaded V1.0: najmłodsze z tych przymierzy musi przetrwać DIPLO.ALLY_WIN_HOLD - wcześniej mecz kończył się
-    // w chwili podpisania ostatniego sojuszu (nawet w 6. minucie, zaraz po upadku pierwszej nacji), bez szansy na reakcję.
-    allianceVictory(active) {
-        if (!this.allianceWin || active.length < 2 || !this.game.nations.some(n => n.defeated)) return null;
-        let youngest = -Infinity;
-        for (const a of active) for (const b of active) {
-            if (a === b) continue;
-            if (!this.allied(a, b)) return null;
-            const t = this.sinceOf(a, b);
-            if (t > youngest) youngest = t;
-        }
-        const g = this.game, at = youngest + DIPLO.ALLY_WIN_HOLD;
-        if (g.time >= at) return active;
-        if (this._allyWinAt !== at) {
-            this._allyWinAt = at;
-            const left = Math.ceil(at - g.time);
-            for (const n of g.nations) if (n.human && !n.defeated) g.tell(n, `Wszystkie pozostałe nacje są w sojuszu — jeśli przetrwa on ${left} s, wygrywacie razem.`, 'good');
-        }
-        return null;
-    }
-
-    // czy sojusz a z b zamknąłby wielki sojusz wszystkich, którzy jeszcze grają
-    completesGrandAlliance(a, b) {
-        const act = this.game.nations.filter(n => this.alive(n));
-        if (act.length < 2 || !this.game.nations.some(n => n.defeated)) return false;
-        for (const x of act) for (const y of act) {
-            if (x === y || (x === a && y === b) || (x === b && y === a)) continue;
-            if (!this.allied(x, y)) return false;
-        }
-        return true;
-    }
-
     // ---------------- Sieć: stan dla gościa ----------------
     pack(forNation) {
+        const N = this.N, t = this.game.time, pc = [];
+        for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) if (this.pact[i * N + j] > t) pc.push([i, j, Math.round(this.pact[i * N + j])]);
         return {
             v: this.version, s: Array.from(this.state), o: Array.from(this.opinion, x => Math.round(x)), tr: this.truceUntil, aw: this.allianceWin ? 1 : 0,
+            tl: this.timeLimit, al: Math.round(this.allianceAt * 10) / 10, cap: this.allyCap, pc,
             h: this.history.slice(-12).map(h => [Math.round(h.t), h.a, h.b, h.kind]),
-            p: this.proposals.filter(p => !forNation || p.to === forNation || p.from === forNation).map(p => [p.id, this.i(p.from), this.i(p.to), p.kind, Math.round(p.until)])
+            p: this.proposals.filter(p => !forNation || p.to === forNation || p.from === forNation).map(p => [p.id, this.i(p.from), this.i(p.to), p.kind, Math.round(p.until), p.pay ? [p.pay.gold, p.pay.food, p.pay.wood] : 0])
         };
     }
 
@@ -21550,21 +22211,32 @@ class Diplomacy {
         if (Array.isArray(d.o) && d.o.length === this.opinion.length) this.opinion.set(d.o);
         this.truceUntil = Number(d.tr) || 0;
         this.allianceWin = !!d.aw;
+        this.timeLimit = Number(d.tl) || 0;
+        this.allianceAt = d.al === undefined ? -1 : Number(d.al);
+        if (d.cap) this.allyCap = Number(d.cap) || this.allyCap;
+        this.pact.fill(0);
+        const N = this.N;
+        if (Array.isArray(d.pc)) for (const q of d.pc) if (q[0] < N && q[1] < N) this.pact[q[0] * N + q[1]] = this.pact[q[1] * N + q[0]] = Number(q[2]) || 0;
         const G = this.game.nations;
         this.history = (d.h || []).map(h => ({ t: h[0], a: h[1], b: h[2], kind: h[3] }));
-        this.proposals = (d.p || []).map(p => ({ id: p[0], from: G[p[1]], to: G[p[2]], kind: p[3], until: p[4] })).filter(p => p.from && p.to);
+        this.proposals = (d.p || []).map(p => ({ id: p[0], from: G[p[1]], to: G[p[2]], kind: p[3], until: p[4], pay: Array.isArray(p[5]) ? { gold: p[5][0] || 0, food: p[5][1] || 0, wood: p[5][2] || 0 } : null })).filter(p => p.from && p.to);
         this.rebuild();
     }
 }
 
 // ---------------- SI dyplomaty ----------------
-// Nowa, osobna warstwa SI trybu Dyplomacja. NationAI dalej prowadzi gospodarkę i wojsko (atakuje tylko nacje,
+// Osobna warstwa SI trybu Dyplomacja. NationAI dalej prowadzi gospodarkę i wojsko (atakuje tylko nacje,
 // z którymi jest wojna - Game.isEnemy), a DiplomatAI decyduje, Z KIM walczyć i z kim trzymać:
-//   - ocenia każdą nację: siła (wojsko, wieże, era), bliskość stolic, opinia (pamięć zdrad, wojen, sojuszy),
-//   - wypowiada wojnę słabszemu sąsiadowi, gdy ma przewagę - śmiałość zależy od charakteru i poziomu SI,
-//   - prosi o pokój, gdy wojna idzie źle albo walczy na kilku frontach,
-//   - szuka sojuszników przeciw wspólnemu wrogowi i przeciw nacji, która rośnie za bardzo,
-//   - staje w obronie sojusznika (wezwanie do broni), a lojalność zależy od charakteru,
+//   - ocenia każdą nację: siła (wojsko, wieże, era) razem z sojusznikami, sąsiedztwo (ranking odległości stolic),
+//     opinia (pamięć zdrad, wojen, sojuszy), ilu wrogów już na nią napada,
+//   - wypowiada wojnę sąsiadowi, nad którym ma przewagę - nie od razu po rozejmie (każdy ma własną cierpliwość),
+//     nie przez pół kontynentu i niechętnie na kogoś, kogo już szarpie kilku innych; im dłużej pokój, tym śmielej,
+//   - prowadzi księgę strat: zmęczony wojną albo przegrywający prosi o pokój (przegrywający - z okupem),
+//     wygrywający wyraźnie pokoju nie przyjmie, chyba że za okup,
+//   - silny żąda trybutu od słabszego sąsiada; odmowa = wojna przy najbliższej okazji,
+//   - zawiera koalicje przeciw hegemonowi i wzywa sojuszników do wspólnej wojny,
+//   - w końcówce: za duży sojusz (zwycięstwo niemożliwe) rozwiązuje najsilniejszy, a ambitny może zdradzić
+//     w trakcie odliczania zwycięstwa sojuszu ("tylko jeden władca"),
 //   - odpowiada na propozycje gracza - z uzasadnieniem, które gracz zobaczy.
 // Decyzje trafiają do dziennika dowódcy (NationAI.opLog), więc testy i podgląd widzą, dlaczego SI coś zrobiła.
 class DiplomatAI {
@@ -21574,7 +22246,7 @@ class DiplomatAI {
         const ai = nation.ai;
         const pers = (ai && ai.personality) || 'defensive';
         const T = {
-            defensive:   { aggro: 0.25, loyal: 0.9, caution: 0.8 },
+            defensive:   { aggro: 0.3, loyal: 0.9, caution: 0.8 },
             offensive:   { aggro: 0.7, loyal: 0.65, caution: 0.45 },
             reckless:    { aggro: 0.9, loyal: 0.35, caution: 0.2 },
             raider:      { aggro: 0.6, loyal: 0.5, caution: 0.45 },
@@ -21588,28 +22260,48 @@ class DiplomatAI {
         this.personality = pers;
         this.timer = 4 + Math.random() * 6;
         this.lastWarAt = -999;
+        this.lastPeaceAt = -999;
         this.calls = [];          // wezwania do broni od sojuszników: { ally, enemy, at }
         this.focus = null;        // główny wróg (cel fal NationAI)
         this.asked = new Map();   // nacja -> czas ostatniej propozycji sojuszu (żeby nie nękać odmawiającego)
         this.askedPeace = new Map();
+        this.demanded = new Map();   // nacja -> czas ostatniego żądania trybutu
+        this.grudge = new Set();     // kto odmówił trybutu: wojna przy najbliższej okazji
+        this.betrayAt = -2;          // odliczanie sojuszu, przy którym SI już rozważyła zdradę
+        this.goals = new Map();      // cel wojny: wróg -> do kiedy SI nie przyjmie pokoju (chyba że sama przegrywa)
+        // pierwsza wojna nie w sekundę po rozejmie: każdy dyplomata ma własną cierpliwość (bez zmasowanego
+        // napadu wszystkich na jednego), śmiali szybciej, ostrożni później
+        const D = game.diplo;
+        this.warFrom = (D ? D.truceUntil : 0) + (40 + Math.random() * 160) * (1.35 - this.aggro);
     }
 
     log(msg) { if (this.nation.ai && this.nation.ai.log) this.nation.ai.log('[dyplomacja] ' + msg); }
 
     callToArms(ally, enemy) { this.calls.push({ ally, enemy, at: this.game.time }); }
 
-    onAnswer(other, kind, ok) { this.log(`${kind === 'peace' ? 'pokój' : 'sojusz'} z ${other.shortName || other.name}: ${ok ? 'przyjęty' : 'odrzucony'}`); }
+    // Wojna, którą sami zaczęliśmy, ma cel: przez kilka minut nie przyjmujemy pokoju (ani okupu) - wojsko musi
+    // zdążyć przejść kontynent i coś zdobyć. Bez tego przegrywający kupował pokój po minucie i nikt nie odpadał.
+    setGoal(enemy, secs) { this.goals.set(enemy, this.game.time + secs); }
+    hasGoal(enemy) { return (this.goals.get(enemy) || 0) > this.game.time; }
+
+    onAnswer(other, kind, ok) {
+        const nm = other.shortName || other.name;
+        this.log(`${kind === 'peace' ? 'pokój' : kind === 'alliance' ? 'sojusz' : 'trybut'} — ${nm}: ${ok ? 'przyjęty' : 'odrzucony'}`);
+        if (kind === 'tribute' && !ok) this.grudge.add(other);
+        if (kind === 'peace' && ok) this.lastPeaceAt = this.game.time;
+    }
 
     update(dt) {
         this.timer -= dt;
         if (this.timer > 0) return;
-        this.timer = 7 + Math.random() * 4;
+        this.timer = 6 + Math.random() * 4;
         this.think();
     }
 
     info(o) {
         const D = this.game.diplo, me = this.nation;
-        return { n: o, s: D.strength(o), prox: D.proximity(me, o), op: D.op(me, o), rel: D.get(me, o), age: this.game.time - D.sinceOf(me, o) };
+        return { n: o, s: D.strength(o), prox: D.proximity(me, o), op: D.op(me, o), rel: D.get(me, o), age: this.game.time - D.sinceOf(me, o),
+                 gains: D.ledgerOf(me, o), losses: D.ledgerOf(o, me) };
     }
 
     // siła nacji razem z jej sojusznikami (bliskimi - daleki sojusznik słabo pomoże). vs: przeciw komu - sojusznik
@@ -21626,67 +22318,114 @@ class DiplomatAI {
         return s;
     }
 
+    // przegląd sytuacji: wszyscy żywi rywale z oceną, rankingiem sąsiedztwa (0 = najbliższy) i liczbą napastników
+    survey() {
+        const g = this.game, D = g.diplo, me = this.nation;
+        const others = g.nations.filter(o => o !== me && D.alive(o)).map(o => this.info(o));
+        others.slice().sort((a, b) => b.prox - a.prox).forEach((x, i) => { x.rank = i; });
+        for (const x of others) {
+            x.bloc = this.bloc(x.n);
+            x.attackers = 0;
+            for (const c of g.nations) if (c !== me && c !== x.n && D.alive(c) && D.atWar(c, x.n)) x.attackers++;
+        }
+        return others;
+    }
+
+    // zmęczenie wojną: czas trwania i straty względem własnej armii
+    exhaustion(w) {
+        const D = this.game.diplo;
+        return w.age / (520 + 420 * this.aggro) + w.losses / Math.max(10, D.army(this.nation) * 1.6 + 6);
+    }
+
+    // śmiałość rośnie, gdy długo panuje pokój (świat nie stoi w miejscu), w końcówce gry (zostało niewielu)
+    // i przed upływem limitu czasu u tych, którzy nie prowadzą (walka podnosi Wynik)
+    aggroNow() {
+        const g = this.game, D = g.diplo, me = this.nation;
+        const quiet = g.time - Math.max(this.lastWarAt, this.lastPeaceAt, D.truceUntil, this.warFrom);
+        let a = this.aggro + clamp((quiet - 180) / 1000, 0, 0.4);
+        const act = g.nations.filter(n => D.alive(n));
+        if (act.length <= 3) a += 0.15;
+        if (D.timeLimit > 0 && D.timeLimit - g.time < 600 && D.leader(act) !== me) a += 0.2;
+        return clamp(a, 0, 1);
+    }
+
     think() {
         const g = this.game, D = g.diplo, me = this.nation;
         if (!D || !D.alive(me)) return;
-        const others = g.nations.filter(o => o !== me && D.alive(o)).map(o => this.info(o));
+        const others = this.survey();
         if (!others.length) return;
-        const my = D.strength(me);
+        const my = D.strength(me), myBloc = this.bloc(me);
         const wars = others.filter(x => x.rel === DIPLO.WAR);
         const allies = others.filter(x => x.rel === DIPLO.ALLY);
-
-        // 0) Reloaded V1.0: Cud Świata nacji spoza sojuszu (ukończony albo w połowie budowy) - jeśli przetrwa, ona wygra.
-        // Wcześniej nacje w pokoju z budowniczym przyglądały się odliczaniu i Cud rozstrzygał większość kampanii.
-        if (g.wondersOn) for (const w of g.wonderInfo()) {
-            const o = w.owner;
-            if (w.isDestroyed || o === me || !D.alive(o) || D.allied(me, o) || D.atWar(me, o)) continue;
-            if (!w.isConstructed && !(w.buildProgress > 50)) continue;
-            if (D.canDeclareWar(me, o)) continue;
-            this.lastWarAt = g.time;
-            this.focus = o;
-            this.log(`wypowiada wojnę nacji ${D.name(o)}: jej Cud Świata nie może przetrwać`);
-            D.declareWar(me, o, 'Twój Cud Świata nie może przetrwać.');
-            return;
-        }
+        const heg = D.hegemon();
+        const byN = new Map(others.map(x => [x.n, x]));
 
         // 1) wezwania do broni od sojuszników
         for (const c of this.calls.splice(0)) {
             if (!D.allied(me, c.ally) || !D.alive(c.enemy) || D.atWar(me, c.enemy) || D.allied(me, c.enemy)) continue;
-            const e = this.info(c.enemy);
-            const will = this.loyal + (e.op < 0 ? 0.15 : 0) - (wars.length ? 0.35 : 0) - (my < e.s * 0.5 ? 0.3 : 0);
-            if (will > 0.5 && !D.canDeclareWar(me, c.enemy)) {
-                this.log(`dotrzymuje sojuszu: wojna z ${D.name(c.enemy)} w obronie ${D.name(c.ally)}`);
+            const e = byN.get(c.enemy);
+            if (!e) continue;
+            const will = this.loyal + (e.op < 0 ? 0.15 : 0) + (c.enemy === heg ? 0.2 : 0) + e.prox * 0.2 - (wars.length ? 0.35 : 0) - (my < e.s * 0.5 ? 0.3 : 0);
+            if (will > 0.6 && !D.canDeclareWar(me, c.enemy)) {
+                this.log(`dotrzymuje sojuszu: wojna z ${D.name(c.enemy)} u boku ${D.name(c.ally)}`);
+                this.lastWarAt = g.time;
+                this.setGoal(c.enemy, 200 + this.loyal * 120);
                 D.declareWar(me, c.enemy, `Sojusz z nacją ${D.name(c.ally)} zobowiązuje.`);
                 return;
             }
-            this.log(`nie przystępuje do wojny sojusznika ${D.name(c.ally)} (za słaby albo zajęty)`);
+            this.log(`nie przystępuje do wojny sojusznika ${D.name(c.ally)} (za słaby, za daleko albo zajęty)`);
         }
 
-        // 2) pokój, gdy wojna idzie źle albo frontów jest za dużo
-        const wonderOf = (o) => g.wondersOn && g.wonderInfo().some(b => b.owner === o && !b.isDestroyed && (b.isConstructed || b.buildProgress > 50));
+        // 2) Cuda rywala, które grożą zwycięstwem Chwałą (D.wonderOf): zwycięstwo kończy grę dla wszystkich, więc każdy,
+        //    kto nie jest sojusznikiem budowniczego, wypowiada mu wojnę - choćby z drugiego końca kontynentu
+        if (g.wondersOn) for (const o of g.nations) {
+            if (o === me || !D.alive(o) || D.allied(me, o) || D.atWar(me, o)) continue;
+            const w = D.wonderOf(o);
+            if (!w || D.canDeclareWar(me, o)) continue;
+            this.log(`wypowiada wojnę nacji ${D.name(o)}: Chwała ${Math.floor(g.gloryOf(o.team))}, ${w.cfg.name} (${w.isConstructed ? 'ukończony' : Math.round(w.buildProgress) + '%'})`);
+            this.lastWarAt = g.time;
+            this.focus = o;
+            this.setGoal(o, 300);
+            D.declareWar(me, o, 'Wasze Cuda nie dadzą wam władzy nad kontynentem!');
+            return;
+        }
+
+        // 3) końcówka gry
+        if (this.endgame(others, allies)) return;
+
+        // 4) pokój: przegrana, zmęczenie wojną albo za dużo frontów (przegrywający - z okupem)
         for (const w of wars) {
-            if (w.age < DIPLO.PEACE_MIN_WAR + 20 || wonderOf(w.n)) continue;   // z budowniczym Cudu nie ma pokoju
-            const losing = this.bloc(w.n, me) > this.bloc(me, w.n) * (1.15 - this.caution * 0.25);
+            if (w.age < DIPLO.PEACE_MIN_WAR + 20) continue;
+            if (g.time - (this.askedPeace.get(w.n) || -999) < 110) continue;
+            if (D.wonderOf(w.n)) continue;                                   // z budowniczym Cudu - do końca
+            const ratio = myBloc / Math.max(1, w.bloc);
+            const losing = ratio < 0.8 + this.caution * 0.2 || (w.losses > w.gains * 1.7 && w.losses > 8);
             const tooMany = wars.length >= 2 && w.n !== this.focus;
-            const tired = w.age > 900 - this.aggro * 400 && w.prox < 0.35;
+            const winning = ratio > 1.5 && w.gains > w.losses * 1.3;
+            const tired = this.exhaustion(w) > 1.25;
+            if (winning && !tooMany) continue;
+            if (this.hasGoal(w.n) && !losing) continue;                        // wojna dopiero się zaczęła
             if (losing || tooMany || tired) {
-                if (g.time - (this.askedPeace.get(w.n) || -999) < 150) continue;
                 this.askedPeace.set(w.n, g.time);
-                this.log(`prosi o pokój z ${D.name(w.n)} (${losing ? 'przegrywa' : tooMany ? 'za dużo frontów' : 'wojna bez celu'})`);
-                if (!D.propose(me, w.n, 'peace')) return;
+                const pay = losing ? D.offerFor(me) : null;
+                this.log(`prosi o pokój z ${D.name(w.n)} (${losing ? 'przegrywa' : tooMany ? 'za dużo frontów' : 'zmęczenie wojną'}${pay ? ', z okupem' : ''})`);
+                if (!D.propose(me, w.n, 'peace', pay)) return;
             }
         }
 
-        // 3) sojusze: wspólny wróg, rosnące zagrożenie, dobra opinia
-        if (allies.length < 2) {
-            const strongest = others.reduce((a, b) => (b.s > a.s ? b : a));
-            const avg = others.reduce((a, b) => a + b.s, 0) / others.length;
-            let best = null, bestV = 0.55;
+        // 5) sojusze: wspólny wróg, koalicja przeciw hegemonowi, dobra opinia
+        const maxAllies = Math.min(2, D.allyCap - 1);
+        if (allies.length < maxAllies) {
+            let best = null, bestV = 0.5;
             for (const o of others) {
                 if (o.rel !== DIPLO.PEACE || g.time - (this.asked.get(o.n) || -999) < 240) continue;
+                if (D.op(o.n, me) < -10) continue;                                // i tak nam nie zaufają
+                if (D.completesAlliance(me, o.n) && my >= o.s * 0.8) continue;   // nie oddajemy wspólnego zwycięstwa za darmo
                 let v = o.op / 60;
-                if (wars.some(w => D.atWar(o.n, w.n))) v += 0.6;                                       // wspólny wróg
-                if (strongest.n !== o.n && strongest.n !== me && strongest.s > avg * 1.6 && strongest.prox > 0.3) v += 0.35;   // przeciw hegemonowi
+                if (wars.some(w => D.atWar(o.n, w.n))) v += 0.6;                                         // wspólny wróg
+                if (heg && heg !== me && heg !== o.n) v += D.proximity(heg, me) > 0.35 ? 0.6 : 0.45;     // razem przeciw hegemonowi
+                if (o.n === heg) v -= 0.3;
+                if (o.rank === 0 && o.s > my * 0.9 && this.caution >= 0.5) v += 0.15;                  // ostrożny woli spokój z silnym sąsiadem
                 v += o.prox * 0.15 - (o.n.human ? 0.05 : 0);
                 if (v > bestV) { bestV = v; best = o; }
             }
@@ -21696,73 +22435,150 @@ class DiplomatAI {
             }
         }
 
-        // 4) wojna: słabszy sąsiad, z którym nie łączy nas przyjaźń
-        this.focus = wars.length ? wars.reduce((a, b) => (b.prox > a.prox ? b : a)).n : null;
-        // Reloaded V1.0: zniecierpliwienie - długi pokój przy pełnej armii obniża próg wojny (do 15 minut spokoju),
-        // inaczej po pierwszych wojnach kontynent potrafił stać w miejscu, a skarbce rosły do kilkudziesięciu tysięcy
-        const now = g.time, dt = now - (this._thinkAt === undefined ? now : this._thinkAt);
-        this._thinkAt = now;
-        const ai = me.ai, armyCap = ai && ai.p ? ai.p.maxArmy : 0;
-        let army = 0;
-        for (const u of me.units) if (u.cfg.military) army++;
-        if (!wars.length && !D.inTruce() && army >= armyCap * 0.6) this.calmFor = (this.calmFor || 0) + dt;
-        else if (wars.length) this.calmFor = 0;
-        if (D.inTruce() || wars.length >= (this.aggro > 0.8 ? 2 : 1)) return;
-        // koniec rozejmu: każda SI rusza w swoim czasie (wcześniej wszystkie naraz rzucały się na najsłabszego)
-        if (this.readyAt === undefined) this.readyAt = D.truceUntil + 15 + Math.random() * (45 + (1 - this.aggro) * 150);
-        if (now < this.readyAt) return;
-        if (now - this.lastWarAt < 240 - this.aggro * 120) return;
-        const rest = clamp((this.calmFor || 0) / 900, 0, 1);
-        // zasięg: wojna z sąsiadem (stolica bliżej niż ok. 6,5 tys. kroków) - przez cały kontynent wojsko szłoby minutami;
-        // najbliższa nacja spoza sojuszu jest w zasięgu zawsze (na przykład w meczu dwóch nacji)
-        let nearest = null;
-        for (const o of others) if (o.rel !== DIPLO.ALLY && (!nearest || o.prox > nearest.prox)) nearest = o;
-        let pick = null, pickV = -Infinity, pickRatio = 1;
+        // główny wróg (cel fal NationAI): bliski, osłabiony, najlepiej wspólny z sojusznikami albo hegemon
+        if (wars.length) {
+            let fv = -Infinity, f = null;
+            for (const w of wars) {
+                const v = w.prox * 1.2 + (myBloc / Math.max(1, w.bloc)) * 0.3 + (w.n === heg ? 0.3 : 0) + (allies.some(a => D.atWar(a.n, w.n)) ? 0.25 : 0);
+                if (v > fv) { fv = v; f = w.n; }
+            }
+            this.focus = f;
+        } else this.focus = null;
+
+        if (D.inTruce() || g.time < this.warFrom) return;
+        const aggro = this.aggroNow();
+
+        // 6) żądanie trybutu od wyraźnie słabszego sąsiada (gdy nie toczymy wojen)
+        if (!wars.length && aggro >= 0.35 && !D.proposals.some(p => p.from === me && p.kind === 'tribute')) {
+            for (const o of others) {
+                if (o.rel !== DIPLO.PEACE || o.rank > 1 || o.prox < 0.3 || D.canDeclareWar(me, o.n) || this.grudge.has(o.n)) continue;
+                if (g.time - (this.demanded.get(o.n) || -999) < 420) continue;
+                if (myBloc < o.bloc * 1.8 || o.op > 25) continue;
+                this.demanded.set(o.n, g.time);
+                if (Math.random() > 0.3 + aggro * 0.35) continue;
+                const pay = D.demandFor(me);
+                this.log(`żąda trybutu od ${D.name(o.n)} (${Diplomacy.payText(pay)})`);
+                D.propose(me, o.n, 'tribute', pay);
+                return;
+            }
+        }
+
+        // 7) wojna
+        if (wars.length >= (aggro > 0.8 ? 2 : 1)) return;
+        if (g.time - this.lastWarAt < 240 - aggro * 120) return;
+        if (me.ai && me.ai.underThreat) return;                      // najpierw obrona własnej osady
+        let pick = null, pickV = -Infinity, pickWhy = '';
         for (const o of others) {
             if (o.rel !== DIPLO.PEACE || D.canDeclareWar(me, o.n)) continue;
-            const allyWar = allies.some(a => D.atWar(a.n, o.n));                                       // wróg sojusznika
-            if (o.prox < 0.12 && o !== nearest && !allyWar) continue;
-            const ratio = this.bloc(me, o.n) / Math.max(1, this.bloc(o.n, me));
-            if (ratio < Math.max(0.85, 1.15 + this.caution * 0.5 - this.aggro * 0.35 - rest * 0.45)) continue;   // za mało przewagi
-            // nacje spoza sojuszu, które już walczą z tym celem - kolejny chętny do łupów woli inny cel
-            let piled = 0;
-            for (const c of g.nations) if (c !== me && c !== o.n && D.alive(c) && !D.allied(c, me) && D.atWar(c, o.n)) piled++;
-            let v = o.prox * 1.3 + (Math.min(ratio, 2.5) - 1) * 0.9 - o.op / 50 + this.aggro * 0.5 - piled * 0.45;
-            if (allyWar) v += 0.6;
-            if (v > pickV) { pickV = v; pick = o; pickRatio = ratio; }
+            const grudge = this.grudge.has(o.n), vsHeg = !!heg && o.n === heg;
+            // zasięg: dwóch najbliższych sąsiadów (choćby daleko - marsz przez kontynent to ok. 2 minuty) albo ktoś
+            // naprawdę blisko; hegemon i dłużnik trybutu - zawsze
+            if (!(o.rank <= 1 || o.prox >= 0.45 || vsHeg || grudge)) continue;
+            const ratio = myBloc / Math.max(1, o.bloc);
+            const allyWar = allies.some(a => D.atWar(a.n, o.n));
+            // w końcówce (zostało najwyżej trzech) ktoś musi zaryzykować - wystarczy mniejsza przewaga
+            const need = (vsHeg ? (allyWar ? 0.6 : 0.75) : grudge ? 0.95 : 1.2) + this.caution * 0.4 - aggro * 0.45 - (others.length <= 2 ? 0.15 : 0);
+            if (ratio < need) continue;                                                                  // za mało przewagi
+            let v = o.prox * 1.2 + (ratio - 1) * 0.8 - o.op / 50 + aggro * 0.5 - o.rank * 0.12;
+            if (allyWar) v += 0.6;                                                                       // wróg sojusznika
+            if (vsHeg) v += 0.7;
+            if (grudge) v += 0.8;
+            v -= Math.max(0, o.attackers - (vsHeg ? 2 : 0)) * 0.45;                                       // na już napadniętego - niechętnie
+            if (v > pickV) {
+                pickV = v; pick = o;
+                pickWhy = grudge ? 'Odmówiliście trybutu — teraz zapłacicie więcej.' : vsHeg ? 'Wasza potęga zagraża całemu kontynentowi.'
+                    : o.op < -30 ? 'Czas wyrównać stare rachunki.' : 'Wasze ziemie leżą zbyt blisko naszych granic.';
+            }
         }
-        if (pick && pickV > 1.25 - this.aggro * 0.6 - rest * 0.6) {
-            this.lastWarAt = now;
-            this.calmFor = 0;
+        if (pick && pickV > 1.25 - aggro * 0.6) {
+            this.lastWarAt = g.time;
             this.focus = pick.n;
-            this.log(`wypowiada wojnę nacji ${D.name(pick.n)} (przewaga ${pickRatio.toFixed(1)}x, bliskość ${pick.prox.toFixed(2)}${rest > 0.05 ? ', zniecierpliwienie ' + rest.toFixed(2) : ''})`);
-            D.declareWar(me, pick.n);
+            this.grudge.delete(pick.n);
+            this.setGoal(pick.n, 240 + this.aggro * 200);
+            this.log(`wypowiada wojnę nacji ${D.name(pick.n)} (przewaga ${(myBloc / Math.max(1, pick.bloc)).toFixed(1)}x, bliskość ${pick.prox.toFixed(2)}${pick.n === heg ? ', hegemon' : ''})`);
+            D.declareWar(me, pick.n, pickWhy);
+            // koalicja: sojusznicy dostają wezwanie do wspólnej wojny z hegemonem
+            if (pick.n === heg) for (const a of allies) {
+                if (D.atWar(a.n, pick.n)) continue;
+                if (a.n.diplomat && a.n.ai) a.n.diplomat.callToArms(me, pick.n);
+                else if (a.n.human) g.tell(a.n, `Sojusznik ${D.name(me)} rusza na nację ${D.name(pick.n)} i wzywa cię do koalicji — wojnę wypowiesz w panelu Dyplomacji (Tab).`, 'warn');
+            }
         }
     }
 
+    // Końcówka: wszyscy, którzy zostali, to nasi sojusznicy
+    endgame(others, allies) {
+        const g = this.game, D = g.diplo, me = this.nation;
+        if (!allies.length || allies.length !== others.length) return false;
+        const members = [me, ...allies.map(a => a.n)];
+        const mutual = members.every(a => members.every(b => a === b || D.allied(a, b)));
+        // a) za duży sojusz - zwycięstwo sojuszu niemożliwe: najsilniejszy rozwiązuje sojusz z najsłabszym
+        if (mutual && members.length > D.allyCap) {
+            const strongest = members.reduce((a, b) => (D.strength(b) > D.strength(a) ? b : a));
+            if (strongest !== me) return false;
+            const weakest = allies.reduce((a, b) => (b.s < a.s ? b : a));
+            this.log(`rozwiązuje sojusz z ${D.name(weakest.n)} (kontynent za mały dla ${members.length} sojuszników)`);
+            D.breakAlliance(me, weakest.n, `Kontynent jest za mały dla ${members.length} sojuszników — zwycięży najwyżej ${D.allyCap}.`);
+            this.lastPeaceAt = g.time;
+            return true;
+        }
+        // b) odliczanie Sojuszu zwycięzców: ambitny i wyraźnie najsilniejszy może zdradzić ("tylko jeden władca")
+        if (D.allianceAt >= 0 && this.betrayAt !== D.allianceAt) {
+            this.betrayAt = D.allianceAt;
+            const my = D.strength(me);
+            const weakest = allies.reduce((a, b) => (b.s < a.s ? b : a));
+            if (this.loyal < 0.6 && allies.every(a => my > a.s * 1.3) && Math.random() < 0.6 - this.loyal * 0.5 && !D.canDeclareWar(me, weakest.n)) {
+                this.log(`zdradza sojusz z ${D.name(weakest.n)} tuż przed zwycięstwem`);
+                this.lastWarAt = g.time;
+                this.setGoal(weakest.n, 400);
+                D.declareWar(me, weakest.n, 'Tylko jeden władca może rządzić kontynentem!');
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Odpowiedź na propozycję: { ok, why } - uzasadnienie zobaczy proszący
-    evaluate(kind, from) {
+    evaluate(kind, from, pay) {
         const D = this.game.diplo, me = this.nation;
         const o = this.info(from), my = this.bloc(me, from), their = this.bloc(from, me);
         const wars = this.game.nations.filter(n => n !== me && D.alive(n) && D.atWar(me, n)).length;
+        // okup: wartość względem gospodarki przyjmującego, najwyżej 0,6 (okup nie przeważy przegranej wojny)
+        let payV = pay ? Math.min(0.6, ((pay.gold || 0) * 1.5 + (pay.food || 0) + (pay.wood || 0)) / (600 + 500 * me.age)) : 0;
         if (kind === 'peace') {
-            if (this.game.wondersOn && this.game.wonderInfo().some(w => w.owner === from && !w.isDestroyed && (w.isConstructed || w.buildProgress > 50)))
-                return { ok: false, why: 'nie zawrze pokoju, dopóki stoi twój Cud Świata.' };
-            const v = their / Math.max(1, my) + (wars - 1) * 0.4 + o.op / 80 + o.age / 900 - this.aggro * 0.6 + (this.focus === from ? -0.2 : 0);
-            if (v > 0.9) return { ok: true, why: '' };
+            if (D.wonderOf(from)) return { ok: false, why: 'dopóki twoje Cuda grożą zwycięstwem, nie ma mowy o pokoju.' };
+            const losing = their > my * 1.15;
+            if (!losing && this.hasGoal(from)) return { ok: false, why: 'dopiero zaczęła tę wojnę i chce coś na niej zyskać.' };
+            if (!losing && from === D.hegemon() && wars <= 2) return { ok: false, why: 'koalicja przeciw najpotężniejszej nacji trwa.' };
+            if (my > their * 1.8 && o.gains > o.losses * 2) payV *= 0.5;   // wygrywamy wyraźnie - okup musi być duży
+            const v = their / Math.max(1, my) + (wars - 1) * 0.4 + o.op / 80 + this.exhaustion(o) * 0.5 + payV - this.aggro * 0.6
+                + (this.focus === from ? -0.2 : 0) - (this.grudge.has(from) ? 0.3 : 0);
+            if (v > 0.9) { this.lastPeaceAt = this.game.time; return { ok: true, why: '' }; }
+            if (!pay && v + 0.45 > 0.9) return { ok: false, why: 'wojna jeszcze się nie rozstrzygnęła — może zgodzi się na pokój za okup.' };
             return { ok: false, why: my > their * 1.3 ? 'czuje przewagę i chce tę wojnę wygrać.' : 'wojna jeszcze się nie rozstrzygnęła.' };
+        }
+        if (kind === 'tribute') {
+            // płacimy, gdy żądający (z sojusznikami) jest wyraźnie silniejszy i stać nas
+            const r = me.resources, need = (pay.gold || 0) + (pay.food || 0) + (pay.wood || 0);
+            const have = Math.min(pay.gold || 0, r.get('gold')) + Math.min(pay.food || 0, r.get('food')) + Math.min(pay.wood || 0, r.get('wood'));
+            const afford = need > 0 ? have / need : 1;
+            if (wars === 0 && afford >= 0.7 && their > my * (1.5 + this.aggro * 0.6)) return { ok: true, why: '' };
+            return { ok: false, why: 'nie ugnie się przed groźbami.' };
         }
         // sojusz
         if (o.op < -10) return { ok: false, why: 'nie ufa ci (pamięta dawne krzywdy).' };
-        // Reloaded V1.0: ten sojusz zamknąłby wielki sojusz (wspólne zwycięstwo) - najsilniejsza nacja woli wygrać sama
-        if (D.completesGrandAlliance(me, from) && this.aggro > 0.35) {
-            const act = this.game.nations.filter(n => D.alive(n) && n !== me);
-            if (act.every(n => D.strength(me) > D.strength(n) * 1.2)) return { ok: false, why: 'jest najsilniejsza na kontynencie i nie zamierza dzielić się zwycięstwem.' };
-        }
+        const nAllies = this.game.nations.filter(n => n !== me && D.alive(n) && D.allied(me, n)).length;
+        if (nAllies >= Math.min(2, D.allyCap - 1)) return { ok: false, why: 'ma już dość sojuszników.' };
+        if (D.completesAlliance(me, from) && D.strength(me) >= D.strength(from) * 0.8) return { ok: false, why: 'chce rządzić kontynentem sama — nie podzieli się zwycięstwem.' };
         let v = o.op / 50 + this.loyal * 0.2;
         if (this.game.nations.some(c => c !== me && c !== from && D.atWar(me, c) && D.atWar(from, c))) v += 0.7;   // wspólny wróg
-        const strongest = this.game.nations.filter(n => D.alive(n) && n !== me).reduce((a, b) => (D.strength(b) > D.strength(a) ? b : a), from);
-        if (strongest !== from && D.strength(strongest) > D.strength(me) * 1.4) v += 0.35;                        // razem przeciw silniejszemu
+        const heg = D.hegemon();
+        if (heg && heg !== from && heg !== me) v += D.proximity(heg, me) > 0.25 ? 0.45 : 0.25;                   // razem przeciw hegemonowi
+        else {
+            const strongest = this.game.nations.filter(n => D.alive(n) && n !== me).reduce((a, b) => (D.strength(b) > D.strength(a) ? b : a), from);
+            if (strongest !== from && D.strength(strongest) > D.strength(me) * 1.4) v += 0.35;                    // razem przeciw silniejszemu
+        }
+        if (heg === from) v -= 0.2;                                                                                   // nieufność wobec potęgi
         if (o.prox > 0.6) v -= 0.15;                                                                                  // za blisko: sąsiad to też rywal
         if (v >= 0.45) return { ok: true, why: '' };
         return { ok: false, why: 'nie widzi w tym korzyści (brak wspólnego wroga, za słabe zaufanie).' };
@@ -23946,7 +24762,7 @@ class Tutorial {
 // Model: HOST LICZY, GOŚCIE OGLĄDAJĄ. Przeglądarka hosta prowadzi jedyną symulację (tę samą, co w grze solo),
 // goście wysyłają rozkazy i rysują stan świata przysłany przez hosta.
 const NetCodec = {
-    PROTOCOL: 8,                // Reloaded: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy)
+    PROTOCOL: 9,                // Reloaded: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy); 9: okup, trybut, limit czasu
     SNAP: 1,                    // rodzaj wiadomości binarnej: paczka stanu jednostek
 
     UNIT_TYPES: Object.keys(GameConfig.units),
@@ -24556,7 +25372,7 @@ class HostSession {
 
         const used = new Set();
         const pickColor = (want) => { let c = (want && !used.has(want)) ? want : ColorOrder.find(k => !used.has(k)); used.add(c); return c; };
-        this.settings = Object.assign({ mode: 'diplomacy', rivers: 'normal', truce: 300, mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false, kings: false, wonders: true }, opts.settings || {});
+        this.settings = Object.assign({ mode: 'diplomacy', rivers: 'normal', truce: 300, limit: 1800, mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false, kings: false, wonders: true }, opts.settings || {});
         this.slots = [];
         for (let i = 0; i < 4; i++) {
             this.slots.push({
@@ -24836,7 +25652,7 @@ class HostSession {
         const o = this.settings;
         // Dyplomacja: każde miejsce to osobna nacja (bez drużyn), świat to kontynent z rzekami
         if (o.mode === 'diplomacy') nations.forEach((n, i) => { n.team = i + 1; });
-        return { mode: o.mode === 'diplomacy' ? 'diplomacy' : 'classic', rivers: o.rivers || 'normal', truce: Number(o.truce) || 0,
+        return { mode: o.mode === 'diplomacy' ? 'diplomacy' : 'classic', rivers: o.rivers || 'normal', truce: Number(o.truce) || 0, limit: Number(o.limit) || 0,
             nations, playerCorner: 'random', mapSize: o.mapSize, mapType: o.mapType, biome: o.biome, rich: !!o.rich, reveal: !!o.reveal, kings: !!o.kings, wonders: o.wonders !== false, atmosphere, mp: this };
     }
 
@@ -25069,7 +25885,7 @@ class HostSession {
         peer.observer = true;   // po meczu każdy może obejrzeć całą mapę
         peer.out.push(['end', g.winnerTeam === undefined ? null : g.winnerTeam, !!g.byPoints, g.winnerNames || '',
             g.nations.map(n => ({ age: n.age, defeated: !!n.defeated, score: n.score(), ctl: n.controlLabel(), stats: n.stats })), g.byWonder || '',
-            g.winnerTeams ? [...g.winnerTeams] : null]);
+            g.winnerTeams ? [...g.winnerTeams] : null, g.winReason || '', g.winLeader || '']);
     }
 
     // ---------------- Po każdym kroku symulacji ----------------
@@ -25181,13 +25997,15 @@ class HostSession {
             const sig = JSON.stringify(st);
             if (sig !== slot.natSig) { slot.natSig = sig; out.push(['n', st]); }
         }
-        // V3.5 Newest Final: Cuda Świata (widoczne dla wszystkich) z odliczaniem do zwycięstwa
+        // Cuda Świata (widoczne dla wszystkich) i Chwała drużyn
         const wl = g.wonderInfo();
-        const wsig = wl.map(w => w.id + ':' + (w.isConstructed ? 1 : 0) + ':' + Math.round(w.wonderUntil || 0) + ':' + Math.round(w.buildProgress / 4)).join('|');
+        const gt = {};
+        for (const n of g.nations) if (gt[n.team] === undefined) gt[n.team] = [Math.floor(g.gloryOf(n.team)), g.gloryRate(n.team)];
+        const wsig = wl.map(w => w.id + ':' + (w.isConstructed ? 1 : 0) + ':' + Math.round(w.buildProgress / 4)).join('|') + '#' + JSON.stringify(gt);
         if (wsig !== slot.wdSig) {
             slot.wdSig = wsig;
             out.push(['wd', wl.map(w => [w.id, g.nations.indexOf(w.owner), Math.round(w.x * 10) / 10, Math.round(w.y * 10) / 10, w.size, w.isConstructed ? 1 : 0,
-                w.wonderUntil != null ? Math.round(w.wonderUntil * 10) / 10 : -1, Math.round(w.buildProgress)])]);
+                w.type, Math.round(w.buildProgress)]), gt]);
         }
         for (let i = 0; i < g.nations.length; i++) {
             const x = g.nations[i];
@@ -25719,10 +26537,11 @@ class ClientSession {
                 });
                 break;
             }
-            case 'wd': {   // V3.5 Newest Final: Cuda Świata i odliczanie do zwycięstwa
+            case 'wd': {   // Cuda Świata i Chwała drużyn
                 g.netWonders = e[1].map(a => ({ id: a[0], owner: g.nations[a[1]], x: a[2], y: a[3], size: a[4], isConstructed: !!a[5],
-                    wonderUntil: a[6] < 0 ? null : a[6], buildProgress: a[7] })).filter(w => w.owner);
-                for (const w of g.netWonders) { const b = byId.get(w.id); if (b) { b.wonderUntil = w.wonderUntil; } }
+                    type: GameConfig.buildings[a[6]] && GameConfig.buildings[a[6]].wonder ? a[6] : 'wonder', buildProgress: a[7] })).filter(w => w.owner);
+                for (const w of g.netWonders) w.cfg = GameConfig.buildings[w.type];
+                g.netGlory = e[2] && typeof e[2] === 'object' ? e[2] : {};
                 g.updateVisibility(); g.fogDirty = true;
                 break;
             }
@@ -25748,6 +26567,8 @@ class ClientSession {
                 g.winnerTeams = Array.isArray(e[6]) ? new Set(e[6]) : null;   // Dyplomacja: zwycięski sojusz
                 g.byPoints = !!e[2];
                 g.byWonder = e[5] ? NetCodec.clean(e[5]) : null;
+                g.winReason = ['conquest', 'alliance', 'limit', 'wonder'].includes(e[7]) ? e[7] : null;   // Dyplomacja: jak rozstrzygnięto mecz
+                g.winLeader = e[8] ? NetCodec.clean(e[8], 60) : null;
                 g.winnerNames = NetCodec.clean(e[3], 200);
                 e[4].forEach((d, i) => {
                     const n = g.nations[i];
@@ -25810,7 +26631,7 @@ function matchOptionsHtml(p, o, color, sky) {
     let h = `<div><span class="opt-label">Warunki zwycięstwa</span><div class="win-grid">
         <div class="win-tile fixed" title="Drużyna, która jako ostatnia zachowa Ratusz, wygrywa. Ten warunek obowiązuje zawsze.">${img('building', 'town_center')}<span class="wt-text"><b>Podbój</b><small>Zniszcz Ratusze wszystkich wrogów</small></span><span class="win-lock">ZAWSZE</span></div>
         ${tile('kings', o.kings, 'unit', 'king', 'Królowie', 'Każda nacja ma władcę — jego śmierć to porażka', 'Każda nacja zaczyna z królem: potężnym wojownikiem z Królewską Szarżą (+20% dla okolicznej armii). Gdy król zginie, jego nacja przegrywa i traci całą osadę.')}
-        ${tile('wonder', o.wonders !== false, 'building', 'wonder', 'Cud Świata', 'Cud, który przetrwa 10 minut, daje zwycięstwo', 'W IV erze można zbudować Cud Świata (jeden na nację). Jeśli po ukończeniu przetrwa 10 minut, drużyna budowniczego wygrywa. Wyłączone: Cudu nie ma w menu budowy, a AI go nie stawia.')}
+        ${tile('wonder', o.wonders !== false, 'building', 'wonder', 'Cuda Świata', '1000 Chwały z Cudów daje zwycięstwo', 'Cztery unikatowe Cuda (każdy może stać na mapie tylko raz): Wiszące Ogrody, Kolos i Wielka Biblioteka w III erze — z premiami — oraz Wielka Bazylika w IV erze. Ukończone Cuda co sekundę dają Chwałę; drużyna, która pierwsza zbierze 1000, wygrywa. Zburzenie Cudu odbiera właścicielowi 25% Chwały. Wyłączone: Cudów nie ma w menu budowy, a AI ich nie stawia.')}
     </div></div>
     <label class="reveal-row" title="Odkryta mapa: od początku znasz teren i rozmieszczenie surowców; wrogie wojsko nadal kryje mgła wojny."><input type="checkbox" id="${p}-reveal"${o.reveal ? ' checked' : ''}><i class="win-switch"></i><span>Odkryta mapa <small>Teren znany od startu</small></span></label>`;
     if (sky) h += `<div><span class="opt-label">Pora dnia i pogoda</span><div class="sky-pick">
@@ -26048,12 +26869,12 @@ const MpUI = {
         if (o.mode === 'diplomacy') {
             const biomeD = { random: 'losowa', meadow: 'łąki', autumn: 'jesień', winter: 'zima', desert: 'pustynia' }[o.biome] || o.biome;
             const riv = { few: 'mało', normal: 'średnio', many: 'dużo' }[o.rivers] || 'średnio';
-            return `Tryb: <b>Dyplomacja</b> · mapa: <b>kontynent</b> (5× Gigantyczna) · rzeki: <b>${riv}</b> · kraina: <b>${biomeD}</b> · rozejm: <b>${o.truce > 0 ? Math.round(o.truce / 60) + ' min' : 'brak'}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}${o.wonders !== false ? ' · <b>Cud Świata</b>' : ''}`;
+            return `Tryb: <b>Dyplomacja</b> · mapa: <b>kontynent</b> (5× Gigantyczna) · rzeki: <b>${riv}</b> · kraina: <b>${biomeD}</b> · rozejm: <b>${o.truce > 0 ? Math.round(o.truce / 60) + ' min' : 'brak'}</b> · limit czasu: <b>${o.limit > 0 ? Math.round(o.limit / 60) + ' min' : 'brak'}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}${o.wonders !== false ? ' · <b>Cuda Świata</b>' : ''}`;
         }
         const size = { 2400: 'mała', 3000: 'średnia', 3900: 'duża', 5100: 'gigantyczna' }[o.mapSize] || o.mapSize;
         const type = { random: 'losowe', lake: 'jezioro', lakes: 'pojezierze', plains: 'równiny', highlands: 'góry' }[o.mapType] || o.mapType;
         const biome = { random: 'losowa', meadow: 'łąki', autumn: 'jesień', winter: 'zima', desert: 'pustynia' }[o.biome] || o.biome;
-        return `Mapa: <b>${size}</b> · ukształtowanie: <b>${type}</b> · kraina: <b>${biome}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}${o.wonders !== false ? ' · <b>Cud Świata</b>' : ' · bez Cudu Świata'}`;
+        return `Mapa: <b>${size}</b> · ukształtowanie: <b>${type}</b> · kraina: <b>${biome}</b> · surowce: <b>${o.rich ? 'bogate' : 'standardowe'}</b>${o.reveal ? ' · <b>odkryta mapa</b>' : ''}${o.kings ? ' · <b>Królowie</b>' : ''}${o.wonders !== false ? ' · <b>Cuda Świata</b>' : ' · bez Cudów Świata'}`;
     },
 
     // ================= Widok: host =================
@@ -26093,7 +26914,8 @@ const MpUI = {
                 <div><span class="opt-label">Tryb gry</span>${this.radios('mp-mode', o.mode === 'diplomacy' ? 'diplomacy' : 'classic', [['diplomacy', 'Dyplomacja', 'Kontynent 5× większy niż Gigantyczna, rzeki, relacje zmieniające się w trakcie gry'], ['classic', 'Klasyczny mecz', 'Stałe drużyny, mapy od Małej do Gigantycznej']], 'c2')}</div>
                 ${o.mode === 'diplomacy' ? `
                 <div><span class="opt-label">Rzeki na kontynencie</span>${this.radios('mp-rivers', o.rivers || 'normal', [['few', 'Mało'], ['normal', 'Średnio'], ['many', 'Dużo']], 'c3')}</div>
-                <div><span class="opt-label">Rozejm na start</span>${this.radios('mp-truce', Number(o.truce) || 0, [[0, 'Brak'], [180, '3 min'], [300, '5 min'], [600, '10 min']], 'c4')}</div>` : `
+                <div><span class="opt-label">Rozejm na start</span>${this.radios('mp-truce', Number(o.truce) || 0, [[0, 'Brak'], [180, '3 min'], [300, '5 min'], [600, '10 min']], 'c4')}</div>
+                <div><span class="opt-label">Limit czasu <small>(potem wygrywa najwyższy Wynik)</small></span>${this.radios('mp-limit', Number(o.limit) || 0, [[0, 'Brak'], [1800, '30 min'], [2700, '45 min'], [3600, '60 min']], 'c4')}</div>` : `
                 <div><span class="opt-label">Rozmiar mapy</span>${this.radios('mp-mapSize', o.mapSize, [[2400, 'Mała'], [3000, 'Średnia'], [3900, 'Duża'], [5100, 'Gigantyczna']], 'c4')}</div>
                 <div><span class="opt-label">Ukształtowanie</span>${this.radios('mp-mapType', o.mapType, [['random', 'Losowe'], ['lake', 'Jezioro'], ['lakes', 'Pojezierze'], ['plains', 'Równiny'], ['highlands', 'Góry']], 'c5')}</div>`}
                 <div><span class="opt-label">Kraina</span>${this.radios('mp-biome', o.biome, [['random', 'Losowa'], ['meadow', 'Łąki'], ['autumn', 'Jesień'], ['winter', 'Zima'], ['desert', 'Pustynia']], 'c5')}</div>
@@ -26294,6 +27116,7 @@ const MpUI = {
         const s = new HostSession({
             name: this.playerName('Host'), color: saved.color,
             settings: { mode: saved.mode === 'classic' ? 'classic' : 'diplomacy', rivers: pick(String(saved.rivers), ['few', 'normal', 'many'], 'normal'), truce: Number(pick(String(saved.truce), ['0', '180', '300', '600'], '300')),
+                limit: Number(pick(String(saved.tlimit), ['0', '1800', '2700', '3600'], '1800')),
                 mapSize: Number(pick(String(saved.mapSize), ['2400', '3000', '3900', '5100'], '3000')), mapType: saved.mapType || 'random', biome: saved.biome || 'random', rich: saved.startRes === 'rich', reveal: !!saved.reveal, kings: !!saved.kings, wonders: saved.wonders !== false }
         });
         s.onChange = () => this.refresh();
@@ -26395,6 +27218,7 @@ const MpUI = {
         else if (n === 'mp-mode') s.setSettings({ mode: t.value === 'diplomacy' ? 'diplomacy' : 'classic' });
         else if (n === 'mp-rivers') s.setSettings({ rivers: t.value });
         else if (n === 'mp-truce') s.setSettings({ truce: Number(t.value) || 0 });
+        else if (n === 'mp-limit') s.setSettings({ limit: Number(t.value) || 0 });
         else if (n === 'mp-mapSize') s.setSettings({ mapSize: Number(t.value) });
         else if (n === 'mp-mapType') s.setSettings({ mapType: t.value });
         else if (n === 'mp-biome') s.setSettings({ biome: t.value });
@@ -26675,7 +27499,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const val = (name, def) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : def; };
         Settings.set('menu', {
             color: menu.color, corner: menu.corner, team: menu.team, ai: menu.ai, mode: menu.mode, seed: menu.seed,
-            dnat: val('dnat', '5'), dai: val('dai', 'medium'), rivers: val('rivers', 'normal'), truce: val('truce', '300'),
+            dnat: val('dnat', '5'), dai: val('dai', 'medium'), rivers: val('rivers', 'normal'), truce: val('truce', '300'), tlimit: val('tlimit', '1800'),
             mapSize: val('mapsize', '3000'), mapType: val('maptype', 'random'), biome: val('biome', 'random'), startRes: val('startres', 'std'),
             reveal: !!document.getElementById('opt-reveal').checked, atmo: atmoOn(),
             kings: !!document.getElementById('opt-kings').checked, wonders: !!document.getElementById('opt-wonder').checked
@@ -26708,14 +27532,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 tbox.title = `Nacje: ${o.nations.length} — każda na własny rachunek`;
                 tbox.innerHTML = '<span class="sum-team">' + o.nations.map(n => `<i class="${n.isPlayer ? 'me' : ''}" style="background:${TeamPalette[n.color].main}" title="${n.isPlayer ? 'Ty' : 'SI — ' + Difficulty.names[n.diff]}"></i>`).join('') + '</span>';
             }
-            const winD = ['Podbój', '<span class="gold">Sojusz</span>'].concat(o.kings ? ['<span class="gold">Królowie</span>'] : [], o.wonders ? ['<span class="gold">Cud Świata</span>'] : []).join(' · ');
+            const winD = ['Podbój', '<span class="gold">Sojusz</span>'].concat(o.kings ? ['<span class="gold">Królowie</span>'] : [], o.wonders ? ['<span class="gold">Cuda Świata</span>'] : [], o.limit > 0 ? [`<span class="gold">Wynik po ${Math.round(o.limit / 60)} min</span>`] : []).join(' · ');
             box.innerHTML = row('Mapa', `Kontynent${o.reveal ? ' · odkryta' : ''}`) + row('Rzeki', label('rivers')) + row('Kraina', label('biome'))
                 + row('Rozejm', o.truce > 0 ? label('truce') : 'Brak') + row('Surowce', o.rich ? 'Bogate' : 'Standardowe') + row('Pora dnia', o.atmosphere ? 'Dzień i noc' : 'Wieczny dzień')
                 + row('Zwycięstwo', winD, true);
             renderPreview(o);
             return;
         }
-        const win = ['Podbój'].concat(o.kings ? ['<span class="gold">Królowie</span>'] : [], o.wonders ? ['<span class="gold">Cud Świata</span>'] : []).join(' · ');
+        const win = ['Podbój'].concat(o.kings ? ['<span class="gold">Królowie</span>'] : [], o.wonders ? ['<span class="gold">Cuda Świata</span>'] : []).join(' · ');
         box.innerHTML = row('Mapa', `${label('mapsize')} · ${label('maptype')}${o.reveal ? ' · odkryta' : ''}`) + row('Kraina', label('biome'))
             + row('Surowce', o.rich ? 'Bogate' : 'Standardowe') + row('Pora dnia', o.atmosphere ? 'Dzień i noc' : 'Wieczny dzień') + row('Zwycięstwo', win, true);
         renderPreview(o);
@@ -26962,7 +27786,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // przywrócenie zapamiętanych opcji świata
     const restore = (name, value) => { if (value === undefined) return; const el = document.querySelector(`input[name="${name}"][value="${value}"]`); if (el) el.checked = true; };
     restore('mapsize', saved.mapSize); restore('maptype', saved.mapType); restore('biome', saved.biome); restore('startres', saved.startRes);
-    restore('dnat', saved.dnat); restore('dai', saved.dai); restore('rivers', saved.rivers); restore('truce', saved.truce);
+    restore('dnat', saved.dnat); restore('dai', saved.dai); restore('rivers', saved.rivers); restore('truce', saved.truce); restore('tlimit', saved.tlimit);
 
     // Reloaded: przełącznik trybu gry - Dyplomacja (główny) albo Klasyczny mecz
     function applyMode() {
@@ -27010,7 +27834,7 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = 0; i < k; i++) nations.push({ isPlayer: false, color: free[i], team: i + 2, diff: lvl === 'mixed' ? mix[i] : (Difficulty.order.includes(lvl) ? lvl : 'medium') });
             return {
                 mode: 'diplomacy', nations, seed: menu.seed,
-                rivers: val('rivers', 'normal'), truce: Number(val('truce', '300')),
+                rivers: val('rivers', 'normal'), truce: Number(val('truce', '300')), limit: Number(val('tlimit', '1800')),
                 biome: val('biome', 'random'), rich: val('startres', 'std') === 'rich',
                 reveal: !!document.getElementById('opt-reveal').checked,
                 kings: !!document.getElementById('opt-kings').checked,
@@ -27395,7 +28219,7 @@ document.addEventListener("DOMContentLoaded", () => {
             playerNation.setAI(new NationAI(game, o.autoplay));
             game.observeAll = true;
         }
-        if (diplo) new Diplomacy(game, { truce: o.truce !== undefined ? Number(o.truce) : 300, allianceWin: o.allianceWin !== false });
+        if (diplo) new Diplomacy(game, { truce: o.truce !== undefined ? Number(o.truce) : 300, allianceWin: o.allianceWin !== false, limit: Number(o.limit) || 0 });
 
         if (o.reveal) game.revealMap();
 
@@ -27423,7 +28247,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (!o.autoplay) {
                     const allies = game.nations.filter(n => n !== playerNation && n.team === playerNation.team).map(n => n.shortName);
                     uiManager.showMessage(`Mapa: ${biome.name} · ${MAP_NAMES[mapType]}.` + (allies.length ? ` Sojusznicy: ${allies.join(', ')}.` : ''), 'info');
-                    if (game.diplo) uiManager.showMessage(`Dyplomacja: ${game.nations.length} nacji na kontynencie, wszyscy zaczynają w pokoju` + (game.diplo.truceUntil > 0 ? ` (rozejm: ${Math.round(game.diplo.truceUntil / 60)} min)` : '') + '. Relacje i propozycje — klawisz Tab.', 'info');
+                    if (game.diplo) {
+                        const D = game.diplo;
+                        uiManager.showMessage(`Dyplomacja: ${game.nations.length} nacji na kontynencie, wszyscy zaczynają w pokoju` + (D.truceUntil > 0 ? ` (rozejm: ${Math.round(D.truceUntil / 60)} min)` : '') + '. Relacje, propozycje i warunki zwycięstwa — klawisz Tab.', 'info');
+                        uiManager.showMessage('Zwycięstwo: Podbój' + (D.allianceWin ? ` · Sojusz (najwyżej ${D.allyCap} nacji, ${DIPLO.ALLIANCE_HOLD / 60} min jako jedyni)` : '') + (game.wondersOn ? ` · Cuda Świata (${Game.GLORY_WIN} Chwały)` : '') + (D.timeLimit > 0 ? ` · po ${Math.round(D.timeLimit / 60)} min najwyższy Wynik` : '') + '.', 'info');
+                    }
                     uiManager.showMessage('Zaznacz robotników i wyślij ich po drewno (PPM na drzewo).', 'good');
                 }
                 window.abReady = true;
@@ -27485,6 +28313,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!w.resume) game.playIntro(home.x, home.y);
                 const allies = game.nations.filter(n => n !== playerNation && n.team === playerNation.team).map(n => n.shortName);
                 uiManager.showMessage(`Mapa: ${biome.name} · ${MAP_NAMES[w.mapType] || ''}.` + (allies.length ? ` Sojusznicy: ${allies.join(', ')}.` : ''), 'info');
+                if (game.diplo && !w.resume) {
+                    const D = game.diplo;
+                    uiManager.showMessage('Dyplomacja — zwycięstwo: Podbój' + (D.allianceWin ? ` · Sojusz (najwyżej ${D.allyCap} nacji, ${DIPLO.ALLIANCE_HOLD / 60} min jako jedyni)` : '') + (game.wondersOn ? ` · Cuda Świata (${Game.GLORY_WIN} Chwały)` : '') + (D.timeLimit > 0 ? ` · po ${Math.round(D.timeLimit / 60)} min najwyższy Wynik` : '') + '. Relacje i warunki — klawisz Tab.', 'info');
+                }
                 uiManager.showMessage(w.resume ? 'Jesteś z powrotem w grze — znów dowodzisz swoją nacją.' : 'Zaznacz robotników i wyślij ich po drewno (PPM na drzewo).', 'good');
                 window.abReady = true;
             });
@@ -27556,7 +28388,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
         const era = (a) => `<span class="era era${a || 1}">Era ${GameConfig.ages[a || 1].roman}</span>`;
         const NEW_UNITS = ['arquebusier', 'petardier', 'organ_gun', 'great_cannon', 'trojan_horse', 'king', 'trade_cart', 'lisowczyk'];
-        const NEW_BUILDINGS = ['orchard', 'wonder'];
+        const NEW_BUILDINGS = ['hanging_gardens', 'colossus', 'library', 'wonder'];
         const isNew = (list, t) => list.includes(t) ? '<span class="codex-new">Nowość</span>' : '';
 
         const trainedAt = {};
@@ -27628,7 +28460,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const bPane = document.getElementById('pane-buildings');
             if (bPane) {
-                let h = codexHead('buildings', 'Budynki', `${Object.keys(GameConfig.buildings).length} budowli — od domu i farmy po zamek, arsenał i Cud Świata. Co szkolą, co badają i ile wytrzymają.`) + `<div class="codex" data-era="${codexEra.buildings}">`;
+                let h = codexHead('buildings', 'Budynki', `${Object.keys(GameConfig.buildings).length} budowli — od domu i farmy po zamek, arsenał i Cuda Świata. Co szkolą, co badają i ile wytrzymają.`) + `<div class="codex" data-era="${codexEra.buildings}">`;
                 for (const t in GameConfig.buildings) {
                     const b = GameConfig.buildings[t];
                     let st = `<span class="chip" title="Wytrzymałość">♥ ${b.maxHp}</span>`;
@@ -27642,7 +28474,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div><div class="codex-name">${b.name} ${era(b.age)}${isNew(NEW_BUILDINGS, t)}</div>
                         <div class="codex-meta">${cost(b.cost)}</div>
                         <div class="chips">${st}</div><div class="codex-desc">${b.desc}</div>
-                        <div class="codex-extra">${trains.length ? 'Szkoli: ' + trains.join(', ') + '. ' : ''}${ups.length ? 'Badania: ' + ups.join(', ') + '.' : ''}${b.limit ? ' Limit: ' + b.limit + '.' : ''}${b.wonder ? ' Tylko z warunkiem zwycięstwa „Cud Świata” (karta Świat, domyślnie włączony).' : ''}</div></div></div>`;
+                        <div class="codex-extra">${trains.length ? 'Szkoli: ' + trains.join(', ') + '. ' : ''}${ups.length ? 'Badania: ' + ups.join(', ') + '.' : ''}${b.limit ? ' Limit: ' + b.limit + '.' : ''}${b.wonder ? ` Cud Świata: +${String(b.glory).replace('.', ',')} Chwały/s, jeden na całą mapę; tylko z warunkiem zwycięstwa „Cuda Świata” (karta Świat, domyślnie włączony).` : ''}</div></div></div>`;
                 }
                 bPane.innerHTML = h + '</div><div class="codex-empty">Nic nie pasuje do wyszukiwania.</div>';
                 codexFilter('buildings');

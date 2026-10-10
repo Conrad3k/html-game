@@ -28,4 +28,16 @@ nacji spoza sojuszu, a zwycięstwo sojuszu wymaga, by wielki sojusz przetrwał 2
 Silnik Raptor: jednostki nie wpadają już w wolny tryb pól przeglądarki, a regiony osiągalności są łatane w miejscu zmiany — symulacja
 ok. 2,9× szybsza w kampanii 6 nacji i 2× w klasycznym meczu.
 
-Gra wieloosobowa: wszyscy gracze muszą mieć to samo (najnowsze) wydanie pliku Reloaded V1.0. Szczegóły: menu gry → „Co nowego”.
+**Aktualizacja V1.0 — Dyplomacja**: jasne warunki zwycięstwa na widoku (panel Tab: Podbój, Sojusz, Cud Świata,
+Limit czasu — z bieżącym stanem i odliczaniem na ekranie), Sojusz zwycięzców najwyżej połowy nacji, który musi przetrwać
+3 minuty jako jedyny, nowa opcja Limit czasu (domyślnie 30 min, do wyboru 45 / 60 / brak — potem wygrywa najwyższy Wynik), pokój za okup i żądania
+trybutu, mądrzejsza SI dyplomaty (sąsiedztwo, księga strat i zmęczenie wojną, hegemon i koalicje, reakcja na Cud Świata,
+zdrady w końcówce) i lepszy teren (morze o poszarpanym brzegu, Złote wzgórza ze spornymi złożami, zapas surowców przy
+każdej stolicy). Partia trwa zwykle 20–30 minut.
+
+**Aktualizacja V1.0 — Cuda Świata**: cztery unikatowe Cuda (każdy tylko raz na mapie) — Wiszące Ogrody, Kolos i Wielka
+Biblioteka w III erze z własnymi premiami oraz Wielka Bazylika w IV erze. Ukończone Cuda co sekundę dają drużynie Chwałę;
+1000 Chwały = zwycięstwo. Zburzenie Cudu odbiera właścicielowi 25% Chwały, a burzącemu daje 100. Paski Chwały na ekranie,
+nowa SI budująca i zwalczająca Cuda. Działa w obu trybach.
+
+Gra wieloosobowa (protokół 9): wszyscy gracze muszą mieć to samo (najnowsze) wydanie pliku Reloaded V1.0. Szczegóły: menu gry → „Co nowego”.
