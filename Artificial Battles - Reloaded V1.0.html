@@ -172,6 +172,7 @@ button { font-family: inherit; }
 }
 @media (max-width: 1040px) {
     .res small { display: none; }
+    .res .res-trade { display: none !important; }
     .res img { width: 18px; height: 18px; }
     .top-btn { padding: 0 8px; }
 }
@@ -1406,6 +1407,21 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 .dpo-why { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--label-3); font-size: 11.5px; }
 .dpo-why em { font-style: normal; font-weight: 700; }
 .dpu-list { display: flex; flex-wrap: wrap; gap: 5px; }
+/* handel w Przeglądzie */
+.dptr-sum { display: flex; flex-wrap: wrap; gap: 4px 18px; margin: 0 0 6px; padding: 8px 11px; border-radius: 10px; background: rgba(241, 197, 106, 0.08); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.28); font-size: 12.5px; color: var(--label-2); }
+.dptr-sum b { color: #ffe08a; font-variant-numeric: tabular-nums; }
+.dptr-sum span:first-child b { font-size: 15px; }
+.dptr { display: grid; grid-template-columns: 22px 96px 110px minmax(0, 1fr); align-items: center; gap: 8px; margin: 0 0 3px; padding: 5px 8px; border-radius: 10px; background: rgba(255, 255, 255, 0.03); font-size: 12px; cursor: pointer; }
+.dptr:hover { background: rgba(255, 255, 255, 0.07); }
+.dptr-r { color: #ffe08a; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dptr-r small { color: var(--label-3); font-weight: 600; }
+.dptr-d { min-width: 0; color: var(--label-3); font-size: 11.5px; }
+.dptr-d b { color: var(--label-2); font-variant-numeric: tabular-nums; }
+.dptr-d em { font-style: normal; font-weight: 700; }
+.dptr-note { margin-top: 6px; }
+.dptr-note b { color: var(--label-2); }
+.dpd.td.on { box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.4); background: rgba(241, 197, 106, 0.07); }
+.res-trade { font-style: normal; font-size: 11px; font-weight: 700; color: #ffe08a; margin-left: 2px; font-variant-numeric: tabular-nums; }
 .dpu { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 8px; font-size: 12px; color: var(--label-2); background: rgba(255, 255, 255, 0.04); }
 .dpu small { color: var(--label-3); font-variant-numeric: tabular-nums; }
 .dpu.al { box-shadow: inset 0 0 0 1px rgba(50, 209, 93, 0.35); } .dpu.tr { box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.35); } .dpu.np { box-shadow: inset 0 0 0 1px rgba(138, 180, 255, 0.35); }
@@ -1478,6 +1494,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
     .dpx-st { display: none; }
     .dpo { grid-template-columns: 24px minmax(0, 1fr) auto 34px; }
     .dpo .dpo-bar, .dpo .dpo-why, .dpo .dp-threat { display: none; }
+    .dptr { grid-template-columns: 22px minmax(0, 1fr) auto; } .dptr .dptr-d { grid-column: 2 / -1; }
 }
 </style>
 </head>
@@ -1769,13 +1786,13 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <div class="menu-card guide-goal">
                             <div>
                                 <h2><span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 21h14"/><path d="M4 8h16"/><path d="M4 8l-2.5 6a3 3 0 0 0 5 0z"/><path d="M20 8l-2.5 6a3 3 0 0 0 5 0z"/></svg></span>Dyplomacja</h2>
-                                <p>W trybie <b>Dyplomacja</b> nikt nie jest twoim wrogiem na zawsze. Ekran Dyplomacji (<kbd>Tab</kbd>) ma po lewej <b>mapę relacji</b> — herby nacji w ich stolicach, czerwone linie wojen, zielone sojuszy, złote handlu i niebieskie paktów — a pod nią listę bloków sojuszniczych i toczących się wojen. Po prawej jest karta wybranej nacji: jej <b>stosunek do ciebie</b> z rozpisanymi powodami (od „Napaść na nich −50” po „Umowa handlowa +12”) i propozycje z paskiem <b>gotowości</b> — widać, czy SI je przyjmie, a jeśli nie, czego brakuje.</p>
+                                <p>W trybie <b>Dyplomacja</b> nikt nie jest twoim wrogiem na zawsze. Ekran Dyplomacji (<kbd>Tab</kbd>) ma po lewej <b>mapę relacji</b> — herby nacji w ich stolicach, czerwone linie wojen, zielone sojuszy, złote handlu i niebieskie paktów — a pod nią listę bloków sojuszniczych i toczących się wojen. Po prawej jest karta wybranej nacji: jej <b>stosunek do ciebie</b> z rozpisanymi powodami (od „Napaść na nich −50” po „Umowa handlowa +7”) i propozycje z paskiem <b>gotowości</b> — widać, czy SI je przyjmie, a jeśli nie, czego brakuje.</p>
                                 <p>Karta <b>Przegląd</b> pokazuje, jak widzą cię wszystkie nacje, twoje umowy i dochód z handlu. Propozycje SI (handel, pakt, sojusz, pokój, trybut, wezwanie do wojny) pojawiają się w prawym górnym rogu ekranu z przyciskami — nie musisz otwierać Dyplomacji.</p>
                             </div>
                             <div>
                                 <h3>Jak zdobyć sojusznika</h3>
                                 <ul>
-                                    <li><b>Umowa handlowa</b> — najłatwiejsza: obie strony dostają złoto co minutę (więcej z daleka i w wyższych erach), a stosunek rośnie, dopóki trwa. Najwyżej 3 umowy naraz.</li>
+                                    <li><b>Umowa handlowa</b> — najłatwiejsza: obie strony dostają złoto co minutę (ok. 9–14 w I erze, 18–27 w IV; więcej z daleka), a stosunek partnera rośnie o 5, z czasem o 10. Ile zarabiasz, widać w Przeglądzie ekranu Dyplomacji i obok złota w górnym pasku. Najwyżej 3 umowy naraz.</li>
                                     <li><b>Pakt o nieagresji</b> — 6 minut, w których żadna strona nie wypowie wojny. Dobry na groźnego sąsiada.</li>
                                     <li><b>Dar</b> (złoto, żywność, drewno, kamień) — od razu poprawia stosunek, ale każdy kolejny cieszy mniej, a wdzięczność z czasem blednie.</li>
                                     <li><b>Sojusz</b> wymaga zaufania albo wspólnego wroga czy zagrożenia. Sojusznik broni sojusznika i przyjmuje wezwania do wojny — a ten, kto odmawia, traci zaufanie.</li>
@@ -1805,7 +1822,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <h3>Dyplomacja z głębią: stosunki z powodami i drabina zaufania</h3>
                         <ul>
                             <li><b>Stosunek z powodami</b>: to, co nacja myśli o innej, to suma konkretnych spraw. <b>Pamięć</b> — napaść, zdrada sojuszu, wojny wywołane z innymi, dary, zawarty pokój i sojusz, zapłacony albo wymuszony trybut, odrzucone propozycje, pomoc w wojnie albo jej brak, zerwane umowy — każda sprawa blednie we własnym tempie (zdrada najwolniej). <b>Sytuacja</b> — wspólny wróg, sojusz z jej wrogiem, umowa handlowa, pakt, spór o granice z bliskim sąsiadem, sympatia albo niechęć władców, strach przed hegemonem i przed nacją, której Cuda grożą zwycięstwem. Ekran Dyplomacji pokazuje każdy powód z wartością.</li>
-                            <li><b>Umowa handlowa</b>: obie strony dostają złoto co minutę, dopóki nie ma między nimi wojny — więcej w wyższych erach i z dalekim kontrahentem (od ok. 20 złota na minutę w I erze do ok. 55 w IV). Najwyżej 3 umowy naraz; handel buduje zaufanie, a wojna z partnerem handlowym kosztuje dochód.</li>
+                            <li><b>Umowa handlowa</b>: obie strony dostają złoto co minutę, dopóki nie ma między nimi wojny — więcej w wyższych erach i z dalekim kontrahentem (od ok. 9–14 złota na minutę w I erze do ok. 18–27 w IV — nie zastąpi robotników przy złożach, ale się sumuje). Najwyżej 3 umowy naraz; handel buduje zaufanie, a wojna z partnerem handlowym kosztuje dochód.</li>
                             <li><b>Pakt o nieagresji</b>: 6 minut, w których żadna ze stron nie wypowie wojny (odnowić można w ostatnich 5 minutach). <b>Dar</b>: 100, 250 albo 500 złota, żywności, drewna lub kamienia — sympatia rośnie od razu, ale każdy kolejny dar cieszy mniej.</li>
                             <li><b>Wezwanie do wojny</b>: poproś sojusznika (albo życzliwą nację) o wspólną wojnę z twoim wrogiem; SI zgadza się, gdy jej się to opłaca. Sojusznicy wzywają też ciebie — karta „Wypowiedz wojnę / Odmów”; odmowa sojusznikowi obniża zaufanie, a sojusznik, który nigdy nie pomaga, może zerwać sojusz.</li>
                             <li><b>Drabina zaufania</b>: handel i pakt SI przyjmuje łatwo, sojusz — dopiero przy zaufaniu albo wspólnym wrogu czy zagrożeniu. Każda propozycja ma na ekranie Dyplomacji pasek <b>gotowości</b> (ocena SI z czynnikami w podpowiedzi) i powód odmowy, np. „Za mało zaufania — dary, handel, pakt albo wspólny wróg to zmienią”.</li>
@@ -1815,7 +1832,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <h3>Ekran Dyplomacji, komunikaty i władcy</h3>
                         <ul>
                             <li><b>Ekran Dyplomacji</b> (<kbd>Tab</kbd> albo przycisk w górnym pasku): po lewej <b>mapa relacji</b> — kontynent z herbami nacji w ich stolicach i liniami wojen, sojuszy, handlu i paktów (klik w herb wybiera nację) — a pod nią <b>„Kto z kim trzyma”</b>: bloki sojusznicze i toczące się wojny, oraz kronika. Po prawej propozycje czekające na odpowiedź, pasek nacji i karta wybranej nacji: władca, charakter, era, stosunek do ciebie z powodami, jej sojusze, wojny i umowy, siła wobec twojej, propozycje z gotowością, dar, zerwanie umów i wojna (z potwierdzeniem drugim kliknięciem). Na dole warunki zwycięstwa ze stanem.</li>
-                            <li><b>Przegląd</b>: jak widzą cię wszystkie nacje (stosunek i główny powód), twoje sojusze, pakty i umowy z dochodem z handlu oraz wskazówka, jak zdobyć sojusznika. Pod nagłówkiem — twoja sytuacja w jednym zdaniu (rozejm, wojny, kto może napaść, Triumf rywala), a znacznik <b>„może napaść”</b> stoi przy nacji, która realnie rozważa wojnę z tobą.</li>
+                            <li><b>Przegląd</b>: jak widzą cię wszystkie nacje (stosunek i główny powód), sekcja <b>Handel</b> — dochód na minutę ze wszystkich umów, złoto zarobione dotąd, każdy partner (stawka, czas trwania, zarobek, premia do jego stosunku) i wyjaśnienie, co daje umowa — twoje sojusze i pakty oraz wskazówka, jak zdobyć sojusznika. Dochód z handlu widać też obok złota w górnym pasku, a karta nacji, z którą handlujesz, pokazuje stan umowy. Pod nagłówkiem — twoja sytuacja w jednym zdaniu (rozejm, wojny, kto może napaść, Triumf rywala), a znacznik <b>„może napaść”</b> stoi przy nacji, która realnie rozważa wojnę z tobą.</li>
                             <li><b>Propozycje bez otwierania ekranu</b>: pokój, sojusz, pakt, umowa handlowa, żądanie trybutu i wezwanie do wojny pojawiają się w prawym górnym rogu jako karty z przyciskami i paskiem czasu; klik w kartę otwiera Dyplomację na tej nacji. Liczniki wojen, sojuszy i pokojów są na przycisku w górnym pasku.</li>
                             <li><b>Mniej komunikatów</b>: wiadomość dostajesz tylko o tym, co cię dotyczy — twoje relacje, sprawy twoich sojuszników i sojusze zawierane przez twoich wrogów. Wojny, traktaty i umowy innych nacji trafiają do kroniki (nowe wpisy wyróżnione, kropka na przycisku Dyplomacji).</li>
                             <li><b>Łagodne dźwięki dyplomacji</b>: propozycje, żądanie trybutu i wezwanie do wojny (niżej, bez rogu alarmu), zawarty sojusz, pokój, pakt i umowa handlowa mają własne, ciche i miękkie dźwięki. Róg alarmu zostaje tylko dla wypowiedzenia wojny.</li>
@@ -2257,7 +2274,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
             <div id="top-bar">
                 <div class="res" title="Żywność (obok: pracujący robotnicy)"><img id="ico-food"><b id="res-food">0</b><small id="workers-food">0</small></div>
                 <div class="res" title="Drewno"><img id="ico-wood"><b id="res-wood">0</b><small id="workers-wood">0</small></div>
-                <div class="res" title="Złoto"><img id="ico-gold"><b id="res-gold">0</b><small id="workers-gold">0</small></div>
+                <div class="res" title="Złoto" id="res-gold-box"><img id="ico-gold"><b id="res-gold">0</b><small id="workers-gold">0</small><em id="res-trade" class="res-trade" style="display:none"></em></div>
                 <div class="res" title="Kamień"><img id="ico-stone"><b id="res-stone">0</b><small id="workers-stone">0</small></div>
                 <div class="top-sep"></div>
                 <div class="res pop" title="Populacja / limit (domy zwiększają limit o 20)"><img id="ico-pop"><b id="res-pop">0/0</b></div>
@@ -8903,7 +8920,7 @@ class UIManager {
         this.el = {};
         ['res-food', 'res-wood', 'res-gold', 'res-stone', 'res-pop', 'workers-food', 'workers-wood', 'workers-gold', 'workers-stone',
          'workers-idle', 'age-badge', 'game-clock', 'speed-btn', 'mute-btn', 'menu-btn', 'idle-btn', 'army-btn', 'king-btn', 'fps-counter',
-         'nations-btn', 'results-top-btn', 'top-bar', 'grace-banner', 'wonder-banner', 'nations-panel'].forEach(id => this.el[id] = document.getElementById(id));
+         'nations-btn', 'results-top-btn', 'top-bar', 'grace-banner', 'wonder-banner', 'nations-panel', 'res-trade', 'res-gold-box'].forEach(id => this.el[id] = document.getElementById(id));
         this.topCache = {};
         const wb = this.el['wonder-banner'];
         if (wb) wb.addEventListener('click', () => {
@@ -8994,7 +9011,7 @@ class UIManager {
         this.updateGraceBanner();
         this.updateWonderBanner();
         if (this.nationsOpen) this.renderNations();
-        if (g0.diplo) this.updateDiploBadge();
+        if (g0.diplo) { this.updateDiploBadge(); this.updateTradeChip(); }
         if (window.SaveUI) SaveUI.tick(g0);
         this.setText('res-food', Math.floor(r.get('food')));
         this.setText('res-wood', Math.floor(r.get('wood')));
@@ -9361,14 +9378,36 @@ class UIManager {
         for (const n of g.nations) {
             if (n === me || n.defeated) continue;
             if (D.allied(me, n)) deals += `<span class="dpu al">❖ Sojusz z ${tag(n, 'ins')} <small>${ago(D.sinceOf(me, n))}</small></span>`;
-            if (D.trading(me, n)) deals += `<span class="dpu tr">⇄ Handel z ${tag(n, 'ins')} <small>+${Math.round(D.tradeRate(me, n) * 60)}/min</small></span>`;
             if (D.get(me, n) === DIPLO.PEACE && D.pactLeft(me, n) > 0) deals += `<span class="dpu np">☮ Pakt z ${tag(n, 'ins')} <small>${mmss(D.pactLeft(me, n))}</small></span>`;
         }
         return `<div class="dps-hd">${Rulers.img(me, g, 50)}<div class="dps-id"><b style="color:${me.color}">${nm(me)} — twoja nacja</b>
                 <span>Era ${GameConfig.ages[me.age].roman} · wynik ${me.summary().score} · umowy handlowe ${D.trades(me)}/${DIPLO.TRADE_MAX}</span><div class="dps-tags">${tags}</div></div></div>
             <div class="dpx-sec"><span>Jak widzą cię inne nacje</span></div><div class="dpo-list">${rows || '<div class="dpb none">Na kontynencie nie ma już innych nacji.</div>'}</div>
-            <div class="dpx-sec"><span>Twoje sojusze i umowy</span></div><div class="dpu-list">${deals || '<span class="dpb none">Żadnych — zacznij od umowy handlowej albo paktu o nieagresji.</span>'}</div>
+            ${this.dpTrade(C)}
+            <div class="dpx-sec"><span>Sojusze i pakty</span></div><div class="dpu-list">${deals || '<span class="dpb none">Żadnych — zacznij od umowy handlowej albo paktu o nieagresji.</span>'}</div>
             <p class="dps-tip"><b>Jak zdobyć sojusznika?</b> Umowa handlowa i pakt o nieagresji budują zaufanie, dary je przyspieszają, a wspólny wróg albo wspólne zagrożenie (silny sąsiad, hegemon) zbliża najbardziej. W karcie każdej nacji widać, jak blisko jest zgody na każdą propozycję.</p>`;
+    }
+
+    // Handel w Przeglądzie (V1.0): dochód ze wszystkich umów, zarobione dotąd złoto, każdy partner (stawka, czas trwania,
+    // zarobek, premia do jego stosunku) i co w ogóle daje umowa handlowa - z widełkami stawek dla twojej ery
+    dpTrade(C) {
+        const { g, D, me, nm, ago } = C;
+        const fmt = (v) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        const partners = g.nations.filter(n => n !== me && !n.defeated && D.trading(me, n));
+        const inc = D.tradeIncome(me) * 60;
+        let earned = 0, rows = '';
+        for (const n of partners) {
+            const r = D.tradeRate(me, n) * 60, e = D.tradeEarnedOf(me, n), b = D.tradeBonus(n, me);
+            earned += e;
+            rows += `<div class="dptr" data-dps="${C.idx(n)}">${Rulers.img(n, g, 22)}<b class="dpo-n" style="color:${n.color}">${nm(n)}</b>
+                <b class="dptr-r">+${Math.round(r)} <small>złota/min</small></b><span class="dptr-d">${ago(D.tradeSince(me, n))} · zarobione <b>${fmt(e)}</b> złota${C.ai(n) ? ` · ich stosunek <em class="pos">+${b}</em>` : ''}</span></div>`;
+        }
+        const lo = DIPLO.TRADE_BASE + DIPLO.TRADE_AGE * me.age, hi = Math.round(lo * (1 + DIPLO.TRADE_FAR));
+        const head = partners.length
+            ? `<div class="dptr-sum"><span><b>+${Math.round(inc)}</b> złota na minutę</span><span>zarobione dotąd <b>${fmt(earned)}</b></span><span>umowy <b>${partners.length}</b>/${DIPLO.TRADE_MAX}</span></div>`
+            : '<div class="dpb none">Nie masz jeszcze żadnej umowy handlowej — zaproponujesz ją w karcie nacji (pasek u góry albo herb na mapie).</div>';
+        return `<div class="dpx-sec"><span>Handel</span></div>${head}${rows}
+            <p class="dps-note dptr-note"><b>Co daje umowa handlowa?</b> Dopóki trwa, ty i partner dostajecie co sekundę złoto — w twojej erze od ok. ${lo} do ${hi} złota na minutę od każdej umowy (więcej z kontrahentem z drugiego końca kontynentu; liczy się era słabszej strony). Stosunek partnera do ciebie rośnie o ${DIPLO.TRADE_OP}, a z czasem do ${2 * DIPLO.TRADE_OP} — łatwiej potem o pakt i sojusz, a SI niechętnie napada kogoś, z kim handluje. Wojna albo zerwanie kończą umowę. Najwyżej ${DIPLO.TRADE_MAX} umowy naraz.</p>`;
     }
 
     // --- karta wybranej nacji ---
@@ -9380,7 +9419,7 @@ class UIManager {
         const pl = D.pactLeft(me, n), T = g.triumphInfo();
         const tags = `<span class="dp-pill ${cls}">${n.defeated ? 'Pokonani' : DIPLO.NAMES[st]}</span>${n.defeated ? '' : `<small class="mut">${ago(D.sinceOf(me, n))}</small>`}`
             + (!n.defeated && pl > 0 && st !== DIPLO.WAR ? `<span class="dp-pact" title="Pakt o nieagresji — nikt z was nie może wypowiedzieć wojny">pakt ${mmss(pl)}</span>` : '')
-            + (D.trading(me, n) ? `<span class="dp-trade" title="Umowa handlowa: złoto dla obu stron co sekundę">handel +${Math.round(D.tradeRate(me, n) * 60)}/min</span>` : '')
+            + (D.trading(me, n) ? `<span class="dp-trade" title="Umowa handlowa: tyle złota na minutę dostajesz ty (i tyle samo oni); trwa do wojny">handel +${Math.round(D.tradeRate(me, n) * 60)}/min</span>` : '')
             + (n === C.heg ? '<span class="dp-heg" title="Najpotężniejsza nacja kontynentu — inne łączą się przeciw niej">hegemon</span>' : '')
             + (T && T.team === n.team ? `<span class="dp-heg" title="Triumf Cudów Świata">Triumf ${mmss(T.left)}</span>` : '')
             + (C.threats.includes(n) ? '<span class="dp-threat" title="Są blisko, czują przewagę i nie darzą cię sympatią — mogą wypowiedzieć ci wojnę. Sojusz, pakt, dar albo wojsko przy granicy ich zniechęcą.">może napaść</span>' : '');
@@ -9439,9 +9478,14 @@ class UIManager {
             const off = D.offerFor(me);
             h += row('pc', 'Pokój za okup', off ? 'zapłacisz ' + esc(Diplomacy.payText(off)) + ' (20% zapasów)' : 'nie masz z czego zapłacić', btn('peace', 'Zaproponuj', 'ok', ' data-pay="1"', !!e || !off), look && look.peaceR, e || (off ? null : 'Za mało surowców na okup.'));
         } else {
+            const rate = Math.round(D.tradeRate(me, n) * 60);
             if (!D.trading(me, n)) {
                 const e = D.proposeError(me, n, 'trade');
-                h += row('td', 'Umowa handlowa', `+${Math.round(D.tradeRate(me, n) * 60)} złota/min dla obu stron · buduje zaufanie`, btn('trade', 'Zaproponuj', 'ok', '', !!e), look && look.trade, e);
+                h += row('td', 'Umowa handlowa', `+${rate} złota/min dla ciebie i tyle samo dla nich · ich stosunek +${DIPLO.TRADE_OP}, z czasem +${2 * DIPLO.TRADE_OP} · trwa do wojny`, btn('trade', 'Zaproponuj', 'ok', '', !!e), look && look.trade, e);
+            } else {
+                const earned = Math.round(D.tradeEarnedOf(me, n)), b = D.tradeBonus(n, me);
+                h += `<div class="dpd td on"><div class="dpd-t"><b>Umowa handlowa trwa ${esc(C.ago(D.tradeSince(me, n)))}</b><small>przynosi ci +${rate} złota/min (im tyle samo) · zarobione dotąd ${earned} złota${C.ai(n) ? ` · ich stosunek do ciebie +${b} dzięki handlowi` : ''} · wojna albo zerwanie kończą umowę</small></div>
+                    <div class="dpd-r"><span class="dpd-p ok">+${rate}/min</span></div></div>`;
             }
             if (st === DIPLO.PEACE) {
                 const e = D.proposeError(me, n, 'nap'), pl = D.pactLeft(me, n);
@@ -9554,7 +9598,7 @@ class UIManager {
                 `Wypowiesz wojnę ${t ? Diplomacy.form(t, 'dat') : ''} — ${p.from.shortName} zapamiętają pomoc`, ally ? 'Sojusznik zapamięta brak pomocy' : '');
         }
         if (p.kind === 'nap') return card('nap', `<b>${nm}</b> proponują <b class="pc">pakt o nieagresji</b>`, `${DIPLO.NAP / 60} min bez wojny między wami`, 'Przyjmij', 'Odrzuć');
-        if (p.kind === 'trade') return card('trade', `<b>${nm}</b> proponują <b class="tr">umowę handlową</b>`, `+${Math.round(D.tradeRate(p.from, me) * 60)} złota/min dla obu stron, dopóki nie ma wojny`, 'Przyjmij', 'Odrzuć');
+        if (p.kind === 'trade') return card('trade', `<b>${nm}</b> proponują <b class="tr">umowę handlową</b>`, `+${Math.round(D.tradeRate(p.from, me) * 60)} złota/min dla ciebie (i dla nich) oraz lepsze stosunki — do wojny`, 'Przyjmij', 'Odrzuć');
         const peace = p.kind === 'peace';
         return card('', `<b>${nm}</b> proponują ${peace ? '<b class="pc">pokój</b>' : '<b class="al">sojusz</b>'}${p.pay ? ' za okup' : ''}`,
             p.pay ? 'dostaniesz <b class="tr">' + pt + '</b>' : peace ? 'koniec wojny i ' + DIPLO.WAR_AFTER_PEACE / 60 + ' min traktatu' : 'wspólne pole widzenia, obrona i zwycięstwo', 'Przyjmij', 'Odrzuć');
@@ -9571,6 +9615,19 @@ class UIManager {
         if (html !== this._inboxSig) { this._inboxSig = html; el.innerHTML = html; }
         const show = html ? 'flex' : 'none';
         if (el.style.display !== show) el.style.display = show;
+    }
+
+    // Górny pasek (Dyplomacja): dochód z umów handlowych obok złota, szczegóły w podpowiedzi
+    updateTradeChip() {
+        const el = this.el['res-trade'], box = this.el['res-gold-box'], D = this.game.diplo, me = this.playerNation;
+        if (!el || !D) return;
+        const inc = Math.round(D.tradeIncome(me) * 60), n = D.trades(me);
+        const key = inc + ':' + n;
+        if (el._k === key) return;
+        el._k = key;
+        el.textContent = inc > 0 ? '+' + inc + '/min' : '';
+        el.style.display = inc > 0 ? '' : 'none';
+        if (box) box.title = inc > 0 ? `Złoto (obok: robotnicy przy złocie). Handel: +${inc} złota na minutę z ${n} ${n === 1 ? 'umowy' : 'umów'} handlowych — szczegóły w Dyplomacji (Tab).` : 'Złoto';
     }
 
     // znaczek na przycisku Dyplomacji: liczba propozycji czekających na odpowiedź albo kropka - nowe wpisy w kronice
@@ -22701,6 +22758,11 @@ const DIPLO = {
     PACT: 240,                  // zapłacony trybut: 4 minuty paktu o nieagresji między stronami
     NAP: 360,                   // pakt o nieagresji: 6 minut, można odnowić
     TRADE_MAX: 3,               // najwyżej 3 umowy handlowe naraz
+    // Umowa handlowa (V1.0, po testach): (TRADE_BASE + TRADE_AGE × era słabszej strony) złota na minutę dla każdej strony,
+    // ×1..×(1 + TRADE_FAR) z odległością stolic - I era ok. 9-14, IV era ok. 18-27 na umowę; 3 umowy w IV erze to najwyżej
+    // ok. 80/min, mniej niż Kolos (120). Wcześniej 2× tyle (do ~170/min) - handel przyćmiewał gospodarkę i Cuda.
+    // Partner myśli o tobie lepiej o TRADE_OP, z czasem (co 3 min +1) do 2 × TRADE_OP.
+    TRADE_BASE: 6, TRADE_AGE: 3, TRADE_FAR: 0.5, TRADE_OP: 5,
     GLORY_PACE: 0.6,            // Chwała z Cudów w Dyplomacji rośnie wolniej (kontynent jest wielki, a partia ma czas na politykę)
     // Tempo świata (V1.0): po rozejmie SI nie rusza wszystkimi naraz. Pierwsza dobrowolna wojna najwcześniej
     // FIRST_WAR s po rozejmie, kolejne co WAR_GAP s (odstęp maleje z każdą minutą do WAR_GAP_MIN), sojusze,
@@ -22765,6 +22827,7 @@ class Diplomacy {
         this.affinity = new Int8Array(N * N);      // sympatia władców (stała w tej grze, symetryczna, -10..10)
         this.pact = new Float64Array(N * N);      // do kiedy obowiązuje pakt o nieagresji (także po zapłaconym trybucie)
         this.trade = new Float64Array(N * N);     // umowa handlowa: czas zawarcia + 1 (0 - brak umowy)
+        this.tradeEarned = new Float64Array(N * N); // złoto, które a zarobił na bieżącej umowie z b
         this.ledger = new Float32Array(N * N);    // ledger[a * N + b] - co a zniszczył nacji b w bieżącej wojnie (wartość)
         this.asked = new Map();                    // 'a>b:rodzaj' -> czas ostatniej propozycji
         this.proposals = [];                       // propozycje czekające na odpowiedź człowieka
@@ -22855,7 +22918,7 @@ class Diplomacy {
         if (allyFoe) out.push(['allyFoe', -12, this.i(allyFoe)]);
         if (foeAlly) out.push(['foeAlly', -15, this.i(foeAlly)]);
         if (st === DIPLO.ALLY) out.push(['allied', Math.round(10 + Math.min(15, (t - this.since[i * N + j]) / 60))]);
-        if (this.trading(a, b)) out.push(['trade', Math.round(8 + Math.min(8, (t - this.tradeSince(a, b)) / 180))]);
+        if (this.trading(a, b)) out.push(['trade', this.tradeBonus(a, b)]);
         if (st === DIPLO.PEACE && this.pact[i * N + j] > t) out.push(['nap', 6]);
         if (st !== DIPLO.ALLY) {
             if (b === this.hegemon()) out.push(['heg', -15]);
@@ -23090,9 +23153,20 @@ class Diplomacy {
     // Dochód z umowy handlowej (złoto na sekundę dla każdej ze stron): rośnie z erą słabszej strony i z odległością
     // stolic - daleki kontrahent ma towary, których nie ma sąsiad
     tradeRate(a, b) {
+        if (this.game.isClient && this.netTrade) {
+            const me = this.game.playerNation, o = a === me ? b : b === me ? a : null, t = o && this.netTrade[this.i(o)];
+            if (t) return t[0] / 60;
+        }
         const age = Math.min(a.age || 1, b.age || 1);
-        return (12 + 6 * age) * (1 + 0.6 * (1 - this.proximity(a, b))) / 60;
+        return (DIPLO.TRADE_BASE + DIPLO.TRADE_AGE * age) * (1 + DIPLO.TRADE_FAR * (1 - this.proximity(a, b))) / 60;
     }
+    // Złoto zarobione przez nację a na bieżącej umowie z b
+    tradeEarnedOf(a, b) {
+        if (this.game.isClient) { const t = this.netTrade && this.netTrade[this.i(b)]; return t ? t[1] : 0; }
+        return this.tradeEarned ? this.tradeEarned[this.i(a) * this.N + this.i(b)] : 0;
+    }
+    // Premia do stosunku partnera z umowy handlowej (ta sama co w Diplomacy.situation)
+    tradeBonus(a, b) { const k = DIPLO.TRADE_OP; return this.trading(a, b) ? Math.round(k + Math.min(k, (this.game.time - this.tradeSince(a, b)) / 180)) : 0; }
     tradeIncome(n) {
         let v = 0;
         for (const o of this.game.nations) if (o !== n && this.alive(o) && this.trading(n, o)) v += this.tradeRate(n, o);
@@ -23210,6 +23284,8 @@ class Diplomacy {
     makeTrade(a, b) {
         const N = this.N, i = this.i(a), j = this.i(b);
         this.trade[i * N + j] = this.trade[j * N + i] = this.game.time + 1;
+        if (!this.tradeEarned) this.tradeEarned = new Float64Array(N * N);
+        this.tradeEarned[i * N + j] = this.tradeEarned[j * N + i] = 0;
         this._opAt = -1;
         const r = Math.round(this.tradeRate(a, b) * 60);
         this.announce(a, b, 'trade', `Umowa handlowa z ${this.ins(b)}: +${r} złota na minutę dla obu stron.`, `Umowa handlowa z ${this.ins(a)}: +${r} złota na minutę dla obu stron.`, null, 'good', 'good');
@@ -23478,6 +23554,8 @@ class Diplomacy {
                 if (!this.alive(a) || !this.alive(b)) { this.trade[i * this.N + j] = this.trade[j * this.N + i] = 0; continue; }
                 const r = this.tradeRate(a, b) * s;
                 a.resources.add('gold', r); b.resources.add('gold', r);
+                if (!this.tradeEarned) this.tradeEarned = new Float64Array(this.N * this.N);
+                this.tradeEarned[i * this.N + j] += r; this.tradeEarned[j * this.N + i] += r;
             }
         }
         this.hegemon();
@@ -23668,6 +23746,7 @@ class Diplomacy {
             out.ob = G.map(n => n === forNation ? [] : this.why(n, forNation).slice(0, 8).map(w => [w[0], Math.round(w[1]), w[2] === undefined ? -1 : w[2]]));
             out.jd = G.map(n => (n !== forNation && n.ai && n.diplomat && this.alive(n)) ? n.diplomat.outlook(forNation) : null);
             out.ey = G.map(n => (n !== forNation && n.ai && n.diplomat && n.diplomat.eyes(forNation)) ? 1 : 0);
+            out.tg = G.map(n => this.trading(forNation, n) ? [Math.round(this.tradeRate(forNation, n) * 60), Math.round(this.tradeEarnedOf(forNation, n))] : 0);
         }
         return out;
     }
@@ -23692,6 +23771,7 @@ class Diplomacy {
         this.netWhy = Array.isArray(d.ob) ? d.ob : null;
         this.netJudge = Array.isArray(d.jd) ? d.jd : null;
         this.netEyes = Array.isArray(d.ey) ? d.ey : null;
+        this.netTrade = Array.isArray(d.tg) ? d.tg : null;
         const G = this.game.nations;
         this.history = (d.h || []).map(h => ({ t: h[0], a: h[1], b: h[2], kind: h[3] }));
         this.proposals = (d.p || []).map(p => ({ id: p[0], from: G[p[1]], to: G[p[2]], kind: p[3], until: p[4], pay: Array.isArray(p[5]) ? { gold: p[5][0] || 0, food: p[5][1] || 0, wood: p[5][2] || 0 } : null, target: p[6] >= 0 ? G[p[6]] || null : null })).filter(p => p.from && p.to);
