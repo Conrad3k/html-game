@@ -1163,101 +1163,11 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 .mode-switch button .main-tag { display: inline-block; margin-left: 6px; padding: 1px 6px; border-radius: 6px; font-size: 9.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: 2px; background: rgba(36, 24, 3, 0.16); }
 .mode-switch button:not(.on) .main-tag { background: var(--fill); color: var(--label-2); }
 .radio-group.c6 { grid-template-columns: repeat(6, minmax(0, 1fr)); }
-.dp-pill { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
-.dp-pill.war { background: rgba(255, 90, 77, 0.2); color: #ff8f85; box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.45); }
-.dp-pill.peace { background: rgba(235, 237, 245, 0.1); color: var(--label-2); box-shadow: inset 0 0 0 1px var(--hair-2); }
-.dp-pill.ally { background: rgba(50, 209, 93, 0.18); color: #7fe39a; box-shadow: inset 0 0 0 1px rgba(50, 209, 93, 0.45); }
-.dp-act { display: inline-flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
-.dp-act button { padding: 4px 9px; border-radius: 8px; border: 0; cursor: pointer; font: 600 11.5px var(--ui); color: var(--label); background: var(--fill); }
-.dp-act button:hover:not(:disabled) { background: rgba(255, 255, 255, 0.16); }
-.dp-act button.war { background: rgba(255, 90, 77, 0.24); color: #ffb0a8; }
-.dp-act button.ok { background: rgba(50, 209, 93, 0.22); color: #9df0b2; }
-.dp-act button:disabled { opacity: 0.4; cursor: default; }
-.dp-badge { display: inline-block; min-width: 16px; height: 16px; margin-left: 5px; padding: 0 4px; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font: 800 10.5px/16px var(--ui); font-style: normal; text-align: center; }
-#nations-panel.diplo td { vertical-align: middle; }
-#nations-panel.diplo { pointer-events: auto; }
 
 
-/* ===== Reloaded V1.0: panel Dyplomacji - karty nacji z portretami władców ===== */
-.ruler-ico { display: inline-block; flex: none; border-radius: 50%; vertical-align: middle; filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.45)); }
-#nations-panel.diplo { width: min(620px, calc(100% - 24px)); max-height: calc(100% - 92px); overflow-y: auto; padding: 14px 14px 10px; box-sizing: border-box; overscroll-behavior: contain; }
-#mid-layer.with-tutorial #nations-panel.diplo { width: min(620px, calc(100% - 376px)); }
-.dp-head { display: flex; align-items: center; gap: 11px; margin: 0 0 12px; }
-.dp-ht { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; }
-.dp-ht b { font-family: var(--display); font-size: 17px; letter-spacing: 0.08em; color: var(--accent); font-weight: 700; }
-.dp-ht small { color: var(--label-3); font-size: 11.5px; line-height: 1.35; }
-.dp-chips { display: flex; gap: 5px; flex: none; }
-.dp-chip { padding: 4px 9px; border-radius: 999px; font: 700 12px var(--ui); color: var(--label-2); background: var(--fill-2); box-shadow: inset 0 0 0 1px var(--hair); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.dp-chip.war { color: #ffb0a8; } .dp-chip.ally { color: #9df0b2; }
-.dp-chip.truce { color: #ffe3a3; background: rgba(241, 197, 106, 0.14); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.4); }
-.dp-props { margin: 0 0 12px; display: flex; flex-direction: column; gap: 6px; }
-.dp-prop { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 14px; background: linear-gradient(90deg, rgba(241, 197, 106, 0.16), rgba(241, 197, 106, 0.06)); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.4); font-size: 13px; animation: dp-glow 2.4s ease-in-out infinite; }
-@keyframes dp-glow { 50% { box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.75), 0 0 18px rgba(241, 197, 106, 0.12); } }
-@media (prefers-reduced-motion: reduce) { .dp-prop { animation: none; } }
-.dp-prop-t { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-.dp-prop-t small { color: var(--label-3); font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.dp-prop b.pc { color: #cfe0ff; } .dp-prop b.al { color: #9df0b2; }
-.dp-sec { display: flex; align-items: center; gap: 8px; margin: 10px 2px 6px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--label-3); }
-.dp-sec::after { content: ''; flex: 1; height: 1px; background: var(--hair); }
-.dp-sec i { font-style: normal; min-width: 16px; padding: 0 5px; border-radius: 8px; background: var(--fill-2); text-align: center; letter-spacing: 0; }
-.dp-sec.war span { color: #ff9b91; } .dp-sec.ally span { color: #8fe9a8; }
-.dp-list > .dp-sec:first-child { margin-top: 0; }
-.dp-card { display: flex; align-items: center; gap: 11px; padding: 10px 11px 10px 12px; margin-bottom: 6px; border-radius: 16px; background: rgba(255, 255, 255, 0.035); box-shadow: inset 0 0 0 1px var(--hair), inset 3px 0 0 var(--nc); }
-.dp-card.war { background: linear-gradient(90deg, rgba(255, 90, 77, 0.1), rgba(255, 255, 255, 0.03) 60%); }
-.dp-card.ally { background: linear-gradient(90deg, rgba(50, 209, 93, 0.09), rgba(255, 255, 255, 0.03) 60%); }
-.dp-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
-.dp-l1 { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
-.dp-name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; filter: brightness(1.25); white-space: nowrap; }
-.dp-ruler { font-size: 12px; color: var(--label-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-style: italic; }
-.dp-l2 { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; font-size: 11.5px; }
-.dp-meta { color: var(--label-3); }
-.dp-meta b { color: var(--label-2); }
-.dp-l3 { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12px; }
-.dp-stat { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
-.dp-k { color: var(--label-3); font-size: 11px; }
-.dp-op, .dp-pw { display: inline-block; width: 54px; height: 6px; border-radius: 3px; background: var(--fill); position: relative; overflow: hidden; }
-.dp-op::after { content: ''; position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1px; background: rgba(255, 255, 255, 0.35); }
-.dp-op i, .dp-pw i { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 3px; }
-.dp-pw::after { content: ''; position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1px; background: rgba(255, 255, 255, 0.35); }
-.dp-l4 { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 11.5px; color: var(--label-3); }
-.dp-web { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.dp-n { display: inline-flex; align-items: center; gap: 4px; color: var(--label-2); font-weight: 600; }
-.dp-n::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--nc); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3); }
-.dp-web .dp-n + .dp-n { margin-left: 4px; }
-.dp-side { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex: none; max-width: 170px; }
-.dp-act { flex-direction: column; align-items: stretch; }
-.dp-act button { padding: 6px 11px; font-size: 12px; border-radius: 9px; white-space: nowrap; }
-.dp-act button.pc { background: rgba(10, 132, 255, 0.24); color: #b8d9ff; }
-.dp-act button.war.armed { background: #e2483c; color: #fff; animation: dp-armed 0.6s ease-in-out infinite alternate; }
-@keyframes dp-armed { to { background: #ff6a5c; } }
-.dp-prop .dp-act { flex-direction: row; }
-.dp-note { font-size: 10.5px; color: var(--label-3); text-align: right; line-height: 1.3; }
-.dp-dead { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 0 2px 4px; font-size: 12px; color: var(--label-3); }
-.dp-dead span { display: inline-flex; align-items: center; gap: 6px; text-decoration: line-through; text-decoration-color: rgba(255, 255, 255, 0.25); }
-.dp-dead .ruler-ico { filter: grayscale(0.7) brightness(0.7); }
-.dp-log { margin-top: 4px; display: flex; flex-direction: column; gap: 3px; }
-.dp-log .dp-sec { margin-top: 8px; }
-.dp-ev { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--label-3); padding: 2px 2px; }
-.dp-ev small { font-variant-numeric: tabular-nums; min-width: 34px; color: var(--label-3); font-size: 11px; }
-.dp-ev-i { width: 7px; height: 7px; border-radius: 2px; flex: none; background: var(--label-3); transform: rotate(45deg); }
-.dp-ev.war .dp-ev-i { background: #ff5a4d; } .dp-ev.pc .dp-ev-i { background: #0a84ff; } .dp-ev.al .dp-ev-i { background: #32d15d; }
 #nations-panel td .ruler-ico { margin-right: 7px; vertical-align: -6px; }
 #end-stats td .ruler-ico { margin-right: 9px; vertical-align: -7px; float: left; margin-top: 3px; }
 #end-stats .end-ruler { font-size: 11px; font-style: italic; }
-@media (max-width: 640px) {
-    .dp-card { flex-wrap: wrap; }
-    .dp-side { max-width: none; width: 100%; align-items: stretch; }
-    .dp-act { flex-direction: row; justify-content: flex-end; }
-    .dp-chips { display: none; }
-}
-
-.dp-goals { margin: 0 0 12px; }
-.dp-goal { grid-template-columns: 18px minmax(0, 1fr) auto; }
-.dp-pact { padding: 1px 7px; border-radius: 6px; font-size: 10.5px; font-weight: 700; color: #ffe3a3; background: rgba(241, 197, 106, 0.14); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.35); font-variant-numeric: tabular-nums; }
-.dp-l1 .dp-heg { margin-left: 0; align-self: center; }
-.dp-prop b.tr { color: #ffd98a; }
-.dp-prop.tribute { animation: none; }
-.dp-ev.tr .dp-ev-i { background: #f1c56a; }
 
 /* ===== Reloaded V1.0: zapis i wczytywanie gry ===== */
 .stage-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -1310,18 +1220,134 @@ details.mp-more[open] summary { margin-bottom: 8px; }
     .sv-acts .action-btn.small { flex: 1; }
     .sv-foot { flex-direction: column; align-items: stretch; }
 }
-/* Dyplomacja V1.0: warunki zwycięstwa, trybut, hegemon */
-.dp-goals { margin: 0 0 10px; padding: 8px 10px; border-radius: 12px; background: rgba(255, 255, 255, 0.04); box-shadow: inset 0 0 0 1px var(--hair); display: flex; flex-direction: column; gap: 3px; }
-.dp-gt { font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label-3); margin-bottom: 2px; }
-.dp-goal { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 8px; align-items: baseline; font-size: 12px; color: var(--label-2); }
-.dp-goal i { font-style: normal; text-align: center; color: var(--accent); }
-.dp-goal b { color: var(--label); }
-.dp-goal em { font-style: normal; font-size: 11.5px; color: var(--label-3); white-space: nowrap; text-align: right; }
-.dp-goal em b { color: #ffe08a; font-variant-numeric: tabular-nums; }
-.dp-goal.hot em { color: #ffd98a; }
+/* ===== Reloaded V1.0: panel Dyplomacji (Tab) - zwijane wiersze nacji z herbami władców, karty propozycji ===== */
+#nations-panel.diplo { pointer-events: auto; width: min(540px, calc(100% - 24px)); max-height: calc(100% - 92px); overflow-y: auto; padding: 12px 12px 8px; box-sizing: border-box; overscroll-behavior: contain; }
+#mid-layer.with-tutorial #nations-panel.diplo { width: min(540px, calc(100% - 376px)); }
+.ruler-ico { display: inline-block; flex: none; border-radius: 50%; vertical-align: middle; filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.45)); }
+.dp-badge { display: inline-block; min-width: 16px; height: 16px; margin-left: 5px; padding: 0 4px; border-radius: 8px; background: var(--accent); color: var(--accent-ink); font: 800 10.5px/16px var(--ui); font-style: normal; text-align: center; box-sizing: border-box; }
+.dp-badge.dot { min-width: 8px; width: 8px; height: 8px; padding: 0; vertical-align: 2px; box-shadow: 0 0 0 3px rgba(241, 197, 106, 0.22); }
+.dp-head { display: flex; align-items: center; gap: 10px; margin: 0 0 10px; }
+.dp-head > b { flex: 1; min-width: 0; font-family: var(--display); font-size: 16px; letter-spacing: 0.08em; color: var(--accent); font-weight: 700; }
+.dp-chips { display: flex; gap: 5px; flex: none; }
+.dp-chip { padding: 3px 9px; border-radius: 999px; font: 700 11.5px var(--ui); color: var(--label-2); background: var(--fill-2); box-shadow: inset 0 0 0 1px var(--hair); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dp-chip.war { color: #ffb0a8; } .dp-chip.ally { color: #9df0b2; }
+.dp-chip .dp-cnt + .dp-cnt { margin-left: 8px; }
+.dp-cnt { display: inline-flex; align-items: center; gap: 3px; font-variant-numeric: tabular-nums; font-weight: 700; }
+.dp-cnt.war { color: #ff9b91; } .dp-cnt.ally { color: #8fe9a8; } .dp-cnt.peace { color: #b8d9ff; }
+.dp-ico { width: 14px; height: 14px; flex: none; }
+.dp-rel { display: inline-flex; align-items: center; gap: 7px; margin-left: 9px; padding-left: 9px; border-left: 1px solid var(--hair-2); font-size: 12px; }
+.dp-rel:empty { display: none; }
+.dp-chip.truce { color: #ffe3a3; background: rgba(241, 197, 106, 0.14); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.4); }
+
+/* warunki zwycięstwa: pastylki ze stanem, opisy po kliknięciu */
+.dp-goals { margin: 0 0 10px; padding: 7px 8px 8px; border-radius: 12px; background: rgba(255, 255, 255, 0.035); box-shadow: inset 0 0 0 1px var(--hair); cursor: pointer; }
+.dp-goals:hover { background: rgba(255, 255, 255, 0.05); }
+.dp-gt { display: flex; align-items: baseline; justify-content: space-between; margin: 0 2px 6px; font-size: 10.5px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label-3); }
+.dp-gt small { font-size: 10.5px; font-weight: 600; letter-spacing: 0; text-transform: none; }
+.dp-gchips { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; }
+.dp-g { display: flex; align-items: center; gap: 6px; min-width: 0; padding: 4px 8px; border-radius: 8px; background: rgba(255, 255, 255, 0.035); font-size: 12px; color: var(--label-3); white-space: nowrap; }
+.dp-g > i { flex: none; width: 14px; font-style: normal; text-align: center; color: var(--accent); }
+.dp-g > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.dp-g b { color: var(--label); font-weight: 600; }
+.dp-g em { font-style: normal; font-weight: 700; color: #ffe08a; font-variant-numeric: tabular-nums; }
+.dp-g.hot { background: rgba(241, 197, 106, 0.13); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.35); color: #ffe3a3; }
+.dp-gdesc { display: flex; flex-direction: column; gap: 3px; margin: 8px 2px 0; font-size: 11.5px; line-height: 1.4; color: var(--label-3); }
+.dp-gdesc b { color: var(--label-2); }
+
+/* propozycje i żądania trybutu - w panelu i w kartach poza nim */
+.dp-props { margin: 0 0 10px; display: flex; flex-direction: column; gap: 6px; }
+.dp-prop { position: relative; display: flex; align-items: center; gap: 10px; padding: 9px 10px 11px; border-radius: 14px; background: linear-gradient(90deg, rgba(241, 197, 106, 0.16), rgba(241, 197, 106, 0.06)); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.4); font-size: 13px; overflow: hidden; }
 .dp-prop.tribute { background: rgba(255, 90, 77, 0.1); box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.38); }
-.dp-heg { display: inline-block; margin-left: 4px; padding: 1px 6px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(241, 197, 106, 0.2); color: #ffd98a; }
-.dp-sub { display: block; margin-top: 2px; font-size: 10.5px; color: var(--label-3); }
+.dp-prop-t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; line-height: 1.35; }
+.dp-prop-t small { color: var(--label-3); font-size: 11.5px; }
+.dp-prop b.pc { color: #cfe0ff; } .dp-prop b.al { color: #9df0b2; } .dp-prop b.tr { color: #ffd98a; }
+.dp-act { display: flex; gap: 5px; flex: none; }
+.dp-tbar { position: absolute; left: 12px; right: 12px; bottom: 4px; height: 2px; border-radius: 1px; background: rgba(255, 255, 255, 0.08); overflow: hidden; }
+.dp-tbar i { position: absolute; left: 0; top: 0; bottom: 0; background: rgba(241, 197, 106, 0.75); transition: width 0.9s linear; }
+.dp-prop.tribute .dp-tbar i { background: rgba(255, 120, 105, 0.8); }
+#dp-inbox { position: absolute; top: 10px; right: 12px; width: min(420px, calc(100% - 24px)); display: flex; flex-direction: column; gap: 6px; pointer-events: auto; }
+#dp-inbox .dp-prop { background: rgba(24, 22, 16, 0.95); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.5), 0 12px 30px rgba(0, 0, 0, 0.45); animation: dp-in 0.25s ease-out; }
+#dp-inbox .dp-prop.tribute { background: rgba(30, 14, 12, 0.95); box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.5), 0 12px 30px rgba(0, 0, 0, 0.45); }
+#mid-layer.with-tutorial #dp-inbox { right: 364px; }
+.dp-inbox-more { align-self: flex-end; padding: 3px 10px; border-radius: 999px; background: rgba(13, 16, 23, 0.9); font-size: 11.5px; color: var(--label-2); cursor: pointer; }
+@keyframes dp-in { from { opacity: 0; transform: translateY(-6px); } }
+
+/* przyciski */
+.dp-btn { padding: 5px 11px; border-radius: 8px; border: 0; cursor: pointer; font: 600 12px var(--ui); color: var(--label); background: var(--fill); white-space: nowrap; }
+.dp-btn:hover:not(:disabled) { background: rgba(255, 255, 255, 0.16); }
+.dp-btn.ok { background: rgba(50, 209, 93, 0.22); color: #9df0b2; } .dp-btn.ok:hover:not(:disabled) { background: rgba(50, 209, 93, 0.32); }
+.dp-btn.pc { background: rgba(10, 132, 255, 0.24); color: #b8d9ff; } .dp-btn.pc:hover:not(:disabled) { background: rgba(10, 132, 255, 0.34); }
+.dp-btn.war { background: rgba(255, 90, 77, 0.2); color: #ffb0a8; } .dp-btn.war:hover:not(:disabled) { background: rgba(255, 90, 77, 0.3); }
+.dp-btn.war.armed { background: #e2483c; color: #fff; animation: dp-armed 0.6s ease-in-out infinite alternate; }
+.dp-btn:disabled { opacity: 0.4; cursor: default; }
+@keyframes dp-armed { to { background: #ff6a5c; } }
+
+/* nacje: zwinięty wiersz, szczegóły po kliknięciu */
+.dp-sec { display: flex; align-items: center; gap: 8px; margin: 10px 2px 6px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--label-3); }
+.dp-sec::after { content: ''; flex: 1; height: 1px; background: var(--hair); order: 5; }
+.dp-sec i { font-style: normal; min-width: 16px; padding: 0 5px; border-radius: 8px; background: var(--fill-2); text-align: center; letter-spacing: 0; }
+.dp-sec.war span { color: #ff9b91; } .dp-sec.ally span { color: #8fe9a8; }
+.dp-list > .dp-sec:first-child { margin-top: 0; }
+.dp-card { margin-bottom: 5px; border-radius: 12px; background: rgba(255, 255, 255, 0.035); box-shadow: inset 0 0 0 1px var(--hair), inset 3px 0 0 var(--nc); }
+.dp-card.war { background: linear-gradient(90deg, rgba(255, 90, 77, 0.1), rgba(255, 255, 255, 0.03) 60%); }
+.dp-card.ally { background: linear-gradient(90deg, rgba(50, 209, 93, 0.09), rgba(255, 255, 255, 0.03) 60%); }
+.dp-card.open { box-shadow: inset 0 0 0 1px var(--hair-2), inset 3px 0 0 var(--nc); }
+.dp-row { display: flex; align-items: center; gap: 9px; min-height: 34px; padding: 6px 8px 6px 11px; border-radius: 12px; cursor: pointer; }
+.dp-row:hover { background: rgba(255, 255, 255, 0.04); }
+.dp-name { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; filter: brightness(1.25); white-space: nowrap; }
+.dp-sum { flex: 1; min-width: 0; display: flex; justify-content: flex-end; gap: 12px; overflow: hidden; font-size: 12px; white-space: nowrap; }
+.dp-sum small { color: var(--label-3); font-size: 11px; }
+.dp-sum b { font-weight: 600; }
+.dp-chev { flex: none; width: 14px; text-align: center; font-size: 11px; color: var(--label-3); transition: transform 0.15s; }
+.dp-card.open .dp-chev { transform: rotate(180deg); }
+.dp-heg { padding: 1px 6px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; background: rgba(241, 197, 106, 0.2); color: #ffd98a; white-space: nowrap; }
+.dp-pact { padding: 1px 7px; border-radius: 6px; font-size: 10.5px; font-weight: 700; color: #ffe3a3; background: rgba(241, 197, 106, 0.14); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.35); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dp-rmark { font-size: 11px; font-weight: 800; } .dp-rmark.ok { color: #7fe39a; } .dp-rmark.no { color: #ff8f85; } .dp-rmark.wait { color: var(--label-3); }
+.dp-body { display: flex; flex-direction: column; gap: 7px; padding: 2px 12px 11px 50px; font-size: 12px; }
+.dp-info { color: var(--label-3); font-size: 11.5px; line-height: 1.4; }
+.dp-info i { color: var(--label-2); }
+.dp-info b { color: var(--label-2); }
+.dp-stats { display: flex; flex-wrap: wrap; gap: 5px 16px; }
+.dp-stat { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.dp-stat .mut { color: var(--label-3); font-size: 11.5px; }
+.dp-k { color: var(--label-3); font-size: 11px; }
+.dp-pill { display: inline-flex; align-items: center; padding: 1px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+.dp-pill.war { background: rgba(255, 90, 77, 0.2); color: #ff8f85; box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.45); }
+.dp-pill.peace { background: rgba(235, 237, 245, 0.1); color: var(--label-2); box-shadow: inset 0 0 0 1px var(--hair-2); }
+.dp-pill.ally { background: rgba(50, 209, 93, 0.18); color: #7fe39a; box-shadow: inset 0 0 0 1px rgba(50, 209, 93, 0.45); }
+.dp-op, .dp-pw { display: inline-block; width: 54px; height: 6px; border-radius: 3px; background: var(--fill); position: relative; overflow: hidden; }
+.dp-op::after, .dp-pw::after { content: ''; position: absolute; left: 50%; top: -1px; bottom: -1px; width: 1px; background: rgba(255, 255, 255, 0.35); }
+.dp-op i, .dp-pw i { position: absolute; top: 0; bottom: 0; left: 0; border-radius: 3px; }
+.dp-webs { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 11.5px; }
+.dp-web { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.dp-n { display: inline-flex; align-items: center; gap: 4px; color: var(--label-2); font-weight: 600; }
+.dp-n::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--nc); box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3); }
+.dp-n.me { color: var(--label); text-decoration: underline; text-decoration-color: rgba(255, 255, 255, 0.3); text-underline-offset: 2px; }
+.dp-reply { padding: 4px 9px; border-radius: 8px; background: var(--fill-2); color: var(--label-2); font-size: 11.5px; line-height: 1.4; }
+.dp-reply.ok { background: rgba(50, 209, 93, 0.12); color: #9df0b2; } .dp-reply.no { background: rgba(255, 90, 77, 0.12); color: #ffb8b0; }
+.dp-btns { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; }
+.dp-btns .dp-btn.war { margin-left: auto; }
+.dp-note { font-size: 11px; color: var(--label-3); text-align: right; line-height: 1.3; margin-top: -2px; }
+.dp-dead { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 0 2px 4px; font-size: 12px; color: var(--label-3); }
+.dp-dead span { display: inline-flex; align-items: center; gap: 6px; text-decoration: line-through; text-decoration-color: rgba(255, 255, 255, 0.25); }
+.dp-dead .ruler-ico { filter: grayscale(0.7) brightness(0.7); }
+
+/* kronika */
+.dp-log { margin-top: 4px; display: flex; flex-direction: column; gap: 2px; }
+.dp-log .dp-sec { margin-top: 8px; }
+.dp-more { order: 6; padding: 0 2px; border: 0; background: none; color: var(--label-3); font: 600 10.5px var(--ui); letter-spacing: 0; text-transform: none; cursor: pointer; }
+.dp-more:hover { color: var(--label); }
+.dp-ev { display: flex; align-items: center; gap: 8px; padding: 2px; font-size: 12px; color: var(--label-3); }
+.dp-ev small { min-width: 34px; font-size: 11px; font-variant-numeric: tabular-nums; color: var(--label-3); }
+.dp-ev.new small { color: var(--accent); font-weight: 700; }
+.dp-ev-i { flex: none; width: 7px; height: 7px; border-radius: 2px; background: var(--label-3); transform: rotate(45deg); }
+.dp-ev.war .dp-ev-i { background: #ff5a4d; } .dp-ev.pc .dp-ev-i { background: #0a84ff; } .dp-ev.al .dp-ev-i { background: #32d15d; } .dp-ev.tr .dp-ev-i { background: #f1c56a; }
+@media (max-width: 640px) {
+    .dp-chips { display: none; }
+    .dp-gchips { grid-template-columns: minmax(0, 1fr); }
+    .dp-sum small { display: none; }
+    .dp-body { padding-left: 12px; }
+}
 </style>
 </head>
 <body>
@@ -1617,79 +1643,54 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="menu-card news-new">
                         <div class="eyebrow">Wydanie · Reloaded V1.0</div>
                         <h2>Reloaded V1.0 — Dyplomacja, Cuda Świata, zapis gry i całkiem nowy wygląd</h2>
-                        <p><b>Pierwsze wydanie serii Artificial Battles: Reloaded</b>, na silniku <b>Raptor</b>. Nowy tryb główny — <b>Dyplomacja</b> na wielkim kontynencie z rzekami i morzem — cztery <b>Cuda Świata</b> ze zwycięstwem Chwałą, zapis i wczytywanie gry, menu i interfejs zaprojektowane od nowa oraz szybszy silnik. <b>Klasyczny mecz</b> został w menu jako druga opcja; jednostki i balans są w nim takie jak w V3.5, a nowością są Cuda Świata, Chwała i Triumf.</p>
-
-                        <h3>Zapis i wczytywanie gry</h3>
-                        <ul>
-                            <li><b>Zapisz grę</b> w menu pauzy (<kbd>Esc</kbd>): nazwij zapis albo nadpisz wcześniejszy. Zapis obejmuje <b>cały stan bitwy</b> — jednostki z ich rozkazami i ścieżkami, budowy, kolejki szkolenia, badania, surowce, pociski w locie, wojsko schowane w budynkach, plany SI (fale ataku, najazdy, nastroje dowódców), relacje, opinie i propozycje w Dyplomacji, odkrytą mapę, porę dnia i pogodę, a nawet ślady bitew na ziemi (pieńki, gruz, leje).</li>
-                            <li><b>Wczytaj grę</b> — w menu pauzy albo w menu głównym (przycisk obok Samouczka). Lista zapisów ma podgląd kadru z gry, tryb, mapę i krainę, czas gry, erę, nacje (z pokonanymi) i datę.</li>
-                            <li><b>Szybki zapis</b>: <kbd>F5</kbd> zapisuje, <kbd>F9</kbd> od razu wczytuje. <b>Autozapis</b> co 5 minut czasu gry (jedna pozycja, nadpisywana; wyłączysz go w menu pauzy).</li>
-                            <li><b>Do pliku</b> — każdy zapis pobierzesz jako plik <b>.absave</b> (kopia albo przeniesienie na inny komputer); <b>Dodaj z pliku…</b> wczytuje go z powrotem. Zapisy są kompresowane (zwykle od 0,1 do 1 MB) i trzymane w pamięci przeglądarki (IndexedDB), więc gra nadal jest jednym plikiem działającym offline.</li>
-                            <li>Zapis działa w obu trybach gry solo; gry wieloosobowej i samouczka się nie zapisuje. Wczytana gra toczy się dalej dokładnie od chwili zapisu i jest tak samo szybka jak przed zapisem.</li>
-                        </ul>
+                        <p><b>Pierwsze wydanie serii Artificial Battles: Reloaded</b>, na silniku <b>Raptor</b>. Nowy tryb główny — <b>Dyplomacja</b> na wielkim kontynencie z rzekami i morzem, gdzie sojusze i wojny zmieniają się w trakcie gry — cztery <b>Cuda Świata</b> ze zwycięstwem Chwałą, <b>zapis i wczytywanie gry</b>, gra wieloosobowa bez bety oraz menu i interfejs zaprojektowane od nowa. <b>Klasyczny mecz</b> został w menu jako druga opcja: jednostki i balans jak w V3.5, a nowością są w nim Cuda Świata, Chwała i Triumf.</p>
 
                         <h3>Dyplomacja — nowy tryb główny</h3>
                         <ul>
-                            <li><b>Kontynent</b> 11 400 × 11 400 kroków — ok. <b>5 razy większa powierzchnia niż mapa Gigantyczna</b> — na <b>do 8 nacji</b> (ty i do 7 nacji SI), z miejscami startowymi rozłożonymi możliwie równo po lądzie. Partia trwa zwykle <b>25–45 minut</b> i kończy się różnie: sojuszem, Triumfem Cudów, podbojem albo po limicie czasu.</li>
-                            <li><b>Świat</b>: rzeki płyną od gór i z głębi lądu do jezior albo do <b>morza o poszarpanym brzegu</b> (zatoki, półwyspy), łączą się w dopływy i poszerzają z biegiem; co ok. 1–1,5 tys. kroków jest <b>bród</b>, którędy przejdzie wojsko. Pasma gór z przełęczami, wielkie jeziora, puszcze z prześwitami. Pośrodku lądu leżą <b>Złote wzgórza</b> — bogate złoża złota i kamienia z dala od wszystkich stolic, o które warto się bić; każda nacja ma też zapas złota, kamienia i lasu nieco dalej od Ratusza.</li>
-                            <li><b>Relacje zamiast stałych drużyn</b>: wszyscy zaczynają w <b>pokoju</b>, przez pierwsze minuty obowiązuje <b>rozejm</b> (brak, 3, 5 albo 10 minut), potem nacje wypowiadają <b>wojny</b>, proszą o <b>pokój</b> i zawierają <b>sojusze</b>. W pokoju wojsko i wieże nie strzelają do siebie, sojusznicy dzielą pole widzenia, zdradę inni zapamiętują. Po zawarciu pokoju traktat trwa 3 minuty. Pocisk wystrzelony przed zawarciem pokoju nie rani nowego partnera.</li>
-                            <li><b>Cztery drogi do zwycięstwa</b>, wszystkie z bieżącym stanem w panelu Dyplomacji, w podsumowaniu meczu i na ekranie końca gry: <b>Podbój</b> (zostaje jedna nacja), <b>Sojusz zwycięzców</b> (sojusz najwyżej połowy nacji, które zaczęły grę, musi jako jedyny na placu boju <b>wytrwać 3 minuty</b> — zerwany sojusz przerywa odliczanie), <b>Cuda Świata</b> (1000 Chwały i 5-minutowy Triumf, razem z sojusznikami) i <b>Limit czasu</b> (nowa opcja: brak, 30, 45 albo 60 minut, domyślnie <b>45</b> — wygrywa najwyższy Wynik razem z sojusznikami; ostrzeżenia na 10, 5, 2 i 1 minutę przed końcem).</li>
-                            <li><b>Pokój za okup i trybut</b>: przegrywający może kupić pokój za 20% swojego złota, żywności i drewna (SI też płaci okup, gdy przegrywa). Silna nacja może zażądać <b>trybutu</b> od słabszego sąsiada — zapłata daje <b>4 minuty traktatu</b>, odmowa oznacza wojnę przy najbliższej okazji. Trybutu możesz żądać także ty.</li>
-                            <li><b>SI — dyplomata</b>: osobna warstwa SI ocenia siłę (wojsko, wieże, era), sąsiedztwo i pamięć o każdej nacji. Każda nacja ma własną cierpliwość, więc po rozejmie nie rzucają się wszyscy naraz na jednego; wojny toczy z sąsiadami, niechętnie dołącza do kogoś, kogo już szarpie kilku innych, a długi pokój czyni ją śmielszą. Prowadzi <b>księgę strat</b> każdej wojny: zmęczona albo przegrywająca prosi o pokój, wygrywająca wyraźnie go nie przyjmie (chyba że za duży okup). Na twoje propozycje odpowiada z uzasadnieniem.</li>
-                            <li><b>Hegemon i koalicje</b>: nacja, która urośnie ponad miarę, zostaje <b>hegemonem</b> — inne patrzą na nią nieufnie, zawierają przeciw niej sojusze i wzywają sojuszników do wspólnej wojny, także ciebie. Na rywala, którego Chwała zbliża się do zwycięstwa, ruszają wszyscy poza jego sojusznikami i nie zawierają z nim pokoju.</li>
-                            <li><b>Końcówka z charakterem</b>: zbyt liczny sojusz rozwiązuje najsilniejszy z sojuszników, a ambitna, mało lojalna SI potrafi zdradzić tuż przed wspólnym zwycięstwem. SI nie przyjmie sojuszu, który dałby ci darmowe wspólne zwycięstwo, jeśli sama jest silniejsza.</li>
-                            <li><b>Podgląd kontynentu</b> w menu pokazuje dokładnie ten świat, który powstanie w grze (także Złote wzgórza); <b>Nowy świat</b> losuje inny.</li>
+                            <li><b>Kontynent</b> 11 400 × 11 400 kroków (ok. 5× powierzchni mapy Gigantycznej) dla <b>do 8 nacji</b>: rzeki z dopływami i <b>brodami</b>, morze o poszarpanym brzegu, pasma gór z przełęczami, wielkie jeziora i puszcze, a pośrodku <b>Złote wzgórza</b> — bogate złoża z dala od wszystkich stolic. Podgląd w menu pokazuje dokładnie ten świat, który powstanie; <b>Nowy świat</b> losuje inny. Partia trwa zwykle <b>25–45 minut</b>.</li>
+                            <li><b>Relacje zamiast stałych drużyn</b>: wszyscy zaczynają w pokoju, po <b>rozejmie</b> (brak, 3, 5 albo 10 minut) nacje wypowiadają <b>wojny</b>, zawierają <b>pokój</b> (potem 3 minuty traktatu) i <b>sojusze</b> (wspólne pole widzenia). Zdradę inni zapamiętują. Przegrywający może kupić pokój <b>za okup</b>, a silniejszy zażądać <b>trybutu</b> — zapłata to 4 minuty traktatu, odmowa grozi wojną.</li>
+                            <li><b>Cztery drogi do zwycięstwa</b>: <b>Podbój</b>, <b>Sojusz zwycięzców</b> (najwyżej połowa nacji musi jako jedyna na placu boju wytrwać 3 minuty), <b>Cuda Świata</b> (1000 Chwały i 5-minutowy Triumf) i <b>limit czasu</b> (30, 45 albo 60 minut, domyślnie 45 — wygrywa najwyższy Wynik razem z sojusznikami).</li>
+                            <li><b>SI — dyplomata</b>: ocenia siłę, sąsiedztwo i pamięć o każdej nacji, ma własną cierpliwość i prowadzi księgę strat każdej wojny — zmęczona albo przegrywająca prosi o pokój, wygrywająca go nie przyjmie (chyba że za duży okup). Nacja, która urośnie ponad miarę, zostaje <b>hegemonem</b> i reszta zawiera przeciw niej <b>koalicje</b>; na lidera Chwały ruszają wszyscy poza jego sojusznikami. W końcówce zbyt liczny sojusz się rozpada, a ambitna SI potrafi zdradzić tuż przed wspólnym zwycięstwem.</li>
+                        </ul>
+
+                        <h3>Panel Dyplomacji, komunikaty i władcy</h3>
+                        <ul>
+                            <li><b>Panel Dyplomacji</b> (<kbd>Tab</kbd> albo przycisk w górnym pasku) pokazuje najpierw to, co ważne: <b>warunki zwycięstwa</b> jako krótkie pastylki ze stanem (klik rozwija opisy), propozycje czekające na odpowiedź i nacje <b>pogrupowane według relacji z tobą</b> — wojna, sojusz, pokój, pokonani.</li>
+                            <li>Każda nacja to <b>jeden wiersz</b>: herb, nazwa, opinia o tobie, siła wobec twojej i jedna główna akcja (Pokój albo Sojusz). <b>Klik w wiersz rozwija szczegóły</b>: władcę, charakter dowódcy, erę, wynik, paski opinii i siły, z kim nacja walczy i trzyma sojusz, odpowiedź na twoją ostatnią propozycję (z uzasadnieniem) oraz pozostałe akcje — pokój za okup, trybut, zerwanie sojuszu i wojnę (z potwierdzeniem drugim kliknięciem).</li>
+                            <li><b>Liczniki relacji</b> z ikonami — wojny, sojusze i pokoje — na przycisku Dyplomacji w górnym pasku i w nagłówku panelu.</li>
+                            <li><b>Propozycje bez otwierania panelu</b>: propozycja pokoju, sojuszu albo żądanie trybutu pojawia się w prawym górnym rogu jako karta z przyciskami <b>Przyjmij / Odrzuć</b> (albo Zapłać / Odmów) i paskiem czasu na odpowiedź.</li>
+                            <li><b>Mniej komunikatów</b>: wiadomość dostajesz tylko o tym, co cię dotyczy — twoje relacje, sprawy twoich sojuszników i sojusze zawierane przez twoich wrogów. Wojny i traktaty innych nacji trafiają do <b>kroniki</b> w panelu (nowe wpisy wyróżnione, kropka na przycisku Dyplomacji), a o erach innych nacji słyszysz tylko od sojuszników i wrogów. Komunikaty mówią po polsku pełnymi zdaniami: „Zieloni proponują sojusz”, „Czerwoni wypowiadają wojnę Żółtym”, „Pokój z Fioletowymi”.</li>
+                            <li><b>Portrety władców</b>: herb w kolorze nacji z jednym z dziewięciu godeł oraz władca z imieniem i przydomkiem, np. <i>Książę Bolesław Śmiały</i>. Tytuł rośnie z erą, a przydomek SI zdradza charakter jej dowódcy. Herby są w panelu Dyplomacji, tabeli nacji, na ekranie wyników i przy Ratuszu nacji SI.</li>
                         </ul>
 
                         <h3>Cuda Świata, Chwała i Triumf</h3>
                         <ul>
-                            <li><b>Cztery unikatowe Cuda</b> — każdy może stać na mapie <b>tylko raz</b>: kto pierwszy położy fundamenty, ten go ma. <b>Wiszące Ogrody</b> (III era): +25% zbierania żywności i +20 populacji. <b>Kolos</b> (III era): +2 złota co sekundę i +15% zbierania złota. <b>Wielka Biblioteka</b> (III era): badania i awanse er o połowę krótsze. <b>Wielka Bazylika</b> (IV era): najwięcej Chwały.</li>
-                            <li><b>Chwała</b>: ukończony Cud co sekundę dodaje drużynie Chwałę — mniejsze po 0,5, Bazylika 1,5; najcenniejszy Cud daje pełną Chwałę, każdy kolejny <b>70%</b>. Ale tylko w spokoju: <b>oblężony Cud</b> (wróg stoi przy nim w sile co najmniej równej obrońcom — jednostkom i wieżom właściciela i sojuszników) nie daje Chwały ani danin, a Cuda nacji <b>bez Ratusza</b> milkną.</li>
-                            <li><b>Triumf</b>: 1000 Chwały nie kończy gry od razu — zaczyna się <b>5-minutowy Triumf</b>, widoczny dla wszystkich. Oblężony Cud albo utrata Ratusza <b>wstrzymują</b> odliczanie, a zburzenie któregokolwiek Cudu <b>przerywa</b> Triumf i zabiera <b>40% Chwały</b>. Kto przetrwa Triumf, wygrywa (w Dyplomacji razem z sojusznikami). W Dyplomacji nacji w Triumfie traktaty nie chronią przed wypowiedzeniem wojny.</li>
-                            <li>Zburzenie ukończonego Cudu poza Triumfem odbiera właścicielowi 25% Chwały, a burzącemu daje +100. W Dyplomacji Cuda budzą <b>zazdrość</b>: opinia innych nacji o ich właścicielu powoli spada (w czasie Triumfu trzy razy szybciej).</li>
-                            <li><b>SI a Cuda</b>: nie zaczyna Cudu, gdy walczy z silniejszym sąsiadem, gdy inne nacje jej nie ufają albo gdy trwa cudzy Triumf. Przy ukończonych Cudach stawia wieże, a oblężonemu Cudowi wysyła odsiecz. W czasie własnego Triumfu odwołuje fale i całe wojsko broni Cudów. Na cudzy Triumf rusza co 15 s, choćby małym oddziałem — samo oblężenie wstrzymuje odliczanie. Zawiera sojusze przeciw liderowi Chwały, a mało lojalna i silniejsza SI potrafi zerwać sojusz z nacją w Triumfie, zamiast oddać jej koronę.</li>
-                            <li>Paski Chwały na dole ekranu pokazują tempo, czas do Triumfu i oblężone Cuda; w czasie Triumfu — odliczanie i powód wstrzymania. Cuda widać przez mgłę wojny. Działa w obu trybach (warunek „Cuda Świata” w karcie Świat).</li>
+                            <li><b>Cztery unikatowe Cuda</b>, każdy tylko raz na mapie: <b>Wiszące Ogrody</b> (+25% żywności, +20 populacji), <b>Kolos</b> (+2 złota co sekundę, +15% wydobycia złota), <b>Wielka Biblioteka</b> (badania i awanse er o połowę krótsze) — III era — oraz <b>Wielka Bazylika</b> (IV era, najwięcej Chwały).</li>
+                            <li><b>Chwała</b>: ukończone Cuda co sekundę dodają ją drużynie (najcenniejszy w całości, każdy kolejny 70%) — ale nie wtedy, gdy są <b>oblężone</b> albo właściciel nie ma Ratusza. <b>1000 Chwały</b> otwiera widoczny dla wszystkich <b>5-minutowy Triumf</b>: oblężenie go wstrzymuje, utrata Cudu przerywa i zabiera 40% Chwały; kto go przetrwa, wygrywa (w Dyplomacji razem z sojusznikami).</li>
+                            <li>SI broni swoich Cudów (wieże, odsiecz), oblega cudze i zawiera sojusze przeciw liderowi Chwały, a w Dyplomacji Cuda budzą <b>zazdrość</b> innych nacji. Paski Chwały na dole ekranu pokazują tempo, czas do Triumfu i oblężone Cuda. Działa w obu trybach (warunek „Cuda Świata” w karcie Świat).</li>
                         </ul>
 
-                        <h3>Panel Dyplomacji i władcy</h3>
+                        <h3>Zapis i wczytywanie gry</h3>
                         <ul>
-                            <li><b>Panel Dyplomacji</b> (<kbd>Tab</kbd> albo przycisk w górnym pasku) to czytelna lista kart, pogrupowana według relacji z tobą: <b>Wojna z tobą</b>, <b>Twoi sojusznicy</b>, <b>W pokoju z tobą</b> i pokonani. U góry: rozejm albo liczba wojen, sojuszy i pokojów, <b>warunki zwycięstwa</b> z bieżącym stanem, a pod nimi wyróżnione propozycje pokoju, sojuszu i żądania trybutu czekające na odpowiedź.</li>
-                            <li>Na każdej karcie: relacja i od kiedy trwa, traktat po trybucie, znaczek <b>hegemona</b>, <b>opinia o tobie</b> (pasek, słowo — od wrogości do przyjaźni — i liczba), <b>siła</b> w porównaniu z twoją, poziom SI, charakter dowódcy, era, wynik oraz <b>z kim ta nacja walczy i z kim trzyma sojusz</b>. Przyciski: Wojna, Zaproponuj pokój, Pokój za okup, Sojusz, Żądaj trybutu, Zerwij sojusz. Gdy wojny nie można jeszcze wypowiedzieć, powód widać od razu pod przyciskiem.</li>
-                            <li><b>Wojna</b> wymaga drugiego kliknięcia w <b>ten sam</b> przycisk (pulsuje „Na pewno? Kliknij”), a potwierdzenie wygasa po 5 s. <b>Kronika</b> na dole pokazuje ostatnie wojny, pokoje i sojusze z kolorami nacji.</li>
-                            <li><b>Portrety władców</b>: każda nacja ma herb — tarczę w swoim kolorze z jednym z dziewięciu godeł (korona, wieża, miecze, gwiazda, słońce, półksiężyc, krokiew, trójliść, młot) — oraz władcę z imieniem i przydomkiem, np. <i>Książę Bolesław Śmiały</i>. Tytuł rośnie z erą (od III ery król i królowa), a przydomek SI zdradza charakter jej dowódcy (Roztropny, Śmiały, Porywczy, Łupieżca, Burzyciel). Herby są w panelu Dyplomacji, tabeli nacji, na ekranie wyników i przy Ratuszu nacji SI.</li>
-                        </ul>
-
-                        <h3>Nowy wygląd i menu</h3>
-                        <ul>
-                            <li><b>Ekran nowej bitwy</b>: przełącznik trybu, podgląd mapy (kraina, ukształtowanie i rozmiar zmieniają się na oczach; w Klasycznym meczu róg startowy wybierasz klikiem), kto z kim gra, podsumowanie i przycisk startu zawsze na widoku.</li>
-                            <li><b>Ustawienia w sekcjach</b> Nacje, Świat i Zasady: przełączniki segmentowe, karty nacji z herbem w kolorze gracza, szybkie układy drużyn i przełączniki warunków zwycięstwa.</li>
-                            <li><b>Pasek zakładek</b> u góry z płynnie przesuwanym wskaźnikiem (na węższym ekranie same ikony), <b>encyklopedia</b> jednostek i budynków z wyszukiwarką i filtrem er, <b>Jak grać</b> ze wszystkimi skrótami w tabelach.</li>
-                            <li><b>Tło menu</b>: świat gry z lotu ptaka — przygaszona mapa jak na stole dowódcy, która powoli dryfuje i zmienia się razem z wybraną krainą (przy ograniczaniu ruchu w systemie stoi w miejscu).</li>
-                            <li><b>Interfejs w grze</b> — górny pasek, panel zaznaczenia, rozkazy, minimapa, podpowiedzi, komunikaty, pauza i wyniki — w nowej, spokojniejszej formie, na tych samych miejscach co dotąd. Nowe pismo: Inter i Cinzel, osadzone w pliku.</li>
-                            <li>Menu obsłużysz klawiaturą: <kbd>Tab</kbd> i <kbd>Enter</kbd>, w pasku zakładek strzałki <kbd>←</kbd> <kbd>→</kbd>.</li>
+                            <li><b>Zapisz grę</b> i <b>Wczytaj grę</b> w menu pauzy (<kbd>Esc</kbd>), wczytanie także w menu głównym. Zapis obejmuje <b>cały stan bitwy</b> — jednostki z rozkazami, budowy, badania, surowce, pociski w locie, plany SI, relacje i opinie w Dyplomacji, odkrytą mapę, porę dnia, a nawet ślady bitew; wczytana gra toczy się dokładnie od chwili zapisu.</li>
+                            <li><b>Szybki zapis</b> <kbd>F5</kbd> / wczytanie <kbd>F9</kbd>, <b>autozapis</b> co 5 minut gry (wyłączysz go w menu pauzy), lista zapisów z podglądem kadru, trybem, czasem gry, erą i nacjami.</li>
+                            <li>Każdy zapis pobierzesz jako plik <b>.absave</b> i wczytasz z powrotem przyciskiem <b>Dodaj z pliku…</b>. Zapisy są kompresowane i trzymane w pamięci przeglądarki, więc gra nadal jest jednym plikiem działającym offline. Działa w obu trybach gry solo (bez gry wieloosobowej i samouczka).</li>
                         </ul>
 
                         <h3>Gra wieloosobowa — koniec bety</h3>
                         <ul>
-                            <li><b>Tryb wieloosobowy wychodzi z bety.</b> Mecze dla 2–4 graczy (w Dyplomacji i w Klasycznym meczu) łączą się pewniej między różnymi systemami i przeglądarkami: Windows, macOS i Linux, Chrome, Edge, Firefox i Safari.</li>
-                            <li><b>Krótsze kody</b>: kod zaproszenia i odpowiedzi to zwykle ok. 115–150 znaków zamiast 160–250 — opis połączenia jest pakowany binarnie (hasła sesji po 4–6 bitów na znak, adresy IPv4 / IPv6 / ukryte .local jako bajty, 2-bajtowy odcisk wersji i suma kontrolna zamiast nazw). Kod wklejony z komunikatora z łamaniem linii, cudzysłowami, niewidocznymi znakami albo tekstem dookoła nadal zadziała; kod przekręcony lub ucięty gra rozpozna i powie o tym wprost.</li>
-                            <li><b>Pewniejsze łączenie</b>: trzech dostawców STUN na dwóch portach, mądrzejsze zbieranie adresów (kod jest gotowy, gdy przeglądarka zna swój adres publiczny — także na komputerach z wieloma kartami sieciowymi, VPN-em czy Hyper-V), lepszy dobór adresów w kodzie (publiczne IPv4 i IPv6, przekaźnik, najlepsze adresy lokalne).</li>
-                            <li><b>Bez pośpiechu przy wymianie kodów</b>: gość czeka na hosta, aż ten wklei odpowiedź — także po minucie czy dwóch; przed pierwszym połączeniem przeglądarka gościa nie poddaje się sama, a limit czasu (25 s od wklejenia odpowiedzi) pilnuje host.</li>
-                            <li><b>Stabilniejszy start meczu</b>: świat wysyłany gościom porcjami z kontrolą przepływu, a gracz na wolniejszym komputerze, którego karta przycięła się przy malowaniu terenu, nie jest już wyrzucany za „ciszę” (45 s zamiast 12 s przy wczytywaniu, a przycięcie własnej karty nie liczy się jako cisza).</li>
-                            <li><b>Test sieci i serwer TURN</b>: na dole strony Gra wieloosobowa sprawdzisz, czy twoja sieć przepuszcza połączenia bezpośrednie (i czy nie jest to „trudna” sieć z NAT-em symetrycznym). Gdy połączenie nie wstaje, jeden z graczy może podać własny serwer TURN (przekaźnik) — wtedy połączycie się z każdej sieci.</li>
-                            <li>Skróty w kreatorze dopasowane do systemu (<kbd>⌘V</kbd> na Macu, <kbd>Ctrl+V</kbd> w Windows), czytelne komunikaty o kodzie ze starszego wydania gry.</li>
-                            <li>Przetestowane: pełny mecz Dyplomacji 4 graczy w czterech osobnych przeglądarkach (kody przez kreator, opóźniona odpowiedź, rozkazy gości, pauza, rozłączenie i przejęcie nacji przez AI), kody z opisów połączeń Chrome oraz przykładowych opisów Firefoksa i Safari, a także połączenie z niezależną implementacją WebRTC (aiortc) w obie strony.</li>
+                            <li>Mecze <b>2–4 graczy</b> w Dyplomacji i Klasycznym meczu, bez serwera: przeglądarki łączą się bezpośrednio po wymianie dwóch kodów. Działa między Windows, macOS i Linuksem oraz w Chrome, Edge, Firefoksie i Safari.</li>
+                            <li><b>Krótsze i odporniejsze kody</b> (zwykle ok. 115–150 znaków): zadziałają po wklejeniu z komunikatora z łamaniem linii, cudzysłowami czy tekstem dookoła, a kod uszkodzony albo ze starszego wydania gra rozpozna i powie o tym wprost. Gość może odesłać odpowiedź bez pośpiechu.</li>
+                            <li><b>Pewniejsze łączenie i start meczu</b>: kilku dostawców STUN, lepszy dobór adresów, świat wysyłany porcjami, a wolniejszy komputer nie jest wyrzucany przy wczytywaniu. Na dole strony Gra wieloosobowa jest <b>test sieci</b> i pole na własny <b>serwer TURN</b> dla trudnych sieci.</li>
                         </ul>
 
-                        <h3>Silnik Raptor</h3>
+                        <h3>Nowy wygląd i silnik Raptor</h3>
                         <ul>
-                            <li><b>Raptor Atlas</b> — generator kontynentów: pasma gór, jeziora, rzeki z dopływami i brodami, rozmieszczenie wielu nacji i regionalne surowce; układ wynika z ziarna, więc podgląd, gra i goście widzą ten sam świat.</li>
-                            <li><b>Strumieniowanie terenu</b>: kontynentu nie maluje się cały przy starcie (to byłoby ok. 650 MB obrazu) — wątki robocze domalowują teren tam, gdzie patrzy kamera, a dawno niewidziane kawałki zwalniają pamięć. <b>Indeks wody i gór</b> odpowiada na pytanie „czy tu jest woda / góra” z kubełków przestrzennych.</li>
-                            <li><b>Szybsza symulacja</b>: pola jednostek nie wpadają już w wolny, „słownikowy” tryb przeglądarki, regiony osiągalności są łatane w miejscu zmiany (z wynikiem identycznym jak pełne przeliczenie), a rozpychanie i mgła wojny liczą tylko to, co trzeba. Kampania 6 nacji ok. <b>2,9× szybsza</b>, klasyczny mecz na mapie Gigantycznej <b>2× szybszy</b>.</li>
-                            <li><b>Zapis stanu</b>: serializer grafu obiektów symulacji (odwołania między jednostkami, nacjami i SI wracają po wczytaniu jako te same obiekty, stałe gry zapisują się ścieżką) — sprawdzony testem „zapis → wczytanie → zapis daje identyczny stan” w obu trybach.</li>
-                            <li>Oba tryby przeszły serię automatycznych meczów SI kontra SI (od 2 do 8 nacji, wszystkie krainy, ukształtowania, rozmiary map i poziomy trudności, z Królami i Cudami Świata). Przy okazji poprawiony błąd: SI z ulepszeniem Wszech-wzrok brała wojsko sąsiadów, z którymi ma pokój, za atak na osadę i przestawała prowadzić politykę.</li>
+                            <li><b>Menu od nowa</b>: pasek zakładek, ekran nowej bitwy z podglądem mapy i przyciskiem startu zawsze na widoku, ustawienia w sekcjach Nacje / Świat / Zasady, encyklopedia z wyszukiwarką, „Jak grać” ze wszystkimi skrótami i dryfujące tło z mapą świata. Menu obsłużysz też klawiaturą.</li>
+                            <li><b>Interfejs w grze</b> — górny pasek, panel zaznaczenia, rozkazy, minimapa, podpowiedzi, komunikaty, pauza i wyniki — w spokojniejszej formie, na tych samych miejscach. Nowe pismo: Inter i Cinzel, osadzone w pliku.</li>
+                            <li><b>Silnik Raptor</b>: generator kontynentów Raptor Atlas, teren domalowywany w tle tam, gdzie patrzy kamera, szybki indeks wody i gór oraz ok. <b>2–3× szybsza symulacja</b> (kampania 6 nacji 2,9×, Klasyczny mecz na mapie Gigantycznej 2×). Oba tryby przeszły serię automatycznych meczów SI kontra SI na wszystkich krainach, mapach i poziomach trudności.</li>
                         </ul>
-                        <p class="menu-note">Gra wieloosobowa: wszyscy gracze muszą mieć to samo wydanie Reloaded V1.0 (z V3.5 ani wcześniejszymi kompilacjami V1.0, w tym z wersją beta trybu wieloosobowego, gra się nie połączy). Host wybiera tryb i limit czasu w poczekalni; w Dyplomacji każde z czterech miejsc to osobna nacja, a goście wypowiadają wojny, płacą trybut i zawierają sojusze tak jak w grze solo. Na mapach powyżej 8191 kroków pozycje w paczkach stanu są kodowane z dokładnością 1/4 kroku. Gra wieloosobowa zostaje przy najwyżej 4 graczach. Dalej planujemy m.in. mosty, kilka krain na jednym kontynencie, drugie ratusze SI i handel między nacjami w pokoju.</p>
+                        <p class="menu-note">Gra wieloosobowa: wszyscy gracze muszą mieć to samo wydanie Reloaded V1.0 (ze starszymi kompilacjami, także z betą trybu wieloosobowego, gra się nie połączy). Host wybiera tryb i limit czasu w poczekalni; w Dyplomacji goście wypowiadają wojny, płacą trybut i zawierają sojusze tak jak w grze solo. Dalej planujemy m.in. mosty, kilka krain na jednym kontynencie i handel między nacjami w pokoju.</p>
                     </div>
                     <div class="news-sub">Wcześniejsze wydania</div>
                     <details class="release">
@@ -2479,15 +2480,17 @@ function unitName(t) { const c = GameConfig.units[t]; return c ? c.name : t; }
 function buildingName(t) { const c = GameConfig.buildings[t]; return c ? c.name : t; }
 
 // --- Kolory nacji ---
+// nation - nazwa nacji (zawsze w liczbie mnogiej), gen / dat / ins - jej dopełniacz (i biernik), celownik i narzędnik
+// do komunikatów Dyplomacji: „Czerwoni wypowiadają wojnę Zielonym”, „sojusz z Żółtymi”
 const TeamPalette = {
-    blue:   { main: '#2f6fdd', dark: '#173a7a', light: '#7fb0ff', label: 'Niebieski',    nation: 'Niebiescy' },
-    red:    { main: '#d43c3c', dark: '#7a1b1b', light: '#ff8f85', label: 'Czerwony',     nation: 'Czerwoni' },
-    purple: { main: '#9b4de0', dark: '#4f2380', light: '#cf9dff', label: 'Fioletowy',    nation: 'Fioletowi' },
-    orange: { main: '#ee8f1e', dark: '#8a4a08', light: '#ffc878', label: 'Pomarańczowy', nation: 'Pomarańczowi' },
-    green:  { main: '#37b24d', dark: '#17612a', light: '#96eba2', label: 'Zielony',      nation: 'Zieloni' },
-    teal:   { main: '#1fb5b5', dark: '#0c5d63', light: '#8ff0ea', label: 'Turkusowy',    nation: 'Turkusowi' },
-    yellow: { main: '#e6c21f', dark: '#80660a', light: '#fff09a', label: 'Żółty',        nation: 'Żółci' },
-    pink:   { main: '#e85fa8', dark: '#8a2560', light: '#ffb3da', label: 'Różowy',       nation: 'Różowi' }
+    blue:   { main: '#2f6fdd', dark: '#173a7a', light: '#7fb0ff', label: 'Niebieski',    nation: 'Niebiescy',    gen: 'Niebieskich', dat: 'Niebieskim', ins: 'Niebieskimi' },
+    red:    { main: '#d43c3c', dark: '#7a1b1b', light: '#ff8f85', label: 'Czerwony',     nation: 'Czerwoni',     gen: 'Czerwonych', dat: 'Czerwonym', ins: 'Czerwonymi' },
+    purple: { main: '#9b4de0', dark: '#4f2380', light: '#cf9dff', label: 'Fioletowy',    nation: 'Fioletowi',    gen: 'Fioletowych', dat: 'Fioletowym', ins: 'Fioletowymi' },
+    orange: { main: '#ee8f1e', dark: '#8a4a08', light: '#ffc878', label: 'Pomarańczowy', nation: 'Pomarańczowi', gen: 'Pomarańczowych', dat: 'Pomarańczowym', ins: 'Pomarańczowymi' },
+    green:  { main: '#37b24d', dark: '#17612a', light: '#96eba2', label: 'Zielony',      nation: 'Zieloni',      gen: 'Zielonych', dat: 'Zielonym', ins: 'Zielonymi' },
+    teal:   { main: '#1fb5b5', dark: '#0c5d63', light: '#8ff0ea', label: 'Turkusowy',    nation: 'Turkusowi',    gen: 'Turkusowych', dat: 'Turkusowym', ins: 'Turkusowymi' },
+    yellow: { main: '#e6c21f', dark: '#80660a', light: '#fff09a', label: 'Żółty',        nation: 'Żółci',        gen: 'Żółtych', dat: 'Żółtym', ins: 'Żółtymi' },
+    pink:   { main: '#e85fa8', dark: '#8a2560', light: '#ffb3da', label: 'Różowy',       nation: 'Różowi',       gen: 'Różowych', dat: 'Różowym', ins: 'Różowymi' }
 };
 const ColorOrder = ['blue', 'red', 'purple', 'orange', 'green', 'teal', 'yellow', 'pink'];
 
@@ -8659,30 +8662,53 @@ class UIManager {
         // Reloaded: w Dyplomacji tabela nacji jest panelem dyplomacji (relacje, propozycje, wypowiedzenie wojny)
         if (this.game.diplo) {
             const nb = this.el['nations-btn'];
-            if (nb) { nb.innerHTML = '⚖<span class="lbl"> Dyplomacja</span><i class="dp-badge" style="display:none"></i>'; nb.title = 'Dyplomacja: relacje z nacjami, propozycje pokoju i sojuszu (Tab)'; }
+            if (nb) { nb.innerHTML = '⚖<span class="lbl"> Dyplomacja</span><span class="dp-rel"></span><i class="dp-badge" style="display:none"></i>'; nb.title = 'Dyplomacja: relacje z nacjami, propozycje pokoju i sojuszu (Tab)'; }
             const np = this.el['nations-panel'];
-            if (np) {
-                np.classList.add('diplo');
-                // pointerdown, nie click: panel odświeża się co sekundę (odliczanie rozejmu) i klik mógłby trafić w podmieniony przycisk
-                np.addEventListener('pointerdown', (e) => {
-                    const b = e.target.closest ? e.target.closest('[data-dip]') : null;
-                    if (!b || b.disabled) return;
-                    e.preventDefault();
-                    // wojna wymaga drugiego kliknięcia w TEN SAM przycisk (Reloaded V1.0: wcześniej uzbrojenie przy jednej
-                    // nacji sprawiało, że "Wojna" przy innej nacji wypowiadała ją od razu, bez potwierdzenia); po 5 s rozbraja się
-                    if (b.dataset.dip === 'war' && (this._warArmed !== b.dataset.to || performance.now() - this._warArmedAt > 5000)) {
-                        this._warArmed = b.dataset.to; this._warArmedAt = performance.now(); this._nationsSig = ''; this.renderNations(); return;
-                    }
-                    const cmd = { t: 'diplo', act: b.dataset.dip };
-                    if (b.dataset.to !== undefined) cmd.to = Number(b.dataset.to);
-                    if (b.dataset.id !== undefined) cmd.id = Number(b.dataset.id);
-                    if (b.dataset.pay) cmd.pay = 1;
-                    this._warArmed = null;
-                    this.game.issue(cmd);
-                    if (window.soundManager) window.soundManager.playKeypress();
-                });
-            }
+            if (np) np.classList.add('diplo');
+            // karty propozycji poza panelem (renderDiploInbox)
+            const ib = document.createElement('div');
+            ib.id = 'dp-inbox'; ib.style.display = 'none';
+            if (np && np.parentNode) np.parentNode.insertBefore(ib, np.nextSibling);
+            this.el['dp-inbox'] = ib;
+            // pointerdown, nie click: panel odświeża się co sekundę (odliczanie rozejmu) i klik mógłby trafić w podmieniony przycisk
+            for (const box of [np, ib]) if (box) box.addEventListener('pointerdown', (e) => this.onDiploPointer(e));
         }
+    }
+
+    // Kliknięcia w panelu Dyplomacji i w kartach propozycji
+    onDiploPointer(e) {
+        const t = e.target.closest ? e.target : null;
+        if (!t || e.button > 0) return;
+        const b = t.closest('[data-dip]');
+        const redraw = () => { this._nationsSig = ''; if (this.nationsOpen) this.renderNations(); };
+        if (!b) {
+            // rozwinięcie wiersza nacji, opisów warunków zwycięstwa, dłuższej kroniki; "i jeszcze N" otwiera panel
+            const x = t.closest('[data-dpx]'), gl = t.closest('[data-dpg]'), lg = t.closest('[data-dpl]'), op = t.closest('[data-dpo]');
+            if (x) this._dpOpen = this._dpOpen === x.dataset.dpx ? null : x.dataset.dpx;
+            else if (gl) this._dpGoals = !this._dpGoals;
+            else if (lg) this._dpLogAll = !this._dpLogAll;
+            else if (op) { this.showNations(true); return; }
+            else return;
+            e.preventDefault();
+            redraw();
+            return;
+        }
+        if (b.disabled) return;
+        e.preventDefault();
+        // wojna wymaga drugiego kliknięcia w TEN SAM przycisk (Reloaded V1.0: wcześniej uzbrojenie przy jednej
+        // nacji sprawiało, że "Wojna" przy innej nacji wypowiadała ją od razu, bez potwierdzenia); po 5 s rozbraja się
+        if (b.dataset.dip === 'war' && (this._warArmed !== b.dataset.to || performance.now() - this._warArmedAt > 5000)) {
+            this._warArmed = b.dataset.to; this._warArmedAt = performance.now(); redraw(); return;
+        }
+        const cmd = { t: 'diplo', act: b.dataset.dip };
+        if (b.dataset.to !== undefined) { cmd.to = Number(b.dataset.to); this._dpOpen = b.dataset.to; }   // odpowiedź widać na rozwiniętej karcie
+        if (b.dataset.id !== undefined) cmd.id = Number(b.dataset.id);
+        if (b.dataset.pay) cmd.pay = 1;
+        this._warArmed = null;
+        this.game.issue(cmd);
+        if (window.soundManager) window.soundManager.playKeypress();
+        this._inboxSig = '';
+        redraw();
     }
 
     setText(id, value) {
@@ -8813,7 +8839,13 @@ class UIManager {
     // ---------------- Tabela nacji (drużyny, ery, w trybie obserwatora także surowce i armie) ----------------
 
     showNations(open) {
+        const was = !!this.nationsOpen;
         this.nationsOpen = open === undefined ? !this.nationsOpen : !!open;
+        // Dyplomacja: kronika wyróżnia wpisy nowe od poprzedniego zajrzenia do panelu (i od nich zależy kropka na przycisku)
+        if (this.game.diplo && was !== this.nationsOpen) {
+            if (this.nationsOpen) this._dpNewSince = this._dpSeen === undefined ? 0 : this._dpSeen;
+            this._dpSeen = this.game.time;
+        }
         const el = this.el['nations-panel'];
         if (!el) return;
         el.style.display = this.nationsOpen ? 'block' : 'none';
@@ -8849,11 +8881,14 @@ class UIManager {
         if (html !== this._nationsSig) { this._nationsSig = html; el.innerHTML = html; }
     }
 
-    // Reloaded: panel Dyplomacji (Tab). V1.0: u góry warunki zwycięstwa z bieżącym stanem, potem propozycje i żądania
-    // trybutu czekające na odpowiedź, a niżej nacje jako karty z portretem władcy, pogrupowane według relacji z tobą
-    // (wojna, sojusz, pokój, pokonani). Na karcie: opinia o tobie, siła w porównaniu z twoją, hegemon, traktat, z kim
-    // nacja walczy i trzyma sojusz, oraz przyciski: wojna / pokój (także za okup) / sojusz / trybut / zerwanie sojuszu.
-    // Na dole kronika zdarzeń.
+    // Reloaded: panel Dyplomacji (Tab). V1.0 (porządki przed wydaniem - mniej informacji naraz):
+    //   - u góry warunki zwycięstwa jako cztery krótkie pastylki ze stanem (klik rozwija opisy),
+    //   - propozycje i żądania trybutu czekające na odpowiedź,
+    //   - nacje jako zwinięte wiersze pogrupowane według relacji z tobą: herb, nazwa, opinia o tobie, siła i jedna
+    //     główna akcja (pokój albo sojusz). Klik w wiersz rozwija szczegóły: władca, charakter, era, wynik, paski opinii
+    //     i siły, z kim nacja walczy i trzyma sojusz, odpowiedź na twoją ostatnią propozycję i pozostałe akcje
+    //     (okup, trybut, zerwanie sojuszu, wojna - z potwierdzeniem drugim kliknięciem),
+    //   - kronika: ostatnie zdarzenia (nowe od poprzedniego otwarcia panelu wyróżnione), klik pokazuje więcej.
     renderDiplomacy() {
         const el = this.el['nations-panel'];
         const g = this.game, D = g.diplo, me = this.playerNation;
@@ -8866,41 +8901,38 @@ class UIManager {
         const heg = g.isClient ? null : D.hegemon();
         const act = g.nations.filter(n => !n.defeated);
         const nm = (n) => esc(n.shortName || n.name);
-        const tag = (n) => `<span class="dp-n" style="--nc:${n.color}">${nm(n)}</span>`;
+        const tag = (n, c) => `<span class="dp-n${n === me ? ' me' : ''}" style="--nc:${n.color}">${esc(Diplomacy.form(n, c))}</span>`;
+        const live = !full && !me.defeated;
 
-        // --- warunki zwycięstwa (z bieżącym stanem) ---
-        const goal = (ico, name, desc, st, hot) => `<div class="dp-goal${hot ? ' hot' : ''}"><i>${ico}</i><span><b>${name}</b> — ${desc}</span><em>${st}</em></div>`;
-        let goals = goal('⚔', 'Podbój', 'zniszcz Ratusze wszystkich rywali', `w grze: ${act.length}`, act.length === 2);
+        // --- warunki zwycięstwa: pastylki ze stanem, opisy po rozwinięciu ---
+        const chip = (ico, html, hot, title) => `<span class="dp-g${hot ? ' hot' : ''}" title="${esc(title)}"><i>${ico}</i><span>${html}</span></span>`;
+        let chips = chip('⚔', `<b>Podbój</b> · w grze <em>${act.length}</em>`, act.length === 2, 'Podbój: zniszcz Ratusze wszystkich rywali');
+        let desc = `<span><b>Podbój</b> — zniszcz Ratusze wszystkich rywali.</span>`;
         if (D.allianceWin) {
-            const st = D.allianceAt >= 0 ? `zwycięstwo za <b>${mmss(DIPLO.ALLIANCE_HOLD - (g.time - D.allianceAt))}</b>`
-                : act.length > D.allyCap ? `musi odpaść jeszcze ${act.length - D.allyCap}` : 'pozostali muszą być w sojuszu';
-            goals += goal('❖', 'Sojusz', `zostańcie sami na placu boju jako sojusz (najwyżej ${D.allyCap} ${D.allyCap < 5 ? 'nacje' : 'nacji'}) i wytrwajcie ${DIPLO.ALLIANCE_HOLD / 60} min`, st, D.allianceAt >= 0);
+            const st = D.allianceAt >= 0 ? `zwycięstwo za <em>${mmss(DIPLO.ALLIANCE_HOLD - (g.time - D.allianceAt))}</em>`
+                : act.length > D.allyCap ? `odpaść musi jeszcze <em>${act.length - D.allyCap}</em>` : 'potrzebny wspólny sojusz';
+            chips += chip('❖', `<b>Sojusz</b> · ${st}`, D.allianceAt >= 0, 'Sojusz zwycięzców');
+            desc += `<span><b>Sojusz</b> — zostańcie sami na placu boju jako sojusz (najwyżej ${D.allyCap} ${D.allyCap < 5 ? 'nacje' : 'nacji'}) i wytrwajcie ${DIPLO.ALLIANCE_HOLD / 60} min.</span>`;
         }
         if (g.wondersOn) {
             const top = g.gloryTable()[0];
             const T = g.triumphInfo(), tn = T ? g.nations.find(n => n.team === T.team) : null;
-            goals += goal('⛪', 'Cuda Świata', `zbierz ${Game.GLORY_WIN} Chwały (oblężone Cuda jej nie dają) i przetrwaj ${Game.TRIUMPH / 60}-minutowy Triumf`,
-                T && tn ? `Triumf: ${T.team === me.team ? 'ty' : esc(D.name(tn))} · <b>${mmss(T.left)}</b>${T.paused ? ' (wstrzymany)' : ''}`
-                    : top ? `${top.team === me.team ? 'ty' : esc(top.names.join(', '))}: <b>${Math.floor(top.glory)}</b>` : 'nikt nie ma Cudu', !!T || (!!top && top.glory >= Game.GLORY_WIN * 0.5));
+            const who = (team, names) => team === me.team ? 'ty' : esc(names);
+            chips += T && tn ? chip('⛪', `<b>Triumf</b> · ${who(T.team, D.name(tn))} <em>${mmss(T.left)}</em>${T.paused ? ' (stoi)' : ''}`, true, 'Triumf Cudów Świata')
+                : top ? chip('⛪', `<b>Chwała</b> · ${who(top.team, top.names.join(', '))} <em>${Math.floor(top.glory)}</em>/${Game.GLORY_WIN}`, top.glory >= Game.GLORY_WIN * 0.5, 'Chwała Cudów Świata')
+                : chip('⛪', '<b>Cuda</b> · nikt nie ma Cudu', false, 'Cuda Świata');
+            desc += `<span><b>Cuda Świata</b> — zbierz ${Game.GLORY_WIN} Chwały (oblężone Cuda jej nie dają) i przetrwaj ${Game.TRIUMPH / 60}-minutowy Triumf.</span>`;
         }
         if (D.timeLimit > 0) {
             const lead = D.leader(act), left = D.timeLimit - g.time;
-            goals += goal('⌛', 'Limit czasu', `po ${Math.round(D.timeLimit / 60)} min wygrywa najwyższy Wynik (razem z sojusznikami)`,
-                `zostało <b>${mmss(left)}</b>${lead ? ' · prowadzi ' + (lead === me ? 'twoja nacja' : esc(D.name(lead))) : ''}`, left < 300);
+            chips += chip('⌛', `<b>Koniec</b> za <em>${mmss(left)}</em>${lead ? ' · ' + (lead === me ? 'prowadzisz' : 'prowadzą ' + nm(lead)) : ''}`, left < 300, 'Limit czasu');
+            desc += `<span><b>Limit czasu</b> — po ${Math.round(D.timeLimit / 60)} min wygrywa najwyższy Wynik (razem z sojusznikami).</span>`;
         }
+        const goals = `<div class="dp-goals" data-dpg="1"><div class="dp-gt"><span>Warunki zwycięstwa</span><small>${this._dpGoals ? 'zwiń ▴' : 'opisy ▾'}</small></div>
+            <div class="dp-gchips">${chips}</div>${this._dpGoals ? '<div class="dp-gdesc">' + desc + '</div>' : ''}</div>`;
 
         // --- propozycje i żądania czekające na twoją odpowiedź ---
-        let props = '';
-        for (const p of D.proposals) {
-            if (p.to !== me || full) continue;
-            const pt = esc(Diplomacy.payText(p.pay)), left = Math.max(0, Math.ceil(p.until - g.time));
-            if (p.kind === 'tribute') {
-                const can = me.resources.get('gold') >= (p.pay.gold || 0) && me.resources.get('food') >= (p.pay.food || 0) && me.resources.get('wood') >= (p.pay.wood || 0);
-                props += `<div class="dp-prop tribute">${Rulers.img(p.from, g, 30)}<span class="dp-prop-t"><span><b>${nm(p.from)}</b> żąda trybutu: <b class="tr">${pt}</b></span><small>Zapłata = ${DIPLO.PACT / 60} min traktatu, odmowa może oznaczać wojnę${can ? '' : ' · nie masz tyle — zapłacisz, ile masz'} · ${left} s</small></span>
-                    <span class="dp-act"><button class="ok" data-dip="accept" data-id="${p.id}">Zapłać</button><button class="war" data-dip="decline" data-id="${p.id}">Odmów</button></span></div>`;
-            } else props += `<div class="dp-prop">${Rulers.img(p.from, g, 30)}<span class="dp-prop-t"><span><b>${nm(p.from)}</b> proponuje ci ${p.kind === 'peace' ? '<b class="pc">pokój</b>' : '<b class="al">sojusz</b>'}${p.pay ? ' i oferuje okup: <b class="tr">' + pt + '</b>' : ''}</span><small>${esc(Rulers.title(p.from, g))} · odpowiedź w ciągu ${left} s</small></span>
-                <span class="dp-act"><button class="ok" data-dip="accept" data-id="${p.id}">Przyjmij</button><button data-dip="decline" data-id="${p.id}">Odrzuć</button></span></div>`;
-        }
+        const props = full ? '' : D.proposals.filter(p => p.to === me).map(p => this.diploPropHtml(p)).join('');
 
         // --- nacje ---
         const offer = D.offerFor(me), offerT = offer ? Diplomacy.payText(offer) : '';
@@ -8913,88 +8945,165 @@ class UIManager {
             if (n.defeated) { groups.dead.push(n); continue; }
             counts[st]++;
             const cls = ['war', 'peace', 'ally'][st];
-            // opinia o tobie
-            let opinion = '<span class="dp-k">Opinia</span><span class="mut">— steruje człowiek</span>';
-            if (!n.human || n.ai) {
-                const op = Math.round(D.op(n, me)), w = OPW.find(x => op < x[0]) || OPW[4];
-                opinion = `<span class="dp-k">Opinia o tobie</span><span class="dp-op" title="Co ta nacja myśli o tobie: ${op > 0 ? '+' : ''}${op} (od −100 do +100)"><i style="${op >= 0 ? 'left:50%;width:' + (op / 2) + '%;background:#32d15d' : 'left:' + (50 + op / 2) + '%;width:' + (-op / 2) + '%;background:#ff5a4d'}"></i></span><b style="color:${w[2]}">${w[1]}</b> <small class="mut">${op > 0 ? '+' : ''}${op}</small>`;
-            }
-            // siła w porównaniu z twoją
-            let power = '';
+            const idx = g.nations.indexOf(n), open = this._dpOpen === String(idx);
+            // opinia o tobie i siła w porównaniu z twoją - słowo w wierszu, pasek i liczba po rozwinięciu
+            const ai = !n.human || n.ai;
+            const op = ai ? Math.round(D.op(n, me)) : 0, ow = OPW.find(x => op < x[0]) || OPW[4];
+            let sum = ai ? `<span title="Opinia o tobie: ${op > 0 ? '+' : ''}${op}"><small>opinia</small> <b style="color:${ow[2]}">${ow[1]}</b></span>` : '<span><small>steruje człowiek</small></span>';
+            let k = 1, pw = null;
             if (!g.isClient) {
-                const k = D.strength(n) / Math.max(1, myS);
-                const word = k > 1.6 ? ['dużo silniejsi', '#ff8f85'] : k > 1.15 ? ['silniejsi', '#ffc58a'] : k > 0.87 ? ['podobna siła', 'var(--label-2)'] : k > 0.6 ? ['słabsi', '#b9e6a0'] : ['dużo słabsi', '#7fe39a'];
-                const f = Math.round(100 * k / (1 + k));
-                power = `<span class="dp-k">Siła</span><span class="dp-pw" title="Ich siła (wojsko, wieże, era) wobec twojej: ${k.toFixed(1).replace('.', ',')}×"><i style="width:${f}%;background:${word[1]}"></i></span><b style="color:${word[1]}">${word[0]}</b>`;
+                k = D.strength(n) / Math.max(1, myS);
+                pw = k > 1.6 ? ['dużo silniejsi', '#ff8f85'] : k > 1.15 ? ['silniejsi', '#ffc58a'] : k > 0.87 ? ['podobna', 'var(--label-2)'] : k > 0.6 ? ['słabsi', '#b9e6a0'] : ['dużo słabsi', '#7fe39a'];
+                sum += `<span title="Ich siła (wojsko, wieże, era) wobec twojej"><small>siła</small> <b style="color:${pw[1]}">${pw[0]}</b></span>`;
             }
-            // z kim ta nacja walczy i trzyma sojusz (bez ciebie - to widać w relacji)
-            const wars = [], allies = [];
-            for (const o of g.nations) {
-                if (o === n || o === me || o.defeated) continue;
-                const s2 = D.get(n, o);
-                if (s2 === DIPLO.WAR) wars.push(o); else if (s2 === DIPLO.ALLY) allies.push(o);
-            }
-            const web = (wars.length ? `<span class="dp-web war"><span class="dp-k">walczy z</span>${wars.map(tag).join('')}</span>` : '') +
-                (allies.length ? `<span class="dp-web ally"><span class="dp-k">sojusz z</span>${allies.map(tag).join('')}</span>` : '');
-            const ch = Rulers.character(n);
-            const meta = [esc(n.controlLabel()), ch ? `<span title="${esc(ch.desc)}">${esc(ch.name)}</span>` : '', 'Era ' + GameConfig.ages[n.age].roman, `<span title="Wynik decyduje po upływie limitu czasu">wynik <b>${n.summary().score}</b></span>`].filter(Boolean).join(' · ');
             const pl = D.pactLeft(me, n);
-            const pact = pl > 0 && st !== DIPLO.WAR ? `<span class="dp-pact" title="Traktat po zapłaconym trybucie — nikt z was nie może wypowiedzieć wojny">traktat ${mmss(pl)}</span>` : '';
-            const hegB = n === heg ? '<span class="dp-heg" title="Hegemon: najpotężniejsza nacja kontynentu — inne łączą się przeciw niej w koalicje">hegemon</span>' : '';
-            let btns = '', note = '';
-            if (!full && !me.defeated) {
-                const idx = g.nations.indexOf(n);
+            const reply = live && D.replyOf ? D.replyOf(me, n) : null;
+            const tags = (n === heg ? '<span class="dp-heg" title="Hegemon: najpotężniejsza nacja kontynentu — inne łączą się przeciw niej w koalicje">hegemon</span>' : '')
+                + (pl > 0 && st !== DIPLO.WAR ? `<span class="dp-pact" title="Traktat po zapłaconym trybucie — nikt z was nie może wypowiedzieć wojny">traktat ${mmss(pl)}</span>` : '')
+                + (reply ? `<span class="dp-rmark ${reply.ok === null ? 'wait' : reply.ok ? 'ok' : 'no'}" title="${esc(reply.text)}">${reply.ok === null ? '⏳' : reply.ok ? '✓' : '✕'}</span>` : '');
+            // akcje: jedna główna w wierszu, reszta po rozwinięciu
+            let main = '', btns = '', note = '';
+            if (live) {
                 const warErr = D.canDeclareWar(me, n);
                 const armed = this._warArmed === String(idx) && performance.now() - this._warArmedAt <= 5000;
+                const warBtn = `<button class="dp-btn war${armed ? ' armed' : ''}" data-dip="war" data-to="${idx}"${warErr ? ' disabled' : ''} title="${esc(warErr || (st === DIPLO.ALLY ? 'Atak na sojusznika to zdrada — inne nacje to zapamiętają' : 'Wypowiedzenie wojny: jednostki i wieże zaczną walczyć'))}">${armed ? 'Na pewno? Kliknij jeszcze raz' : 'Wypowiedz wojnę'}</button>`;
                 if (st === DIPLO.WAR) {
-                    btns = `<button class="pc" data-dip="peace" data-to="${idx}" title="Propozycja pokoju — nacja odpowie od razu (z uzasadnieniem)">Zaproponuj pokój</button>` +
-                        `<button class="ok" data-dip="peace" data-pay="1" data-to="${idx}"${offer ? '' : ' disabled'} title="${esc(offer ? 'Pokój za okup: ' + offerT + ' (20% twoich zapasów)' : 'Nie masz z czego zapłacić okupu')}">Pokój za okup</button>`;
+                    const age = g.time - D.sinceOf(me, n), early = age < DIPLO.PEACE_MIN_WAR;
+                    const earlyT = early ? `O pokój można prosić po minucie wojny (za ${Math.ceil(DIPLO.PEACE_MIN_WAR - age)} s)` : '';
+                    main = `<button class="dp-btn pc" data-dip="peace" data-to="${idx}"${early ? ' disabled' : ''} title="${esc(earlyT || 'Propozycja pokoju — odpowiedź przyjdzie od razu')}">Pokój</button>`;
+                    btns = `<button class="dp-btn ok" data-dip="peace" data-pay="1" data-to="${idx}"${offer && !early ? '' : ' disabled'} title="${esc(earlyT || (offer ? 'Zapłacisz 20% swoich zapasów' : 'Nie masz z czego zapłacić okupu'))}">Pokój za okup${offer ? ' · ' + esc(offerT) : ''}</button>`;
                 } else {
-                    if (st === DIPLO.PEACE) btns += `<button class="ok" data-dip="alliance" data-to="${idx}" title="Propozycja sojuszu: wspólne pole widzenia i obrona">Sojusz</button>` +
-                        `<button data-dip="tribute" data-to="${idx}" title="${esc('Zażądaj trybutu: ' + Diplomacy.payText(D.demandFor(me)) + '. Zapłaci tylko nacja wyraźnie słabsza od ciebie (razem z sojusznikami); odmowa psuje stosunki. Zapłata = ' + DIPLO.PACT / 60 + ' min traktatu.')}">Żądaj trybutu</button>`;
-                    else btns += `<button data-dip="break" data-to="${idx}" title="Sojusz zostaje zerwany, ale pokój trwa dalej">Zerwij sojusz</button>`;
-                    btns += `<button class="war${armed ? ' armed' : ''}" data-dip="war" data-to="${idx}"${warErr ? ' disabled' : ''} title="${esc(warErr || (st === DIPLO.ALLY ? 'Atak na sojusznika to zdrada — inne nacje to zapamiętają' : 'Wypowiedzenie wojny: jednostki i wieże zaczną walczyć'))}">${armed ? 'Na pewno? Kliknij' : 'Wojna'}</button>`;
-                    if (warErr && truce <= 0) note = `<small class="dp-note">${esc(warErr)}</small>`;
+                    if (st === DIPLO.PEACE) {
+                        main = `<button class="dp-btn ok" data-dip="alliance" data-to="${idx}" title="Propozycja sojuszu: wspólne pole widzenia, obrona i zwycięstwo">Sojusz</button>`;
+                        btns = `<button class="dp-btn" data-dip="tribute" data-to="${idx}" title="${esc('Zapłaci tylko nacja wyraźnie słabsza od ciebie (razem z sojusznikami); odmowa psuje stosunki. Zapłata = ' + DIPLO.PACT / 60 + ' min traktatu.')}">Żądaj trybutu · ${esc(Diplomacy.payText(D.demandFor(me)))}</button>`;
+                    } else btns = `<button class="dp-btn" data-dip="break" data-to="${idx}" title="Sojusz zostaje zerwany, ale pokój trwa dalej">Zerwij sojusz</button>`;
+                    btns += warBtn;
+                    if (warErr) note = `<small class="dp-note">${esc(warErr)}</small>`;
                 }
             }
-            groups[cls].push(`<div class="dp-card ${cls}" style="--nc:${n.color}">
-                ${Rulers.img(n, g, 42)}
-                <div class="dp-main">
-                    <div class="dp-l1"><b class="dp-name" style="color:${n.color}">${nm(n)}</b>${hegB}<span class="dp-ruler">${esc(Rulers.title(n, g))}</span></div>
-                    <div class="dp-l2"><span class="dp-pill ${cls}">${DIPLO.NAMES[st]}</span><small class="mut">${ago(D.sinceOf(me, n))}</small>${pact}<span class="dp-meta">${meta}</span></div>
-                    <div class="dp-l3"><span class="dp-stat">${opinion}</span>${power ? '<span class="dp-stat">' + power + '</span>' : ''}</div>
-                    ${web ? '<div class="dp-l4">' + web + '</div>' : ''}
-                </div>
-                <div class="dp-side"><span class="dp-act">${btns}</span>${note}</div>
-            </div>`);
+            let body = '';
+            if (open) {
+                const ch = Rulers.character(n);
+                const info = [`<i>${esc(Rulers.title(n, g))}</i>`, esc(n.controlLabel()), ch ? `<span title="${esc(ch.desc)}">${esc(ch.name)}</span>` : '', 'Era ' + GameConfig.ages[n.age].roman,
+                    `<span title="Wynik decyduje po upływie limitu czasu">wynik <b>${n.summary().score}</b></span>`].filter(Boolean).join(' · ');
+                let stats = `<span class="dp-stat"><span class="dp-pill ${cls}">${DIPLO.NAMES[st]}</span><small class="mut">${ago(D.sinceOf(me, n))}</small></span>`;
+                if (ai) stats += `<span class="dp-stat"><span class="dp-k">opinia o tobie</span><span class="dp-op"><i style="${op >= 0 ? 'left:50%;width:' + (op / 2) + '%;background:#32d15d' : 'left:' + (50 + op / 2) + '%;width:' + (-op / 2) + '%;background:#ff5a4d'}"></i></span><b style="color:${ow[2]}">${op > 0 ? '+' : ''}${op}</b></span>`;
+                if (pw) stats += `<span class="dp-stat"><span class="dp-k">siła</span><span class="dp-pw"><i style="width:${Math.round(100 * k / (1 + k))}%;background:${pw[1]}"></i></span><b style="color:${pw[1]}">${k.toFixed(1).replace('.', ',')}×</b></span>`;
+                const wars = [], allies = [];
+                for (const o of g.nations) {
+                    if (o === n || o === me || o.defeated) continue;
+                    const s2 = D.get(n, o);
+                    if (s2 === DIPLO.WAR) wars.push(o); else if (s2 === DIPLO.ALLY) allies.push(o);
+                }
+                const web = (wars.length ? `<span class="dp-web"><span class="dp-k">walczą z</span>${wars.map(o => tag(o, 'ins')).join('')}</span>` : '')
+                    + (allies.length ? `<span class="dp-web"><span class="dp-k">sojusz z</span>${allies.map(o => tag(o, 'ins')).join('')}</span>` : '');
+                body = `<div class="dp-body"><div class="dp-info">${info}</div><div class="dp-stats">${stats}</div>${web ? '<div class="dp-webs">' + web + '</div>' : ''}`
+                    + (reply ? `<div class="dp-reply ${reply.ok === null ? '' : reply.ok ? 'ok' : 'no'}">${esc(reply.text)}</div>` : '')
+                    + (btns ? `<div class="dp-btns">${btns}</div>` : '') + note + '</div>';
+            }
+            groups[cls].push(`<div class="dp-card ${cls}${open ? ' open' : ''}" style="--nc:${n.color}">
+                <div class="dp-row" data-dpx="${idx}">${Rulers.img(n, g, 30)}<b class="dp-name" style="color:${n.color}">${nm(n)}</b>${tags}
+                    <span class="dp-sum">${sum}</span>${main}<span class="dp-chev">▾</span></div>${body}</div>`);
         }
         const sec = (title, list, cls) => list.length ? `<div class="dp-sec ${cls}"><span>${title}</span><i>${list.length}</i></div>${list.join('')}` : '';
         const dead = groups.dead.length ? `<div class="dp-sec dead"><span>Pokonani</span><i>${groups.dead.length}</i></div><div class="dp-dead">${groups.dead.map(n => `<span>${Rulers.img(n, g, 20)}${nm(n)}</span>`).join('')}</div>` : '';
+
+        // --- kronika ---
         const EVC = { war: 'war', peace: 'pc', alliance: 'al', break: 'br', tribute: 'tr' };
-        const log = D.history.slice(-6).reverse().map(h => {
+        const EVT = {
+            war: (a, b) => `${tag(a)} wypowiadają wojnę ${tag(b, 'dat')}`, peace: (a, b) => `${tag(a)} i ${tag(b)} zawierają pokój`,
+            alliance: (a, b) => `${tag(a)} i ${tag(b)} zawierają sojusz`, break: (a, b) => `${tag(a)} zrywają sojusz z ${tag(b, 'ins')}`,
+            tribute: (a, b) => `${tag(a)} płacą trybut ${tag(b, 'dat')}`
+        };
+        const since = this._dpNewSince === undefined ? Infinity : this._dpNewSince;
+        const hist = D.history.slice(-(this._dpLogAll ? 12 : 4)).reverse();
+        const log = hist.map(h => {
             const a = g.nations[h.a], b = g.nations[h.b];
-            if (!a || !b) return '';
-            return `<div class="dp-ev ${EVC[h.kind] || ''}"><small>${mmss(h.t)}</small><span class="dp-ev-i"></span><span>${tag(a)} ${DIPLO.KIND[h.kind] || h.kind} ${tag(b)}</span></div>`;
+            if (!a || !b || !EVT[h.kind]) return '';
+            const mine = a === me || b === me;
+            return `<div class="dp-ev ${EVC[h.kind] || ''}${h.t > since ? ' new' : ''}${mine ? ' mine' : ''}"><small>${mmss(h.t)}</small><span class="dp-ev-i"></span><span>${EVT[h.kind](a, b)}</span></div>`;
         }).join('');
-        const status = truce > 0
-            ? `<span class="dp-chip truce" title="Na początku gry nikt nie może wypowiedzieć wojny">Rozejm · ${mmss(truce)}</span>`
-            : `<span class="dp-chip war" title="Nacje w wojnie z tobą">Wojna ${counts[0]}</span><span class="dp-chip ally" title="Twoi sojusznicy">Sojusz ${counts[2]}</span><span class="dp-chip" title="Nacje w pokoju z tobą">Pokój ${counts[1]}</span>`;
-        const html = `<div class="dp-head">${Rulers.img(me, g, 36)}<div class="dp-ht"><b>Dyplomacja</b><small>${truce > 0 ? 'Rozejm: nikt nie może jeszcze wypowiedzieć wojny' : 'Wojny, pokoje, sojusze i trybuty zmieniają się w trakcie gry'}</small></div><div class="dp-chips">${status}</div></div>
-            <div class="dp-goals"><div class="dp-gt">Warunki zwycięstwa</div>${goals}</div>
+        const more = D.history.length > 4 ? `<button class="dp-more" data-dpl="1">${this._dpLogAll ? 'mniej ▴' : 'więcej ▾'}</button>` : '';
+
+        const status = (truce > 0 ? `<span class="dp-chip truce" title="Na początku gry nikt nie może wypowiedzieć wojny">Rozejm · ${mmss(truce)}</span>` : '')
+            + `<span class="dp-chip">${this.diploCountsHtml(counts)}</span>`;
+        const html = `<div class="dp-head">${Rulers.img(me, g, 30)}<b>Dyplomacja</b><div class="dp-chips">${status}</div></div>
+            ${goals}
             ${props ? '<div class="dp-props">' + props + '</div>' : ''}
             <div class="dp-list">${sec('Wojna z tobą', groups.war, 'war')}${sec('Twoi sojusznicy', groups.ally, 'ally')}${sec('W pokoju z tobą', groups.peace, 'peace')}${dead}</div>
-            ${log ? '<div class="dp-log"><div class="dp-sec"><span>Kronika</span></div>' + log + '</div>' : ''}
-            <div class="np-hint"><b>Tab</b> zamyka panel · wojnę potwierdzasz drugim kliknięciem</div>`;
+            ${log ? '<div class="dp-log"><div class="dp-sec"><span>Kronika</span>' + more + '</div>' + log + '</div>' : ''}
+            <div class="np-hint">Kliknij nację, by zobaczyć szczegóły i wszystkie akcje · <b>Tab</b> zamyka</div>`;
         if (html !== this._nationsSig) { this._nationsSig = html; el.innerHTML = html; }
     }
 
-    // znaczek na przycisku Dyplomacji: propozycje czekające na odpowiedź
+    // Ikony relacji (wojna - skrzyżowane miecze, sojusz - splecione pierścienie, pokój - znak pokoju)
+    dpIco(k) {
+        const P = {
+            war: '<path d="M5 4l10 10M19 4L9 14M4 5V4h1M20 5V4h-1M7 16l-2.5 2.5M17 16l2.5 2.5M6 13l5 5M18 13l-5 5"/>',
+            ally: '<circle cx="9" cy="12" r="5.2"/><circle cx="15" cy="12" r="5.2"/>',
+            peace: '<circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17M12 12l-6 6M12 12l6 6"/>'
+        };
+        return `<svg class="dp-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[k]}</svg>`;
+    }
+
+    // Liczniki relacji z tobą: wojny, sojusze, pokoje (górny pasek i nagłówek panelu)
+    diploCounts() {
+        const g = this.game, D = g.diplo, me = this.playerNation, c = [0, 0, 0];
+        for (const n of g.nations) if (n !== me && !n.defeated) c[D.get(me, n)]++;
+        return c;
+    }
+    diploCountsHtml(c) {
+        return `<span class="dp-cnt war" title="Wojny z tobą: ${c[0]}">${this.dpIco('war')}${c[0]}</span>`
+            + `<span class="dp-cnt ally" title="Twoi sojusznicy: ${c[2]}">${this.dpIco('ally')}${c[2]}</span>`
+            + `<span class="dp-cnt peace" title="Nacje w pokoju z tobą: ${c[1]}">${this.dpIco('peace')}${c[1]}</span>`;
+    }
+
+    // Propozycja albo żądanie trybutu czekające na odpowiedź gracza - w panelu Dyplomacji i w kartach poza nim
+    diploPropHtml(p) {
+        const g = this.game, me = this.playerNation;
+        const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const nm = esc(p.from.shortName || p.from.name), pt = esc(Diplomacy.payText(p.pay));
+        const left = Math.max(0, Math.ceil(p.until - g.time)), pct = Math.min(100, left / DIPLO.PROPOSAL_TTL * 100);
+        const bar = `<i class="dp-tbar"><i style="width:${pct.toFixed(1)}%"></i></i>`;
+        if (p.kind === 'tribute') {
+            const r = me.resources, can = r.get('gold') >= (p.pay.gold || 0) && r.get('food') >= (p.pay.food || 0) && r.get('wood') >= (p.pay.wood || 0);
+            return `<div class="dp-prop tribute">${Rulers.img(p.from, g, 30)}<span class="dp-prop-t"><span><b>${nm}</b> żądają trybutu</span>
+                <small><b class="tr">${pt}</b>${can ? '' : ' (zapłacisz, ile masz)'} · odmowa grozi wojną · ${left} s</small></span>
+                <span class="dp-act"><button class="dp-btn ok" data-dip="accept" data-id="${p.id}" title="Zapłata = ${DIPLO.PACT / 60} min traktatu: nikt z was nie wypowie wojny">Zapłać</button><button class="dp-btn war" data-dip="decline" data-id="${p.id}" title="Odmowa psuje stosunki i może oznaczać wojnę">Odmów</button></span>${bar}</div>`;
+        }
+        const peace = p.kind === 'peace';
+        return `<div class="dp-prop">${Rulers.img(p.from, g, 30)}<span class="dp-prop-t"><span><b>${nm}</b> proponują ${peace ? '<b class="pc">pokój</b>' : '<b class="al">sojusz</b>'}${p.pay ? ' za okup' : ''}</span>
+            <small>${p.pay ? 'dostaniesz <b class="tr">' + pt + '</b>' : peace ? 'koniec wojny i ' + DIPLO.WAR_AFTER_PEACE / 60 + ' min traktatu' : 'wspólne pole widzenia i zwycięstwo'} · ${left} s</small></span>
+            <span class="dp-act"><button class="dp-btn ok" data-dip="accept" data-id="${p.id}">Przyjmij</button><button class="dp-btn" data-dip="decline" data-id="${p.id}">Odrzuć</button></span>${bar}</div>`;
+    }
+
+    // Karty propozycji poza panelem (prawy górny róg): na propozycję odpowiadasz od razu, bez otwierania Dyplomacji.
+    // Znikają, gdy panel jest otwarty (tam są te same propozycje), najwyżej trzy naraz.
+    renderDiploInbox() {
+        const el = this.el['dp-inbox'], g = this.game, D = g.diplo, me = this.playerNation;
+        if (!el || !D) return;
+        const mine = this.nationsOpen || this.locked || g.gameOver || me.defeated ? [] : D.proposals.filter(p => p.to === me);
+        let html = mine.slice(0, 3).map(p => this.diploPropHtml(p)).join('');
+        if (mine.length > 3) html += `<div class="dp-inbox-more" data-dpo="1">i jeszcze ${mine.length - 3} — otwórz Dyplomację (Tab)</div>`;
+        if (html !== this._inboxSig) { this._inboxSig = html; el.innerHTML = html; }
+        const show = html ? 'flex' : 'none';
+        if (el.style.display !== show) el.style.display = show;
+    }
+
+    // znaczek na przycisku Dyplomacji: liczba propozycji czekających na odpowiedź albo kropka - nowe wpisy w kronice
     updateDiploBadge() {
         const D = this.game.diplo, nb = this.el['nations-btn'];
         if (!D || !nb) return;
         const k = D.proposals.filter(p => p.to === this.playerNation).length;
+        const last = D.history.length ? D.history[D.history.length - 1].t : -1;
+        const dot = !k && !this.nationsOpen && last > (this._dpSeen === undefined ? 0 : this._dpSeen);
+        const key = k + (dot ? '•' : '');
+        // liczniki wojen, sojuszy i pokojów na przycisku
+        const rel = nb.querySelector('.dp-rel'), c = this.diploCounts(), rk = c.join(',');
+        if (rel && rel._k !== rk) { rel._k = rk; rel.innerHTML = this.diploCountsHtml(c); }
         const b = nb.querySelector('.dp-badge');
-        if (b && b._k !== k) { b._k = k; b.textContent = k; b.style.display = k ? '' : 'none'; }
+        if (b && b._k !== key) { b._k = key; b.textContent = k || ''; b.classList.toggle('dot', dot); b.style.display = k || dot ? '' : 'none'; b.title = dot ? 'Nowe wpisy w kronice' : ''; }
+        this.renderDiploInbox();
     }
 
     // ---------------- Zaznaczenie ----------------
@@ -19722,7 +19831,9 @@ class Nation {
             const an = GameConfig.ages[this.age];
             if (building) { g.spawnParticle(building.x, building.y, 'levelup'); g.spawnParticle(building.x, building.y, 'complete'); }
             g.tell(this, `Wkraczasz w Erę ${an.roman} — ${an.name}!`, 'good');
-            g.tellAll(`${this.name}: Era ${an.roman} — ${an.name}`, 'info', this);
+            // Dyplomacja (do 8 nacji): o erze innej nacji słyszą tylko jej sojusznicy i wrogowie - resztę widać w panelu (Tab)
+            if (g.diplo) { for (const n of g.nations) if (n !== this && n.human && (g.diplo.allied(n, this) || g.diplo.atWar(n, this))) g.tell(n, `${this.name}: Era ${an.roman} — ${an.name}`, 'info'); }
+            else g.tellAll(`${this.name}: Era ${an.roman} — ${an.name}`, 'info', this);
             g.cue(this, 'AgeUp');
         } else if (up.ultra) {
             if (building) { g.spawnParticle(building.x, building.y, 'levelup'); g.spawnParticle(building.x, building.y, 'complete'); }
@@ -22163,14 +22274,52 @@ class Diplomacy {
 
     name(n) { return n.shortName || n.name; }
 
-    // Komunikat: strony relacji dostają go wprost (z dźwiękiem), pozostali ludzie - jako wiadomość z kroniki
+    // Odmiana nazwy nacji (TeamPalette): 'gen' - dopełniacz i biernik, 'dat' - celownik, 'ins' - narzędnik.
+    // Nazwy nacji są w liczbie mnogiej, więc komunikaty mają czasowniki w liczbie mnogiej („Zieloni proponują”).
+    static form(n, c) {
+        const s = n.shortName || n.name;
+        if (!c) return s;
+        for (const k in TeamPalette) if (TeamPalette[k].nation === s) return TeamPalette[k][c] || s;
+        return s;
+    }
+    gen(n) { return Diplomacy.form(n, 'gen'); }
+    dat(n) { return Diplomacy.form(n, 'dat'); }
+    ins(n) { return Diplomacy.form(n, 'ins'); }
+
+    // Komunikat: strony relacji dostają go wprost (z dźwiękiem). V1.0: pozostali ludzie widzą wiadomość tylko wtedy,
+    // gdy sprawa ich dotyczy (zdarzenie z udziałem ich sojusznika albo sojusz zawierany przez ich wroga) - reszta trafia
+    // tylko do kroniki w panelu Dyplomacji (przy 8 nacjach komunikaty o cudzych wojnach zasypywały ekran).
+    // textAll: tekst albo funkcja (n) => tekst / [tekst, typ] / null - wiadomość dopasowana do odbiorcy.
     announce(a, b, kind, textA, textB, textAll, typeA, typeB) {
         const g = this.game;
         this.history.push({ t: g.time, a: this.i(a), b: this.i(b), kind });
         if (this.history.length > 60) this.history.shift();
         if (textA) g.tell(a, textA, typeA || 'info');
         if (textB) { g.tell(b, textB, typeB || 'info'); if (typeB === 'alert') g.cue(b, 'Warning'); }
-        for (const n of g.nations) if (n !== a && n !== b && n.human && !n.defeated && textAll) g.tell(n, textAll, 'info');
+        if (!textAll) return;
+        for (const n of g.nations) {
+            if (n === a || n === b || !n.human || n.defeated) continue;
+            const t = typeof textAll === 'function' ? textAll(n) : this.concerns(n, a, b, kind) ? textAll : null;
+            if (t) g.tell(n, Array.isArray(t) ? t[0] : t, Array.isArray(t) ? t[1] : 'info');
+        }
+    }
+
+    // Czy zdarzenie między a i b dotyczy nacji n (dostanie komunikat, a nie tylko wpis w kronice)
+    concerns(n, a, b, kind) {
+        if (this.allied(n, a) || this.allied(n, b)) return true;
+        return kind === 'alliance' && (this.atWar(n, a) || this.atWar(n, b));
+    }
+
+    // Ostatnia odpowiedź na propozycję nacji from do nacji to - panel Dyplomacji pokazuje ją na karcie adresata
+    // (ok: true / false, null - czeka). Tylko do wyświetlenia: nie trafia do sieci (gość dostaje komunikat).
+    setReply(from, to, ok, text) {
+        if (!from.human) return;
+        if (!this.replies) this.replies = new Map();
+        this.replies.set(this.i(from) + '>' + this.i(to), { t: this.game.time, ok, text });
+    }
+    replyOf(from, to) {
+        const r = this.replies && this.replies.get(this.i(from) + '>' + this.i(to));
+        return r && this.game.time - r.t < (r.ok === null ? DIPLO.PROPOSAL_TTL + 2 : 25) ? r : null;
     }
 
     // ---------------- Okup i trybut ----------------
@@ -22252,15 +22401,16 @@ class Diplomacy {
             else this.addOp(c, a, betrayal ? -25 : (this.allied(c, b) ? -30 : -8));
         }
         const na = this.name(a), nb = this.name(b);
+        // sojusznicy napadniętego dostają wezwanie (SI rozważa je w DiplomatAI.think, ludzie - jeden komunikat z wezwaniem),
+        // sojusznicy agresora - krótką wiadomość; reszta świata widzi wojnę tylko w kronice
         this.announce(a, b, 'war',
-            `Wypowiedziałeś wojnę nacji ${nb}.` + (betrayal ? ' Sojusz zerwany — inni zapamiętają tę zdradę.' : ''),
-            `${na} wypowiada ci wojnę!` + (betrayal ? ' Zdrada sojusznika!' : '') + (why ? ' „' + why + '”' : ''),
-            `${na} wypowiada wojnę nacji ${nb}.` + (betrayal ? ' (zerwany sojusz)' : '') + (why ? ' „' + why + '”' : ''), 'warn', 'alert');
-        // sojusznicy napadniętego dostają wezwanie (SI rozważa je w DiplomatAI.think, ludzie - komunikat)
+            `Wypowiadasz wojnę ${this.dat(b)}.` + (betrayal ? ' To zdrada sojuszu — inne nacje ją zapamiętają.' : ''),
+            `${na} wypowiadają ci wojnę!` + (betrayal ? ' To zdrada sojuszu.' : '') + (why ? ' „' + why + '”' : ''),
+            (c) => this.allied(c, b) ? [`${na} napadają twoich sojuszników, ${this.gen(b)}. Możesz dołączyć do wojny (Tab).`, 'warn']
+                : this.allied(c, a) ? `Twoi sojusznicy, ${na}, wypowiadają wojnę ${this.dat(b)}` + (b === heg ? ' i wzywają cię do koalicji przeciw hegemonowi (Tab).' : '.') : null, 'warn', 'alert');
         for (const c of g.nations) {
             if (c === a || !this.alive(c) || !this.allied(c, b)) continue;
             if (c.diplomat && c.ai) c.diplomat.callToArms(b, a);
-            else if (c.human) g.tell(c, `Twój sojusznik ${nb} został napadnięty przez nację ${na}. Możesz przyłączyć się do wojny w panelu Dyplomacji (Tab).`, 'warn');
         }
         return null;
     }
@@ -22271,7 +22421,7 @@ class Diplomacy {
         this.calmUnits(a, b);
         const na = this.name(a), nb = this.name(b);
         const ok = paid && (paid.gold + paid.food + paid.wood) > 0 ? Diplomacy.payText(paid) : '';
-        this.announce(a, b, 'peace', `Zawarto pokój z nacją ${nb}.` + (ok ? ` Zapłaciłeś okup: ${ok}.` : ''), `Zawarto pokój z nacją ${na}.` + (ok ? ` Otrzymujesz okup: ${ok}.` : ''),
+        this.announce(a, b, 'peace', `Pokój z ${this.ins(b)}.` + (ok ? ` Płacisz okup: ${ok}.` : ''), `Pokój z ${this.ins(a)}.` + (ok ? ` Dostajesz okup: ${ok}.` : ''),
             `${na} i ${nb} zawierają pokój${ok ? ' (za okup)' : ''}.`, 'good', 'good');
     }
 
@@ -22280,7 +22430,7 @@ class Diplomacy {
         this.addOp(a, b, 25); this.addOp(b, a, 25);
         this.calmUnits(a, b);
         const na = this.name(a), nb = this.name(b);
-        this.announce(a, b, 'alliance', `Sojusz z nacją ${nb}! Dzielicie pole widzenia i zwycięstwo.`, `Sojusz z nacją ${na}! Dzielicie pole widzenia i zwycięstwo.`,
+        this.announce(a, b, 'alliance', `Sojusz z ${this.ins(b)}! Dzielicie pole widzenia i zwycięstwo.`, `Sojusz z ${this.ins(a)}! Dzielicie pole widzenia i zwycięstwo.`,
             `${na} i ${nb} zawierają sojusz.`, 'good', 'good');
         this.game.updateVisibility();
     }
@@ -22290,7 +22440,7 @@ class Diplomacy {
         this._set(a, b, DIPLO.PEACE);
         this.addOp(b, a, -30);
         const na = this.name(a), nb = this.name(b);
-        this.announce(a, b, 'break', `Zerwałeś sojusz z nacją ${nb} (zostaje pokój).`, `${na} zrywa sojusz z tobą (zostaje pokój).` + (why ? ' „' + why + '”' : ''), `${na} zrywa sojusz z nacją ${nb}.`, 'warn', 'warn');
+        this.announce(a, b, 'break', `Zrywasz sojusz z ${this.ins(b)} — pokój zostaje.`, `${na} zrywają sojusz z tobą (pokój zostaje).` + (why ? ' „' + why + '”' : ''), `${na} zrywają sojusz z ${this.ins(b)}.`, 'warn', 'warn');
         this.game.updateVisibility();
         return null;
     }
@@ -22301,9 +22451,9 @@ class Diplomacy {
         this.setPact(payer, to);
         this.addOp(to, payer, 15);
         this.addOp(payer, to, -10);
-        const np = this.name(payer), nt = this.name(to), txt = Diplomacy.payText(paid);
-        this.announce(payer, to, 'tribute', `Zapłacono trybut nacji ${nt}: ${txt}. Przez ${DIPLO.PACT / 60} minuty obowiązuje traktat.`,
-            `${np} płaci ci trybut: ${txt}. Przez ${DIPLO.PACT / 60} minuty obowiązuje traktat.`, `${np} płaci trybut nacji ${nt}.`, 'info', 'good');
+        const np = this.name(payer), txt = Diplomacy.payText(paid);
+        this.announce(payer, to, 'tribute', `Płacisz trybut ${this.dat(to)}: ${txt}. Traktat na ${DIPLO.PACT / 60} minuty.`,
+            `${np} płacą ci trybut: ${txt}. Traktat na ${DIPLO.PACT / 60} minuty.`, `${np} płacą trybut ${this.dat(to)}.`, 'info', 'good');
     }
 
     // po zawarciu pokoju / sojuszu: nikt nie kończy rozpoczętego ataku na nową stronę porozumienia
@@ -22345,8 +22495,8 @@ class Diplomacy {
         } else if (kind === 'alliance') {
             if (st === DIPLO.ALLY) return 'Już jesteście sojusznikami.';
             if (st === DIPLO.WAR) return 'Najpierw trzeba zawrzeć pokój.';
-            for (const c of g.nations) if (this.allied(c, to) && this.atWar(c, from)) return `${this.name(to)} jest sojusznikiem nacji ${this.name(c)}, z którą walczysz.`;
-            for (const c of g.nations) if (this.allied(c, from) && this.atWar(c, to)) return `Twój sojusznik ${this.name(c)} walczy z nacją ${this.name(to)}.`;
+            for (const c of g.nations) if (this.allied(c, to) && this.atWar(c, from)) return `${this.name(to)} są w sojuszu z ${this.ins(c)}, z którymi walczysz.`;
+            for (const c of g.nations) if (this.allied(c, from) && this.atWar(c, to)) return `Twoi sojusznicy, ${this.name(c)}, walczą z ${this.ins(to)}.`;
         } else if (kind === 'tribute') {
             if (st !== DIPLO.PEACE || !pay) return 'Trybutu można żądać tylko od nacji, z którą jest pokój.';
         } else return 'Nieznana propozycja.';
@@ -22361,8 +22511,11 @@ class Diplomacy {
                 if (kind === 'peace') this.makePeace(from, to, pay ? this.transfer(from, to, pay) : null);
                 else if (kind === 'alliance') this.makeAlliance(from, to);
                 else this.payTribute(to, from, pay);
+                this.setReply(from, to, true, kind === 'tribute' ? 'Zapłacili trybut.' : `Przyjęli ${what}.`);
             } else {
-                g.tell(from, kind === 'tribute' ? `${this.name(to)} odmawia trybutu: ${r.why}` : `${this.name(to)} odrzuca ${what}: ${r.why}`, 'warn');
+                const txt = kind === 'tribute' ? `Odmawiają trybutu — ${r.why}` : `Odrzucają ${what} — ${r.why}`;
+                this.setReply(from, to, false, txt);
+                g.tell(from, `${this.name(to)} ${txt[0].toLowerCase() + txt.slice(1)}`, 'warn');
                 if (kind === 'alliance') this.addOp(to, from, 2);   // samo zainteresowanie trochę ociepla stosunki
                 if (kind === 'tribute') this.addOp(to, from, -8);
             }
@@ -22373,11 +22526,9 @@ class Diplomacy {
         const p = { id: ++this._pid, from, to, kind, at: g.time, until: g.time + DIPLO.PROPOSAL_TTL, pay: pay || null };
         this.proposals.push(p);
         this.version++;
-        const pt = Diplomacy.payText(pay);
-        if (kind === 'tribute') g.tell(to, `${this.name(from)} żąda trybutu: ${pt}. Odmowa może oznaczać wojnę — odpowiedz w panelu Dyplomacji (Tab).`, 'warn');
-        else g.tell(to, `${this.name(from)} proponuje ${kind === 'peace' ? 'pokój' : 'sojusz'}${pay ? ' i oferuje okup: ' + pt : ''}. Odpowiedz w panelu Dyplomacji (Tab).`, 'good');
+        // V1.0: bez komunikatu dla adresata - propozycja pojawia się od razu jako karta z przyciskami (UIManager.renderDiploInbox)
         g.cue(to, kind === 'tribute' ? 'Warning' : 'Complete');
-        if (from.human) g.tell(from, `Wysłano propozycję (${what}) do nacji ${this.name(to)}.`, 'info');
+        if (from.human) this.setReply(from, to, null, `Czekasz na odpowiedź (${what}).`);
         return null;
     }
 
@@ -22393,8 +22544,11 @@ class Diplomacy {
             else if (p.kind === 'tribute' && this.get(p.from, p.to) === DIPLO.PEACE) this.payTribute(nation, p.from, p.pay);
         } else {
             this.addOp(p.from, nation, p.kind === 'tribute' ? -15 : -6);
-            this.game.tell(p.from, `${this.name(nation)} odrzuca ${p.kind === 'tribute' ? 'żądanie trybutu' : 'propozycję (' + (p.kind === 'peace' ? 'pokój' : 'sojusz') + ')'}.`, 'warn');
+            const what = p.kind === 'tribute' ? 'żądanie trybutu' : p.kind === 'peace' ? 'pokój' : 'sojusz';
+            this.setReply(p.from, nation, false, `Odrzucili ${what}.`);
+            this.game.tell(p.from, `${this.name(nation)} odrzucają ${what}.`, 'warn');
         }
+        if (accept) this.setReply(p.from, nation, true, p.kind === 'tribute' ? 'Zapłacili trybut.' : 'Przyjęli propozycję.');
         if (p.from.diplomat) p.from.diplomat.onAnswer(nation, p.kind, accept);
         return null;
     }
@@ -22428,17 +22582,18 @@ class Diplomacy {
                 if (!(t > p.until) || !this.alive(p.from)) continue;
                 if (p.kind === 'tribute') {
                     // brak odpowiedzi na żądanie trybutu to odmowa
-                    g.tell(p.from, `${this.name(p.to)} zignorował żądanie trybutu.`, 'info');
-                    if (this.alive(p.to)) { g.tell(p.to, `Nie odpowiedziałeś na żądanie trybutu nacji ${this.name(p.from)} — uznano to za odmowę.`, 'warn'); this.addOp(p.from, p.to, -15); }
+                    g.tell(p.from, `${this.name(p.to)} zignorowali żądanie trybutu.`, 'info');
+                    if (this.alive(p.to)) { g.tell(p.to, `Żądanie trybutu od ${this.gen(p.from)} wygasło bez odpowiedzi — uznano to za odmowę.`, 'warn'); this.addOp(p.from, p.to, -15); }
                     if (p.from.diplomat && this.alive(p.to)) p.from.diplomat.onAnswer(p.to, 'tribute', false);
-                } else g.tell(p.from, `${this.name(p.to)} nie odpowiedział na propozycję.`, 'info');
+                } else g.tell(p.from, `${this.name(p.to)} nie odpowiedzieli na propozycję.`, 'info');
+                this.setReply(p.from, p.to, false, 'Brak odpowiedzi — propozycja wygasła.');
             }
             this.proposals = this.proposals.filter(p => t <= p.until && this.alive(p.from) && this.alive(p.to));
             this.version++;
         }
         if (this.truceUntil > 0 && !this._truceTold && t >= this.truceUntil) {
             this._truceTold = true;
-            for (const n of g.nations) if (n.human) g.tell(n, 'Rozejm dobiegł końca — od teraz każda nacja może wypowiedzieć wojnę.', 'warn');
+            for (const n of g.nations) if (n.human) g.tell(n, 'Koniec rozejmu — od teraz każda nacja może wypowiedzieć wojnę.', 'warn');
         }
         // opinie: powolny powrót do zera; wspólny wróg zbliża, sojusz z czasem wzmacnia zaufanie
         const N = this.N, G = g.nations, k = dt * 0.02;
@@ -22501,7 +22656,7 @@ class Diplomacy {
                     for (const n of g.nations) {
                         if (!n.human) continue;
                         const mine = n === lead || this.allied(n, lead);
-                        g.tell(n, `Limit czasu: do końca ${m > 60 ? 'zostało' : 'została'} ${label}. Prowadzi ${mine && n === lead ? 'twoja nacja' : this.name(lead)} (Wynik ${lead.score()})${mine && n !== lead ? ' — twój sojusznik' : ''}.`, mine ? 'good' : 'warn');
+                        g.tell(n, `Limit czasu: do końca ${m > 60 ? 'zostało' : 'została'} ${label}. ${n === lead ? 'Prowadzi twoja nacja' : 'Prowadzą ' + this.name(lead) + (mine ? ' — twoi sojusznicy' : '')} (Wynik ${lead.score()}).`, mine ? 'good' : 'warn');
                         if (m <= 120 && !mine) g.cue(n, 'Warning');
                     }
                 }
@@ -22589,7 +22744,7 @@ class Diplomacy {
                 this._hegTold = h; this._hegToldAt = g.time;
                 if (!n.human || n.defeated) continue;
                 if (n === h) g.tell(n, 'Twoja potęga budzi strach — inne nacje mogą zawiązać przeciw tobie koalicję.', 'warn');
-                else g.tell(n, `${this.name(h)} urasta na potęgę kontynentu — pozostałe nacje coraz chętniej łączą się przeciw niej.`, 'info');
+                else g.tell(n, `${this.name(h)} urastają na hegemona kontynentu — inne nacje chętniej łączą się przeciw nim.`, 'info');
             }
         }
         return h;
@@ -22925,8 +23080,7 @@ class DiplomatAI {
             // koalicja: sojusznicy dostają wezwanie do wspólnej wojny z hegemonem
             if (pick.n === heg) for (const a of allies) {
                 if (D.atWar(a.n, pick.n)) continue;
-                if (a.n.diplomat && a.n.ai) a.n.diplomat.callToArms(me, pick.n);
-                else if (a.n.human) g.tell(a.n, `Sojusznik ${D.name(me)} rusza na nację ${D.name(pick.n)} i wzywa cię do koalicji — wojnę wypowiesz w panelu Dyplomacji (Tab).`, 'warn');
+                if (a.n.diplomat && a.n.ai) a.n.diplomat.callToArms(me, pick.n);   // ludzie: wezwanie jest w komunikacie Diplomacy.declareWar
             }
         }
     }
@@ -22973,14 +23127,14 @@ class DiplomatAI {
         if (kind === 'peace') {
             if (D.wonderOf(from)) return { ok: false, why: 'dopóki twoje Cuda grożą zwycięstwem, nie ma mowy o pokoju.' };
             const losing = their > my * 1.15;
-            if (!losing && this.hasGoal(from)) return { ok: false, why: 'dopiero zaczęła tę wojnę i chce coś na niej zyskać.' };
+            if (!losing && this.hasGoal(from)) return { ok: false, why: 'dopiero zaczęli tę wojnę i chcą coś na niej zyskać.' };
             if (!losing && from === D.hegemon() && wars <= 2) return { ok: false, why: 'koalicja przeciw najpotężniejszej nacji trwa.' };
             if (my > their * 1.8 && o.gains > o.losses * 2) payV *= 0.5;   // wygrywamy wyraźnie - okup musi być duży
             const v = their / Math.max(1, my) + (wars - 1) * 0.4 + o.op / 80 + this.exhaustion(o) * 0.5 + payV - this.aggro * 0.6
                 + (this.focus === from ? -0.2 : 0) - (this.grudge.has(from) ? 0.3 : 0);
             if (v > 0.9) { this.lastPeaceAt = this.game.time; return { ok: true, why: '' }; }
-            if (!pay && v + 0.45 > 0.9) return { ok: false, why: 'wojna jeszcze się nie rozstrzygnęła — może zgodzi się na pokój za okup.' };
-            return { ok: false, why: my > their * 1.3 ? 'czuje przewagę i chce tę wojnę wygrać.' : 'wojna jeszcze się nie rozstrzygnęła.' };
+            if (!pay && v + 0.45 > 0.9) return { ok: false, why: 'wojna jeszcze się nie rozstrzygnęła — może zgodzą się na pokój za okup.' };
+            return { ok: false, why: my > their * 1.3 ? 'czują przewagę i chcą tę wojnę wygrać.' : 'wojna jeszcze się nie rozstrzygnęła.' };
         }
         if (kind === 'tribute') {
             // płacimy, gdy żądający (z sojusznikami) jest wyraźnie silniejszy i stać nas
@@ -22988,13 +23142,13 @@ class DiplomatAI {
             const have = Math.min(pay.gold || 0, r.get('gold')) + Math.min(pay.food || 0, r.get('food')) + Math.min(pay.wood || 0, r.get('wood'));
             const afford = need > 0 ? have / need : 1;
             if (wars === 0 && afford >= 0.7 && their > my * (1.5 + this.aggro * 0.6)) return { ok: true, why: '' };
-            return { ok: false, why: 'nie ugnie się przed groźbami.' };
+            return { ok: false, why: 'nie ugną się przed groźbami.' };
         }
         // sojusz
-        if (o.op < -10) return { ok: false, why: 'nie ufa ci (pamięta dawne krzywdy).' };
+        if (o.op < -10) return { ok: false, why: 'nie ufają ci (pamiętają dawne krzywdy).' };
         const nAllies = this.game.nations.filter(n => n !== me && D.alive(n) && D.allied(me, n)).length;
-        if (nAllies >= Math.min(2, D.allyCap - 1)) return { ok: false, why: 'ma już dość sojuszników.' };
-        if (D.completesAlliance(me, from) && D.strength(me) >= D.strength(from) * 0.8) return { ok: false, why: 'chce rządzić kontynentem sama — nie podzieli się zwycięstwem.' };
+        if (nAllies >= Math.min(2, D.allyCap - 1)) return { ok: false, why: 'mają już dość sojuszników.' };
+        if (D.completesAlliance(me, from) && D.strength(me) >= D.strength(from) * 0.8) return { ok: false, why: 'chcą rządzić kontynentem sami — nie podzielą się zwycięstwem.' };
         let v = o.op / 50 + this.loyal * 0.2;
         if (this.game.nations.some(c => c !== me && c !== from && D.atWar(me, c) && D.atWar(from, c))) v += 0.7;   // wspólny wróg
         const heg = D.hegemon();
@@ -23006,7 +23160,7 @@ class DiplomatAI {
         if (heg === from) v -= 0.2;                                                                                   // nieufność wobec potęgi
         if (o.prox > 0.6) v -= 0.15;                                                                                  // za blisko: sąsiad to też rywal
         if (v >= 0.45) return { ok: true, why: '' };
-        return { ok: false, why: 'nie widzi w tym korzyści (brak wspólnego wroga, za słabe zaufanie).' };
+        return { ok: false, why: 'nie widzą w tym korzyści (brak wspólnego wroga, za słabe zaufanie).' };
     }
 }
 
@@ -29720,8 +29874,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     uiManager.showMessage(`Mapa: ${biome.name} · ${MAP_NAMES[mapType]}.` + (allies.length ? ` Sojusznicy: ${allies.join(', ')}.` : ''), 'info');
                     if (game.diplo) {
                         const D = game.diplo;
-                        uiManager.showMessage(`Dyplomacja: ${game.nations.length} nacji na kontynencie, wszyscy zaczynają w pokoju` + (D.truceUntil > 0 ? ` (rozejm: ${Math.round(D.truceUntil / 60)} min)` : '') + '. Relacje, propozycje i warunki zwycięstwa — klawisz Tab.', 'info');
-                        uiManager.showMessage('Zwycięstwo: Podbój' + (D.allianceWin ? ` · Sojusz (najwyżej ${D.allyCap} ${D.allyCap < 5 ? 'nacje' : 'nacji'}, ${DIPLO.ALLIANCE_HOLD / 60} min jako jedyni)` : '') + (game.wondersOn ? ` · Cuda Świata (${Game.GLORY_WIN} Chwały i ${Game.TRIUMPH / 60} min Triumfu)` : '') + (D.timeLimit > 0 ? ` · po ${Math.round(D.timeLimit / 60)} min najwyższy Wynik` : '') + '.', 'info');
+                        uiManager.showMessage(`Dyplomacja: ${game.nations.length} nacji, wszyscy w pokoju` + (D.truceUntil > 0 ? `, rozejm ${Math.round(D.truceUntil / 60)} min` : '') + '. Relacje i warunki zwycięstwa — klawisz Tab.', 'info');
                     }
                     uiManager.showMessage('Zaznacz robotników i wyślij ich po drewno (PPM na drzewo).', 'good');
                 }
@@ -29786,7 +29939,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 uiManager.showMessage(`Mapa: ${biome.name} · ${MAP_NAMES[w.mapType] || ''}.` + (allies.length ? ` Sojusznicy: ${allies.join(', ')}.` : ''), 'info');
                 if (game.diplo && !w.resume) {
                     const D = game.diplo;
-                    uiManager.showMessage('Dyplomacja — zwycięstwo: Podbój' + (D.allianceWin ? ` · Sojusz (najwyżej ${D.allyCap} ${D.allyCap < 5 ? 'nacje' : 'nacji'}, ${DIPLO.ALLIANCE_HOLD / 60} min jako jedyni)` : '') + (game.wondersOn ? ` · Cuda Świata (${Game.GLORY_WIN} Chwały i ${Game.TRIUMPH / 60} min Triumfu)` : '') + (D.timeLimit > 0 ? ` · po ${Math.round(D.timeLimit / 60)} min najwyższy Wynik` : '') + '. Relacje i warunki — klawisz Tab.', 'info');
+                    uiManager.showMessage(`Dyplomacja: ${game.nations.length} nacji, wszyscy w pokoju` + (D.truceUntil > 0 ? `, rozejm ${Math.round(D.truceUntil / 60)} min` : '') + '. Relacje i warunki zwycięstwa — klawisz Tab.', 'info');
                 }
                 uiManager.showMessage(w.resume ? 'Jesteś z powrotem w grze — znów dowodzisz swoją nacją.' : 'Zaznacz robotników i wyślij ich po drewno (PPM na drzewo).', 'good');
                 window.abReady = true;
@@ -29859,6 +30012,18 @@ document.addEventListener("DOMContentLoaded", () => {
         game.obstacleVersion = 1;
         if (game.diplo) game.spatialGrid.hostile = game.diplo.mask;
         for (const n of game.nations) for (const b of n.buildings) b._linksVer = -1;
+        // Siatka ścieżek i regiony osiągalności liczone od razu, na ekranie wczytywania - a nie w pierwszych krokach
+        // gry, gdzie na kontynencie Dyplomacji (144 tys. pól) dokładały się do i tak ciężkich pierwszych klatek.
+        // Liczniki zatoru jednostek startują od zera: zator to brak postępu w marszu, a pierwsze sekundy po wczytaniu
+        // nie mogą skończyć się porzuceniem rozkazu (Unit.moveStep - 6 kolejnych zatorów = goIdle).
+        const pf = game.pathfinder;
+        pf.ensureGrid();
+        for (const n of game.nations) {
+            if (n.defeated) continue;
+            pf.getRegions(pf.landGrid, n.team);
+            if (n.units.some(u => u.isShip)) pf.getRegions(pf.boatGrid, n.team);
+            for (const u of n.units) { if (!u.isDestroyed && u.resetStuck) u.resetStuck(); }
+        }
         // odkryta mapa każdej drużyny
         for (const [team, b64] of data.explored || []) {
             const tv = game.teamGrids(team), src = SaveGame.unb64('Uint8Array', b64);
