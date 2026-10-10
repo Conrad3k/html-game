@@ -28653,7 +28653,10 @@ const SaveGame = {
         '_slowTime _okTime _fastAt _fxA unitsOnScreen _bFlat _bObjs _bUnits _bWalls screenW screenH _tix _nodeQ _playerNation placeError ' +
         'terrain minimap started _visTeams _localAdopted _visStamp _visRad _visGen visRowSpans _fullGrid _pumpLast _budgetExternal ' +
         'fogUpdateTimer drawScale nearK cloudSprite cloudSize clouds rawFogCanvas rawFogCtx fogImageData fogSettled fogEmpty fogDirty ' +
-        '_trk _fogVis _fogExp _mist intro stuck ruins hostPaused byId obstacleVersion zoom zoomTarget lastAutosave').split(' ')),
+        '_trk _fogVis _fogExp _mist intro stuck ruins hostPaused byId obstacleVersion zoom zoomTarget lastAutosave ' +
+        // pamięci podręczne efektów (płótna, konteksty, wzory) - V1.0: wcześniej _bloom, _shine, _stk i _glare trafiały
+        // do zapisu jako puste szkielety bez płócien i po wczytaniu każda klatka przerywała się wyjątkiem w drawPost
+        '_bloom _shine _stk _glare _wsL _wsG _spL _spG _glit _sparkPat _cloudHi _gust _shL _shG _mistPat _vig').split(' ')),
     // pola encji, które są tylko pamięcią podręczną obrazu albo przynależnością do siatek odtwarzanych przy wczytaniu
     ENTITY_SKIP: new Set(['_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf', '_gridLayer', '_gridTeam', '_gridKey', '_grid',
         '_links', '_linksVer', 'isSelected', 'netHidden', 'netFresh']),
@@ -28730,7 +28733,18 @@ const SaveGame = {
             const keys = Object.keys(o);
             return (k === 'class' && o instanceof Entity) ? keys.filter(f => !ES.has(f)) : keys;
         };
-        const gameKeys = Object.keys(g).filter(k => !GS.has(k));
+        // Pole, które trzyma płótno, kontekst albo wzór (także w obiekcie lub tablicy, do 3 poziomów w głąb), to pamięć
+        // podręczna obrazu: nie da się jej zapisać, a pusty szkielet po wczytaniu psuje rysowanie - pomijamy je całe
+        const holdsGfx = (v, d) => {
+            if (!v || typeof v !== 'object') return false;
+            const k = kind(v);
+            if (k === 'drop') return true;
+            if (d >= 3 || (k !== 'arr' && k !== 'obj')) return false;
+            const vals = k === 'arr' ? v : Object.values(v);
+            for (let i = 0; i < vals.length && i < 64; i++) if (holdsGfx(vals[i], d + 1)) return true;
+            return false;
+        };
+        const gameKeys = Object.keys(g).filter(k => !GS.has(k) && !holdsGfx(g[k], 0));
 
         // 1. przejście: ile odwołań prowadzi do każdego obiektu (obiekty z kilkoma odwołaniami dostaną numer)
         const count = new Map(), stack = [];
@@ -28896,8 +28910,10 @@ const SaveGame = {
             for (const k in v) o[k] = dec(v[k]);
             return o;
         };
-        // kolejność odczytu taka sama jak zapisu: najpierw pola gry, potem tablica obiektów
-        for (const k in data.game) g[k] = dec(data.game[k]);
+        // kolejność odczytu taka sama jak zapisu: najpierw pola gry, potem tablica obiektów. Pola z listy GAME_SKIP
+        // (np. pamięci podręczne efektów w zapisach sprzed poprawki) są odczytywane, ale nie trafiają do gry - gra
+        // zbuduje je od nowa przy rysowaniu
+        for (const k in data.game) { const v = dec(data.game[k]); if (!this.GAME_SKIP.has(k)) g[k] = v; }
         for (let i = 0; i < T.length; i++) {
             const f = data.table[i].f, o = T[i];
             for (const k in f) o[k] = dec(f[k]);
