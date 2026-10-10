@@ -1793,7 +1793,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <div>
                                 <h3>Jak zdobyć sojusznika</h3>
                                 <ul>
-                                    <li><b>Umowa handlowa</b> — najłatwiejsza: obie strony dostają złoto co minutę (ok. 9–14 w I erze, 18–27 w IV; więcej z daleka), a stosunek partnera rośnie o 5, z czasem o 10. Ile zarabiasz, widać w Przeglądzie ekranu Dyplomacji i obok złota w górnym pasku. Najwyżej 3 umowy naraz.</li>
+                                    <li><b>Umowa handlowa</b> — najłatwiejsza: obie strony dostają złoto co minutę (ok. 5–8 w I erze, 11–17 w IV; więcej z daleka), a stosunek partnera rośnie o 5, z czasem o 10. Ile zarabiasz, widać w Przeglądzie ekranu Dyplomacji i obok złota w górnym pasku. Najwyżej 3 umowy naraz.</li>
                                     <li><b>Pakt o nieagresji</b> — 6 minut, w których żadna strona nie wypowie wojny. Dobry na groźnego sąsiada.</li>
                                     <li><b>Dar</b> (złoto, żywność, drewno, kamień) — od razu poprawia stosunek: tym bardziej, im biedniejszy obdarowany. Kolejne dary w krótkim czasie cieszą coraz mniej, wdzięczność szybko blednie, a sojuszu samymi darami nie kupisz.</li>
                                     <li><b>Sojusz</b> wymaga zaufania albo wspólnego wroga czy zagrożenia. Sojusznik broni sojusznika i przyjmuje wezwania do wojny — a ten, kto odmawia, traci zaufanie.</li>
@@ -1823,7 +1823,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <h3>Dyplomacja z głębią: stosunki z powodami i drabina zaufania</h3>
                         <ul>
                             <li><b>Stosunek z powodami</b>: to, co nacja myśli o innej, to suma konkretnych spraw. <b>Pamięć</b> — napaść, zdrada sojuszu, wojny wywołane z innymi, dary, zawarty pokój i sojusz, zapłacony albo wymuszony trybut, odrzucone propozycje, pomoc w wojnie albo jej brak, zerwane umowy — każda sprawa blednie we własnym tempie (zdrada najwolniej). <b>Sytuacja</b> — wspólny wróg, sojusz z jej wrogiem, umowa handlowa, pakt, spór o granice z bliskim sąsiadem, sympatia albo niechęć władców, strach przed hegemonem i przed nacją, której Cuda grożą zwycięstwem. Ekran Dyplomacji pokazuje każdy powód z wartością.</li>
-                            <li><b>Umowa handlowa</b>: obie strony dostają złoto co minutę, dopóki nie ma między nimi wojny — więcej w wyższych erach i z dalekim kontrahentem (od ok. 9–14 złota na minutę w I erze do ok. 18–27 w IV — nie zastąpi robotników przy złożach, ale się sumuje). Najwyżej 3 umowy naraz; handel buduje zaufanie, a wojna z partnerem handlowym kosztuje dochód.</li>
+                            <li><b>Umowa handlowa</b>: obie strony dostają złoto co minutę, dopóki nie ma między nimi wojny — więcej w wyższych erach i z dalekim kontrahentem (od ok. 5–8 złota na minutę w I erze do ok. 11–17 w IV — to dodatek mniej więcej na miarę jednego robotnika przy złożu, a nie źródło bogactwa). Najwyżej 3 umowy naraz; handel buduje zaufanie, a wojna z partnerem handlowym kosztuje dochód.</li>
                             <li><b>Pakt o nieagresji</b>: 6 minut, w których żadna ze stron nie wypowie wojny (odnowić można w ostatnich 5 minutach). <b>Dar</b>: 100, 250 albo 500 złota, żywności, drewna lub kamienia — sympatia rośnie od razu, tym bardziej, im biedniejszy obdarowany (bogata nacja w III erze ledwo zauważy 500 złota). Kolejne dary w ciągu 5 minut cieszą coraz mniej, wpis „Dary” ma najwyżej +25, dar od wroga w czasie wojny działa w połowie, a przy ocenie sojuszu SI liczy tylko połowę sympatii z darów — sojuszu nie da się kupić. Przyciski daru pokazują, o ile mniej więcej wzrośnie stosunek.</li>
                             <li><b>Wezwanie do wojny</b>: poproś sojusznika (albo życzliwą nację) o wspólną wojnę z twoim wrogiem; SI zgadza się, gdy jej się to opłaca. Sojusznicy wzywają też ciebie — karta „Wypowiedz wojnę / Odmów”; odmowa sojusznikowi obniża zaufanie, a sojusznik, który nigdy nie pomaga, może zerwać sojusz.</li>
                             <li><b>Drabina zaufania</b>: handel i pakt SI przyjmuje łatwo, sojusz — dopiero przy zaufaniu albo wspólnym wrogu czy zagrożeniu. Każda propozycja ma na ekranie Dyplomacji pasek <b>gotowości</b> (ocena SI z czynnikami w podpowiedzi) i powód odmowy, np. „Za mało zaufania — dary, handel, pakt albo wspólny wróg to zmienią”.</li>
@@ -22761,10 +22761,11 @@ const DIPLO = {
     NAP: 360,                   // pakt o nieagresji: 6 minut, można odnowić
     TRADE_MAX: 3,               // najwyżej 3 umowy handlowe naraz
     // Umowa handlowa (V1.0, po testach): (TRADE_BASE + TRADE_AGE × era słabszej strony) złota na minutę dla każdej strony,
-    // ×1..×(1 + TRADE_FAR) z odległością stolic - I era ok. 9-14, IV era ok. 18-27 na umowę; 3 umowy w IV erze to najwyżej
-    // ok. 80/min, mniej niż Kolos (120). Wcześniej 2× tyle (do ~170/min) - handel przyćmiewał gospodarkę i Cuda.
+    // ×1..×(1 + TRADE_FAR) z odległością stolic - I era ok. 5-8, IV era ok. 11-17 na umowę; 3 umowy w IV erze to najwyżej
+    // ok. 50/min, mniej więcej jeden robotnik przy złocie. Wcześniej 2 obniżki (z ~170/min, potem ~80/min) - handel
+    // przyćmiewał gospodarkę i Cuda; ma być dodatkiem i powodem do pokoju, a nie źródłem tysięcy złota.
     // Partner myśli o tobie lepiej o TRADE_OP, z czasem (co 3 min +1) do 2 × TRADE_OP.
-    TRADE_BASE: 6, TRADE_AGE: 3, TRADE_FAR: 0.5, TRADE_OP: 5,
+    TRADE_BASE: 3, TRADE_AGE: 2, TRADE_FAR: 0.5, TRADE_OP: 5,
     GLORY_PACE: 0.6,            // Chwała z Cudów w Dyplomacji rośnie wolniej (kontynent jest wielki, a partia ma czas na politykę)
     // Tempo świata (V1.0): po rozejmie SI nie rusza wszystkimi naraz. Pierwsza dobrowolna wojna najwcześniej
     // FIRST_WAR s po rozejmie, kolejne co WAR_GAP s (odstęp maleje z każdą minutą do WAR_GAP_MIN), sojusze,
@@ -24191,8 +24192,8 @@ class DiplomatAI {
             return;
         }
 
-        // 6) wsparcie sojusznika, który przegrywa wojnę: złoto (najwyżej co 5 minut)
-        if (allies.length && g.time - this.aidAt > 300 && me.resources.get('gold') > 700) {
+        // 6) wsparcie sojusznika, który przegrywa wojnę: 150 złota (najwyżej co 7 minut)
+        if (allies.length && g.time - this.aidAt > 420 && me.resources.get('gold') > 900) {
             for (const a of allies) {
                 const foes = others.filter(x => x.n !== a.n && D.atWar(a.n, x.n));
                 if (!foes.length) continue;
@@ -24200,7 +24201,7 @@ class DiplomatAI {
                 if (foe.bloc < this.bloc(a.n) * 1.2) continue;
                 this.aidAt = g.time;
                 this.log(`wspiera sojusznika ${D.name(a.n)} złotem w wojnie z ${D.name(foe.n)}`);
-                D.gift(me, a.n, { gold: 250 });
+                D.gift(me, a.n, { gold: 150 });
                 return;
             }
         }
