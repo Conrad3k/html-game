@@ -1865,7 +1865,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <h3>Testy przed premierą: balans i poprawki</h3>
                         <ul>
                             <li><b>Balans jednostek</b> sprawdzony pojedynkami oddziałów za równe koszty (20 rodzajów wojska, każdy z każdym). <b>Husarz</b> wygrywał z prawie wszystkimi, także ze swoimi kontrami — teraz ma 230 życia, szarżę ×2,2 (z Hartowanymi Kopiami ×2,7) i kosztuje 100 żywności + 110 złota: nadal rozbija łuczników, harcowników i machiny, ale przegrywa z muszkieterami, arkebuzerami, rajtarami, halabardnikami i włócznikami. <b>Muszkieter</b> strzela co 1,55 s (było 1,7 s). <b>Grenadier</b> ma większy wybuch i zadaje piechocie ×1,25 obrażeń — naprawdę rozbija zwarte szyki. <b>Arkebuzer</b> zadaje kawalerii ×1,8 obrażeń (było ×1,4) i strzela co 2,2 s — wreszcie powstrzymuje rycerzy i husarię.</li>
-                            <li><b>Pokonana nacja znika z mapy</b>: resztki jej wojska się rozpierzchają, a osada obraca się w perzynę. Wcześniej nacja bez Ratusza zostawiała bezpańskie oddziały (w kampaniach SI nawet ponad 50 żołnierzy) i wieże, które walczyły dalej, choć już przegrała. Gdy porażka kończy mecz, osada zostaje do obejrzenia po bitwie.</li>
+                            <li><b>Pokonana nacja znika z mapy</b>: resztki jej wojska się rozpierzchają, a osada obraca się w perzynę. Wcześniej nacja bez Ratusza zostawiała bezpańskie oddziały (w kampaniach SI nawet ponad 50 żołnierzy) i wieże, które walczyły dalej, choć już przegrała. Gdy porażka kończy mecz, osada zostaje do obejrzenia po bitwie. W Dyplomacji pokonana nacja znika też z polityki: jej wojny, sojusze, pakty, handel i propozycje przestają obowiązywać (wcześniej martwy sojusznik w stanie wojny blokował np. sojusz z jego dawnym wrogiem).</li>
                             <li><b>Gra wieloosobowa w jednej sieci</b>: kod mieści do 6 adresów lokalnych (komputery z Wi-Fi i kablem, VPN, wirtualnymi kartami WSL / Hyper-V / VirtualBox i IPv6 — wcześniej właściwy adres potrafił wypaść z kodu), a gość czeka, aż szyfrowanie połączenia zacznie host — w jednej sieci łączy się pewnie, nawet gdy host wkleja odpowiedź po kilku minutach. Gra rozpoznaje graczy w tej samej sieci i przy niepowodzeniu podaje wskazówki właśnie dla niej (Zapora Windows i sieć prywatna, sieć dla gości, VPN, ukrywanie adresów „.local”); test sieci pokazuje adresy lokalne. Protokół 13 — wszyscy gracze potrzebują tego samego, najnowszego pliku gry.</li>
                             <li><b>Gra wieloosobowa przez internet — naprawiony główny błąd łączenia</b>: przeglądarka gościa zaczynała próby połączenia w chwili wklejenia zaproszenia i po ok. 30 s przestawała, a host zaczynał dopiero po wklejeniu odpowiedzi — zwykle minutę czy dwie później. Domowe routery (NAT) przepuszczają ruch tylko wtedy, gdy obie strony próbują jednocześnie, więc połączenie przez internet prawie nigdy nie wstawało, jeśli przesłanie kodu trwało dłużej niż pół minuty. Teraz obie strony <b>ponawiają próby co 8 sekund</b> (gość do 10 minut, host 2 minuty), aż połączenie wstanie. Sprawdzone na symulowanej sieci z dwoma routerami domowymi: wcześniej porażka już przy 60 s na przesłanie kodu, teraz połączenie nawet po ponad 3 minutach. Przy NAT-cie symetrycznym (część sieci komórkowych i akademików) nadal potrzebny jest serwer TURN — wystarczy, że poda go host.</li>
                             <li>Poczekalnia gry wieloosobowej: opisy poziomów SI zależą od trybu — w Dyplomacji mówią, jak chętnie SI wypowiada wojny i buduje Cuda, zamiast o atakach od pierwszych minut jak w Klasycznym meczu. Encyklopedia: statystyki jednostek i budynków sprawdzone z wartościami w grze (zgodne); dokładniejsze opisy Taczek, Zielarstwa i Szkutnictwa.</li>
@@ -3714,6 +3714,10 @@ class Game {
             this.tellAll(n.resigned ? `Nacja ${n.name} poddała się.` : `Nacja ${n.name} została pokonana!`, 'info', n);
             n.dissolvePending = true;   // resztki osady i wojska znikają w następnym kroku - chyba że ta porażka kończy mecz
         }
+
+        // Dyplomacja: pokonana nacja znika z polityki - jej wojny, sojusze, pakty, handel i propozycje przestają obowiązywać
+        // (wcześniej martwy sojusznik w stanie wojny blokował np. sojusz z jego dawnym wrogiem). Także w zapisach sprzed poprawki.
+        if (this.diplo) for (const n of this.nations) if (n.defeated && !n.diploGone) { n.diploGone = true; this.diplo.onDefeat(n); }
 
         const activeNations = this.nations.filter(n => !n.defeated);
         const activeTeams = new Set(activeNations.map(n => n.team));
@@ -23382,6 +23386,24 @@ class Diplomacy {
         }
     }
 
+    // Nacja odpadła z gry (Game.checkWinConditions): wszystkie jej relacje wracają do pokoju bez paktów i umów,
+    // a propozycje od niej i do niej przepadają - nie liczy się już jako czyjś wróg ani sojusznik
+    onDefeat(n) {
+        const N = this.N, i = this.i(n);
+        if (i < 0) return;
+        for (let j = 0; j < N; j++) {
+            if (j === i) continue;
+            this.state[i * N + j] = this.state[j * N + i] = DIPLO.PEACE;
+            this.pact[i * N + j] = this.pact[j * N + i] = 0;
+            if (this.trade) this.trade[i * N + j] = this.trade[j * N + i] = 0;
+            this.ledger[i * N + j] = this.ledger[j * N + i] = 0;
+        }
+        this.proposals = this.proposals.filter(p => p.from !== n && p.to !== n && p.target !== n);
+        for (const o of this.game.nations) if (o.diplomat && o.diplomat.focus === n) o.diplomat.focus = null;
+        this._opAt = -1;
+        this.rebuild();
+    }
+
     // Księga strat: co kto komu zniszczył w bieżącej wojnie (Game.killEntity) - podstawa zmęczenia wojną
     onKill(killer, target) {
         const victim = target.owner;
@@ -23411,8 +23433,8 @@ class Diplomacy {
         } else if (kind === 'alliance') {
             if (st === DIPLO.ALLY) return 'Już jesteście sojusznikami.';
             if (st === DIPLO.WAR) return 'Najpierw trzeba zawrzeć pokój.';
-            for (const c of g.nations) if (this.allied(c, to) && this.atWar(c, from)) return `${this.name(to)} są w sojuszu z ${this.ins(c)}, z którymi walczysz.`;
-            for (const c of g.nations) if (this.allied(c, from) && this.atWar(c, to)) return `Twoi sojusznicy, ${this.name(c)}, walczą z ${this.ins(to)}.`;
+            for (const c of g.nations) if (this.alive(c) && this.allied(c, to) && this.atWar(c, from)) return `${this.name(to)} są w sojuszu z ${this.ins(c)}, z którymi walczysz.`;
+            for (const c of g.nations) if (this.alive(c) && this.allied(c, from) && this.atWar(c, to)) return `Twoi sojusznicy, ${this.name(c)}, walczą z ${this.ins(to)}.`;
         } else if (kind === 'tribute') {
             if (st !== DIPLO.PEACE || !pay) return 'Trybutu można żądać tylko od nacji, z którą jest pokój.';
         } else if (kind === 'nap') {
@@ -24061,7 +24083,7 @@ class DiplomatAI {
         let v = add(`Stosunek do was (${opT(o.op)})`, o.op / 40);
         const gm = D.memOf(me, from).gift || 0;
         if (gm >= 1) v += add('Sojuszu nie kupi się darami', -gm * 0.5 / 40);
-        if (g.nations.some(c => c !== me && c !== from && D.atWar(me, c) && D.atWar(from, c))) v += add('Wspólny wróg', 0.5);
+        if (g.nations.some(c => c !== me && c !== from && D.alive(c) && D.atWar(me, c) && D.atWar(from, c))) v += add('Wspólny wróg', 0.5);
         const th = this.sharedThreat(from);
         if (th) v += add(`Wspólne zagrożenie: ${Diplomacy.form(th)}`, 0.35);
         v += add('Lojalny charakter', this.loyal * 0.15);
