@@ -34,6 +34,10 @@ przeglądarki (IndexedDB). Działa w obu trybach gry solo.
 krótkich kodów. Działa między Windows, macOS i Linuksem oraz w Chrome, Edge, Firefoksie i Safari; na stronie Gra
 wieloosobowa jest test sieci i opcjonalny własny serwer TURN. Wszyscy gracze muszą mieć to samo wydanie pliku.
 
+**Testy przed premierą** — balans jednostek sprawdzony pojedynkami za równe koszty (słabszy Husarz, mocniejsi Muszkieter,
+Grenadier i Arkebuzer), pokonana nacja nie zostawia już na mapie walczących dalej resztek wojska, a gra wieloosobowa
+pewniej łączy graczy w jednej sieci (więcej adresów lokalnych w kodzie, wskazówki przy niepowodzeniu; protokół 11).
+
 **Nowy wygląd i silnik Raptor** — menu z paskiem zakładek, podglądem mapy i encyklopedią, spokojniejszy interfejs w grze
 (pismo Inter i Cinzel osadzone w pliku), generator kontynentów Raptor Atlas, strumieniowanie terenu i ok. 2–3× szybsza
 symulacja.
