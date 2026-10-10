@@ -1076,6 +1076,10 @@ details.release[open] summary::after { transform: rotate(180deg); }
 details.mp-more { font-size: 13.5px; color: var(--label-3); }
 details.mp-more summary { cursor: pointer; color: var(--label-2); font-weight: 600; }
 details.mp-more[open] summary { margin-bottom: 8px; }
+.mp-turn { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 8px; margin: 8px 0; }
+.mp-turn input { min-width: 0; padding: 9px 11px; border-radius: 10px; border: 1px solid var(--hair-2); background: rgba(0, 0, 0, 0.25); color: #fff; font: 13px var(--ui); }
+.mp-turn input:focus { outline: none; box-shadow: 0 0 0 3px rgba(241, 197, 106, 0.4); }
+@media (max-width: 640px) { .mp-turn { grid-template-columns: 1fr; } }
 
 /* w grze */
 #mp-chip { display: none; }
@@ -1345,7 +1349,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 <nav class="menu-nav" aria-label="Menu główne">
                     <i class="nav-thumb instant" aria-hidden="true"></i>
                     <span class="active" data-pane="play" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="14.5 17.5 3 6 3 3 6 3 17.5 14.5"/><line x1="13" y1="19" x2="19" y2="13"/><line x1="16" y1="16" x2="20" y2="20"/><line x1="19" y1="21" x2="21" y2="19"/><polyline points="14.5 6.5 18 3 21 3 21 6 17.5 9.5"/><line x1="5" y1="14" x2="9" y2="18"/><line x1="7" y1="17" x2="4" y2="20"/><line x1="3" y1="19" x2="5" y2="21"/></svg><span class="nav-txt">Graj</span></span>
-                    <span data-pane="mp" id="nav-mp" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="nav-txt">Gra wieloosobowa</span><i class="mp-beta">Beta</i></span>
+                    <span data-pane="mp" id="nav-mp" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="nav-txt">Gra wieloosobowa</span></span>
                     <i class="nav-sep" aria-hidden="true"></i>
                     <span data-pane="units" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 7v9"/><path d="M8.5 11h7"/></svg><span class="nav-txt">Jednostki</span></span>
                     <span data-pane="buildings" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21h20"/><path d="M4 21V9h3V6h2v3h2V6h2v3h2V6h2v3h3v12"/><path d="M10 21v-4a2 2 0 0 1 4 0v4"/></svg><span class="nav-txt">Budynki</span></span>
@@ -1665,6 +1669,18 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li>Menu obsłużysz klawiaturą: <kbd>Tab</kbd> i <kbd>Enter</kbd>, w pasku zakładek strzałki <kbd>←</kbd> <kbd>→</kbd>.</li>
                         </ul>
 
+                        <h3>Gra wieloosobowa — koniec bety</h3>
+                        <ul>
+                            <li><b>Tryb wieloosobowy wychodzi z bety.</b> Mecze dla 2–4 graczy (w Dyplomacji i w Klasycznym meczu) łączą się pewniej między różnymi systemami i przeglądarkami: Windows, macOS i Linux, Chrome, Edge, Firefox i Safari.</li>
+                            <li><b>Krótsze kody</b>: kod zaproszenia i odpowiedzi to zwykle ok. 115–150 znaków zamiast 160–250 — opis połączenia jest pakowany binarnie (hasła sesji po 4–6 bitów na znak, adresy IPv4 / IPv6 / ukryte .local jako bajty, 2-bajtowy odcisk wersji i suma kontrolna zamiast nazw). Kod wklejony z komunikatora z łamaniem linii, cudzysłowami, niewidocznymi znakami albo tekstem dookoła nadal zadziała; kod przekręcony lub ucięty gra rozpozna i powie o tym wprost.</li>
+                            <li><b>Pewniejsze łączenie</b>: trzech dostawców STUN na dwóch portach, mądrzejsze zbieranie adresów (kod jest gotowy, gdy przeglądarka zna swój adres publiczny — także na komputerach z wieloma kartami sieciowymi, VPN-em czy Hyper-V), lepszy dobór adresów w kodzie (publiczne IPv4 i IPv6, przekaźnik, najlepsze adresy lokalne).</li>
+                            <li><b>Bez pośpiechu przy wymianie kodów</b>: gość czeka na hosta, aż ten wklei odpowiedź — także po minucie czy dwóch; przed pierwszym połączeniem przeglądarka gościa nie poddaje się sama, a limit czasu (25 s od wklejenia odpowiedzi) pilnuje host.</li>
+                            <li><b>Stabilniejszy start meczu</b>: świat wysyłany gościom porcjami z kontrolą przepływu, a gracz na wolniejszym komputerze, którego karta przycięła się przy malowaniu terenu, nie jest już wyrzucany za „ciszę” (45 s zamiast 12 s przy wczytywaniu, a przycięcie własnej karty nie liczy się jako cisza).</li>
+                            <li><b>Test sieci i serwer TURN</b>: na dole strony Gra wieloosobowa sprawdzisz, czy twoja sieć przepuszcza połączenia bezpośrednie (i czy nie jest to „trudna” sieć z NAT-em symetrycznym). Gdy połączenie nie wstaje, jeden z graczy może podać własny serwer TURN (przekaźnik) — wtedy połączycie się z każdej sieci.</li>
+                            <li>Skróty w kreatorze dopasowane do systemu (<kbd>⌘V</kbd> na Macu, <kbd>Ctrl+V</kbd> w Windows), czytelne komunikaty o kodzie ze starszego wydania gry.</li>
+                            <li>Przetestowane: pełny mecz Dyplomacji 4 graczy w czterech osobnych przeglądarkach (kody przez kreator, opóźniona odpowiedź, rozkazy gości, pauza, rozłączenie i przejęcie nacji przez AI), kody z opisów połączeń Chrome oraz przykładowych opisów Firefoksa i Safari, a także połączenie z niezależną implementacją WebRTC (aiortc) w obie strony.</li>
+                        </ul>
+
                         <h3>Silnik Raptor</h3>
                         <ul>
                             <li><b>Raptor Atlas</b> — generator kontynentów: pasma gór, jeziora, rzeki z dopływami i brodami, rozmieszczenie wielu nacji i regionalne surowce; układ wynika z ziarna, więc podgląd, gra i goście widzą ten sam świat.</li>
@@ -1673,7 +1689,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li><b>Zapis stanu</b>: serializer grafu obiektów symulacji (odwołania między jednostkami, nacjami i SI wracają po wczytaniu jako te same obiekty, stałe gry zapisują się ścieżką) — sprawdzony testem „zapis → wczytanie → zapis daje identyczny stan” w obu trybach.</li>
                             <li>Oba tryby przeszły serię automatycznych meczów SI kontra SI (od 2 do 8 nacji, wszystkie krainy, ukształtowania, rozmiary map i poziomy trudności, z Królami i Cudami Świata). Przy okazji poprawiony błąd: SI z ulepszeniem Wszech-wzrok brała wojsko sąsiadów, z którymi ma pokój, za atak na osadę i przestawała prowadzić politykę.</li>
                         </ul>
-                        <p class="menu-note">Gra wieloosobowa: wszyscy gracze muszą mieć to samo wydanie Reloaded V1.0 (z V3.5 ani starszymi wersjami V1.0 gra się nie połączy). Host wybiera tryb i limit czasu w poczekalni; w Dyplomacji każde z czterech miejsc to osobna nacja, a goście wypowiadają wojny, płacą trybut i zawierają sojusze tak jak w grze solo. Na mapach powyżej 8191 kroków pozycje w paczkach stanu są kodowane z dokładnością 1/4 kroku. Dalej planujemy m.in. więcej miejsc w grze wieloosobowej, mosty, kilka krain na jednym kontynencie, drugie ratusze SI i handel między nacjami w pokoju.</p>
+                        <p class="menu-note">Gra wieloosobowa: wszyscy gracze muszą mieć to samo wydanie Reloaded V1.0 (z V3.5 ani wcześniejszymi kompilacjami V1.0, w tym z wersją beta trybu wieloosobowego, gra się nie połączy). Host wybiera tryb i limit czasu w poczekalni; w Dyplomacji każde z czterech miejsc to osobna nacja, a goście wypowiadają wojny, płacą trybut i zawierają sojusze tak jak w grze solo. Na mapach powyżej 8191 kroków pozycje w paczkach stanu są kodowane z dokładnością 1/4 kroku. Gra wieloosobowa zostaje przy najwyżej 4 graczach. Dalej planujemy m.in. mosty, kilka krain na jednym kontynencie, drugie ratusze SI i handel między nacjami w pokoju.</p>
                     </div>
                     <div class="news-sub">Wcześniejsze wydania</div>
                     <details class="release">
@@ -25171,7 +25187,8 @@ class Tutorial {
 // Model: HOST LICZY, GOŚCIE OGLĄDAJĄ. Przeglądarka hosta prowadzi jedyną symulację (tę samą, co w grze solo),
 // goście wysyłają rozkazy i rysują stan świata przysłany przez hosta.
 const NetCodec = {
-    PROTOCOL: 9,                // Reloaded: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy); 9: okup, trybut, limit czasu
+    PROTOCOL: 10,               // Reloaded: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy); 9: okup, trybut, limit czasu
+                                // 10: koniec bety - krótsze kody zaproszeń (postać 3), kontrola przepływu, TURN
     SNAP: 1,                    // rodzaj wiadomości binarnej: paczka stanu jednostek
 
     UNIT_TYPES: Object.keys(GameConfig.units),
@@ -25308,60 +25325,205 @@ const NetCodec = {
 // ---------------- Kody zaproszeń ----------------
 // Dwie przeglądarki, żeby połączyć się bezpośrednio (WebRTC), muszą raz wymienić się opisem połączenia (SDP):
 // host daje "zaproszenie", gość odsyła "odpowiedź". Zamiast serwera pośredniczącego robią to gracze - kopiuj, wklej.
-// Żeby kod był krótki (jedna linijka na czacie), z opisu wyciągamy tylko to, co niepowtarzalne: hasła sesji ICE,
-// odcisk certyfikatu i adresy; resztę opisu druga strona odtwarza z szablonu. Gdyby przeglądarka wystawiła opis,
-// którego nie umiemy tak streścić, kod niesie cały opis (dłuższy, ale zawsze poprawny).
+// Opis z przeglądarki ma 600-1500 znaków; kod niesie tylko to, co w nim niepowtarzalne, upakowane binarnie:
+// hasła sesji ICE (szesnastkowe po 4 bity, pozostałe po 6 bitów na znak), odcisk certyfikatu (32 bajty) i do 7
+// najlepszych adresów (IPv4 4 bajty, IPv6 i adres ukryty .local po 16 bajtów). Zamiast nazwy wersji gry - 2-bajtowy
+// odcisk wersji, zamiast osobnej sumy kontrolnej - 2 bajty na końcu danych. Resztę opisu druga strona odtwarza
+// z szablonu. Wychodzi ok. 120 znaków zamiast 600+. Gdyby przeglądarka wystawiła opis, którego nie umiemy tak
+// streścić, kod niesie cały opis skompresowany (dłuższy, ale zawsze poprawny).
 //
-// Postać kodu:  AB + Z (zaproszenie) lub O (odpowiedź) + format + '.' + dane base64 + '.' + suma kontrolna
+// Postać kodu:  AB + Z (zaproszenie) lub O (odpowiedź) + 3 + dane base64 (bez kropek i bez dopełnienia '=')
+//   zapasowa:   AB + Z/O + 0|1 + '.' + opis (JSON, 1 = deflate) w base64 + '.' + suma kontrolna
 const InviteCode = {
-    RE: /AB([ZO])([012])\.([A-Za-z0-9+\/]+)\.([0-9a-z]{4})/,
+    RE: /AB([ZO])3([A-Za-z0-9+\/]{40,})/,
+    RE_LONG: /AB([ZO])([01])\.([A-Za-z0-9+\/]+)\.([0-9a-z]{4})/,
+    B64: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/',
+    TYPES: ['host', 'srflx', 'relay'],
+    SETUPS: ['actpass', 'active', 'passive'],
 
-    // info: { kind: 'offer' | 'answer', sdp, version, nonce, name }
-    async pack(info) {
-        const letter = info.kind === 'offer' ? 'Z' : 'O';
-        let format = '2', bytes = null;
-        try { bytes = this.packCompact(info); } catch (e) { bytes = null; }
-        if (!bytes) {
-            const raw = new TextEncoder().encode(JSON.stringify({ v: info.version, n: info.nonce, p: info.name || '', s: info.sdp }));
-            format = '0'; bytes = raw;
-            if (typeof CompressionStream !== 'undefined') {
-                try { bytes = await this.pipe(raw, new CompressionStream('deflate-raw')); format = '1'; } catch (e) { bytes = raw; format = '0'; }
-            }
-        }
-        const body = NetCodec.toBase64(bytes);
-        const head = 'AB' + letter + format + '.';
-        return head + body + '.' + NetCodec.checksum(head + body);
+    // Odcisk wydania gry i protokołu (16 bitów): kod z innej wersji rozpoznajemy bez wożenia jej nazwy
+    versionTag(version) {
+        const s = String(version) + '/' + NetCodec.PROTOCOL;
+        let h = 2166136261;
+        for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+        return (h ^ (h >>> 16)) & 0xffff;
     },
 
-    // Zwraca { kind, sdp, version, nonce, name } albo rzuca Error z polem .code:
-    //   'empty' | 'format' | 'damaged' | 'unsupported'
+    // Suma kontrolna danych (16 bitów); litera rodzaju kodu też się liczy - podmiana Z/O psuje sumę
+    sum16(bytes, n, letter) {
+        let h = 2166136261 ^ letter.charCodeAt(0);
+        for (let i = 0; i < n; i++) { h ^= bytes[i]; h = Math.imul(h, 16777619); }
+        return (h ^ (h >>> 16)) & 0xffff;
+    },
+
+    // Komunikatory potrafią wstawić do długiego "słowa" niewidoczne znaki (miękki dywiz, spacje zerowej szerokości),
+    // złamać je na kilka linii albo otoczyć cudzysłowami - to wszystko wycinamy przed odczytem
+    normalize(text) {
+        return String(text == null ? '' : text).replace(/[\s\u00AD\u180E\u200B-\u200F\u2028\u2029\u202F\u2060\uFEFF]+/g, '');
+    },
+
+    toB64(bytes) {
+        const A = this.B64;
+        let s = '';
+        for (let i = 0; i < bytes.length; i += 3) {
+            const a = bytes[i], b = i + 1 < bytes.length ? bytes[i + 1] : 0, c = i + 2 < bytes.length ? bytes[i + 2] : 0;
+            const v = (a << 16) | (b << 8) | c;
+            s += A[(v >> 18) & 63] + A[(v >> 12) & 63];
+            if (i + 1 < bytes.length) s += A[(v >> 6) & 63];
+            if (i + 2 < bytes.length) s += A[v & 63];
+        }
+        return s;
+    },
+
+    // Odczyt base64 bez atob (który odrzuca tekst o "złej" długości): niepełna końcówka jest po prostu pomijana
+    fromB64(text) {
+        const out = new Uint8Array(Math.floor(text.length * 3 / 4));
+        let acc = 0, bits = 0, o = 0;
+        for (let i = 0; i < text.length; i++) {
+            const v = this.B64.indexOf(text[i]);
+            if (v < 0) throw new Error('char');
+            acc = ((acc << 6) | v) & 0xffffff; bits += 6;
+            if (bits >= 8) { bits -= 8; out[o++] = (acc >> bits) & 255; }
+        }
+        return out.subarray(0, o);
+    },
+
+    // info: { kind: 'offer' | 'answer', sdp, version, nonce }
+    async pack(info) {
+        const letter = info.kind === 'offer' ? 'Z' : 'O';
+        let body = null;
+        try { body = this.packCompact(info); } catch (e) { body = null; }
+        if (body) {
+            const sum = this.sum16(body, body.length, letter);
+            const bytes = new Uint8Array(body.length + 2);
+            bytes.set(body); bytes[body.length] = sum & 255; bytes[body.length + 1] = sum >> 8;
+            return 'AB' + letter + '3' + this.toB64(bytes);
+        }
+        // postać zapasowa: cały opis
+        const raw = new TextEncoder().encode(JSON.stringify({ v: info.version, n: info.nonce, s: info.sdp }));
+        let format = '0', bytes = raw;
+        if (typeof CompressionStream !== 'undefined') {
+            try { bytes = await this.pipe(raw, new CompressionStream('deflate-raw')); format = '1'; } catch (e) { bytes = raw; format = '0'; }
+        }
+        const head = 'AB' + letter + format + '.', b64 = this.toB64(bytes);
+        return head + b64 + '.' + NetCodec.checksum(head + b64);
+    },
+
+    // Zwraca { kind, sdp, version, nonce } albo rzuca Error z polem .code:
+    //   'empty' | 'format' | 'damaged' | 'unsupported' | 'oldcode'
+    // version: przy kodzie zwartym nazwa naszego wydania, gdy odcisk się zgadza, a '?' gdy nie
     async unpack(text) {
         const err = (code) => { const e = new Error(code); e.code = code; return e; };
-        const clean = String(text || '').replace(/\s+/g, '');
+        const clean = this.normalize(text);
         if (!clean) throw err('empty');
-        const m = this.RE.exec(clean);
-        if (!m) throw err(/AB[ZO][012]\./.test(clean) ? 'damaged' : 'format');
-        const head = 'AB' + m[1] + m[2] + '.';
-        if (NetCodec.checksum(head + m[3]) !== m[4]) throw err('damaged');
-        const kind = m[1] === 'Z' ? 'offer' : 'answer';
-        let bytes;
-        try { bytes = NetCodec.fromBase64(m[3]); } catch (e) { throw err('damaged'); }
-        if (m[2] === '2') {
-            try { const info = this.unpackCompact(bytes); info.kind = kind; return info; } catch (e) { throw err('damaged'); }
+        let m = this.RE.exec(clean);
+        if (m) {
+            const letter = m[1], kind = letter === 'Z' ? 'offer' : 'answer';
+            let bytes;
+            try { bytes = this.fromB64(m[2]); } catch (e) { throw err('damaged'); }
+            // dane mówią same, gdzie się kończą - znaki doklejone za kodem (np. "ABZ3…dzięki") nie przeszkadzają
+            let info;
+            try { info = this.unpackCompact(bytes); } catch (e) { throw err('damaged'); }
+            const n = info.length;
+            if (n + 2 > bytes.length || this.sum16(bytes, n, letter) !== (bytes[n] | (bytes[n + 1] << 8))) throw err('damaged');
+            delete info.length;
+            info.kind = kind;
+            return info;
         }
-        if (m[2] === '1') {
-            if (typeof DecompressionStream === 'undefined') throw err('unsupported');
-            try { bytes = await this.pipe(bytes, new DecompressionStream('deflate-raw')); } catch (e) { throw err('damaged'); }
+        m = this.RE_LONG.exec(clean);
+        if (m) {
+            const head = 'AB' + m[1] + m[2] + '.';
+            if (NetCodec.checksum(head + m[3]) !== m[4]) throw err('damaged');
+            const kind = m[1] === 'Z' ? 'offer' : 'answer';
+            let bytes;
+            try { bytes = this.fromB64(m[3]); } catch (e) { throw err('damaged'); }
+            if (m[2] === '1') {
+                if (typeof DecompressionStream === 'undefined') throw err('unsupported');
+                try { bytes = await this.pipe(bytes, new DecompressionStream('deflate-raw')); } catch (e) { throw err('damaged'); }
+            }
+            let o;
+            try { o = JSON.parse(new TextDecoder().decode(bytes)); } catch (e) { throw err('damaged'); }
+            if (!o || typeof o.s !== 'string') throw err('damaged');
+            return { kind, sdp: o.s, version: o.v, nonce: o.n };
         }
-        let o;
-        try { o = JSON.parse(new TextDecoder().decode(bytes)); } catch (e) { throw err('damaged'); }
-        return { kind, sdp: o.s, version: o.v, nonce: o.n, name: o.p || '' };
+        if (/AB[ZO]2\./.test(clean)) throw err('oldcode');       // kod z wersji beta (protokół 9 i starsze)
+        throw err(/AB[ZO][0-9]/.test(clean) ? 'damaged' : 'format');
     },
 
     async pipe(bytes, stream) {
         const w = stream.writable.getWriter();
         w.write(bytes); w.close();
         return new Uint8Array(await new Response(stream.readable).arrayBuffer());
+    },
+
+    // --- adresy ---
+    parseV6(addr) {
+        let s = String(addr).replace(/^\[|\]$/g, '');
+        if (s.includes('%')) return null;                     // adres łącza z numerem interfejsu - nie do użycia z zewnątrz
+        const v4 = /^(.*:)(\d+)\.(\d+)\.(\d+)\.(\d+)$/.exec(s);    // końcówka zapisana jak IPv4 (::ffff:1.2.3.4)
+        if (v4) {
+            const q = v4.slice(2).map(Number);
+            if (q.some(x => x > 255)) return null;
+            s = v4[1] + ((q[0] << 8) | q[1]).toString(16) + ':' + ((q[2] << 8) | q[3]).toString(16);
+        }
+        const halves = s.split('::');
+        if (halves.length > 2) return null;
+        const part = (h) => h === '' ? [] : h.split(':');
+        const a = part(halves[0]), b = halves.length === 2 ? part(halves[1]) : [];
+        const fill = 8 - a.length - b.length;
+        if (halves.length === 2 ? fill < 1 : fill !== 0) return null;
+        const out = [];
+        for (const g of [...a, ...new Array(halves.length === 2 ? fill : 0).fill('0'), ...b]) {
+            if (!/^[0-9a-f]{1,4}$/i.test(g)) return null;
+            const v = parseInt(g, 16);
+            out.push(v >> 8, v & 255);
+        }
+        return out;
+    },
+
+    // Kandydaci (adresy) z opisu: tylko UDP, składnik 1. Wybór: najpierw adresy publiczne (STUN) i przekaźnika (TURN),
+    // potem lokalne - po kilka najlepszych z każdego rodzaju (wg priorytetu nadanego przez przeglądarkę).
+    pickCandidates(sdp) {
+        const all = [];
+        const re = /^a=candidate:\S+ (\d+) (\S+) (\d+) (\S+) (\d+) typ (\S+)/gm;
+        let m;
+        while ((m = re.exec(sdp))) {
+            if (m[1] !== '1' || m[2].toLowerCase() !== 'udp') continue;
+            const type = this.TYPES.indexOf(m[6]);
+            if (type < 0) continue;
+            const port = Number(m[5]);
+            if (!(port > 0 && port < 65536)) continue;
+            const addr = m[4];
+            let kind, data;
+            const v4 = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/.exec(addr);
+            const uuid = /^([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{12})\.local$/.exec(addr);
+            if (v4 && v4.slice(1).every(x => Number(x) <= 255)) { kind = 0; data = v4.slice(1).map(Number); }
+            else if (uuid) { kind = 2; const hex = uuid.slice(1).join(''); data = []; for (let i = 0; i < 32; i += 2) data.push(parseInt(hex.substr(i, 2), 16)); }
+            else if (addr.includes(':')) { data = this.parseV6(addr); if (!data) continue; kind = 1; }
+            else { kind = 3; data = Array.from(new TextEncoder().encode(addr)); if (data.length > 255) continue; }
+            if (all.some(c => c.addr === addr && c.port === port)) continue;
+            all.push({ type, kind, data, addr, port, prio: Number(m[3]) });
+        }
+        all.sort((a, b) => b.prio - a.prio);
+        const pick = [];
+        const take = (fn, max) => { let k = 0; for (const c of all) { if (k >= max) break; if (!pick.includes(c) && fn(c)) { pick.push(c); k++; } } };
+        // publiczny IPv4 (STUN): ten sam adres z innym portem (NAT symetryczny) nic nie wnosi - drugi tylko z innym adresem
+        take(c => c.type === 1 && c.kind === 0, 1);
+        take(c => c.type === 1 && c.kind === 0 && !pick.some(p => p.addr === c.addr), 1);
+        take(c => c.type === 2 && c.kind === 0, 1);            // przekaźnik TURN
+        if (!pick.some(c => c.type === 2)) take(c => c.type === 2, 1);
+        take(c => c.type === 1 && c.kind === 1, 1);            // publiczny IPv6
+        take(c => c.type === 0 && c.kind !== 1, 2);            // sieć lokalna (zwykle adres ukryty .local)
+        take(c => c.type === 0 && c.kind === 1, 1);
+        return pick;
+    },
+
+    // --- poświadczenia ICE: 0 = znaki ICE po 6 bitów, 1 = małe cyfry szesnastkowe po 4 bity, 2 = zwykły tekst ---
+    credMode(s) {
+        if (s.length > 255) return -1;
+        if (/^[0-9a-f]*$/.test(s) && s.length % 2 === 0) return 1;
+        if (/^[A-Za-z0-9+\/]*$/.test(s)) return 0;
+        return 2;
     },
 
     // --- postać zwarta ---
@@ -25373,89 +25535,104 @@ const InviteCode = {
         const fp = get(/^a=fingerprint:sha-256 (.+)$/mi);
         const setup = get(/^a=setup:(.+)$/m), mid = get(/^a=mid:(.+)$/m);
         if (!ufrag || !pwd || !fp || !setup || mid === null) return null;
-        const fpBytes = fp.split(':').map(h => parseInt(h, 16));
-        if (fpBytes.length !== 32 || fpBytes.some(b => !(b >= 0 && b <= 255))) return null;
-        const setupIdx = ['actpass', 'active', 'passive'].indexOf(setup);
+        const port = get(/^a=sctp-port:(\d+)$/m);
+        if (port !== null && port !== '5000') return null;
+        const fpBytes = fp.split(':').map(h => /^[0-9a-f]{2}$/i.test(h) ? parseInt(h, 16) : -1);
+        if (fpBytes.length !== 32 || fpBytes.some(b => b < 0)) return null;
+        const setupIdx = this.SETUPS.indexOf(setup);
         if (setupIdx < 0) return null;
-
-        // adresy: tylko UDP; najpierw publiczne (STUN), potem lokalne; najwyżej 6
-        const cands = [];
-        const re = /^a=candidate:\S+ (\d+) (\S+) \d+ (\S+) (\d+) typ (\S+)/gm;
-        let m;
-        while ((m = re.exec(sdp))) {
-            if (m[1] !== '1' || m[2].toLowerCase() !== 'udp') continue;
-            const type = ['host', 'srflx', 'relay'].indexOf(m[5]);
-            if (type < 0) continue;
-            const c = { type, addr: m[3], port: Number(m[4]) };
-            if (!cands.some(x => x.addr === c.addr && x.port === c.port)) cands.push(c);
-        }
+        const mu = this.credMode(ufrag), mp = this.credMode(pwd);
+        if (mu < 0 || mp < 0) return null;
+        const cands = this.pickCandidates(sdp);
         if (cands.length === 0) return null;
-        const rank = (c) => (c.type === 1 ? 0 : (c.type === 2 ? 1 : 2)) + (c.addr.includes(':') ? 0.5 : 0);
-        cands.sort((a, b) => rank(a) - rank(b));
-        cands.length = Math.min(cands.length, 6);
 
         const out = [];
         const str = (s) => { const b = new TextEncoder().encode(String(s)); if (b.length > 255) throw new Error('long'); out.push(b.length, ...b); };
-        out.push(1, (info.kind === 'answer' ? 1 : 0) | (setupIdx << 1));
-        str(info.version);
-        const n = info.nonce >>> 0;
-        out.push(n & 255, (n >> 8) & 255, (n >> 16) & 255, (n >>> 24) & 255);
-        str((info.name || '').slice(0, 16));
-        str(mid); str(ufrag); str(pwd);
+        const cred = (s, mode) => {
+            out.push(s.length);
+            if (mode === 2) { str(s); return; }
+            let acc = 0, bits = 0;
+            const w = mode === 1 ? 4 : 6;
+            for (const ch of s) {
+                acc = (acc << w) | (mode === 1 ? parseInt(ch, 16) : this.B64.indexOf(ch)); bits += w;
+                while (bits >= 8) { bits -= 8; out.push((acc >> bits) & 255); }
+                acc &= (1 << bits) - 1;
+            }
+            if (bits > 0) out.push((acc << (8 - bits)) & 255);
+        };
+        // bajt 0: bit 0 odpowiedź, bity 1-2 rola DTLS, bit 3 mid "0", bity 4-5 / 6-7 zapis ufrag / pwd
+        out.push((info.kind === 'answer' ? 1 : 0) | (setupIdx << 1) | (mid === '0' ? 8 : 0) | (mu << 4) | (mp << 6));
+        const tag = this.versionTag(info.version), n = info.nonce & 0xffff;
+        out.push(tag & 255, tag >> 8, n & 255, n >> 8);
+        if (mid !== '0') str(mid);
+        cred(ufrag, mu); cred(pwd, mp);
         out.push(...fpBytes);
         out.push(cands.length);
         for (const c of cands) {
-            const v4 = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/.exec(c.addr);
-            const uuid = /^([0-9a-f]{8})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{4})-([0-9a-f]{12})\.local$/i.exec(c.addr);
-            if (v4) {
-                out.push(c.type, v4[1] & 255, v4[2] & 255, v4[3] & 255, v4[4] & 255);
-            } else if (uuid) {
-                // adres ukryty przez przeglądarkę (mDNS): 16 bajtów zamiast 42 znaków
-                const hex = uuid.slice(1).join('');
-                out.push(c.type | 0x20);
-                for (let i = 0; i < 32; i += 2) out.push(parseInt(hex.substr(i, 2), 16));
-            } else {
-                out.push(c.type | 0x10);
-                str(c.addr);
-            }
-            out.push(c.port & 255, (c.port >> 8) & 255);
+            // bity 0-1 rodzaj (host / srflx / relay), bity 2-3 zapis adresu (IPv4 / IPv6 / .local / tekst)
+            out.push(c.type | (c.kind << 2));
+            if (c.kind === 3) out.push(c.data.length);
+            out.push(...c.data);
+            out.push(c.port & 255, c.port >> 8);
         }
         return new Uint8Array(out);
     },
 
+    // Zwraca { sdp, version, nonce, length } - length: ile bajtów zajęły dane (za nimi jest suma kontrolna)
     unpackCompact(b) {
         let o = 0;
         const byte = () => { if (o >= b.length) throw new Error('short'); return b[o++]; };
         const str = () => { const n = byte(); if (o + n > b.length) throw new Error('short'); const s = new TextDecoder().decode(b.subarray(o, o + n)); o += n; return s; };
-        if (byte() !== 1) throw new Error('format');
+        const cred = (mode) => {
+            const len = byte();
+            if (mode === 2) return str();
+            if (mode === 3) throw new Error('format');
+            const w = mode === 1 ? 4 : 6;
+            let s = '', acc = 0, bits = 0;
+            while (s.length < len) {
+                if (bits < w) { acc = ((acc << 8) | byte()) & 0xffff; bits += 8; }
+                bits -= w;
+                const v = (acc >> bits) & ((1 << w) - 1);
+                s += mode === 1 ? v.toString(16) : this.B64[v];
+            }
+            return s;
+        };
         const flags = byte();
-        const version = str();
-        const nonce = (byte() | (byte() << 8) | (byte() << 16) | (byte() << 24)) >>> 0;
-        const name = str(), mid = str(), ufrag = str(), pwd = str();
+        const tag = byte() | (byte() << 8);
+        const nonce = byte() | (byte() << 8);
+        const mid = (flags & 8) ? '0' : str();
+        const ufrag = cred((flags >> 4) & 3), pwd = cred((flags >> 6) & 3);
+        if (!ufrag || !pwd) throw new Error('format');
         const fp = [];
         for (let i = 0; i < 32; i++) fp.push(byte().toString(16).toUpperCase().padStart(2, '0'));
-        const setup = ['actpass', 'active', 'passive'][(flags >> 1) & 3] || 'actpass';
-        const n = byte();
+        const setup = this.SETUPS[(flags >> 1) & 3] || 'actpass';
+        const count = byte();
+        if (count < 1 || count > 16) throw new Error('format');
         const lines = [];
-        for (let i = 0; i < n; i++) {
-            const t = byte();
-            const type = t & 15;
+        for (let i = 0; i < count; i++) {
+            const t = byte(), type = t & 3, kind = (t >> 2) & 3;
+            if (type > 2 || t > 15) throw new Error('format');
             let addr;
-            if (t & 0x20) {
-                let hex = '';
-                for (let k = 0; k < 16; k++) hex += byte().toString(16).padStart(2, '0');
-                addr = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}.local`;
-            } else if (t & 0x10) addr = str();
-            else addr = `${byte()}.${byte()}.${byte()}.${byte()}`;
+            if (kind === 0) addr = `${byte()}.${byte()}.${byte()}.${byte()}`;
+            else if (kind === 3) addr = str();
+            else {
+                const x = [];
+                for (let k = 0; k < 16; k++) x.push(byte());
+                const hex = x.map(v => v.toString(16).padStart(2, '0')).join('');
+                if (kind === 2) addr = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}.local`;
+                else { const g = []; for (let k = 0; k < 32; k += 4) g.push(parseInt(hex.substr(k, 4), 16).toString(16)); addr = g.join(':'); }
+            }
+            if (!/^[0-9A-Za-z.:\-]+$/.test(addr)) throw new Error('format');
             const port = byte() | (byte() << 8);
-            const typ = ['host', 'srflx', 'relay'][type] || 'host';
+            if (!port) throw new Error('format');
+            const typ = this.TYPES[type];
             const prio = type === 0 ? 2122260223 - i : (type === 1 ? 1686052607 - i : 41885439 - i);
             // adres źródłowy (raddr) jest w SDP tylko informacją; przeglądarka go nie używa
             lines.push(`a=candidate:${i + 1} 1 udp ${prio} ${addr} ${port} typ ${typ}` + (type === 0 ? '' : ' raddr 0.0.0.0 rport 0') + ' generation 0');
         }
         const sdp = [
             'v=0',
-            `o=- ${1000000 + (nonce % 8999999)} 2 IN IP4 127.0.0.1`,
+            `o=- ${1000000 + nonce * 97} 2 IN IP4 127.0.0.1`,
             's=-',
             't=0 0',
             `a=group:BUNDLE ${mid}`,
@@ -25473,7 +25650,8 @@ const InviteCode = {
             'a=max-message-size:262144',
             ''
         ].join('\r\n');
-        return { sdp, version, nonce, name };
+        const version = tag === this.versionTag(GameConfig.version) ? GameConfig.version : '?';
+        return { sdp, version, nonce, length: o };
     }
 };
 
@@ -25545,23 +25723,45 @@ class NetLink {
 NetLink.CHUNK = 12000;
 
 // ---------------- WebRTC z ręczną wymianą kodów ----------------
-// Topologia gwiazdy: każdy gość ma jedno połączenie - z hostem. Publiczny STUN podpowiada przeglądarce jej adres
-// widziany z internetu; serwera TURN (przekaźnika) nie ma, więc w części sieci połączenia zestawić się nie da.
+// Topologia gwiazdy: każdy gość ma jedno połączenie - z hostem. Publiczne serwery STUN (kilku dostawców, na różnych
+// portach - część sieci blokuje jeden z nich) podpowiadają przeglądarce jej adres widziany z internetu. Domyślnie nie
+// ma serwera TURN (przekaźnika); gracz może podać własny w ustawieniach połączenia - wtedy łączy się z każdej sieci.
 class RtcLink extends NetLink {
     static supported() { return typeof RTCPeerConnection !== 'undefined'; }
 
+    // config: { iceServers, gatherTimeout, patient (gość: czeka na hosta, nie poddaje się przed połączeniem) }
     constructor(config) {
         super();
         this.config = config || {};
-        this.pc = new RTCPeerConnection({ iceServers: this.config.iceServers || RtcLink.ICE_SERVERS });
+        const servers = this.config.iceServers || RtcLink.iceServers();
+        this.wantRelay = servers.some(s => [].concat(s.urls || s.url || []).some(u => /^turns?:/i.test(u)));
+        try { this.pc = new RTCPeerConnection({ iceServers: servers, bundlePolicy: 'max-bundle' }); }
+        catch (e) {
+            // błędny adres serwera TURN w ustawieniach nie może zablokować gry - próbujemy bez niego
+            this.wantRelay = false;
+            this.pc = new RTCPeerConnection({ iceServers: RtcLink.ICE_SERVERS, bundlePolicy: 'max-bundle' });
+        }
         this.cmd = null;        // kanał niezawodny
         this.state = null;      // kanał stanu
+        this._q = [];           // wiadomości niezawodne czekające, aż bufor kanału się opróżni
+        this.found = { host: 0, srflx: 0, relay: 0, prflx: 0 };
+        this._lastCand = 0;
+        this.pc.addEventListener('icecandidate', (e) => {
+            if (!e.candidate || !e.candidate.candidate) return;
+            const m = / typ (host|srflx|relay|prflx)/.exec(e.candidate.candidate);
+            if (m) this.found[m[1]]++;
+            this._lastCand = performance.now();
+        });
         this.pc.onconnectionstatechange = () => this._connState();
         this.pc.oniceconnectionstatechange = () => this._connState();
     }
 
     _connState() {
         const s = this.pc.connectionState || this.pc.iceConnectionState;
+        // Gość czeka na hosta, który może wkleić odpowiedź dopiero po minucie czy dwóch. Za NAT-em próby gościa do tego
+        // czasu nie dochodzą i przeglądarka może je uznać za nieudane, choć gdy host zacznie się łączyć, połączenie
+        // jeszcze wstanie. Dlatego gość do pierwszego połączenia nie poddaje się sam; limit czasu pilnuje host.
+        if (s === 'failed' && !this.isOpen && this.config.patient) return;
         if (s === 'failed' || s === 'closed') { this._closed(this.isOpen ? 'lost' : 'failed'); return; }
         if (s === 'disconnected') {
             // chwilowa przerwa w łączu potrafi sama minąć; czekamy kilka sekund, zanim uznamy połączenie za zerwane
@@ -25578,6 +25778,8 @@ class RtcLink extends NetLink {
             this.cmd = ch;
             ch.onmessage = (e) => { if (typeof e.data === 'string') this._receiveText(e.data); };
             ch.onclose = () => this._closed(this.isOpen ? 'lost' : 'failed');
+            ch.bufferedAmountLowThreshold = RtcLink.LOW_WATER;
+            ch.onbufferedamountlow = () => this._flush();
         } else if (ch.label === 'state') {
             this.state = ch;
             ch.binaryType = 'arraybuffer';
@@ -25587,16 +25789,26 @@ class RtcLink extends NetLink {
         if (ch.readyState === 'open') ch.onopen();
     }
 
-    // Czekanie na zebranie adresów (bez "trickle ICE": w każdą stronę idzie jeden, kompletny kod)
+    // Czekanie na zebranie adresów (bez "trickle ICE": w każdą stronę idzie jeden, kompletny kod).
+    // Pełne zbieranie potrafi trwać kilkanaście sekund (Windows z kartami VPN / Hyper-V, Mac z kilkoma interfejsami
+    // - przeglądarka czeka, aż każdy z nich odpyta STUN). Nie czekamy na to: kod jest gotowy, gdy mamy adres publiczny
+    // (i przekaźnik, jeśli podano TURN), a przez 0,6 s nie przyszedł żaden nowy. Bez adresu publicznego (np. sieć
+    // bez internetu) czekamy do limitu - kod z samymi adresami lokalnymi nadal działa w jednej sieci.
     _gathered() {
-        const pc = this.pc;
+        const pc = this.pc, t0 = performance.now();
+        const limit = this.config.gatherTimeout || (this.wantRelay ? 9000 : 6000);
         return new Promise((resolve) => {
-            if (pc.iceGatheringState === 'complete') { resolve(); return; }
-            let done = false;
-            const finish = () => { if (done) return; done = true; clearTimeout(timer); pc.removeEventListener('icegatheringstatechange', check); resolve(); };
-            const check = () => { if (pc.iceGatheringState === 'complete') finish(); };
-            const timer = setTimeout(finish, this.config.gatherTimeout || 3000);
+            let done = false, iv = 0;
+            const finish = () => { if (done) return; done = true; clearInterval(iv); pc.removeEventListener('icegatheringstatechange', check); resolve(); };
+            const check = () => {
+                if (pc.iceGatheringState === 'complete') { finish(); return; }
+                const now = performance.now(), f = this.found;
+                const enough = (f.srflx > 0 || f.relay > 0) && (!this.wantRelay || f.relay > 0);
+                if ((enough && now - this._lastCand >= 600) || now - t0 >= limit) finish();
+            };
+            iv = setInterval(check, 100);
             pc.addEventListener('icegatheringstatechange', check);
+            check();
         });
     }
 
@@ -25623,9 +25835,21 @@ class RtcLink extends NetLink {
         await this.pc.setRemoteDescription({ type: 'answer', sdp });
     }
 
+    // Wysyłka z kontrolą przepływu: przy dużych wiadomościach (świat gry przy starcie, kilkaset KB) nie wrzucamy
+    // wszystkiego naraz do bufora kanału - przeglądarki mają różne limity, a przepełniony kanał się zamyka.
     _sendText(text) {
-        if (!this.cmd || this.cmd.readyState !== 'open') return;
-        try { this.cmd.send(text); this.sentBytes += text.length; } catch (e) { /* kanał właśnie się zamyka */ }
+        const ch = this.cmd;
+        if (!ch || ch.readyState !== 'open') return;
+        if (this._q.length || ch.bufferedAmount > RtcLink.HIGH_WATER) { this._q.push(text); return; }
+        try { ch.send(text); this.sentBytes += text.length; } catch (e) { /* kanał właśnie się zamyka */ }
+    }
+
+    _flush() {
+        const ch = this.cmd;
+        while (this._q.length && ch && ch.readyState === 'open' && ch.bufferedAmount <= RtcLink.HIGH_WATER) {
+            const text = this._q.shift();
+            try { ch.send(text); this.sentBytes += text.length; } catch (e) { this._q.length = 0; return; }
+        }
     }
 
     sendState(buf) {
@@ -25642,8 +25866,26 @@ class RtcLink extends NetLink {
         this._closed('closed');
     }
 }
-// Lista serwerów STUN (konfigurowalna: window.ArtificialBattles.mp.iceServers = [...])
-RtcLink.ICE_SERVERS = [{ urls: ['stun:stun.l.google.com:19302', 'stun:stun.cloudflare.com:3478'] }];
+// Serwery STUN: trzech niezależnych dostawców, porty 19302 i 3478 (Firefox ostrzega dopiero przy 5 i więcej adresach)
+RtcLink.ICE_SERVERS = [
+    { urls: ['stun:stun.l.google.com:19302', 'stun:stun.cloudflare.com:3478'] },
+    { urls: 'stun:global.stun.twilio.com:3478' }
+];
+RtcLink.HIGH_WATER = 1 << 20;        // powyżej 1 MB w buforze kanału kolejne wiadomości czekają w kolejce
+RtcLink.LOW_WATER = 256 * 1024;      // ...aż spadnie poniżej 256 KB
+
+// Własny serwer TURN gracza (ustawienia połączenia w kreatorze gry wieloosobowej), zapisany w ustawieniach gry
+RtcLink.turn = function () {
+    const S = window.Settings, t = S && S.get('mpTurn');
+    if (!t || !t.url) return null;
+    const urls = String(t.url).split(/[\s,]+/).filter(u => /^turns?:[^\s]+$/i.test(u)).slice(0, 2);
+    if (!urls.length) return null;
+    return { urls, username: String(t.user || ''), credential: String(t.pass || '') };
+};
+RtcLink.iceServers = function () {
+    const t = RtcLink.turn();
+    return t ? [RtcLink.ICE_SERVERS[0], t] : RtcLink.ICE_SERVERS;
+};
 
 // ---------------- Loopback: karty tej samej przeglądarki (BroadcastChannel) ----------------
 // Host nasłuchuje w "pokoju"; gość zgłasza się, host tworzy dla niego łącze. Żadnej sieci - do testów
@@ -25873,14 +26115,14 @@ class HostSession {
         this.cancelInvite(i);
         if (!RtcLink.supported()) { const e = new Error('nortc'); e.code = 'nortc'; throw e; }
         const link = new RtcLink({ iceServers: HostSession.iceServers || undefined, gatherTimeout: HostSession.gatherTimeout });
-        const inv = { link, nonce: (Math.random() * 0xffffffff) >>> 0, code: '', state: 'creating', error: null, guestName: '' };
+        const inv = { link, nonce: (Math.random() * 0x10000) >>> 0, code: '', state: 'creating', error: null, guestName: '' };
         s.invite = inv;
         this.changed();
         link.onOpen = () => { if (s.invite === inv) this.attach(link, s); };
         link.onClose = () => { if (s.invite === inv && inv.state === 'connecting') { inv.state = 'failed'; inv.error = 'noroute'; this.changed(); } };
         try {
             const sdp = await link.createOffer();
-            inv.code = await InviteCode.pack({ kind: 'offer', sdp, version: this.version, nonce: inv.nonce, name: this.hostName });
+            inv.code = await InviteCode.pack({ kind: 'offer', sdp, version: this.version, nonce: inv.nonce });
         } catch (err) {
             if (s.invite === inv) { inv.state = 'failed'; inv.error = 'create'; this.changed(); }
             throw err;
@@ -25903,7 +26145,6 @@ class HostSession {
         if (info.version !== this.version) throw fail('version', info.version);
         if (info.nonce !== inv.nonce) throw fail('mismatch');
         try { await inv.link.acceptAnswer(info.sdp); } catch (err) { throw fail('apply'); }
-        inv.guestName = NetCodec.clean(info.name, 16);
         inv.state = 'connecting';
         inv.error = null;
         this.changed();
@@ -26198,13 +26439,19 @@ class HostSession {
         const g = this.game, now = performance.now();
         if (g && g.started) g.pump(now);
         if (now - this._lastHouse < 900) return;
+        // Główny wątek hosta stał (generowanie świata, wolny komputer, uśpiona karta)? Wiadomości gości czekają wtedy
+        // w kolejce przeglądarki - nie wolno uznać ich za rozłączonych, zanim je odczytamy.
+        const stalled = this._lastHouse > 0 && now - this._lastHouse > 4000;
         this._lastHouse = now;
         if (this._start) this.checkStart();
         // podtrzymanie i pomiar opóźnienia; gość, który milczy od 12 s, jest uznawany za rozłączonego
+        // (gość, który wczytuje świat i maluje teren - od 45 s: na słabszym komputerze to potrafi zablokować kartę)
         for (const p of this.peers.slice()) {
+            if (stalled) p.lastSeen = Math.max(p.lastSeen, now);
             if (p.hello) p.send(['pi', now]);
             p.rate = (p.link.sentBytes - p._rateBytes); p._rateBytes = p.link.sentBytes;
-            if (now - p.lastSeen > HostSession.silenceTimeout) this.dropPeer(p, 'timeout');
+            const limit = this.phase !== 'lobby' && p.hello && !p.ready ? HostSession.loadTimeout : HostSession.silenceTimeout;
+            if (now - p.lastSeen > limit) this.dropPeer(p, 'timeout');
         }
         if (this.phase === 'lobby') { for (const p of this.peers) if (p.hello) p.send(['lobby', this.lobbyState(), p.slot.idx]); }
         this.changed();
@@ -26455,10 +26702,11 @@ class HostSession {
     }
 }
 HostSession.iceServers = null;          // null = domyślna lista z RtcLink.ICE_SERVERS
-HostSession.gatherTimeout = 3000;       // ms na zebranie adresów przy tworzeniu kodu
-HostSession.connectTimeout = 18000;     // ms na zestawienie połączenia po wklejeniu odpowiedzi
+HostSession.gatherTimeout = 0;          // ms na zebranie adresów przy tworzeniu kodu (0 = wg RtcLink: 6 s, z TURN 9 s)
+HostSession.connectTimeout = 25000;     // ms na zestawienie połączenia po wklejeniu odpowiedzi
 HostSession.readyTimeout = 25000;       // ms czekania na gości malujących teren
 HostSession.silenceTimeout = 12000;     // ms ciszy, po których gość jest uznawany za rozłączonego
+HostSession.loadTimeout = 45000;        // jw., gdy gość wczytuje świat
 
 
 /* --- net/Client.js --- */
@@ -26508,12 +26756,11 @@ class ClientSession {
         if (info.version !== this.version) throw fail('version', info.version);
         if (!RtcLink.supported()) throw fail('nortc');
         if (this.link) { try { this.link.onClose = null; this.link.close(); } catch (e) { /* zamknięte */ } }
-        const link = new RtcLink({ iceServers: HostSession.iceServers || undefined, gatherTimeout: HostSession.gatherTimeout });
+        const link = new RtcLink({ iceServers: HostSession.iceServers || undefined, gatherTimeout: HostSession.gatherTimeout, patient: true });
         this.bind(link);
         let sdp;
         try { sdp = await link.acceptOffer(info.sdp); } catch (err) { throw fail('apply'); }
-        const code = await InviteCode.pack({ kind: 'answer', sdp, version: this.version, nonce: info.nonce, name: this.name });
-        this.hostName = NetCodec.clean(info.name, 16);
+        const code = await InviteCode.pack({ kind: 'answer', sdp, version: this.version, nonce: info.nonce });
         this.phase = 'waiting';
         this.changed();
         return { code, hostName: this.hostName };
@@ -26543,8 +26790,12 @@ class ClientSession {
         this.timer = setInterval(() => {
             if (!this.link || this.link.closed) return;
             const now = performance.now();
+            // ta karta sama stała (malowanie terenu, uśpienie) - wiadomości hosta mogą jeszcze czekać w kolejce
+            if (this._tickAt && now - this._tickAt > 4000) this.lastHeard = Math.max(this.lastHeard, now);
+            this._tickAt = now;
             this.send(['pi', now]);
-            if (now - this.lastHeard > HostSession.silenceTimeout && !(this.game && document.hidden)) this.lost('lost');
+            const limit = this.phase === 'loading' ? HostSession.loadTimeout : HostSession.silenceTimeout;
+            if (now - this.lastHeard > limit && !(this.game && document.hidden)) this.lost('lost');
         }, 1000);
         window.addEventListener('pagehide', () => { try { this.send(['bye']); } catch (e) { /* zamknięte */ } });
     }
@@ -27070,13 +27321,14 @@ const MpUI = {
         empty: 'Pole jest puste — wklej kod.',
         format: 'To nie wygląda na kod z gry. Kod zaproszenia zaczyna się od „ABZ”, a kod odpowiedzi od „ABO”.',
         damaged: 'Kod jest niekompletny albo uszkodzony. Skopiuj go jeszcze raz — w całości, od pierwszego do ostatniego znaku.',
-        unsupported: 'Ta przeglądarka nie potrafi odczytać tego kodu. Użyj aktualnej wersji Chrome, Edge albo Firefoksa.',
-        nortc: 'Ta przeglądarka nie obsługuje połączeń bezpośrednich (WebRTC). Użyj aktualnej wersji Chrome, Edge albo Firefoksa.',
+        unsupported: 'Ta przeglądarka nie potrafi odczytać tego kodu. Użyj aktualnej wersji Chrome, Edge, Firefoksa albo Safari.',
+        oldcode: '<b>To kod ze starszego wydania gry</b> (wersji beta trybu wieloosobowego). Druga osoba musi pobrać najnowszy plik gry — oboje musicie mieć to samo wydanie.',
+        nortc: 'Ta przeglądarka nie obsługuje połączeń bezpośrednich (WebRTC). Użyj aktualnej wersji Chrome, Edge, Firefoksa albo Safari.',
         create: 'Przeglądarka nie zdołała przygotować kodu. Spróbuj jeszcze raz.',
         apply: 'Przeglądarka odrzuciła ten kod. Utwórz nowe zaproszenie i powtórzcie wymianę kodów.',
         mismatch: 'Ten kod odpowiedzi pochodzi z innego zaproszenia. Znajomy musi użyć kodu wygenerowanego dla tego miejsca — a jeśli zaproszenie było tworzone kilka razy, wyślij mu najnowszy kod.',
         noinvite: 'Najpierw utwórz kod zaproszenia.',
-        noroute: '<b>Nie udało się połączyć.</b> Najczęstsza przyczyna: sieć jednej ze stron (akademik, firma, część sieci komórkowych, VPN) nie przepuszcza połączeń bezpośrednich. Co można zrobić: zamieńcie się rolami (niech grę założy druga osoba), wyłączcie VPN albo użyjcie innej sieci, np. hotspotu z telefonu.',
+        noroute: '<b>Nie udało się połączyć.</b> Najczęstsza przyczyna: sieć jednej ze stron (akademik, firma, część sieci komórkowych, VPN) nie przepuszcza połączeń bezpośrednich. Co można zrobić: zamieńcie się rolami (niech grę założy druga osoba), wyłączcie VPN albo użyjcie innej sieci, np. hotspotu z telefonu. Test sieci i ustawienie serwera TURN znajdziesz na dole strony Gra wieloosobowa.',
         full: 'W tej grze nie ma już wolnego miejsca dla gracza.',
         denied: 'Host odrzucił połączenie.',
         kicked: 'Host zamknął twoje miejsce w grze.',
@@ -27092,7 +27344,9 @@ const MpUI = {
                 ? '<b>To jest kod zaproszenia</b> (zaczyna się od „ABZ”) — być może twój własny. W tym polu wklej <b>kod odpowiedzi</b> („ABO…”), który odesłał ci znajomy.'
                 : '<b>To jest kod odpowiedzi</b> (zaczyna się od „ABO”). Tutaj wklej <b>kod zaproszenia</b> („ABZ…”), który przysłał ci host.';
         }
-        if (code === 'version') return `<b>Niezgodne wersje gry.</b> Druga strona ma wersję ${this.esc(extra || '?')}, a ty ${GameConfig.version}. Oboje musicie grać w tę samą wersję — odświeżcie stronę gry (Ctrl+F5).`;
+        if (code === 'version') return extra && extra !== '?'
+            ? `<b>Niezgodne wersje gry.</b> Druga strona ma wersję ${this.esc(extra)}, a ty ${GameConfig.version}. Oboje musicie grać w tę samą wersję — pobierzcie ten sam, najnowszy plik gry.`
+            : `<b>Niezgodne wersje gry.</b> Kod pochodzi z innego wydania gry niż twoje (${GameConfig.version}). Oboje musicie grać w tę samą wersję — pobierzcie ten sam, najnowszy plik gry.`;
         return this.ERR[code] || 'Coś poszło nie tak. Spróbuj ponownie.';
     },
 
@@ -27118,7 +27372,11 @@ const MpUI = {
         const pnl = document.getElementById('mp-panel');
         if (pnl) pnl.addEventListener('click', act);
         this.pane.addEventListener('change', (e) => this.changedInput(e.target));
-        this.pane.addEventListener('input', (e) => { if (e.target.id === 'mp-name') this.setName(e.target.value); });
+        this.pane.addEventListener('input', (e) => {
+            const t = e.target;
+            if (t.id === 'mp-name') this.setName(t.value);
+            else if (t.id && t.id.startsWith('mp-turn-')) this.turnDraft()[t.id.slice(8)] = t.value;
+        });
 
         const on = (id, fn) => { const el = document.getElementById(id); if (el) el.addEventListener('click', fn); };
         on('mp-invite-close', () => this.closeReinvite());
@@ -27151,7 +27409,7 @@ const MpUI = {
     // Zamiana treści z zachowaniem tego, co gracz wpisał w pola, i miejsca kursora
     swap(el, html) {
         const keep = {};
-        el.querySelectorAll('textarea[id], input[type=text][id]').forEach(t => { keep[t.id] = t.value; });
+        el.querySelectorAll('textarea[id], input[type=text][id], input[type=password][id]').forEach(t => { keep[t.id] = t.value; });
         const a = document.activeElement;
         const focusId = a && a.id && el.contains(a) ? a.id : null;
         const sel = focusId && a.selectionStart != null ? [a.selectionStart, a.selectionEnd] : null;
@@ -27198,11 +27456,11 @@ const MpUI = {
     viewStart() {
         return `<div class="mp-wrap">
             <div class="menu-card">
-                <h2>Gra wieloosobowa — od 2 do 4 graczy <span class="mp-beta">Beta</span></h2>
+                <h2>Gra wieloosobowa — od 2 do 4 graczy</h2>
                 <p class="mp-lead">Jedna osoba <b>zakłada grę</b> i zostaje hostem — jej przeglądarka prowadzi całą rozgrywkę. Pozostali <b>dołączają</b> jako goście.
                 Gra nie ma serwera: wasze przeglądarki łączą się bezpośrednio. Żeby mogły się odnaleźć w internecie, wymieniacie między sobą dwa krótkie kody —
                 na Discordzie, Messengerze, gdziekolwiek. Kreator przeprowadzi was przez to krok po kroku; całość trwa około minuty.</p>
-                <p class="menu-note"><b>Wersja beta.</b> To pierwsze wydanie trybu wieloosobowego: mogą zdarzać się błędy, a w części sieci połączenie się nie zestawi. Gra solo i samouczek działają jak dotąd.</p>
+                <p class="menu-note">Działa między różnymi systemami i przeglądarkami — Windows, macOS i Linux, Chrome, Edge, Firefox i Safari — o ile wszyscy mają ten sam plik gry (${this.esc(GameConfig.version)}). Nie wiesz, czy twoja sieć się nadaje? Na dole strony jest <b>test sieci</b>.</p>
                 <div class="mp-name"><span class="opt-label">Twoja nazwa w grze</span>
                     <input type="text" id="mp-name" maxlength="16" placeholder="np. Conrad" value="${this.esc(this.name)}" autocomplete="off" spellcheck="false">
                     <span class="menu-note">Zobaczą ją pozostali gracze.</span></div>
@@ -27240,10 +27498,88 @@ const MpUI = {
                     <p class="menu-note">Nację gracza, który stracił połączenie, przejmuje AI. Host może zaprosić go ponownie z menu pauzy — po powrocie gracz odzyskuje dowodzenie. Jeśli z gry wyjdzie host, mecz się kończy.</p></div>
                 <div class="menu-card"><h3>Czy to bezpieczne?</h3>
                     <p class="menu-note">Tak — pod warunkiem, że grasz z ludźmi, których znasz. Połączenie jest szyfrowane i biegnie bezpośrednio między waszymi przeglądarkami, a gra przesyła nim wyłącznie dane rozgrywki: rozkazy, stan mapy i nazwy graczy. Wszystko dzieje się w zwykłej karcie przeglądarki, więc nikt nie dostaje dostępu do twoich plików, kamery ani mikrofonu.</p>
-                    <p class="menu-note"><b>Jedno warto wiedzieć:</b> kod zawiera twój adres IP — tak jak w każdej grze czy rozmowie łączonej bezpośrednio — więc osoba, z którą się łączysz, może go poznać. Dlatego wysyłaj kody w prywatnej wiadomości i nie wklejaj ich na publicznych kanałach. Kod jest jednorazowy i przestaje działać po zamknięciu karty. Przy jego tworzeniu przeglądarka pyta publiczny serwer (Google, Cloudflare) wyłącznie o własny adres; dane gry tam nie trafiają.</p></div>
+                    <p class="menu-note"><b>Jedno warto wiedzieć:</b> kod zawiera twój adres IP — tak jak w każdej grze czy rozmowie łączonej bezpośrednio — więc osoba, z którą się łączysz, może go poznać. Dlatego wysyłaj kody w prywatnej wiadomości i nie wklejaj ich na publicznych kanałach. Kod jest jednorazowy i przestaje działać po zamknięciu karty. Przy jego tworzeniu przeglądarka pyta publiczny serwer (Google, Cloudflare, Twilio) wyłącznie o własny adres; dane gry tam nie trafiają.</p></div>
             </div>
+            ${this.netCard()}
         </div>`;
     },
+
+    // ---------------- Test sieci i własny serwer TURN ----------------
+
+    netCard() {
+        const r = this.st.net, d = this.turnDraft();
+        let res = '';
+        if (r && r.busy) res = '<div class="mp-status wait"><span class="mp-spin"></span>Sprawdzam sieć — przeglądarka pyta serwery o swój adres (do kilku sekund)…</div>';
+        else if (r && r.err) res = '<div class="mp-status err"><span>Nie udało się przeprowadzić testu — ta przeglądarka nie obsługuje połączeń bezpośrednich (WebRTC) albo je wyłączono.</span></div>';
+        else if (r) {
+            const lines = [];
+            let cls = 'ok';
+            if (r.turn && !r.relay) { cls = 'err'; lines.push('✖ <b>Serwer TURN nie odpowiedział.</b> Sprawdź adres, login i hasło (albo usuń serwer, jeśli go nie potrzebujesz).'); }
+            if (r.relay) lines.push('✔ <b>Serwer TURN działa</b> — połączysz się nawet z sieci, która blokuje połączenia bezpośrednie.');
+            if (!r.pub) {
+                if (cls === 'ok') cls = r.relay ? 'ok' : 'err';
+                lines.push('✖ <b>Brak adresu publicznego</b> — serwery STUN nie odpowiedziały (sieć blokuje UDP albo nie ma internetu). ' + (r.relay ? 'Ruch pójdzie przez twój serwer TURN.' : 'Połączysz się tylko z graczami w tej samej sieci lokalnej — albo podaj serwer TURN poniżej.'));
+            } else if (r.sym) {
+                if (cls === 'ok' && !r.relay) cls = 'wait';
+                lines.push('⚠ <b>Trudna sieć</b> (NAT symetryczny — częsty w sieciach komórkowych, akademikach i firmach): dla każdego połączenia wychodzisz innym portem. Z graczem w zwykłej sieci domowej połączysz się, ale dwie takie sieci zwykle się nie dogadają — niech hostem będzie ktoś z siecią domową albo użyjcie serwera TURN.');
+            } else lines.push(`✔ <b>Sieć wygląda dobrze</b> — przeglądarka zna swój adres publiczny${r.v6 ? ' (także IPv6)' : ''}, połączenia bezpośrednie powinny działać.`);
+            if (r.len) lines.push(`Kod zaproszenia z tej sieci ma ${r.len} znaków.`);
+            res = `<div class="mp-status ${cls}"><span>${lines.join('<br>')}</span></div>`;
+        }
+        const saved = RtcLink.turn();
+        return `<details class="mp-more menu-card" id="mp-net-box"${r ? ' open' : ''}><summary>Połączenie: test sieci i własny serwer TURN</summary>
+            <p class="menu-note">Sprawdź przed grą, czy twoja sieć przepuszcza połączenia bezpośrednie. Test nic nie wysyła — przeglądarka tylko pyta serwery STUN o swój adres.</p>
+            <div class="mp-row"><button class="action-btn outline small" data-act="nettest"${r && r.busy ? ' disabled' : ''}>Sprawdź moją sieć</button></div>
+            ${res}
+            <h3>Serwer TURN (opcjonalnie)</h3>
+            <p class="menu-note">Gdy połączenie nie wstaje mimo zamiany ról (oboje w trudnych sieciach), ruch gry może popłynąć przez przekaźnik TURN. Wystarczy, że poda go <b>jedna osoba</b> — najlepiej host. Adres, login i hasło dostaniesz od dostawcy usługi TURN (część ma darmowe plany) albo z własnego serwera (np. coturn). Adres ma postać <code>turn:adres:3478</code> (albo <code>turns:adres:443</code>). Dane zostają tylko w tej przeglądarce.</p>
+            <div class="mp-turn">
+                <input type="text" id="mp-turn-url" placeholder="turn:adres-serwera:3478" value="${this.esc(d.url)}" autocomplete="off" spellcheck="false">
+                <input type="text" id="mp-turn-user" placeholder="login" value="${this.esc(d.user)}" autocomplete="off" spellcheck="false">
+                <input type="password" id="mp-turn-pass" placeholder="hasło" value="${this.esc(d.pass)}" autocomplete="new-password">
+            </div>
+            <div class="mp-row"><button class="action-btn outline small" data-act="turnsave">Zapisz serwer</button>${saved ? '<button class="action-btn outline small" data-act="turnclear">Usuń serwer</button>' : ''}
+                <span class="menu-note">${saved ? '✔ Używany serwer: ' + this.esc(saved.urls.join(', ')) : 'Brak — łączycie się bezpośrednio.'}</span></div>
+            ${this.st.turnErr ? '<div class="mp-status err"><span>Adres serwera musi zaczynać się od „turn:” albo „turns:”, np. turn:adres:3478.</span></div>' : ''}
+        </details>`;
+    },
+
+    turnDraft() {
+        if (!this.st.turn) { const S = window.Settings, t = (S && S.get('mpTurn')) || {}; this.st.turn = { url: t.url || '', user: t.user || '', pass: t.pass || '' }; }
+        return this.st.turn;
+    },
+
+    async netTest() {
+        const r = this.st.net = { busy: true };
+        this.render();
+        let link = null;
+        try {
+            if (!RtcLink.supported()) throw new Error('nortc');
+            link = new RtcLink({ iceServers: HostSession.iceServers || undefined });
+            r.turn = link.wantRelay;
+            link.pc.createDataChannel('test');
+            await link.pc.setLocalDescription(await link.pc.createOffer());
+            await link._gathered();
+            const sdp = link.pc.localDescription.sdp;
+            const ports = new Map();
+            for (const m of sdp.matchAll(/^a=candidate:\S+ 1 (\S+) \d+ (\S+) (\d+) typ (\S+)/gm)) {
+                if (m[1].toLowerCase() !== 'udp') continue;
+                if (m[4] === 'relay') r.relay = true;
+                if (m[4] !== 'srflx') continue;
+                r.pub = true;
+                if (m[2].includes(':')) r.v6 = true;
+                if (!ports.has(m[2])) ports.set(m[2], new Set());
+                ports.get(m[2]).add(m[3]);
+            }
+            // ten sam adres publiczny z różnymi portami (dla różnych serwerów STUN) = NAT symetryczny
+            r.sym = [...ports.values()].some(p => p.size > 1);
+            r.len = (await InviteCode.pack({ kind: 'offer', sdp, version: GameConfig.version, nonce: 0 })).length;
+        } catch (e) { r.err = true; }
+        if (link) link.close();
+        r.busy = false;
+        if (this.st.net === r) this.render();
+    },
+
 
     steps(labels, cur, role) {
         let h = '<div class="mp-steps">';
@@ -27383,7 +27719,7 @@ const MpUI = {
         } else {
             s3 = `<div class="mp-sub on"><i>3</i><div><h4>Wklej kod odpowiedzi od znajomego</h4>
                 <p class="mp-why">Gdy znajomy wklei twoje zaproszenie, jego gra pokaże <b>kod odpowiedzi</b> (zaczyna się od „ABO”). Niech ci go odeśle — wklej go tutaj.</p>
-                <textarea class="mp-code in" id="mp-ans-${i}" spellcheck="false" placeholder="Tutaj wklej kod odpowiedzi (Ctrl+V)"></textarea>
+                <textarea class="mp-code in" id="mp-ans-${i}" spellcheck="false" placeholder="Tutaj wklej kod odpowiedzi (${this.pasteKey()})"></textarea>
                 <div class="mp-row"><button class="action-btn gold" data-act="answer" data-slot="${i}"${ui.busy ? ' disabled' : ''}>Połącz</button><button class="action-btn outline small" data-act="paste" data-target="mp-ans-${i}">Wklej ze schowka</button>
                     <button class="action-btn outline small" data-act="invite" data-slot="${i}" title="Poprzedni kod przestanie działać">Nowy kod</button></div>
                 ${ui.err ? `<div class="mp-status err"><span>${this.errText(ui.err, ui.extra)}</span></div>` : ''}</div></div>`;
@@ -27466,7 +27802,7 @@ const MpUI = {
             body = `<div class="mp-grid">
                 <div class="menu-card"><h2>Wklej kod zaproszenia</h2>
                     <p>Host tworzy kod w swojej grze i wysyła ci go w wiadomości. Skopiuj go <b>w całości</b> i wklej poniżej. Kod zaproszenia zaczyna się od „ABZ”.</p>
-                    <textarea class="mp-code in" id="mp-g-invite" spellcheck="false" placeholder="Tutaj wklej kod zaproszenia od hosta (Ctrl+V)"></textarea>
+                    <textarea class="mp-code in" id="mp-g-invite" spellcheck="false" placeholder="Tutaj wklej kod zaproszenia od hosta (${this.pasteKey()})"></textarea>
                     <div class="mp-row"><button class="action-btn gold" data-act="gaccept"${g.busy ? ' disabled' : ''}>Dalej →</button>
                         <button class="action-btn outline small" data-act="paste" data-target="mp-g-invite">Wklej ze schowka</button></div>
                     ${g.busy ? '<div class="mp-status wait"><span class="mp-spin"></span>Przygotowuję kod odpowiedzi — przeglądarka sprawdza swój adres w internecie (do kilku sekund)…</div>' : ''}
@@ -27612,6 +27948,20 @@ const MpUI = {
                 break;
             }
             case 'reinvite': this.openReinvite(i); return;
+            case 'nettest': await this.netTest(); return;
+            case 'turnsave': {
+                const t = this.turnDraft();
+                const url = t.url.trim();
+                this.st.turnErr = !!url && !String(url).split(/[\s,]+/).every(u => /^turns?:\S+$/i.test(u));
+                if (!this.st.turnErr && window.Settings) window.Settings.set('mpTurn', url ? { url, user: t.user.trim(), pass: t.pass } : null);
+                this.st.net = null;
+                break;
+            }
+            case 'turnclear': {
+                if (window.Settings) window.Settings.set('mpTurn', null);
+                this.st.turn = { url: '', user: '', pass: '' }; this.st.turnErr = false; this.st.net = null;
+                break;
+            }
         }
         this.render();
     },
@@ -27652,11 +28002,13 @@ const MpUI = {
         return false;
     },
 
+    pasteKey() { return /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent || '') ? '⌘V' : 'Ctrl+V'; },
+
     async paste(area) {
         if (!area) return;
         try { const t = await navigator.clipboard.readText(); if (t) { area.value = t.trim(); return; } } catch (e) { /* przeglądarka nie pozwala czytać schowka */ }
         area.focus();
-        area.placeholder = 'Przeglądarka nie pozwoliła odczytać schowka — kliknij tutaj i naciśnij Ctrl+V';
+        area.placeholder = 'Przeglądarka nie pozwoliła odczytać schowka — kliknij tutaj i naciśnij ' + this.pasteKey();
     },
 
     // ================= W trakcie meczu =================

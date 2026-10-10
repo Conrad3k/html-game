@@ -36,4 +36,9 @@ encyklopedia z wyszukiwarką, „Jak grać” ze skrótami, dryfujące tło z ma
 **Silnik Raptor** — generator kontynentów Raptor Atlas, strumieniowanie terenu, indeks wody i gór, ok. 2–3× szybsza
 symulacja oraz zapis stanu gry sprawdzony testem „zapis → wczytanie → zapis daje identyczny stan”.
 
-Gra wieloosobowa: wszyscy gracze muszą mieć to samo (najnowsze) wydanie pliku Reloaded V1.0 (protokół 9). Szczegóły: menu gry → „Co nowego”.
+**Gra wieloosobowa (2–4 graczy, już nie beta)** — bez serwera: przeglądarki łączą się bezpośrednio (WebRTC) po wymianie
+dwóch kodów. Działa między Windows, macOS i Linuksem oraz w Chrome, Edge, Firefoksie i Safari. Kody są krótkie (zwykle
+ok. 115–150 znaków — opis połączenia pakowany binarnie) i odporne na komunikatory (łamanie linii, cudzysłowy, niewidoczne
+znaki). Gość może odesłać odpowiedź bez pośpiechu, a na dole strony Gra wieloosobowa jest test sieci i opcjonalny własny
+serwer TURN dla trudnych sieci. Wszyscy gracze muszą mieć to samo (najnowsze) wydanie pliku Reloaded V1.0 (protokół 10).
+Szczegóły: menu gry → „Co nowego”.
