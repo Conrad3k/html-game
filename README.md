@@ -37,7 +37,15 @@ każdej stolicy). Partia trwa zwykle 20–30 minut.
 
 **Aktualizacja V1.0 — Cuda Świata**: cztery unikatowe Cuda (każdy tylko raz na mapie) — Wiszące Ogrody, Kolos i Wielka
 Biblioteka w III erze z własnymi premiami oraz Wielka Bazylika w IV erze. Ukończone Cuda co sekundę dają drużynie Chwałę;
-1000 Chwały = zwycięstwo. Zburzenie Cudu odbiera właścicielowi 25% Chwały, a burzącemu daje 100. Paski Chwały na ekranie,
+1000 Chwały = zwycięstwo (od Poselstw: 2000). Zburzenie Cudu odbiera właścicielowi 25% Chwały, a burzącemu daje 100. Paski Chwały na ekranie,
 nowa SI budująca i zwalczająca Cuda. Działa w obu trybach.
 
-Gra wieloosobowa (protokół 9): wszyscy gracze muszą mieć to samo (najnowsze) wydanie pliku Reloaded V1.0. Szczegóły: menu gry → „Co nowego”.
+**Aktualizacja V1.0 — Poselstwa**: rozmowy z władcami w trybie Dyplomacja. Każdą nacją SI rządzi władca z imieniem
+i charakterem (Ostrożny, Ambitny, Porywczy, Chciwy, Wyrachowany), który mówi po swojemu i pamięta, za co was lubi albo nie lubi.
+W rozmowie (Tab → „Rozmowa”) dochodzą pakt o nieagresji, handel surowcami, dary, prośby o wspólną wojnę (władca może podać cenę),
+wywiad i pomoc sojusznika. Zamiast suchej odmowy SI składa kontroferty, np. pokój za okup. Sama też przychodzi z ofertami handlu,
+paktami, darami, ostrzeżeniami i wezwaniami do broni. Cuda Świata są trudniejsze: zwycięstwo wymaga 2000 Chwały, a oblężony Cud
+(wrogie wojsko pod nim albo atak w ciągu ostatnich 20 s) nie daje Chwały. Kafelki warunków zwycięstwa w menu Dyplomacji opisują jej prawdziwe zasady
+(nowy przełącznik Sojusz zwycięzców, Limit czasu wśród warunków).
+
+Gra wieloosobowa (protokół 10): wszyscy gracze muszą mieć to samo (najnowsze) wydanie pliku Reloaded V1.0. Szczegóły: menu gry → „Co nowego”.
