@@ -11,16 +11,21 @@ jednostki i balans jak w V3.5, nowością są w nim Cuda Świata, Chwała i Triu
 **Dyplomacja** — kontynent 11 400 × 11 400 kroków (ok. 5× powierzchni mapy Gigantycznej) z rzekami, brodami, morzem,
 górami i Złotymi wzgórzami, do 8 nacji i relacje wojna / pokój / sojusz zmieniające się w trakcie gry. Cztery drogi do
 zwycięstwa: podbój, Sojusz zwycięzców (najwyżej połowa nacji, 3 minuty jako jedyni), Cuda Świata (1000 Chwały i
-5-minutowy Triumf) i limit czasu (domyślnie 45 min, wygrywa najwyższy Wynik). Pokój za okup, trybut z traktatem,
-hegemon i koalicje, SI dyplomaty z cierpliwością, księgą strat i zmęczeniem wojną. Partia trwa zwykle 25–45 minut.
+5-minutowy Triumf) i limit czasu (domyślnie 45 min, wygrywa najwyższy Wynik). Partia trwa zwykle 25–45 minut.
 
-**Panel Dyplomacji (Tab)** — warunki zwycięstwa jako krótkie pastylki ze stanem, nacje jako zwijane wiersze
-pogrupowane według relacji z tobą (herb władcy, opinia o tobie, siła i jedna główna akcja; klik rozwija szczegóły i
-pozostałe akcje), liczniki wojen, sojuszy i pokojów z ikonami na przycisku w górnym pasku, propozycje z przyciskami
-Przyjmij / Odrzuć w rogu ekranu bez otwierania panelu i kronika zdarzeń. Komunikaty tylko o tym, co cię dotyczy —
-wojny i traktaty innych nacji trafiają do kroniki. Pod nagłówkiem panelu twoja sytuacja w jednym zdaniu, przy nacjach
-znacznik „może napaść”, a propozycje, sojusze i pokój mają własne łagodne dźwięki. Po rozejmie SI nie rusza wszystkimi
-naraz: wojny wybuchają jedna po drugiej, a do gracza trafia najwyżej jedna propozycja naraz.
+**Dyplomacja z głębią** — stosunek każdej nacji do innej to suma konkretnych powodów: pamięci (napaść, zdrada, dary,
+pokój, odmowy, pomoc w wojnie albo jej brak, zerwane umowy — każda sprawa blednie we własnym tempie) i sytuacji
+(wspólny wróg, handel, pakt, spór o granice, sympatia władców, strach przed hegemonem i przed Chwałą rywala). Nowe
+dźwignie: **umowa handlowa** (złoto co minutę dla obu stron), **pakt o nieagresji** (6 minut bez wojny), **dar** surowców
+i **wezwanie do wspólnej wojny**; dalej pokój za okup, trybut i sojusze. SI ocenia wszystkich według tych samych reguł
+(bez nagonki na gracza), handluje, zawiera pakty i sojusze także między sobą, a na Cuda rywala reaguje dopiero przy
+realnym zagrożeniu — w Dyplomacji Chwała rośnie wolniej (60%).
+
+**Ekran Dyplomacji (Tab)** — mapa relacji: kontynent z herbami nacji w stolicach i liniami wojen, sojuszy, handlu
+i paktów; pod nią „Kto z kim trzyma” (bloki sojusznicze i wojny) i kronika. Karta każdej nacji: stosunek do ciebie
+z rozpisanymi powodami, jej sojusze, wojny i umowy, siła, propozycje z paskiem **gotowości** (czy SI je przyjmie,
+a jeśli nie — czego brakuje), dar, zerwanie umów i wojna. Przegląd: jak widzą cię wszystkie nacje i twoje umowy.
+Propozycje SI pojawiają się w rogu ekranu jako karty z przyciskami.
 
 **Cuda Świata** — Wiszące Ogrody, Kolos i Wielka Biblioteka (III era) oraz Wielka Bazylika (IV era), każdy tylko raz na
 mapie i z własną premią. Ukończone Cuda dają Chwałę (każdy kolejny 70%), ale nie gdy są oblężone albo właściciel nie ma
@@ -36,8 +41,10 @@ wieloosobowa jest test sieci i opcjonalny własny serwer TURN. Wszyscy gracze mu
 
 **Testy przed premierą** — balans jednostek sprawdzony pojedynkami za równe koszty (słabszy Husarz, mocniejsi Muszkieter,
 Grenadier i Arkebuzer), pokonana nacja nie zostawia już na mapie walczących dalej resztek wojska, a gra wieloosobowa
-pewniej łączy graczy w jednej sieci (więcej adresów lokalnych w kodzie, wskazówki przy niepowodzeniu; protokół 12)
+pewniej łączy graczy w jednej sieci (więcej adresów lokalnych w kodzie, wskazówki przy niepowodzeniu; protokół 13)
 oraz przez internet: obie strony ponawiają próby połączenia, aż wstanie, więc kod można przesyłać nawet kilka minut.
+Powrót gracza po rozłączeniu działa pewnie: host może zaprosić go ponownie już po kilku sekundach, łącze hosta ponawia
+próby przez pełne 2 minuty, a wracający gracz nie uznaje połączenia za zerwane, gdy świat przesyła się wolniej.
 
 **Nowy wygląd i silnik Raptor** — menu z paskiem zakładek, podglądem mapy i encyklopedią, spokojniejszy interfejs w grze
 (pismo Inter i Cinzel osadzone w pliku), generator kontynentów Raptor Atlas, strumieniowanie terenu i ok. 2–3× szybsza
