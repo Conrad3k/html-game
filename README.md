@@ -16,7 +16,7 @@ zwycięstwa: podbój, Sojusz zwycięzców (najwyżej połowa nacji, 3 minuty jak
 **Dyplomacja z głębią** — stosunek każdej nacji do innej to suma konkretnych powodów: pamięci (napaść, zdrada, dary,
 pokój, odmowy, pomoc w wojnie albo jej brak, zerwane umowy — każda sprawa blednie we własnym tempie) i sytuacji
 (wspólny wróg, handel, pakt, spór o granice, sympatia władców, strach przed hegemonem i przed Chwałą rywala). Nowe
-dźwignie: **umowa handlowa** (złoto co minutę dla obu stron — ok. 9–27 zależnie od ery i odległości; dochód widać w Przeglądzie i w górnym pasku), **pakt o nieagresji** (6 minut bez wojny), **dar** surowców
+dźwignie: **umowa handlowa** (złoto co minutę dla obu stron — ok. 9–27 zależnie od ery i odległości; dochód widać w Przeglądzie i w górnym pasku), **pakt o nieagresji** (6 minut bez wojny), **dar** surowców (liczy się wobec bogactwa obdarowanego, z malejącym efektem — sojuszu nie da się kupić)
 i **wezwanie do wspólnej wojny**; dalej pokój za okup, trybut i sojusze. SI ocenia wszystkich według tych samych reguł
 (bez nagonki na gracza), handluje, zawiera pakty i sojusze także między sobą, a na Cuda rywala reaguje dopiero przy
 realnym zagrożeniu — w Dyplomacji Chwała rośnie wolniej (60%).

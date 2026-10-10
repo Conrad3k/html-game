@@ -1390,6 +1390,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 .dpg-r { display: inline-flex; align-items: center; gap: 4px; padding: 4px 8px; border: 0; border-radius: 8px; cursor: pointer; font: 600 11.5px var(--ui); color: var(--label-3); background: var(--fill-3); }
 .dpg-r img { width: 14px; height: 14px; }
 .dpg-r:hover { color: var(--label); background: var(--fill-2); }
+.dpg-e { font-weight: 700; color: #7fe39a; margin-left: 2px; }
 .dpg-r.on { color: var(--label); background: rgba(241, 197, 106, 0.16); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.5); }
 .dps-box.danger { margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--hair); }
 .dpd-danger { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
@@ -1794,7 +1795,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <ul>
                                     <li><b>Umowa handlowa</b> — najłatwiejsza: obie strony dostają złoto co minutę (ok. 9–14 w I erze, 18–27 w IV; więcej z daleka), a stosunek partnera rośnie o 5, z czasem o 10. Ile zarabiasz, widać w Przeglądzie ekranu Dyplomacji i obok złota w górnym pasku. Najwyżej 3 umowy naraz.</li>
                                     <li><b>Pakt o nieagresji</b> — 6 minut, w których żadna strona nie wypowie wojny. Dobry na groźnego sąsiada.</li>
-                                    <li><b>Dar</b> (złoto, żywność, drewno, kamień) — od razu poprawia stosunek, ale każdy kolejny cieszy mniej, a wdzięczność z czasem blednie.</li>
+                                    <li><b>Dar</b> (złoto, żywność, drewno, kamień) — od razu poprawia stosunek: tym bardziej, im biedniejszy obdarowany. Kolejne dary w krótkim czasie cieszą coraz mniej, wdzięczność szybko blednie, a sojuszu samymi darami nie kupisz.</li>
                                     <li><b>Sojusz</b> wymaga zaufania albo wspólnego wroga czy zagrożenia. Sojusznik broni sojusznika i przyjmuje wezwania do wojny — a ten, kto odmawia, traci zaufanie.</li>
                                     <li>Napaść, zdrada, odrzucone żądania i zerwane umowy zostają w pamięci na długo. Potęga budzi strach: hegemon i nacja bliska zwycięstwa Chwałą tracą sympatię wszystkich.</li>
                                 </ul>
@@ -1823,7 +1824,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <ul>
                             <li><b>Stosunek z powodami</b>: to, co nacja myśli o innej, to suma konkretnych spraw. <b>Pamięć</b> — napaść, zdrada sojuszu, wojny wywołane z innymi, dary, zawarty pokój i sojusz, zapłacony albo wymuszony trybut, odrzucone propozycje, pomoc w wojnie albo jej brak, zerwane umowy — każda sprawa blednie we własnym tempie (zdrada najwolniej). <b>Sytuacja</b> — wspólny wróg, sojusz z jej wrogiem, umowa handlowa, pakt, spór o granice z bliskim sąsiadem, sympatia albo niechęć władców, strach przed hegemonem i przed nacją, której Cuda grożą zwycięstwem. Ekran Dyplomacji pokazuje każdy powód z wartością.</li>
                             <li><b>Umowa handlowa</b>: obie strony dostają złoto co minutę, dopóki nie ma między nimi wojny — więcej w wyższych erach i z dalekim kontrahentem (od ok. 9–14 złota na minutę w I erze do ok. 18–27 w IV — nie zastąpi robotników przy złożach, ale się sumuje). Najwyżej 3 umowy naraz; handel buduje zaufanie, a wojna z partnerem handlowym kosztuje dochód.</li>
-                            <li><b>Pakt o nieagresji</b>: 6 minut, w których żadna ze stron nie wypowie wojny (odnowić można w ostatnich 5 minutach). <b>Dar</b>: 100, 250 albo 500 złota, żywności, drewna lub kamienia — sympatia rośnie od razu, ale każdy kolejny dar cieszy mniej.</li>
+                            <li><b>Pakt o nieagresji</b>: 6 minut, w których żadna ze stron nie wypowie wojny (odnowić można w ostatnich 5 minutach). <b>Dar</b>: 100, 250 albo 500 złota, żywności, drewna lub kamienia — sympatia rośnie od razu, tym bardziej, im biedniejszy obdarowany (bogata nacja w III erze ledwo zauważy 500 złota). Kolejne dary w ciągu 5 minut cieszą coraz mniej, wpis „Dary” ma najwyżej +25, dar od wroga w czasie wojny działa w połowie, a przy ocenie sojuszu SI liczy tylko połowę sympatii z darów — sojuszu nie da się kupić. Przyciski daru pokazują, o ile mniej więcej wzrośnie stosunek.</li>
                             <li><b>Wezwanie do wojny</b>: poproś sojusznika (albo życzliwą nację) o wspólną wojnę z twoim wrogiem; SI zgadza się, gdy jej się to opłaca. Sojusznicy wzywają też ciebie — karta „Wypowiedz wojnę / Odmów”; odmowa sojusznikowi obniża zaufanie, a sojusznik, który nigdy nie pomaga, może zerwać sojusz.</li>
                             <li><b>Drabina zaufania</b>: handel i pakt SI przyjmuje łatwo, sojusz — dopiero przy zaufaniu albo wspólnym wrogu czy zagrożeniu. Każda propozycja ma na ekranie Dyplomacji pasek <b>gotowości</b> (ocena SI z czynnikami w podpowiedzi) i powód odmowy, np. „Za mało zaufania — dary, handel, pakt albo wspólny wróg to zmienią”.</li>
                             <li><b>SI — dyplomata</b>: wszystkie nacje, ludzi i SI, ocenia według tych samych reguł. Handluje, zawiera pakty z groźnymi sąsiadami, sojusze przeciw wspólnym wrogom i hegemonowi, wspiera przegrywającego sojusznika złotem, prowadzi księgę strat każdej wojny (zmęczona albo przegrywająca prosi o pokój) i niechętnie dołącza do wojny przeciw nacji, którą już napadli inni. Na nację, której Cuda grożą zwycięstwem, rusza dopiero przy realnym zagrożeniu, a na Triumf — każdy, kto do niego dosięgnie. W końcówce zbyt liczny sojusz się rozpada, a ambitna SI potrafi zdradzić tuż przed wspólnym zwycięstwem.</li>
@@ -9510,9 +9511,10 @@ class UIManager {
         const have = me.resources.get(res);
         const RN = { gold: 'złoto', food: 'żywność', wood: 'drewno', stone: 'kamień' };
         const resB = DIPLO.GIFT_RES.map(r => `<button class="dpg-r${r === res ? ' on' : ''}" data-dpgr="${r}"><img src="${Icons.url(r, 14)}" alt="">${RN[r]}</button>`).join('');
-        const amtB = DIPLO.GIFTS.map(a => `<button class="dp-btn" data-dip="gift" data-to="${idx}" data-res="${res}" data-amt="${a}"${have < a ? ' disabled title="Za mało surowca"' : ''}>${a}</button>`).join('');
+        const est = (a) => (g.isClient || !C.ai(n)) ? null : Math.round(D.giftGain(n, me, D.giftValue({ [res]: a })));
+        const amtB = DIPLO.GIFTS.map(a => { const e = est(a); return `<button class="dp-btn" data-dip="gift" data-to="${idx}" data-res="${res}" data-amt="${a}"${have < a ? ' disabled title="Za mało surowca"' : (e !== null ? ` title="Stosunek wzrośnie mniej więcej o ${e}"` : '')}>${a}${e !== null ? ` <small class="dpg-e">+${e}</small>` : ''}</button>`; }).join('');
         h += `<div class="dps-box"><div class="dpx-sec"><span>Dar</span></div><div class="dpg"><div class="dpg-rs">${resB}</div><div class="dpg-as">${amtB}</div></div>
-            <small class="dps-note">${C.ai(n) ? 'Dar od razu poprawia stosunek — kolejne dary cieszą coraz mniej (wpis „Dary” najwyżej +40), a z czasem blednie.' : 'Surowce trafią od razu do skarbca tej nacji.'}</small></div>`;
+            <small class="dps-note">${C.ai(n) ? 'Ile znaczy dar, zależy od bogactwa obdarowanego; kolejne dary w ciągu 5 minut cieszą coraz mniej, wpis „Dary” najwyżej +25 i blednie w kilka minut. Sojuszu nie kupisz — SI liczy w nim tylko połowę sympatii z darów.' : 'Surowce trafią od razu do skarbca tej nacji.'}</small></div>`;
         // zerwanie umów i wojna
         const warErr = D.canDeclareWar(me, n);
         const armed = this._warArmed === String(idx) && performance.now() - this._warArmedAt <= 5000;
@@ -22792,7 +22794,7 @@ const DIPLO = {
         allyHit: ['Napaść na ich sojusznika', 0.03, -60],
         foeFoe: ['Walka z ich wrogiem', 0.03, 30],
         hegWar: ['Walka z hegemonem', 0.03, 20],
-        gift: ['Dary', 0.04, 40],
+        gift: ['Dary', 0.05, 25],
         peace: ['Zawarty pokój', 0.02, 20],
         alliance: ['Zawarty sojusz', 0.02, 30],
         broke: ['Zerwany sojusz', 0.03, -60],
@@ -22978,11 +22980,27 @@ class Diplomacy {
         }
     }
 
-    // Dar: sympatia rośnie z wartością daru, ale coraz wolniej (wpis "Dary" ma granicę 40)
+    // Dar (V1.0, po testach - wcześniej 500 złota "kupowało" każdego): sympatia rośnie z wartością daru WOBEC BOGACTWA
+    // obdarowanego (era i zapasy w skarbcu - bogaty ledwo zauważy 500 złota), kolejne dary od tej samej nacji w ciągu
+    // 5 minut cieszą coraz mniej (zmęczenie darami), dar od wroga w czasie wojny budzi podejrzliwość (połowa), a wpis
+    // "Dary" ma granicę 25 i blednie w kilka minut. Sojusz SI liczy tylko połowę tej sympatii (DiplomatAI.judge).
     giftValue(pay) { let v = 0; for (const k in pay) v += (pay[k] || 0) * (DIPLO.RES_W[k] || 1); return v; }
+    giftGain(to, from, value) {
+        const r = to.resources, wealth = r ? this.giftValue({ gold: Math.max(0, r.get('gold')), food: Math.max(0, r.get('food')), wood: Math.max(0, r.get('wood')), stone: Math.max(0, r.get('stone')) }) : 0;
+        const scale = 400 + 300 * (to.age || 1) + Math.min(4000, wealth) * 0.25;
+        const recent = this.giftLog ? (this.giftLog.get(this.i(from) + '>' + this.i(to)) || []).filter(t => this.game.time - t < 300).length : 0;
+        const cur = this.memOf(to, from).gift || 0;
+        let g = (DIPLO.MEMO.gift[2] - cur) * (1 - Math.exp(-value / scale)) / (1 + recent);
+        if (this.atWar(to, from)) g *= 0.5;
+        return Math.max(0, g);
+    }
     giftOp(to, from, value) {
-        const cur = this.memOf(to, from).gift || 0, scale = 300 + 220 * (to.age || 1);
-        return this.addOp(to, from, (DIPLO.MEMO.gift[2] - cur) * (1 - Math.exp(-value / scale)), 'gift');
+        const gain = this.giftGain(to, from, value);
+        if (!this.giftLog) this.giftLog = new Map();
+        const key = this.i(from) + '>' + this.i(to), list = (this.giftLog.get(key) || []).filter(t => this.game.time - t < 300);
+        list.push(this.game.time);
+        this.giftLog.set(key, list);
+        return this.addOp(to, from, gain, 'gift');
     }
 
     // ---------------- Tempo świata i uwaga gracza (V1.0) ----------------
@@ -23309,7 +23327,7 @@ class Diplomacy {
         if (value <= 0) return 'Nie masz tych surowców.';
         const gain = this.giftOp(to, from, value);
         const txt = Diplomacy.payText(paid), nf = this.name(from);
-        const how = gain >= 12 ? 'z wdzięcznością' : gain >= 4 ? 'życzliwie' : 'chłodno — kolejne dary cieszą ich coraz mniej';
+        const how = gain >= 10 ? 'z wdzięcznością' : gain >= 4 ? 'życzliwie' : 'chłodno — taki dar niewiele dla nich znaczy';
         this.announce(from, to, 'gift', `${this.name(to)} przyjmują dar (${txt}) ${how}${gain >= 1 ? ` · stosunek +${Math.round(gain)}` : ''}.`,
             `${nf} przysyłają ci dar: ${txt}.`, null, gain >= 4 ? 'good' : 'info', 'good');
         if (to.diplomat) to.diplomat.onGift(from, gain);
@@ -24023,8 +24041,10 @@ class DiplomatAI {
             if (D.trading(me, T)) v += add('Handel z wrogiem', -0.3);
             return done(v, 0.8, wars ? 'mają już swoje wojny.' : 'nie widzą w tej wojnie korzyści.');
         }
-        // sojusz
+        // sojusz - sympatia z darów liczy się tylko w połowie: sojuszu nie da się kupić
         let v = add(`Stosunek do was (${opT(o.op)})`, o.op / 40);
+        const gm = D.memOf(me, from).gift || 0;
+        if (gm >= 1) v += add('Sojuszu nie kupi się darami', -gm * 0.5 / 40);
         if (g.nations.some(c => c !== me && c !== from && D.atWar(me, c) && D.atWar(from, c))) v += add('Wspólny wróg', 0.5);
         const th = this.sharedThreat(from);
         if (th) v += add(`Wspólne zagrożenie: ${Diplomacy.form(th)}`, 0.35);
