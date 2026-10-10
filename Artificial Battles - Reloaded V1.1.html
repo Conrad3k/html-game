@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artificial Battles: Reloaded V1.0</title>
+    <title>Artificial Battles: Reloaded V1.1</title>
     <style>
 /* Czcionka Nunito (SIL Open Font License 1.1) osadzona w pliku - gra działa w pełni offline */
 @font-face { font-family: 'Nunito'; font-style: normal; font-display: swap; font-weight: 200 1000;
@@ -1459,6 +1459,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 .dp-prop { position: relative; display: flex; align-items: center; gap: 10px; padding: 9px 10px 11px; border-radius: 14px; background: linear-gradient(90deg, rgba(241, 197, 106, 0.16), rgba(241, 197, 106, 0.06)); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.4); font-size: 13px; overflow: hidden; cursor: pointer; }
 .dp-prop.tribute, .dp-prop.join { background: rgba(255, 90, 77, 0.1); box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.38); }
 .dp-prop.nap { background: rgba(138, 180, 255, 0.1); box-shadow: inset 0 0 0 1px rgba(138, 180, 255, 0.4); }
+.dp-prop.aid { background: rgba(255, 210, 110, 0.08); box-shadow: inset 0 0 0 1px rgba(255, 210, 110, 0.38); }
 .dp-prop-t { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px; line-height: 1.35; }
 .dp-prop-t small { color: var(--label-3); font-size: 11.5px; }
 .dp-prop b.pc { color: #cfe0ff; } .dp-prop b.al { color: #9df0b2; } .dp-prop b.tr { color: #ffd98a; } .dp-prop b.wr { color: #ffb0a8; }
@@ -1470,6 +1471,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 #dp-inbox .dp-prop { background: rgba(24, 22, 16, 0.95); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.5), 0 12px 30px rgba(0, 0, 0, 0.45); animation: dp-in 0.25s ease-out; }
 #dp-inbox .dp-prop.tribute, #dp-inbox .dp-prop.join { background: rgba(30, 14, 12, 0.95); box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.5), 0 12px 30px rgba(0, 0, 0, 0.45); }
 #dp-inbox .dp-prop.nap { background: rgba(14, 18, 30, 0.95); box-shadow: inset 0 0 0 1px rgba(138, 180, 255, 0.5), 0 12px 30px rgba(0, 0, 0, 0.45); }
+#dp-inbox .dp-prop.aid { background: rgba(28, 22, 10, 0.95); box-shadow: inset 0 0 0 1px rgba(255, 210, 110, 0.5), 0 12px 30px rgba(0, 0, 0, 0.45); }
 #mid-layer.with-tutorial #dp-inbox { right: 364px; }
 .dp-inbox-more { align-self: flex-end; padding: 3px 10px; border-radius: 999px; background: rgba(13, 16, 23, 0.9); font-size: 11.5px; color: var(--label-2); cursor: pointer; }
 @keyframes dp-in { from { opacity: 0; transform: translateY(-6px); } }
@@ -1531,7 +1533,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <span data-pane="controls" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg><span class="nav-txt">Jak grać</span></span>
                     <span data-pane="news" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span class="nav-txt">Co nowego</span></span>
                 </nav>
-                <div class="top-meta"><span class="by">by Conrad3k</span><b>V1.0</b></div>
+                <div class="top-meta"><span class="by">by Conrad3k</span><b>V1.1</b></div>
             </header>
 
             <main class="menu-main">
@@ -1704,7 +1706,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                     <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 28 C5 17 10 8 19 5.5 C24 4.2 28.5 6 30 9.5 L26.4 10.6 C27.6 12.6 26.8 15.6 24 15.8 L21.4 14.6 C19.2 18.4 18.4 23 18.6 28 Z" fill="currentColor"/><path d="M8 25 C8.6 18 12 12.5 17 9.6" fill="none" stroke="#0b111c" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/><circle cx="22.6" cy="9.4" r="1.5" fill="#0b111c"/></svg>
                                     <div><b>Raptor Engine</b><small>silnik gry · designed by Claude</small></div>
                                 </div>
-                                <span>Artificial Battles: Reloaded V1.0 by Conrad3k · wykonane przy użyciu agentów LLM</span>
+                                <span>Artificial Battles: Reloaded V1.1 by Conrad3k · wykonane przy użyciu agentów LLM</span>
                             </div>
                         </section>
                     </div>
@@ -1808,15 +1810,59 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="news-wrap">
                     <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
                     <div class="menu-card news-new">
-                        <div class="eyebrow">Wydanie · Reloaded V1.0</div>
-                        <h2>Reloaded V1.0 — Dyplomacja, Cuda Świata, zapis gry i całkiem nowy wygląd</h2>
-                        <p><b>Pierwsze wydanie serii Artificial Battles: Reloaded</b>, na silniku <b>Raptor</b>. Nowy tryb główny — <b>Dyplomacja</b> na wielkim kontynencie z rzekami i morzem, gdzie sojusze i wojny zmieniają się w trakcie gry — cztery <b>Cuda Świata</b> ze zwycięstwem Chwałą, <b>zapis i wczytywanie gry</b>, gra wieloosobowa bez bety oraz menu i interfejs zaprojektowane od nowa. <b>Klasyczny mecz</b> został w menu jako druga opcja: jednostki i balans jak w V3.5, a nowością są w nim Cuda Świata, Chwała i Triumf.</p>
+                        <div class="eyebrow">Wydanie · Reloaded V1.1</div>
+                        <h2>Reloaded V1.1 — handel z sojusznikami, SI szukająca brodów, głębsza dyplomacja i do 8 graczy</h2>
+                        <p><b>Pierwsza duża aktualizacja Reloaded.</b> Wozy kupieckie w Dyplomacji wreszcie handlują z sojusznikami, wojsko SI nie szturmuje już przez rzekę, tylko szuka brodów, dyplomaci SI dostali nowe zachowania — embargo, prośby o wsparcie, wspólne ofensywy i obronę słabszych — a w grze wieloosobowej gra tylu graczy (ludzi albo SI), ilu nacji w grze solo: w Dyplomacji do 8.</p>
+
+                        <h3>Handel wozami kupieckimi w Dyplomacji — naprawiony</h3>
+                        <ul>
+                            <li><b>Błąd</b>: wóz kupiecki handlował tylko z targami własnej drużyny, a w Dyplomacji każda nacja ma własną drużynę — wozy w ogóle nie jeździły do sojuszników. PPM na targ sojusznika nic nie robił, nowy wóz nie znajdował partnera, a SI nie prowadziła szlaków do sojuszników.</li>
+                            <li>Teraz wóz jeździ na targi <b>sojuszników</b>, a także <b>partnerów umowy handlowej</b> (do wybuchu wojny). Za kurs na obcy targ jak dotąd +20% złota. Panel wozu mówi, czy wiezie towar na targ sojusznika, czy partnera handlowego.</li>
+                            <li><b>Zmiany sojuszy</b>: gdy sojusz się rozpada, wybucha wojna albo umowa handlowa zostaje zerwana, wozy jadące na targ byłego partnera od razu zawracają (wcześniej jechały dalej, często przez pole bitwy, i stawały dopiero na miejscu). Wóz, który stał bez szlaku, sam rusza, gdy pojawi się nowy sojusznik albo partner, a przy nowym sojuszu przechodzi na lepiej płatny szlak przy najbliższym kursie.</li>
+                            <li><b>Mądrzejszy wybór szlaku</b>: wóz wybiera targ, który daje najwięcej złota na sekundę jazdy, a nie po prostu najdalszy. Złoto za kurs rośnie tylko do 2200 kroków, więc sojusznik 6000 kroków dalej oznaczał minutowe kursy bez większego zysku — SI przestawała wtedy nawet stawiać drugi własny targ.</li>
+                        </ul>
+
+                        <h3>SI szuka brodów zamiast szturmować przez rzekę</h3>
+                        <ul>
+                            <li><b>Przyczyna</b>: jednostki wybierały wroga według odległości w linii prostej. Wróg 150 kroków za rzeką wyglądał na najbliższego, więc piechota ruszała w obejście przez daleki bród, po 400 krokach smycz zawracała ją na posterunek — i tak w kółko przy brzegu, pod ostrzałem łuczników z drugiej strony.</li>
+                            <li>Teraz, gdy między jednostką a wrogiem jest woda albo góry, gra sprawdza prawdziwą drogę (A* ograniczony do okolicy): jeśli bród jest blisko, jednostka przez niego przechodzi i atakuje, a jeśli daleko — nie goni wroga na próżno. Strzelcy, którzy z brzegu sięgają przez wodę, nadal podchodzą i strzelają. Dotyczy to SI i twoich jednostek (samodzielny wybór celu).</li>
+                            <li><b>Fale SI</b> oceniają cele szturmu drogą przez najbliższy bród, a nie odległością w linii prostej — nie biorą na cel budynku tuż za rzeką, gdy po tej stronie wody stoją inne.</li>
+                        </ul>
+
+                        <h3>Dyplomaci SI — nowe zachowania</h3>
+                        <ul>
+                            <li><b>Embargo</b>: lojalny władca zrywa umowę handlową z wrogiem swojego sojusznika (mało lojalny — tylko wtedy, gdy i tak nie lubi kontrahenta). SI nie proponuje ani nie przyjmuje handlu z wrogiem sojusznika. Nowy powód w stosunkach: <b>„Handel z ich wrogiem”</b> (−8) — kto handluje z twoim wrogiem, traci twoją sympatię.</li>
+                            <li><b>Prośba o wsparcie</b> (nowa propozycja): nacja w ciężkiej wojnie albo z pustymi spichrzami prosi najbogatszego sojusznika o surowce (od 80 złota, 110 żywności i 80 drewna w I erze do 200 / 260 / 200 w IV). Do ciebie prośba przychodzi jako karta <b>„Wyślij / Odmów”</b> — sojusznik zapamięta pomoc („Wsparcie w potrzebie”, do +35) i odmowę. Ty też możesz poprosić sojusznika SI: przycisk <b>„Poproś o wsparcie”</b> w jego karcie, z paskiem gotowości jak przy innych propozycjach (SI liczy lojalność, zapasy, wspólnego wroga i to, czy niedawno już pomagała).</li>
+                            <li><b>Wspólna ofensywa</b>: gdy sojusznik SI rusza falą na wspólnego wroga, pozostali sojusznicy SI wyruszają od razu i uderzają w ten sam cel. Dołączają też do twojego natarcia, gdy twoje wojsko (co najmniej 8 żołnierzy) stoi pod Ratuszem wspólnego wroga — dostaniesz o tym komunikat.</li>
+                            <li><b>Obrona słabszego</b>: władca SI może stanąć w obronie zaprzyjaźnionej nacji (stosunek co najmniej +35), którą dopiero co napadł hegemon albo dużo silniejszy agresor — jeśli razem dadzą radę i są blisko. Napadnięty to zapamięta („Obrona przed napastnikiem”, +20). Lojalni i ostrożni władcy robią to chętniej. SI nie dobija już też przyjaciela, którego właśnie napadł ktoś inny (wcześniej bardzo słaba ofiara bywała celem kolejnych wojen nawet ze strony życzliwych sąsiadów).</li>
+                            <li>Kronika pokazuje wsparcie wysłane sojusznikom.</li>
+                        </ul>
+
+                        <h3>Gra wieloosobowa — tylu graczy, co w grze solo</h3>
+                        <ul>
+                            <li><b>Dyplomacja: 8 miejsc</b> w poczekalni — jak w kampanii solo (ty i do 7 nacji) — a każde może zająć gracz, SI albo zostać zamknięte. <b>Klasyczny mecz: 4 miejsca</b>, jak solo. Przełączenie trybu na Klasyczny mecz zamyka miejsca 5–8 (gracze z nich zostają rozłączeni).</li>
+                            <li>Protokół 14 — wszyscy gracze potrzebują wydania Reloaded V1.1.</li>
+                        </ul>
+
+                        <h3>Poprawki</h3>
+                        <ul>
+                            <li><b>„Co nowego”</b>: opis Reloaded V1.0 (niżej, we wcześniejszych wydaniach) nie przeczy już sam sobie — Klasyczny mecz ma poprawiony balans (a nie „balans jak w V3.5”), handel między nacjami nie figuruje jako plan, choć wprowadziła go ta sama wersja, silnik Raptor nie jest przedstawiany jako nowość, a lista limitów czasu obejmuje grę bez limitu.</li>
+                            <li>Zapisy gier z Reloaded V1.0 wczytasz w V1.1 i grasz dalej.</li>
+                            <li><b>Sprawdzone automatycznie</b>: wozy kupieckie w Dyplomacji — sojusz, zerwanie sojuszu i wojna (zawracają), umowa handlowa i jej zerwanie (w V1.0 ten sam test: wozy stały, 0 złota); piechota nad rzeką z dala od brodu (w V1.0 krążyła przy brzegu i ginęła od strzał, teraz stoi), a z brodem w pobliżu — przechodzi i walczy; kampanie Dyplomacji SI kontra SI (6 i 8 nacji, po 30 minut) porównane z V1.0 na tych samych mapach — nowe zachowania występują, a tempo symulacji się nie zmieniło; Klasyczny mecz na trzech mapach i samouczek; gra wieloosobowa: host + 7 graczy, host + 4 graczy + 3 SI, Klasyczny mecz na 4 miejsca, zmiana trybu w poczekalni, prośby o wsparcie przez sieć; zapis z V1.0 wczytany w V1.1 — wszystko bez błędów.</li>
+                        </ul>
+                        <p class="menu-note">Gra wieloosobowa: wszyscy gracze muszą mieć wydanie Reloaded V1.1 (z V1.0 gra się nie połączy). Host wybiera tryb w poczekalni — w Dyplomacji do 8 nacji, w Klasycznym meczu do 4. Dalej planujemy m.in. mosty i kilka krain na jednym kontynencie.</p>
+                    </div>
+                    <div class="news-sub">Wcześniejsze wydania</div>
+                    <details class="release">
+                        <summary><span class="ver">R1.0</span><h2>Reloaded V1.0 — Dyplomacja, Cuda Świata, zapis gry i całkiem nowy wygląd</h2></summary>
+                        <div class="release-body">
+                        <p class="menu-note"><b>Pierwsze wydanie serii Artificial Battles: Reloaded</b>, na silniku <b>Raptor</b>. Nowy tryb główny — <b>Dyplomacja</b> na wielkim kontynencie z rzekami i morzem, gdzie sojusze i wojny zmieniają się w trakcie gry — cztery <b>Cuda Świata</b> ze zwycięstwem Chwałą, <b>zapis i wczytywanie gry</b>, gra wieloosobowa bez bety oraz menu i interfejs zaprojektowane od nowa. <b>Klasyczny mecz</b> został w menu jako druga opcja: jednostki jak w V3.5 (z poprawkami balansu z testów przed premierą — niżej), a nowością są w nim Cuda Świata, Chwała i Triumf.</p>
 
                         <h3>Dyplomacja — nowy tryb główny</h3>
                         <ul>
                             <li><b>Kontynent</b> 11 400 × 11 400 kroków (ok. 5× powierzchni mapy Gigantycznej) dla <b>do 8 nacji</b>: rzeki z dopływami i <b>brodami</b>, morze o poszarpanym brzegu, pasma gór z przełęczami, wielkie jeziora i puszcze, a pośrodku <b>Złote wzgórza</b> — bogate złoża z dala od wszystkich stolic. Podgląd w menu pokazuje dokładnie ten świat, który powstanie; <b>Nowy świat</b> losuje inny. Partia trwa zwykle <b>25–45 minut</b>.</li>
                             <li><b>Relacje zamiast stałych drużyn</b>: wszyscy zaczynają w pokoju, a po <b>rozejmie</b> (brak, 3, 5 albo 10 minut) nacje wypowiadają <b>wojny</b>, zawierają <b>pokój</b> (potem 3 minuty traktatu), <b>pakty o nieagresji</b>, <b>umowy handlowe</b> i <b>sojusze</b> (wspólne pole widzenia i zwycięstwo), wysyłają <b>dary</b> i wzywają sojuszników do wspólnych wojen. Przegrywający może kupić pokój <b>za okup</b>, a silniejszy zażądać <b>trybutu</b> — zapłata to 4 minuty paktu, odmowa grozi wojną.</li>
-                            <li><b>Cztery drogi do zwycięstwa</b>: <b>Podbój</b>, <b>Sojusz zwycięzców</b> (najwyżej połowa nacji musi jako jedyna na placu boju wytrwać 3 minuty), <b>Cuda Świata</b> (1000 Chwały i 5-minutowy Triumf) i <b>limit czasu</b> (30, 45 albo 60 minut, domyślnie 45 — wygrywa najwyższy Wynik razem z sojusznikami).</li>
+                            <li><b>Cztery drogi do zwycięstwa</b>: <b>Podbój</b>, <b>Sojusz zwycięzców</b> (najwyżej połowa nacji musi jako jedyna na placu boju wytrwać 3 minuty), <b>Cuda Świata</b> (1000 Chwały i 5-minutowy Triumf) i <b>limit czasu</b> (30, 45 albo 60 minut, domyślnie 45 — wygrywa najwyższy Wynik razem z sojusznikami; limit można też wyłączyć).</li>
                             <li><b>Wszech-wzrok w Dyplomacji 10× droższy</b> (20 000 żywności, 15 000 drewna, 30 000 złota, 10 000 kamienia): na wielkim kontynencie pełna wiedza o wszystkich nacjach odbierała sens zwiadowi i polityce. W Klasycznym meczu koszt bez zmian.</li>
                             <li><b>Spokojne tempo po rozejmie</b>: SI nie rusza wszystkimi naraz — wojny wybuchają jedna po drugiej, a sojusze, umowy i żądania trybutu mają swoje odstępy. Sojusznik odpowiada na wezwanie do broni po chwili namysłu. Do ciebie SI kieruje <b>najwyżej jedną propozycję naraz</b>, nie częściej niż co minutę.</li>
                         </ul>
@@ -1845,7 +1891,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <ul>
                             <li><b>Cztery unikatowe Cuda</b>, każdy tylko raz na mapie: <b>Wiszące Ogrody</b> (+25% żywności, +20 populacji), <b>Kolos</b> (+2 złota co sekundę, +15% wydobycia złota), <b>Wielka Biblioteka</b> (badania i awanse er o połowę krótsze) — III era — oraz <b>Wielka Bazylika</b> (IV era, najwięcej Chwały).</li>
                             <li><b>Chwała</b>: ukończone Cuda co sekundę dodają ją drużynie (najcenniejszy w całości, każdy kolejny 70%) — ale nie wtedy, gdy są <b>oblężone</b> albo właściciel nie ma Ratusza. <b>1000 Chwały</b> otwiera widoczny dla wszystkich <b>5-minutowy Triumf</b>: oblężenie go wstrzymuje, utrata Cudu przerywa i zabiera 40% Chwały; kto go przetrwa, wygrywa (w Dyplomacji razem z sojusznikami).</li>
-                            <li>SI broni swoich Cudów (wieże, odsiecz) i oblega cudze. W Dyplomacji Chwała rośnie wolniej (60% tempa), a Cuda nie wywołują już wojny całego kontynentu: nacja traci sympatię innych dopiero wtedy, gdy jej Chwała realnie grozi zwycięstwem, a koalicja rusza na nią w czasie Triumfu. Paski Chwały na dole ekranu pokazują tempo, czas do Triumfu i oblężone Cuda. Działa w obu trybach (warunek „Cuda Świata” w sekcji Zasady).</li>
+                            <li>SI broni swoich Cudów (wieże, odsiecz) i oblega cudze. W Dyplomacji Chwała rośnie wolniej (60% tempa), a Cuda nie wywołują wojny całego kontynentu: nacja traci sympatię innych dopiero wtedy, gdy jej Chwała realnie grozi zwycięstwem, a koalicja rusza na nią w czasie Triumfu. Paski Chwały na dole ekranu pokazują tempo, czas do Triumfu i oblężone Cuda. Działa w obu trybach (warunek „Cuda Świata” w sekcji Zasady).</li>
                         </ul>
 
                         <h3>Zapis i wczytywanie gry</h3>
@@ -1873,15 +1919,15 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li>Sprawdzone automatycznie: kilkadziesiąt meczów i kampanii SI kontra SI na wszystkich mapach, krainach i poziomach trudności (także 8 × Skandaliczny, Królowie, bez rozejmu, samouczek), wszystkie poziomy grafiki, ekran Dyplomacji (każdy przycisk, karty propozycji, widok gościa gry wieloosobowej, wąskie okno), kampanie Dyplomacji przed i po przebudowie SI dyplomaty (wcześniej każda partia kończyła się wyścigiem do Cudów, teraz zwykle rozstrzyga ją polityka i limit czasu), zapis i wczytanie gry (także zapisów sprzed przebudowy) oraz połączenie i powrót gracza w dwóch przeglądarkach — bez błędów.</li>
                         </ul>
 
-                        <h3>Nowy wygląd i silnik Raptor</h3>
+                        <h3>Nowy wygląd i szybszy silnik Raptor</h3>
                         <ul>
                             <li><b>Menu od nowa</b>: pasek zakładek, ekran nowej bitwy z podglądem mapy i przyciskiem startu zawsze na widoku, ustawienia w sekcjach Nacje / Świat / Zasady, encyklopedia z wyszukiwarką, „Jak grać” ze wszystkimi skrótami i dryfujące tło z mapą świata. Menu obsłużysz też klawiaturą.</li>
                             <li><b>Interfejs w grze</b> — górny pasek, panel zaznaczenia, rozkazy, minimapa, podpowiedzi, komunikaty, pauza i wyniki — w spokojniejszej formie, na tych samych miejscach. Nowe pismo: Inter i Cinzel, osadzone w pliku.</li>
-                            <li><b>Silnik Raptor</b>: generator kontynentów Raptor Atlas, teren domalowywany w tle tam, gdzie patrzy kamera, szybki indeks wody i gór oraz ok. <b>2–3× szybsza symulacja</b> (kampania 6 nacji 2,9×, Klasyczny mecz na mapie Gigantycznej 2×). Oba tryby przeszły serię automatycznych meczów SI kontra SI na wszystkich krainach, mapach i poziomach trudności.</li>
+                            <li><b>Silnik Raptor</b> (znany z V3.5) rozbudowany i przyspieszony: generator kontynentów Raptor Atlas, teren domalowywany w tle tam, gdzie patrzy kamera, szybki indeks wody i gór oraz ok. <b>2–3× szybsza symulacja</b> niż w V3.5 (kampania 6 nacji 2,9×, Klasyczny mecz na mapie Gigantycznej 2×). Oba tryby przeszły serię automatycznych meczów SI kontra SI na wszystkich krainach, mapach i poziomach trudności.</li>
                         </ul>
-                        <p class="menu-note">Gra wieloosobowa: wszyscy gracze muszą mieć to samo wydanie Reloaded V1.0 (ze starszymi kompilacjami, także z betą trybu wieloosobowego, gra się nie połączy). Host wybiera tryb i limit czasu w poczekalni; w Dyplomacji goście wypowiadają wojny, płacą trybut i zawierają sojusze tak jak w grze solo. Dalej planujemy m.in. mosty, kilka krain na jednym kontynencie i handel między nacjami w pokoju.</p>
-                    </div>
-                    <div class="news-sub">Wcześniejsze wydania</div>
+                        <p class="menu-note">Gra wieloosobowa: wszyscy gracze muszą mieć to samo wydanie Reloaded V1.0 (ze starszymi kompilacjami, także z betą trybu wieloosobowego, gra się nie połączy). Host wybiera tryb i limit czasu w poczekalni; w Dyplomacji goście wypowiadają wojny, płacą trybut i zawierają sojusze tak jak w grze solo. Dalej planujemy m.in. mosty i kilka krain na jednym kontynencie.</p>
+                        </div>
+                    </details>
                     <details class="release">
                         <summary><span class="ver">V3.5</span><h2>Cud Świata, warunki zwycięstwa, szlak handlowy, Wielkie Działo, Koń Trojański, obrona królestwa, nowy dźwięk, szybszy silnik</h2></summary>
                         <div class="release-body">
@@ -2317,7 +2363,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
     <script>
 /* --- core/Config.js --- */
 const GameConfig = {
-    version: 'Reloaded V1.0',
+    version: 'Reloaded V1.1',
     engine: 'Raptor Engine · designed by Claude',
     cameraPad: 320,             // o tyle (w pikselach świata) kamera może wyjechać poza granicę mapy
     popCap: 200,
@@ -2450,7 +2496,7 @@ const GameConfig = {
         // tym większe, im dłuższa trasa (trader: patrz Game.tradeGold); bezbronny, więc szlak trzeba osłaniać
         trade_cart: { name: 'Wóz kupiecki', cls: 'civil', domain: 'land', trader: true, maxHp: 160, speed: 104, attackDamage: 0, attackRange: 0, attackRate: 0, radius: 12,
             armor: [0, 2], dtype: 'melee', cost: { food: 80, gold: 60 }, trainTime: 8, age: 2, pop: 1, vision: 300, iconSpan: 48,
-            desc: "Kupiecki wóz z towarem pod płachtą w barwach nacji. Kursuje między dwoma targami — twoimi albo sojusznika — i za każdy kurs przywozi złoto: im dłuższy szlak, tym więcej (handel z sojusznikiem +20%). Złoto z handlu nigdy się nie wyczerpuje, ale wóz jest bezbronny — pilnuj szlaku." },
+            desc: "Kupiecki wóz z towarem pod płachtą w barwach nacji. Kursuje między dwoma targami — twoimi, sojusznika albo (w Dyplomacji) partnera umowy handlowej — i za każdy kurs przywozi złoto: im dłuższy szlak, tym więcej (obcy targ +20%). Złoto z handlu nigdy się nie wyczerpuje, ale wóz jest bezbronny — pilnuj szlaku." },
         // V3.5 Newest Final: lekka jazda bez złota w koszcie - najazdy, łowy na wozy kupieckie, robotników, mnichów i machiny
         lisowczyk: { name: 'Lisowczyk', cls: 'cavalry', domain: 'land', military: true, maxHp: 120, speed: 184, attackDamage: 9, attackRange: 24, attackRate: 0.9, radius: 11,
             armor: [0, 1], dtype: 'melee', vsBuilding: 0.15, bonus: { civil: 2.2, support: 2.2, siege: 1.8 }, plunder: true, cost: { food: 80, wood: 45 }, trainTime: 6, age: 2, pop: 1, vision: 420,
@@ -2475,7 +2521,7 @@ const GameConfig = {
         storehouse: { name: 'Skład', maxHp: 400, size: 50, cost: { wood: 80 }, age: 1, vision: 250, dropOff: ['wood', 'gold', 'stone'], menu: 'eco',
             desc: "Punkt zrzutu drewna, złota i kamienia. Stawiaj blisko złóż — krótsze kursy robotników." },
         market: { name: 'Targ', maxHp: 500, size: 60, cost: { wood: 150 }, age: 2, vision: 250, menu: 'eco', trains: ['trade_cart'],
-            desc: "Pozwala wymieniać surowce na złoto i odwrotnie. Szkoli wozy kupieckie: postaw drugi targ daleko od pierwszego (albo handluj z targiem sojusznika), a wozy będą przywozić złoto z każdego kursu." },
+            desc: "Pozwala wymieniać surowce na złoto i odwrotnie. Szkoli wozy kupieckie: postaw drugi targ daleko od pierwszego (albo handluj z targiem sojusznika czy partnera umowy handlowej), a wozy będą przywozić złoto z każdego kursu." },
         port: { name: 'Port', maxHp: 600, size: 60, cost: { wood: 200 }, age: 1, vision: 350, trains: ['fishing_boat', 'trireme', 'galleon', 'fire_ship'], boatDropOff: true, menu: 'eco',
             desc: "Buduje okręty nad brzegiem jeziora i przyjmuje połów." },
         barracks: { name: 'Koszary', maxHp: 600, size: 60, cost: { wood: 150 }, age: 1, vision: 300, trains: ['spearman', 'archer', 'swordsman', 'crossbowman', 'standard_bearer', 'halberdier', 'musketeer', 'skirmisher', 'axeman', 'grenadier', 'arquebusier', 'petardier'], menu: 'mil',
@@ -5972,8 +6018,57 @@ Game.TRADE_K = 0.000013;
 Game.TRADE_MAX = 2200;
 Game.TRADE_ALLY = 1.2;
 
-Game.isTradeMarket = function (nation, b) {
-    return !!(b && nation && b.type === 'market' && b.isConstructed && !b.isDestroyed && b.owner && b.owner.team === nation.team && !b.owner.defeated);
+// V1.1: z czyimi targami nacja może handlować - własnymi i drużyny, a w Dyplomacji także sojuszników i partnerów
+// umowy handlowej (bez wojny). Wcześniej liczyła się tylko drużyna, a w Dyplomacji każda nacja ma własną, więc
+// wozy kupieckie nie jeździły do sojuszników wcale.
+Game.prototype.tradeFriend = function (nation, o) {
+    if (!nation || !o || o.defeated) return false;
+    if (o === nation || o.team === nation.team) return true;
+    const D = this.diplo;
+    return !!D && !D.atWar(nation, o) && (D.allied(nation, o) || D.trading(nation, o));
+};
+Game.prototype.isTradeMarket = function (nation, b) {
+    return !!(b && nation && b.type === 'market' && b.isConstructed && !b.isDestroyed && b.owner && this.tradeFriend(nation, b.owner));
+};
+// Najbliższy targ, z którym nacja może handlować (wóz bez szlaku wraca do handlu)
+Game.prototype.nearestTradeMarket = function (nation, x, y) {
+    let best = null, bd = Infinity;
+    for (const n of this.nations) {
+        if (!this.tradeFriend(nation, n)) continue;
+        for (const b of n.buildings) {
+            if (!this.isTradeMarket(nation, b)) continue;
+            const d = Math.hypot(b.x - x, b.y - y);
+            if (d < bd) { bd = d; best = b; }
+        }
+    }
+    return best;
+};
+// V1.1: relacje się zmieniły (sojusz zerwany, wojna, koniec umowy): wozy, których cel albo drugi koniec szlaku
+// przestał być targiem do handlu, od razu zmieniają trasę - zamiast dojeżdżać do targu byłego sojusznika (często
+// przez pole bitwy) i dopiero tam stawać. Nowy sojusznik: wozy jeżdżące tylko między własnymi targami dostają
+// szansę na dłuższy (lepiej płatny) szlak przy najbliższym rozliczeniu kursu.
+Game.prototype.tradeRelationsChanged = function () {
+    if (this.isClient) return;
+    for (const n of this.nations) {
+        if (n.defeated) continue;
+        for (const u of n.units) {
+            if (!u.cfg.trader || u.isDestroyed || u.inside) continue;
+            if (u.tradeBack && !this.isTradeMarket(n, u.tradeBack)) u.tradeBack = null;
+            if (u.tradeFrom && !this.isTradeMarket(n, u.tradeFrom)) { u.tradeFrom = null; u.tradeOx = null; }
+            if (u.state === 'trading' && !this.isTradeMarket(n, u.targetEntity)) this.tradeResume(u);
+            else if (u.state === 'trading') u.tradeRescan = true;
+            else if (u.state === 'idle' && u.tradeWait) {
+                // wóz czekał bez szlaku: nowy sojusznik albo umowa handlowa daje mu drugi koniec trasy
+                const m = (this.isTradeMarket(n, u.tradeFrom) && Math.hypot(u.tradeFrom.x - u.x, u.tradeFrom.y - u.y) < 400) ? u.tradeFrom : this.nearestTradeMarket(n, u.x, u.y);
+                const pt = m ? this.tradePartner(u, m) : null;
+                if (pt) {
+                    u.tradeWait = false;
+                    if (m === u.tradeFrom) u.tradeTo(pt, m);   // stoi na targu: kurs liczy się od niego
+                    else { u.tradeOx = null; u.tradeTo(m, pt); }
+                }
+            }
+        }
+    }
 };
 
 // Złoto za kurs z punktu (ox, oy) na targ m; fromOwner - właściciel targu wyjazdu (premia za handel z sojusznikiem)
@@ -5984,18 +6079,24 @@ Game.prototype.tradeGold = function (nation, ox, oy, m, fromOwner) {
     return Math.round(Game.TRADE_K * d * d * (ally ? Game.TRADE_ALLY : 1));
 };
 
-// Najlepszy partner handlowy dla targu "from": najdalszy osiągalny targ drużyny (najwięcej złota z kursu)
+// V1.1: wartość szlaku długości d - złoto na sekundę jazdy. Do Game.TRADE_MAX kroków złoto za kurs rośnie z kwadratem
+// odległości (na sekundę - liniowo), dalej już nie rośnie, a kurs trwa dłużej. Wcześniej wóz wybierał po prostu
+// najdalszy targ; na kontynencie Dyplomacji sojusznik bywa 6000 kroków dalej - kursy trwały minutę bez większego zysku.
+Game.tradeEff = function (d) { const M = Game.TRADE_MAX; return d <= M ? d : M * M / d; };
+
+// Najlepszy partner handlowy dla targu "from": osiągalny targ, który daje najwięcej złota na sekundę (obcy +20%)
 Game.prototype.tradePartner = function (u, from) {
     const pf = this.pathfinder, nation = u.owner;
-    let best = null, bd = 0;
+    let best = null, bv = 0;
     for (const n of this.nations) {
-        if (n.team !== nation.team) continue;
+        if (!this.tradeFriend(nation, n)) continue;
         for (const b of n.buildings) {
-            if (b === from || !Game.isTradeMarket(nation, b)) continue;
-            const d = Math.hypot(b.x - from.x, b.y - from.y);
-            if (d <= bd) continue;
+            if (b === from || !this.isTradeMarket(nation, b)) continue;
+            const foreign = b.owner !== nation || (from.owner && from.owner !== nation);
+            const v = Game.tradeEff(Math.hypot(b.x - from.x, b.y - from.y)) * (foreign ? Game.TRADE_ALLY : 1);
+            if (v <= bv) continue;
             if (pf && !pf.canReach(u, from.x, from.y, b, 2)) continue;
-            bd = d; best = b;
+            bv = v; best = b;
         }
     }
     return best;
@@ -6003,7 +6104,7 @@ Game.prototype.tradePartner = function (u, from) {
 
 // Wóz dojechał na targ m: rozliczenie kursu i powrót na drugi koniec szlaku
 Game.prototype.tradeArrive = function (u, m) {
-    if (!Game.isTradeMarket(u.owner, m)) { this.tradeResume(u); return; }
+    if (!this.isTradeMarket(u.owner, m)) { this.tradeResume(u); return; }
     const from = u.tradeFrom;
     if (u.tradeOx != null && from !== m) {
         const gold = this.tradeGold(u.owner, u.tradeOx, u.tradeOy, m, from && from.owner);
@@ -6017,14 +6118,22 @@ Game.prototype.tradeArrive = function (u, m) {
             this.snd('Gather', u.x, u.y, 'gold');
         }
     }
-    const back = (Game.isTradeMarket(u.owner, u.tradeBack) && u.tradeBack !== m) ? u.tradeBack
-        : ((Game.isTradeMarket(u.owner, from) && from !== m) ? from : this.tradePartner(u, m));
+    let back = (this.isTradeMarket(u.owner, u.tradeBack) && u.tradeBack !== m) ? u.tradeBack
+        : ((this.isTradeMarket(u.owner, from) && from !== m) ? from : this.tradePartner(u, m));
+    if (u.tradeRescan) {
+        // V1.1: zmieniły się sojusze - jeśli pojawił się dalszy (lepiej płatny) partner, szlak przechodzi na niego
+        u.tradeRescan = false;
+        const best = this.tradePartner(u, m);
+        const val = (b) => Game.tradeEff(Math.hypot(b.x - m.x, b.y - m.y)) * (b.owner !== u.owner || m.owner !== u.owner ? Game.TRADE_ALLY : 1);
+        if (best && (!back || val(best) > val(back) * 1.15)) back = best;
+    }
     u.tradeFrom = m; u.tradeOx = m.x; u.tradeOy = m.y;
     if (!back) {
         u.goIdle();
+        u.tradeWait = true;   // V1.1: czeka na targu - ruszy sam, gdy pojawi się sojusznik albo partner handlowy
         if (u.owner.human && this.time - (u.owner._tradeTold || -99) > 30) {
             u.owner._tradeTold = this.time;
-            this.tell(u.owner, 'Wóz kupiecki nie ma dokąd jechać — potrzebny drugi targ (twój albo sojusznika). Im dalej, tym więcej złota.', 'warn');
+            this.tell(u.owner, 'Wóz kupiecki nie ma dokąd jechać — potrzebny drugi targ (twój, sojusznika albo partnera handlowego). Im dalej, tym więcej złota.', 'warn');
         }
         return;
     }
@@ -6033,24 +6142,16 @@ Game.prototype.tradeArrive = function (u, m) {
 
 // Cel kursu zniknął (targ zburzony): wóz jedzie na drugi koniec szlaku albo do innego targu drużyny
 Game.prototype.tradeResume = function (u) {
-    if (Game.isTradeMarket(u.owner, u.tradeBack)) { u.tradeTo(u.tradeBack, null); return; }
-    if (Game.isTradeMarket(u.owner, u.tradeFrom)) { u.tradeTo(u.tradeFrom, null); return; }
-    let best = null, bd = Infinity;
-    for (const n of this.nations) {
-        if (n.team !== u.owner.team) continue;
-        for (const b of n.buildings) {
-            if (!Game.isTradeMarket(u.owner, b)) continue;
-            const d = Math.hypot(b.x - u.x, b.y - u.y);
-            if (d < bd) { bd = d; best = b; }
-        }
-    }
+    if (this.isTradeMarket(u.owner, u.tradeBack)) { u.tradeTo(u.tradeBack, null); return; }
+    if (this.isTradeMarket(u.owner, u.tradeFrom)) { u.tradeTo(u.tradeFrom, null); return; }
+    const best = this.nearestTradeMarket(u.owner, u.x, u.y);
     if (best) { u.tradeOx = null; u.tradeTo(best, null); }
-    else u.goIdle();
+    else { u.goIdle(); u.tradeWait = true; }
 };
 
 // Szlak dla wozu: najpierw na targ t, potem między t a poprzednim targiem (albo najlepszym partnerem t)
 Game.prototype.setTradeRoute = function (u, t) {
-    const back = (Game.isTradeMarket(u.owner, u.tradeFrom) && u.tradeFrom !== t) ? u.tradeFrom : this.tradePartner(u, t);
+    const back = (this.isTradeMarket(u.owner, u.tradeFrom) && u.tradeFrom !== t) ? u.tradeFrom : this.tradePartner(u, t);
     if (!back) return false;
     u.tradeTo(t, back);
     return true;
@@ -6567,7 +6668,7 @@ Game.prototype.applyCommand = function (nation, cmd) {
         case 'route': {
             // V3.5 Newest Final: wozy kupieckie - szlak handlowy przez wskazany targ
             const t = this.cmdTarget(nation, cmd.target);
-            if (!Game.isTradeMarket(nation, t)) return OK;
+            if (!this.isTradeMarket(nation, t)) return OK;
             let ok = 0, none = 0;
             for (const u of this.cmdUnits(nation, cmd.units)) {
                 if (!u.cfg.trader) continue;
@@ -6575,7 +6676,7 @@ Game.prototype.applyCommand = function (nation, cmd) {
                 if (this.setTradeRoute(u, t)) ok++;
                 else { none++; u.moveTo(t.x, t.y, false); }
             }
-            if (none > 0 && ok === 0) return { ok: true, msg: 'Do handlu potrzebne są dwa targi: postaw drugi z dala od pierwszego (im dłuższy szlak, tym więcej złota) albo handluj z targiem sojusznika.', type: 'warn' };
+            if (none > 0 && ok === 0) return { ok: true, msg: 'Do handlu potrzebne są dwa targi: postaw drugi z dala od pierwszego (im dłuższy szlak, tym więcej złota) albo handluj z targiem sojusznika (w Dyplomacji także partnera umowy handlowej).', type: 'warn' };
             return OK;
         }
 
@@ -8484,6 +8585,44 @@ class Pathfinder {
         return false;
     }
 
+    // ---------------- V1.1: rzeki i brody ----------------
+    // Czy odcinek przecina wodę albo góry (sam teren, bez budynków) - szybki test co pół pola siatki
+    terrainLineBlocked(ax, ay, bx, by) {
+        this.ensureGrid();
+        const lm = this.landMask, cs = this.cellSize, cols = this.cols, rows = this.rows;
+        const steps = Math.ceil(Math.hypot(bx - ax, by - ay) / (cs * 0.5));
+        for (let s = 1; s < steps; s++) {
+            const t = s / steps, c = Math.floor((ax + (bx - ax) * t) / cs), r = Math.floor((ay + (by - ay) * t) / cs);
+            if (c < 0 || r < 0 || c >= cols || r >= rows || !lm[r * cols + c]) return true;
+        }
+        return false;
+    }
+
+    // Długość marszu jednostki do celu, jeśli nie przekracza maxLen (A* ograniczony do okolicy); Infinity - dalej albo
+    // wcale. Do decyzji "czy warto gonić": wróg za rzeką bywa 150 kroków w linii prostej i 3000 przez najbliższy bród.
+    walkLen(unit, target, maxLen) {
+        const cells = maxLen / this.cellSize;
+        const p = this.findPath(unit.x, unit.y, target.x, target.y, target.unitType ? null : target, unit, Math.max(400, Math.min(12000, Math.round(cells * cells * 1.3))));
+        if (p.isPartial) return Infinity;
+        let L = 0, x = unit.x, y = unit.y;
+        for (const q of p) { L += Math.hypot(q.x - x, q.y - y); x = q.x; y = q.y; if (L > maxLen) return Infinity; }
+        return L;
+    }
+
+    // Szacunek drogi z (ax, ay) do (bx, by) dla planów SI: wprost, a gdy po drodze jest woda - przez najlepszy bród
+    // (Dyplomacja). Tani - bez A*; pomija ewentualną drugą rzekę, ale odróżnia "za rzeką" od "obok".
+    travelEst(ax, ay, bx, by) {
+        const d = Math.hypot(bx - ax, by - ay);
+        const F = this.game.fords;
+        if (!F || !F.length || d < 60 || !this.terrainLineBlocked(ax, ay, bx, by)) return d;
+        let best = Infinity;
+        for (const f of F) {
+            const v = Math.hypot(f.x - ax, f.y - ay) + Math.hypot(bx - f.x, by - f.y);
+            if (v < best) best = v;
+        }
+        return Math.max(d, Math.min(best, d * 6 + 1500));
+    }
+
     // ---------------- A* ----------------
 
     _push(node, f) {
@@ -8521,7 +8660,7 @@ class Pathfinder {
 
     // Zwraca tablicę punktów {x, y}; path.isPartial = true, gdy cel jest nieosiągalny
     // (ścieżka prowadzi wtedy do najbliższego osiągalnego miejsca).
-    findPath(startX, startY, endX, endY, targetEntity = null, unit = null) {
+    findPath(startX, startY, endX, endY, targetEntity = null, unit = null, expLimit = 0) {
         const t0 = performance.now();
         const grid = this.getGrid(unit), team = this.teamOf(unit);
         const cs = this.cellSize, cols = this.cols, rows = this.rows;
@@ -8557,8 +8696,9 @@ class Pathfinder {
 
         // pamięć podręczna: grupy idące z tej samej komórki do tego samego celu liczą ścieżkę raz
         const hasBox = tMinX >= 0;
-        const cacheKey = hasBox ? -1 : ((startIdx * this.maxNodes + endIdx) * 2 + (grid === this.boatGrid ? 1 : 0)) * 8 + (team + 1);
-        if (!hasBox) {
+        const noCache = hasBox || expLimit > 0;   // V1.1: ograniczone wyszukiwanie (walkLen) nie trafia do pamięci ścieżek
+        const cacheKey = noCache ? -1 : ((startIdx * this.maxNodes + endIdx) * 2 + (grid === this.boatGrid ? 1 : 0)) * 8 + (team + 1);
+        if (!noCache) {
             const hit = this.pathCache.get(cacheKey);
             if (hit) {
                 this.stats.cacheHits++;
@@ -8580,7 +8720,8 @@ class Pathfinder {
                 reachable = lab[endIdx] === lab[startIdx];
             }
         }
-        const maxExp = reachable ? 30000 : 2500;
+        if (!reachable && expLimit > 0) { const e = []; e.isPartial = true; return e; }   // walkLen: cel w innym regionie
+        const maxExp = expLimit > 0 ? expLimit : (reachable ? 30000 : 2500);
 
         this.pathGeneration++;
         if (this.pathGeneration > 2000000000) { this.closedSet.fill(0); this.seenSet.fill(0); this.pathGeneration = 1; }
@@ -8631,7 +8772,7 @@ class Pathfinder {
         if (partial) path.isPartial = true;
 
         this.stats.paths++; this.stats.expansions += expansions;
-        if (!hasBox) {
+        if (!noCache) {
             if (this.pathCache.size > 600) this.pathCache.clear();
             const stored = path.slice();
             if (partial) stored.isPartial = true;
@@ -9326,13 +9467,13 @@ class UIManager {
     // --- kronika ---
     dpLog(C) {
         const { g, D, me, tag, mmss } = C;
-        const EVC = { war: 'war', peace: 'pc', alliance: 'al', break: 'br', tribute: 'tr', hegemon: 'hg', nap: 'np', trade: 'td', untrade: 'br', gift: 'gf' };
+        const EVC = { war: 'war', peace: 'pc', alliance: 'al', break: 'br', tribute: 'tr', hegemon: 'hg', nap: 'np', trade: 'td', untrade: 'br', gift: 'gf', aid: 'gf' };
         const EVT = {
             war: (a, b) => `${tag(a)} wypowiadają wojnę ${tag(b, 'dat')}`, peace: (a, b) => `${tag(a)} i ${tag(b)} zawierają pokój`,
             alliance: (a, b) => `${tag(a)} i ${tag(b)} zawierają sojusz`, break: (a, b) => `${tag(a)} zrywają sojusz z ${tag(b, 'ins')}`,
             tribute: (a, b) => `${tag(a)} płacą trybut ${tag(b, 'dat')}`, nap: (a, b) => `${tag(a)} i ${tag(b)} zawierają pakt o nieagresji`,
             trade: (a, b) => `${tag(a)} i ${tag(b)} zawierają umowę handlową`, untrade: (a, b) => `${tag(a)} zrywają handel z ${tag(b, 'ins')}`,
-            gift: (a, b) => `${tag(a)} wysyłają dar ${tag(b, 'dat')}`,
+            gift: (a, b) => `${tag(a)} wysyłają dar ${tag(b, 'dat')}`, aid: (a, b) => `${tag(a)} wspierają sojusznika — ${tag(b, 'dat')} — na wojnie`,
             hegemon: (a) => a === me ? 'Twoja potęga budzi strach — możliwe koalicje przeciw tobie' : `${tag(a)} urastają na hegemona`
         };
         const since = this._dpNewSince === undefined ? Infinity : this._dpNewSince;
@@ -9513,6 +9654,11 @@ class UIManager {
                 const dem = D.demandFor(me);
                 h += row('tb', 'Żądanie trybutu', `${esc(Diplomacy.payText(dem))} · odmowa psuje stosunki`, btn('tribute', 'Zażądaj', '', ''), look && look.tribute, null);
             }
+            // V1.1: prośba o wsparcie - do sojusznika, gdy prowadzisz wojnę
+            if (st === DIPLO.ALLY) {
+                const ask = D.aidFor(me), e = D.proposeError(me, n, 'aid', ask);
+                h += row('al', 'Poproś o wsparcie', `${esc(Diplomacy.payText(ask))} na czas wojny · pomoc zbliża, ale zbyt częste prośby ją studzą`, btn('aid', 'Poproś', 'ok', '', !!e), look && look.aid, e);
+            }
             // wspólna wojna: tylko z twoimi wrogami
             for (const t of C.wars) {
                 if (t === n) continue;
@@ -9615,6 +9761,13 @@ class UIManager {
             const ally = D.allied(p.from, me);
             return card('join', `<b>${nm}</b> wzywają cię do wojny z <b class="wr">${tn}</b>`, ally ? 'sojusznik liczy na ciebie — odmowa obniży zaufanie' : 'prośba o pomoc w wojnie', 'Wypowiedz wojnę', 'Odmów',
                 `Wypowiesz wojnę ${t ? Diplomacy.form(t, 'dat') : ''} — ${p.from.shortName} zapamiętają pomoc`, ally ? 'Sojusznik zapamięta brak pomocy' : '');
+        }
+        if (p.kind === 'aid') {
+            // V1.1: sojusznik w ciężkiej wojnie prosi o surowce
+            const r = me.resources, can = r.get('gold') >= (p.pay.gold || 0) && r.get('food') >= (p.pay.food || 0) && r.get('wood') >= (p.pay.wood || 0);
+            const foe = g.nations.find(c => c !== p.from && c !== me && D.alive(c) && D.atWar(p.from, c));
+            return card('aid', `<b>${nm}</b> proszą o wsparcie${foe ? ` w wojnie z <b class="wr">${esc(Diplomacy.form(foe, 'ins'))}</b>` : ''}`, `przekażesz <b class="tr">${pt}</b>${can ? '' : ' (wyślesz, ile masz)'} · sojusznik zapamięta pomoc`, 'Wyślij', 'Odmów',
+                'Sojusznik dostanie surowce i zapamięta pomoc (stosunek w górę)', 'Odmowa obniży zaufanie sojusznika');
         }
         if (p.kind === 'nap') return card('nap', `<b>${nm}</b> proponują <b class="pc">pakt o nieagresji</b>`, `${DIPLO.NAP / 60} min bez wojny między wami`, 'Przyjmij', 'Odrzuć');
         if (p.kind === 'trade') return card('trade', `<b>${nm}</b> proponują <b class="tr">umowę handlową</b>`, `+${Math.round(D.tradeRate(p.from, me) * 60)} złota/min dla ciebie (i dla nich) oraz lepsze stosunki — do wojny`, 'Przyjmij', 'Odrzuć');
@@ -9761,7 +9914,8 @@ class UIManager {
         if (u.state === 'trading' && u.targetEntity) {
             // V3.5 Newest Final: wóz kupiecki - dokąd jedzie i ile złota przywiezie z tego kursu
             const t = u.targetEntity, gold = this.game.tradeGold(u.owner, u.tradeOx, u.tradeOy, t, u.tradeFrom && u.tradeFrom.owner);
-            s = (t.owner && t.owner !== u.owner ? 'Wiezie towar na targ sojusznika' : 'Wiezie towar na targ') + (u.tradeOx != null ? ` · ${gold} złota za kurs` : '');
+            const foreign = t.owner && t.owner !== u.owner;
+            s = (!foreign ? 'Wiezie towar na targ' : (this.game.isAlly(t.owner, u.owner) ? 'Wiezie towar na targ sojusznika' : 'Wiezie towar na targ partnera handlowego')) + (u.tradeOx != null ? ` · ${gold} złota za kurs` : '');
         }
         if ((u.state === 'gathering' || u.state === 'moving_to_resource') && u.targetEntity) {
             const t = u.targetEntity.type;
@@ -11038,7 +11192,7 @@ class UIManager {
         let marker = '#7dff8a';
 
         // V3.5 Newest Final: PPM na własny albo sojuszniczy targ - wozy kupieckie ruszają na szlak handlowy
-        if (clickedBuilding && clickedBuilding.type === 'market' && clickedBuilding.isConstructed && isFriendly(clickedBuilding.owner)) {
+        if (clickedBuilding && clickedBuilding.type === 'market' && clickedBuilding.isConstructed && (isFriendly(clickedBuilding.owner) || g.isTradeMarket(n, clickedBuilding))) {
             const carts = selectedUnits.filter(u => u.cfg.trader);
             if (carts.length > 0) {
                 g.issue({ t: 'route', units: this.ids(carts), target: clickedBuilding.id });
@@ -17787,7 +17941,7 @@ class Unit extends Entity {
         this.formSpeed = form && form.speed ? form.speed : null;
         this.formHold = !!(form && form.hold);   // własne miejsce w szyku: jednostka staje dokładnie na nim i wraca, gdy ktoś ją zepchnie
         this.resumeGather = null;
-        if (this.cfg.trader) { this.tradeOx = null; this.tradeBack = null; }   // wóz zjechał ze szlaku: kurs liczy się od nowa od targu
+        if (this.cfg.trader) { this.tradeOx = null; this.tradeBack = null; this.tradeWait = false; }   // wóz zjechał ze szlaku: kurs liczy się od nowa od targu
         this.aggroEnabled = aggro;
         this.explicitTarget = false;
         this.resumeTargetX = null;
@@ -17798,7 +17952,7 @@ class Unit extends Entity {
     }
 
     stop() {
-        if (this.cfg.trader) { this.tradeOx = null; this.tradeBack = null; }
+        if (this.cfg.trader) { this.tradeOx = null; this.tradeBack = null; this.tradeWait = false; }
         this.targetX = this.x;
         this.targetY = this.y;
         this.targetEntity = null;
@@ -18614,6 +18768,7 @@ class Unit extends Entity {
                     const expiry = e.unreachableBy.get(this.owner.id);
                     if (expiry && g.time < expiry) continue;
                 }
+                if (this._farMemo && this._farMemo.get(e) > g.time) continue;   // V1.1: za rzeką, bez brodu w pobliżu
                 const dist = Math.hypot(e.x - this.x, e.y - this.y);
                 if (dist >= searchRadius) continue;
                 const isEnemyBoat = !!e.isShip;
@@ -18637,7 +18792,8 @@ class Unit extends Entity {
                     const currentThreat = getThreatLevel(this.targetEntity);
                     const currentTargetDist = this.targetEntity ? Math.hypot(this.targetEntity.x - this.x, this.targetEntity.y - this.y) : Infinity;
 
-                    if (!this.targetEntity || highestThreat > currentThreat || (highestThreat === currentThreat && minDistToBest < currentTargetDist - 100)) {
+                    if ((!this.targetEntity || highestThreat > currentThreat || (highestThreat === currentThreat && minDistToBest < currentTargetDist - 100)) &&
+                        !this.farTarget(g, pf, bestEnemy, minDistToBest)) {
                         // zapamiętaj, dokąd wrócić po walce
                         if (this.state === 'moving' && this.aggroEnabled) {
                             this.resumeTargetX = this.targetX;
@@ -18766,6 +18922,27 @@ class Unit extends Entity {
         this.moveFailCount = 0;
         this.stuck = 0; this.stuckT = 0;
         this.actAtTarget(g, deltaTime);
+    }
+
+    // V1.1: wróg za rzeką (albo za pasmem gór), do którego nie da się dojść w rozsądnym obejściu - nie gonimy go.
+    // Wcześniej piechota widziała wroga 150 kroków za wodą, ruszała w obejście przez daleki bród, po 400 krokach
+    // smycz zawracała ją na posterunek - i tak w kółko, pod ostrzałem łuczników z drugiego brzegu. Strzelec, który
+    // sięgnie wroga z brzegu, nadal podchodzi i strzela przez wodę. Odrzucony cel jest pamiętany przez 6 s.
+    farTarget(g, pf, e, dist) {
+        if (this.isShip || !e) return false;
+        const er = e.radius || e.size / 2 || 10, reach = this.attackRange + this.radius + er;
+        if (dist <= reach + 4) return false;   // sięga bronią z miejsca
+        if (!pf.terrainLineBlocked(this.x, this.y, e.x, e.y)) return false;
+        if (this.cfg.ranged) {
+            // strzelec: wystarczy dojść do miejsca strzału (na linii do celu) - jeśli po drodze nie ma wody, idzie
+            const k = Math.max(0, (dist - reach + 8) / dist);
+            if (!pf.terrainLineBlocked(this.x, this.y, this.x + (e.x - this.x) * k, this.y + (e.y - this.y) * k)) return false;
+        }
+        if (pf.walkLen(this, e, Math.max(520, dist * 2.4)) < Infinity) return false;
+        if (!this._farMemo) this._farMemo = new Map();
+        if (this._farMemo.size > 24) this._farMemo.clear();
+        this._farMemo.set(e, g.time + 6);
+        return true;
     }
 
     // Jeden krok marszu w stronę celu (ścieżka, rozpychanie, wykrywanie zatorów)
@@ -19283,7 +19460,7 @@ Unit.inEnemyStreets = function (g, u) {
     }
     return false;
 };
-Unit.FIELDS = ['owner', 'unitType', 'targetX', 'targetY', 'cfg', 'isShip', 'speed', 'radius', 'isSelected', 'targetEntity', 'state', 'leashTargetX', 'leashTargetY', 'explicitTarget', 'gatherTimer', 'carryType', 'carryAmount', 'carryCapacity', 'gatherRate', 'kills', 'rank', 'attackTimer', 'attackRate', 'angle', '_px', '_py', '_pa', 'walkDist', 'isMoving', 'seed', 'resumeTargetX', 'resumeTargetY', 'leashAnchorX', 'leashAnchorY', 'formAngle', 'formSpeed', 'formHold', 'attackDamage', 'attackRange', 'armorMelee', 'armorPierce', 'healRate', 'healRange', 'vision', 'aggroRadius', '_gridLayer', '_gridTeam', '_gridKey', '_faceX', '_grid', 'freeX', 'freeY', 'aggroTimer', '_sepX', '_sepY', '_sx', '_sy', '_sa', 'path', 'stuck', 'stuckT', 'stuckX', 'stuckY', 'moveFailCount', 'repathCooldown', '_gt', 'urgentPath', 'lastPathTargetX', 'lastPathTargetY', 'pathPartial', '_faceY', 'fxTimer', 'buildTimer', 'resumeGather', 'lastGatherType', 'previousResource', 'aggroEnabled', '_swing', 'hasDealtDamage', 'chargeDist', 'lastHitTime', 'ghostUntil', 'isDrafted', 'healTimer', 'inspiredUntil', 'inspireBonus', 'fuseFx', 'auraTimer', 'auraCount', 'healTarget', 'healFx', 'healSnd', 'lazT', 'chargeIdle', 'repairTimer', 'unreachableBy', 'netHidden', 'netFresh', 'deathCause', 'inside', 'passengers', 'ambushUntil', 'inStreets', 'streetT', 'carryApples', 'waitT', 'regen', 'chargeBonus', 'royalOn', 'royalReady', 'royalUntil', 'royalT', 'tradeFrom', 'tradeBack', 'tradeOx', 'tradeOy', '_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf'];
+Unit.FIELDS = ['owner', 'unitType', 'targetX', 'targetY', 'cfg', 'isShip', 'speed', 'radius', 'isSelected', 'targetEntity', 'state', 'leashTargetX', 'leashTargetY', 'explicitTarget', 'gatherTimer', 'carryType', 'carryAmount', 'carryCapacity', 'gatherRate', 'kills', 'rank', 'attackTimer', 'attackRate', 'angle', '_px', '_py', '_pa', 'walkDist', 'isMoving', 'seed', 'resumeTargetX', 'resumeTargetY', 'leashAnchorX', 'leashAnchorY', 'formAngle', 'formSpeed', 'formHold', 'attackDamage', 'attackRange', 'armorMelee', 'armorPierce', 'healRate', 'healRange', 'vision', 'aggroRadius', '_gridLayer', '_gridTeam', '_gridKey', '_faceX', '_grid', 'freeX', 'freeY', 'aggroTimer', '_sepX', '_sepY', '_sx', '_sy', '_sa', 'path', 'stuck', 'stuckT', 'stuckX', 'stuckY', 'moveFailCount', 'repathCooldown', '_gt', 'urgentPath', 'lastPathTargetX', 'lastPathTargetY', 'pathPartial', '_faceY', 'fxTimer', 'buildTimer', 'resumeGather', 'lastGatherType', 'previousResource', 'aggroEnabled', '_swing', 'hasDealtDamage', 'chargeDist', 'lastHitTime', 'ghostUntil', 'isDrafted', 'healTimer', 'inspiredUntil', 'inspireBonus', 'fuseFx', 'auraTimer', 'auraCount', 'healTarget', 'healFx', 'healSnd', 'lazT', 'chargeIdle', 'repairTimer', 'unreachableBy', 'netHidden', 'netFresh', 'deathCause', 'inside', 'passengers', 'ambushUntil', 'inStreets', 'streetT', 'carryApples', 'waitT', 'regen', 'chargeBonus', 'royalOn', 'royalReady', 'royalUntil', 'royalT', 'tradeFrom', 'tradeBack', 'tradeOx', 'tradeOy', 'tradeWait', 'tradeRescan', '_farMemo', '_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf'];
 
 // Rodzaj dźwięku ciosu wręcz (V3.5): 0 - szczęk stali, 1 - drzewce i tarcza, 2 - topór, 3 - narzędzie / pięść, 4 - stal o mur
 Unit.MELEE_SND = { swordsman: 0, knight: 0, hussar: 0, royal_guard: 0, scout: 0, lisowczyk: 0, spearman: 1, halberdier: 1, axeman: 2, worker: 3 };
@@ -19700,8 +19877,8 @@ class Building extends Entity {
             this.owner.stats.trained++;
             if (game) game.spawnParticle(spawnX, spawnY, 'spawn');
             unit.angle = this.rallyPoint ? Math.atan2(this.rallyPoint.y - spawnY, this.rallyPoint.x - spawnX) : Math.PI / 2;
-            if (unit.cfg.trader && game && Game.isTradeMarket(this.owner, this)) {
-                // V3.5 Newest Final: nowy wóz kupiecki od razu rusza w trasę - do najdalszego targu drużyny i z powrotem
+            if (unit.cfg.trader && game && game.isTradeMarket(this.owner, this)) {
+                // V3.5 Newest Final: nowy wóz kupiecki od razu rusza w trasę - do najlepszego targu (V1.1: także sojusznika) i z powrotem
                 const partner = game.tradePartner(unit, this);
                 if (partner) {
                     unit.tradeFrom = this; unit.tradeOx = this.x; unit.tradeOy = this.y;
@@ -21289,7 +21466,9 @@ class NationAI {
         if (tc && p.tradeCarts > 0 && nation.age >= 3) {
             const own = markets.filter(m => m.isConstructed);
             const probe = { unitType: 'trade_cart', owner: nation };
-            const reach = (m) => { const pt = m ? game.tradePartner(probe, m) : null; return pt ? Math.hypot(pt.x - m.x, pt.y - m.y) : 0; };
+            // V1.1: "zasięg" szlaku liczony wartością (złoto na sekundę jazdy), a nie samą odległością - daleki sojusznik
+            // za Game.TRADE_MAX krokami daje mniej niż własny drugi targ w dobrej odległości
+            const reach = (m) => { const pt = m ? game.tradePartner(probe, m) : null; return pt ? Game.tradeEff(Math.hypot(pt.x - m.x, pt.y - m.y)) : 0; };
             // targ na szlaku, który wróg zburzył (często jeszcze jako plac budowy), wydłuża przerwę przed kolejną próbą;
             // po trzech stratach AI daje sobie spokój (w grze każdy na każdego środek mapy bywa nie do utrzymania)
             if (this.tradeSite && this.tradeSite.isDestroyed) { this.tradeLost = (this.tradeLost || 0) + 1; this.tradeSite = null; this.nextMarketAt = time + 150 * this.tradeLost; }
@@ -21314,11 +21493,7 @@ class NationAI {
             // wóz bez szlaku (targ zburzony, zepchnięty z trasy) wraca do handlu
             for (const u of traders) {
                 if (u.state !== 'idle' || u.inside) continue;
-                let best = null, bd = Infinity;
-                for (const n of game.nations) {
-                    if (n.team !== nation.team) continue;
-                    for (const b of n.buildings) { if (!Game.isTradeMarket(nation, b)) continue; const d = Math.hypot(b.x - u.x, b.y - u.y); if (d < bd) { bd = d; best = b; } }
-                }
+                const best = game.nearestTradeMarket(nation, u.x, u.y);
                 if (best) game.setTradeRoute(u, best);
             }
         }
@@ -21598,10 +21773,52 @@ class NationAI {
         // Dyplomacja: wróg wskazany przez dyplomatę (DiplomatAI.focus) jest wyraźnie bliżej na liście celów
         const foc = this.nation.diplomat && this.nation.diplomat.focus;
         if (foc) for (const c of scored) if (c.n === foc) c.d *= 0.45;
+        // V1.1: wspólna ofensywa - cel natarcia sojusznika (jednorazowo, dla tej fali)
+        const jt = this.jointTarget;
+        this.jointTarget = null;
+        if (jt) for (const c of scored) if (c.n === jt) c.d *= 0.2;
         scored.sort((a, b) => a.d - b.d);
         const pick = (scored.length > 1 && Math.random() < 0.25) ? scored[1] : scored[0];
         if (pick.b) this.knownEnemies.add(pick.b);
         return pick;
+    }
+
+    // V1.1 (Dyplomacja): wspólna ofensywa. Sojusznik SI rusza falą (marsz albo szturm) na wroga, z którym też jesteśmy
+    // w wojnie - albo armia sojusznika-człowieka (co najmniej 8 żołnierzy) stoi pod osadą takiego wroga: nasza fala
+    // wyrusza od razu (bez czekania na koniec przerwy) i bije w ten sam cel. Raz na każde natarcie sojusznika.
+    jointOffensive(time) {
+        const game = this.game, D = game.diplo, nation = this.nation;
+        this._jointAt = time;
+        if (!this.jointSeen) this.jointSeen = new Map();
+        for (const a of game.nations) {
+            if (a === nation || !D.allied(a, nation) || !D.alive(a)) continue;
+            let tn = null, key = 0;
+            if (a.ai && a.ai.wave && a.ai.wave.target && (a.ai.wave.phase === 'march' || a.ai.wave.phase === 'attack')) {
+                tn = a.ai.wave.target.n; key = a.ai.wave.id;
+            } else if (a.human) {
+                // natarcie człowieka: jego żołnierze pod Ratuszem wroga, z którym obaj walczymy
+                for (const e of game.nations) {
+                    if (!D.atWar(a, e) || !D.atWar(nation, e) || !D.alive(e)) continue;
+                    const etc = e.buildings.find(b => b.type === 'town_center' && !b.isDestroyed);
+                    if (!etc) continue;
+                    let k = 0;
+                    for (const u of a.units) if (u.cfg.military && !u.isShip && !u.inside && Math.abs(u.x - etc.x) < 1100 && Math.abs(u.y - etc.y) < 1100) k++;
+                    if (k >= 8) { tn = e; key = Math.floor(time / 240) + 1; break; }   // jedno wsparcie na 4 minuty natarcia
+                }
+            }
+            if (!tn || !D.atWar(nation, tn) || !D.alive(tn)) continue;
+            const id = D.i(a) * 1e6 + key;
+            if (this.jointSeen.get(a) === id) continue;
+            this.jointSeen.set(a, id);
+            this.jointTarget = tn;
+            this.nextWaveAt = time;
+            this.log(`wspólna ofensywa z ${a.shortName || a.name} na ${tn.shortName || tn.name}`);
+            if (a.human && time - (this._jointTold || -99) > 120) {
+                this._jointTold = time;
+                game.tell(a, `${D.name(nation)} dołączają do twojego natarcia na ${D.gen(tn)} — ich wojsko rusza.`, 'good');
+            }
+            return;
+        }
     }
 
     // ---------------- V3.5: dowódca ----------------
@@ -21815,6 +22032,7 @@ class NationAI {
                 if (sent) this.log(`${tw.besieged ? 'odsiecz' : 'straż'} Cudu (${tw.cfg.name}): ${sent} jednostek`);
             }
         }
+        if (!hold && !wave && game.diplo && time < this.nextWaveAt && time - (this._jointAt || -99) > 8) this.jointOffensive(time);
         if (!hold && (time >= this.nextWaveAt || early || rush)) {
             let size = Math.min(p.waveMax, this.waveSizeNow);
             const avail = fresh.length - this.guardSize();
@@ -22001,7 +22219,11 @@ class NationAI {
                 if (!e.owner || !e.unitType || !game.hostileTeams(myTeam, e.owner.team) || e.isDestroyed || e.isShip) continue;
                 if (e.cfg.colossal ? !hurtsBig : onlyB) continue;   // Koń Trojański - tylko dla artylerii
                 if (this.isUnreachable(e)) continue;
-                const dist = Math.hypot(e.x - s.x, e.y - s.y);
+                if (s._farMemo && s._farMemo.get(e) > game.time) continue;
+                // V1.1: odległość przez bród, gdy wróg stoi za rzeką (w linii prostej bywa najbliższy, a dojście - najdłuższe)
+                const straight = Math.hypot(e.x - s.x, e.y - s.y);
+                const dist = straight > s.attackRange + s.radius + 30 ? pf.travelEst(s.x, s.y, e.x, e.y) : straight;
+                if (dist > 1100) continue;
                 let score = -dist;
                 if (e.cfg.colossal) score += 600;
                 if (e.cfg.hero) score += this.difficulty === 'easy' ? 80 : 260;   // V3.5 Final: wrogi król - jego śmierć kończy wojnę z tą nacją
@@ -22020,6 +22242,8 @@ class NationAI {
         const siege = s.cfg.cls === 'siege' && (s.cfg.vsBuilding || 1) > 1;   // balista to broń przeciw wojsku, nie przeciw murom
         const ECO = { farm: 1, orchard: 1, mill: 1, storehouse: 1, house: 1, market: 1 };
         let closestBuilding = null, minBldgDist = Infinity;
+        const fords = !!(game.fords && game.fords.length), cand = NationAI._cand || (NationAI._cand = []);
+        cand.length = 0;
         for (const e of this.knownEnemies) {
             if (!e.type || e.isDestroyed || e.unitType) continue;
             if (this.isUnreachable(e)) continue;
@@ -22033,6 +22257,18 @@ class NationAI {
                 if (e.type === 'town_center') adjustedDist -= 300;
             } else if (e.type === 'town_center') adjustedDist -= 300;
             if (adjustedDist < minBldgDist) { minBldgDist = adjustedDist; closestBuilding = e; }
+            if (fords) { cand.push(e, adjustedDist); }
+        }
+        if (fords && cand.length > 2) {
+            // V1.1: kilku najbliższych kandydatów (w linii prostej) ocenia się drogą przez bród - fala nie wybiera
+            // budynku tuż za rzeką, do którego trzeba iść dookoła, gdy po tej stronie wody stoją inne cele
+            const idx = []; for (let i = 0; i < cand.length; i += 2) idx.push(i);
+            idx.sort((a, b) => cand[a + 1] - cand[b + 1]);
+            minBldgDist = Infinity;
+            for (let k = 0; k < Math.min(6, idx.length); k++) {
+                const e = cand[idx[k]], v = cand[idx[k] + 1] + pf.travelEst(s.x, s.y, e.x, e.y) - Math.hypot(e.x - s.x, e.y - s.y);
+                if (v < minBldgDist) { minBldgDist = v; closestBuilding = e; }
+            }
         }
 
         let target = closestBuilding;
@@ -22802,7 +23038,7 @@ const DIPLO = {
     RES_NAME: { gold: 'złota', food: 'żywności', wood: 'drewna', stone: 'kamienia' },
     LIMIT_WARN: [[600, '10 minut'], [300, '5 minut'], [120, '2 minuty'], [60, 'minuta']],
     KIND: { war: 'wypowiada wojnę nacji', peace: 'zawiera pokój z', alliance: 'zawiera sojusz z', break: 'zrywa sojusz z', tribute: 'płaci trybut nacji',
-        nap: 'zawiera pakt o nieagresji z', trade: 'zawiera umowę handlową z', untrade: 'zrywa umowę handlową z', gift: 'wysyła dar nacji' },
+        nap: 'zawiera pakt o nieagresji z', trade: 'zawiera umowę handlową z', untrade: 'zrywa umowę handlową z', gift: 'wysyła dar nacji', aid: 'wysyła wsparcie nacji' },
     // PAMIĘĆ: [opis (z punktu widzenia tego, kto pamięta), zanik na sekundę, granica]. Granica dodatnia - wpis tylko
     // dodatni (do granicy), ujemna - tylko ujemny. Opisy mówią o tym, czyje to sprawy: "Napaść na nich" w karcie nacji
     // to twoja napaść na tę nację.
@@ -22827,13 +23063,17 @@ const DIPLO = {
         helped: ['Pomoc w wojnie', 0.02, 40],
         desert: ['Brak pomocy w wojnie', 0.03, -40],
         untrade: ['Zerwana umowa handlowa', 0.04, -20],
+        aidG: ['Wsparcie w potrzebie', 0.025, 35],          // V1.1: sojusznik przysłał surowce na prośbę
+        aidR: ['Odmowa wsparcia', 0.04, -20],
+        guard: ['Obrona przed napastnikiem', 0.02, 35],     // V1.1: stanęli w ich obronie, choć nie byli sojusznikami
         old: ['Dawne sprawy', 0.02, 100]
     },
     // CZYNNIKI BIEŻĄCE (Diplomacy.situation): liczone na nowo co sekundę
     SITU: {
         war: 'Wojna z nimi', common: 'Wspólny wróg', allyFoe: 'Sojusz z ich wrogiem', foeAlly: 'Wojna z ich sojusznikiem',
         allied: 'Sojusz', trade: 'Umowa handlowa', nap: 'Pakt o nieagresji', heg: 'Hegemon — potęga budzi strach',
-        border: 'Spór o granice', aff: 'Sympatia władców', affN: 'Niechęć władców', glory: 'Cuda grożą zwycięstwem', triumph: 'Triumf — zwycięstwo tuż-tuż'
+        border: 'Spór o granice', aff: 'Sympatia władców', affN: 'Niechęć władców', glory: 'Cuda grożą zwycięstwem', triumph: 'Triumf — zwycięstwo tuż-tuż',
+        foeTrade: 'Handel z ich wrogiem'
     }
 };
 
@@ -22939,6 +23179,10 @@ class Diplomacy {
         if (common) out.push(['common', 15, this.i(common)]);
         if (allyFoe) out.push(['allyFoe', -12, this.i(allyFoe)]);
         if (foeAlly) out.push(['foeAlly', -15, this.i(foeAlly)]);
+        // V1.1: b handluje z kimś, z kim a jest w wojnie - złoto płynie do wroga
+        if (st !== DIPLO.WAR && this.trade) for (const c of g.nations) {
+            if (c !== a && c !== b && this.alive(c) && this.atWar(a, c) && this.trading(b, c)) { out.push(['foeTrade', -8, this.i(c)]); break; }
+        }
         if (st === DIPLO.ALLY) out.push(['allied', Math.round(10 + Math.min(15, (t - this.since[i * N + j]) / 60))]);
         if (this.trading(a, b)) out.push(['trade', this.tradeBonus(a, b)]);
         if (st === DIPLO.PEACE && this.pact[i * N + j] > t) out.push(['nap', 6]);
@@ -23066,6 +23310,7 @@ class Diplomacy {
             else if (s === DIPLO.ALLY) A[ta * 16 + tb] = 1;
         }
         this.version++;
+        if (this.game.tradeRelationsChanged) this.game.tradeRelationsChanged();   // V1.1: wozy kupieckie zmieniają szlak
     }
 
     _set(a, b, s) {
@@ -23112,7 +23357,7 @@ class Diplomacy {
     announce(a, b, kind, textA, textB, textAll, typeA, typeB) {
         const g = this.game;
         this.log(a, b, kind);
-        const snd = { alliance: 'DiploAlly', peace: 'DiploPeace', tribute: 'DiploPeace', nap: 'DiploPeace', trade: 'DiploPeace', break: 'DiploDemand', untrade: 'DiploDemand', gift: 'DiploOffer' }[kind];
+        const snd = { alliance: 'DiploAlly', peace: 'DiploPeace', tribute: 'DiploPeace', nap: 'DiploPeace', trade: 'DiploPeace', break: 'DiploDemand', untrade: 'DiploDemand', gift: 'DiploOffer', aid: 'DiploOffer' }[kind];
         const soft = { alliance: 1, peace: 1, nap: 1, trade: 1 };
         if (textA) { g.tell(a, textA, typeA || 'info'); if (soft[kind]) g.cue(a, snd); }
         if (textB) { g.tell(b, textB, typeB || 'info'); if (typeB === 'alert') g.cue(b, 'Warning'); else if (snd) g.cue(b, snd); }
@@ -23131,7 +23376,7 @@ class Diplomacy {
 
     // Czy zdarzenie między a i b dotyczy nacji n (dostanie komunikat, a nie tylko wpis w kronice)
     concerns(n, a, b, kind) {
-        if (kind === 'trade' || kind === 'untrade' || kind === 'gift' || kind === 'nap') return false;
+        if (kind === 'trade' || kind === 'untrade' || kind === 'gift' || kind === 'nap' || kind === 'aid') return false;
         if (this.allied(n, a) || this.allied(n, b)) return true;
         return kind === 'alliance' && (this.atWar(n, a) || this.atWar(n, b));
     }
@@ -23159,6 +23404,20 @@ class Diplomacy {
 
     // Trybut, którego nacja żąda (gracz i SI tak samo): rośnie z jej erą
     demandFor(n) { const a = n.age; return { gold: 50 + 40 * a, food: 80 + 50 * a, wood: 50 + 30 * a }; }
+    // V1.1: prośba sojusznika o wsparcie w wojnie - tyle surowców prosi nacja n (rośnie z jej erą)
+    aidFor(n) { const a = n.age; return { gold: 40 + 40 * a, food: 60 + 50 * a, wood: 40 + 40 * a }; }
+
+    // V1.1: giver wysyła sojusznikowi asker surowce, o które prosił; asker to zapamięta
+    sendAid(giver, asker, pay) {
+        if (!this.alive(giver) || !this.alive(asker)) return;
+        const paid = this.transfer(giver, asker, pay);
+        const value = this.giftValue(paid);
+        if (value <= 0) return;
+        this.addOp(asker, giver, clamp(Math.round(value / 25), 8, 30), 'aidG');
+        if (giver.diplomat) (giver.diplomat.aidGiven || (giver.diplomat.aidGiven = new Map())).set(asker, this.game.time);
+        const txt = Diplomacy.payText(paid);
+        this.announce(giver, asker, 'aid', `Wysyłasz wsparcie ${this.dat(asker)}: ${txt}.`, `${this.name(giver)} przysyłają wsparcie na wojnę: ${txt}.`, null, 'good', 'good');
+    }
 
     static payText(p) {
         if (!p) return '';
@@ -23232,7 +23491,7 @@ class Diplomacy {
         const i = this.i(a), j = this.i(b);
         for (let k = this.history.length - 1; k >= 0; k--) {
             const h = this.history[k];
-            if (h.kind === 'gift' || h.kind === 'trade' || h.kind === 'untrade' || h.kind === 'nap' || h.kind === 'hegemon') continue;
+            if (h.kind === 'gift' || h.kind === 'trade' || h.kind === 'untrade' || h.kind === 'nap' || h.kind === 'hegemon' || h.kind === 'aid') continue;
             if ((h.a === i && h.b === j) || (h.a === j && h.b === i)) return h.kind;
         }
         return null;
@@ -23325,17 +23584,19 @@ class Diplomacy {
         if (!this.tradeEarned) this.tradeEarned = new Float64Array(N * N);
         this.tradeEarned[i * N + j] = this.tradeEarned[j * N + i] = 0;
         this._opAt = -1;
+        this.game.tradeRelationsChanged();   // V1.1: targi partnera otwarte dla wozów kupieckich
         const r = Math.round(this.tradeRate(a, b) * 60);
         this.announce(a, b, 'trade', `Umowa handlowa z ${this.ins(b)}: +${r} złota na minutę dla obu stron.`, `Umowa handlowa z ${this.ins(a)}: +${r} złota na minutę dla obu stron.`, null, 'good', 'good');
     }
 
-    endTrade(a, b) {
+    endTrade(a, b, why) {
         if (!this.trading(a, b)) return 'Nie macie umowy handlowej.';
         const N = this.N, i = this.i(a), j = this.i(b);
         this.trade[i * N + j] = this.trade[j * N + i] = 0;
         this.addOp(b, a, -10, 'untrade');
         this._opAt = -1;
-        this.announce(a, b, 'untrade', `Zrywasz umowę handlową z ${this.ins(b)}.`, `${this.name(a)} zrywają umowę handlową z tobą.`, null, 'warn', 'warn');
+        this.game.tradeRelationsChanged();   // V1.1: wozy jadące na targ byłego partnera zawracają
+        this.announce(a, b, 'untrade', `Zrywasz umowę handlową z ${this.ins(b)}.`, `${this.name(a)} zrywają umowę handlową z tobą${why ? ' — ' + why : '.'}`, null, 'warn', 'warn');
         return null;
     }
 
@@ -23445,6 +23706,11 @@ class Diplomacy {
             if (this.trading(from, to)) return 'Macie już umowę handlową.';
             if (this.trades(from) >= DIPLO.TRADE_MAX) return `Masz już ${DIPLO.TRADE_MAX} umowy handlowe.`;
             if (this.trades(to) >= DIPLO.TRADE_MAX) return `${this.name(to)} mają już ${DIPLO.TRADE_MAX} umowy handlowe.`;
+        } else if (kind === 'aid') {
+            if (st !== DIPLO.ALLY) return 'O wsparcie można prosić tylko sojusznika.';
+            if (!pay) return 'Nieznana propozycja.';
+            if (!g.nations.some(c => c !== from && this.alive(c) && this.atWar(from, c))) return 'O wsparcie prosi się w czasie wojny.';
+            if (this.proposals.some(p => p.from === from && p.to === to && p.kind === 'aid')) return 'Prośba już czeka na odpowiedź.';
         } else if (kind === 'join') {
             if (!target || !this.alive(target) || target === to || target === from) return 'Nie ma takiego wroga.';
             if (!this.atWar(from, target)) return `Nie walczysz z ${this.ins(target)}.`;
@@ -23471,13 +23737,14 @@ class Diplomacy {
             const r = to.diplomat.evaluate(kind, from, pay, target);
             if (r.ok) {
                 this.accept(from, to, kind, pay, target);
-                this.setReply(from, to, true, kind === 'tribute' ? 'Zapłacili trybut.' : kind === 'join' ? `Przystąpili do wojny z ${this.ins(target)}.` : `Przyjęli ${what}.`);
+                this.setReply(from, to, true, kind === 'tribute' ? 'Zapłacili trybut.' : kind === 'join' ? `Przystąpili do wojny z ${this.ins(target)}.` : kind === 'aid' ? 'Przysłali wsparcie.' : `Przyjęli ${what}.`);
             } else {
-                const txt = kind === 'tribute' ? `Odmawiają trybutu — ${r.why}` : `Odrzucają ${what} — ${r.why}`;
+                const txt = kind === 'tribute' ? `Odmawiają trybutu — ${r.why}` : kind === 'aid' ? `Odmawiają wsparcia — ${r.why}` : `Odrzucają ${what} — ${r.why}`;
                 this.setReply(from, to, false, txt);
                 g.tell(from, `${this.name(to)} ${txt[0].toLowerCase() + txt.slice(1)}`, 'warn');
                 if (kind === 'alliance') this.addOp(to, from, 3, 'interest');   // samo zainteresowanie trochę ociepla stosunki
                 if (kind === 'tribute') this.addOp(to, from, -10, 'tribD');
+                if (kind === 'aid') this.addOp(from, to, -8, 'aidR');
             }
             if (from.diplomat) from.diplomat.onAnswer(to, kind, r.ok);
             return null;
@@ -23496,7 +23763,7 @@ class Diplomacy {
 
     static what(kind, pay) {
         return kind === 'peace' ? (pay ? 'pokój za okup' : 'pokój') : kind === 'alliance' ? 'sojusz' : kind === 'nap' ? 'pakt o nieagresji'
-            : kind === 'trade' ? 'umowę handlową' : kind === 'join' ? 'wspólną wojnę' : 'trybut';
+            : kind === 'trade' ? 'umowę handlową' : kind === 'join' ? 'wspólną wojnę' : kind === 'aid' ? 'prośbę o wsparcie' : 'trybut';
     }
 
     // Przyjęta propozycja (from zaproponował, to się zgodził)
@@ -23507,6 +23774,7 @@ class Diplomacy {
         else if (kind === 'nap') { if (this.get(from, to) === DIPLO.PEACE) this.makeNap(from, to); }
         else if (kind === 'trade') { if (!this.atWar(from, to) && !this.trading(from, to)) this.makeTrade(from, to); }
         else if (kind === 'join') { if (target && this.alive(target) && !this.atWar(to, target)) this.joinWar(to, from, target); }
+        else if (kind === 'aid') { if (this.allied(from, to)) this.sendAid(to, from, pay); }
     }
 
     respond(nation, id, accept) {
@@ -23521,10 +23789,10 @@ class Diplomacy {
                 if (e) return e;
             }
             this.accept(p.from, nation, p.kind, p.pay, p.target);
-            this.setReply(p.from, nation, true, p.kind === 'tribute' ? 'Zapłacili trybut.' : 'Przyjęli propozycję.');
+            this.setReply(p.from, nation, true, p.kind === 'tribute' ? 'Zapłacili trybut.' : p.kind === 'aid' ? 'Przysłali wsparcie.' : 'Przyjęli propozycję.');
         } else {
             this.refuse(p, nation);
-            const what = p.kind === 'tribute' ? 'żądanie trybutu' : p.kind === 'join' ? 'wezwanie do wojny' : Diplomacy.what(p.kind, p.pay);
+            const what = p.kind === 'tribute' ? 'żądanie trybutu' : p.kind === 'join' ? 'wezwanie do wojny' : p.kind === 'aid' ? 'prośbę o wsparcie' : Diplomacy.what(p.kind, p.pay);
             this.setReply(p.from, nation, false, `Odrzucili ${what}.`);
             this.game.tell(p.from, `${this.name(nation)} odrzucają ${what}.`, 'warn');
         }
@@ -23536,6 +23804,7 @@ class Diplomacy {
     refuse(p, nation) {
         if (p.kind === 'tribute') this.addOp(p.from, nation, -15, 'tribR');
         else if (p.kind === 'join' && this.allied(p.from, nation)) this.addOp(p.from, nation, -15, 'desert');
+        else if (p.kind === 'aid') this.addOp(p.from, nation, -10, 'aidR');
         else this.addOp(p.from, nation, -6, 'spurn');
     }
 
@@ -23558,6 +23827,7 @@ class Diplomacy {
             case 'trade': return to ? this.propose(nation, to, 'trade') : null;
             case 'untrade': return to ? this.endTrade(nation, to) : null;
             case 'join': { const tg = nat(cmd.target); return to && tg ? this.propose(nation, to, 'join', null, tg) : null; }
+            case 'aid': return to ? this.propose(nation, to, 'aid', this.aidFor(nation)) : null;
             case 'tribute': return to ? this.propose(nation, to, 'tribute', this.demandFor(nation)) : null;
             case 'gift': {
                 if (!to || !DIPLO.GIFT_RES.includes(cmd.res) || !DIPLO.GIFTS.includes(cmd.amt)) return null;
@@ -24043,9 +24313,27 @@ class DiplomatAI {
             else if (afford < 0.7) veto = 'nie mają z czego zapłacić.';
             return done(v, 1.5 + this.aggro * 0.6, 'nie ugną się przed groźbami — przewaga jest za mała.', veto);
         }
+        if (kind === 'aid') {
+            // V1.1: prośba sojusznika o surowce na wojnę - lojalność, zapasy, wspólny wróg; niedawna pomoc studzi chęć
+            const r = me.resources, need = Math.max(1, D.giftValue(pay || {}));
+            const stock = r.get('gold') * DIPLO.RES_W.gold + r.get('food') + r.get('wood');
+            let v = add('Sojusz z wami', this.loyal * 0.5);
+            v += add(`Stosunek do was (${opT(o.op)})`, o.op / 100);
+            v += add('Zapasy wobec prośby', clamp((stock / need - 3) * 0.1, -0.5, 0.35));
+            const common = g.nations.some(c => c !== me && c !== from && D.alive(c) && D.atWar(me, c) && D.atWar(from, c));
+            if (common) v += add('Wspólny wróg', 0.25);
+            else if (wars > 0) v += add('Sami prowadzą wojnę', -0.3);
+            const given = this.aidGiven ? this.aidGiven.get(from) : undefined;
+            if (given !== undefined && g.time - given < 360) v += add('Niedawno już pomogli', -0.45);
+            const veto = stock < need * 1.6 ? 'sami mają za mało zapasów.' : null;
+            return done(v, 0.6, 'nie stać ich teraz na taką pomoc.', veto);
+        }
         if (kind === 'trade') {
             let v = add('Zysk z handlu', 0.45 + D.tradeRate(me, from) * 60 / 100);
             v += add(`Stosunek do was (${opT(o.op)})`, o.op / 40);
+            // V1.1: z wrogiem sojusznika nie handlują (embargo)
+            const foeOf = g.nations.find(c => c !== me && c !== from && D.alive(c) && D.allied(me, c) && D.atWar(c, from));
+            if (foeOf) v += add(`Wojna z ich sojusznikiem (${Diplomacy.form(foeOf)})`, -0.6);
             if (from === D.hegemon() && !D.allied(me, from)) v += add('Nie chcą wzmacniać hegemona', -0.4);
             if (this.plansWar(from)) v += add('Mają wobec was wojenne plany', -0.4);
             let veto = null;
@@ -24124,6 +24412,7 @@ class DiplomatAI {
         } else {
             r.trade = put('trade', 'trade');
             if (st === DIPLO.PEACE) { r.nap = put('nap', 'nap'); r.alliance = put('alliance', 'alliance'); r.tribute = put('tribute', 'tribute', D.demandFor(n)); }
+            if (st === DIPLO.ALLY) r.aid = put('aid', 'aid', D.aidFor(n));
             const js = [];
             for (const t of g.nations) {
                 if (t === me || t === n || !D.alive(t) || !D.atWar(n, t)) continue;
@@ -24229,6 +24518,17 @@ class DiplomatAI {
             return;
         }
 
+        // 5b) V1.1: embargo - nie handlujemy z wrogiem sojusznika. Lojalny władca zrywa umowę od razu, mało lojalny -
+        //     gdy i tak nie darzy kontrahenta sympatią (interes ponad sojusz).
+        for (const x of others) {
+            if (!D.trading(me, x.n)) continue;
+            const ally = allies.find(a => D.atWar(a.n, x.n));
+            if (!ally || (this.loyal < 0.6 && x.op > 20)) continue;
+            this.log(`embargo: zrywa umowę handlową z ${D.name(x.n)} (wojna z sojusznikiem ${D.name(ally.n)})`);
+            D.endTrade(me, x.n, `nie handlują z wrogami swoich sojuszników (${D.name(ally.n)}).`);
+            return;
+        }
+
         // 6) wsparcie sojusznika, który przegrywa wojnę: 150 złota (najwyżej co 7 minut)
         if (allies.length && g.time - this.aidAt > 420 && me.resources.get('gold') > 900) {
             for (const a of allies) {
@@ -24243,6 +24543,23 @@ class DiplomatAI {
             }
         }
 
+        // 6b) V1.1: prośba o wsparcie - nacja w ciężkiej wojnie (silny wróg albo puste spichrze) prosi najbogatszego
+        //     sojusznika o surowce (SI rozważa od razu, człowiek dostaje kartę z przyciskami); najwyżej co 5 minut
+        if (wars.length && allies.length && g.time - (this.aidAskAt === undefined ? -999 : this.aidAskAt) > 300) {
+            const r = me.resources, stock = r.get('gold') * DIPLO.RES_W.gold + r.get('food') + r.get('wood');
+            const foe = wars.reduce((p, q) => (q.bloc > p.bloc ? q : p));
+            if (foe.bloc > myBloc * 0.95 || stock < 500 + 300 * me.age) {
+                const ask = D.aidFor(me);
+                const wealth = (n) => n.resources.get('gold') * DIPLO.RES_W.gold + n.resources.get('food') + n.resources.get('wood');
+                const giver = allies.filter(a => D.humanFree(a.n) && !D.proposeError(me, a.n, 'aid', ask)).sort((a, b) => wealth(b.n) - wealth(a.n))[0];
+                if (giver) {
+                    this.aidAskAt = g.time;
+                    this.log(`prosi sojusznika ${D.name(giver.n)} o wsparcie (${Diplomacy.payText(ask)}) w wojnie z ${D.ins(foe.n)}`);
+                    if (!D.propose(me, giver.n, 'aid', ask, null)) return;
+                }
+            }
+        }
+
         // 7) umowy: handel (zysk dla obu stron) i pakt o nieagresji (spokój z groźnym sąsiadem) - także w czasie rozejmu
         if (D.paceOk('deal') && g.time > 30) {
             // sama szuka najwyżej dwóch kontrahentów (trzecią umowę przyjmie, gdy ktoś ją zaproponuje); z sąsiadem
@@ -24251,6 +24568,7 @@ class DiplomatAI {
                 let best = null, bv = 0.35;
                 for (const o of others) {
                     if (o.rel === DIPLO.WAR || D.trading(me, o.n) || D.trades(o.n) >= DIPLO.TRADE_MAX || !D.humanFree(o.n)) continue;
+                    if (allies.some(a => D.atWar(a.n, o.n))) continue;                 // V1.1: embargo na wroga sojusznika
                     if (g.time - (this.dealt.get('t' + D.i(o.n)) || -999) < 240) continue;
                     if (o.op < 0 || D.op(o.n, me) < -10 || this.plansWar(o.n) || (o.rank === 0 && o.prox > 0.6)) continue;
                     if (o.n === heg && !D.allied(me, heg)) continue;
@@ -24304,7 +24622,9 @@ class DiplomatAI {
         if (wars.length) {
             let fv = -Infinity, f = null;
             for (const w of wars) {
+                // V1.1: wspólna ofensywa - wróg, na którego uderza sojusznik SI (jego główny cel), jest i naszym celem
                 const v = w.prox * 1.2 + (myBloc / Math.max(1, w.bloc)) * 0.3 + (w.n === heg ? 0.3 : 0) + (allies.some(a => D.atWar(a.n, w.n)) ? 0.25 : 0)
+                    + (allies.some(a => a.n.diplomat && a.n.ai && a.n.diplomat.focus === w.n) ? 0.35 : 0)
                     + (D.gloryThreat(w.n) === 2 ? 1 : 0);
                 if (v > fv) { fv = v; f = w.n; }
             }
@@ -24337,6 +24657,38 @@ class DiplomatAI {
                 this.log(`żąda trybutu od ${D.name(o.n)} (${Diplomacy.payText(pay)})`);
                 D.paceUse('tribute');
                 D.propose(me, o.n, 'tribute', pay);
+                return;
+            }
+        }
+
+        // 10b) V1.1: obrona słabszego - zaprzyjaźniona nacja (nie sojusznik) dopiero co napadnięta przez hegemona albo
+        //      dużo silniejszego agresora: władca staje w jej obronie, jeśli razem dadzą radę (lojalni i ostrożni
+        //      chętniej niż śmiałkowie). Napadnięty zapamięta pomoc. Najwyżej co 7 minut.
+        if (!wars.length && D.paceOk('war') && g.time - (this.guardAt === undefined ? -999 : this.guardAt) > 420 && !(me.ai && me.ai.underThreat)) {
+            for (const v of others) {
+                if (v.rel !== DIPLO.PEACE || v.op < 35 || D.op(v.n, me) < 0) continue;
+                let agg = null;
+                for (let k = D.history.length - 1; k >= 0; k--) {
+                    const h = D.history[k];
+                    if (g.time - h.t > 240) break;
+                    if (h.kind === 'war' && h.b === D.i(v.n)) { const a = g.nations[h.a]; if (a && a !== me && D.atWar(a, v.n)) { agg = a; break; } }
+                }
+                const A = agg && byN.get(agg);
+                if (!A || A.rel !== DIPLO.PEACE || D.canDeclareWar(me, agg)) continue;
+                if (!(agg === heg || A.bloc > v.bloc * 1.5) || myBloc + v.bloc < A.bloc * 0.85) continue;
+                if (D.proximity(me, agg) < 0.25 && D.proximity(me, v.n) < 0.35) continue;   // za daleko, by pomóc
+                this.guardAt = g.time;
+                if (Math.random() > 0.3 + this.loyal * 0.45) continue;
+                this.lastWarAt = g.time;
+                D.paceUse('war');
+                this.focus = agg;
+                this.setGoal(agg, 240);
+                this.log(`staje w obronie ${D.gen(v.n)}: wojna z ${D.ins(agg)}`);
+                D.declareWar(me, agg, `Nie pozwolimy wam podbić ${D.gen(v.n)}!`);
+                if (D.atWar(me, agg)) {
+                    D.addOp(v.n, me, 20, 'guard');
+                    if (v.n.human) g.tell(v.n, `${D.name(me)} stają w twojej obronie i wypowiadają wojnę ${D.dat(agg)}!`, 'good');
+                }
                 return;
             }
         }
@@ -24378,6 +24730,8 @@ class DiplomatAI {
         // zasięg: dwóch najbliższych sąsiadów (choćby daleko - marsz przez kontynent to ok. 2 minuty) albo ktoś
         // naprawdę blisko; hegemon, dłużnik trybutu i zagrożenie Chwałą - zawsze
         if (!(o.rank <= 1 || o.prox >= 0.45 || vsHeg || grudge || (glory && o.prox > 0.2))) return null;
+        // V1.1: przyjaciela w potrzebie (napadniętego przez kogoś innego) się nie dobija - prędzej staje się w jego obronie
+        if (o.op >= 35 && o.attackers > 0 && !vsHeg && !grudge && !glory) return null;
         const ratio = myBloc / Math.max(1, o.bloc);
         const allyWar = allies.some(a => D.atWar(a.n, o.n));
         // w końcówce (zostało najwyżej trzech) ktoś musi zaryzykować - wystarczy mniejsza przewaga
@@ -26636,7 +26990,7 @@ class Tutorial {
 // Model: HOST LICZY, GOŚCIE OGLĄDAJĄ. Przeglądarka hosta prowadzi jedyną symulację (tę samą, co w grze solo),
 // goście wysyłają rozkazy i rysują stan świata przysłany przez hosta.
 const NetCodec = {
-    PROTOCOL: 13,               // 13: Dyplomacja z głębią (handel, pakty, dary, wezwania, powody opinii w paczce 'dp'), powrót gracza z sygnałem 'loading'; 12: obie strony ponawiają próby połączenia (RtcLink._knockStart); 11: gość jako serwer DTLS, więcej adresów lokalnych w kodzie, balans V1.0; 10: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy); 9: okup, trybut, limit czasu
+    PROTOCOL: 14,               // 14: do 8 miejsc w poczekalni Dyplomacji (lista miejsc zależna od trybu), handel wozami z sojusznikami; 13: Dyplomacja z głębią (handel, pakty, dary, wezwania, powody opinii w paczce 'dp'), powrót gracza z sygnałem 'loading'; 12: obie strony ponawiają próby połączenia (RtcLink._knockStart); 11: gość jako serwer DTLS, więcej adresów lokalnych w kodzie, balans V1.0; 10: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy); 9: okup, trybut, limit czasu
                                 // 10: koniec bety - krótsze kody zaproszeń (postać 3), kontrola przepływu, TURN
     SNAP: 1,                    // rodzaj wiadomości binarnej: paczka stanu jednostek
 
@@ -27534,14 +27888,15 @@ class HostSession {
         const used = new Set();
         const pickColor = (want) => { let c = (want && !used.has(want)) ? want : ColorOrder.find(k => !used.has(k)); used.add(c); return c; };
         this.settings = Object.assign({ mode: 'diplomacy', rivers: 'normal', truce: 300, limit: 2700, mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false, kings: false, wonders: true }, opts.settings || {});
+        // V1.1: tyle miejsc, ile nacji w grze solo - w Dyplomacji 8, w Klasycznym meczu 4 (pozostałe są wtedy zamknięte)
         this.slots = [];
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < HostSession.MAX_SLOTS; i++) {
             this.slots.push({
                 idx: i,
                 kind: i === 0 ? 'host' : (i === 1 ? 'human' : 'closed'),
                 name: i === 0 ? (NetCodec.clean(opts.name, 16) || 'Host') : '',
-                color: pickColor(i === 0 ? opts.color : ['red', 'purple', 'orange'][i - 1]),
-                team: i + 1, diff: 'medium',
+                color: pickColor(i === 0 ? opts.color : ['red', 'purple', 'orange', 'green', 'teal', 'yellow', 'pink'][i - 1]),
+                team: (i % 4) + 1, diff: 'medium',
                 peer: null, invite: null, nation: null,
                 known: new Set(), sig: new Map(), pending: [], nodeAmt: new Map(), natSig: '', upSig: [], sbSig: ''
             });
@@ -27550,6 +27905,9 @@ class HostSession {
 
     get hostName() { return this.slots[0].name; }
     changed() { if (this.onChange) this.onChange(); }
+    // V1.1: ile miejsc ma bieżący tryb (Dyplomacja - jak kampania solo, Klasyczny mecz - cztery narożniki mapy)
+    maxSlots() { return this.settings.mode === 'diplomacy' ? HostSession.MAX_SLOTS : 4; }
+    activeSlots() { return this.slots.slice(0, this.maxSlots()); }
 
     // ================= Poczekalnia =================
 
@@ -27563,7 +27921,7 @@ class HostSession {
     lobbyState() {
         return {
             settings: this.settings, phase: this.phase,
-            slots: this.slots.map(s => ({
+            slots: this.activeSlots().map(s => ({
                 kind: s.kind, name: s.kind === 'ai' ? '' : s.name, color: s.color, team: s.team, diff: s.diff,
                 state: this.slotState(s), ping: s.peer ? s.peer.rtt : null
             }))
@@ -27579,12 +27937,19 @@ class HostSession {
     setSettings(patch) {
         if (this.phase !== 'lobby') return;
         Object.assign(this.settings, patch);
+        // Klasyczny mecz ma cztery miejsca: dalsze się zamykają (gracz z takiego miejsca zostaje rozłączony)
+        for (const s of this.slots) {
+            if (s.idx < this.maxSlots() || s.kind === 'closed') continue;
+            if (s.peer) this.kick(s.peer, 'closed');
+            this.cancelInvite(s.idx);
+            s.kind = 'closed'; s.name = '';
+        }
         this.broadcastLobby();
     }
 
     setSlotKind(i, kind) {
         const s = this.slots[i];
-        if (!s || i === 0 || this.phase !== 'lobby' || s.kind === kind) return;
+        if (!s || i === 0 || i >= this.maxSlots() || this.phase !== 'lobby' || s.kind === kind) return;
         if (s.peer) this.kick(s.peer, 'closed');
         this.cancelInvite(i);
         s.kind = kind; s.name = '';
@@ -27608,7 +27973,7 @@ class HostSession {
 
     // Czy można zaczynać; zwraca null albo powód (tekst dla hosta)
     startBlocker() {
-        const active = this.slots.filter(s => s.kind !== 'closed');
+        const active = this.activeSlots().filter(s => s.kind !== 'closed');
         for (const s of active) if (s.kind === 'human' && this.slotState(s) !== 'joined') return `Miejsce ${s.idx + 1} czeka na gracza. Połącz go, zamień to miejsce na AI albo je zamknij.`;
         if (active.length < 2) return 'Do gry potrzeba co najmniej dwóch nacji.';
         if (this.settings.mode !== 'diplomacy' && new Set(active.map(s => s.team)).size < 2) return 'Wszystkie nacje są w jednej drużynie. Przypisz co najmniej jedną do innej drużyny.';
@@ -27685,7 +28050,7 @@ class HostSession {
         this.loopRoom = room;
         this.hub = new LoopHub(room, (link) => {
             // pierwsze wolne miejsce dla gracza (w trakcie meczu: miejsce gracza, który wypadł)
-            const s = this.slots.find(x => x.kind === 'human' && !x.peer && !(x.invite && x.invite.state === 'connecting'));
+            const s = this.activeSlots().find(x => x.kind === 'human' && !x.peer && !(x.invite && x.invite.state === 'connecting'));
             if (!s) { link.onOpen = () => { link.sendReliable(['deny', 'full']); setTimeout(() => link.close(), 200); }; return; }
             link.onOpen = () => this.attach(link, s);
         });
@@ -27811,7 +28176,7 @@ class HostSession {
     // Opcje dla generatora świata (main.js: initGame)
     gameOptions(atmosphere) {
         const nations = [];
-        for (const s of this.slots) {
+        for (const s of this.activeSlots()) {
             if (s.kind === 'closed') continue;
             if (s.kind === 'host') nations.push({ isPlayer: true, color: s.color, team: s.team, name: s.name, slot: s.idx });
             else if (s.kind === 'human') nations.push({ isPlayer: false, human: true, color: s.color, team: s.team, name: s.name, slot: s.idx });
@@ -28224,6 +28589,7 @@ class HostSession {
         }
     }
 }
+HostSession.MAX_SLOTS = RaptorAtlas.MAX_NATIONS;   // V1.1: miejsc w poczekalni tyle, ile nacji w kampanii Dyplomacji solo
 HostSession.iceServers = null;          // null = domyślna lista z RtcLink.ICE_SERVERS
 HostSession.gatherTimeout = 0;          // ms na zebranie adresów przy tworzeniu kodu (0 = wg RtcLink: 6 s, z TURN 9 s)
 HostSession.connectTimeout = 120000;    // ms na zestawienie połączenia po wklejeniu odpowiedzi - tyle, ile host ponawia próby (RtcLink.acceptAnswer);
@@ -28983,7 +29349,7 @@ const MpUI = {
     viewStart() {
         return `<div class="mp-wrap">
             <div class="menu-card">
-                <h2>Gra wieloosobowa — od 2 do 4 graczy</h2>
+                <h2>Gra wieloosobowa — od 2 do 8 graczy</h2>
                 <p class="mp-lead">Jedna osoba <b>zakłada grę</b> i zostaje hostem — jej przeglądarka prowadzi całą rozgrywkę. Pozostali <b>dołączają</b> jako goście.
                 Gra nie ma serwera: wasze przeglądarki łączą się bezpośrednio. Żeby mogły się odnaleźć w internecie, wymieniacie między sobą dwa krótkie kody —
                 na Discordzie, Messengerze, gdziekolwiek. Kreator przeprowadzi was przez to krok po kroku; całość trwa około minuty.</p>
@@ -29169,7 +29535,7 @@ const MpUI = {
     hostSettings(s) {
         const o = s.settings, diplo = o.mode === 'diplomacy';
         let rows = '';
-        s.slots.forEach((sl, i) => {
+        s.activeSlots().forEach((sl, i) => {
             const pal = TeamPalette[sl.color];
             if (i === 0) {
                 rows += `<div class="mp-slot me"><div class="mp-slot-head"><i class="swatch" style="background:${pal.main}"></i><span class="nm">Miejsce 1 — ty <small>(${this.esc(sl.name)}, host)</small></span>${this.teamPick(0, sl.team, true)}</div>${this.colorPick(0, sl.color)}</div>`;
@@ -29187,7 +29553,7 @@ const MpUI = {
         const humans = s.slots.filter(x => x.kind === 'human').length;
         return `<div class="mp-grid">
             <div class="menu-card"><h2>Kto gra</h2>
-                <p class="menu-note" style="margin:0">Cztery miejsca na mapie. Każde może zająć <b>gracz</b> (zaprosisz go kodem), <b>AI</b> albo może zostać <b>zamknięte</b>. ${o.mode === 'diplomacy' ? 'W Dyplomacji nie ma drużyn: wszyscy zaczynają w pokoju, a wojny i sojusze zawiera się w trakcie gry (Tab).' : 'Nacje z tym samym numerem drużyny są sojusznikami.'}</p>
+                <p class="menu-note" style="margin:0">${diplo ? 'Osiem miejsc na kontynencie — tyle samo nacji, co w kampanii solo.' : 'Cztery miejsca na mapie — tak jak w Klasycznym meczu solo (Dyplomacja mieści do ośmiu nacji).'} Każde może zająć <b>gracz</b> (zaprosisz go kodem), <b>AI</b> albo może zostać <b>zamknięte</b>. ${o.mode === 'diplomacy' ? 'W Dyplomacji nie ma drużyn: wszyscy zaczynają w pokoju, a wojny i sojusze zawiera się w trakcie gry (Tab).' : 'Nacje z tym samym numerem drużyny są sojusznikami.'}</p>
                 ${rows}</div>
             <div class="menu-card"><h2>Świat</h2>
                 <div><span class="opt-label">Tryb gry</span>${this.radios('mp-mode', o.mode === 'diplomacy' ? 'diplomacy' : 'classic', [['diplomacy', 'Dyplomacja', 'Kontynent 5× większy niż Gigantyczna, rzeki, relacje zmieniające się w trakcie gry'], ['classic', 'Klasyczny mecz', 'Stałe drużyny, mapy od Małej do Gigantycznej']], 'c2')}</div>
@@ -29830,7 +30196,7 @@ const SaveGame = {
         '_bloom _shine _stk _glare _wsL _wsG _spL _spG _glit _sparkPat _cloudHi _gust _shL _shG _mistPat _vig').split(' ')),
     // pola encji, które są tylko pamięcią podręczną obrazu albo przynależnością do siatek odtwarzanych przy wczytaniu
     ENTITY_SKIP: new Set(['_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf', '_gridLayer', '_gridTeam', '_gridKey', '_grid',
-        '_links', '_linksVer', 'isSelected', 'netHidden', 'netFresh']),
+        '_links', '_linksVer', 'isSelected', 'netHidden', 'netFresh', '_farMemo']),
     ATMO_FIELDS: ['clock', 'weather', 'intensity', 'weatherOn', 'nextWeather', 'weatherEnd', 'nextFlock'],
 
     classes() {
