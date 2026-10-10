@@ -1498,7 +1498,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 <div class="menu-pane" id="pane-buildings" style="display:none"></div>
 
                 <div class="menu-pane" id="pane-controls" style="display:none">
-                    <div class="pane-head"><div><div class="eyebrow">Poradnik</div><h2>Jak grać</h2><p>Ustawienia grafiki i dźwięku znajdziesz w menu pauzy (<kbd>Esc</kbd>) — gra je zapamiętuje.</p></div></div>
+                    <div class="pane-head"><div><div class="eyebrow">Poradnik</div><h2>Jak grać</h2><p>Ustawienia grafiki i dźwięku oraz zapis gry znajdziesz w menu pauzy (<kbd>Esc</kbd>) — ustawienia gra zapamiętuje.</p></div></div>
                     <div class="guide-grid">
                         <div class="menu-card guide-goal">
                             <div>
@@ -1560,6 +1560,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <div><dt><kbd>Spacja</kbd></dt><dd>Skocz do ostatniego alarmu lub Ratusza</dd></div>
                                 <div><dt><kbd>Tab</kbd></dt><dd>Tabela nacji i drużyn; w Dyplomacji — panel Dyplomacji</dd></div>
                                 <div><dt><kbd>Esc</kbd></dt><dd>Anuluj lub pauza (po bitwie: wyniki i menu)</dd></div>
+                                <div><dt><kbd>F5</kbd> / <kbd>F9</kbd></dt><dd>Szybki zapis gry / wczytanie szybkiego zapisu (gra solo)</dd></div>
                                 <div><dt><kbd>P</kbd></dt><dd>Pauza i wznowienie</dd></div>
                                 <div><dt><kbd>M</kbd></dt><dd>Wycisz dźwięk</dd></div>
                                 <div><dt>Przycisk <b>1×</b></dt><dd>Prędkość gry (górny pasek)</dd></div>
@@ -1573,69 +1574,56 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="news-wrap">
                     <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
                     <div class="menu-card news-new">
-                        <div class="eyebrow">Aktualizacja · testy trybów</div>
-                        <h2>Mądrzejsza dyplomacja SI i silnik Raptor do 3 razy szybszy</h2>
-                        <p>Oba tryby przeszły serię automatycznych testów: ponad dwadzieścia kampanii i meczów SI kontra SI (od 2 do 8 nacji, wszystkie krainy, ukształtowania, rozmiary map i poziomy trudności, z Królami i Cudem Świata), sprawdzenie panelu Dyplomacji i startu z menu. Klasyczny mecz gra się tak jak dotąd, tylko szybciej; w Dyplomacji poprawiliśmy zachowanie SI, które testy wyraźnie pokazały.</p>
-                        <h3>Dyplomacja</h3>
+                        <div class="eyebrow">Wydanie · Reloaded V1.0</div>
+                        <h2>Reloaded V1.0 — Dyplomacja, zapis gry i całkiem nowy wygląd</h2>
+                        <p><b>Pierwsze wydanie serii Artificial Battles: Reloaded</b>, na silniku <b>Raptor</b>. Nowy tryb główny — <b>Dyplomacja</b> na wielkim kontynencie z rzekami — zapis i wczytywanie gry, menu i interfejs zaprojektowane od nowa oraz szybszy silnik. <b>Klasyczny mecz</b> został w menu jako druga opcja: jednostki, budynki i balans są takie same jak w V3.5.</p>
+
+                        <h3>Zapis i wczytywanie gry</h3>
                         <ul>
-                            <li><b>Koniec rozejmu bez nagonki</b>: dotąd w kilka sekund po rozejmie <b>wszystkie</b> SI wypowiadały wojnę tej samej, najsłabszej nacji — także takiej z drugiego końca kontynentu. Teraz każda SI rusza w swoim czasie, a nacja, z którą walczą już inni, jest dla kolejnego chętnego mniej kusząca.</li>
-                            <li><b>Wojny z sąsiadami</b>: SI wypowiada wojnę nacjom w zasięgu (stolica bliżej niż ok. 6,5 tys. kroków), a przewaga liczy się do 2,5-krotnej. Najbliższy sąsiad spoza sojuszu jest w zasięgu zawsze (na przykład w kampanii dwóch nacji).</li>
-                            <li><b>Kontynent nie zamiera</b>: wspólny sojusznik obu stron nie liczy się już do żadnego bloku, a długi pokój przy pełnej armii stopniowo budzi w SI chęć wojny. Wcześniej sieć sojuszy potrafiła zamrozić grę na kilkanaście minut, a skarbce SI rosły do kilkudziesięciu tysięcy.</li>
-                            <li><b>Cud Świata</b>: nacja spoza sojuszu, której Cud jest ukończony albo w połowie budowy, dostaje wypowiedzenie wojny i nie dostanie pokoju, dopóki Cud stoi. Komunikaty o Cudzie mówią sojusznikom budowniczego, że wygrają razem z nim (dotąd wzywały ich do burzenia).</li>
-                            <li><b>Zwycięstwo sojuszu</b>: wielki sojusz wszystkich, którzy przetrwali, musi wytrwać <b>2 minuty</b> (komunikat z odliczaniem), a najsilniejsza SI nie przyjmie sojuszu, który by go zamknął — woli wygrać sama.</li>
-                            <li><b>Panel Dyplomacji</b>: „Wojna” wymaga drugiego kliknięcia w <b>ten sam</b> przycisk, a potwierdzenie wygasa po 5 s. Dotąd po kliknięciu „Wojna” przy jednej nacji pierwsze kliknięcie przy innej wypowiadało jej wojnę bez pytania.</li>
-                            <li>Pocisk wystrzelony przed zawarciem pokoju albo sojuszu nie rani już nowego partnera.</li>
+                            <li><b>Zapisz grę</b> w menu pauzy (<kbd>Esc</kbd>): nazwij zapis albo nadpisz wcześniejszy. Zapis obejmuje <b>cały stan bitwy</b> — jednostki z ich rozkazami i ścieżkami, budowy, kolejki szkolenia, badania, surowce, pociski w locie, wojsko schowane w budynkach, plany SI (fale ataku, najazdy, nastroje dowódców), relacje, opinie i propozycje w Dyplomacji, odkrytą mapę, porę dnia i pogodę, a nawet ślady bitew na ziemi (pieńki, gruz, leje).</li>
+                            <li><b>Wczytaj grę</b> — w menu pauzy albo w menu głównym (przycisk obok Samouczka). Lista zapisów ma podgląd kadru z gry, tryb, mapę i krainę, czas gry, erę, nacje (z pokonanymi) i datę.</li>
+                            <li><b>Szybki zapis</b>: <kbd>F5</kbd> zapisuje, <kbd>F9</kbd> od razu wczytuje. <b>Autozapis</b> co 5 minut czasu gry (jedna pozycja, nadpisywana; wyłączysz go w menu pauzy).</li>
+                            <li><b>Do pliku</b> — każdy zapis pobierzesz jako plik <b>.absave</b> (kopia albo przeniesienie na inny komputer); <b>Dodaj z pliku…</b> wczytuje go z powrotem. Zapisy są kompresowane (zwykle od 0,1 do 1 MB) i trzymane w pamięci przeglądarki (IndexedDB), więc gra nadal jest jednym plikiem działającym offline.</li>
+                            <li>Zapis działa w obu trybach gry solo; gry wieloosobowej i samouczka się nie zapisuje. Wczytana gra toczy się dalej dokładnie od chwili zapisu i jest tak samo szybka jak przed zapisem.</li>
                         </ul>
+
+                        <h3>Dyplomacja — nowy tryb główny</h3>
+                        <ul>
+                            <li><b>Kontynent</b> 11 400 × 11 400 kroków — ok. <b>5 razy większa powierzchnia niż mapa Gigantyczna</b> — na <b>do 8 nacji</b> (ty i do 7 nacji SI), z miejscami startowymi rozłożonymi możliwie równo po lądzie.</li>
+                            <li><b>Rzeki</b> płyną od gór i z głębi lądu do jezior albo za krawędź mapy, łączą się w dopływy i poszerzają z biegiem. Co ok. 1–1,5 tys. kroków jest <b>bród</b>, którędy przejdzie wojsko; okręty pływają rzekami, w szerszych odcinkach są ryby. Do tego pasma gór z przełęczami, wielkie jeziora i pojezierza, puszcze z prześwitami, złoto i kamień częściej u podnóża gór.</li>
+                            <li><b>Relacje zamiast stałych drużyn</b>: wszyscy zaczynają w <b>pokoju</b>, przez pierwsze minuty obowiązuje <b>rozejm</b> (brak, 3, 5 albo 10 minut), potem nacje wypowiadają <b>wojny</b>, proszą o <b>pokój</b> i zawierają <b>sojusze</b>. W pokoju wojsko i wieże nie strzelają do siebie; sojusznicy dzielą pole widzenia; zdradę inni zapamiętują. Pocisk wystrzelony przed zawarciem pokoju nie rani nowego partnera.</li>
+                            <li><b>SI — dyplomata</b>: osobna warstwa SI ocenia siłę (wojsko, wieże, era), sąsiedztwo i pamięć o każdej nacji. Wypowiada wojny głównie <b>sąsiadom</b> (nie całą gromadą najsłabszemu po rozejmie), prosi o pokój, gdy przegrywa albo walczy na kilku frontach, szuka sojuszników przeciw wspólnemu wrogowi i rosnącej potędze, staje w obronie sojusznika, a na twoje propozycje odpowiada z uzasadnieniem. Długi pokój przy pełnej armii budzi w niej chęć wojny, więc kontynent nie zamiera w sieci sojuszy.</li>
+                            <li><b>Zwycięstwo</b>: podbój (zostaje jedna nacja) albo <b>sojusz</b> wszystkich, którzy przetrwali — taki wielki sojusz musi wytrwać <b>2 minuty</b>, a najsilniejsza SI nie przyjmie sojuszu, który by go zamknął. Cud Świata i Królowie działają jak w Klasycznym meczu; nacja spoza sojuszu, która stawia Cud, dostaje wypowiedzenie wojny, a zwycięstwo Cudem dzielą sojusznicy budowniczego.</li>
+                            <li><b>Podgląd kontynentu</b> w menu pokazuje dokładnie ten świat, który powstanie w grze; <b>Nowy świat</b> losuje inny.</li>
+                        </ul>
+
+                        <h3>Panel Dyplomacji i władcy</h3>
+                        <ul>
+                            <li><b>Panel Dyplomacji</b> (<kbd>Tab</kbd> albo przycisk w górnym pasku) jest teraz czytelną listą kart, pogrupowaną według relacji z tobą: <b>Wojna z tobą</b>, <b>Twoi sojusznicy</b>, <b>W pokoju z tobą</b> i pokonani. U góry: rozejm albo liczba wojen, sojuszy i pokojów oraz warunek zwycięstwa; propozycje pokoju i sojuszu czekające na odpowiedź są wyróżnione na samej górze.</li>
+                            <li>Na każdej karcie: relacja i od kiedy trwa, <b>opinia o tobie</b> (pasek, słowo — od wrogości do przyjaźni — i liczba), <b>siła</b> w porównaniu z twoją (pasek i słowo), poziom SI, charakter dowódcy, era, wynik, a także <b>z kim ta nacja walczy i z kim trzyma sojusz</b>. Gdy wojny nie można jeszcze wypowiedzieć (traktat), powód widać od razu pod przyciskiem.</li>
+                            <li><b>Wojna</b> wymaga drugiego kliknięcia w <b>ten sam</b> przycisk (pulsuje „Na pewno? Kliknij”), a potwierdzenie wygasa po 5 s. <b>Kronika</b> na dole pokazuje ostatnie wojny, pokoje i sojusze z kolorami nacji.</li>
+                            <li><b>Portrety władców</b>: każda nacja ma herb — tarczę w swoim kolorze z jednym z dziewięciu godeł (korona, wieża, miecze, gwiazda, słońce, półksiężyc, krokiew, trójliść, młot) — oraz władcę z imieniem i przydomkiem, np. <i>Książę Bolesław Śmiały</i>. Tytuł rośnie z erą (od III ery król i królowa), a przydomek SI zdradza charakter jej dowódcy (Roztropny, Śmiały, Porywczy, Łupieżca, Burzyciel). Herby są w panelu Dyplomacji, tabeli nacji, na ekranie wyników i przy Ratuszu nacji SI.</li>
+                        </ul>
+
+                        <h3>Nowy wygląd i menu</h3>
+                        <ul>
+                            <li><b>Ekran nowej bitwy</b>: przełącznik trybu, podgląd mapy (kraina, ukształtowanie i rozmiar zmieniają się na oczach; w Klasycznym meczu róg startowy wybierasz klikiem), kto z kim gra, podsumowanie i przycisk startu zawsze na widoku.</li>
+                            <li><b>Ustawienia w sekcjach</b> Nacje, Świat i Zasady: przełączniki segmentowe, karty nacji z herbem w kolorze gracza, szybkie układy drużyn i przełączniki warunków zwycięstwa.</li>
+                            <li><b>Pasek zakładek</b> u góry z płynnie przesuwanym wskaźnikiem (na węższym ekranie same ikony), <b>encyklopedia</b> jednostek i budynków z wyszukiwarką i filtrem er, <b>Jak grać</b> ze wszystkimi skrótami w tabelach.</li>
+                            <li><b>Tło menu</b>: świat gry z lotu ptaka — przygaszona mapa jak na stole dowódcy, która powoli dryfuje i zmienia się razem z wybraną krainą (przy ograniczaniu ruchu w systemie stoi w miejscu).</li>
+                            <li><b>Interfejs w grze</b> — górny pasek, panel zaznaczenia, rozkazy, minimapa, podpowiedzi, komunikaty, pauza i wyniki — w nowej, spokojniejszej formie, na tych samych miejscach co dotąd. Nowe pismo: Inter i Cinzel, osadzone w pliku.</li>
+                            <li>Menu obsłużysz klawiaturą: <kbd>Tab</kbd> i <kbd>Enter</kbd>, w pasku zakładek strzałki <kbd>←</kbd> <kbd>→</kbd>.</li>
+                        </ul>
+
                         <h3>Silnik Raptor</h3>
                         <ul>
-                            <li><b>Szybkie pola jednostek</b>: jednostka ma ok. 130 pól, a sposób ich zakładania przełączał każdą z nich w wolny, „słownikowy” tryb przeglądarki — każdy odczyt pola w symulacji i rysowaniu kosztował wielokrotnie więcej. To największy zysk tej aktualizacji.</li>
-                            <li><b>Regiony osiągalności łatane w miejscu zmiany</b>: postawiony mur, budynek albo ścięte drzewo nie każą już każdej drużynie przeliczać całej mapy (na kontynencie 144 tys. pól, kilkadziesiąt razy na minutę). Wynik jest identyczny jak przy pełnym przeliczeniu — sprawdziliśmy to w tysiącach porównań.</li>
-                            <li>Rozpychanie jednostek i mgła wojny liczą tylko to, co trzeba (bez pośrednich list, bez drugiego malowania tego samego kręgu widzenia).</li>
-                            <li><b>Wynik</b>: symulacja kampanii 6 nacji ok. <b>2,9× szybsza</b> (4,5 → 1,6 ms na krok), klasycznego meczu 4 nacji na mapie Gigantycznej <b>2× szybsza</b> (2,8 → 1,4 ms). Więcej zapasu na prędkość 3× i słabsze komputery.</li>
+                            <li><b>Raptor Atlas</b> — generator kontynentów: pasma gór, jeziora, rzeki z dopływami i brodami, rozmieszczenie wielu nacji i regionalne surowce; układ wynika z ziarna, więc podgląd, gra i goście widzą ten sam świat.</li>
+                            <li><b>Strumieniowanie terenu</b>: kontynentu nie maluje się cały przy starcie (to byłoby ok. 650 MB obrazu) — wątki robocze domalowują teren tam, gdzie patrzy kamera, a dawno niewidziane kawałki zwalniają pamięć. <b>Indeks wody i gór</b> odpowiada na pytanie „czy tu jest woda / góra” z kubełków przestrzennych.</li>
+                            <li><b>Szybsza symulacja</b>: pola jednostek nie wpadają już w wolny, „słownikowy” tryb przeglądarki, regiony osiągalności są łatane w miejscu zmiany (z wynikiem identycznym jak pełne przeliczenie), a rozpychanie i mgła wojny liczą tylko to, co trzeba. Kampania 6 nacji ok. <b>2,9× szybsza</b>, klasyczny mecz na mapie Gigantycznej <b>2× szybszy</b>.</li>
+                            <li><b>Zapis stanu</b>: serializer grafu obiektów symulacji (odwołania między jednostkami, nacjami i SI wracają po wczytaniu jako te same obiekty, stałe gry zapisują się ścieżką) — sprawdzony testem „zapis → wczytanie → zapis daje identyczny stan” w obu trybach.</li>
+                            <li>Oba tryby przeszły serię automatycznych meczów SI kontra SI (od 2 do 8 nacji, wszystkie krainy, ukształtowania, rozmiary map i poziomy trudności, z Królami i Cudem Świata).</li>
                         </ul>
-                        <p class="menu-note">Gra wieloosobowa: SI i symulację liczy host, więc nowe zachowanie SI i szybszy silnik działają w każdej grze, której host ma to wydanie. Protokół sieciowy się nie zmienił.</p>
-                    </div>
-                    <div class="menu-card news-new">
-                        <div class="eyebrow">Nowy tryb główny · wczesna wersja</div>
-                        <h2>Dyplomacja — kontynent, rzeki i relacje, które zmieniają się w trakcie gry</h2>
-                        <p><b>Dyplomacja to od teraz główny tryb gry</b>, zupełnie osobny od Klasycznego meczu (ten został w menu jako druga opcja — działa dokładnie tak jak dotąd). To pierwsza odsłona: fundamenty pod dalszy rozwój trybu.</p>
-                        <ul>
-                            <li><b>Kontynent</b>: mapa 11 400 × 11 400 kroków — ok. <b>5 razy większa powierzchnia niż mapa Gigantyczna</b>. Na kontynencie mieści się do <b>8 nacji</b> (ty i do 7 nacji SI); miejsca startowe są rozłożone możliwie równo po całym lądzie.</li>
-                            <li><b>Rzeki</b>: zaczynają się u stóp gór albo w głębi lądu, meandrują, łączą się w dopływy i płyną do jezior albo za krawędź mapy. Z biegiem rzeki koryto się poszerza. Co mniej więcej 1–1,5 tys. kroków jest <b>bród</b> — płycizna z żwirowym przejściem, którędy przejdzie wojsko. Okręty pływają rzekami, w szerszych odcinkach są ryby. Ile rzek — wybierasz w karcie Świat.</li>
-                            <li><b>Bardziej szczegółowy świat</b>: pasma górskie z przełęczami zamiast pojedynczych gór, wielkie jeziora i pojezierza, puszcze z prześwitami, złoto i kamień częściej u podnóża gór.</li>
-                            <li><b>Relacje zamiast stałych drużyn</b>: wszyscy zaczynają w <b>pokoju</b>, a przez pierwsze minuty obowiązuje <b>rozejm</b> (do wyboru: brak, 3, 5 albo 10 minut). Potem nacje <b>wypowiadają wojny</b>, proszą o <b>pokój</b> i zawierają <b>sojusze</b>. W pokoju wojsko i wieże nie strzelają do siebie; sojusznicy dzielą pole widzenia. Zerwanie sojuszu albo atak na sojusznika (zdrada) inni zapamiętują.</li>
-                            <li><b>Panel Dyplomacji</b> (<kbd>Tab</kbd> albo przycisk w górnym pasku): relacja z każdą nacją, jej opinia o tobie, siła w porównaniu z twoją, przyciski Wojna / Zaproponuj pokój / Sojusz / Zerwij sojusz, propozycje czekające na odpowiedź i kronika wydarzeń.</li>
-                            <li><b>Nowa SI — dyplomata</b>: osobna warstwa SI, która decyduje, z kim walczyć i z kim trzymać. Ocenia siłę (wojsko, wieże, era), sąsiedztwo i to, co pamięta o każdej nacji; wypowiada wojnę słabszym sąsiadom, prosi o pokój, gdy przegrywa albo walczy na kilku frontach, szuka sojuszników przeciw wspólnemu wrogowi i przeciw rosnącej potędze, staje w obronie sojusznika. Na twoje propozycje odpowiada z uzasadnieniem. Śmiałość zależy od charakteru i poziomu SI.</li>
-                            <li><b>Zwycięstwo</b>: podbój (zostaje jedna nacja) albo <b>sojusz</b> — gdy wszyscy, którzy jeszcze grają, są ze sobą w sojuszu (i ktoś już odpadł). Cud Świata i Królowie działają jak dotąd; zwycięstwo Cudem dzielą sojusznicy budowniczego.</li>
-                            <li><b>Gra wieloosobowa</b>: host wybiera tryb w poczekalni. W Dyplomacji nie ma drużyn — każde z czterech miejsc to osobna nacja, a goście wypowiadają wojny i zawierają sojusze w trakcie gry, tak jak w grze solo.</li>
-                            <li><b>Podgląd kontynentu</b> w menu pokazuje dokładnie ten świat, który powstanie w grze (rzeki, góry, jeziora i miejsca startowe); <b>Nowy świat</b> losuje inny.</li>
-                        </ul>
-                        <h3>Silnik Raptor — nowy zestaw funkcji dla wielkich map</h3>
-                        <ul>
-                            <li><b>Raptor Atlas</b> — generator kontynentów: pasma gór, jeziora, rzeki z dopływami i brodami, rozmieszczenie wielu nacji i regionalne surowce. Układ wynika z ziarna, więc podgląd i gra (także u gości) pokazują ten sam świat.</li>
-                            <li><b>Strumieniowanie terenu</b>: na kontynencie teren nie jest malowany cały przy starcie (to byłoby ok. 650 MB obrazu). Gotowa jest okolica startu, resztę wątki robocze domalowują tam, gdzie patrzy kamera, a dawno niewidziane kawałki są zwalniane z pamięci. Zanim fragment będzie gotowy, w jego miejscu leży przeskalowany podgląd mapy. Wątki dostają tylko wycinki pól terenu, a nie całe pola.</li>
-                            <li><b>Indeks wody i gór</b>: zapytania „czy tu jest woda / góra” korzystają z kubełków przestrzennych zamiast przeglądać wszystkie jeziora i góry — wyniki są identyczne, a na mapach z rzekami to warunek płynnej gry. Szybciej działa też rozmieszczanie surowców na wielkich mapach.</li>
-                            <li><b>Pozycje w grze wieloosobowej</b> na mapach powyżej 8191 kroków są kodowane z dokładnością 1/4 kroku (dotąd 1/8 — kontynent by się nie zmieścił). Protokół sieciowy ma nowy numer: wszyscy gracze muszą mieć to wydanie.</li>
-                        </ul>
-                        <p class="menu-note">Wczesna wersja trybu: dalej planujemy m.in. więcej miejsc w grze wieloosobowej, mosty, kilka krain na jednym kontynencie, rozbudowę osad przez SI (drugie ratusze) i handel między nacjami w pokoju.</p>
-                    </div>
-                    <div class="menu-card news-new">
-                        <div class="eyebrow">Nowa odsłona</div>
-                        <h2>Reloaded V1.0 — nowe menu i nowy wygląd</h2>
-                        <p><b>Pierwsze wydanie serii Artificial Battles: Reloaded</b> — podwaliny pod duże zmiany w grze. Na początek całkiem nowy wygląd: menu główne zaprojektowane od zera i odświeżony interfejs w grze. Rozgrywka, jednostki, budynki i balans są takie same jak w V3.5; gra nadal działa na silniku <b>Raptor</b>.</p>
-                        <ul>
-                            <li><b>Ekran nowej bitwy.</b> Po lewej podgląd mapy: kraina, ukształtowanie i rozmiar zmieniają się na oczach, a pozycję startową wybierasz, klikając róg mapy. Pod podglądem — kto z kim gra, podsumowanie meczu i przycisk <b>Rozpocznij bitwę</b>, zawsze w zasięgu wzroku.</li>
-                            <li><b>Ustawienia w trzech sekcjach</b> — Nacje, Świat i Zasady: przełączniki segmentowe, karty nacji z herbem w kolorze gracza, szybkie układy drużyn i przełączniki warunków zwycięstwa.</li>
-                            <li><b>Pasek nawigacji</b> u góry z płynnie przesuwanym wskaźnikiem zakładki. Na węższym ekranie zostają same ikony.</li>
-                            <li><b>Encyklopedia</b> jednostek i budynków z wyszukiwarką i filtrem er.</li>
-                            <li><b>Jak grać</b> — cel gry, pierwsze kroki i wszystkie skróty w czytelnych tabelach.</li>
-                            <li><b>Co nowego</b> — wcześniejsze wydania są zwinięte; rozwiń te, które cię interesują.</li>
-                            <li><b>Nowe tło</b>: świat gry z lotu ptaka — przygaszona mapa jak na stole dowódcy, która powoli dryfuje, z cieniami chmur i ciepłym światłem pośrodku. Zmienia się razem z wybraną krainą i ukształtowaniem; lekko podąża za kursorem, a przy ograniczaniu ruchu w systemie stoi w miejscu.</li>
-                            <li><b>Interfejs w grze</b>: górny pasek, panel zaznaczenia, siatka rozkazów, minimapa, podpowiedzi, komunikaty, pauza i ekran wyników w nowej, spokojniejszej formie — wszystko na tych samych miejscach co dotąd.</li>
-                            <li><b>Nowe pismo</b>: Inter w interfejsie i Cinzel w znaku gry — osadzone w pliku, więc gra nadal działa w pełni offline.</li>
-                            <li>Menu obsłużysz także klawiaturą: <kbd>Tab</kbd> i <kbd>Enter</kbd>, a w pasku zakładek strzałki <kbd>←</kbd> <kbd>→</kbd>.</li>
-                        </ul>
-                        <p class="menu-note">Gra wieloosobowa: wszyscy gracze muszą mieć wydanie Reloaded V1.0 — z wersją V3.5 gra się nie połączy.</p>
+                        <p class="menu-note">Gra wieloosobowa: wszyscy gracze muszą mieć wydanie Reloaded V1.0 (z V3.5 gra się nie połączy). Host wybiera tryb w poczekalni; w Dyplomacji każde z czterech miejsc to osobna nacja. Na mapach powyżej 8191 kroków pozycje w paczkach stanu są kodowane z dokładnością 1/4 kroku. Dalej planujemy m.in. więcej miejsc w grze wieloosobowej, mosty, kilka krain na jednym kontynencie, drugie ratusze SI i handel między nacjami w pokoju.</p>
                     </div>
                     <div class="news-sub">Wcześniejsze wydania</div>
                     <details class="release">
@@ -8381,6 +8369,11 @@ class UIManager {
         if (resume) resume.textContent = g.gameOver ? 'Wróć do mapy' : 'Wznów';
         const results = document.getElementById('results-btn');
         if (results) results.style.display = g.gameOver ? '' : 'none';
+        // zapis gry tylko w grze solo (sesja sieciowa podpina się do gry już po zbudowaniu interfejsu - stąd sprawdzenie tutaj)
+        const solo = !g.net && !g.isClient;
+        const pmSave = document.getElementById('pm-save'), asRow = document.getElementById('autosave-row');
+        if (pmSave) pmSave.style.display = solo ? '' : 'none';
+        if (asRow) asRow.style.display = solo && !g.tutorial ? '' : 'none';
         const saveBtn = document.getElementById('save-btn');
         if (saveBtn && window.SaveGame) { const why = SaveGame.blocker(g); saveBtn.disabled = !!why; saveBtn.title = why || 'Zapisz bieżącą grę (szybki zapis: F5)'; }
         if (!open && window.SaveUI) SaveUI.close();
@@ -8609,7 +8602,7 @@ class UIManager {
             counts[st]++;
             const cls = ['war', 'peace', 'ally'][st];
             // opinia o tobie
-            let opinion = '<span class="dp-k">Opinia</span><span class="mut">gracz</span>';
+            let opinion = '<span class="dp-k">Opinia</span><span class="mut">— steruje człowiek</span>';
             if (!n.human || n.ai) {
                 const op = Math.round(D.op(n, me)), w = OPW.find(x => op < x[0]) || OPW[4];
                 opinion = `<span class="dp-k">Opinia o tobie</span><span class="dp-op" title="Co ta nacja myśli o tobie: ${op > 0 ? '+' : ''}${op} (od −100 do +100)"><i style="${op >= 0 ? 'left:50%;width:' + (op / 2) + '%;background:#32d15d' : 'left:' + (50 + op / 2) + '%;width:' + (-op / 2) + '%;background:#ff5a4d'}"></i></span><b style="color:${w[2]}">${w[1]}</b> <small class="mut">${op > 0 ? '+' : ''}${op}</small>`;
@@ -9587,10 +9580,6 @@ class UIManager {
         check('hidpi-check', 'hidpi', false, (v) => g.setHiDpi(v));
         check('edge-check', 'edgeScroll', true, (v) => { g.edgeScroll = v; });
         check('autosave-check', 'autosave', true, () => {});
-        const solo = !g.net && !g.isClient;
-        const pmSave = document.getElementById('pm-save'), asRow = document.getElementById('autosave-row');
-        if (pmSave) pmSave.style.display = solo ? '' : 'none';
-        if (asRow) asRow.style.display = solo && !g.tutorial ? '' : 'none';
         const atmoChk = document.getElementById('atmo-check');
         if (atmoChk && g.atmo) {
             atmoChk.checked = g.atmo.enabled;   // stan wybrany w menu głównym
@@ -26849,7 +26838,7 @@ const Rulers = {
     title(n, g) {
         const t = this.traits(n, g);
         if (n.isPlayer) return n.playerName ? n.playerName : 'Ty';
-        if (n.human && n.playerName && !n.ai) return n.playerName;
+        if (n.human && !n.ai) return n.playerName || n.aiLabel || 'Gracz';   // gracz gry wieloosobowej: jego nazwa
         const ai = n.ai, hidden = !ai || ai.difficulty === 'easy' || ai.difficulty === 'tutorial';
         const ep = !hidden && this.EPITHET[ai.personality] ? this.EPITHET[ai.personality][t.female ? 1 : 0] : t.plain;
         const rank = (n.age || 1) >= 3 ? (t.female ? 'Królowa' : 'Król') : (t.female ? 'Księżna' : 'Książę');
