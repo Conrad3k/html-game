@@ -1707,7 +1707,9 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <ul>
                             <li><b>Balans jednostek</b> sprawdzony pojedynkami oddziałów za równe koszty (20 rodzajów wojska, każdy z każdym). <b>Husarz</b> wygrywał z prawie wszystkimi, także ze swoimi kontrami — teraz ma 230 życia, szarżę ×2,2 (z Hartowanymi Kopiami ×2,7) i kosztuje 100 żywności + 110 złota: nadal rozbija łuczników, harcowników i machiny, ale przegrywa z muszkieterami, arkebuzerami, rajtarami, halabardnikami i włócznikami. <b>Muszkieter</b> strzela co 1,55 s (było 1,7 s). <b>Grenadier</b> ma większy wybuch i zadaje piechocie ×1,25 obrażeń — naprawdę rozbija zwarte szyki. <b>Arkebuzer</b> zadaje kawalerii ×1,8 obrażeń (było ×1,4) i strzela co 2,2 s — wreszcie powstrzymuje rycerzy i husarię.</li>
                             <li><b>Pokonana nacja znika z mapy</b>: resztki jej wojska się rozpierzchają, a osada obraca się w perzynę. Wcześniej nacja bez Ratusza zostawiała bezpańskie oddziały (w kampaniach SI nawet ponad 50 żołnierzy) i wieże, które walczyły dalej, choć już przegrała. Gdy porażka kończy mecz, osada zostaje do obejrzenia po bitwie.</li>
-                            <li><b>Gra wieloosobowa w jednej sieci</b>: kod mieści do 6 adresów lokalnych (komputery z Wi-Fi i kablem, VPN, wirtualnymi kartami WSL / Hyper-V / VirtualBox i IPv6 — wcześniej właściwy adres potrafił wypaść z kodu), a gość czeka, aż szyfrowanie połączenia zacznie host — w jednej sieci łączy się pewnie, nawet gdy host wkleja odpowiedź po kilku minutach. Gra rozpoznaje graczy w tej samej sieci i przy niepowodzeniu podaje wskazówki właśnie dla niej (Zapora Windows i sieć prywatna, sieć dla gości, VPN, ukrywanie adresów „.local”); test sieci pokazuje adresy lokalne. Protokół 11 — oboje gracze potrzebują tego samego, nowego pliku gry.</li>
+                            <li><b>Gra wieloosobowa w jednej sieci</b>: kod mieści do 6 adresów lokalnych (komputery z Wi-Fi i kablem, VPN, wirtualnymi kartami WSL / Hyper-V / VirtualBox i IPv6 — wcześniej właściwy adres potrafił wypaść z kodu), a gość czeka, aż szyfrowanie połączenia zacznie host — w jednej sieci łączy się pewnie, nawet gdy host wkleja odpowiedź po kilku minutach. Gra rozpoznaje graczy w tej samej sieci i przy niepowodzeniu podaje wskazówki właśnie dla niej (Zapora Windows i sieć prywatna, sieć dla gości, VPN, ukrywanie adresów „.local”); test sieci pokazuje adresy lokalne. Protokół 12 — oboje gracze potrzebują tego samego, nowego pliku gry.</li>
+                            <li><b>Gra wieloosobowa przez internet — naprawiony główny błąd łączenia</b>: przeglądarka gościa zaczynała próby połączenia w chwili wklejenia zaproszenia i po ok. 30 s przestawała, a host zaczynał dopiero po wklejeniu odpowiedzi — zwykle minutę czy dwie później. Domowe routery (NAT) przepuszczają ruch tylko wtedy, gdy obie strony próbują jednocześnie, więc połączenie przez internet prawie nigdy nie wstawało, jeśli przesłanie kodu trwało dłużej niż pół minuty. Teraz obie strony <b>ponawiają próby co 8 sekund</b> (gość do 10 minut, host 2 minuty), aż połączenie wstanie. Sprawdzone na symulowanej sieci z dwoma routerami domowymi: wcześniej porażka już przy 60 s na przesłanie kodu, teraz połączenie nawet po ponad 3 minutach. Przy NAT-cie symetrycznym (część sieci komórkowych i akademików) nadal potrzebny jest serwer TURN — wystarczy, że poda go host.</li>
+                            <li>Poczekalnia gry wieloosobowej: opisy poziomów SI zależą od trybu — w Dyplomacji mówią, jak chętnie SI wypowiada wojny i buduje Cuda, zamiast o atakach od pierwszych minut jak w Klasycznym meczu. Encyklopedia: statystyki jednostek i budynków sprawdzone z wartościami w grze (zgodne); dokładniejsze opisy Taczek, Zielarstwa i Szkutnictwa.</li>
                             <li>Sprawdzone automatycznie: kilkadziesiąt meczów i kampanii SI kontra SI na wszystkich mapach, krainach i poziomach trudności (także 8 × Skandaliczny, Królowie, bez rozejmu, samouczek), wszystkie poziomy grafiki, panel Dyplomacji z propozycjami, zapis i wczytanie gry oraz połączenie dwóch przeglądarek — bez błędów.</li>
                         </ul>
 
@@ -2375,7 +2377,7 @@ const GameConfig = {
             desc: "Awans do IV ery — epoki prochu: muszkieterzy, grenadierzy, rajtarzy, działa, wieże bombardowe, galeony i Arsenał z Organkami, Wielkim Działem i ulepszeniami broni palnej. Kosztowny: odłóż surowce, zanim zaczniesz." },
         wheelbarrow: { name: 'Taczki', at: 'town_center', age: 1, cost: { food: 120, wood: 80 }, time: 12, icon: 'barrow',
             effects: [{ units: ['worker'], stat: 'carryCapacity', add: 5 }, { units: ['worker'], stat: 'speed', add: 10 }],
-            desc: "Robotnicy noszą o 5 więcej surowca i poruszają się szybciej." },
+            desc: "Robotnicy noszą o 5 więcej surowca (15 zamiast 10) i chodzą szybciej (+10 do szybkości)." },
 
         saw: { name: 'Piła dwuręczna', at: 'storehouse', age: 2, cost: { food: 100, gold: 75 }, time: 14, icon: 'saw',
             effects: [{ gather: 'wood', add: 0.25 }], desc: "+25% do tempa wycinki drewna." },
@@ -2449,10 +2451,10 @@ const GameConfig = {
         field_engineers: { name: 'Inżynierowie Polowi', at: 'siege_workshop', age: 2, cost: { wood: 150, gold: 100 }, time: 18, icon: 'engineer',
             desc: "Każdy twój Warsztat oblężniczy działa odtąd jak lazaret dla machin: naprawia pobliskie tarany, balisty, katapulty, działa, Organki, Wielkie Działa i trebusze twojej drużyny (4 punkty na sekundę każdą, promień 190) — ale tylko te, które od 4 sekund nie oberwały. Kilka warsztatów nie sumuje napraw. Postaw warsztat tuż za linią frontu, a machiny wrócą do walki zamiast przepaść." },
         herbs: { name: 'Zielarstwo', at: 'monastery', age: 2, cost: { food: 150, gold: 100 }, time: 14, icon: 'herb',
-            effects: [{ units: ['monk'], stat: 'heal', add: 5 }, { units: ['monk'], stat: 'healRange', add: 30 }], desc: "Mnisi leczą szybciej i z większej odległości." },
+            effects: [{ units: ['monk'], stat: 'heal', add: 5 }, { units: ['monk'], stat: 'healRange', add: 30 }], desc: "Mnisi leczą szybciej (+5 życia na sekundę, razem 13) i z większej odległości (+30 do zasięgu leczenia)." },
         shipwright: { name: 'Szkutnictwo', at: 'port', age: 2, cost: { wood: 200, gold: 100 }, time: 16, icon: 'anchor',
             effects: [{ units: ['trireme'], stat: 'maxHp', add: 60 }, { units: ['galleon'], stat: 'maxHp', add: 120 }, { units: ['fishing_boat', 'fire_ship'], stat: 'maxHp', add: 40 }],
-            desc: "Mocniejsze kadłuby: więcej życia dla wszystkich okrętów." },
+            desc: "Mocniejsze kadłuby: +60 życia trier, +120 galeonów, +40 łodzi rybackich i branderów." },
         conscription: { name: 'Pobór', at: 'castle', age: 3, cost: { food: 300, gold: 150 }, time: 22, icon: 'drum',
             effects: [{ trainSpeed: 0.25 }], desc: "Wszystkie jednostki szkolą się o 25% szybciej." },
         masonry: { name: 'Kamieniarstwo', at: 'castle', age: 3, cost: { stone: 250, wood: 150 }, time: 22, icon: 'wall',
@@ -2530,6 +2532,13 @@ const Difficulty = {
         medium: 'Średni: pełna gospodarka, mury i wieże. Fale po 8–20 jednostek od 7. minuty. Na IV erę odkłada dopiero od 19. minuty.',
         hard: 'Trudny: szybki awans, trzy koszary, kontry na twoje wojsko, zamek i machiny. Fale po 12–34 jednostki od 5. minuty. Od 12. minuty odkłada na IV erę.',
         brutal: 'Skandaliczny: 32 robotników, pięć koszar, wszystkie technologie i nacisk od 4. minuty, fale co minutę, od 10. minuty odkłada na IV erę. Dostaje też jawną premię: +15% do zbioru surowców i tempa szkolenia.'
+    },
+    // Dyplomacja: nie ma stałych wrogów - SI atakuje tylko nacje, z którymi jest w wojnie (DiplomatAI: śmiałość rośnie z poziomem)
+    diploHints: {
+        easy: 'Łatwy: mała osada i sama piechota (do 12 żołnierzy). Wojny wypowiada rzadko i późno, a jeśli walczy — małymi oddziałami, nie wcześniej niż w 11. minucie. Cudów Świata nie buduje.',
+        medium: 'Średni: pełna gospodarka, mury i wieże, armia do ok. 30 żołnierzy. Po rozejmie wypowiada wojnę słabszym sąsiadom i pomaga sojusznikom; fale po 8–20 jednostek. Czasem buduje Cud Świata.',
+        hard: 'Trudny: szybki awans, zamek, machiny i armia do ok. 60 żołnierzy. Śmielej wypowiada wojny, zawiera sojusze przeciw silnym i często buduje Cud Świata; fale po 12–34 jednostki.',
+        brutal: 'Skandaliczny: 32 robotników, pięć koszar, armia do 100 żołnierzy i jawna premia +15% do zbioru i szkolenia. Najszybciej po rozejmie sięga po wojnę, fale co minutę, najczęściej buduje Cud Świata.'
     }
 };
 
@@ -25569,7 +25578,7 @@ class Tutorial {
 // Model: HOST LICZY, GOŚCIE OGLĄDAJĄ. Przeglądarka hosta prowadzi jedyną symulację (tę samą, co w grze solo),
 // goście wysyłają rozkazy i rysują stan świata przysłany przez hosta.
 const NetCodec = {
-    PROTOCOL: 11,               // 11: gość jako serwer DTLS, więcej adresów lokalnych w kodzie, balans V1.0; 10: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy); 9: okup, trybut, limit czasu
+    PROTOCOL: 12,               // 12: obie strony ponawiają próby połączenia (RtcLink._knockStart); 11: gość jako serwer DTLS, więcej adresów lokalnych w kodzie, balans V1.0; 10: tryb Dyplomacja (relacje, kontynent z rzekami, skala pozycji zależna od mapy); 9: okup, trybut, limit czasu
                                 // 10: koniec bety - krótsze kody zaproszeń (postać 3), kontrola przepływu, TURN
     SNAP: 1,                    // rodzaj wiadomości binarnej: paczka stanu jednostek
 
@@ -26227,6 +26236,7 @@ class RtcLink extends NetLink {
     async acceptOffer(sdp) {
         this.pc.ondatachannel = (e) => this._bind(e.channel);
         await this.pc.setRemoteDescription({ type: 'offer', sdp });
+        this._knockStart(sdp, 600000);
         const answer = await this.pc.createAnswer();
         let done = false;
         if (/^a=setup:active\r?$/m.test(answer.sdp)) {
@@ -26243,6 +26253,34 @@ class RtcLink extends NetLink {
     // HOST: wklejenie odpowiedzi gościa - od tej chwili przeglądarki próbują się połączyć
     async acceptAnswer(sdp) {
         await this.pc.setRemoteDescription({ type: 'answer', sdp });
+        this._knockStart(sdp, 120000);
+    }
+
+    // Pukanie: bez serwera każda strona zaczyna próby połączenia (ICE) w innej chwili - gość, gdy wklei zaproszenie,
+    // host dopiero po wklejeniu odpowiedzi, często minutę czy dwie później. Przeglądarka próbuje tylko ok. 30 s, a
+    // domowe routery (NAT) przepuszczają pakiety drugiej strony wyłącznie wtedy, gdy obie pukają do siebie w tym
+    // samym czasie. Dlatego co kilka sekund dokładamy adresy drugiej strony jeszcze raz (z nowym identyfikatorem -
+    // przeglądarka traktuje je jak nowe i znów wysyła próby), aż połączenie wstanie albo minie limit.
+    _knockStart(sdp, maxMs) {
+        clearInterval(this._knockIv);
+        const cands = [], mid = (/^a=mid:(\S+)/m.exec(sdp) || [])[1] || '0';
+        const re = /^a=candidate:\S+ 1 (udp) (\d+) (\S+) (\d+) typ (host|srflx|relay)/gim;
+        let m;
+        while ((m = re.exec(sdp))) cands.push({ prio: m[2], addr: m[3], port: m[4], typ: m[5] });
+        if (!cands.length || typeof RTCIceCandidate === 'undefined') return;
+        const t0 = performance.now();
+        let round = 0;
+        this._knockIv = setInterval(() => {
+            const pc = this.pc;
+            if (this.isOpen || this.closed || performance.now() - t0 > maxMs || pc.signalingState === 'closed') { clearInterval(this._knockIv); return; }
+            const st = pc.iceConnectionState;
+            if (st === 'connected' || st === 'completed') return;
+            round++;
+            cands.forEach((c, i) => {
+                const line = `candidate:k${round}x${i} 1 udp ${c.prio} ${c.addr} ${c.port} typ ${c.typ}` + (c.typ === 'host' ? '' : ' raddr 0.0.0.0 rport ' + round) + ' generation 0';
+                pc.addIceCandidate({ candidate: line, sdpMid: mid, sdpMLineIndex: 0 }).catch(() => { /* nie szkodzi - następna runda */ });
+            });
+        }, RtcLink.KNOCK_EVERY);
     }
 
     // Wysyłka z kontrolą przepływu: przy dużych wiadomościach (świat gry przy starcie, kilkaset KB) nie wrzucamy
@@ -26271,6 +26309,7 @@ class RtcLink extends NetLink {
 
     close() {
         if (this._discTimer) clearTimeout(this._discTimer);
+        clearInterval(this._knockIv);
         try { if (this.cmd) this.cmd.close(); } catch (e) { /* już zamknięty */ }
         try { this.pc.close(); } catch (e) { /* jw. */ }
         this._closed('closed');
@@ -26281,6 +26320,7 @@ RtcLink.ICE_SERVERS = [
     { urls: ['stun:stun.l.google.com:19302', 'stun:stun.cloudflare.com:3478'] },
     { urls: 'stun:global.stun.twilio.com:3478' }
 ];
+RtcLink.KNOCK_EVERY = 8000;        // co ile ms ponawiamy próby połączenia (patrz RtcLink._knockStart)
 RtcLink.HIGH_WATER = 1 << 20;        // powyżej 1 MB w buforze kanału kolejne wiadomości czekają w kolejce
 RtcLink.LOW_WATER = 256 * 1024;      // ...aż spadnie poniżej 256 KB
 
@@ -28054,7 +28094,7 @@ const MpUI = {
     },
 
     hostSettings(s) {
-        const o = s.settings;
+        const o = s.settings, diplo = o.mode === 'diplomacy';
         let rows = '';
         s.slots.forEach((sl, i) => {
             const pal = TeamPalette[sl.color];
@@ -28064,8 +28104,10 @@ const MpUI = {
             }
             const kinds = this.radios('mpk' + i, sl.kind, [['human', 'Gracz', 'Miejsce dla zaproszonej osoby'], ['ai', 'AI', 'Nacją steruje komputer'], ['closed', 'Zamknięte', 'Ta nacja nie bierze udziału w grze']], 'c3');
             let extra = '';
-            if (sl.kind === 'ai') extra = this.radios('mpd' + i, sl.diff, Difficulty.order.map(d => [d, Difficulty.names[d], Difficulty.hints[d]]), 'c4') + `<div class="diff-hint">${Difficulty.hints[sl.diff].replace(/^[^:]+: /, '')}</div>`;
-            else if (sl.kind === 'human') extra = `<div class="diff-hint">To miejsce zajmie osoba, którą zaprosisz w następnym kroku. Kolor i drużynę może potem zmienić sama.</div>`;
+            // opisy poziomów SI zależą od trybu: w Dyplomacji SI atakuje tylko tych, z którymi jest w wojnie
+            const H = diplo ? Difficulty.diploHints : Difficulty.hints;
+            if (sl.kind === 'ai') extra = this.radios('mpd' + i, sl.diff, Difficulty.order.map(d => [d, Difficulty.names[d], H[d]]), 'c4') + `<div class="diff-hint">${H[sl.diff].replace(/^[^:]+: (.)/, (m, c) => c.toUpperCase())}</div>`;
+            else if (sl.kind === 'human') extra = `<div class="diff-hint">To miejsce zajmie osoba, którą zaprosisz w następnym kroku. ${diplo ? 'Kolor może potem zmienić sama.' : 'Kolor i drużynę może potem zmienić sama.'}</div>`;
             const label = sl.kind === 'human' ? 'gracz' : (sl.kind === 'ai' ? 'AI' : 'zamknięte');
             rows += `<div class="mp-slot${sl.kind === 'closed' ? ' off' : ''}"><div class="mp-slot-head"><i class="swatch" style="background:${pal.main}"></i><span class="nm">Miejsce ${i + 1} — ${label}</span>${sl.kind !== 'closed' ? this.teamPick(i, sl.team, true) : ''}</div>${kinds}${extra}${sl.kind !== 'closed' ? this.colorPick(i, sl.color) : ''}</div>`;
         });

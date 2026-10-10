@@ -36,7 +36,8 @@ wieloosobowa jest test sieci i opcjonalny własny serwer TURN. Wszyscy gracze mu
 
 **Testy przed premierą** — balans jednostek sprawdzony pojedynkami za równe koszty (słabszy Husarz, mocniejsi Muszkieter,
 Grenadier i Arkebuzer), pokonana nacja nie zostawia już na mapie walczących dalej resztek wojska, a gra wieloosobowa
-pewniej łączy graczy w jednej sieci (więcej adresów lokalnych w kodzie, wskazówki przy niepowodzeniu; protokół 11).
+pewniej łączy graczy w jednej sieci (więcej adresów lokalnych w kodzie, wskazówki przy niepowodzeniu; protokół 12)
+oraz przez internet: obie strony ponawiają próby połączenia, aż wstanie, więc kod można przesyłać nawet kilka minut.
 
 **Nowy wygląd i silnik Raptor** — menu z paskiem zakładek, podglądem mapy i encyklopedią, spokojniejszy interfejs w grze
 (pismo Inter i Cinzel osadzone w pliku), generator kontynentów Raptor Atlas, strumieniowanie terenu i ok. 2–3× szybsza
