@@ -1817,6 +1817,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li><b>Kontynent</b> 11 400 × 11 400 kroków (ok. 5× powierzchni mapy Gigantycznej) dla <b>do 8 nacji</b>: rzeki z dopływami i <b>brodami</b>, morze o poszarpanym brzegu, pasma gór z przełęczami, wielkie jeziora i puszcze, a pośrodku <b>Złote wzgórza</b> — bogate złoża z dala od wszystkich stolic. Podgląd w menu pokazuje dokładnie ten świat, który powstanie; <b>Nowy świat</b> losuje inny. Partia trwa zwykle <b>25–45 minut</b>.</li>
                             <li><b>Relacje zamiast stałych drużyn</b>: wszyscy zaczynają w pokoju, a po <b>rozejmie</b> (brak, 3, 5 albo 10 minut) nacje wypowiadają <b>wojny</b>, zawierają <b>pokój</b> (potem 3 minuty traktatu), <b>pakty o nieagresji</b>, <b>umowy handlowe</b> i <b>sojusze</b> (wspólne pole widzenia i zwycięstwo), wysyłają <b>dary</b> i wzywają sojuszników do wspólnych wojen. Przegrywający może kupić pokój <b>za okup</b>, a silniejszy zażądać <b>trybutu</b> — zapłata to 4 minuty paktu, odmowa grozi wojną.</li>
                             <li><b>Cztery drogi do zwycięstwa</b>: <b>Podbój</b>, <b>Sojusz zwycięzców</b> (najwyżej połowa nacji musi jako jedyna na placu boju wytrwać 3 minuty), <b>Cuda Świata</b> (1000 Chwały i 5-minutowy Triumf) i <b>limit czasu</b> (30, 45 albo 60 minut, domyślnie 45 — wygrywa najwyższy Wynik razem z sojusznikami).</li>
+                            <li><b>Wszech-wzrok w Dyplomacji 10× droższy</b> (20 000 żywności, 15 000 drewna, 30 000 złota, 10 000 kamienia): na wielkim kontynencie pełna wiedza o wszystkich nacjach odbierała sens zwiadowi i polityce. W Klasycznym meczu koszt bez zmian.</li>
                             <li><b>Spokojne tempo po rozejmie</b>: SI nie rusza wszystkimi naraz — wojny wybuchają jedna po drugiej, a sojusze, umowy i żądania trybutu mają swoje odstępy. Sojusznik odpowiada na wezwanie do broni po chwili namysłu. Do ciebie SI kieruje <b>najwyżej jedną propozycję naraz</b>, nie częściej niż co minutę.</li>
                         </ul>
 
@@ -2587,7 +2588,7 @@ const GameConfig = {
             effects: [{ landMilitary: true, stat: 'attackDamage', add: 1 }, { landMilitary: true, stat: 'armorMelee', add: 1 }, { landMilitary: true, stat: 'armorPierce', add: 1 }],
             desc: "Cech mistrzów kowalskich: każdy żołnierz lądowy (poza machinami) dostaje +1 do ataku i +1 do obu pancerzy." },
         omnisight: { name: 'Wszech-wzrok', at: 'forge', age: 4, ultra: true, cost: { food: 2000, wood: 1500, gold: 3000, stone: 1000 }, time: 120, icon: 'omnisight',
-            desc: "ULTRA-ULEPSZENIE. Sieć zwiadowców, gołębi pocztowych i lunet na każdej wieży: ty i twoi sojusznicy widzicie całą mapę jednocześnie — każdą jednostkę i każdy budynek, bez mgły wojny. Kosztuje fortunę, trwa 2 minuty, a gdy się uda, wieść obiega wszystkie nacje." },
+            desc: "ULTRA-ULEPSZENIE. Sieć zwiadowców, gołębi pocztowych i lunet na każdej wieży: ty i twoi sojusznicy widzicie całą mapę jednocześnie — każdą jednostkę i każdy budynek, bez mgły wojny. Kosztuje fortunę (w Dyplomacji 10 razy więcej: 20 000 żywności, 15 000 drewna, 30 000 złota i 10 000 kamienia), trwa 2 minuty, a gdy się uda, wieść obiega wszystkie nacje." },
         ballistics: { name: 'Balistyka', at: 'forge', age: 3, cost: { wood: 200, gold: 200 }, time: 20, icon: 'siege',
             effects: [{ units: ['cannon', 'catapult', 'galleon', 'trebuchet', 'ballista', 'great_cannon'], stat: 'attackRange', add: 30 }, { units: ['cannon', 'catapult', 'galleon', 'trebuchet', 'ballista', 'great_cannon'], stat: 'attackDamage', add: 8 },
                       { buildings: ['bombard_tower'], stat: 'attackRange', add: 30 }, { buildings: ['bombard_tower'], stat: 'attackDamage', add: 8 }],
@@ -2630,6 +2631,18 @@ const GameConfig = {
 };
 
 // --- Pomocnicze predykaty oparte na konfiguracji ---
+// Koszt badania w danej grze. V1.0: w Dyplomacji Wszech-wzrok kosztuje 10× więcej - na wielkim kontynencie pełna
+// wiedza o wszystkich nacjach jest bezcenna (i odbierała sens zwiadowi oraz polityce)
+const DIPLO_COST_MUL = { omnisight: 10 };
+const _upgCostCache = {};
+function upgradeCost(id, game) {
+    const up = GameConfig.upgrades[id];
+    if (!up) return null;
+    const g = game || window.game, mul = g && g.mode === 'diplomacy' ? DIPLO_COST_MUL[id] : 0;
+    if (!mul) return up.cost;
+    if (!_upgCostCache[id]) { const c = {}; for (const k in up.cost) c[k] = up.cost[k] * mul; _upgCostCache[id] = c; }
+    return _upgCostCache[id];
+}
 function isBoatType(t) { const c = GameConfig.units[t]; return !!c && c.domain === 'water'; }
 function isMilitaryType(t) { const c = GameConfig.units[t]; return !!c && c.military === true; }
 function isWallType(t) { return t === 'wooden_wall' || t === 'gate'; }
@@ -10039,8 +10052,8 @@ class UIManager {
                     const researching = n.researchingUpgrades.includes(id);
                     const locked = (up.age || 1) > n.age;
                     cmds[i++] = {
-                        icon: Icons.url(up.icon || 'unknown', 24), title: (up.ultra ? '★ ' : '') + up.name, desc: up.desc, cost: up.cost, upgrade: true,
-                        extra: 'Czas badania: ' + up.time + ' s' + (up.ultra ? ' · ultra-ulepszenie' : ''),
+                        icon: Icons.url(up.icon || 'unknown', 24), title: (up.ultra ? '★ ' : '') + up.name, desc: up.desc, cost: upgradeCost(id, this.game), upgrade: true,
+                        extra: 'Czas badania: ' + up.time + ' s' + (up.ultra ? ' · ultra-ulepszenie' : '') + (this.game.mode === 'diplomacy' && DIPLO_COST_MUL[id] ? ` · w Dyplomacji ${DIPLO_COST_MUL[id]}× drożej` : ''),
                         disabled: researching || locked,
                         reason: researching ? 'Badanie w toku…' : (locked ? 'Wymaga: ' + ageName(up.age) : null),
                         onClick: () => {
@@ -19427,10 +19440,11 @@ class Building extends Entity {
             return false;
         }
 
-        if (this.owner.resources.pay(upgData.cost)) {
+        const upgCost = upgradeCost(upgradeId, gameInstance);
+        if (this.owner.resources.pay(upgCost)) {
             this.game = gameInstance;
             this.owner.researchingUpgrades.push(upgradeId);
-            this.trainingQueue.push({ type: upgradeId, time: upgData.time, isResearch: true, cost: upgData.cost });
+            this.trainingQueue.push({ type: upgradeId, time: upgData.time, isResearch: true, cost: upgCost });
             if (this.trainingQueue.length === 1) {
                 this.trainingTimer = upgData.time;
             }
@@ -21153,7 +21167,8 @@ class NationAI {
                 if (nation.researchedUpgrades.includes(upgradeId) || nation.researchingUpgrades.includes(upgradeId)) continue;
                 if (!p.researchAll && up.at !== 'forge' && up.at !== 'town_center' && up.at !== 'arsenal') continue;
                 // V3.5 Final: ultra-ulepszenie tylko z wyraźnej nadwyżki (silna armia, spokój w bazie, złoto ponad koszt)
-                if (up.ultra && (this.underThreat || this.armySize < this.armyFloor || res.get('gold') < up.cost.gold + 600 || res.get('food') < up.cost.food + 300)) continue;
+                const upCost = upgradeCost(upgradeId, game);
+                if (up.ultra && (this.underThreat || this.armySize < this.armyFloor || res.get('gold') < upCost.gold + 600 || res.get('food') < upCost.food + 300)) continue;
                 if (up.at === 'arsenal' && up.effects) {
                     // ulepszenia broni palnej dopiero, gdy jest co ulepszać (co najmniej 4 jednostki lub wieże, których dotyczą)
                     let users = 0;
@@ -21165,7 +21180,7 @@ class NationAI {
                 }
                 const lab = nation.buildings.find(b => b.type === up.at && b.isConstructed && b.trainingQueue.length < 2);
                 if (!lab) continue;
-                if (!this.canSpend(up.cost)) continue;
+                if (!this.canSpend(upCost)) continue;
                 if (lab.queueResearch(game, upgradeId)) break; // Tylko jedno polecenie na raz
             }
         }
