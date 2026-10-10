@@ -1172,6 +1172,58 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 #nations-panel.diplo td { vertical-align: middle; }
 .dp-log { margin-top: 8px; font-size: 11.5px; color: var(--label-3); line-height: 1.5; }
 #nations-panel.diplo { pointer-events: auto; }
+
+/* ===== Reloaded V1.0: zapis i wczytywanie gry ===== */
+.stage-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.stage-row .ghost-btn { padding: 0 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stage-row #tutorial-btn small { display: none; }
+.pm-save { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pm-save .action-btn { padding: 10px 8px; font-size: 14px; }
+.save-card { width: min(640px, calc(100vw - 32px)); max-height: min(720px, calc(100vh - 40px)); text-align: left; padding: 22px 22px 18px; }
+.sv-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.sv-head h2 { margin: 0; }
+.sv-x { width: 32px; height: 32px; border-radius: 50%; border: 0; cursor: pointer; background: var(--fill-2); color: var(--label-2); font-size: 14px; flex: none; }
+.sv-x:hover { background: var(--fill); color: var(--label); }
+.sv-new { display: flex; gap: 8px; }
+.sv-new input { flex: 1; min-width: 0; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--hair-2); background: rgba(0, 0, 0, 0.25); color: var(--label); font: 500 14px var(--ui); outline: none; }
+.sv-new input:focus { border-color: rgba(241, 197, 106, 0.6); box-shadow: 0 0 0 3px rgba(241, 197, 106, 0.15); }
+.sv-new .action-btn { padding: 10px 18px; }
+.sv-msg { font-size: 13px; line-height: 1.45; padding: 8px 12px; border-radius: 10px; background: var(--fill-3); color: var(--label-2); }
+.sv-msg.good { background: rgba(50, 209, 93, 0.12); color: #a6efbb; box-shadow: inset 0 0 0 1px rgba(50, 209, 93, 0.3); }
+.sv-msg.bad { background: rgba(255, 90, 77, 0.12); color: #ffc4bd; box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.35); }
+.sv-list { display: flex; flex-direction: column; gap: 8px; overflow-y: auto; min-height: 120px; padding-right: 2px; margin: 2px -4px 0 0; }
+.sv-row { display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: 16px; background: rgba(255, 255, 255, 0.035); box-shadow: inset 0 0 0 1px var(--hair); transition: background 0.2s; }
+.sv-row:hover { background: rgba(255, 255, 255, 0.06); }
+.sv-thumb { width: 96px; height: 60px; flex: none; border-radius: 12px; object-fit: cover; box-shadow: 0 0 0 1px var(--hair-2); background: #10141c; }
+.sv-thumb.none { background: radial-gradient(circle at 40% 35%, #2a3a52, #0d121b); }
+.sv-info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.sv-info > b { font-size: 14.5px; color: var(--label); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sv-info small { font-size: 12px; color: var(--label-3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sv-info small b { color: var(--label-2); font-weight: 600; }
+.sv-info .sv-old { color: #ffcf6a; }
+.sv-tag { display: inline-block; margin-left: 8px; padding: 1px 7px; border-radius: 6px; font-size: 10px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; vertical-align: 2px; background: rgba(10, 132, 255, 0.22); color: #9ccbff; }
+.sv-tag.q { background: rgba(241, 197, 106, 0.2); color: #f6d79a; }
+.sv-nats { display: flex; gap: 4px; margin-top: 3px; }
+.sv-nats i { width: 10px; height: 10px; border-radius: 50%; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35); }
+.sv-nats i.p { box-shadow: 0 0 0 2px #fff; }
+.sv-nats i.d { opacity: 0.3; }
+.sv-acts { display: flex; flex-direction: column; align-items: stretch; gap: 6px; flex: none; }
+.sv-acts .action-btn.small { min-width: 92px; }
+.sv-mini { display: flex; gap: 4px; }
+.sv-mini button { flex: 1; padding: 4px 8px; border: 0; border-radius: 8px; cursor: pointer; font: 600 11px var(--ui); color: var(--label-2); background: var(--fill-2); white-space: nowrap; }
+.sv-mini button:hover { background: var(--fill); color: var(--label); }
+.sv-mini button.armed { background: rgba(255, 90, 77, 0.3); color: #ffd2cc; }
+.sv-empty { padding: 26px 12px; text-align: center; color: var(--label-3); font-size: 13.5px; line-height: 1.6; }
+.sv-foot { display: flex; align-items: center; gap: 12px; padding-top: 10px; border-top: 1px solid var(--hair); }
+.sv-file { position: relative; overflow: hidden; display: inline-flex; align-items: center; cursor: pointer; flex: none; justify-content: center !important; color: var(--label) !important; font-size: 12.5px !important; }
+.sv-file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.sv-note { font-size: 11.5px; color: var(--label-3); line-height: 1.4; }
+@media (max-width: 560px) {
+    .sv-row { flex-wrap: wrap; }
+    .sv-acts { flex-direction: row; width: 100%; }
+    .sv-acts .action-btn.small { flex: 1; }
+    .sv-foot { flex-direction: column; align-items: stretch; }
+}
 </style>
 </head>
 <body>
@@ -1245,7 +1297,10 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <div class="stage-actions">
                                     <div id="menu-error"></div>
                                     <button id="start-btn" class="cta"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg>Rozpocznij bitwę</button>
+                                    <div class="stage-row">
+                                    <button id="load-menu-btn" class="ghost-btn" title="Wczytaj zapisaną grę albo zapis z pliku">Wczytaj grę <small id="load-count"></small></button>
                                     <button id="tutorial-btn" class="ghost-btn" title="Samouczek krok po kroku: zbieranie surowców, budowa, szkolenie wojska i pierwszy atak. Przeciwnik w samouczku nie atakuje.">Samouczek <small>· pierwsze kroki</small></button>
+                                    </div>
                                 </div>
                             </div>
                         </section>
@@ -1831,6 +1886,10 @@ details.mp-more[open] summary { margin-bottom: 8px; }
             <div class="card" style="width: 330px;">
                 <h2 id="pause-title">PAUZA</h2>
                 <button id="resume-btn" class="action-btn">Wznów</button>
+                <div class="pm-save" id="pm-save">
+                    <button id="save-btn" class="action-btn outline" title="Zapisz bieżącą grę (szybki zapis: F5)">Zapisz grę</button>
+                    <button id="load-game-btn" class="action-btn outline" title="Wczytaj zapisaną grę (szybki zapis: F9)">Wczytaj grę</button>
+                </div>
                 <button id="results-btn" class="action-btn gold" style="display:none">Wyniki bitwy</button>
                 <button id="resign-btn" class="action-btn outline" style="display:none">Poddaj się</button>
                 <button id="restart-btn" class="action-btn outline">Menu główne</button>
@@ -1846,6 +1905,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                 <label class="check" id="hidpi-row" style="justify-content:flex-start"><input type="checkbox" id="hidpi-check"> Ostry obraz HiDPI (wolniej)</label>
                 <label class="check" style="justify-content:flex-start"><input type="checkbox" id="edge-check" checked> Przewijanie krawędzią ekranu</label>
                 <label class="check" style="justify-content:flex-start"><input type="checkbox" id="fps-check"> Pokaż licznik FPS</label>
+                <label class="check" id="autosave-row" style="justify-content:flex-start"><input type="checkbox" id="autosave-check" checked> <span title="Gra solo zapisuje się sama co 5 minut czasu gry (jeden zapis „Autozapis”, nadpisywany)">Autozapis co 5 minut gry</span></label>
                 <div id="mp-panel"></div>
                 <p class="engine-credit" style="margin: 10px 0 0; text-align: center; font-size: 0.78rem;">Raptor Engine · designed by Claude</p>
             </div>
@@ -1876,6 +1936,16 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <button id="mp-lost-menu" class="action-btn">Menu główne</button>
                     <button id="mp-lost-watch" class="action-btn outline">Zostań na mapie</button>
                 </div>
+            </div>
+        </div>
+
+        <div id="save-dialog" class="overlay" style="z-index:230">
+            <div class="card save-card" role="dialog" aria-labelledby="sv-title">
+                <div class="sv-head"><h2 id="sv-title">WCZYTAJ GRĘ</h2><button type="button" class="sv-x" id="sv-close" aria-label="Zamknij">✕</button></div>
+                <div class="sv-new" id="sv-new"><input id="sv-name" maxlength="48" placeholder="Nazwa zapisu" autocomplete="off" spellcheck="false"><button id="sv-save" class="action-btn gold">Zapisz</button></div>
+                <div class="sv-msg" id="sv-msg" style="display:none"></div>
+                <div class="sv-list" id="sv-list"></div>
+                <div class="sv-foot"><label class="action-btn outline small sv-file" title="Dodaj zapis z pliku .absave (np. z innego komputera)">Dodaj z pliku…<input type="file" id="sv-file" accept=".absave,.json"></label><span class="sv-note" id="sv-note"></span></div>
             </div>
         </div>
 
@@ -4178,7 +4248,7 @@ Game.prototype.deathFx = function (target, hostile, late) {
             this.snd('Destroy', x, y);
             if (!isWallType(target.type)) this.shake(x, y, 7, 50);
         }
-        if (this.terrain && target.isConstructed) this.terrain.stamp(x, y, s, (c) => paintRubble(c, s, target.type));
+        if (this.terrain && target.isConstructed) { const fn = (c) => paintRubble(c, s, target.type); fn._sk = ['rubble', s, target.type]; this.terrain.stamp(x, y, s, fn); }
         if (!late && hostile && target.isConstructed && !isWallType(target.type) && !isFarmType(target.type)) {
             // zgliszcza: budynek zburzony przez wroga jeszcze przez kilkanaście sekund płonie i dymi (własna rozbiórka - bez ognia)
             const RU = this.ruins || (this.ruins = []);
@@ -8245,6 +8315,9 @@ class UIManager {
         if (resume) resume.textContent = g.gameOver ? 'Wróć do mapy' : 'Wznów';
         const results = document.getElementById('results-btn');
         if (results) results.style.display = g.gameOver ? '' : 'none';
+        const saveBtn = document.getElementById('save-btn');
+        if (saveBtn && window.SaveGame) { const why = SaveGame.blocker(g); saveBtn.disabled = !!why; saveBtn.title = why || 'Zapisz bieżącą grę (szybki zapis: F5)'; }
+        if (!open && window.SaveUI) SaveUI.close();
         this.hideTooltip();
     }
 
@@ -8332,6 +8405,7 @@ class UIManager {
         this.updateWonderBanner();
         if (this.nationsOpen) this.renderNations();
         if (g0.diplo) this.updateDiploBadge();
+        if (window.SaveUI) SaveUI.tick(g0);
         this.setText('res-food', Math.floor(r.get('food')));
         this.setText('res-wood', Math.floor(r.get('wood')));
         this.setText('res-gold', Math.floor(r.get('gold')));
@@ -9361,6 +9435,9 @@ class UIManager {
 
         bind('resume-btn', () => this.togglePause());
         bind('restart-btn', () => this.leaveToMenu());
+        // Reloaded V1.0: zapis i wczytywanie gry
+        bind('save-btn', () => { if (window.SaveUI) SaveUI.open('save'); });
+        bind('load-game-btn', () => { if (window.SaveUI) SaveUI.open('load'); });
         bind('results-btn', () => { this.togglePause(); document.getElementById('end-screen').style.display = 'flex'; });
         bind('results-top-btn', () => { document.getElementById('end-screen').style.display = 'flex'; });
         bind('menu-btn', () => this.togglePause());
@@ -9399,6 +9476,11 @@ class UIManager {
         check('fps-check', 'fps', false, (v) => { g.showFps = v; });
         check('hidpi-check', 'hidpi', false, (v) => g.setHiDpi(v));
         check('edge-check', 'edgeScroll', true, (v) => { g.edgeScroll = v; });
+        check('autosave-check', 'autosave', true, () => {});
+        const solo = !g.net && !g.isClient;
+        const pmSave = document.getElementById('pm-save'), asRow = document.getElementById('autosave-row');
+        if (pmSave) pmSave.style.display = solo ? '' : 'none';
+        if (asRow) asRow.style.display = solo && !g.tutorial ? '' : 'none';
         const atmoChk = document.getElementById('atmo-check');
         if (atmoChk && g.atmo) {
             atmoChk.checked = g.atmo.enabled;   // stan wybrany w menu głównym
@@ -9429,6 +9511,13 @@ class UIManager {
 
         window.addEventListener('keydown', (e) => {
             if (!g.started) return;
+            if (window.SaveUI && SaveUI.isOpen()) { if (e.code === 'Escape') SaveUI.close(); return; }
+            // Reloaded V1.0: szybki zapis (F5) i jego wczytanie (F9) - tylko gra solo
+            if ((e.code === 'F5' || e.code === 'F9') && !e.ctrlKey && !e.metaKey && !e.altKey && !e.shiftKey && !g.net && !g.isClient && window.SaveUI) {
+                e.preventDefault();
+                if (e.code === 'F5') SaveUI.quickSave(); else SaveUI.quickLoad();
+                return;
+            }
             if (e.code === 'Escape') {
                 if (this.isOverlayOpen('observer-prompt')) { this.startObserving(); return; }
                 if (this.isOverlayOpen('end-screen')) return;
@@ -10428,6 +10517,7 @@ class Terrain {
         this.all = this.chunks.concat(this.outer);
         this.readyCount = 0;
         this.queue = [];
+        this.log = [];                   // dziennik śladów (pieńki, gruz, leje) - zapis gry odtwarza je po wczytaniu
         this.makeScenery();
 
         // Raptor (Dyplomacja): na kontynencie kafelków jest ponad 600 (ok. 650 MB płócien) - nie malujemy ich naraz.
@@ -11337,6 +11427,8 @@ class Terrain {
     // Trwałe "wypalenie" detalu w terenie (pieńki, gruz, ślady po wybuchach) - zero kosztu na klatkę
     stamp(x, y, radius, fn) {
         const CS = this.CS;
+        const key = fn && (fn._sk || Terrain.stampKey(fn));
+        if (key && this.log) { this.log.push([Math.round(x), Math.round(y), radius, key]); if (this.log.length > 6000) this.log.splice(0, 1000); }
         const c0 = Math.max(0, Math.floor((x - radius) / CS)), c1 = Math.min(this.cols - 1, Math.floor((x + radius) / CS));
         const r0 = Math.max(0, Math.floor((y - radius) / CS)), r1 = Math.min(this.rows - 1, Math.floor((y + radius) / CS));
         for (let r = r0; r <= r1; r++) {
@@ -11349,6 +11441,21 @@ class Terrain {
                     if (ch.hd && ch.hd.ready) this._stampInto(ch.hd.ctx, ch, x, y, fn, 2);
                 } else ch.pending.push(p);
             }
+        }
+    }
+
+    // Reloaded V1.0 (zapis gry): ślady terenu zapisują się nazwą malarza, a nie funkcją
+    static stampKey(fn) {
+        const M = Terrain._sk || (Terrain._sk = new Map([[paintStump, 'stump'], [paintQuarryPit, 'pit'], [paintScorch, 'scorch'], [paintCrater, 'crater']]));
+        return M.get(fn) || null;
+    }
+    replayStamps(list) {
+        const F = { stump: paintStump, pit: paintQuarryPit, scorch: paintScorch, crater: paintCrater };
+        for (const st of list || []) {
+            const k = st[3];
+            let fn = typeof k === 'string' ? F[k] : null;
+            if (Array.isArray(k) && k[0] === 'rubble') { const s = k[1], t = k[2]; fn = (c) => paintRubble(c, s, t); fn._sk = k; }
+            if (fn) this.stamp(st[0], st[1], st[2], fn);
         }
     }
 
@@ -26596,6 +26703,625 @@ window.MpUI = MpUI;
 
 /* --- main.js --- */
 // Ustawienia zapamiętywane między grami (localStorage; gdy niedostępne - po prostu wartości domyślne)
+/* --- core/SaveGame.js --- */
+// Reloaded V1.0: zapis i wczytywanie stanu gry (gra solo, oba tryby). Zapis to cały graf obiektów symulacji: nacje,
+// jednostki, budynki, złoża, pociski, SI (dowódca i dyplomata), relacje Dyplomacji, odkryta mapa i pora dnia.
+//  - obiekty klas gry (jednostka, budynek, nacja, SI...) trafiają do tablicy, a odwołania do nich zapisują się numerem,
+//  - zwykłe obiekty i tablice są zapisywane w miejscu; te, do których prowadzi kilka odwołań, dostają numer,
+//    więc po wczytaniu wszystkie odwołania znów wskazują jeden i ten sam obiekt (także przy cyklach),
+//  - stałe (GameConfig, profile SI, krainy, palety) nie są kopiowane - zapis trzyma ich ścieżkę,
+//  - obraz, pamięci podręczne i obiekty przeglądarki (płótna, siatka ścieżek, siatka przestrzenna) nie są zapisywane:
+//    powstają od nowa przy wczytaniu. Teren też: maluje się z ziarna i kształtu jezior, gór i rzek, a ślady bitew
+//    (pieńki, gruz, leje) odtwarza dziennik terenu.
+const SaveGame = {
+    FORMAT: 1,
+    // pola gry, których nie zapisujemy (obraz, wejście, pomiary, pamięci podręczne, obiekty odtwarzane przy wczytaniu)
+    GAME_SKIP: new Set(('canvas ctx lastTime acc alpha _sinceStep isClient relay net _fxLocal teamVis particles decals floatTexts pings ' +
+        'cameraShake clickMarker formMarker mapWidth mapHeight camPad keys selectionBox hudTop hudBottom view spatialGrid pathfinder ' +
+        'visCellSize visCols visRows visibilityGrid exploredGrid fogTarget fogCur fogTmp fogPad zoomAnchor pixelRatio hiDpi edgeScroll ' +
+        'mouseScreen pathBudget orderBudget tutorial atmo isPaused hover inspected showFps fps gfxMode fastSprites fxLevel frameMs ' +
+        '_slowTime _okTime _fastAt _fxA unitsOnScreen _bFlat _bObjs _bUnits _bWalls screenW screenH _tix _nodeQ _playerNation placeError ' +
+        'terrain minimap started _visTeams _localAdopted _visStamp _visRad _visGen visRowSpans _fullGrid _pumpLast _budgetExternal ' +
+        'fogUpdateTimer drawScale nearK cloudSprite cloudSize clouds rawFogCanvas rawFogCtx fogImageData fogSettled fogEmpty fogDirty ' +
+        '_trk _fogVis _fogExp _mist intro stuck ruins hostPaused byId obstacleVersion zoom zoomTarget lastAutosave').split(' ')),
+    // pola encji, które są tylko pamięcią podręczną obrazu albo przynależnością do siatek odtwarzanych przy wczytaniu
+    ENTITY_SKIP: new Set(['_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf', '_gridLayer', '_gridTeam', '_gridKey', '_grid',
+        '_links', '_linksVer', 'isSelected', 'netHidden', 'netFresh']),
+    ATMO_FIELDS: ['clock', 'weather', 'intensity', 'weatherOn', 'nextWeather', 'weatherEnd', 'nextFlock'],
+
+    classes() {
+        return this._classes || (this._classes = { Unit, Building, ResourceNode, Nation, NationAI, DiplomatAI, Diplomacy, ResourceManager });
+    },
+    staticRoots() {
+        return { GameConfig, TeamPalette, Difficulty, Formations, Biomes, AI_PROFILES, AI_CHARACTERS, DIPLO };
+    },
+    // stałe tablice gry: obiekt -> ścieżka (np. ['GameConfig', 'units', 'archer'])
+    statics() {
+        if (this._statics) return this._statics;
+        const map = new Map();
+        const walk = (o, path, depth) => {
+            if (!o || typeof o !== 'object' || map.has(o) || depth > 10 || ArrayBuffer.isView(o)) return;
+            map.set(o, path);
+            for (const k of Object.keys(o)) { const v = o[k]; if (v && typeof v === 'object') walk(v, path.concat(k), depth + 1); }
+        };
+        const roots = this.staticRoots();
+        for (const k in roots) walk(roots[k], [k], 0);
+        return (this._statics = map);
+    },
+    resolveStatic(path) {
+        let o = this.staticRoots()[path[0]];
+        for (let i = 1; i < path.length && o; i++) o = o[path[i]];
+        return o;
+    },
+
+    b64(ta) {
+        const u8 = new Uint8Array(ta.buffer, ta.byteOffset, ta.byteLength);
+        let s = '';
+        for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
+        return btoa(s);
+    },
+    unb64(type, str) {
+        const s = atob(str), u8 = new Uint8Array(s.length);
+        for (let i = 0; i < s.length; i++) u8[i] = s.charCodeAt(i);
+        const T = window[type];
+        return T && T !== Uint8Array ? new T(u8.buffer) : u8;
+    },
+
+    // Czy grę można teraz zapisać? null albo powód (tekst dla gracza)
+    blocker(g) {
+        if (!g || !g.started) return 'Gra jeszcze się nie zaczęła.';
+        if (g.net || g.isClient) return 'Zapis gry jest dostępny w grze solo (gra wieloosobowa nie jest zapisywana).';
+        if (g.tutorial) return 'Samouczka nie da się zapisać.';
+        if (g.gameOver) return 'Bitwa jest rozstrzygnięta — nie ma czego zapisywać.';
+        const pn = g.playerNation;
+        if (pn && pn.defeated && !g.observeAll) return 'Twoja nacja została pokonana — tej gry nie da się już zapisać.';
+        return null;
+    },
+
+    // ---------------- Zapis: gra -> obiekt gotowy do JSON ----------------
+    capture(g) {
+        const C = this.classes(), S = this.statics(), ES = this.ENTITY_SKIP, GS = this.GAME_SKIP;
+        const ctorName = new Map();
+        for (const k in C) ctorName.set(C[k], k);
+        const dropped = new Map();
+        const kind = (o) => {
+            if (o === g) return 'game';
+            if (S.has(o)) return 'static';
+            if (Array.isArray(o)) return 'arr';
+            if (ArrayBuffer.isView(o)) return o instanceof DataView ? 'drop' : 'typed';
+            const p = Object.getPrototypeOf(o);
+            if (p === Object.prototype || p === null) return 'obj';
+            if (o instanceof Map) return 'map';
+            if (o instanceof Set) return 'set';
+            if (ctorName.has(o.constructor)) return 'class';
+            return 'drop';
+        };
+        const keysOf = (o, k) => {
+            const keys = Object.keys(o);
+            return (k === 'class' && o instanceof Entity) ? keys.filter(f => !ES.has(f)) : keys;
+        };
+        const gameKeys = Object.keys(g).filter(k => !GS.has(k));
+
+        // 1. przejście: ile odwołań prowadzi do każdego obiektu (obiekty z kilkoma odwołaniami dostaną numer)
+        const count = new Map(), stack = [];
+        const visit = (v) => {
+            if (v === null || typeof v !== 'object') return;
+            const n = count.get(v);
+            if (n !== undefined) { count.set(v, n + 1); return; }
+            count.set(v, 1);
+            const k = kind(v);
+            if (k === 'arr' || k === 'obj' || k === 'class' || k === 'map' || k === 'set') stack.push(v);
+        };
+        for (const k of gameKeys) visit(g[k]);
+        while (stack.length) {
+            const o = stack.pop(), k = kind(o);
+            if (k === 'arr') { for (let i = 0; i < o.length; i++) visit(o[i]); }
+            else if (k === 'map') { for (const [a, b] of o) { visit(a); visit(b); } }
+            else if (k === 'set') { for (const a of o) visit(a); }
+            else { const ks = keysOf(o, k); for (let i = 0; i < ks.length; i++) visit(o[ks[i]]); }
+        }
+
+        // 2. przejście: zapis
+        const tIdx = new Map(), table = [], ids = new Map();
+        let nextId = 0;
+        const enc = (v) => {
+            switch (typeof v) {
+                case 'number': return Number.isFinite(v) ? v : { $n: v !== v ? 0 : (v > 0 ? 1 : -1) };
+                case 'string': case 'boolean': return v;
+                case 'undefined': return { $u: 1 };
+                case 'object': break;
+                default: return { $d: 1 };   // funkcja, symbol
+            }
+            if (v === null) return null;
+            const k = kind(v);
+            if (k === 'game') return { $g: 1 };
+            if (k === 'static') return { $s: S.get(v) };
+            if (k === 'drop') {
+                const nm = (v.constructor && v.constructor.name) || '?';
+                dropped.set(nm, (dropped.get(nm) || 0) + 1);
+                return { $d: 1 };
+            }
+            if (k === 'class') {
+                let i = tIdx.get(v);
+                if (i === undefined) { i = table.length; tIdx.set(v, i); table.push(v); }
+                return { $r: i };
+            }
+            const seen = ids.get(v);
+            if (seen !== undefined) return { $p: seen };
+            let id;
+            if (count.get(v) > 1) { id = nextId++; ids.set(v, id); }
+            let out;
+            if (k === 'typed') out = { $t: v.constructor.name, b: this.b64(v) };
+            else if (k === 'arr') {
+                const a = new Array(v.length);
+                for (let i = 0; i < v.length; i++) a[i] = enc(v[i]);
+                if (id === undefined) return a;
+                out = { $a: a };
+            } else if (k === 'map') {
+                const a = [];
+                for (const [mk, mv] of v) a.push(enc(mk), enc(mv));
+                out = { $m: a };
+            } else if (k === 'set') {
+                const a = [];
+                for (const x of v) a.push(enc(x));
+                out = { $e: a };
+            } else {
+                const o = encFields(v, Object.keys(v));
+                let dollar = false;
+                for (const kk in o) if (kk.charCodeAt(0) === 36) { dollar = true; break; }
+                if (id === undefined && !dollar) return o;
+                out = { $o: o };
+            }
+            if (id !== undefined) out.$i = id;
+            return out;
+        };
+        const encFields = (o, keys) => {
+            const out = {};
+            for (let i = 0; i < keys.length; i++) {
+                const key = keys[i], val = o[key];
+                if (val === undefined || typeof val === 'function') continue;
+                const e = enc(val);
+                if (e && e.$d) continue;
+                out[key] = e;
+            }
+            return out;
+        };
+
+        const game = encFields(g, gameKeys);
+        const entries = [];
+        for (let i = 0; i < table.length; i++) {
+            const o = table[i], cn = ctorName.get(o.constructor);
+            entries.push({ c: cn, f: encFields(o, keysOf(o, 'class')) });
+        }
+
+        // poza grafem: siatki odkrycia drużyn, encje poza siatką przestrzenną (w budynku, mur pod bramą), teren, atmosfera
+        const explored = [];
+        if (g.teamVis && g.teamVis.size) { for (const [team, tv] of g.teamVis) explored.push([team, this.b64(tv.exp)]); }
+        else explored.push([g.playerTeam, this.b64(g.exploredGrid)]);
+        const offGrid = [];
+        for (const e of g.entities) if (e._gridKey == null && !e.isDestroyed) offGrid.push(e.id);
+        const T = g.terrain, A = g.atmo;
+        const atmo = {};
+        if (A) for (const k of this.ATMO_FIELDS) if (A[k] !== undefined) atmo[k] = enc(A[k]);
+        if (A) atmo.enabled = !!A.enabled;
+        if (dropped.size && window.abDebugSave) console.warn('SaveGame: pominięte obiekty', [...dropped]);
+        return {
+            format: this.FORMAT, version: GameConfig.version,
+            world: {
+                mapSize: g.mapWidth, biome: g.biome ? g.biome.id : 'meadow',
+                seed: T ? T.seed : 1, dirt: T ? T.dirtSpots.map(d => [d.x, d.y, d.r]) : [],
+                stamps: T && T.log ? T.log.slice() : []
+            },
+            nextId: Entity.nextId,
+            camera: { x: g.camera.x, y: g.camera.y, zoom: g.zoomTarget || g.zoom },
+            game, table: entries, explored, offGrid, atmo,
+            dropped: [...dropped]
+        };
+    },
+
+    // ---------------- Wczytanie: obiekt z zapisu -> pola nowej gry ----------------
+    // game: świeży obiekt Game (konstruktor założył obraz, siatki i kamerę). Zwraca nic - wypełnia grę.
+    restore(g, data) {
+        const C = this.classes(), ES = this.ENTITY_SKIP;
+        // Obiekty powstają w prawdziwych konstruktorach: mają wtedy ten sam kształt (mapę ukrytej klasy) co jednostki
+        // i budynki tworzone później w grze - symulacja czyta ich pola tak samo szybko (patrz Entity.declare).
+        // Diplomacy i DiplomatAI mają konstruktory ze skutkami ubocznymi - te dwa obiekty powstają bez konstruktora.
+        const str = (v, ok, def) => typeof v === 'string' && ok(v) ? v : def;
+        const make = {
+            Unit: (f) => new Unit(0, 0, undefined, null, str(f.unitType, k => !!GameConfig.units[k], 'worker')),
+            Building: (f) => new Building(0, 0, undefined, null, str(f.type, k => !!GameConfig.buildings[k], 'house')),
+            ResourceNode: (f) => new ResourceNode(0, 0, str(f.type, () => true, 'wood')),
+            Nation: () => new Nation('', 'blue', false),
+            NationAI: () => new NationAI(g, 'easy'),
+            ResourceManager: () => new ResourceManager({})
+        };
+        const nextId = Entity.nextId;
+        const T = data.table.map(e => {
+            const cls = C[e.c];
+            if (!cls) throw new Error('Nieznana klasa w zapisie: ' + e.c);
+            const o = make[e.c] ? make[e.c](e.f) : Object.create(cls.prototype);
+            // pola, których w zapisie nie ma, miały wartość undefined (konstruktor mógł im nadać inną)
+            const ent = o instanceof Entity;
+            for (const k of Object.keys(o)) if (!(k in e.f) && !(ent && ES.has(k))) o[k] = undefined;
+            return o;
+        });
+        Entity.nextId = nextId;
+        const shared = [];
+        const reg = (v, o) => { if (v.$i !== undefined) shared[v.$i] = o; return o; };
+        const dec = (v) => {
+            if (v === null || typeof v !== 'object') return v;
+            if (Array.isArray(v)) { const a = new Array(v.length); for (let i = 0; i < v.length; i++) a[i] = dec(v[i]); return a; }
+            if (v.$r !== undefined) return T[v.$r];
+            if (v.$p !== undefined) return shared[v.$p];
+            if (v.$g) return g;
+            if (v.$s) return this.resolveStatic(v.$s);
+            if (v.$n !== undefined) return v.$n === 0 ? NaN : v.$n * Infinity;
+            if (v.$u || v.$d) return undefined;
+            if (v.$t) return reg(v, this.unb64(v.$t, v.b));
+            if (v.$a) { const a = reg(v, []); for (let i = 0; i < v.$a.length; i++) a.push(dec(v.$a[i])); return a; }
+            if (v.$m) { const m = reg(v, new Map()), a = v.$m; for (let i = 0; i < a.length; i += 2) m.set(dec(a[i]), dec(a[i + 1])); return m; }
+            if (v.$e) { const s = reg(v, new Set()); for (const x of v.$e) s.add(dec(x)); return s; }
+            if (v.$o) { const o = reg(v, {}); for (const k in v.$o) o[k] = dec(v.$o[k]); return o; }
+            const o = {};
+            for (const k in v) o[k] = dec(v[k]);
+            return o;
+        };
+        // kolejność odczytu taka sama jak zapisu: najpierw pola gry, potem tablica obiektów
+        for (const k in data.game) g[k] = dec(data.game[k]);
+        for (let i = 0; i < T.length; i++) {
+            const f = data.table[i].f, o = T[i];
+            for (const k in f) o[k] = dec(f[k]);
+        }
+        return { atmo: dec(data.atmo || {}) };
+    },
+
+    // Szkic zapisu do listy (bez stanu): nazwa, tryb, czas gry, nacje, miniatura
+    meta(g, name, kind) {
+        const pn = g.playerNation;
+        // miniatura: kadr ze środka widoku gry (to, co gracz widział w chwili zapisu)
+        let thumb = null;
+        try {
+            const src = g.canvas;
+            if (src && src.width > 0) {
+                const c = document.createElement('canvas'); c.width = 176; c.height = 110;
+                const top = g.hudTop * g.pixelRatio, bottom = g.hudBottom * g.pixelRatio;
+                const vh = Math.max(10, src.height - top - bottom), vw = Math.min(src.width, vh * 1.6);
+                c.getContext('2d').drawImage(src, (src.width - vw) / 2, top, vw, vh, 0, 0, 176, 110);
+                thumb = c.toDataURL('image/jpeg', 0.72);
+            }
+        } catch (e) { thumb = null; }
+        return {
+            name: String(name || '').slice(0, 48), kind: kind || 'manual', created: Date.now(), version: GameConfig.version,
+            mode: g.mode || 'classic', mapType: g.mapType, biome: g.biome ? g.biome.name : '', time: g.time,
+            age: pn ? pn.age : 1, player: pn ? (pn.shortName || pn.name) : '', color: pn ? pn.color : '#888',
+            nations: g.nations.map(n => ({ n: n.shortName || n.name, c: n.color, p: !!n.isPlayer, d: !!n.defeated })),
+            thumb
+        };
+    },
+
+    async gzip(text) {
+        if (typeof CompressionStream === 'undefined') return null;
+        try {
+            const s = new Blob([text]).stream().pipeThrough(new CompressionStream('gzip'));
+            return new Uint8Array(await new Response(s).arrayBuffer());
+        } catch (e) { return null; }
+    },
+    async gunzip(bytes) {
+        const s = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+        return await new Response(s).text();
+    },
+    // stan -> paczka do magazynu / pliku: { gz: true, bytes } albo { gz: false, text }
+    async pack(obj) {
+        const text = JSON.stringify(obj);
+        const bytes = await this.gzip(text);
+        return bytes ? { gz: true, bytes } : { gz: false, text };
+    },
+    async unpack(p) {
+        return JSON.parse(p.gz ? await this.gunzip(p.bytes) : p.text);
+    }
+};
+window.SaveGame = SaveGame;
+
+// Magazyn zapisów: IndexedDB (dużo miejsca, zapis w tle); gdy przeglądarka go nie daje - localStorage.
+// Lista zapisów (meta) jest osobno od stanu, więc okno zapisów otwiera się od razu nawet przy wielu dużych zapisach.
+const SaveStore = {
+    DB: 'artificial-battles-saves',
+    LS: 'artificial-battles-saves-v1',
+    _db: null,
+    idb() {
+        if (this._db) return this._db;
+        this._db = new Promise((resolve, reject) => {
+            try {
+                if (!window.indexedDB) throw new Error('noidb');
+                const rq = indexedDB.open(this.DB, 1);
+                rq.onupgradeneeded = () => { const db = rq.result; db.createObjectStore('meta', { keyPath: 'id' }); db.createObjectStore('data'); };
+                rq.onsuccess = () => resolve(rq.result);
+                rq.onerror = () => reject(rq.error || new Error('idb'));
+                rq.onblocked = () => reject(new Error('blocked'));
+            } catch (e) { reject(e); }
+        });
+        this._db.catch(() => { this.noIdb = true; });
+        return this._db;
+    },
+    req(r) { return new Promise((res, rej) => { r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); }); },
+    async tx(stores, mode, fn) {
+        const db = await this.idb();
+        return new Promise((resolve, reject) => {
+            const t = db.transaction(stores, mode);
+            let out;
+            Promise.resolve(fn(t)).then(v => { out = v; }, reject);
+            t.oncomplete = () => resolve(out);
+            t.onerror = () => reject(t.error);
+            t.onabort = () => reject(t.error || new Error('abort'));
+        });
+    },
+    // --- zapasowo: localStorage (paczka w base64) ---
+    lsIndex() { try { return JSON.parse(localStorage.getItem(this.LS)) || []; } catch (e) { return []; } },
+    lsSetIndex(list) { localStorage.setItem(this.LS, JSON.stringify(list)); },
+    packToStr(p) { return p.gz ? 'z' + SaveGame.b64(p.bytes) : 't' + p.text; },
+    strToPack(s) { return s[0] === 'z' ? { gz: true, bytes: SaveGame.unb64('Uint8Array', s.slice(1)) } : { gz: false, text: s.slice(1) }; },
+
+    async useIdb() { try { await this.idb(); return true; } catch (e) { return false; } },
+
+    async list() {
+        let list;
+        if (await this.useIdb()) list = await this.tx(['meta'], 'readonly', t => this.req(t.objectStore('meta').getAll()));
+        else list = this.lsIndex();
+        return (list || []).sort((a, b) => b.created - a.created);
+    },
+    async put(meta, pack) {
+        if (await this.useIdb()) {
+            await this.tx(['meta', 'data'], 'readwrite', t => { t.objectStore('meta').put(meta); t.objectStore('data').put(pack, meta.id); });
+            return;
+        }
+        const list = this.lsIndex().filter(m => m.id !== meta.id);
+        localStorage.setItem(this.LS + ':' + meta.id, this.packToStr(pack));
+        list.push(meta);
+        this.lsSetIndex(list);
+    },
+    async get(id) {
+        if (await this.useIdb()) return this.tx(['data'], 'readonly', t => this.req(t.objectStore('data').get(id)));
+        const s = localStorage.getItem(this.LS + ':' + id);
+        return s ? this.strToPack(s) : null;
+    },
+    async getMeta(id) { return (await this.list()).find(m => m.id === id) || null; },
+    async remove(id) {
+        if (await this.useIdb()) { await this.tx(['meta', 'data'], 'readwrite', t => { t.objectStore('meta').delete(id); t.objectStore('data').delete(id); }); return; }
+        localStorage.removeItem(this.LS + ':' + id);
+        this.lsSetIndex(this.lsIndex().filter(m => m.id !== id));
+    }
+};
+window.SaveStore = SaveStore;
+
+// Okno zapisów: w grze (menu pauzy: Zapisz / Wczytaj, F5 - szybki zapis, F9 - wczytanie szybkiego zapisu)
+// i w menu głównym (Wczytaj grę). Wczytanie w trakcie gry przeładowuje stronę i otwiera zapis od razu po starcie -
+// tak samo czysto jak wyjście do menu głównego.
+const SaveUI = {
+    AUTO_EVERY: 300,          // autozapis co 5 minut czasu gry
+    mode: 'load',
+    busy: false,
+    hooks: null,
+    _armedDel: null,
+
+    init(hooks) {
+        this.hooks = hooks || {};
+        this.el = document.getElementById('save-dialog');
+        if (!this.el) return;
+        const $ = (id) => document.getElementById(id);
+        $('sv-close').addEventListener('click', () => this.close());
+        this.el.addEventListener('pointerdown', (e) => { if (e.target === this.el) this.close(); });
+        $('sv-save').addEventListener('click', () => this.saveFromDialog());
+        $('sv-name').addEventListener('keydown', (e) => { e.stopPropagation(); if (e.key === 'Enter') this.saveFromDialog(); if (e.key === 'Escape') this.close(); });
+        $('sv-file').addEventListener('change', (e) => { const f = e.target.files && e.target.files[0]; e.target.value = ''; if (f) this.importFile(f); });
+        $('sv-list').addEventListener('click', (e) => {
+            const b = e.target.closest ? e.target.closest('[data-sv]') : null;
+            if (!b || b.disabled) return;
+            const id = b.dataset.id, act = b.dataset.sv;
+            if (act === 'load') this.load(id);
+            else if (act === 'over') this.saveNow(this.nameFor(id), 'manual', id);
+            else if (act === 'export') this.exportSave(id);
+            else if (act === 'del') {
+                if (this._armedDel !== id) { this._armedDel = id; b.textContent = 'Na pewno?'; b.classList.add('armed'); setTimeout(() => { if (this._armedDel === id) { this._armedDel = null; this.render(); } }, 4000); return; }
+                this._armedDel = null;
+                SaveStore.remove(id).then(() => this.render(), (err) => this.msg('Nie udało się usunąć zapisu: ' + (err && err.message || err), 'bad'));
+            }
+        });
+        if (this.hooks.onListChanged) this.refreshCount();
+    },
+
+    game() { const g = window.game; return g && g.started ? g : null; },
+    isOpen() { return !!this.el && this.el.style.display === 'flex'; },
+    msg(text, type) {
+        const m = document.getElementById('sv-msg');
+        if (!m) return;
+        m.textContent = text || '';
+        m.className = 'sv-msg' + (type ? ' ' + type : '');
+        m.style.display = text ? '' : 'none';
+    },
+    toast(text, type) {
+        if (window.uiManager && this.game()) window.uiManager.showMessage(text, type || 'info');
+        else this.msg(text, type === 'alert' ? 'bad' : 'good');
+    },
+
+    open(mode) {
+        if (!this.el) return;
+        this.mode = mode === 'save' ? 'save' : 'load';
+        const g = this.game();
+        const block = this.mode === 'save' ? SaveGame.blocker(g) : null;
+        document.getElementById('sv-title').textContent = this.mode === 'save' ? 'ZAPISZ GRĘ' : 'WCZYTAJ GRĘ';
+        this.el.classList.toggle('saving', this.mode === 'save');
+        const nameEl = document.getElementById('sv-name');
+        document.getElementById('sv-new').style.display = this.mode === 'save' ? '' : 'none';
+        if (this.mode === 'save' && g) { nameEl.value = this.defaultName(g); nameEl.disabled = !!block; document.getElementById('sv-save').disabled = !!block; }
+        this.msg(block || '', block ? 'bad' : '');
+        this.el.style.display = 'flex';
+        this.render();
+        if (this.mode === 'save' && !block) setTimeout(() => { nameEl.focus(); nameEl.select(); }, 30);
+    },
+    close() { if (this.el) this.el.style.display = 'none'; this._armedDel = null; },
+
+    clock(t) {
+        t = Math.max(0, Math.floor(t || 0));
+        const h = Math.floor(t / 3600), m = Math.floor(t / 60) % 60, s = t % 60;
+        return (h ? h + ':' + String(m).padStart(2, '0') : m) + ':' + String(s).padStart(2, '0');
+    },
+    defaultName(g) {
+        const pn = g.playerNation;
+        return (g.mode === 'diplomacy' ? 'Dyplomacja' : 'Klasyczny mecz') + ' — ' + (pn ? pn.shortName || pn.name : '') + ', ' + this.clock(g.time);
+    },
+    nameFor(id) { const m = (this._list || []).find(x => x.id === id); return m ? m.name : ''; },
+
+    async render() {
+        const list = document.getElementById('sv-list');
+        if (!list) return;
+        let saves = [];
+        try { saves = await SaveStore.list(); } catch (e) { this.msg('Pamięć przeglądarki jest niedostępna — zapisz grę do pliku albo wczytaj ją z pliku.', 'bad'); }
+        this._list = saves;
+        const esc = (t) => String(t == null ? '' : t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const MAPS = { lake: 'Jezioro', lakes: 'Pojezierze', plains: 'Równiny', highlands: 'Góry', continent: 'Kontynent' };
+        const g = this.game(), canSave = this.mode === 'save' && !SaveGame.blocker(g);
+        const fmtDate = (ms) => { const d = new Date(ms); return d.toLocaleDateString('pl-PL', { day: 'numeric', month: 'short' }) + ', ' + d.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' }); };
+        let html = '';
+        for (const m of saves) {
+            const tag = m.kind === 'auto' ? '<span class="sv-tag">co 5 min</span>' : m.kind === 'quick' ? '<span class="sv-tag q">F5 · F9</span>' : '';
+            const live = (m.nations || []).filter(n => !n.d).length;
+            const nats = (m.nations || []).map(n => `<i class="${n.d ? 'd' : ''}${n.p ? ' p' : ''}" style="background:${esc(n.c)}" title="${esc(n.n)}${n.p ? ' (ty)' : ''}${n.d ? ' — pokonani' : ''}"></i>`).join('');
+            const old = m.version && m.version !== GameConfig.version ? `<small class="sv-old">Zapis z wydania ${esc(m.version)}</small>` : '';
+            const armed = this._armedDel === m.id;
+            html += `<div class="sv-row">
+                ${m.thumb ? `<img class="sv-thumb" src="${esc(m.thumb)}" alt="">` : '<div class="sv-thumb none"></div>'}
+                <div class="sv-info">
+                    <b>${esc(m.name || 'Zapis')}${tag}</b>
+                    <small>${m.mode === 'diplomacy' ? 'Dyplomacja' : 'Klasyczny mecz'} · ${esc(MAPS[m.mapType] || m.mapType || '')}${m.biome ? ' · ' + esc(m.biome) : ''} · grasz: <span style="color:${esc(m.color)}">${esc(m.player)}</span></small>
+                    <small>Czas gry <b>${this.clock(m.time)}</b> · Era ${GameConfig.ages[m.age] ? GameConfig.ages[m.age].roman : m.age} · ${live}/${(m.nations || []).length} nacji · ${fmtDate(m.created)}</small>
+                    <span class="sv-nats">${nats}</span>${old}
+                </div>
+                <div class="sv-acts">
+                    ${this.mode === 'save' ? (canSave && m.kind === 'manual' ? `<button class="action-btn small gold" data-sv="over" data-id="${esc(m.id)}" title="Zastąp ten zapis bieżącą grą">Nadpisz</button>` : '') : `<button class="action-btn small gold" data-sv="load" data-id="${esc(m.id)}">Wczytaj</button>`}
+                    <span class="sv-mini">
+                        <button data-sv="export" data-id="${esc(m.id)}" title="Pobierz zapis jako plik (.absave) — na inny komputer albo jako kopię">Do pliku</button>
+                        <button data-sv="del" data-id="${esc(m.id)}" class="${armed ? 'armed' : ''}" title="Usuń zapis">${armed ? 'Na pewno?' : 'Usuń'}</button>
+                    </span>
+                </div>
+            </div>`;
+        }
+        if (!html) html = `<div class="sv-empty">${this.mode === 'save' ? 'Nie masz jeszcze zapisów. Wpisz nazwę i kliknij <b>Zapisz</b>.' : 'Brak zapisanych gier. Grę zapiszesz w menu pauzy (<kbd>Esc</kbd>) albo klawiszem <kbd>F5</kbd>; co 5 minut gra zapisuje się też sama.'}</div>`;
+        list.innerHTML = html;
+        const note = document.getElementById('sv-note');
+        if (note) note.textContent = SaveStore.noIdb ? 'Zapisy w pamięci przeglądarki (localStorage) — mieści się kilka.' : 'Zapisy zostają w tej przeglądarce. „Do pliku” robi kopię do przeniesienia.';
+        this.refreshCount(saves);
+    },
+    refreshCount(saves) {
+        if (!this.hooks || !this.hooks.onListChanged) return;
+        if (saves) this.hooks.onListChanged(saves);
+        else SaveStore.list().then(s => this.hooks.onListChanged(s), () => this.hooks.onListChanged([]));
+    },
+
+    async saveFromDialog() {
+        const nameEl = document.getElementById('sv-name');
+        const name = (nameEl.value || '').trim() || this.defaultName(this.game());
+        // ta sama nazwa = nadpisanie tamtego zapisu (zamiast dwóch identycznych pozycji)
+        const same = (this._list || []).find(m => m.kind === 'manual' && m.name === name);
+        await this.saveNow(name, 'manual', same ? same.id : null);
+    },
+
+    // kind: 'manual' | 'quick' | 'auto'; id: zapis do nadpisania (brak = nowy)
+    async saveNow(name, kind, id) {
+        const g = this.game();
+        const block = SaveGame.blocker(g);
+        if (block) { if (kind !== 'auto') this.toast(block, 'warn'); return false; }
+        if (this.busy) return false;
+        this.busy = true;
+        const t0 = performance.now();
+        try {
+            const state = SaveGame.capture(g);
+            const meta = SaveGame.meta(g, name, kind);
+            meta.id = id || (kind === 'auto' ? 'auto' : kind === 'quick' ? 'quick' : 's' + Date.now().toString(36) + Math.floor(Math.random() * 1e4).toString(36));
+            const pack = await SaveGame.pack(state);
+            meta.size = pack.gz ? pack.bytes.length : pack.text.length;
+            await SaveStore.put(meta, pack);
+            g.lastAutosave = g.time;
+            this._lastMs = performance.now() - t0;
+            if (kind === 'auto') this.toast('Autozapis gry (' + this.clock(g.time) + ').', 'info');
+            else if (kind === 'quick') this.toast('Szybki zapis gotowy — F9 wczytuje go z powrotem.', 'good');
+            else { this.toast('Zapisano grę: „' + meta.name + '”.', 'good'); this.msg('Zapisano: „' + meta.name + '”.', 'good'); }
+            if (this.isOpen()) this.render();
+            return true;
+        } catch (err) {
+            console.error('Zapis gry nie powiódł się', err);
+            const full = err && (err.name === 'QuotaExceededError' || /quota/i.test(String(err.message)));
+            const text = full ? 'Brak miejsca w pamięci przeglądarki. Usuń stare zapisy albo zapisz grę do pliku.' : 'Nie udało się zapisać gry: ' + (err && err.message || err);
+            this.toast(text, 'alert'); this.msg(text, 'bad');
+            return false;
+        } finally { this.busy = false; }
+    },
+
+    quickSave() { return this.saveNow('Szybki zapis', 'quick', 'quick'); },
+    async quickLoad() {
+        const m = await SaveStore.getMeta('quick').catch(() => null);
+        if (!m) { this.toast('Nie ma jeszcze szybkiego zapisu — zrób go klawiszem F5.', 'warn'); return; }
+        this.load('quick');
+    },
+
+    // autozapis: wołany z odświeżania interfejsu gry
+    tick(g) {
+        if (this.busy || !g || g.isPaused || SaveGame.blocker(g) || g.observeAll) return;
+        if (window.Settings && Settings.get('autosave') === false) return;
+        if (g.lastAutosave === undefined) g.lastAutosave = g.time;
+        if (g.time - g.lastAutosave >= this.AUTO_EVERY) { g.lastAutosave = g.time; this.saveNow('Autozapis', 'auto', 'auto'); }
+    },
+
+    load(id) {
+        const g = window.game;
+        if (g && g.started) {
+            // w trakcie gry: czysty start (jak wyjście do menu), zapis otwiera się zaraz po przeładowaniu
+            try { sessionStorage.setItem('ab-load', id); } catch (e) { this.msg('Przeglądarka nie pozwala przekazać zapisu — wyjdź do menu głównego i wczytaj go tam.', 'bad'); return; }
+            window.abLeaving = true;
+            this.msg('Wczytuję…', 'good');
+            window.location.reload();
+            return;
+        }
+        this.close();
+        if (this.hooks.loadSaved) this.hooks.loadSaved(id);
+    },
+
+    fileName(name) { return 'Artificial Battles - ' + String(name || 'zapis').replace(/[\\/:*?"<>|]+/g, '_').slice(0, 60) + '.absave'; },
+    async exportSave(id) {
+        try {
+            const meta = (this._list || []).find(m => m.id === id) || await SaveStore.getMeta(id);
+            const pack = await SaveStore.get(id);
+            if (!meta || !pack) throw new Error('brak zapisu');
+            const state = await SaveGame.unpack(pack);
+            const body = JSON.stringify({ kind: 'artificial-battles-save', format: SaveGame.FORMAT, meta, state });
+            const bytes = await SaveGame.gzip(body);
+            const blob = new Blob([bytes || body], { type: 'application/octet-stream' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = this.fileName(meta.name);
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+            this.msg('Plik zapisu jest w pobranych: ' + a.download, 'good');
+        } catch (err) { this.msg('Nie udało się zapisać pliku: ' + (err && err.message || err), 'bad'); }
+    },
+    async importFile(file) {
+        try {
+            const bytes = new Uint8Array(await file.arrayBuffer());
+            const text = bytes[0] === 0x1f && bytes[1] === 0x8b ? await SaveGame.gunzip(bytes) : new TextDecoder().decode(bytes);
+            let doc;
+            try { doc = JSON.parse(text); } catch (e) { throw new Error('to nie jest plik zapisu gry'); }
+            if (!doc || doc.kind !== 'artificial-battles-save' || !doc.state) throw new Error('to nie jest plik zapisu Artificial Battles');
+            if (doc.state.format !== SaveGame.FORMAT) throw new Error('zapis pochodzi z niezgodnego wydania gry');
+            const meta = Object.assign({}, doc.meta || {}, { id: 's' + Date.now().toString(36) + Math.floor(Math.random() * 1e4).toString(36), kind: 'manual', created: Date.now() });
+            meta.name = (String(meta.name || file.name.replace(/\.absave$/i, '')).slice(0, 38) + ' · z pliku');
+            const pack = await SaveGame.pack(doc.state);
+            await SaveStore.put(meta, pack);
+            this.msg('Dodano zapis z pliku: „' + meta.name + '”.', 'good');
+            await this.render();
+        } catch (err) { this.msg('Nie udało się wczytać pliku: ' + (err && err.message || err), 'bad'); }
+    }
+};
+window.SaveUI = SaveUI;
+
 const Settings = {
     KEY: 'artificial-battles-v25',
     data: {},
@@ -27492,6 +28218,124 @@ document.addEventListener("DOMContentLoaded", () => {
         if (session.syncBuild) { terrain.buildSync(); finish(); }
         else terrain.buildAsync(home, (p) => { if (loadingBar) loadingBar.style.width = Math.round(p * 100) + '%'; }, finish);
     }
+
+
+    // ---------------- Reloaded V1.0: wczytanie zapisanej gry ----------------
+    // Świat nie jest generowany: nacje, encje, SI i relacje wracają z zapisu (SaveGame.restore), teren maluje się
+    // z ziarna i zapisanych kształtów jezior, gór i rzek, a siatki (przestrzenna, ścieżek, widoczności) powstają od nowa.
+    async function loadSaved(id) {
+        let data, meta;
+        try {
+            meta = await SaveStore.getMeta(id);
+            const pack = await SaveStore.get(id);
+            if (!pack) throw new Error('nie ma takiego zapisu');
+            data = await SaveGame.unpack(pack);
+            if (!data || data.format !== SaveGame.FORMAT) throw new Error('zapis pochodzi z niezgodnego wydania gry');
+        } catch (err) {
+            console.error(err);
+            showLoadError('Nie udało się wczytać zapisu: ' + (err && err.message || err));
+            return;
+        }
+        MpUI.abandon();
+        mainMenu.style.display = 'none';
+        window.menuActive = false;
+        stopMenuFx();
+        loading.style.display = 'flex';
+        if (loadingBar) loadingBar.style.width = '0%';
+        MpUI.setLoadingNote('Wczytuję zapis' + (meta && meta.name ? ': „' + meta.name + '”' : '') + '…');
+        requestAnimationFrame(() => setTimeout(() => {
+            try { initSavedGame(data, meta); }
+            catch (err) {
+                // świat mógł zostać zbudowany do połowy - czysty powrót do menu z komunikatem
+                console.error('Wczytanie zapisu nie powiodło się', err);
+                try { sessionStorage.setItem('ab-load-error', String(err && err.message || err)); } catch (e) { /* bez pamięci sesji */ }
+                window.abLeaving = true;
+                window.location.reload();
+            }
+        }, 20));
+    }
+
+    function showLoadError(text) {
+        if (menuError) { menuError.textContent = text; menuError.style.display = 'block'; }
+        if (SaveUI.isOpen()) SaveUI.msg(text, 'bad');
+    }
+
+    function initSavedGame(data, meta) {
+        const w = data.world;
+        const game = new Game({ mapSize: w.mapSize });
+        window.game = game;
+        const biome = Biomes[w.biome] || Biomes.meadow;
+        game.biome = biome;
+        Sprites.biome = biome;
+        const extra = SaveGame.restore(game, data);
+        game.biome = Biomes[w.biome] || game.biome || biome;
+        game.speed = 1;
+        Entity.nextId = Math.max(Entity.nextId, data.nextId || 1);
+        game._playerNation = null;
+        const playerNation = game.playerNation || game.nations[0];
+        if (!playerNation) throw new Error('zapis nie zawiera nacji');
+        // indeksy odtwarzane z encji: numery, siatka przestrzenna (bez jednostek schowanych w budynkach), przeszkody
+        game.byId.clear();
+        game.spatialGrid.clear();
+        const off = new Set(data.offGrid || []);
+        for (const e of game.entities) { game.byId.set(e.id, e); if (!off.has(e.id) && !e.isDestroyed) game.spatialGrid.insert(e); }
+        game.obstacleVersion = 1;
+        if (game.diplo) game.spatialGrid.hostile = game.diplo.mask;
+        for (const n of game.nations) for (const b of n.buildings) b._linksVer = -1;
+        // odkryta mapa każdej drużyny
+        for (const [team, b64] of data.explored || []) {
+            const tv = game.teamGrids(team), src = SaveGame.unb64('Uint8Array', b64);
+            if (src.length === tv.exp.length) tv.exp.set(src);
+        }
+        if (game.revealAll) game.revealMap();
+
+        const terrain = new Terrain(game, { biome, seed: w.seed, dirtSpots: (w.dirt || []).map(d => ({ x: d[0], y: d[1], r: d[2] })) });
+        game.terrain = terrain;
+        terrain.replayStamps(w.stamps);
+        game.atmo = new Atmosphere(game, biome);
+        const A = extra.atmo || {};
+        for (const k of SaveGame.ATMO_FIELDS) if (A[k] !== undefined) game.atmo[k] = A[k];
+        game.atmo.enabled = A.enabled !== undefined ? !!A.enabled : Settings.get('atmo') !== false;
+
+        const cam = data.camera || {};
+        game.zoom = game.zoomTarget = game.clampZoom(cam.zoom || 1);
+        if (cam.x !== undefined) { game.camera.x = cam.x; game.camera.y = cam.y; game.clampCamera(); }
+        const home = { x: game.camera.x + game.viewW / 2, y: game.camera.y + game.viewH / 2 };
+        game.lastAutosave = game.time;
+
+        const finish = () => {
+            const uiManager = new UIManager(game, playerNation);
+            window.uiManager = uiManager;
+            game.minimap = new Minimap(game);
+            terrain.waterMask = null; terrain.foamMask = null;
+            loading.style.display = 'none';
+            uiLayer.style.display = 'flex';
+            game.start();
+            const t = SaveUI.clock(game.time);
+            uiManager.showMessage(`Wczytano zapis${meta && meta.name ? ' „' + meta.name + '”' : ''} — czas gry ${t}. Gra toczy się dalej.`, 'good');
+            if (data.version && data.version !== GameConfig.version) uiManager.showMessage(`Zapis pochodzi z wydania ${data.version} — gra próbuje go odtworzyć.`, 'warn');
+            window.abReady = true;
+        };
+        terrain.buildAsync(home, (p) => { if (loadingBar) loadingBar.style.width = Math.round(p * 100) + '%'; }, finish);
+    }
+
+    SaveUI.init({
+        loadSaved,
+        onListChanged(list) {
+            const c = document.getElementById('load-count');
+            if (c) c.textContent = list.length ? '· ' + list.length : '';
+        }
+    });
+    const loadMenuBtn = document.getElementById('load-menu-btn');
+    if (loadMenuBtn) loadMenuBtn.addEventListener('click', () => SaveUI.open('load'));
+    window.ArtificialBattles.loadSaved = loadSaved;
+    // wczytanie zamówione w trakcie poprzedniej gry (strona została przeładowana) albo błąd takiego wczytania
+    try {
+        const pend = sessionStorage.getItem('ab-load'), perr = sessionStorage.getItem('ab-load-error');
+        sessionStorage.removeItem('ab-load'); sessionStorage.removeItem('ab-load-error');
+        if (perr) setTimeout(() => showLoadError('Nie udało się wczytać zapisu: ' + perr), 0);
+        else if (pend) setTimeout(() => loadSaved(pend), 0);
+    } catch (e) { /* przeglądarka bez pamięci sesji */ }
 
     // HOST: start meczu z poczekalni
     function startHost(session) {
