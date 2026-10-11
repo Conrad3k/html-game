@@ -1821,6 +1821,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                     <li><b>Poselstwo</b> (110–260 złota zależnie od ery, raz na 3 minuty do tej samej nacji) — powoli ociepla stosunki (do +20), a posłowie przywożą wieści: czy dwór myśli o wojnie z tobą, kto jest jego głównym wrogiem i co najbardziej waży w waszych stosunkach.</li>
                                     <li><b>Zadośćuczynienie</b> — złoto dla nacji, którą skrzywdziłeś: wszystkie jej żale (napaść, zerwane umowy, odmowy) słabną o 45%, a uraza za odmowę trybutu znika. Koszt rośnie z wielkością krzywd; raz na 5 minut.</li>
                                     <li><b>Dar</b> (złoto, żywność, drewno, kamień) — od razu poprawia stosunek: tym bardziej, im biedniejszy obdarowany. Kolejne dary w krótkim czasie cieszą coraz mniej, wdzięczność szybko blednie, a sojuszu samymi darami nie kupisz.</li>
+                                    <li><b>Kapitulacja</b> — gdy przegrywasz wojnę, a wróg nie chce zwykłego pokoju: oddajesz 40% zapasów (z górną granicą) za pokój i 6 minut paktu. Kto nie ma czego oddać albo niedawno już skapitulował przed tym samym wrogiem, nie kupi spokoju.</li>
                                     <li><b>Sojusz</b> wymaga zaufania albo wspólnego wroga czy zagrożenia, a pomaga dobra reputacja i sprawdzony pakt obronny. Sojusznik broni sojusznika i przyjmuje wezwania do wojny — a ten, kto odmawia, traci zaufanie.</li>
                                     <li>Napaść, zdrada, odrzucone żądania i zerwane umowy zostają w pamięci na długo. Potęga budzi strach: hegemon i nacja bliska zwycięstwa Chwałą tracą sympatię wszystkich.</li>
                                 </ul>
@@ -1834,8 +1835,31 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
                     <div class="menu-card news-new">
                         <div class="eyebrow">Wydanie · Reloaded V1.2</div>
-                        <h2>Reloaded V1.2 — pakty obronne, ocieplanie stosunków, reputacja i SI, która widzi mapę</h2>
-                        <p><b>Aktualizacja Dyplomacji.</b> Między paktem o nieagresji a sojuszem jest nowy szczebel — <b>pakt obronny</b>. Stosunki ocieplisz <b>poselstwem</b> i <b>zadośćuczynieniem</b> za dawne krzywdy, a każda nacja ma <b>reputację</b>: wszyscy widzą, kto dotrzymuje słowa. Dyplomaci SI zauważają, co dzieje się na mapie i co robisz — realną walkę z ich wrogami, zdobywane Ratusze, agresorów i wojsko pod swoimi Ratuszami — i zawierają przeciw groźnym sąsiadom pakty obronne i koalicje.</p>
+                        <h2>Reloaded V1.2 — pakty obronne, kapitulacja, ocieplanie stosunków, reputacja, SI, która widzi mapę, i dłuższe kampanie</h2>
+                        <p><b>Aktualizacja Dyplomacji.</b> Między paktem o nieagresji a sojuszem jest nowy szczebel — <b>pakt obronny</b>. Stosunki ocieplisz <b>poselstwem</b> i <b>zadośćuczynieniem</b> za dawne krzywdy, a każda nacja ma <b>reputację</b>: wszyscy widzą, kto dotrzymuje słowa. Dyplomaci SI zauważają, co dzieje się na mapie i co robisz — realną walkę z ich wrogami, zdobywane Ratusze, agresorów i wojsko pod swoimi Ratuszami — i zawierają przeciw groźnym sąsiadom pakty obronne i koalicje. Przegrywający może <b>skapitulować</b>, a Cuda Świata nie rozstrzygają już kampanii w pół godziny — partie są dłuższe i bogatsze w politykę.</p>
+
+                        <h3>Kapitulacja — nowa propozycja w czasie wojny</h3>
+                        <ul>
+                            <li>Przegrywający oddaje <b>40% zapasów</b> (złoto, żywność, drewno, kamień; najwyżej 350 każdego surowca w I erze do 800 w IV) w zamian za pokój i <b>6 minut paktu o nieagresji</b>. Zwycięzca przyjmuje ją nawet wtedy, gdy dopiero zaczął wojnę i nie chce zwykłego pokoju — łupy zamiast podboju. Pokonany zapamięta „Wymuszoną kapitulację”.</li>
+                            <li>Kto nie ma czego oddać, nie kupi spokoju, a tej samej nacji zwycięzca drugi raz przyjmie kapitulację dopiero po 15 minutach — podbój nadal jest możliwy. Z nacją w Triumfie się nie pertraktuje.</li>
+                            <li>SI kapituluje, gdy przegrywa na całego (wróg dużo silniejszy albo straty ponad siły). Ty — przyciskiem <b>„Skapituluj”</b> w karcie wroga, z paskiem gotowości; kapitulację SI dostajesz jako kartę <b>„Przyjmij / Walcz dalej”</b>.</li>
+                            <li><b>Po co?</b> W testach V1.1 słaba nacja padała zwykle 2–5 minut po wypowiedzeniu wojny, często już w 8.–12. minucie gry — zanim dyplomacja zdążyła cokolwiek zmienić. Teraz takie wojny częściej kończą się łupami, a nacji na kontynencie ubywa wolniej.</li>
+                        </ul>
+
+                        <h3>Cuda Świata w Dyplomacji — słabsze, a SI reaguje wcześniej</h3>
+                        <ul>
+                            <li><b>Przyczyna</b>: w długich testach jedna SI (zwykle Skandaliczna) zbierała wszystkie cztery Cuda do ok. 20. minuty i wygrywała Triumfem w 33.–37. minucie — reszta świata ruszała dopiero na Triumf i nie zdążała przejść kontynentu.</li>
+                            <li>Chwała w Dyplomacji rośnie wolniej (<b>35%</b> zamiast 60% tempa z Klasycznego meczu), a każdy kolejny Cud tej samej nacji daje <b>połowę</b> Chwały (zamiast 70%). Sama Wielka Bazylika potrzebuje ok. 32 minut na 1000 Chwały.</li>
+                            <li><b>Triumf w Dyplomacji trwa 7 minut</b> (zamiast 5) — koalicja zdąży dojść do Cudów.</li>
+                            <li>SI <b>ściga lidera Chwały</b> już przy 70% (gdy jego Cuda ją wytwarzają): kto do niego dosięgnie i ma razem z jego wrogami dość sił, wypowiada wojnę — po kolei, nie wszyscy naraz — a fale biorą Cuda na cel (oblężony Cud nie daje Chwały). Lider Chwały liczy się też jako wspólne zagrożenie: przeciw niemu powstają pakty obronne i sojusze.</li>
+                            <li>Klasyczny mecz bez zmian.</li>
+                        </ul>
+
+                        <h3>Dłuższe kampanie</h3>
+                        <ul>
+                            <li>Domyślny limit czasu w Dyplomacji to <b>60 minut</b> (było 45; w menu i w poczekalni gry wieloosobowej nadal można wybrać 30, 45 albo bez limitu). Wcześniejszy wybór limitu wraca do nowego domyślnego jeden raz.</li>
+                            <li>__WYNIKI__</li>
+                        </ul>
 
                         <h3>Pakt obronny — nowa umowa</h3>
                         <ul>
@@ -2638,16 +2662,16 @@ const GameConfig = {
         // Zburzenie ukończonego Cudu odbiera właścicielowi 25% Chwały, a burzącemu daje 100. Cuda widać przez mgłę wojny.
         hanging_gardens: { name: 'Wiszące Ogrody', maxHp: 4200, size: 96, cost: { food: 300, wood: 500, gold: 300, stone: 350 }, buildRate: 0.14, age: 3, vision: 360, limit: 1, unique: true, menu: 'eco',
             wonder: true, glory: 0.5, pop: 20, bonus: { gather: { food: 0.25 } },
-            desc: "Cud Świata: tarasowe ogrody z kaskadami wody. +25% zbierania żywności i +20 populacji, a co sekundę +0,5 Chwały (w Dyplomacji 0,2; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Oblężony Cud nie daje Chwały. Na mapie może stać tylko jeden — kto pierwszy położy fundamenty, ten go ma." },
+            desc: "Cud Świata: tarasowe ogrody z kaskadami wody. +25% zbierania żywności i +20 populacji, a co sekundę +0,5 Chwały (w Dyplomacji ok. 0,18; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Oblężony Cud nie daje Chwały. Na mapie może stać tylko jeden — kto pierwszy położy fundamenty, ten go ma." },
         colossus: { name: 'Kolos', maxHp: 4200, size: 84, cost: { food: 200, wood: 400, gold: 400, stone: 450 }, buildRate: 0.14, age: 3, vision: 420, limit: 1, unique: true, menu: 'eco',
             wonder: true, glory: 0.5, income: { gold: 2 }, bonus: { gather: { gold: 0.15 } },
-            desc: "Cud Świata: spiżowy olbrzym z pochodnią na kamiennym cokole. Daniny i cła: +2 złota co sekundę (gdy nie jest oblężony) i +15% zbierania złota, a co sekundę +0,5 Chwały (w Dyplomacji 0,2; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Na mapie może stać tylko jeden." },
+            desc: "Cud Świata: spiżowy olbrzym z pochodnią na kamiennym cokole. Daniny i cła: +2 złota co sekundę (gdy nie jest oblężony) i +15% zbierania złota, a co sekundę +0,5 Chwały (w Dyplomacji ok. 0,18; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Na mapie może stać tylko jeden." },
         library: { name: 'Wielka Biblioteka', maxHp: 4200, size: 96, cost: { food: 200, wood: 500, gold: 450, stone: 300 }, buildRate: 0.14, age: 3, vision: 360, limit: 1, unique: true, menu: 'eco',
             wonder: true, glory: 0.5, bonus: { research: 1 },
-            desc: "Cud Świata: kolumnady pełne zwojów wokół dziedzińca. Badania i awanse er trwają o połowę krócej, a co sekundę +0,5 Chwały (w Dyplomacji 0,2; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Oblężony Cud nie daje Chwały. Na mapie może stać tylko jedna." },
+            desc: "Cud Świata: kolumnady pełne zwojów wokół dziedzińca. Badania i awanse er trwają o połowę krócej, a co sekundę +0,5 Chwały (w Dyplomacji ok. 0,18; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Oblężony Cud nie daje Chwały. Na mapie może stać tylko jedna." },
         wonder: { name: 'Wielka Bazylika', maxHp: 9000, size: 120, cost: { food: 1000, wood: 1000, gold: 1200, stone: 1000 }, buildRate: 0.07, age: 4, vision: 420, limit: 1, unique: true, menu: 'eco',
             wonder: true, glory: 1.5,
-            desc: "Największy Cud Świata: bazylika z wielką złotą kopułą. Co sekundę +1,5 Chwały (w Dyplomacji 0,6) — sama zbierze 1000 Chwały i otworzy Triumf w ok. 11 minut (w Dyplomacji ok. 28), jeśli nikt jej nie oblęży; razem z innymi Cudami szybciej. Wszystkie nacje widzą ją przez mgłę wojny: w Klasycznym meczu wrogowie ruszą, by ją zburzyć, a w Dyplomacji — gdy jej Chwała zacznie grozić zwycięstwem. Na mapie może stać tylko jedna." }
+            desc: "Największy Cud Świata: bazylika z wielką złotą kopułą. Co sekundę +1,5 Chwały (w Dyplomacji ok. 0,5) — sama zbierze 1000 Chwały i otworzy Triumf w ok. 11 minut (w Dyplomacji ok. 32), jeśli nikt jej nie oblęży; razem z innymi Cudami szybciej. Wszystkie nacje widzą ją przez mgłę wojny: w Klasycznym meczu wrogowie ruszą, by ją zburzyć, a w Dyplomacji — gdy jej Chwała zacznie grozić zwycięstwem. Na mapie może stać tylko jedna." }
     },
 
     // effects: { units:[...] | buildings:[...], stat, add }  lub  { gather: 'wood', add: 0.25 }
@@ -23260,10 +23284,10 @@ const DIPLO = {
     // przyćmiewał gospodarkę i Cuda; ma być dodatkiem i powodem do pokoju, a nie źródłem tysięcy złota.
     // Partner myśli o tobie lepiej o TRADE_OP, z czasem (co 3 min +1) do 2 × TRADE_OP.
     TRADE_BASE: 3, TRADE_AGE: 2, TRADE_FAR: 0.5, TRADE_OP: 5,
-    // V1.2 (po testach długich partii): Chwała w Dyplomacji 40% (było 60%), każdy kolejny Cud tej samej nacji 50% (zamiast 70%),
+    // V1.2 (po testach długich partii): Chwała w Dyplomacji 35% (było 60%), każdy kolejny Cud tej samej nacji 50% (zamiast 70%),
     // Triumf 7 minut (zamiast 5). Wcześniej SI Skandaliczna zbierała wszystkie cztery Cuda i wygrywała w 33.-37. minucie,
     // zanim koalicja zdążyła przejść kontynent.
-    GLORY_PACE: 0.4,            // Chwała z Cudów w Dyplomacji rośnie wolniej (kontynent jest wielki, a partia ma czas na politykę)
+    GLORY_PACE: 0.35,           // Chwała z Cudów w Dyplomacji rośnie wolniej (kontynent jest wielki, a partia ma czas na politykę)
     GLORY_EXTRA: 0.5,
     TRIUMPH: 420,
     // Tempo świata (V1.0): po rozejmie SI nie rusza wszystkimi naraz. Pierwsza dobrowolna wojna najwcześniej
@@ -23292,7 +23316,9 @@ const DIPLO = {
     BORDER_R: 1500,             // wojsko obcej nacji bliżej niż tyle od Ratusza (a nie przy własnym) to "wojsko u granic"
     // Kapitulacja: przegrywający oddaje CAPIT_SHARE zapasów za pokój i CAPIT_PACT s paktu. Zwycięzca przyjmuje ją także
     // wtedy, gdy dopiero zaczął wojnę (łupy zamiast podboju), ale tej samej nacji drugi raz dopiero po CAPIT_GAP s.
-    CAPIT_SHARE: 0.4, CAPIT_PACT: 360, CAPIT_GAP: 900,
+    // Łupy mają górną granicę (CAPIT_MAX + CAPIT_AGE × era każdego surowca) - inaczej w IV erze kapitulacja przenosiła
+    // tysiące surowców i napędzała najsilniejszego.
+    CAPIT_SHARE: 0.4, CAPIT_PACT: 360, CAPIT_GAP: 900, CAPIT_MAX: 200, CAPIT_AGE: 150,
     // Reputacja: [opis, wartość]
     REP: {
         kept: ['Dotrzymany pakt', 4], answer: ['Odpowiedź na wezwanie', 8], aid: ['Wsparcie sojusznika', 4], amends: ['Zadośćuczynienie', 3],
@@ -23886,7 +23912,8 @@ class Diplomacy {
 
     // V1.2: kapitulacja - CAPIT_SHARE złota, żywności, drewna i kamienia (w dziesiątkach); null, gdy nie ma czego oddać
     capitFor(n) {
-        const r = n.resources, f = (k) => Math.floor(Math.max(0, r.get(k)) * DIPLO.CAPIT_SHARE / 10) * 10;
+        const r = n.resources, cap = DIPLO.CAPIT_MAX + DIPLO.CAPIT_AGE * (n.age || 1);
+        const f = (k) => Math.floor(Math.min(cap, Math.max(0, r.get(k)) * DIPLO.CAPIT_SHARE) / 10) * 10;
         const pay = { gold: f('gold'), food: f('food'), wood: f('wood'), stone: f('stone') };
         return pay.gold + pay.food + pay.wood + pay.stone >= 60 ? pay : null;
     }
@@ -25171,6 +25198,22 @@ class DiplomatAI {
                 if (!D.canDeclareWar(me, o)) { this.lastWarAt = g.time; this.setGoal(o, 300); D.declareWar(me, o, 'Tylko jeden władca może rządzić kontynentem!'); }
                 return;
             }
+        }
+        //    V1.2: wyścig Chwały - lider z co najmniej 70% Chwały, którego Cuda ją teraz wytwarzają: kto do niego dosięgnie
+        //    i ma (razem z jego innymi wrogami) dość sił, rusza już przed Triumfem - po kolei (tempo 'wonder'). Oblężony Cud
+        //    nie daje Chwały, a fale NationAI same biorą Cuda na cel. Wcześniej SI czekała na Triumf i nie zdążała.
+        if (!T && g.wondersOn && D.paceOk('wonder')) for (const o of others) {
+            if (o.rel !== DIPLO.PEACE || g.gloryAlly(me, o.n) || D.defending(me, o.n) || D.gloryThreat(o.n) !== 1) continue;
+            if (g.gloryOf(o.n.team) < Game.GLORY_WIN * 0.7 || D.canDeclareWar(me, o.n)) continue;
+            const foes = others.filter(x => x.n !== o.n && D.atWar(x.n, o.n)).reduce((a, x) => a + x.s * 0.6, 0);
+            if ((o.prox < 0.2 && myBloc < o.bloc * 0.6) || myBloc + foes < o.bloc * 0.6) continue;
+            D.paceUse('wonder');
+            this.log(`wypowiada wojnę nacji ${D.name(o.n)}: Chwała ${Math.floor(g.gloryOf(o.n.team))} — Cuda grożą zwycięstwem`);
+            this.lastWarAt = g.time;
+            this.focus = o.n;
+            this.setGoal(o.n, 300);
+            D.declareWar(me, o.n, 'Wasze Cuda nie dadzą wam władzy nad kontynentem!');
+            return;
         }
         //    Triumf rywala: kto do niego dosięgnie (bliskość albo siła), ten rusza - po kolei, nie wszyscy w jednej chwili.
         //    Samo budowanie Cudów albo zebrana Chwała nie wywołuje już wojny (to tylko powód w ocenie celu wojny).
@@ -32777,7 +32820,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div><div class="codex-name">${b.name} ${era(b.age)}${isNew(NEW_BUILDINGS, t)}</div>
                         <div class="codex-meta">${cost(b.cost)}</div>
                         <div class="chips">${st}</div><div class="codex-desc">${b.desc}</div>
-                        <div class="codex-extra">${trains.length ? 'Szkoli: ' + trains.join(', ') + '. ' : ''}${ups.length ? 'Badania: ' + ups.join(', ') + '.' : ''}${b.limit ? ' Limit: ' + b.limit + '.' : ''}${b.wonder ? ` Cud Świata: +${String(b.glory).replace('.', ',')} Chwały/s (nie gdy oblężony), jeden na całą mapę; 1000 Chwały otwiera Triumf (5 minut, w Dyplomacji 7); tylko z warunkiem zwycięstwa „Cuda Świata” (sekcja Zasady, domyślnie włączony); w Dyplomacji Chwała rośnie wolniej (40%, a każdy kolejny Cud nacji daje połowę).` : ''}</div></div></div>`;
+                        <div class="codex-extra">${trains.length ? 'Szkoli: ' + trains.join(', ') + '. ' : ''}${ups.length ? 'Badania: ' + ups.join(', ') + '.' : ''}${b.limit ? ' Limit: ' + b.limit + '.' : ''}${b.wonder ? ` Cud Świata: +${String(b.glory).replace('.', ',')} Chwały/s (nie gdy oblężony), jeden na całą mapę; 1000 Chwały otwiera Triumf (5 minut, w Dyplomacji 7); tylko z warunkiem zwycięstwa „Cuda Świata” (sekcja Zasady, domyślnie włączony); w Dyplomacji Chwała rośnie wolniej (35%, a każdy kolejny Cud nacji daje połowę).` : ''}</div></div></div>`;
                 }
                 bPane.innerHTML = h + '</div><div class="codex-empty">Nic nie pasuje do wyszukiwania.</div>';
                 codexFilter('buildings');

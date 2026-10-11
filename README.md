@@ -15,6 +15,11 @@ Najnowsze wydanie: **Artificial Battles - Reloaded V1.2.html** (otwórz w przegl
 - **SI widzi mapę i twoje starania** — docenia realne straty zadane jej wrogowi, boi się zdobywców Ratuszy, niepokoi
   ją obce wojsko pod jej Ratuszami w czasie pokoju (dostajesz też ostrzeżenie), łączy się w pakty obronne i koalicje
   przeciw agresorom, a posłów wysyła do tych, z którymi chce się zbliżyć albo których woli udobruchać.
+- **Kapitulacja** — przegrywający oddaje 40% zapasów (z górną granicą zależną od ery) za pokój i 6 minut paktu; zwycięzca
+  przyjmuje ją nawet na początku wojny (łupy zamiast podboju), ale tej samej nacji drugi raz dopiero po 15 minutach.
+- **Cuda Świata w Dyplomacji słabsze** — Chwała 35% tempa (było 60%), kolejne Cuda nacji po 50%, Triumf 7 minut; SI ściga
+  lidera Chwały już przy 70%. Wcześniej jedna SI zbierała wszystkie Cuda i wygrywała w 33.–37. minucie.
+- **Dłuższe kampanie** — domyślny limit czasu 60 minut (było 45).
 - Protokół 15 (gra wieloosobowa wymaga V1.2); zapisy z V1.0 i V1.1 wczytują się w V1.2.
 
 ### Wcześniej: Reloaded V1.1
