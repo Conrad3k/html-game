@@ -1,31 +1,26 @@
 # Artificial-Battles
 Gra w jednym pliku HTML
 
-Najnowsze wydanie: **Artificial Battles - Reloaded V1.2.7.html** (otwórz w przeglądarce, działa offline).
+Najnowsze wydanie: **Artificial Battles - Reloaded V1.3.html** (otwórz w przeglądarce, działa offline).
 
-**Reloaded V1.2.7** — poprawka do V1.2.5:
-- **Surowce w Dyplomacji jeszcze wolniej** — zbieranie o 20% wolniejsze niż w Klasycznym meczu (w V1.2.5: o 15%).
-- **Mapa domyślnie nieodkryta** — „Odkryta mapa” jest przy każdym uruchomieniu wyłączona (w menu i w poczekalni gry
-  wieloosobowej); wcześniej raz włączona zostawała zapamiętana.
-- **Większa minimapa** — 240 × 240 zamiast 224 × 224 (ok. 7%).
-- **Poprawki po przeglądzie błędów V1.2.5**: apostrof w nazwie nacji („O'Brienowie”) nie ginie już u gości w grze
-  wieloosobowej; poczekalnia nie kasuje wpisywanej nazwy nacji przy odświeżeniu i pokazuje nazwę przyjętą przez hosta;
-  poprawiona odmiana w kilku komunikatach i w kronice (natarcie na nację, wsparcie sojusznika, odmowa kapitulacji,
-  Cud sojusznika, Wszech-wzrok); bez dopisku „(AI)” w wieściach o atakach; słowo „nacja” przy własnej nazwie pisane
-  zwykłą czcionką na ekranie Dyplomacji.
-- Gra wieloosobowa wymaga V1.2.7; zapisy z V1.0–V1.2.5 wczytują się.
-
-### Wcześniej: Reloaded V1.2.5
-
-**Reloaded V1.2.5** — poprawka do V1.2:
+**Reloaded V1.3** — szybszy silnik Raptor i wszystkie zmiany po V1.2 (dawne poprawki V1.2.5 i V1.2.7) w jednym wydaniu:
+- **Szybszy silnik Raptor, ten sam obraz i ta sama gra** — symulacja kampanii Dyplomacji ok. 25% krótsza (30 minut
+  kampanii 6 nacji: 44 s zamiast 59 s), Klasyczny mecz na mapie Gigantycznej ok. 10% szybszy. Minimapa nie maluje
+  już co 0,12 s od nowa ok. 4500 drzew i złóż (odświeżenie ok. 60% tańsze), przebudowa siatki ścieżek po ściętym
+  drzewie trwa ok. 1,1 ms zamiast 2,3 ms, mgła wojny jest o ⅓ tańsza, a nacje w pokoju nie szukają wrogów na próżno.
+  Sprawdzone „bit w bit”: te same mecze w V1.2.7 i V1.3 (7 scenariuszy do 30 minut) dają identyczny stan gry, a klatki
+  obrazu i minimapy są identyczne piksel w piksel.
 - **Własna nazwa nacji w Dyplomacji** — pole „Nazwa” w menu (i w poczekalni gry wieloosobowej, dla hosta i każdego
-  gościa). Nazwy nie są odmieniane — tam, gdzie trzeba, odmienia się słowo „nacja” („sojusz z nacją Wilki”).
+  gościa, także z apostrofem: „O'Brienowie”). Nazwy nie są odmieniane — tam, gdzie trzeba, odmienia się słowo
+  „nacja” („sojusz z nacją Wilki”).
 - **Nowa czcionka nazw nacji** — Alegreya SC (osadzona w pliku, z polskimi znakami) na ekranie Dyplomacji i w poczekalni.
-- **Surowce w Dyplomacji trochę wolniej** — zbieranie o 15% wolniejsze niż w Klasycznym meczu (audyt: ok. 90% dochodu
+- **Surowce w Dyplomacji wolniej** — zbieranie o 20% wolniejsze niż w Klasycznym meczu (audyt: ok. 90% dochodu
   to zbieranie, a SI miała po 30 minutach 35–40 tys. niewydanych surowców).
 - **SI Łatwa się rozwija** — targ i wóz kupiecki, magazyn, wieża, 12 robotników, III era po ok. 25 min, IV po ok. 40;
   wojsko i fale bez zmian.
-- Gra wieloosobowa wymaga V1.2.5; zapisy z V1.0–V1.2 wczytują się.
+- **Mapa domyślnie nieodkryta** („Odkryta mapa” wyłączona przy każdym uruchomieniu) i **większa minimapa** (240 × 240).
+- Poprawiona odmiana w kilku komunikatach i w kronice, bez dopisku „(AI)” w wieściach o atakach.
+- Gra wieloosobowa wymaga V1.3; zapisy z V1.0–V1.2.7 wczytują się.
 
 ### Wcześniej: Reloaded V1.2
 
