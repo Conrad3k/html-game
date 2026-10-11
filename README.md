@@ -7,6 +7,9 @@ Najnowsze wydanie: **Artificial Battles - Reloaded V1.1.html** (otwórz w przegl
 - **Handel wozami kupieckimi w Dyplomacji naprawiony** — wozy jeżdżą na targi sojuszników i partnerów umowy handlowej
   (wcześniej handlowały tylko w obrębie drużyny, a w Dyplomacji każda nacja ma własną), od razu zawracają, gdy sojusz
   się rozpada albo wybucha wojna, same ruszają przy nowym sojuszu i wybierają szlak dający najwięcej złota na sekundę.
+- **Bramy sojuszników otwarte** dla wozów i wojska sojusznika (wozy nie utykają pod murem); targu za cudzym murem
+  wóz nie wybiera, a zamknięta droga w trakcie kursu kieruje go na inny targ.
+- **Mniejszy pasek Chwały i Triumfu** — rząd małych pigułek zamiast banerów jeden nad drugim (szczegóły w podpowiedzi).
 - **SI szuka brodów zamiast szturmować przez rzekę** — jednostki nie gonią wroga za wodą, do którego nie prowadzi
   bliski bród (koniec „tańca” przy brzegu pod ostrzałem), a fale SI oceniają cele drogą przez bród.
 - **Głębsza dyplomacja SI** — embargo na wroga sojusznika (i nowy powód „Handel z ich wrogiem”), prośby o wsparcie

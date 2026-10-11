@@ -208,23 +208,28 @@ button { font-family: inherit; }
 }
 #grace-banner b { color: #fff; font-size: 17px; font-variant-numeric: tabular-nums; }
 /* Cuda Świata: paski Chwały (V1.0; dawniej odliczanie Cudu) */
+/* V1.1: zwarte "pigułki" w jednym rzędzie (wcześniej każda drużyna miała szeroki baner ze zdaniem, jeden nad drugim -
+   przy kilku budowniczych Cudów zasłaniały dół pola bitwy); pełny opis w podpowiedzi po najechaniu */
 #wonder-banner {
-    position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); pointer-events: auto; cursor: pointer;
-    display: flex; flex-direction: column; gap: 5px; align-items: center; max-width: calc(100% - 28px);
+    position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); pointer-events: auto; cursor: pointer;
+    display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 6px; align-items: flex-end;
+    width: max-content; max-width: min(760px, calc(100% - 28px));
 }
 #wonder-banner div {
-    background: rgba(42, 31, 8, 0.94); border: 1px solid rgba(232, 194, 90, 0.8); border-radius: 14px; padding: 8px 18px;
-    color: #ffeeb8; font-weight: 600; text-align: center; box-shadow: 0 0 16px rgba(255, 200, 70, 0.32);
+    background: rgba(42, 31, 8, 0.9); border: 1px solid rgba(232, 194, 90, 0.65); border-radius: 10px; padding: 4px 10px 5px;
+    color: #ffeeb8; font-weight: 600; font-size: 12px; line-height: 1.35; text-align: center; white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
 }
-#wonder-banner div.theirs { background: rgba(58, 12, 8, 0.94); border-color: rgba(255, 107, 91, 0.75); color: #ffe2dc; box-shadow: 0 0 18px rgba(255, 70, 50, 0.4); }
-#wonder-banner b { color: #fff; font-size: 16px; font-variant-numeric: tabular-nums; }
-#wonder-banner div.glory { min-width: 360px; }
-#wonder-banner small { font-weight: 500; opacity: 0.8; }
-#wonder-banner .gbar { display: block; height: 5px; margin-top: 5px; border-radius: 3px; background: rgba(255, 255, 255, 0.14); overflow: hidden; }
-#wonder-banner .gbar i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, #e8b14e, #ffe08a); }
+#wonder-banner div.theirs { background: rgba(58, 12, 8, 0.9); border-color: rgba(255, 107, 91, 0.65); color: #ffe2dc; }
+#wonder-banner b { color: #fff; font-size: 13px; font-variant-numeric: tabular-nums; }
+#wonder-banner small { font-weight: 500; opacity: 0.78; font-size: 11px; font-variant-numeric: tabular-nums; }
+#wonder-banner .gbar { display: block; height: 3px; margin-top: 3px; border-radius: 2px; background: rgba(255, 255, 255, 0.14); overflow: hidden; }
+#wonder-banner .gbar i { display: block; height: 100%; border-radius: 2px; background: linear-gradient(90deg, #e8b14e, #ffe08a); }
 #wonder-banner div.theirs .gbar i { background: linear-gradient(90deg, #ff6b5b, #ffb0a8); }
-#wonder-banner div.triumph { border-width: 2px; }
-#wonder-banner div.triumph .gbar { height: 7px; }
+#wonder-banner div.triumph { border-width: 2px; font-size: 13px; padding: 5px 12px 6px; box-shadow: 0 0 14px rgba(255, 200, 70, 0.3); }
+#wonder-banner div.theirs.triumph { box-shadow: 0 0 14px rgba(255, 70, 50, 0.35); }
+#wonder-banner div.triumph .gbar { height: 4px; }
+#wonder-banner div.more { padding: 4px 9px; opacity: 0.85; }
 #wonder-banner small.paused { color: #ffd98a; opacity: 1; font-weight: 700; }
 #grace-banner small { display: block; font-weight: 400; color: #ffc4bd; margin-top: 2px; }
 @keyframes pulse-red { 0%, 100% { box-shadow: 0 0 10px rgba(255, 70, 50, 0.3); } 50% { box-shadow: 0 0 24px rgba(255, 70, 50, 0.65); } }
@@ -1819,6 +1824,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li><b>Błąd</b>: wóz kupiecki handlował tylko z targami własnej drużyny, a w Dyplomacji każda nacja ma własną drużynę — wozy w ogóle nie jeździły do sojuszników. PPM na targ sojusznika nic nie robił, nowy wóz nie znajdował partnera, a SI nie prowadziła szlaków do sojuszników.</li>
                             <li>Teraz wóz jeździ na targi <b>sojuszników</b>, a także <b>partnerów umowy handlowej</b> (do wybuchu wojny). Za kurs na obcy targ jak dotąd +20% złota. Panel wozu mówi, czy wiezie towar na targ sojusznika, czy partnera handlowego.</li>
                             <li><b>Zmiany sojuszy</b>: gdy sojusz się rozpada, wybucha wojna albo umowa handlowa zostaje zerwana, wozy jadące na targ byłego partnera od razu zawracają (wcześniej jechały dalej, często przez pole bitwy, i stawały dopiero na miejscu). Wóz, który stał bez szlaku, sam rusza, gdy pojawi się nowy sojusznik albo partner, a przy nowym sojuszu przechodzi na lepiej płatny szlak przy najbliższym kursie.</li>
+                            <li><b>Bramy sojuszników są otwarte</b> — dla wozów i dla wojska sojusznika (odsiecz wchodzi do osady). Wcześniej brama przepuszczała tylko własną drużynę, więc wóz jadący na targ sojusznika za murem utykał pod bramą. Bez sojuszu (np. przy samej umowie handlowej) brama pozostaje zamknięta: wóz nie wybiera targu za cudzym murem, a gdy droga zamknie się w trakcie kursu, jedzie na inny targ zamiast stać pod murem; rozkaz PPM na taki targ wyjaśnia, dlaczego wozy nie pojadą.</li>
                             <li><b>Mądrzejszy wybór szlaku</b>: wóz wybiera targ, który daje najwięcej złota na sekundę jazdy, a nie po prostu najdalszy. Złoto za kurs rośnie tylko do 2200 kroków, więc sojusznik 6000 kroków dalej oznaczał minutowe kursy bez większego zysku — SI przestawała wtedy nawet stawiać drugi własny targ.</li>
                         </ul>
 
@@ -1836,6 +1842,11 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li><b>Wspólna ofensywa</b>: gdy sojusznik SI rusza falą na wspólnego wroga, pozostali sojusznicy SI wyruszają od razu i uderzają w ten sam cel. Dołączają też do twojego natarcia, gdy twoje wojsko (co najmniej 8 żołnierzy) stoi pod Ratuszem wspólnego wroga — dostaniesz o tym komunikat.</li>
                             <li><b>Obrona słabszego</b>: władca SI może stanąć w obronie zaprzyjaźnionej nacji (stosunek co najmniej +35), którą dopiero co napadł hegemon albo dużo silniejszy agresor — jeśli razem dadzą radę i są blisko. Napadnięty to zapamięta („Obrona przed napastnikiem”, +20). Lojalni i ostrożni władcy robią to chętniej. SI nie dobija już też przyjaciela, którego właśnie napadł ktoś inny (wcześniej bardzo słaba ofiara bywała celem kolejnych wojen nawet ze strony życzliwych sąsiadów).</li>
                             <li>Kronika pokazuje wsparcie wysłane sojusznikom.</li>
+                        </ul>
+
+                        <h3>Mniejszy pasek Chwały i Triumfu</h3>
+                        <ul>
+                            <li>Odliczanie Cudów (Chwała, Triumf, Sojusz zwycięzców, koniec czasu) to teraz rząd małych pigułek przy dolnej krawędzi: nazwa, Chwała, tempo, czas do Triumfu i cienki pasek. Wcześniej każda drużyna miała szeroki baner ze zdaniem, jeden nad drugim — gdy Cuda budowało kilka nacji, zasłaniały sporą część pola bitwy. Widać do czterech drużyn naraz (reszta jako „+N”), pełny opis pokazuje podpowiedź po najechaniu myszą, a klik nadal przenosi do Cudu.</li>
                         </ul>
 
                         <h3>Gra wieloosobowa — tylu graczy, co w grze solo</h3>
@@ -6030,18 +6041,39 @@ Game.prototype.tradeFriend = function (nation, o) {
 Game.prototype.isTradeMarket = function (nation, b) {
     return !!(b && nation && b.type === 'market' && b.isConstructed && !b.isDestroyed && b.owner && this.tradeFriend(nation, b.owner));
 };
-// Najbliższy targ, z którym nacja może handlować (wóz bez szlaku wraca do handlu)
-Game.prototype.nearestTradeMarket = function (nation, x, y) {
+// Najbliższy targ, z którym nacja może handlować (wóz bez szlaku wraca do handlu). u - wóz: V1.1 tylko targ, do którego
+// dojedzie (targ partnera handlowego za murem jest dla obcych wozów zamknięty); except - targ do pominięcia
+Game.prototype.nearestTradeMarket = function (nation, x, y, u, except) {
+    const pf = u ? this.pathfinder : null;
     let best = null, bd = Infinity;
     for (const n of this.nations) {
         if (!this.tradeFriend(nation, n)) continue;
         for (const b of n.buildings) {
-            if (!this.isTradeMarket(nation, b)) continue;
+            if (b === except || !this.isTradeMarket(nation, b)) continue;
             const d = Math.hypot(b.x - x, b.y - y);
-            if (d < bd) { bd = d; best = b; }
+            if (d >= bd || (pf && !pf.canReach(u, x, y, b, 2))) continue;
+            bd = d; best = b;
         }
     }
     return best;
+};
+
+// V1.1: wóz nie dojedzie do celu kursu (targ za murem albo bramą, która go nie przepuszcza): zamiast stać pod murem
+// jedzie na drugi koniec szlaku albo do najbliższego osiągalnego targu, a cel na chwilę wypada z wyboru
+Game.prototype.tradeBlocked = function (u) {
+    const bad = u.targetEntity;
+    if (bad) { if (!bad.unreachableBy) bad.unreachableBy = new Map(); bad.unreachableBy.set(u.owner.id, this.time + 60); }
+    if (u.tradeBack === bad) u.tradeBack = null;
+    if (u.tradeFrom === bad) { u.tradeFrom = null; u.tradeOx = null; }
+    const pf = this.pathfinder;
+    const back = u.tradeBack && this.isTradeMarket(u.owner, u.tradeBack) && (!pf || pf.canReach(u, u.x, u.y, u.tradeBack, 2)) ? u.tradeBack : null;
+    const next = back || this.nearestTradeMarket(u.owner, u.x, u.y, u, bad);
+    if (u.owner.human && this.time - (u.owner._tradeWallTold || -99) > 45) {
+        u.owner._tradeWallTold = this.time;
+        this.tell(u.owner, `Wóz kupiecki nie dojedzie do targu${bad && bad.owner && bad.owner !== u.owner ? ' ' + (bad.owner.shortName || bad.owner.name) : ''} — droga zamknięta murem. ${next ? 'Jedzie na inny targ.' : 'Czeka na szlak.'}`, 'warn');
+    }
+    if (next) { u.tradeOx = null; u.tradeTo(next, null); }
+    else { u.goIdle(); u.tradeWait = true; }
 };
 // V1.1: relacje się zmieniły (sojusz zerwany, wojna, koniec umowy): wozy, których cel albo drugi koniec szlaku
 // przestał być targiem do handlu, od razu zmieniają trasę - zamiast dojeżdżać do targu byłego sojusznika (często
@@ -6059,7 +6091,7 @@ Game.prototype.tradeRelationsChanged = function () {
             else if (u.state === 'trading') u.tradeRescan = true;
             else if (u.state === 'idle' && u.tradeWait) {
                 // wóz czekał bez szlaku: nowy sojusznik albo umowa handlowa daje mu drugi koniec trasy
-                const m = (this.isTradeMarket(n, u.tradeFrom) && Math.hypot(u.tradeFrom.x - u.x, u.tradeFrom.y - u.y) < 400) ? u.tradeFrom : this.nearestTradeMarket(n, u.x, u.y);
+                const m = (this.isTradeMarket(n, u.tradeFrom) && Math.hypot(u.tradeFrom.x - u.x, u.tradeFrom.y - u.y) < 400) ? u.tradeFrom : this.nearestTradeMarket(n, u.x, u.y, u);
                 const pt = m ? this.tradePartner(u, m) : null;
                 if (pt) {
                     u.tradeWait = false;
@@ -6144,7 +6176,7 @@ Game.prototype.tradeArrive = function (u, m) {
 Game.prototype.tradeResume = function (u) {
     if (this.isTradeMarket(u.owner, u.tradeBack)) { u.tradeTo(u.tradeBack, null); return; }
     if (this.isTradeMarket(u.owner, u.tradeFrom)) { u.tradeTo(u.tradeFrom, null); return; }
-    const best = this.nearestTradeMarket(u.owner, u.x, u.y);
+    const best = this.nearestTradeMarket(u.owner, u.x, u.y, u);
     if (best) { u.tradeOx = null; u.tradeTo(best, null); }
     else { u.goIdle(); u.tradeWait = true; }
 };
@@ -6669,13 +6701,15 @@ Game.prototype.applyCommand = function (nation, cmd) {
             // V3.5 Newest Final: wozy kupieckie - szlak handlowy przez wskazany targ
             const t = this.cmdTarget(nation, cmd.target);
             if (!this.isTradeMarket(nation, t)) return OK;
-            let ok = 0, none = 0;
+            let ok = 0, none = 0, walled = 0;
             for (const u of this.cmdUnits(nation, cmd.units)) {
                 if (!u.cfg.trader) continue;
+                if (this.pathfinder && !this.pathfinder.canReach(u, u.x, u.y, t, 2)) { walled++; continue; }   // V1.1: targ za obcym murem
                 u.urgentPath = true;
                 if (this.setTradeRoute(u, t)) ok++;
                 else { none++; u.moveTo(t.x, t.y, false); }
             }
+            if (walled > 0 && ok === 0 && none === 0) return { ok: true, msg: 'Wozy nie dojadą do tego targu — droga zamknięta murem albo bramą, która ich nie przepuszcza (bramy otwierają się tylko dla sojuszników).', type: 'warn' };
             if (none > 0 && ok === 0) return { ok: true, msg: 'Do handlu potrzebne są dwa targi: postaw drugi z dala od pierwszego (im dłuższy szlak, tym więcej złota) albo handluj z targiem sojusznika (w Dyplomacji także partnera umowy handlowej).', type: 'warn' };
             return OK;
         }
@@ -8228,6 +8262,12 @@ class Pathfinder {
 
         this.block = new Uint8Array(n);      // 1 = przeszkoda (budynek, mur, drzewo, złoże)
         this.gateTeam = new Int16Array(n);   // drużyna właściciela bramy + 1 (0 = brak bramy)
+        // V1.1: kto przechodzi przez bramę - gateAllow[(drużyna jednostki + 1) * 32 + gateTeam]: własna drużyna zawsze,
+        // a w Dyplomacji także sojusznicy (wcześniej brama sojusznika była dla nich murem: wozy kupieckie i odsiecz
+        // utykały pod nią). Przeliczane przy każdej zmianie sojuszy (syncGates).
+        this.gateAllow = new Uint8Array(32 * 32);
+        for (let t = 1; t < 32; t++) this.gateAllow[t * 32 + t] = 1;
+        this._gateSig = '';
         this.landGrid = new Uint8Array(n);
         this.boatGrid = new Uint8Array(n);
         this.landMask = null;
@@ -8241,7 +8281,30 @@ class Pathfinder {
         setTimeout(() => this.ensureGrid(), 100);
     }
 
+    // V1.1: bramy sojuszników - tabela uprawnień z bieżących sojuszy; po zmianie regiony i pamięć ścieżek od nowa
+    syncGates() {
+        const D = this.game.diplo, A = this.gateAllow;
+        A.fill(0);
+        for (let t = 1; t < 32; t++) A[t * 32 + t] = 1;
+        let sig = '';
+        if (D && D.allyMask) {
+            const teams = [...new Set(this.game.nations.map(n => n.team))];
+            for (const ta of teams) for (const tb of teams) {
+                if (ta === tb || ta < 0 || tb < 0 || ta > 30 || tb > 30 || !this.game.alliedTeams(ta, tb)) continue;
+                A[(ta + 1) * 32 + (tb + 1)] = 1;
+                sig += ta + '>' + tb + ',';
+            }
+        }
+        if (sig !== this._gateSig) {
+            this._gateSig = sig;
+            this.regions.clear();
+            this.pathCache.clear();
+        }
+    }
+
     ensureGrid() {
+        const D = this.game.diplo;
+        if (D && this._gateV !== D.version) { this._gateV = D.version; this.syncGates(); }
         const v = this.game.obstacleVersion || 0;
         if (this.landMask && this.lastObstacleVersion === v) return;
         this._buildGrid();
@@ -8376,8 +8439,8 @@ class Pathfinder {
     }
 
     _patchLabels(lab, grid, onLand, tg, ch, m) {
-        const cols = this.cols, rows = this.rows, gate = this.gateTeam, lm = this.landMask;
-        const open = (j) => grid[j] === 1 || (onLand && gate[j] !== 0 && gate[j] === tg && lm[j] === 1);
+        const cols = this.cols, rows = this.rows, gate = this.gateTeam, lm = this.landMask, GA = this.gateAllow, ga = tg * 32;
+        const open = (j) => grid[j] === 1 || (onLand && gate[j] !== 0 && GA[ga + gate[j]] === 1 && lm[j] === 1);
         const closed = [], opened = [];
         for (let k = 0; k < m; k++) {
             const i = ch[k], was = lab[i] !== 0, now = open(i);
@@ -8483,7 +8546,7 @@ class Pathfinder {
     cellOpen(grid, idx, team) {
         if (grid[idx] === 1) return true;
         const g = this.gateTeam[idx];
-        return g !== 0 && g === team + 1 && grid === this.landGrid && this.landMask[idx] === 1;
+        return g !== 0 && team >= 0 && this.gateAllow[(team + 1) * 32 + g] === 1 && grid === this.landGrid && this.landMask[idx] === 1;
     }
 
     // Czy punkt świata jest dostępny dla jednostki / typu jednostki
@@ -8539,8 +8602,8 @@ class Pathfinder {
         lab = new Int32Array(n);
         const stack = this._regStack || (this._regStack = new Int32Array(n));
         // V3.5: warunek cellOpen wpisany wprost w pętlę (ten sam test, bez wywołania na każdego sąsiada)
-        const gate = this.gateTeam, land = this.landMask, tg = team + 1, onLand = grid === this.landGrid;
-        const open = (j) => grid[j] === 1 || (onLand && gate[j] !== 0 && gate[j] === tg && land[j] === 1);
+        const gate = this.gateTeam, land = this.landMask, tg = team + 1, onLand = grid === this.landGrid, GA = this.gateAllow, ga = tg * 32;
+        const open = (j) => grid[j] === 1 || (onLand && tg > 0 && gate[j] !== 0 && GA[ga + gate[j]] === 1 && land[j] === 1);
         let next = 0;
         for (let i = 0; i < n; i++) {
             if (lab[i] !== 0 || !open(i)) continue;
@@ -9223,19 +9286,25 @@ class UIManager {
         const el = this.el['wonder-banner'];
         if (!el) return;
         const g = this.game;
-        // Chwała Cudów: drużyny, które ją wytwarzają (albo mają ponad 40%), najwyżej trzy - z paskiem postępu
+        // Chwała Cudów: drużyny, które ją wytwarzają (albo mają ponad 40%) - V1.1: zwarta pigułka na drużynę (nazwa,
+        // Chwała, tempo, czas do Triumfu, cienki pasek), najwyżej cztery w rzędzie, reszta jako "+N"; zdanie z opisem
+        // w podpowiedzi (title). Triumf zostaje wyraźniejszy, ale też w jednej linii.
         let html = '';
+        const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
         if (!g.gameOver && g.wondersOn) {
             const me = this.playerNation, T = g.triumphInfo();
             const clock = (t) => { t = Math.max(0, Math.ceil(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
-            for (const e of g.gloryTable().filter(x => x.rate > 0 || x.glory >= Game.GLORY_WIN * 0.4 || (T && T.team === x.team)).slice(0, 3)) {
+            const list = g.gloryTable().filter(x => x.rate > 0 || x.glory >= Game.GLORY_WIN * 0.4 || (T && T.team === x.team));
+            for (const e of list.slice(0, 4)) {
                 const ours = !g.observeAll && (e.team === me.team || (g.diplo && g.nations.some(n => n.team === e.team && g.diplo.allied(n, me))));
-                const who = e.team === me.team && !g.observeAll ? 'twoja' + (e.names.length > 1 ? ' drużyna' : ' nacja') : e.names.join(', ');
+                const mine = e.team === me.team && !g.observeAll;
+                const who = mine ? (e.names.length > 1 ? 'Twoja drużyna' : 'Ty') : e.names.join(', ');
                 if (T && T.team === e.team) {
-                    // Triumf: pasek odliczania 3 minut, pauza przy oblężeniu albo bez Ratusza
+                    // Triumf: odliczanie do zwycięstwa, pauza przy oblężeniu albo bez Ratusza
                     const pct = Math.min(100, (1 - T.left / Game.TRIUMPH) * 100);
-                    html += `<div class="${ours ? 'ours' : 'theirs'} glory triumph">👑 TRIUMF — ${who}: zwycięstwo za <b>${clock(T.left)}</b>`
-                        + (T.paused ? ` <small class="paused">wstrzymany — ${T.why}</small>` : ` <small>${ours ? 'utrzymajcie Cuda!' : 'oblężcie albo zburzcie ich Cuda!'}</small>`)
+                    const tip = `Triumf — ${who}: zwycięstwo za ${clock(T.left)}. ` + (T.paused ? `Wstrzymany: ${T.why}.` : ours ? 'Utrzymajcie Cuda!' : 'Oblężcie albo zburzcie ich Cuda!') + ' Klik: pokaż Cud.';
+                    html += `<div class="${ours ? 'ours' : 'theirs'} glory triumph" title="${esc(tip)}">👑 Triumf · ${esc(who)} <b>${clock(T.left)}</b>`
+                        + (T.paused ? ` <small class="paused">wstrzymany</small>` : '')
                         + `<i class="gbar"><i style="width:${pct.toFixed(1)}%"></i></i></div>`;
                     continue;
                 }
@@ -9243,11 +9312,14 @@ class UIManager {
                 const eta = e.rate > 0 ? Math.max(0, Math.ceil((Game.GLORY_WIN - e.glory) / e.rate)) : 0;
                 let quiet = 0, total = 0;
                 for (const w of g.wonderInfo()) if (w.isConstructed && !w.isDestroyed && w.owner.team === e.team) { total++; if (w.wonderQuiet) quiet++; }
-                html += `<div class="${ours ? 'ours' : 'theirs'} glory">⛪ Chwała — ${who}: <b>${Math.floor(e.glory)}</b> / ${Game.GLORY_WIN}`
-                    + (e.rate > 0 ? ` <small>(+${String(Math.round(e.rate * 10) / 10).replace('.', ',')}/s · Triumf za ~${clock(eta)}${quiet ? ' · oblężone Cuda: ' + quiet : ''})</small>`
-                        : ` <small>(${total ? (quiet ? 'Cuda oblężone albo bez Ratusza — Chwała stoi' : '') : 'Cuda zburzone'})</small>`)
+                const rate = String(Math.round(e.rate * 10) / 10).replace('.', ',');
+                const tip = `Chwała Cudów — ${who}: ${Math.floor(e.glory)} / ${Game.GLORY_WIN}` + (e.rate > 0 ? ` (+${rate}/s, Triumf za ok. ${clock(eta)})` : '')
+                    + (quiet ? `. Oblężone albo bez Ratusza: ${quiet} z ${total} Cudów.` : !total ? '. Cuda zburzone.' : '.') + ' Klik: pokaż Cud.';
+                html += `<div class="${ours ? 'ours' : 'theirs'} glory" title="${esc(tip)}">⛪ ${esc(who)} <b>${Math.floor(e.glory)}</b>`
+                    + (e.rate > 0 ? ` <small>+${rate}/s · ~${clock(eta)}${quiet ? ' · ⚔' + quiet : ''}</small>` : ` <small>${total ? (quiet ? 'oblężone' : 'stoi') : 'zburzone'}</small>`)
                     + `<i class="gbar"><i style="width:${pct.toFixed(1)}%"></i></i></div>`;
             }
+            if (list.length > 4) html += `<div class="more" title="${esc(list.slice(4).map(e => e.names.join(', ') + ': ' + Math.floor(e.glory)).join(' · '))}">+${list.length - 4}</div>`;
         }
         // Dyplomacja: odliczanie Sojuszu zwycięzców i ostatnie 5 minut limitu czasu
         const D = g.diplo;
@@ -9256,13 +9328,14 @@ class UIManager {
             const mmss = (t) => { t = Math.max(0, Math.ceil(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
             if (D.allianceAt >= 0) {
                 const tm = mmss(DIPLO.ALLIANCE_HOLD - (g.time - D.allianceAt));
-                html += `<div class="${alive ? 'ours' : 'theirs'}">❖ Sojusz zwycięzców: <b>${tm}</b> ${alive ? 'do waszego wspólnego zwycięstwa. Trzymajcie się razem!' : 'do ich zwycięstwa.'}</div>`;
+                html += `<div class="${alive ? 'ours' : 'theirs'}" title="${alive ? 'Sojusz zwycięzców: do waszego wspólnego zwycięstwa. Trzymajcie się razem!' : 'Sojusz zwycięzców: do ich zwycięstwa.'}">❖ Sojusz zwycięzców <b>${tm}</b></div>`;
             }
             if (D.timeLimit > 0 && D.timeLimit - g.time <= 300) {
                 const lead = D.leader(g.nations.filter(n => !n.defeated));
                 if (lead) {
                     const mine = alive && (lead === me || D.allied(lead, me));
-                    html += `<div class="${mine ? 'ours' : 'theirs'}">⌛ Koniec czasu za <b>${mmss(D.timeLimit - g.time)}</b> — prowadzi ${lead === me && alive ? 'twoja nacja' : (lead.shortName || lead.name) + (mine ? ' (twój sojusznik)' : '')}, Wynik ${lead.summary().score}</div>`;
+                    const who = lead === me && alive ? 'ty' : (lead.shortName || lead.name) + (mine ? ' (sojusznik)' : '');
+                    html += `<div class="${mine ? 'ours' : 'theirs'}" title="Koniec czasu: wygrywa najwyższy Wynik (razem z sojusznikami). Prowadzi ${esc(who)}, Wynik ${lead.summary().score}.">⌛ Koniec czasu <b>${mmss(D.timeLimit - g.time)}</b> <small>prowadzi ${esc(who)}</small></div>`;
                 }
             }
         }
@@ -18995,6 +19068,7 @@ class Unit extends Entity {
         if (!hasNode) {
             if (this.path && this.pathPartial) {
                 // doszliśmy najbliżej, jak się da - cel jest odcięty
+                if (this.state === 'trading' && te && !pf.canReach(this, this.x, this.y, te, 2)) { g.tradeBlocked(this); return; }   // V1.1: targ za murem
                 if (this.state === 'moving_to_resource' && te && te.amount !== undefined && !isFarmType(te.type)) {
                     // drzewo / złoże w środku skupiska: robotnik bierze najbliższe osiągalne tego samego rodzaju
                     const alt = this.findWork(te.type, te.x, te.y, 320);
@@ -21493,7 +21567,7 @@ class NationAI {
             // wóz bez szlaku (targ zburzony, zepchnięty z trasy) wraca do handlu
             for (const u of traders) {
                 if (u.state !== 'idle' || u.inside) continue;
-                const best = game.nearestTradeMarket(nation, u.x, u.y);
+                const best = game.nearestTradeMarket(nation, u.x, u.y, u);
                 if (best) game.setTradeRoute(u, best);
             }
         }
@@ -23310,6 +23384,7 @@ class Diplomacy {
             else if (s === DIPLO.ALLY) A[ta * 16 + tb] = 1;
         }
         this.version++;
+        if (this.game.pathfinder) this.game.pathfinder.syncGates();   // V1.1: bramy sojuszników otwarte (przed zmianą szlaków wozów)
         if (this.game.tradeRelationsChanged) this.game.tradeRelationsChanged();   // V1.1: wozy kupieckie zmieniają szlak
     }
 
