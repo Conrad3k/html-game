@@ -1,7 +1,19 @@
 # Artificial-Battles
 Gra w jednym pliku HTML
 
-Najnowsze wydanie: **Artificial Battles - Reloaded V1.2.html** (otwórz w przeglądarce, działa offline).
+Najnowsze wydanie: **Artificial Battles - Reloaded V1.2.5.html** (otwórz w przeglądarce, działa offline).
+
+**Reloaded V1.2.5** — poprawka do V1.2:
+- **Własna nazwa nacji w Dyplomacji** — pole „Nazwa” w menu (i w poczekalni gry wieloosobowej, dla hosta i każdego
+  gościa). Nazwy nie są odmieniane — tam, gdzie trzeba, odmienia się słowo „nacja” („sojusz z nacją Wilki”).
+- **Nowa czcionka nazw nacji** — Alegreya SC (osadzona w pliku, z polskimi znakami) na ekranie Dyplomacji i w poczekalni.
+- **Surowce w Dyplomacji trochę wolniej** — zbieranie o 15% wolniejsze niż w Klasycznym meczu (audyt: ok. 90% dochodu
+  to zbieranie, a SI miała po 30 minutach 35–40 tys. niewydanych surowców).
+- **SI Łatwa się rozwija** — targ i wóz kupiecki, magazyn, wieża, 12 robotników, III era po ok. 25 min, IV po ok. 40;
+  wojsko i fale bez zmian.
+- Gra wieloosobowa wymaga V1.2.5; zapisy z V1.0–V1.2 wczytują się.
+
+### Wcześniej: Reloaded V1.2
 
 **Reloaded V1.2** — aktualizacja Dyplomacji:
 - **Pakt obronny** — nowa umowa między paktem o nieagresji a sojuszem: napadniętego partnera drugi broni (karta
