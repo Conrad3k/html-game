@@ -1,7 +1,23 @@
 # Artificial-Battles
 Gra w jednym pliku HTML
 
-Najnowsze wydanie: **Artificial Battles - Reloaded V1.1.html** (otwórz w przeglądarce, działa offline).
+Najnowsze wydanie: **Artificial Battles - Reloaded V1.2.html** (otwórz w przeglądarce, działa offline).
+
+**Reloaded V1.2** — aktualizacja Dyplomacji:
+- **Pakt obronny** — nowa umowa między paktem o nieagresji a sojuszem: napadniętego partnera drugi broni (karta
+  „Stań w obronie / Odmów”), bez wspólnego pola widzenia i zwycięstwa, najwyżej 2 naraz. Odstrasza napastników (SI
+  liczy partnera do siły bloku), odmowa obrony zrywa pakt i psuje reputację, a atak na partnera to zdrada.
+- **Ocieplanie stosunków** — **poselstwo** (110–260 złota, do +20, raz na 3 minuty; posłowie przywożą wieści o zamiarach
+  dworu), **zadośćuczynienie** (złoto za dawne krzywdy — żale słabną o 45%, znika uraza za odmowę trybutu) i
+  „Dotrzymane słowo” za pakt o nieagresji dotrzymany do końca. Karta nacji podpowiada, co najbardziej psuje stosunki.
+- **Reputacja** — każda nacja ma jedną, widoczną dla wszystkich: rośnie z dotrzymanych paktów, odpowiedzi na wezwania
+  i wsparcia, spada po zdradach, zerwanych umowach i odmowach pomocy. SI liczy ją przy paktach i sojuszach.
+- **SI widzi mapę i twoje starania** — docenia realne straty zadane jej wrogowi, boi się zdobywców Ratuszy, niepokoi
+  ją obce wojsko pod jej Ratuszami w czasie pokoju (dostajesz też ostrzeżenie), łączy się w pakty obronne i koalicje
+  przeciw agresorom, a posłów wysyła do tych, z którymi chce się zbliżyć albo których woli udobruchać.
+- Protokół 15 (gra wieloosobowa wymaga V1.2); zapisy z V1.0 i V1.1 wczytują się w V1.2.
+
+### Wcześniej: Reloaded V1.1
 
 **Reloaded V1.1** — pierwsza duża aktualizacja Reloaded:
 - **Handel wozami kupieckimi w Dyplomacji naprawiony** — wozy jeżdżą na targi sojuszników i partnerów umowy handlowej
