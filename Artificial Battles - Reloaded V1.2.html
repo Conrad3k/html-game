@@ -1669,8 +1669,8 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                         <div class="radio-group c4">
                                             <input type="radio" name="tlimit" id="tl-0" value="0"><label for="tl-0" title="Gra trwa, dopóki ktoś nie zwycięży podbojem, sojuszem albo Chwałą Cudów Świata">Brak</label>
                                             <input type="radio" name="tlimit" id="tl-1" value="1800"><label for="tl-1">30 min</label>
-                                            <input type="radio" name="tlimit" id="tl-2" value="2700" checked><label for="tl-2">45 min</label>
-                                            <input type="radio" name="tlimit" id="tl-3" value="3600"><label for="tl-3">60 min</label>
+                                            <input type="radio" name="tlimit" id="tl-2" value="2700"><label for="tl-2">45 min</label>
+                                            <input type="radio" name="tlimit" id="tl-3" value="3600" checked><label for="tl-3">60 min</label>
                                         </div>
                                     </div>
                                     <div class="cfg-row classic-only">
@@ -2638,16 +2638,16 @@ const GameConfig = {
         // Zburzenie ukończonego Cudu odbiera właścicielowi 25% Chwały, a burzącemu daje 100. Cuda widać przez mgłę wojny.
         hanging_gardens: { name: 'Wiszące Ogrody', maxHp: 4200, size: 96, cost: { food: 300, wood: 500, gold: 300, stone: 350 }, buildRate: 0.14, age: 3, vision: 360, limit: 1, unique: true, menu: 'eco',
             wonder: true, glory: 0.5, pop: 20, bonus: { gather: { food: 0.25 } },
-            desc: "Cud Świata: tarasowe ogrody z kaskadami wody. +25% zbierania żywności i +20 populacji, a co sekundę +0,5 Chwały (w Dyplomacji 0,3; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Oblężony Cud nie daje Chwały. Na mapie może stać tylko jeden — kto pierwszy położy fundamenty, ten go ma." },
+            desc: "Cud Świata: tarasowe ogrody z kaskadami wody. +25% zbierania żywności i +20 populacji, a co sekundę +0,5 Chwały (w Dyplomacji 0,2; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Oblężony Cud nie daje Chwały. Na mapie może stać tylko jeden — kto pierwszy położy fundamenty, ten go ma." },
         colossus: { name: 'Kolos', maxHp: 4200, size: 84, cost: { food: 200, wood: 400, gold: 400, stone: 450 }, buildRate: 0.14, age: 3, vision: 420, limit: 1, unique: true, menu: 'eco',
             wonder: true, glory: 0.5, income: { gold: 2 }, bonus: { gather: { gold: 0.15 } },
-            desc: "Cud Świata: spiżowy olbrzym z pochodnią na kamiennym cokole. Daniny i cła: +2 złota co sekundę (gdy nie jest oblężony) i +15% zbierania złota, a co sekundę +0,5 Chwały (w Dyplomacji 0,3; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Na mapie może stać tylko jeden." },
+            desc: "Cud Świata: spiżowy olbrzym z pochodnią na kamiennym cokole. Daniny i cła: +2 złota co sekundę (gdy nie jest oblężony) i +15% zbierania złota, a co sekundę +0,5 Chwały (w Dyplomacji 0,2; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Na mapie może stać tylko jeden." },
         library: { name: 'Wielka Biblioteka', maxHp: 4200, size: 96, cost: { food: 200, wood: 500, gold: 450, stone: 300 }, buildRate: 0.14, age: 3, vision: 360, limit: 1, unique: true, menu: 'eco',
             wonder: true, glory: 0.5, bonus: { research: 1 },
-            desc: "Cud Świata: kolumnady pełne zwojów wokół dziedzińca. Badania i awanse er trwają o połowę krócej, a co sekundę +0,5 Chwały (w Dyplomacji 0,3; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Oblężony Cud nie daje Chwały. Na mapie może stać tylko jedna." },
+            desc: "Cud Świata: kolumnady pełne zwojów wokół dziedzińca. Badania i awanse er trwają o połowę krócej, a co sekundę +0,5 Chwały (w Dyplomacji 0,2; 1000 Chwały otwiera Triumf, a po nim zwycięstwo). Oblężony Cud nie daje Chwały. Na mapie może stać tylko jedna." },
         wonder: { name: 'Wielka Bazylika', maxHp: 9000, size: 120, cost: { food: 1000, wood: 1000, gold: 1200, stone: 1000 }, buildRate: 0.07, age: 4, vision: 420, limit: 1, unique: true, menu: 'eco',
             wonder: true, glory: 1.5,
-            desc: "Największy Cud Świata: bazylika z wielką złotą kopułą. Co sekundę +1,5 Chwały (w Dyplomacji 0,9) — sama zbierze 1000 Chwały i otworzy Triumf w ok. 11 minut (w Dyplomacji ok. 19), jeśli nikt jej nie oblęży; razem z innymi Cudami szybciej. Wszystkie nacje widzą ją przez mgłę wojny: w Klasycznym meczu wrogowie ruszą, by ją zburzyć, a w Dyplomacji — gdy jej Chwała zacznie grozić zwycięstwem. Na mapie może stać tylko jedna." }
+            desc: "Największy Cud Świata: bazylika z wielką złotą kopułą. Co sekundę +1,5 Chwały (w Dyplomacji 0,6) — sama zbierze 1000 Chwały i otworzy Triumf w ok. 11 minut (w Dyplomacji ok. 28), jeśli nikt jej nie oblęży; razem z innymi Cudami szybciej. Wszystkie nacje widzą ją przez mgłę wojny: w Klasycznym meczu wrogowie ruszą, by ją zburzyć, a w Dyplomacji — gdy jej Chwała zacznie grozić zwycięstwem. Na mapie może stać tylko jedna." }
     },
 
     // effects: { units:[...] | buildings:[...], stat, add }  lub  { gather: 'wood', add: 0.25 }
@@ -6363,9 +6363,13 @@ Game.prototype.gloryRate = function (team) {
     for (const w of this.wonderInfo()) if (w.isConstructed && !w.isDestroyed && w.owner.team === team && !w.owner.defeated && !w.wonderQuiet) rates.push(w.cfg.glory || 0);
     rates.sort((a, b) => b - a);
     let v = 0;
-    for (let i = 0; i < rates.length; i++) v += rates[i] * (i ? Game.GLORY_EXTRA : 1);
+    const ex = this.diplo ? DIPLO.GLORY_EXTRA : Game.GLORY_EXTRA;
+    for (let i = 0; i < rates.length; i++) v += rates[i] * (i ? ex : 1);
     return this.diplo ? v * DIPLO.GLORY_PACE : v;   // Dyplomacja (V1.0): Chwała rośnie wolniej - partia ma czas na politykę
 };
+// Długość Triumfu (V1.2: w Dyplomacji dłuższa - koalicja musi zdążyć przejść kontynent) i słowo "minuta" w odmianie
+Game.prototype.triumphLen = function () { return this.diplo ? DIPLO.TRIUMPH : Game.TRIUMPH; };
+Game.minutes = function (m) { m = Math.round(m * 10) / 10; return m + ' ' + (m === 1 ? 'minutę' : (Number.isInteger(m) && m % 10 >= 2 && m % 10 <= 4 && (m % 100 < 10 || m % 100 >= 20)) || !Number.isInteger(m) ? 'minuty' : 'minut'); };
 // Triumf: { team, left, paused, why } albo null (u gościa - z paczki hosta)
 Game.prototype.triumphInfo = function () { return this.isClient ? (this.netTriumph || null) : (this.triumph || null); };
 // Drużyny z Chwałą: [{ team, glory, rate, names }] od najwyższej
@@ -6475,12 +6479,12 @@ Game.prototype.checkWonders = function () {
     } else {
         if (best) {
             // 1000 Chwały: początek Triumfu
-            this.triumph = { team: best.team, left: Game.TRIUMPH, paused: false, why: '', at: this.time };
+            this.triumph = { team: best.team, left: this.triumphLen(), paused: false, why: '', at: this.time };
             const nm = this.nations.filter(n => n.team === best.team && !n.defeated).map(n => n.shortName || n.name).join(', ');
             for (const o of this.nations) {
                 if (o.defeated) continue;
-                if (this.gloryAlly(o, best)) { this.tell(o, `TRIUMF! 1000 Chwały — utrzymajcie wszystkie Cuda przez ${Game.TRIUMPH / 60} minuty. Oblężenie wstrzymuje odliczanie, utrata Cudu je przerywa.`, 'good'); this.cue(o, 'AgeUp'); }
-                else { this.tell(o, `Triumf nacji ${nm}! Za ${Game.TRIUMPH / 60} minuty zwycięży — oblężcie albo zburzcie jej Cuda${this.diplo ? ' (traktaty z nią już nie chronią)' : ''}!`, 'alert'); this.cue(o, 'Warning'); }
+                if (this.gloryAlly(o, best)) { this.tell(o, `TRIUMF! 1000 Chwały — utrzymajcie wszystkie Cuda przez ${Game.minutes(this.triumphLen() / 60)}. Oblężenie wstrzymuje odliczanie, utrata Cudu je przerywa.`, 'good'); this.cue(o, 'AgeUp'); }
+                else { this.tell(o, `Triumf nacji ${nm}! Za ${Game.minutes(this.triumphLen() / 60)} zwycięży — oblężcie albo zburzcie jej Cuda${this.diplo ? ' (traktaty z nią już nie chronią)' : ''}!`, 'alert'); this.cue(o, 'Warning'); }
             }
             return false;
         }
@@ -9367,7 +9371,7 @@ class UIManager {
                 const who = mine ? (e.names.length > 1 ? 'Twoja drużyna' : 'Ty') : e.names.join(', ');
                 if (T && T.team === e.team) {
                     // Triumf: odliczanie do zwycięstwa, pauza przy oblężeniu albo bez Ratusza
-                    const pct = Math.min(100, (1 - T.left / Game.TRIUMPH) * 100);
+                    const pct = Math.min(100, (1 - T.left / g.triumphLen()) * 100);
                     const tip = `Triumf — ${who}: zwycięstwo za ${clock(T.left)}. ` + (T.paused ? `Wstrzymany: ${T.why}.` : ours ? 'Utrzymajcie Cuda!' : 'Oblężcie albo zburzcie ich Cuda!') + ' Klik: pokaż Cud.';
                     html += `<div class="${ours ? 'ours' : 'theirs'} glory triumph" title="${esc(tip)}">👑 Triumf · ${esc(who)} <b>${clock(T.left)}</b>`
                         + (T.paused ? ` <small class="paused">wstrzymany</small>` : '')
@@ -9614,7 +9618,7 @@ class UIManager {
     dpLog(C) {
         const { g, D, me, tag, mmss } = C;
         const EVC = { war: 'war', peace: 'pc', alliance: 'al', break: 'br', tribute: 'tr', hegemon: 'hg', nap: 'np', trade: 'td', untrade: 'br', gift: 'gf', aid: 'gf',
-            defense: 'df', undefense: 'br', envoy: 'ev', amends: 'gf', kept: 'kp' };
+            defense: 'df', undefense: 'br', envoy: 'ev', amends: 'gf', kept: 'kp', capit: 'pc' };
         const EVT = {
             war: (a, b) => `${tag(a)} wypowiadają wojnę ${tag(b, 'dat')}`, peace: (a, b) => `${tag(a)} i ${tag(b)} zawierają pokój`,
             alliance: (a, b) => `${tag(a)} i ${tag(b)} zawierają sojusz`, break: (a, b) => `${tag(a)} zrywają sojusz z ${tag(b, 'ins')}`,
@@ -9623,7 +9627,7 @@ class UIManager {
             gift: (a, b) => `${tag(a)} wysyłają dar ${tag(b, 'dat')}`, aid: (a, b) => `${tag(a)} wspierają sojusznika — ${tag(b, 'dat')} — na wojnie`,
             defense: (a, b) => `${tag(a)} i ${tag(b)} zawierają pakt obronny`, undefense: (a, b) => `${tag(a)} zrywają pakt obronny z ${tag(b, 'ins')}`,
             envoy: (a, b) => `${tag(a)} wysyłają poselstwo do ${tag(b, 'gen')}`, amends: (a, b) => `${tag(a)} płacą zadośćuczynienie ${tag(b, 'dat')}`,
-            kept: (a, b) => `${tag(a)} i ${tag(b)} dotrzymują paktu o nieagresji`,
+            kept: (a, b) => `${tag(a)} i ${tag(b)} dotrzymują paktu o nieagresji`, capit: (a, b) => `${tag(a)} kapitulują przed ${tag(b, 'ins')}`,
             hegemon: (a) => a === me ? 'Twoja potęga budzi strach — możliwe koalicje przeciw tobie' : `${tag(a)} urastają na hegemona`
         };
         const since = this._dpNewSince === undefined ? Infinity : this._dpNewSince;
@@ -9801,6 +9805,10 @@ class UIManager {
             h += row('pc', 'Pokój', `koniec wojny i ${DIPLO.WAR_AFTER_PEACE / 60} min traktatu`, btn('peace', 'Zaproponuj', 'pc', '', !!e), look && look.peace, e);
             const off = D.offerFor(me);
             h += row('pc', 'Pokój za okup', off ? 'zapłacisz ' + esc(Diplomacy.payText(off)) + ' (20% zapasów)' : 'nie masz z czego zapłacić', btn('peace', 'Zaproponuj', 'ok', ' data-pay="1"', !!e || !off), look && look.peaceR, e || (off ? null : 'Za mało surowców na okup.'));
+            // V1.2: kapitulacja - gdy wojna jest przegrana, a zwycięzca nie chce zwykłego pokoju
+            const cap = D.capitFor(me), ec = D.proposeError(me, n, 'capit', cap);
+            h += row('tb', 'Kapitulacja', cap ? `oddasz ${esc(Diplomacy.payText(cap))} (${Math.round(DIPLO.CAPIT_SHARE * 100)}% zapasów) · pokój i ${DIPLO.CAPIT_PACT / 60} min paktu · zwycięzca przyjmie ją, nawet gdy dopiero zaczął wojnę` : 'nie masz czego oddać',
+                btn('capit', 'Skapituluj', 'war', '', !!ec), look && look.capit, ec);
         } else {
             const rate = Math.round(D.tradeRate(me, n) * 60);
             if (!D.trading(me, n)) {
@@ -9914,7 +9922,7 @@ class UIManager {
             chips += T && tn ? chip('⛪', `<b>Triumf</b> · ${who(T.team, D.name(tn))} <em>${mmss(T.left)}</em>${T.paused ? ' (stoi)' : ''}`, true, 'Triumf Cudów Świata')
                 : top ? chip('⛪', `<b>Chwała</b> · ${who(top.team, top.names.join(', '))} <em>${Math.floor(top.glory)}</em>/${Game.GLORY_WIN}`, top.glory >= Game.GLORY_WIN * 0.5, 'Chwała Cudów Świata')
                 : chip('⛪', '<b>Cuda</b> · nikt nie ma Cudu', false, 'Cuda Świata');
-            desc += `<span><b>Cuda Świata</b> — zbierz ${Game.GLORY_WIN} Chwały (w Dyplomacji rośnie wolniej, oblężone Cuda jej nie dają) i przetrwaj ${Game.TRIUMPH / 60}-minutowy Triumf.</span>`;
+            desc += `<span><b>Cuda Świata</b> — zbierz ${Game.GLORY_WIN} Chwały (w Dyplomacji rośnie wolniej, oblężone Cuda jej nie dają) i przetrwaj ${DIPLO.TRIUMPH / 60}-minutowy Triumf.</span>`;
         }
         if (D.timeLimit > 0) {
             const lead = D.leader(act), left = D.timeLimit - g.time;
@@ -9981,6 +9989,8 @@ class UIManager {
             return card('aid', `<b>${nm}</b> proszą o wsparcie${foe ? ` w wojnie z <b class="wr">${esc(Diplomacy.form(foe, 'ins'))}</b>` : ''}`, `przekażesz <b class="tr">${pt}</b>${can ? '' : ' (wyślesz, ile masz)'} · sojusznik zapamięta pomoc`, 'Wyślij', 'Odmów',
                 'Sojusznik dostanie surowce i zapamięta pomoc (stosunek w górę)', 'Odmowa obniży zaufanie sojusznika');
         }
+        if (p.kind === 'capit') return card('', `<b>${nm}</b> <b class="tr">kapitulują</b>`, `dostaniesz <b class="tr">${pt}</b> · pokój i ${DIPLO.CAPIT_PACT / 60} min paktu`, 'Przyjmij', 'Walcz dalej',
+            'Wojna się kończy, a łupy trafiają do twojego skarbca', 'Wojna trwa dalej');
         if (p.kind === 'nap') return card('nap', `<b>${nm}</b> proponują <b class="pc">pakt o nieagresji</b>`, `${DIPLO.NAP / 60} min bez wojny między wami`, 'Przyjmij', 'Odrzuć');
         if (p.kind === 'defense') return card('defense', `<b>${nm}</b> proponują <b class="df">pakt obronny</b>`, 'gdy ktoś napadnie jedną ze stron, druga staje w obronie · bez wspólnego zwycięstwa', 'Przyjmij', 'Odrzuć',
             'Napadnięty partner wezwie cię do obrony — odmowa zerwie pakt i obniży reputację', '');
@@ -23250,7 +23260,12 @@ const DIPLO = {
     // przyćmiewał gospodarkę i Cuda; ma być dodatkiem i powodem do pokoju, a nie źródłem tysięcy złota.
     // Partner myśli o tobie lepiej o TRADE_OP, z czasem (co 3 min +1) do 2 × TRADE_OP.
     TRADE_BASE: 3, TRADE_AGE: 2, TRADE_FAR: 0.5, TRADE_OP: 5,
-    GLORY_PACE: 0.6,            // Chwała z Cudów w Dyplomacji rośnie wolniej (kontynent jest wielki, a partia ma czas na politykę)
+    // V1.2 (po testach długich partii): Chwała w Dyplomacji 40% (było 60%), każdy kolejny Cud tej samej nacji 50% (zamiast 70%),
+    // Triumf 7 minut (zamiast 5). Wcześniej SI Skandaliczna zbierała wszystkie cztery Cuda i wygrywała w 33.-37. minucie,
+    // zanim koalicja zdążyła przejść kontynent.
+    GLORY_PACE: 0.4,            // Chwała z Cudów w Dyplomacji rośnie wolniej (kontynent jest wielki, a partia ma czas na politykę)
+    GLORY_EXTRA: 0.5,
+    TRIUMPH: 420,
     // Tempo świata (V1.0): po rozejmie SI nie rusza wszystkimi naraz. Pierwsza dobrowolna wojna najwcześniej
     // FIRST_WAR s po rozejmie, kolejne co WAR_GAP s (odstęp maleje z każdą minutą do WAR_GAP_MIN), sojusze,
     // umowy i żądania trybutu między nacjami SI też mają swoje odstępy (Diplomacy.paceOk / paceUse)
@@ -23275,6 +23290,9 @@ const DIPLO = {
     AMENDS_CUT: 0.45,           // o tyle słabną żale (wpisy ujemne w pamięci) po zadośćuczynieniu
     REP_FADE: 0.01,             // reputacja wraca do zera o ok. 0,6 na minutę
     BORDER_R: 1500,             // wojsko obcej nacji bliżej niż tyle od Ratusza (a nie przy własnym) to "wojsko u granic"
+    // Kapitulacja: przegrywający oddaje CAPIT_SHARE zapasów za pokój i CAPIT_PACT s paktu. Zwycięzca przyjmuje ją także
+    // wtedy, gdy dopiero zaczął wojnę (łupy zamiast podboju), ale tej samej nacji drugi raz dopiero po CAPIT_GAP s.
+    CAPIT_SHARE: 0.4, CAPIT_PACT: 360, CAPIT_GAP: 900,
     // Reputacja: [opis, wartość]
     REP: {
         kept: ['Dotrzymany pakt', 4], answer: ['Odpowiedź na wezwanie', 8], aid: ['Wsparcie sojusznika', 4], amends: ['Zadośćuczynienie', 3],
@@ -23284,7 +23302,7 @@ const DIPLO = {
     REP_WORDS: [[-30, 'niewiarygodni', '#ff7b70'], [-10, 'niepewni', '#ffb08a'], [10, 'bez historii', 'var(--label-2)'], [30, 'słowni', '#a6e6a0'], [101, 'wiarygodni', '#7fe39a']],
     KIND: { war: 'wypowiada wojnę nacji', peace: 'zawiera pokój z', alliance: 'zawiera sojusz z', break: 'zrywa sojusz z', tribute: 'płaci trybut nacji',
         nap: 'zawiera pakt o nieagresji z', trade: 'zawiera umowę handlową z', untrade: 'zrywa umowę handlową z', gift: 'wysyła dar nacji', aid: 'wysyła wsparcie nacji',
-        defense: 'zawiera pakt obronny z', undefense: 'zrywa pakt obronny z', envoy: 'wysyła poselstwo do', amends: 'zadośćuczynia nacji', kept: 'dotrzymuje paktu z' },
+        capit: 'kapituluje przed', defense: 'zawiera pakt obronny z', undefense: 'zrywa pakt obronny z', envoy: 'wysyła poselstwo do', amends: 'zadośćuczynia nacji', kept: 'dotrzymuje paktu z' },
     // V1.2: wpisy kroniki, które nie zmieniają relacji (Diplomacy.lastKind je pomija)
     MINOR: { gift: 1, trade: 1, untrade: 1, nap: 1, hegemon: 1, aid: 1, defense: 1, undefense: 1, envoy: 1, amends: 1, kept: 1 },
     // PAMIĘĆ: [opis (z punktu widzenia tego, kto pamięta), zanik na sekundę, granica]. Granica dodatnia - wpis tylko
@@ -23322,6 +23340,7 @@ const DIPLO = {
         conq: ['Podboje budzą strach', 0.02, -30],           // zdobywanie Ratuszy innych nacji
         defHit: ['Napaść na ich partnera z paktu obronnego', 0.03, -40],
         defBroke: ['Zerwany pakt obronny', 0.03, -40],
+        capitX: ['Wymuszona kapitulacja', 0.02, -40],
         old: ['Dawne sprawy', 0.02, 100]
     },
     // CZYNNIKI BIEŻĄCE (Diplomacy.situation): liczone na nowo co sekundę
@@ -23865,6 +23884,15 @@ class Diplomacy {
         return pay.gold + pay.food + pay.wood >= 40 ? pay : null;
     }
 
+    // V1.2: kapitulacja - CAPIT_SHARE złota, żywności, drewna i kamienia (w dziesiątkach); null, gdy nie ma czego oddać
+    capitFor(n) {
+        const r = n.resources, f = (k) => Math.floor(Math.max(0, r.get(k)) * DIPLO.CAPIT_SHARE / 10) * 10;
+        const pay = { gold: f('gold'), food: f('food'), wood: f('wood'), stone: f('stone') };
+        return pay.gold + pay.food + pay.wood + pay.stone >= 60 ? pay : null;
+    }
+    // Kiedy zwycięzca winner przyjął ostatnią kapitulację nacji payer (-1: nigdy)
+    capitAt(winner, payer) { const v = this.capits && this.capits.get(this.i(winner) + '>' + this.i(payer)); return v === undefined ? -1 : v; }
+
     // Trybut, którego nacja żąda (gracz i SI tak samo): rośnie z jej erą
     demandFor(n) { const a = n.age; return { gold: 50 + 40 * a, food: 80 + 50 * a, wood: 50 + 30 * a }; }
     // V1.1: prośba sojusznika o wsparcie w wojnie - tyle surowców prosi nacja n (rośnie z jej erą)
@@ -24028,6 +24056,21 @@ class Diplomacy {
         const ok = paid && (paid.gold + paid.food + paid.wood) > 0 ? Diplomacy.payText(paid) : '';
         this.announce(a, b, 'peace', `Pokój z ${this.ins(b)}.` + (ok ? ` Płacisz okup: ${ok}.` : ''), `Pokój z ${this.ins(a)}.` + (ok ? ` Dostajesz okup: ${ok}.` : ''),
             `${na} i ${nb} zawierają pokój${ok ? ' (za okup)' : ''}.`, 'good', 'good');
+    }
+
+    // V1.2: kapitulacja - payer oddaje część zapasów zwycięzcy, wojna się kończy, a pakt chroni pokonanego przez CAPIT_PACT s
+    makeCapitulation(payer, winner, pay) {
+        const paid = this.transfer(payer, winner, pay);
+        this._set(payer, winner, DIPLO.PEACE);
+        this.setPact(payer, winner, DIPLO.CAPIT_PACT);
+        this.addOp(payer, winner, -25, 'capitX');
+        this.calmUnits(payer, winner);
+        (this.capits || (this.capits = new Map())).set(this.i(winner) + '>' + this.i(payer), this.game.time);
+        if (winner.diplomat) winner.diplomat.lastPeaceAt = this.game.time;
+        if (payer.diplomat) payer.diplomat.lastPeaceAt = this.game.time;
+        const txt = Diplomacy.payText(paid), m = DIPLO.CAPIT_PACT / 60;
+        this.announce(payer, winner, 'capit', `Kapitulujesz przed ${this.ins(winner)}: oddajesz ${txt}. Pokój i ${m} min paktu o nieagresji.`,
+            `${this.name(payer)} kapitulują: dostajesz ${txt}. Pokój i ${m} min paktu o nieagresji.`, `${this.name(payer)} kapitulują przed ${this.ins(winner)}.`, 'warn', 'good');
     }
 
     makeAlliance(a, b) {
@@ -24214,6 +24257,11 @@ class Diplomacy {
             if (st !== DIPLO.WAR) return 'Nie prowadzicie wojny.';
             const age = g.time - this.sinceOf(from, to);
             if (age < DIPLO.PEACE_MIN_WAR) return `Wojna trwa dopiero ${Math.floor(age)} s — o pokój można prosić po minucie.`;
+        } else if (kind === 'capit') {
+            if (st !== DIPLO.WAR) return 'Nie prowadzicie wojny.';
+            const age = g.time - this.sinceOf(from, to);
+            if (age < DIPLO.PEACE_MIN_WAR) return `Wojna trwa dopiero ${Math.floor(age)} s — skapitulować można po minucie.`;
+            if (!pay) return 'Nie masz czego oddać.';
         } else if (kind === 'alliance') {
             if (st === DIPLO.ALLY) return 'Już jesteście sojusznikami.';
             if (st === DIPLO.WAR) return 'Najpierw trzeba zawrzeć pokój.';
@@ -24292,13 +24340,14 @@ class Diplomacy {
     }
 
     static what(kind, pay) {
-        return kind === 'peace' ? (pay ? 'pokój za okup' : 'pokój') : kind === 'alliance' ? 'sojusz' : kind === 'nap' ? 'pakt o nieagresji' : kind === 'defense' ? 'pakt obronny'
+        return kind === 'peace' ? (pay ? 'pokój za okup' : 'pokój') : kind === 'capit' ? 'kapitulację' : kind === 'alliance' ? 'sojusz' : kind === 'nap' ? 'pakt o nieagresji' : kind === 'defense' ? 'pakt obronny'
             : kind === 'trade' ? 'umowę handlową' : kind === 'join' ? 'wspólną wojnę' : kind === 'aid' ? 'prośbę o wsparcie' : 'trybut';
     }
 
     // Przyjęta propozycja (from zaproponował, to się zgodził)
     accept(from, to, kind, pay, target) {
         if (kind === 'peace') { if (this.atWar(from, to)) this.makePeace(from, to, pay ? this.transfer(from, to, pay) : null); }
+        else if (kind === 'capit') { if (this.atWar(from, to)) this.makeCapitulation(from, to, pay); }
         else if (kind === 'alliance') { if (this.get(from, to) === DIPLO.PEACE) this.makeAlliance(from, to); }
         else if (kind === 'tribute') { if (this.get(from, to) === DIPLO.PEACE) this.payTribute(to, from, pay); }
         else if (kind === 'nap') { if (this.get(from, to) === DIPLO.PEACE) this.makeNap(from, to); }
@@ -24368,6 +24417,11 @@ class Diplomacy {
                 return this.propose(nation, to, 'peace', pay);
             }
             case 'alliance': return to ? this.propose(nation, to, 'alliance') : null;
+            case 'capit': {
+                if (!to) return null;
+                const pay = this.capitFor(nation);
+                return pay ? this.propose(nation, to, 'capit', pay) : 'Nie masz czego oddać.';
+            }
             case 'nap': return to ? this.propose(nation, to, 'nap') : null;
             case 'defense': return to ? this.propose(nation, to, 'defense') : null;
             case 'undefense': return to ? this.endDefense(nation, to) : null;
@@ -24625,7 +24679,7 @@ class Diplomacy {
             tl: this.timeLimit, al: Math.round(this.allianceAt * 10) / 10, cap: this.allyCap, pc, td, df, rp: Array.from(this.rep, x => Math.round(x)),
             st: G.map(n => Math.round(this.strength(n))), hg: heg ? this.i(heg) : -1,
             h: this.history.slice(-24).map(h => [Math.round(h.t), h.a, h.b, h.kind]),
-            p: this.proposals.filter(p => !forNation || p.to === forNation || p.from === forNation).map(p => [p.id, this.i(p.from), this.i(p.to), p.kind, Math.round(p.until), p.pay ? [p.pay.gold, p.pay.food, p.pay.wood] : 0, p.target ? this.i(p.target) : -1, p.def ? 1 : 0])
+            p: this.proposals.filter(p => !forNation || p.to === forNation || p.from === forNation).map(p => [p.id, this.i(p.from), this.i(p.to), p.kind, Math.round(p.until), p.pay ? [p.pay.gold, p.pay.food, p.pay.wood, p.pay.stone || 0] : 0, p.target ? this.i(p.target) : -1, p.def ? 1 : 0])
         };
         if (forNation) {
             out.ob = G.map(n => n === forNation ? [] : this.why(n, forNation).slice(0, 8).map(w => [w[0], Math.round(w[1]), w[2] === undefined ? -1 : w[2]]));
@@ -24667,7 +24721,7 @@ class Diplomacy {
         this.netTrade = Array.isArray(d.tg) ? d.tg : null;
         const G = this.game.nations;
         this.history = (d.h || []).map(h => ({ t: h[0], a: h[1], b: h[2], kind: h[3] }));
-        this.proposals = (d.p || []).map(p => ({ id: p[0], from: G[p[1]], to: G[p[2]], kind: p[3], until: p[4], pay: Array.isArray(p[5]) ? { gold: p[5][0] || 0, food: p[5][1] || 0, wood: p[5][2] || 0 } : null, target: p[6] >= 0 ? G[p[6]] || null : null, def: p[7] ? 1 : 0 })).filter(p => p.from && p.to);
+        this.proposals = (d.p || []).map(p => ({ id: p[0], from: G[p[1]], to: G[p[2]], kind: p[3], until: p[4], pay: Array.isArray(p[5]) ? { gold: p[5][0] || 0, food: p[5][1] || 0, wood: p[5][2] || 0, stone: p[5][3] || 0 } : null, target: p[6] >= 0 ? G[p[6]] || null : null, def: p[7] ? 1 : 0 })).filter(p => p.from && p.to);
         this.rebuild();
     }
 
@@ -24847,7 +24901,8 @@ class DiplomatAI {
             const near = Math.min(D.proximity(me, c), D.proximity(o, c));
             // V1.2: także agresor - kilka świeżych wojen (8 min) i siła co najmniej jak nasza
             const big = c === heg || (sc > Math.max(my, their) * 1.25 && near > 0.35) || (D.atWar(me, c) && D.atWar(o, c))
-                || (D.warsStarted(c, 480) >= 2 && sc > Math.min(my, their) * 0.8 && near > 0.3);
+                || (D.warsStarted(c, 480) >= 2 && sc > Math.min(my, their) * 0.8 && near > 0.3)
+                || D.gloryThreat(c) > 0;                                   // V1.2: Cuda grożą zwycięstwem - wspólna sprawa całego kontynentu
             const v = big ? sc / Math.max(1, my) + near : 0;
             if (v > bv) { bv = v; best = c; }
         }
@@ -24862,6 +24917,7 @@ class DiplomatAI {
             if (o.rel === DIPLO.ALLY || D.defending(me, o.n)) continue;
             let v = o.n === heg ? 1 : 0;
             if (D.warsStarted(o.n, 480) >= 2) v += 0.6;
+            if (D.gloryThreat(o.n) > 0 && !this.game.gloryAlly(me, o.n)) v += 0.8;
             if (o.rel === DIPLO.WAR) v += 0.5 * clamp(o.bloc / Math.max(1, myBloc), 0, 2);
             v -= D.armyAt(me, o.n) / 15;
             if (o.bloc > myBloc * 1.3 && o.prox > 0.45 && o.op < 0) v += 0.5;
@@ -24904,6 +24960,24 @@ class DiplomatAI {
             const why = !pay && v + 0.45 >= 0.9 ? 'wojna jeszcze się nie rozstrzygnęła — może zgodzą się na pokój za okup.'
                 : my > their * 1.3 ? 'czują przewagę i chcą tę wojnę wygrać.' : 'wojna jeszcze się nie rozstrzygnęła.';
             return done(v, 0.9, why, veto);
+        }
+        if (kind === 'capit') {
+            // V1.2: kapitulacja przegrywającego - łupy zamiast podboju. Cel wojny jej nie blokuje (wojna przyniosła zysk),
+            // ale biedak nie ma czym zapłacić, a kto już raz skapitulował, drugi raz szybko nie kupi spokoju.
+            const payV = pay ? Math.min(0.9, D.giftValue(pay) / (250 + 250 * me.age)) : 0;
+            let v = add('Łupy z kapitulacji', payV);
+            const winning = my > their * 1.2 || o.gains > o.losses * 1.5;
+            if (winning) v += add('Wygrywają tę wojnę', 0.5);
+            v += add('Zmęczenie wojną', this.exhaustion(o) * 0.4);
+            v += add('Inne wojny', (wars - 1) * 0.25);
+            v += add('Śmiałość władcy', -this.aggro * 0.4);
+            if (this.grudge.has(from)) v += add('Uraza (odmowa trybutu)', -0.2);
+            let veto = null;
+            const last = D.capitAt(me, from);
+            if (D.gloryThreat(from) === 2) veto = 'z nacją w Triumfie nie zawrą pokoju.';
+            else if (last >= 0 && g.time - last < DIPLO.CAPIT_GAP) veto = 'już raz skapitulowali — tym razem chcą zwycięstwa.';
+            else if (!pay) veto = 'nie macie czego oddać.';
+            return done(v, 0.9, payV < 0.35 ? 'łupy są za małe — wolą podbój.' : 'wolą walczyć dalej.', veto);
         }
         if (kind === 'tribute') {
             // płacimy, gdy żądający (z sojusznikami) jest wyraźnie silniejszy i stać nas
@@ -25031,6 +25105,8 @@ class DiplomatAI {
             r.peace = put('peace', 'peace', null);
             const off = D.offerFor(n);
             if (off) r.peaceR = put('peaceR', 'peace', off);
+            const cap = D.capitFor(n);
+            if (cap) r.capit = put('capit', 'capit', cap);
         } else {
             r.trade = put('trade', 'trade');
             if (st === DIPLO.PEACE) { r.nap = put('nap', 'nap'); r.defense = put('defense', 'defense'); r.alliance = put('alliance', 'alliance'); r.tribute = put('tribute', 'tribute', D.demandFor(n)); }
@@ -25135,6 +25211,13 @@ class DiplomatAI {
             if (losing || tooMany || tired) {
                 if (!D.humanFree(w.n)) continue;                                // człowiek rozważa inną propozycję - za chwilę
                 this.askedPeace.set(w.n, g.time);
+                // V1.2: przegrana na całego (wróg dużo silniejszy albo straty ponad siły) - kapitulacja: łupy zamiast podboju
+                const cap = losing && (ratio < 0.55 || (w.losses > w.gains * 2.5 && w.losses > 6)) ? D.capitFor(me) : null;
+                if (cap) {
+                    this.log(`kapituluje przed ${D.ins(w.n)} (${Diplomacy.payText(cap)})`);
+                    const e = D.propose(me, w.n, 'capit', cap);
+                    if (!D.atWar(me, w.n) || (!e && !(w.n.ai && w.n.diplomat))) return;   // przyjęli albo człowiek rozważa
+                }
                 const pay = losing ? D.offerFor(me) : null;
                 this.log(`prosi o pokój z ${D.name(w.n)} (${losing ? 'przegrywa' : tooMany ? 'za dużo frontów' : 'zmęczenie wojną'}${pay ? ', z okupem' : ''})`);
                 if (!D.propose(me, w.n, 'peace', pay)) return;
@@ -28588,7 +28671,7 @@ class HostSession {
 
         const used = new Set();
         const pickColor = (want) => { let c = (want && !used.has(want)) ? want : ColorOrder.find(k => !used.has(k)); used.add(c); return c; };
-        this.settings = Object.assign({ mode: 'diplomacy', rivers: 'normal', truce: 300, limit: 2700, mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false, kings: false, wonders: true }, opts.settings || {});
+        this.settings = Object.assign({ mode: 'diplomacy', rivers: 'normal', truce: 300, limit: 3600, mapSize: 3000, mapType: 'random', biome: 'random', rich: false, reveal: false, kings: false, wonders: true }, opts.settings || {});
         // V1.1: tyle miejsc, ile nacji w grze solo - w Dyplomacji 8, w Klasycznym meczu 4 (pozostałe są wtedy zamknięte)
         this.slots = [];
         for (let i = 0; i < HostSession.MAX_SLOTS; i++) {
@@ -29887,7 +29970,7 @@ function matchOptionsHtml(p, o, color, sky) {
     let h = `<div><span class="opt-label">Warunki zwycięstwa</span><div class="win-grid">
         <div class="win-tile fixed" title="Drużyna, która jako ostatnia zachowa Ratusz, wygrywa. Ten warunek obowiązuje zawsze.">${img('building', 'town_center')}<span class="wt-text"><b>Podbój</b><small>Zniszcz Ratusze wszystkich wrogów</small></span><span class="win-lock">ZAWSZE</span></div>
         ${tile('kings', o.kings, 'unit', 'king', 'Królowie', 'Każda nacja ma władcę — jego śmierć to porażka', 'Każda nacja zaczyna z królem: potężnym wojownikiem z Królewską Szarżą (+20% dla okolicznej armii). Gdy król zginie, jego nacja przegrywa i traci całą osadę.')}
-        ${tile('wonder', o.wonders !== false, 'building', 'wonder', 'Cuda Świata', '1000 Chwały i 5-minutowy Triumf', 'Cztery unikatowe Cuda (każdy może stać na mapie tylko raz): Wiszące Ogrody, Kolos i Wielka Biblioteka w III erze — z premiami — oraz Wielka Bazylika w IV erze. Ukończone Cuda co sekundę dają Chwałę — ale nie oblężone ani bez Ratusza. 1000 Chwały otwiera 5-minutowy Triumf: przetrwasz go, wygrywasz; stracisz w nim Cud — tracisz 40% Chwały. Zburzenie Cudu odbiera właścicielowi 25% Chwały. Wyłączone: Cudów nie ma w menu budowy, a AI ich nie stawia.')}
+        ${tile('wonder', o.wonders !== false, 'building', 'wonder', 'Cuda Świata', '1000 Chwały i Triumf (5 min, w Dyplomacji 7)', 'Cztery unikatowe Cuda (każdy może stać na mapie tylko raz): Wiszące Ogrody, Kolos i Wielka Biblioteka w III erze — z premiami — oraz Wielka Bazylika w IV erze. Ukończone Cuda co sekundę dają Chwałę — ale nie oblężone ani bez Ratusza. 1000 Chwały otwiera Triumf (5 minut, w Dyplomacji 7): przetrwasz go, wygrywasz; stracisz w nim Cud — tracisz 40% Chwały. Zburzenie Cudu odbiera właścicielowi 25% Chwały. Wyłączone: Cudów nie ma w menu budowy, a AI ich nie stawia.')}
     </div></div>
     <label class="reveal-row" title="Odkryta mapa: od początku znasz teren i rozmieszczenie surowców; wrogie wojsko nadal kryje mgła wojny."><input type="checkbox" id="${p}-reveal"${o.reveal ? ' checked' : ''}><i class="win-switch"></i><span>Odkryta mapa <small>Teren znany od startu</small></span></label>`;
     if (sky) h += `<div><span class="opt-label">Pora dnia i pogoda</span><div class="sky-pick">
@@ -30462,7 +30545,7 @@ const MpUI = {
         const s = new HostSession({
             name: this.playerName('Host'), color: saved.color,
             settings: { mode: saved.mode === 'classic' ? 'classic' : 'diplomacy', rivers: pick(String(saved.rivers), ['few', 'normal', 'many'], 'normal'), truce: Number(pick(String(saved.truce), ['0', '180', '300', '600'], '300')),
-                limit: Number(pick(String(saved.limitV === 2 ? saved.tlimit : '2700'), ['0', '1800', '2700', '3600'], '2700')),
+                limit: Number(pick(String(saved.limitV === 3 ? saved.tlimit : '3600'), ['0', '1800', '2700', '3600'], '3600')),
                 mapSize: Number(pick(String(saved.mapSize), ['2400', '3000', '3900', '5100'], '3000')), mapType: saved.mapType || 'random', biome: saved.biome || 'random', rich: saved.startRes === 'rich', reveal: !!saved.reveal, kings: !!saved.kings, wonders: saved.wonders !== false }
         });
         s.onChange = () => this.refresh();
@@ -31585,7 +31668,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const val = (name, def) => { const el = document.querySelector(`input[name="${name}"]:checked`); return el ? el.value : def; };
         Settings.set('menu', {
             color: menu.color, corner: menu.corner, team: menu.team, ai: menu.ai, mode: menu.mode, seed: menu.seed,
-            dnat: val('dnat', '5'), dai: val('dai', 'medium'), rivers: val('rivers', 'normal'), truce: val('truce', '300'), tlimit: val('tlimit', '2700'), limitV: 2,
+            dnat: val('dnat', '5'), dai: val('dai', 'medium'), rivers: val('rivers', 'normal'), truce: val('truce', '300'), tlimit: val('tlimit', '3600'), limitV: 3,
             mapSize: val('mapsize', '3000'), mapType: val('maptype', 'random'), biome: val('biome', 'random'), startRes: val('startres', 'std'),
             reveal: !!document.getElementById('opt-reveal').checked, atmo: atmoOn(),
             kings: !!document.getElementById('opt-kings').checked, wonders: !!document.getElementById('opt-wonder').checked
@@ -31877,7 +31960,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const daiHint = () => { const el = document.getElementById('dai-hint'), c = document.querySelector('input[name="dai"]:checked'); if (el) el.textContent = Difficulty.diploHints[c ? c.value : 'medium'] || ''; };
     document.querySelectorAll('input[name="dai"]').forEach(el => el.addEventListener('change', daiHint));
     daiHint();
-    if (saved.limitV === 2) restore('tlimit', saved.tlimit);   // V1.0: domyślny limit 45 min - wybór sprzed tej zmiany (30 min) nie wraca
+    if (saved.limitV === 3) restore('tlimit', saved.tlimit);   // V1.2: domyślny limit 60 min (wcześniej 45, w V1.0 30) - wybór sprzed tej zmiany nie wraca
 
     // Reloaded: przełącznik trybu gry - Dyplomacja (główny) albo Klasyczny mecz
     function applyMode() {
@@ -31925,7 +32008,7 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = 0; i < k; i++) nations.push({ isPlayer: false, color: free[i], team: i + 2, diff: lvl === 'mixed' ? mix[i] : (Difficulty.order.includes(lvl) ? lvl : 'medium') });
             return {
                 mode: 'diplomacy', nations, seed: menu.seed,
-                rivers: val('rivers', 'normal'), truce: Number(val('truce', '300')), limit: Number(val('tlimit', '2700')),
+                rivers: val('rivers', 'normal'), truce: Number(val('truce', '300')), limit: Number(val('tlimit', '3600')),
                 biome: val('biome', 'random'), rich: val('startres', 'std') === 'rich',
                 reveal: !!document.getElementById('opt-reveal').checked,
                 kings: !!document.getElementById('opt-kings').checked,
@@ -32694,7 +32777,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div><div class="codex-name">${b.name} ${era(b.age)}${isNew(NEW_BUILDINGS, t)}</div>
                         <div class="codex-meta">${cost(b.cost)}</div>
                         <div class="chips">${st}</div><div class="codex-desc">${b.desc}</div>
-                        <div class="codex-extra">${trains.length ? 'Szkoli: ' + trains.join(', ') + '. ' : ''}${ups.length ? 'Badania: ' + ups.join(', ') + '.' : ''}${b.limit ? ' Limit: ' + b.limit + '.' : ''}${b.wonder ? ` Cud Świata: +${String(b.glory).replace('.', ',')} Chwały/s (nie gdy oblężony), jeden na całą mapę; 1000 Chwały otwiera 5-minutowy Triumf; tylko z warunkiem zwycięstwa „Cuda Świata” (sekcja Zasady, domyślnie włączony); w Dyplomacji Chwała rośnie wolniej (60%).` : ''}</div></div></div>`;
+                        <div class="codex-extra">${trains.length ? 'Szkoli: ' + trains.join(', ') + '. ' : ''}${ups.length ? 'Badania: ' + ups.join(', ') + '.' : ''}${b.limit ? ' Limit: ' + b.limit + '.' : ''}${b.wonder ? ` Cud Świata: +${String(b.glory).replace('.', ',')} Chwały/s (nie gdy oblężony), jeden na całą mapę; 1000 Chwały otwiera Triumf (5 minut, w Dyplomacji 7); tylko z warunkiem zwycięstwa „Cuda Świata” (sekcja Zasady, domyślnie włączony); w Dyplomacji Chwała rośnie wolniej (40%, a każdy kolejny Cud nacji daje połowę).` : ''}</div></div></div>`;
                 }
                 bPane.innerHTML = h + '</div><div class="codex-empty">Nic nie pasuje do wyszukiwania.</div>';
                 codexFilter('buildings');
