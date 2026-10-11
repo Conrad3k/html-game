@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artificial Battles: Reloaded V1.2.5</title>
+    <title>Artificial Battles: Reloaded V1.2.7</title>
     <style>
 /* Czcionka Nunito (SIL Open Font License 1.1) osadzona w pliku - gra działa w pełni offline */
 @font-face { font-family: 'Nunito'; font-style: normal; font-display: swap; font-weight: 200 1000;
@@ -386,11 +386,11 @@ button { font-family: inherit; }
 .cmd .badge { position: absolute; right: 3px; bottom: 0; font-size: 15px; font-weight: 800; color: #ffd94a; text-shadow: 0 0 3px #000, 0 0 3px #000; }
 
 #minimap-frame {
-    width: 240px; flex-shrink: 0; position: relative;
+    width: 256px; flex-shrink: 0; position: relative;
 }
 #minimap-panel {
     position: absolute; right: 0; bottom: 0;
-    width: 224px; height: 224px; padding: 5px;
+    width: 240px; height: 240px; padding: 5px;
     background: #0b0e14;
     border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px;
     box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6), 0 -6px 30px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.06);
@@ -401,7 +401,7 @@ button { font-family: inherit; }
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
     mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); padding: 1px;
 }
-#minimap-panel canvas { display: block; width: 224px; height: 224px; border-radius: 11px; cursor: pointer; }
+#minimap-panel canvas { display: block; width: 240px; height: 240px; border-radius: 11px; cursor: pointer; }
 
 #tooltip {
     position: absolute; z-index: 30; width: 280px; box-sizing: border-box;
@@ -1570,7 +1570,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <span data-pane="controls" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg><span class="nav-txt">Jak grać</span></span>
                     <span data-pane="news" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span class="nav-txt">Co nowego</span></span>
                 </nav>
-                <div class="top-meta"><span class="by">by Conrad3k</span><b>V1.2.5</b></div>
+                <div class="top-meta"><span class="by">by Conrad3k</span><b>V1.2.7</b></div>
             </header>
 
             <main class="menu-main">
@@ -1743,7 +1743,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                     <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 28 C5 17 10 8 19 5.5 C24 4.2 28.5 6 30 9.5 L26.4 10.6 C27.6 12.6 26.8 15.6 24 15.8 L21.4 14.6 C19.2 18.4 18.4 23 18.6 28 Z" fill="currentColor"/><path d="M8 25 C8.6 18 12 12.5 17 9.6" fill="none" stroke="#0b111c" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/><circle cx="22.6" cy="9.4" r="1.5" fill="#0b111c"/></svg>
                                     <div><b>Raptor Engine</b><small>silnik gry · designed by Claude</small></div>
                                 </div>
-                                <span>Artificial Battles: Reloaded V1.2.5 by Conrad3k · wykonane przy użyciu agentów LLM</span>
+                                <span>Artificial Battles: Reloaded V1.2.7 by Conrad3k · wykonane przy użyciu agentów LLM</span>
                             </div>
                         </section>
                     </div>
@@ -1852,9 +1852,38 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="news-wrap">
                     <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
                     <div class="menu-card news-new">
-                        <div class="eyebrow">Wydanie · Reloaded V1.2.5</div>
-                        <h2>Reloaded V1.2.5 — własna nazwa nacji, nowa czcionka nazw, wolniejsze surowce w Dyplomacji i rozwijający się Łatwy</h2>
-                        <p><b>Poprawka do V1.2.</b> W Dyplomacji nadasz swojej nacji własną nazwę (także w grze wieloosobowej), nazwy nacji mają nową, czytelniejszą czcionkę, surowce zbiera się trochę wolniej, a SI Łatwa wreszcie się rozwija — bardzo powoli, ale jednak.</p>
+                        <div class="eyebrow">Wydanie · Reloaded V1.2.7</div>
+                        <h2>Reloaded V1.2.7 — jeszcze wolniejsze surowce w Dyplomacji, mapa domyślnie nieodkryta, większa minimapa i poprawki po przeglądzie błędów</h2>
+                        <p><b>Poprawka do V1.2.5.</b> Surowce w Dyplomacji zbiera się o kolejne 5% wolniej, „Odkryta mapa” nie włącza się już sama przy kolejnym uruchomieniu gry, minimapa jest o 7% większa, a przegląd błędów wersji V1.2.5 naprawił m.in. apostrof w nazwie nacji w grze wieloosobowej i kilka komunikatów z błędną odmianą.</p>
+
+                        <h3>Zmiany</h3>
+                        <ul>
+                            <li><b>Surowce w Dyplomacji wolniej</b>: zbieranie jest teraz o <b>20% wolniejsze</b> niż w Klasycznym meczu (w V1.2.5 — o 15%). Klasyczny mecz bez zmian.</li>
+                            <li><b>Mapa domyślnie nieodkryta</b>: przełącznik „Odkryta mapa” jest przy każdym uruchomieniu gry wyłączony — w menu i w poczekalni gry wieloosobowej. Wcześniej gra zapamiętywała go z poprzedniej partii, więc raz włączony zostawał włączony na zawsze. Nadal możesz go włączyć przed startem.</li>
+                            <li><b>Większa minimapa</b>: 240 × 240 punktów zamiast 224 × 224 (ok. 7% więcej).</li>
+                        </ul>
+
+                        <h3>Poprawki błędów</h3>
+                        <ul>
+                            <li><b>Apostrof w nazwie nacji w grze wieloosobowej</b>: nazwa taka jak „O'Brienowie” u gości zamieniała się w „OBrienowie” (także w podsumowaniu zwycięstwa). Teraz wszyscy widzą tę samą nazwę.</li>
+                            <li><b>Poczekalnia gry wieloosobowej</b>: odświeżenie poczekalni (np. gdy ktoś dołączy) nie kasuje już nazwy nacji w trakcie jej wpisywania, a po zatwierdzeniu pole pokazuje nazwę przyjętą przez hosta — wcześniej odrzucona nazwa (np. zajęta przez innego gracza) zostawała w polu, jakby obowiązywała. Po przełączeniu na Klasyczny mecz poczekalnia pokazuje nazwy kolorów, bo własne nazwy działają tylko w Dyplomacji.</li>
+                            <li><b>Odmiana w komunikatach</b>: „dołączają do twojego natarcia na nację Wilki” (było „na nacji”), „napadają twoich sojuszników — nację Wilki”, w kronice „Pomarańczowi posyłają wsparcie na wojnę Czerwonym” zamiast „wspierają sojusznika — Czerwonym — na wojnie”, odmowa kapitulacji „już raz przed nimi skapitulowaliście” (było „już raz skapitulowali”, jakby chodziło o odmawiających), „Sojusznicza nacja Zieloni ukończyła Cud” zamiast „Sojusznik Zieloni ukończył”, „Fioletowi osiągają Wszech-wzrok — widzą całą mapę”.</li>
+                            <li><b>Bez „(AI)” w komunikatach</b>: wieści o ataku, kontrataku i Koniu Trojańskim mówią „wojska nacji Czerwoni”, a nie „wojska nacji Czerwoni (AI)”.</li>
+                            <li><b>Ekran Dyplomacji</b>: przy własnej nazwie słowo „nacja” w odmianie („wojnę nacji Wilki”) jest pisane zwykłą czcionką, a kolorowa i w kapitalikach jest tylko sama nazwa.</li>
+                            <li>Opis testów V1.2.5 podawał dla SI Łatwej III erę ok. 30. i IV ok. 45. minuty — pomiar daje ok. 26. i 41. minutę, zgodnie z opisem poziomu.</li>
+                        </ul>
+
+                        <h3>Sprawdzone</h3>
+                        <ul>
+                            <li>Wszyscy gracze w grze wieloosobowej potrzebują wydania Reloaded V1.2.7. Zapisy gier z Reloaded V1.0–V1.2.5 wczytasz w V1.2.7 (sprawdzony zapis z V1.2.5 z własną nazwą nacji).</li>
+                            <li><b>Sprawdzone automatycznie</b>: kampanie Dyplomacji 4 i 8 nacji do 60 minut ze sprawdzaniem spójności relacji (handel, pakty i sojusze w czasie wojny, pakty obronne, martwe nacje, ujemne zapasy) — bez błędów; Klasyczny mecz; gra wieloosobowa host i gość z nazwą z apostrofem; ekran Dyplomacji z własną nazwą; zapis i wczytanie; domyślnie wyłączona „Odkryta mapa” także przy zapamiętanym włączeniu z wcześniejszej wersji; minimapa 240 punktów i klikanie w nią.</li>
+                        </ul>
+                    </div>
+                    <div class="news-sub">Wcześniejsze wydania</div>
+                    <details class="release">
+                        <summary><span class="ver">R1.2.5</span><h2>Reloaded V1.2.5 — własna nazwa nacji, nowa czcionka nazw, wolniejsze surowce w Dyplomacji i rozwijający się Łatwy</h2></summary>
+                        <div class="release-body">
+                        <p class="menu-note"><b>Poprawka do V1.2.</b> W Dyplomacji nadasz swojej nacji własną nazwę (także w grze wieloosobowej), nazwy nacji mają nową, czytelniejszą czcionkę, surowce zbiera się trochę wolniej, a SI Łatwa wreszcie się rozwija — bardzo powoli, ale jednak.</p>
 
                         <h3>Własna nazwa nacji</h3>
                         <ul>
@@ -1883,10 +1912,10 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <h3>Poprawki</h3>
                         <ul>
                             <li>Wszyscy gracze w grze wieloosobowej potrzebują wydania Reloaded V1.2.5. Zapisy gier z Reloaded V1.0, V1.1 i V1.2 wczytasz w V1.2.5.</li>
-                            <li><b>Sprawdzone automatycznie</b>: własna nazwa nacji — oczyszczanie i odrzucanie nazw (puste, z palety, powtórzone), pole w menu i zapis ustawień, odmiana przez „nacja” w komunikatach i kronice, poczekalnia gry wieloosobowej (host i gość, odrzucony duplikat, te same nazwy u obu stron); 57 testów funkcjonalnych Dyplomacji z V1.2; audyt dochodów przed i po zmianie (zapasy SI po 30 minutach o 15% mniejsze, wojsko i tempo er bez zmian); SI Łatwa w 45-minutowej kampanii (targ w 10. minucie, III era ok. 30., IV ok. 45.); kampanie kontrolne 6 i 8 nacji do 75 minut (koniec w 45.–60. minucie: sojusz, Cuda, limit czasu); zapisy z V1.1 i V1.2 wczytane w V1.2.5; Klasyczny mecz — wszystko bez błędów.</li>
+                            <li><b>Sprawdzone automatycznie</b>: własna nazwa nacji — oczyszczanie i odrzucanie nazw (puste, z palety, powtórzone), pole w menu i zapis ustawień, odmiana przez „nacja” w komunikatach i kronice, poczekalnia gry wieloosobowej (host i gość, odrzucony duplikat, te same nazwy u obu stron); 57 testów funkcjonalnych Dyplomacji z V1.2; audyt dochodów przed i po zmianie (zapasy SI po 30 minutach o 15% mniejsze, wojsko i tempo er bez zmian); SI Łatwa w 45-minutowej kampanii (targ w 10. minucie, III era ok. 26., IV ok. 41.); kampanie kontrolne 6 i 8 nacji do 75 minut (koniec w 45.–60. minucie: sojusz, Cuda, limit czasu); zapisy z V1.1 i V1.2 wczytane w V1.2.5; Klasyczny mecz — wszystko bez błędów.</li>
                         </ul>
-                    </div>
-                    <div class="news-sub">Wcześniejsze wydania</div>
+                        </div>
+                    </details>
                     <details class="release">
                         <summary><span class="ver">R1.2</span><h2>Reloaded V1.2 — pakty obronne, kapitulacja, ocieplanie stosunków, reputacja, SI, która widzi mapę, i dłuższe kampanie</h2></summary>
                         <div class="release-body">
@@ -2518,7 +2547,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
     <script>
 /* --- core/Config.js --- */
 const GameConfig = {
-    version: 'Reloaded V1.2.5',
+    version: 'Reloaded V1.2.7',
     engine: 'Raptor Engine · designed by Claude',
     cameraPad: 320,             // o tyle (w pikselach świata) kamera może wyjechać poza granicę mapy
     popCap: 200,
@@ -6390,7 +6419,7 @@ Game.prototype.wonderBuilt = function (b) {
     n.recomputeBonuses(); n.recomputePopulation();
     for (const o of this.nations) {
         if (o === n) { this.tell(o, `Cud ukończony: ${nm}! +${rate} Chwały na sekundę — 1000 Chwały otwiera Triumf. Brońcie go: oblężony Cud nie daje Chwały!`, 'good'); this.cue(o, 'AgeUp'); }
-        else if (this.isAlly(o, n)) { this.tell(o, `Sojusznik ${n.shortName || n.name} ukończył Cud: ${nm} (+${rate} Chwały/s dla niego).`, 'good'); this.cue(o, 'Complete'); }
+        else if (this.isAlly(o, n)) { this.tell(o, `Sojusznicza nacja ${n.shortName || n.name} ukończyła Cud: ${nm} (+${rate} Chwały/s dla niej).`, 'good'); this.cue(o, 'Complete'); }
         else { this.tell(o, `Nacja ${n.shortName || n.name} ukończyła Cud: ${nm} (+${rate} Chwały/s). Zburz go, a zabierzesz jej część Chwały!`, 'alert'); this.cue(o, 'Warning'); }
     }
 };
@@ -8245,7 +8274,7 @@ class Minimap {
     constructor(game) {
         this.game = game;
         this.panel = document.getElementById('minimap-panel');
-        this.size = 224;
+        this.size = 240;   // V1.2.7: było 224
 
         this.canvas = document.createElement('canvas');
         this.canvas.width = this.size;
@@ -9593,7 +9622,11 @@ class UIManager {
         const C = {
             g, D, me, esc, mmss, ago, full, live, sel,
             nm: (n) => esc(n.shortName || n.name),
-            tag: (n, c) => `<span class="dp-n${n === me ? ' me' : ''}" style="--nc:${n.color}">${esc(Diplomacy.form(n, c))}</span>`,
+            tag: (n, c) => {
+                const f = Diplomacy.form(n, c), s = n.shortName || n.name;
+                const pre = f !== s && f.endsWith(' ' + s) ? f.slice(0, f.length - s.length) : '';   // V1.2.7: "nacji " przed własną nazwą
+                return `${esc(pre)}<span class="dp-n${n === me ? ' me' : ''}" style="--nc:${n.color}">${esc(pre ? s : f)}</span>`;
+            },
             idx: (n) => g.nations.indexOf(n),
             heg: D.hegemon(),
             myS: D.strength(me),
@@ -9712,7 +9745,7 @@ class UIManager {
             alliance: (a, b) => `${tag(a)} i ${tag(b)} zawierają sojusz`, break: (a, b) => `${tag(a)} zrywają sojusz z ${tag(b, 'ins')}`,
             tribute: (a, b) => `${tag(a)} płacą trybut ${tag(b, 'dat')}`, nap: (a, b) => `${tag(a)} i ${tag(b)} zawierają pakt o nieagresji`,
             trade: (a, b) => `${tag(a)} i ${tag(b)} zawierają umowę handlową`, untrade: (a, b) => `${tag(a)} zrywają handel z ${tag(b, 'ins')}`,
-            gift: (a, b) => `${tag(a)} wysyłają dar ${tag(b, 'dat')}`, aid: (a, b) => `${tag(a)} wspierają sojusznika — ${tag(b, 'dat')} — na wojnie`,
+            gift: (a, b) => `${tag(a)} wysyłają dar ${tag(b, 'dat')}`, aid: (a, b) => `${tag(a)} posyłają wsparcie na wojnę ${tag(b, 'dat')}`,
             defense: (a, b) => `${tag(a)} i ${tag(b)} zawierają pakt obronny`, undefense: (a, b) => `${tag(a)} zrywają pakt obronny z ${tag(b, 'ins')}`,
             envoy: (a, b) => `${tag(a)} wysyłają poselstwo do ${tag(b, 'gen')}`, amends: (a, b) => `${tag(a)} płacą zadośćuczynienie ${tag(b, 'dat')}`,
             kept: (a, b) => `${tag(a)} i ${tag(b)} dotrzymują paktu o nieagresji`, capit: (a, b) => `${tag(a)} kapitulują przed ${tag(b, 'ins')}`,
@@ -20890,7 +20923,7 @@ class Nation {
         } else if (up.ultra) {
             if (building) { g.spawnParticle(building.x, building.y, 'levelup'); g.spawnParticle(building.x, building.y, 'complete'); }
             g.tell(this, `${up.name}! Ty i twoi sojusznicy widzicie teraz całą mapę.`, 'good');
-            g.tellAll(`${this.name} osiąga ${up.name} — widzi całą mapę, każdą jednostkę i każdy budynek!`, 'alert', this);
+            g.tellAll(`${this.shortName || this.name} osiągają ${up.name} — widzą całą mapę, każdą jednostkę i każdy budynek!`, 'alert', this);
             g.cue(this, 'AgeUp');
             g.updateVisibility(); g.fogDirty = true;
         } else {
@@ -22131,7 +22164,7 @@ class NationAI {
             this.log(`wspólna ofensywa z ${a.shortName || a.name} na ${tn.shortName || tn.name}`);
             if (a.human && time - (this._jointTold || -99) > 120) {
                 this._jointTold = time;
-                game.tell(a, `${D.name(nation)} dołączają do twojego natarcia na ${D.gen(tn)} — ich wojsko rusza.`, 'good');
+                game.tell(a, `${D.name(nation)} dołączają do twojego natarcia na ${D.acc(tn)} — ich wojsko rusza.`, 'good');
             }
             return;
         }
@@ -22503,7 +22536,7 @@ class NationAI {
             if (!pl.human || pl.defeated || !game.isEnemy(pl, nation)) continue;
             if (aim && aim !== pl && game.diplo.alive(aim) && !game.diplo.allied(aim, pl)) continue;
             this.lastWarnTime = time;
-            game.tell(pl, `Chodzą słuchy, że wojska nacji ${nation.name} ruszyły do ataku!`, 'alert');
+            game.tell(pl, `Chodzą słuchy, że wojska nacji ${nation.shortName || nation.name} ruszyły do ataku!`, 'alert');
             game.cue(pl, 'Warning');
         }
     }
@@ -22654,7 +22687,7 @@ class NationAI {
         this.wavesSent++;
         this.nextWaveAt = Math.max(this.nextWaveAt, time + this.p.waveCooldown * 0.8);
         this.log(`kontratak #${wave.id}: ${picked.length} jednostek na ${enemy.shortName || enemy.name} (odparto ${peak})`);
-        this.warnEnemies(`Wojska nacji ${this.nation.name} odparły atak i przechodzą do kontrataku!`);
+        this.warnEnemies(`Wojska nacji ${this.nation.shortName || this.nation.name} odparły atak i przechodzą do kontrataku!`);
     }
 
     controlDefenders(landArmy, monks, bearers, baseThreats, barracksList) {
@@ -22858,7 +22891,7 @@ class NationAI {
                     for (const u of nation.units) if (u.state === 'boarding' && u.targetEntity === horse) { u.isDrafted = false; u.goIdle(); }
                     op.phase = 'go'; op.tPhase = time; op.target = tgt;
                     this.log(`Koń Trojański rusza na ${tgt.n.shortName || tgt.n.name} z ${pass} piechurami w środku`);
-                    this.warnEnemies(`Zwiadowcy donoszą: nacja ${nation.name} toczy w waszą stronę ogromnego drewnianego konia… Rani go tylko artyleria!`);
+                    this.warnEnemies(`Zwiadowcy donoszą: nacja ${nation.shortName || nation.name} toczy w waszą stronę ogromnego drewnianego konia… Rani go tylko artyleria!`);
                 }
             }
             return;
@@ -23359,7 +23392,8 @@ const DIPLO = {
     TRIUMPH: 420,
     // V1.2.5: zbieranie surowców w Dyplomacji o 15% wolniejsze niż w Klasycznym meczu. Audyt: ok. 90% dochodu nacji to
     // zbieranie (umowy handlowe i dary - kilka procent), a po 30 minutach SI miała średnio 35-40 tys. niewydanych surowców.
-    GATHER: 0.85,
+    // V1.2.7: o kolejne 5 punktów - 20% wolniej niż w Klasycznym meczu.
+    GATHER: 0.80,
     // Tempo świata (V1.0): po rozejmie SI nie rusza wszystkimi naraz. Pierwsza dobrowolna wojna najwcześniej
     // FIRST_WAR s po rozejmie, kolejne co WAR_GAP s (odstęp maleje z każdą minutą do WAR_GAP_MIN), sojusze,
     // umowy i żądania trybutu między nacjami SI też mają swoje odstępy (Diplomacy.paceOk / paceUse)
@@ -24118,7 +24152,7 @@ class Diplomacy {
         this.announce(a, b, 'war',
             `Wypowiadasz wojnę ${this.dat(b)}.` + (betrayal ? ' To zdrada sojuszu — inne nacje ją zapamiętają.' : ''),
             `${na} wypowiadają ci wojnę!` + (betrayal ? ' To zdrada sojuszu.' : '') + (why ? ' „' + why + '”' : ''),
-            (c) => this.allied(c, b) ? [`${na} napadają twoich sojuszników, ${this.gen(b)}.`, 'warn']
+            (c) => this.allied(c, b) ? [`${na} napadają twoich sojuszników — ${this.acc(b)}.`, 'warn']
                 : this.allied(c, a) ? `Twoi sojusznicy, ${na}, wypowiadają wojnę ${this.dat(b)}.` : null, 'warn', 'alert');
         for (const c of g.nations) {
             if (c === a || !this.alive(c) || !this.allied(c, b)) continue;
@@ -25075,7 +25109,7 @@ class DiplomatAI {
             let veto = null;
             const last = D.capitAt(me, from);
             if (D.gloryThreat(from) === 2) veto = 'z nacją w Triumfie nie zawrą pokoju.';
-            else if (last >= 0 && g.time - last < DIPLO.CAPIT_GAP) veto = 'już raz skapitulowali — tym razem chcą zwycięstwa.';
+            else if (last >= 0 && g.time - last < DIPLO.CAPIT_GAP) veto = 'już raz przed nimi skapitulowaliście — tym razem chcą zwycięstwa.';
             else if (!pay) veto = 'nie macie czego oddać.';
             return done(v, 0.9, payV < 0.35 ? 'łupy są za małe — wolą podbój.' : 'wolą walczyć dalej.', veto);
         }
@@ -28016,6 +28050,11 @@ const NetCodec = {
     clean(s, max) {
         return String(s == null ? '' : s).replace(/[<>&"'`\\]/g, '').replace(/\s+/g, ' ').trim().slice(0, max || 40);
     },
+    // V1.2.7: nazwy nacji mogą mieć apostrof (cleanNationName) - clean() go usuwał, więc gość widział "OBrienowie"
+    // zamiast "O'Brienowie". Apostrof w treści HTML-a jest bezpieczny (atrybuty są w cudzysłowach).
+    cleanName(s, max) {
+        return String(s == null ? '' : s).replace(/[<>&"`\\]/g, '').replace(/\s+/g, ' ').trim().slice(0, max || 40);
+    },
 
     // Krótka suma kontrolna tekstu (4 znaki): wychwytuje kod ucięty albo przekręcony przy kopiowaniu
     checksum(text) {
@@ -29668,8 +29707,8 @@ class ClientSession {
         this.renderT = w.time; this.newestT = w.time; this.newestAt = performance.now();
         this.frames = [];
         w.nations.forEach((d, i) => {
-            const n = new Nation(NetCodec.clean(d.name), d.color, i === w.you);
-            n.shortName = NetCodec.clean(d.short); n.team = d.team; n.teamLabel = Number(d.label) || 1;
+            const n = new Nation(NetCodec.cleanName(d.name), d.color, i === w.you);
+            n.shortName = NetCodec.cleanName(d.short); n.team = d.team; n.teamLabel = Number(d.label) || 1;
             n.human = !!d.human; n.aiLabel = NetCodec.clean(d.ctl);
             n.age = d.age;
             n.researchedUpgrades = d.ups.slice();
@@ -30028,10 +30067,10 @@ class ClientSession {
                 g.winnerTeam = e[1];
                 g.winnerTeams = Array.isArray(e[6]) ? new Set(e[6]) : null;   // Dyplomacja: zwycięski sojusz
                 g.byPoints = !!e[2];
-                g.byWonder = e[5] ? NetCodec.clean(e[5]) : null;
+                g.byWonder = e[5] ? NetCodec.cleanName(e[5]) : null;
                 g.winReason = ['conquest', 'alliance', 'limit', 'wonder'].includes(e[7]) ? e[7] : null;   // Dyplomacja: jak rozstrzygnięto mecz
-                g.winLeader = e[8] ? NetCodec.clean(e[8], 60) : null;
-                g.winnerNames = NetCodec.clean(e[3], 200);
+                g.winLeader = e[8] ? NetCodec.cleanName(e[8], 60) : null;
+                g.winnerNames = NetCodec.cleanName(e[3], 200);
                 e[4].forEach((d, i) => {
                     const n = g.nations[i];
                     if (!n) return;
@@ -30218,7 +30257,7 @@ const MpUI = {
         el.querySelectorAll('details[id]').forEach(d => { if (d.open) open.push(d.id); });
         el.innerHTML = html;
         for (const id of open) { const d = document.getElementById(id); if (d) d.open = true; }
-        for (const id in keep) { const t = document.getElementById(id); if (t && !t.readOnly && t.value === '') t.value = keep[id]; }
+        for (const id in keep) { const t = document.getElementById(id); if (t && !t.readOnly && (t.value === '' || id === focusId) && !(t.dataset.nation !== undefined && id !== focusId)) t.value = keep[id]; }
         if (focusId) { const t = document.getElementById(focusId); if (t) { t.focus(); if (sel && t.setSelectionRange) { try { t.setSelectionRange(sel[0], sel[1]); } catch (e) { /* pole bez zaznaczenia */ } } } }
         el.scrollTop = scroll;
     },
@@ -30559,7 +30598,7 @@ const MpUI = {
         else if (sl.state === 'joined') { who = this.esc(sl.name); tag = '<span class="mp-tag ok">połączony</span>'; }
         else { who = '<small>czeka na gracza</small>'; tag = `<span class="mp-tag wait">${sl.state === 'connecting' ? 'łączenie…' : 'niepołączony'}</span>`; }
         return `<div class="mp-slot${sl.kind === 'closed' ? ' off' : ''}${me ? ' me' : ''}"><div class="mp-slot-head"><i class="swatch" style="background:${pal.main}"></i>
-            <span class="nm"><span class="mp-nat">${this.esc(sl.nationName || pal.nation)}</span> — ${who}${me ? ' <small>· to ty</small>' : ''} <small data-ping="${i}"></small></span>${tag}${sl.kind !== 'closed' ? this.teamPick(i, sl.team, editable) : ''}</div>
+            <span class="nm"><span class="mp-nat">${this.esc((diplo && sl.nationName) || pal.nation)}</span> — ${who}${me ? ' <small>· to ty</small>' : ''} <small data-ping="${i}"></small></span>${tag}${sl.kind !== 'closed' ? this.teamPick(i, sl.team, editable) : ''}</div>
             ${editable && me && diplo ? this.nationPick(i, sl.nationName, pal) : ''}${editable && me ? this.colorPick(i, sl.color, taken) : ''}</div>`;
     },
 
@@ -30676,7 +30715,7 @@ const MpUI = {
             name: this.playerName('Host'), color: saved.color, nationName: saved.nationName,
             settings: { mode: saved.mode === 'classic' ? 'classic' : 'diplomacy', rivers: pick(String(saved.rivers), ['few', 'normal', 'many'], 'normal'), truce: Number(pick(String(saved.truce), ['0', '180', '300', '600'], '300')),
                 limit: Number(pick(String(saved.limitV === 3 ? saved.tlimit : '3600'), ['0', '1800', '2700', '3600'], '3600')),
-                mapSize: Number(pick(String(saved.mapSize), ['2400', '3000', '3900', '5100'], '3000')), mapType: saved.mapType || 'random', biome: saved.biome || 'random', rich: saved.startRes === 'rich', reveal: !!saved.reveal, kings: !!saved.kings, wonders: saved.wonders !== false }
+                mapSize: Number(pick(String(saved.mapSize), ['2400', '3000', '3900', '5100'], '3000')), mapType: saved.mapType || 'random', biome: saved.biome || 'random', rich: saved.startRes === 'rich', reveal: false, kings: !!saved.kings, wonders: saved.wonders !== false }
         });
         s.onChange = () => this.refresh();
         s.startLobbyTimer();
@@ -30781,6 +30820,8 @@ const MpUI = {
         const s = this.session;
         if (s && t.dataset && t.dataset.nation !== undefined) {   // V1.2: własna nazwa nacji
             const v = cleanNationName(t.value);
+            t.value = v;
+            if (document.activeElement === t) t.blur();   // V1.2.7: po zatwierdzeniu pole pokazuje nazwę przyjętą przez hosta
             if (s.isHost) s.setSlot(Number(t.dataset.nation), { nationName: v });
             else if (Number(t.dataset.nation) === s.mySlot) s.pick({ nationName: v });
             if (s.isHost && Number(t.dataset.nation) === 0 && window.Settings) { const m = Settings.get('menu') || {}; m.nationName = v; Settings.set('menu', m); }
@@ -32135,7 +32176,7 @@ document.addEventListener("DOMContentLoaded", () => {
     applyMode();
     // V3.5: warunki zwycięstwa, odkryta mapa i pora dnia - kafelki (matchOptionsHtml, wspólne z poczekalnią)
     const matchBox = document.getElementById('match-options');
-    if (matchBox) matchBox.innerHTML = matchOptionsHtml('opt', { kings: !!saved.kings, wonders: saved.wonders !== false, reveal: !!saved.reveal, atmo: saved.atmo !== false }, menu.color, true);
+    if (matchBox) matchBox.innerHTML = matchOptionsHtml('opt', { kings: !!saved.kings, wonders: saved.wonders !== false, reveal: false, atmo: saved.atmo !== false }, menu.color, true);
     document.querySelectorAll('#pane-play input').forEach(el => el.addEventListener('change', saveMenu));
 
     let renderCodex = () => {};

@@ -1,7 +1,21 @@
 # Artificial-Battles
 Gra w jednym pliku HTML
 
-Najnowsze wydanie: **Artificial Battles - Reloaded V1.2.5.html** (otwórz w przeglądarce, działa offline).
+Najnowsze wydanie: **Artificial Battles - Reloaded V1.2.7.html** (otwórz w przeglądarce, działa offline).
+
+**Reloaded V1.2.7** — poprawka do V1.2.5:
+- **Surowce w Dyplomacji jeszcze wolniej** — zbieranie o 20% wolniejsze niż w Klasycznym meczu (w V1.2.5: o 15%).
+- **Mapa domyślnie nieodkryta** — „Odkryta mapa” jest przy każdym uruchomieniu wyłączona (w menu i w poczekalni gry
+  wieloosobowej); wcześniej raz włączona zostawała zapamiętana.
+- **Większa minimapa** — 240 × 240 zamiast 224 × 224 (ok. 7%).
+- **Poprawki po przeglądzie błędów V1.2.5**: apostrof w nazwie nacji („O'Brienowie”) nie ginie już u gości w grze
+  wieloosobowej; poczekalnia nie kasuje wpisywanej nazwy nacji przy odświeżeniu i pokazuje nazwę przyjętą przez hosta;
+  poprawiona odmiana w kilku komunikatach i w kronice (natarcie na nację, wsparcie sojusznika, odmowa kapitulacji,
+  Cud sojusznika, Wszech-wzrok); bez dopisku „(AI)” w wieściach o atakach; słowo „nacja” przy własnej nazwie pisane
+  zwykłą czcionką na ekranie Dyplomacji.
+- Gra wieloosobowa wymaga V1.2.7; zapisy z V1.0–V1.2.5 wczytują się.
+
+### Wcześniej: Reloaded V1.2.5
 
 **Reloaded V1.2.5** — poprawka do V1.2:
 - **Własna nazwa nacji w Dyplomacji** — pole „Nazwa” w menu (i w poczekalni gry wieloosobowej, dla hosta i każdego
