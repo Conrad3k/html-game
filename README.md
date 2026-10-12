@@ -1,7 +1,20 @@
 # Artificial-Battles
 Gra w jednym pliku HTML
 
-Najnowsze wydanie: **Artificial Battles - Reloaded V1.4.html** (otwórz w przeglądarce, działa offline).
+Najnowsze wydanie: **Artificial Battles - Reloaded V1.5.html** (otwórz w przeglądarce, działa offline).
+
+**Reloaded V1.5** — Widok Prosty Dyplomacji, ładniejsze rzeki i wozy kupieckie u partnerów handlowych:
+- **Widok Prosty / Zaawansowany** — przełącznik w nagłówku ekranu Dyplomacji (zapamiętany, na start Prosty). Prosty:
+  lista nacji z relacją opisaną słowami („życzliwi”, „wrogowie”), jednym zdaniem „dlaczego” i jednym polecanym ruchem;
+  karta nacji z 3 najważniejszymi powodami i propozycjami z odpowiedzią słowami („✓ przyjmą”, „raczej nie — …”);
+  mapa tylko z sojuszami i wojnami. Zaawansowany to pełny ekran z V1.4.
+- **Ładniejsze rzeki** — źródło to cienki strumień, przed brodem koryto zwęża się w płyciznę, ujście rozszerza się
+  jak delta, a rzeki nie wpadają do małych jeziorek (koniec z „rurami” o okrągłych końcach). Rzek tyle samo co wcześniej.
+- **Umowa handlowa otwiera bramy dla wozów kupieckich** — wóz partnera handlowego nie utyka pod bramą otoczonej murem
+  osady (w obie strony); wojsko wchodzi dalej tylko u sojuszników.
+- Gra wieloosobowa wymaga V1.5; zapisy z V1.0–V1.4 wczytują się.
+
+### Wcześniej: Reloaded V1.4
 
 **Reloaded V1.4** — czytelny ekran Dyplomacji i nazwy ludów dla nacji SI:
 - **„Kto z kim trzyma” bez mylących bloków** — sojusz to grupa, w której każdy jest w sojuszu z każdym. Wcześniej
