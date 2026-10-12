@@ -1,7 +1,23 @@
 # Artificial-Battles
 Gra w jednym pliku HTML
 
-Najnowsze wydanie: **Artificial Battles - Reloaded V1.3.html** (otwórz w przeglądarce, działa offline).
+Najnowsze wydanie: **Artificial Battles - Reloaded V1.4.html** (otwórz w przeglądarce, działa offline).
+
+**Reloaded V1.4** — czytelny ekran Dyplomacji i nazwy ludów dla nacji SI:
+- **„Kto z kim trzyma” bez mylących bloków** — sojusz to grupa, w której każdy jest w sojuszu z każdym. Wcześniej
+  „blok” był łańcuchem (A z B, B z C → A + B + C), więc łączył nacje bez wzajemnego sojuszu, a nawet walczące ze sobą:
+  w kampaniach 8 nacji w 79% minut z sojuszami (w 38% — nacje w stanie wojny). Do tego ostrzeżenie o rozdartych
+  sojuszach (sojusz z obiema stronami jednej wojny).
+- **Macierz relacji** — każda para nacji w jednym polu: ❖ sojusz, 🛡 pakt obronny, ⚔ wojna, ☮ pakt, złota kropka — handel.
+- **Czytelna mapa relacji** — linie omijają herby i mają ciemną obwódkę, handel biegnie osobnym torem, herby się nie
+  nakładają, nazwy szukają wolnego miejsca. Najechanie na herb pokazuje tylko relacje tej nacji (obwódki herbów: relacje
+  z nią), na linię albo pole macierzy — jedną parę. Legenda włącza i wyłącza warstwy.
+- **Zakładka Kontynent** (albo ⤢ na mapie) — duża mapa relacji i relacje każdej nacji po kolei.
+- **Nazwy ludów dla nacji SI w Dyplomacji** — Wikingowie, Spartanie, Goci, Celtowie, Frankowie, Hunowie… (16 nazw,
+  w jednej grze każda na inną literę), z odmianą („sojusz z Wikingami”). Kolor zostaje przy herbie.
+- Symulacja, SI i balans bez zmian. Gra wieloosobowa wymaga V1.4; zapisy z V1.0–V1.3 wczytują się.
+
+### Wcześniej: Reloaded V1.3
 
 **Reloaded V1.3** — szybszy silnik Raptor i wszystkie zmiany po V1.2 (dawne poprawki V1.2.5 i V1.2.7) w jednym wydaniu:
 - **Szybszy silnik Raptor, ten sam obraz i ta sama gra** — symulacja kampanii Dyplomacji ok. 25% krótsza (30 minut
