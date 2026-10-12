@@ -33,7 +33,8 @@ export default [
         async run() {
             const page = await openGame();
             await startMatch(page, classicOptions({ autoplay: 'medium' }));
-            await sim(page, 240);
+            // V2.1: wolniejsze zbieranie - SI awansuje do II ery ok. 250. sekundy (w V2.0 ok. 235.), więc 5 minut zamiast 4
+            await sim(page, 300);
             await page.evaluate(() => window.game.endGame(1, false));
             await page.waitForSelector('#end-screen .chr-tabs');
             const aw = await page.$$eval('.chr-award', els => els.length);
