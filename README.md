@@ -18,6 +18,9 @@ Poprzednie wydanie, **Artificial Battles - Reloaded V1.5.2.html**, zostaje w rep
   wóz w zatorze nie porzuca szlaku, a urwana w pół drogi długa trasa jest liczona dalej.
 - **Silnik i porządki** — szybsze przeliczanie dostępności terenu po zmianach przeszkód i sojuszy (ten sam przebieg gry,
   sprawdzony bit w bit), usunięty nieużywany kod i zdublowane funkcje, zdjęte nieaktualne znaczki „Nowość”.
+- **Płynniejsze przesuwanie kamery** — teren doczytywany z wyprzedzeniem w kierunku jazdy, nowe kafelki wykańczane małymi
+  porcjami w budżecie czasu (najcięższe klatki w ruchu o ok. 1/3 lżejsze); w trybie Jakość kafelki HD w czasie szybkiej
+  jazdy ustępują płynności i wracają zaraz po zatrzymaniu, najpierw w kadrze. Obraz w spoczynku identyczny co do piksela.
 - **Co nowego** w menu: seria Reloaded V1.x zebrana w jedną zwięzłą listę.
 - Gra wieloosobowa wymaga V2.0 (protokół 16); zapisy z Reloaded V1.0–V1.5.2 wczytują się.
 
@@ -48,6 +51,7 @@ npm run test:quick # bez najdłuższych scenariuszy
 node tests/run.mjs wozy          # tylko testy, których nazwa zawiera „wozy”
 AB_FILE="Artificial Battles - Reloaded V1.5.2.html" npm test   # inne wydanie
 node tests/bench.mjs [--profile] # pomiar wydajności symulacji i rysowania (profil CPU w tests/out/)
+node tests/pan.mjs 7 --zoom=1.6  # szybkie przesuwanie kamery: praca terenu na klatkę, opóźnienie klawisza
 ```
 
 Testy uruchamiają grę w przeglądarce bez okna i prowadzą symulację krok po kroku z ustalonym ziarnem losowania:
