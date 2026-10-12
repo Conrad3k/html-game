@@ -1,0 +1,13 @@
+{
+  "name": "artificial-battles",
+  "private": true,
+  "description": "Artificial Battles: Reloaded - gra w jednym pliku HTML. Testy automatyczne (Playwright + Chromium).",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/run.mjs",
+    "test:quick": "node tests/run.mjs --quick"
+  },
+  "devDependencies": {
+    "playwright": "^1.56.1"
+  }
+}
