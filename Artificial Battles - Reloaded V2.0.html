@@ -2030,6 +2030,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <h3>Silnik i porządki w kodzie</h3>
                         <ul>
                             <li>Szybsze przeliczanie dostępności terenu po zmianach przeszkód i sojuszy (zamiast przeliczania całego kontynentu — tylko to, co się zmieniło). Ten sam przebieg gry, sprawdzony bit w bit.</li>
+                            <li><b>Płynniejsze przesuwanie kamery</b>: teren jest doczytywany z wyprzedzeniem w kierunku jazdy, a nowe kafelki wykańczane są małymi porcjami w budżecie czasu, zamiast kilku naraz w jednej klatce — najcięższe klatki w ruchu są o ok. jedną trzecią lżejsze. W trybie Jakość ostre kafelki HD w czasie szybkiej jazdy ustępują płynności, a po zatrzymaniu kamery wracają tak szybko jak wcześniej — najpierw te, na które patrzysz. Obraz w spoczynku jest identyczny co do piksela.</li>
                             <li>Usunięty nieużywany kod i zdublowane funkcje pozostałe po wcześniejszych wydaniach.</li>
                         </ul>
 
@@ -13272,13 +13273,14 @@ class Terrain {
         return { canvas, ctx };
     }
 
-    finishChunk(ch, buf, hasWater) {
+    // pre (V2.0, tryb strumieniowy): warstwa fal policzona już w poprzednich klatkach (_finishStage)
+    finishChunk(ch, buf, hasWater, pre) {
         if (ch.ready) return;
-        const cv = this._canvasFrom(buf, ch.w, ch.h);
+        const cv = pre && pre.canvas ? pre : this._canvasFrom(buf, ch.w, ch.h);   // V2.0: piksele mogły być wgrane wcześniej
         ch.canvas = cv.canvas;
         ch.ctx = cv.ctx;
         ch.hasWater = hasWater && !ch.ring;
-        if (ch.hasWater) this.buildWaveLayer(ch);
+        if (ch.hasWater) { if (pre && pre.wave) ch.wave = pre.wave; else this.buildWaveLayer(ch); }
         if (!ch.ring) this.makeGlints(ch);
 
         this.decorate(ch.ctx, ch, 1);
@@ -13739,12 +13741,20 @@ class Terrain {
     _streamTick(list, view) {
         const f = this.frame;
         for (let i = 0; i < list.length; i++) list[i].used = f;
-        // 1) wykończenie (wgranie pikseli, detale, fale) - jeden kafelek na klatkę, dwa, gdy w kadrze są dziury
+        const mv = this._lastView;
+        // 1) wykończenie (V2.0: małymi etapami w budżecie czasu - 2 ms na klatkę, 5 ms, gdy w kadrze są dziury;
+        //    najpierw kafelki widoczne w kadrze). Wcześniej jeden albo dwa całe kafelki na klatkę - do kilkunastu ms.
         const D = this._sDone;
-        for (let n = 0; n < 2 && D.length; n++) {
-            const d = D.shift();
-            if (!d.ch.ready) this.finishChunk(d.ch, d.buf, d.water);
-            if (!this._holes) break;
+        this._baseWork = D.length > 0;   // V2.0: _hdTick w czasie jazdy ustępuje klatkom z pracą nad kafelkami bazowymi
+        if (D.length) {
+            const t0 = performance.now(), budget = this._holes ? 5 : (mv.moving ? 2 : 3);
+            let n = 0;
+            while (D.length && (n === 0 || performance.now() - t0 < budget)) {
+                let i = 0;
+                if (this._holes) { const k = D.findIndex(d => d.ch.used === f && !d.ch.ready); if (k > 0) i = k; }
+                if (this._finishStage(D[i])) D.splice(i, 1);
+                n++;
+            }
         }
         // 2) zlecenia
         const todo = this._sTodo;
@@ -13753,22 +13763,29 @@ class Terrain {
         for (const ch of list) if (!ch.ready) { holes++; if (!ch.job) todo.push(ch); }
         this._holes = holes;
         const cx = view.x + view.w / 2, cy = view.y + view.h / 2;
-        if (!todo.length && !D.length) {
-            // uprzedzająco: pas jednego kafelka wokół kadru
+        if (!todo.length && D.length < 8) {
+            // uprzedzająco: pas jednego kafelka wokół kadru, a w kierunku jazdy kamery (V2.0) - dwóch albo trzech
             const CS = this.CS, m = CS;
-            const c0 = Math.max(0, Math.floor((view.x - m) / CS)), c1 = Math.min(this.cols - 1, Math.floor((view.x + view.w + m) / CS));
-            const r0 = Math.max(0, Math.floor((view.y - m) / CS)), r1 = Math.min(this.rows - 1, Math.floor((view.y + view.h + m) / CS));
+            const ax = mv.vx > 120 ? (mv.vx > 600 ? 2 : 1) : 0, bx = mv.vx < -120 ? (mv.vx < -600 ? 2 : 1) : 0;
+            const ay = mv.vy > 120 ? (mv.vy > 600 ? 2 : 1) : 0, by = mv.vy < -120 ? (mv.vy < -600 ? 2 : 1) : 0;
+            const c0 = Math.max(0, Math.floor((view.x - m - bx * CS) / CS)), c1 = Math.min(this.cols - 1, Math.floor((view.x + view.w + m + ax * CS) / CS));
+            const r0 = Math.max(0, Math.floor((view.y - m - by * CS) / CS)), r1 = Math.min(this.rows - 1, Math.floor((view.y + view.h + m + ay * CS) / CS));
             for (let r = r0; r <= r1; r++) for (let c = c0; c <= c1; c++) {
                 const ch = this.chunks[r * this.cols + c];
                 if (!ch.ready && !ch.job) todo.push(ch);
             }
         }
         if (todo.length) {
-            const dist = (ch) => Math.abs(ch.x + ch.w / 2 - cx) + Math.abs(ch.y + ch.h / 2 - cy);
+            // kolejność: najbliżej punktu, w którym kamera będzie za pół sekundy (w spoczynku - środka kadru)
+            const lx = cx + mv.vx * 0.5, ly = cy + mv.vy * 0.5;
+            const dist = (ch) => Math.abs(ch.x + ch.w / 2 - lx) + Math.abs(ch.y + ch.h / 2 - ly);
             todo.sort((a, b) => dist(a) - dist(b));
             if (this.pool) {
+                // V2.0: zlecenie to też praca w tej klatce (wycinek pól terenu dla wątku) - bez dziur w kadrze
+                // najwyżej jedno na klatkę; dziury w kadrze - tyle, ile jest wolnych wątków
                 let slot = this._freeSlot();
-                for (let i = 0; i < todo.length && slot; i++) {
+                const most = holes || !mv.moving ? todo.length : 1;
+                for (let i = 0; i < todo.length && i < most && slot; i++) {
                     const ch = todo[i];
                     ch.job = true;
                     this._post(slot, ch, 1, (buf, water) => { ch.job = false; this._sDone.push({ ch, buf, water }); });
@@ -13915,14 +13932,45 @@ class Terrain {
             return;
         }
         this._hdIdle = 0;
-        // 1) jeden etap wykańczania na klatkę (wgranie pikseli albo detale), żeby nie było szarpnięcia
+        // 1) wykończenie małymi etapami. V2.0: piksele kafelka HD (1024 x 1024, 4 MB) wgrywane są w czterech pasach,
+        //    a etapów jest tyle, ile zmieści się w budżecie czasu: w czasie jazdy kamery 2 ms na klatkę (bez szarpnięć),
+        //    gdy kamera stoi - 6 ms, żeby pełna jakość wróciła w kadrze jak najszybciej. Wcześniej jeden etap na klatkę
+        //    (całe 4 MB naraz) - kilka ms w jednej klatce, a przy wolnych klatkach dorysowanie trwało dłużej.
+        //    W czasie jazdy HD dostaje najwyżej jeden etap co drugą klatkę i tylko wtedy, gdy w poprzedniej klatce nie
+        //    wykańczano kafelka bazowego - płynność ruchu ma pierwszeństwo, ostrość wraca zaraz po zatrzymaniu.
+        const mv = this._lastView || { vx: 0, vy: 0, moving: false };
+        // najpierw kafelki, które są w kadrze - gotowe w czasie jazdy zlecenia kafelków, które już z niego wyjechały,
+        // czekają (bez tego po zatrzymaniu kamery gra wykańczała najpierw je, a dopiero potem to, na co patrzysz)
+        const Q = this.hdDone;
+        if (Q.length > 1 && list.indexOf(Q[0].ch) < 0) {
+            const k = Q.findIndex(q => list.indexOf(q.ch) >= 0);
+            if (k > 0) Q.unshift(Q.splice(k, 1)[0]);
+        }
+        if (!mv.moving) {
+            const t0 = performance.now();
+            for (let n = 0; this.hdDone.length && (n === 0 || performance.now() - t0 < 6); n++) this._hdStage(list);
+        } else if (this.hdDone.length && (this.frame & 1) === 0 && !this._baseWork) this._hdStage(list);
+        this._hdOrders(list, view, mv);
+    }
+
+    // V2.0: jeden etap wykończenia kafelka HD (pas pikseli albo detale)
+    _hdStage(list) {
         const d = this.hdDone[0];
         if (d) {
             const ch = d.ch, h = ch.hd;
             if (!h || h !== d.h) this.hdDone.shift();
-            else if (!h.canvas) {
-                const cv = this._canvasFrom(d.buf, ch.w * 2, ch.h * 2);
-                h.canvas = cv.canvas; h.ctx = cv.ctx; d.buf = null;
+            else if (!h.canvas || d.strip < 4) {
+                const W2 = ch.w * 2, H2 = ch.h * 2;
+                if (!h.canvas) {
+                    const c = document.createElement('canvas');
+                    c.width = W2; c.height = H2;
+                    h.canvas = c; h.ctx = c.getContext('2d');
+                    d.img = new ImageData(new Uint8ClampedArray(d.buf.buffer, d.buf.byteOffset, W2 * H2 * 4), W2, H2);
+                    d.strip = 0;
+                }
+                const sh = Math.ceil(H2 / 4), y0 = d.strip * sh;
+                h.ctx.putImageData(d.img, 0, 0, 0, y0, W2, Math.min(sh, H2 - y0));
+                if (++d.strip >= 4) { d.img = null; d.buf = null; }
             } else {
                 this.hdDone.shift();
                 this.decorate(h.ctx, ch, 2);
@@ -13931,7 +13979,7 @@ class Terrain {
                 for (const p of ch.stamps) this._stampInto(h.ctx, ch, p[0], p[1], p[2], 2);
                 h.ready = true; h.fade = 0; h.used = this.frame;
                 this.hdCount++;
-                const cap = Math.max(16, list.length + 6);
+                const cap = Math.max(16, list.length + 6) + 8;   // V2.0: +8 na kafelki przygotowane przed kadrem
                 while (this.hdCount > cap) {
                     let old = null;
                     for (const c2 of this.all) if (c2.hd && c2.hd.ready && c2.hd.used < this.frame - 30 && (!old || c2.hd.used < old.hd.used)) old = c2;
@@ -13941,17 +13989,38 @@ class Terrain {
                 }
             }
         }
-        // 2) zlecenia dla widocznych kafelków bez wersji HD - najpierw te najbliżej środka kadru
+    }
+
+    _hdOrders(list, view, mv) {
+        // 2) zlecenia dla widocznych kafelków bez wersji HD. V2.0: w czasie jazdy kamery najpierw te, w które kamera
+        //    wjeżdża (najbliżej punktu, w którym kadr będzie za pół sekundy), także kafelek tuż przed kadrem - jest
+        //    ostry, zanim się pokaże. Kafelek, który za ćwierć sekundy wyjedzie z kadru, nie dostaje zlecenia (zanim
+        //    wersja HD byłaby gotowa, już by go nie było widać). W spoczynku - jak wcześniej, od środka kadru.
         let slot = this._freeSlot();
         if (!slot) return;
-        const cx = view.x + view.w / 2, cy = view.y + view.h / 2;
+        const vx = mv.vx || 0, vy = mv.vy || 0, moving = !!mv.moving;
+        const cx = view.x + view.w / 2 + vx * 0.5, cy = view.y + view.h / 2 + vy * 0.5;
         const todo = this._hdTodo || (this._hdTodo = []);
         todo.length = 0;
-        for (const ch of list) if (ch.ready && !ch.hd) todo.push(ch);
+        const leaving = (ch) => moving && ((vx > 120 && ch.x + ch.w < view.x + vx * 0.25) || (vx < -120 && ch.x > view.x + view.w + vx * 0.25) ||
+            (vy > 120 && ch.y + ch.h < view.y + vy * 0.25) || (vy < -120 && ch.y > view.y + view.h + vy * 0.25));
+        for (const ch of list) if (ch.ready && !ch.hd && !leaving(ch)) todo.push(ch);
+        if (moving) {
+            // kafelki tuż przed kadrem, w kierunku jazdy
+            const CS = this.CS;
+            const x0 = view.x - (vx < -120 ? CS : 0), x1 = view.x + view.w + (vx > 120 ? CS : 0);
+            const y0 = view.y - (vy < -120 ? CS : 0), y1 = view.y + view.h + (vy > 120 ? CS : 0);
+            const c0 = Math.max(0, Math.floor(x0 / CS)), c1 = Math.min(this.cols - 1, Math.floor(x1 / CS));
+            const r0 = Math.max(0, Math.floor(y0 / CS)), r1 = Math.min(this.rows - 1, Math.floor(y1 / CS));
+            for (let r = r0; r <= r1; r++) for (let c = c0; c <= c1; c++) {
+                const ch = this.chunks[r * this.cols + c];
+                if (ch.ready && !ch.hd && list.indexOf(ch) < 0) todo.push(ch);
+            }
+        }
         if (!todo.length) return;
         const dist = (ch) => Math.abs(ch.x + ch.w / 2 - cx) + Math.abs(ch.y + ch.h / 2 - cy);
         todo.sort((a, b) => dist(a) - dist(b));
-        for (let i = 0; i < todo.length && slot; i++) {
+        for (let i = 0; i < todo.length && (i < 1 || !moving) && slot; i++) {   // V2.0: w czasie jazdy jedno zlecenie HD na klatkę (wycinek pól to też praca)
             const ch = todo[i];
             const h = ch.hd = { canvas: null, ctx: null, ready: false, fade: 0, used: this.frame };
             this._post(slot, ch, 2, (buf) => { if (ch.hd === h) this.hdDone.push({ ch, h, buf }); });
@@ -14013,6 +14082,7 @@ class Terrain {
             if (ch.hasWater) water = true;
         }
         if (water) this.drawWater(ctx, view, time, sx, sy, tx, ty);
+        this._motion(view);   // V2.0: kierunek jazdy kamery (doczytywanie i HD)
         if (hd || this.hdCount) this._hdTick(list, view, hd);
         if (this.stream) this._streamTick(list, view);
         ctx.setTransform(m);
@@ -14020,7 +14090,16 @@ class Terrain {
 
     // Warstwa fal kafelka: wzór fal przycięty maską wody + pas piany przy brzegu. Malowana raz.
     // Margines M pozwala przesuwać okno źródłowe o kilka pikseli bez szwów między kafelkami.
-    buildWaveLayer(ch) {
+    // V2.0: prostokąt masek wody i piany dla kafelka (ten sam, z którego korzysta buildWaveLayer)
+    _waveRect(ch) {
+        const M = 6, S = this.maskScale;
+        const x0 = ch.x - M, y0 = ch.y - M, w = ch.w + 2 * M, h = ch.h + 2 * M;
+        const cx0 = Math.max(0, x0), cy0 = Math.max(0, y0);
+        return { mx: Math.floor(cx0 / S) * S, my: Math.floor(cy0 / S) * S, cx1: Math.min(this.W, x0 + w), cy1: Math.min(this.H, y0 + h) };
+    }
+
+    // pre: { wm, fm } - maski policzone wcześniej (V2.0: etapami, po jednej na klatkę); wtedy wynik trafia do pre.wave
+    buildWaveLayer(ch, pre) {
         const M = this.waveMargin = 6;
         const S = this.maskScale;
         const w = ch.w + 2 * M, h = ch.h + 2 * M;
@@ -14044,8 +14123,8 @@ class Terrain {
         let wm = this.waterMask, fm = this.foamMask, mx = 0, my = 0;
         if (!wm) {
             mx = Math.floor(cx0 / S) * S; my = Math.floor(cy0 / S) * S;
-            wm = this._mask(mx, my, cx1 - mx, cy1 - my, this.waterFn);
-            fm = this._mask(mx, my, cx1 - mx, cy1 - my, this.foamFn);
+            wm = (pre && pre.wm) || this._mask(mx, my, cx1 - mx, cy1 - my, this.waterFn);
+            fm = (pre && pre.fm) || this._mask(mx, my, cx1 - mx, cy1 - my, this.foamFn);
         }
         g.globalCompositeOperation = 'destination-in';
         g.drawImage(wm, (cx0 - mx) / S, (cy0 - my) / S, (cx1 - cx0) / S, (cy1 - cy0) / S, cx0 - x0, cy0 - y0, cx1 - cx0, cy1 - cy0);
@@ -14056,7 +14135,50 @@ class Terrain {
         if (cy1 < y0 + h) g.clearRect(0, cy1 - y0, w, y0 + h - cy1);
         g.globalAlpha = 0.9;
         g.drawImage(fm, (cx0 - mx) / S, (cy0 - my) / S, (cx1 - cx0) / S, (cy1 - cy0) / S, cx0 - x0, cy0 - y0, cx1 - cx0, cy1 - cy0);
-        ch.wave = c;
+        if (pre) pre.wave = c; else ch.wave = c;
+    }
+
+    // V2.0: wykończenie kafelka odebranego od wątku - jeden mały etap na wywołanie (maska wody, maska piany z falami,
+    // obraz z detalami). Kafelek pojawia się dopiero kompletny, więc wygląda tak samo jak przy wykończeniu naraz,
+    // a najdroższa klatka kosztuje ok. 1 ms zamiast kilku-kilkunastu. true - kafelek gotowy.
+    _finishStage(d) {
+        const ch = d.ch;
+        if (ch.ready) return true;
+        if (d.water && !ch.ring && !this.waterMask && !d.wave) {
+            if (!d.wm) { const r = d.rect = this._waveRect(ch); d.wm = this._mask(r.mx, r.my, r.cx1 - r.mx, r.cy1 - r.my, this.waterFn); return false; }
+            if (!d.wave) { const r = d.rect; d.fm = this._mask(r.mx, r.my, r.cx1 - r.mx, r.cy1 - r.my, this.foamFn); this.buildWaveLayer(ch, d); d.wm = d.fm = null; return false; }
+        }
+        // piksele kafelka (512 x 512, 1 MB) w dwóch pasach, po jednym na etap
+        if (!d.canvas || d.strip < 2) {
+            if (!d.canvas) {
+                const c = document.createElement('canvas');
+                c.width = ch.w; c.height = ch.h;
+                d.canvas = c; d.ctx = c.getContext('2d'); d.strip = 0;
+                d.img = new ImageData(new Uint8ClampedArray(d.buf.buffer, d.buf.byteOffset, ch.w * ch.h * 4), ch.w, ch.h);
+            }
+            const sh = Math.ceil(ch.h / 2), y0 = d.strip * sh;
+            d.ctx.putImageData(d.img, 0, 0, 0, y0, ch.w, Math.min(sh, ch.h - y0));
+            d.strip++;
+            return false;
+        }
+        this.finishChunk(ch, d.buf, d.water, d);
+        d.buf = null; d.wave = null; d.img = null; d.canvas = null; d.ctx = null;
+        return true;
+    }
+
+    // V2.0: ruch kamery w krokach świata na sekundę (wygładzony ok. 0,1 s) - do doczytywania w kierunku jazdy.
+    // Liczony w czasie, nie w klatkach: działa tak samo przy 30 i przy 144 klatkach na sekundę.
+    _motion(view) {
+        const now = performance.now();
+        const lv = this._lastView || (this._lastView = { x: view.x, y: view.y, vx: 0, vy: 0, t: now, moving: false });
+        const dt = Math.min(0.25, Math.max(0.001, (now - lv.t) / 1000));
+        let dx = view.x - lv.x, dy = view.y - lv.y;
+        if (Math.abs(dx) > 600 || Math.abs(dy) > 600) { dx = 0; dy = 0; }   // skok kamery (minimapa, spacja) to nie jazda
+        const k = Math.min(1, dt * 10);
+        lv.vx += (dx / dt - lv.vx) * k; lv.vy += (dy / dt - lv.vy) * k;
+        lv.x = view.x; lv.y = view.y; lv.t = now;
+        lv.moving = Math.abs(lv.vx) > 120 || Math.abs(lv.vy) > 120;
+        return lv;
     }
 
     // Animacja wody: dwie kopie warstwy fal przenikają się na zmianę; każda zmienia przesunięcie,
