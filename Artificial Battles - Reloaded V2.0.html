@@ -27713,7 +27713,7 @@ window.WorldEvents = WorldEvents;
 
 // ---------------- Interfejs Wydarzeń świata (UIManager) ----------------
 // Karty decyzji w prawym górnym rogu (pod kartami propozycji Dyplomacji) i pasek trwających wydarzeń u góry ekranu.
-UIManager.prototype.initEvents = function () {
+UIManager.prototype.initWorldEventsUI = function () {
     const mid = document.getElementById('mid-layer');
     if (!mid || this.el['ev-inbox']) return;
     const box = document.createElement('div');
@@ -27739,7 +27739,7 @@ UIManager.prototype.initEvents = function () {
 UIManager.prototype.updateEvents = function () {
     const g = this.game, W = g.worldEvents, me = this.playerNation;
     if (!W || !me) return;
-    if (!this.el['ev-inbox']) this.initEvents();
+    if (!this.el['ev-inbox']) this.initWorldEventsUI();
     const box = this.el['ev-inbox'], strip = this.el['ev-strip'];
     if (!box || !strip) return;
     const esc = escHtml;
