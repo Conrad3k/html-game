@@ -1,150 +1,57 @@
 # Artificial-Battles
 Gra w jednym pliku HTML
 
-Najnowsze wydanie: **Artificial Battles - Reloaded V1.5.2.html** (otwórz w przeglądarce, działa offline).
+Najnowsze wydanie: **Artificial Battles - Reloaded V2.0.html** (otwórz w przeglądarce, działa offline).
+Poprzednie wydanie, **Artificial Battles - Reloaded V1.5.2.html**, zostaje w repozytorium.
 
-**Reloaded V1.5.2** — poprawka: jednostki uwięzione za cudzą bramą nie stoją już w osadzie w nieskończoność:
-- Gdy kończył się sojusz albo umowa handlowa (albo wybuchała wojna), brama zamykała się przed wozami kupieckimi
-  i wojskiem byłego partnera, które były akurat w jego osadzie — zostawały tam na zawsze.
-- Teraz jednostka, która nie ma drogi do żadnego własnego budynku, a miałaby ją przez zamkniętą bramę, po 20 s
-  przepada. Gracz dostaje ostrzeżenie; jeśli w tym czasie brama znów się otworzy (odnowiona umowa, sojusz), jednostki
-  zostają. Nie dotyczy króla, pasażerów, okrętów ani wojska w walce; wyspa czy drugi brzeg rzeki to nie uwięzienie.
-- Gra wieloosobowa wymaga V1.5.2; zapisy z V1.0–V1.5 wczytują się.
+**Reloaded V2.0** — Wydarzenia świata, Kronika bitwy i wozy kupieckie, które nie gubią drogi:
+- **Wydarzenia świata** — co 4–6 minut każdą nację spotyka coś nieplanowanego: urodzaj, złota żyła, wiatrołom, nowe
+  wyrobisko, osadnicy albo pożar w składzie. Część wymaga decyzji (karta z dwoma przyciskami, 45 s): susza, zaraza,
+  najemnicy, wędrowny uczony z gotowym badaniem, turniej (gwiazdka weterana dla żołnierzy). W Dyplomacji także
+  wydarzenia kontynentu: wędrowni kupcy (handel ×2) i zjazd władców. Słabszym częściej trafia się coś dobrego,
+  liderowi — coś złego; SI decyduje według tych samych kosztów. Opcja „Wydarzenia świata” w Zasadach, domyślnie włączona.
+- **Kronika bitwy** — ekran wyników z zakładkami Wyniki / Przebieg (wykres Wyniku, wojska, robotników i zapasów każdej
+  nacji) / Kronika (ery, wojny, pokoje, sojusze, Cuda, utracone Ratusze, porażki, wydarzenia) oraz wyróżnienia
+  (Pogromca, Gospodarz, Burzyciel, Budowniczy, Największa armia, Pierwsi w najwyższej erze).
+- **Wozy kupieckie nie utykają w bramach** — trasa prowadziła wóz partnera handlowego przez bramę osady w murach, ale sam
+  ruch traktował ją jak mur: wóz krążył w bramie, aż tracił szlak. Teraz trasa i ruch mają te same uprawnienia bram,
+  wóz w zatorze nie porzuca szlaku, a urwana w pół drogi długa trasa jest liczona dalej.
+- **Silnik i porządki** — szybsze przeliczanie dostępności terenu po zmianach przeszkód i sojuszy (ten sam przebieg gry,
+  sprawdzony bit w bit), usunięty nieużywany kod i zdublowane funkcje, zdjęte nieaktualne znaczki „Nowość”.
+- **Co nowego** w menu: seria Reloaded V1.x zebrana w jedną zwięzłą listę.
+- Gra wieloosobowa wymaga V2.0 (protokół 16); zapisy z Reloaded V1.0–V1.5.2 wczytują się.
 
-### Wcześniej: Reloaded V1.5
+### Reloaded V1.0–V1.5.2 w skrócie
 
-**Reloaded V1.5** — Widok Prosty Dyplomacji, ładniejsze rzeki i wozy kupieckie u partnerów handlowych:
-- **Widok Prosty / Zaawansowany** — przełącznik w nagłówku ekranu Dyplomacji (zapamiętany, na start Prosty). Prosty:
-  lista nacji z relacją opisaną słowami („życzliwi”, „wrogowie”), jednym zdaniem „dlaczego” i jednym polecanym ruchem;
-  karta nacji z 3 najważniejszymi powodami i propozycjami z odpowiedzią słowami („✓ przyjmą”, „raczej nie — …”);
-  mapa tylko z sojuszami i wojnami. Zaawansowany to pełny ekran z V1.4.
-- **Ładniejsze rzeki** — źródło to cienki strumień, przed brodem koryto zwęża się w płyciznę, ujście rozszerza się
-  jak delta, a rzeki nie wpadają do małych jeziorek (koniec z „rurami” o okrągłych końcach). Rzek tyle samo co wcześniej.
-- **Umowa handlowa otwiera bramy dla wozów kupieckich** — wóz partnera handlowego nie utyka pod bramą otoczonej murem
-  osady (w obie strony); wojsko wchodzi dalej tylko u sojuszników.
-- Gra wieloosobowa wymaga V1.5; zapisy z V1.0–V1.4 wczytują się.
+- **Dyplomacja — nowy tryb główny**: kontynent 5× większy niż mapa Gigantyczna (rzeki, brody, morze, góry), do 8 nacji,
+  wojna / pokój / sojusz zmieniające się w trakcie gry; zwycięstwo przez podbój, Sojusz zwycięzców, Cuda Świata albo
+  Wynik po limicie czasu. Stosunki z konkretnymi powodami i reputacja; umowa handlowa, pakty o nieagresji i obronne,
+  dary, poselstwa, zadośćuczynienie, wezwania do wojny, prośby o wsparcie, trybut, okup i kapitulacja. SI ocenia
+  wszystkich według tych samych reguł, widzi mapę i tworzy koalicje. Ekran Dyplomacji (Tab) z mapą i macierzą
+  relacji, Widokiem Prostym i Zaawansowanym; nazwy ludów dla nacji SI i własna nazwa nacji.
+- **Cuda Świata** (cztery, z premiami), Chwała i Triumf; **zapis i wczytywanie gry** (F5 / F9, autozapis, plik);
+  **gra wieloosobowa** bez serwera (do 8 nacji w Dyplomacji, 4 w Klasycznym meczu).
+- **Handel**: wozy kupieckie do targów sojuszników i partnerów handlowych, bramy otwarte dla sojuszników i wozów
+  partnerów, jednostki uwięzione za zamkniętą bramą przepadają po 20 s.
+- **Wygląd i silnik Raptor**: nowe menu z encyklopedią i podglądem mapy, spokojniejszy interfejs, ładniejsze rzeki,
+  symulacja 2–3× szybsza niż w V3.5 (od V1.3 o kolejną ćwierć); balans jednostek, wolniejsze surowce w Dyplomacji,
+  rozwijający się poziom Łatwy. **Klasyczny mecz** został w menu jako druga opcja.
 
-### Wcześniej: Reloaded V1.4
+## Testy
 
-**Reloaded V1.4** — czytelny ekran Dyplomacji i nazwy ludów dla nacji SI:
-- **„Kto z kim trzyma” bez mylących bloków** — sojusz to grupa, w której każdy jest w sojuszu z każdym. Wcześniej
-  „blok” był łańcuchem (A z B, B z C → A + B + C), więc łączył nacje bez wzajemnego sojuszu, a nawet walczące ze sobą:
-  w kampaniach 8 nacji w 79% minut z sojuszami (w 38% — nacje w stanie wojny). Do tego ostrzeżenie o rozdartych
-  sojuszach (sojusz z obiema stronami jednej wojny).
-- **Macierz relacji** — każda para nacji w jednym polu: ❖ sojusz, 🛡 pakt obronny, ⚔ wojna, ☮ pakt, złota kropka — handel.
-- **Czytelna mapa relacji** — linie omijają herby i mają ciemną obwódkę, handel biegnie osobnym torem, herby się nie
-  nakładają, nazwy szukają wolnego miejsca. Najechanie na herb pokazuje tylko relacje tej nacji (obwódki herbów: relacje
-  z nią), na linię albo pole macierzy — jedną parę. Legenda włącza i wyłącza warstwy.
-- **Zakładka Kontynent** (albo ⤢ na mapie) — duża mapa relacji i relacje każdej nacji po kolei.
-- **Nazwy ludów dla nacji SI w Dyplomacji** — Wikingowie, Spartanie, Goci, Celtowie, Frankowie, Hunowie… (16 nazw,
-  w jednej grze każda na inną literę), z odmianą („sojusz z Wikingami”). Kolor zostaje przy herbie.
-- Symulacja, SI i balans bez zmian. Gra wieloosobowa wymaga V1.4; zapisy z V1.0–V1.3 wczytują się.
+Stały zestaw testów automatycznych (Playwright + Chromium) w katalogu `tests/`:
 
-### Wcześniej: Reloaded V1.3
+```
+npm install        # Playwright (jednorazowo; przeglądarka: npx playwright install chromium)
+npm test           # wszystkie testy (ok. 4 minuty)
+npm run test:quick # bez najdłuższych scenariuszy
+node tests/run.mjs wozy          # tylko testy, których nazwa zawiera „wozy”
+AB_FILE="Artificial Battles - Reloaded V1.5.2.html" npm test   # inne wydanie
+node tests/bench.mjs [--profile] # pomiar wydajności symulacji i rysowania (profil CPU w tests/out/)
+```
 
-**Reloaded V1.3** — szybszy silnik Raptor i wszystkie zmiany po V1.2 (dawne poprawki V1.2.5 i V1.2.7) w jednym wydaniu:
-- **Szybszy silnik Raptor, ten sam obraz i ta sama gra** — symulacja kampanii Dyplomacji ok. 25% krótsza (30 minut
-  kampanii 6 nacji: 44 s zamiast 59 s), Klasyczny mecz na mapie Gigantycznej ok. 10% szybszy. Minimapa nie maluje
-  już co 0,12 s od nowa ok. 4500 drzew i złóż (odświeżenie ok. 60% tańsze), przebudowa siatki ścieżek po ściętym
-  drzewie trwa ok. 1,1 ms zamiast 2,3 ms, mgła wojny jest o ⅓ tańsza, a nacje w pokoju nie szukają wrogów na próżno.
-  Sprawdzone „bit w bit”: te same mecze w V1.2.7 i V1.3 (7 scenariuszy do 30 minut) dają identyczny stan gry, a klatki
-  obrazu i minimapy są identyczne piksel w piksel.
-- **Własna nazwa nacji w Dyplomacji** — pole „Nazwa” w menu (i w poczekalni gry wieloosobowej, dla hosta i każdego
-  gościa, także z apostrofem: „O'Brienowie”). Nazwy nie są odmieniane — tam, gdzie trzeba, odmienia się słowo
-  „nacja” („sojusz z nacją Wilki”).
-- **Nowa czcionka nazw nacji** — Alegreya SC (osadzona w pliku, z polskimi znakami) na ekranie Dyplomacji i w poczekalni.
-- **Surowce w Dyplomacji wolniej** — zbieranie o 20% wolniejsze niż w Klasycznym meczu (audyt: ok. 90% dochodu
-  to zbieranie, a SI miała po 30 minutach 35–40 tys. niewydanych surowców).
-- **SI Łatwa się rozwija** — targ i wóz kupiecki, magazyn, wieża, 12 robotników, III era po ok. 25 min, IV po ok. 40;
-  wojsko i fale bez zmian.
-- **Mapa domyślnie nieodkryta** („Odkryta mapa” wyłączona przy każdym uruchomieniu) i **większa minimapa** (240 × 240).
-- Poprawiona odmiana w kilku komunikatach i w kronice, bez dopisku „(AI)” w wieściach o atakach.
-- Gra wieloosobowa wymaga V1.3; zapisy z V1.0–V1.2.7 wczytują się.
-
-### Wcześniej: Reloaded V1.2
-
-**Reloaded V1.2** — aktualizacja Dyplomacji:
-- **Pakt obronny** — nowa umowa między paktem o nieagresji a sojuszem: napadniętego partnera drugi broni (karta
-  „Stań w obronie / Odmów”), bez wspólnego pola widzenia i zwycięstwa, najwyżej 2 naraz. Odstrasza napastników (SI
-  liczy partnera do siły bloku), odmowa obrony zrywa pakt i psuje reputację, a atak na partnera to zdrada.
-- **Ocieplanie stosunków** — **poselstwo** (110–260 złota, do +20, raz na 3 minuty; posłowie przywożą wieści o zamiarach
-  dworu), **zadośćuczynienie** (złoto za dawne krzywdy — żale słabną o 45%, znika uraza za odmowę trybutu) i
-  „Dotrzymane słowo” za pakt o nieagresji dotrzymany do końca. Karta nacji podpowiada, co najbardziej psuje stosunki.
-- **Reputacja** — każda nacja ma jedną, widoczną dla wszystkich: rośnie z dotrzymanych paktów, odpowiedzi na wezwania
-  i wsparcia, spada po zdradach, zerwanych umowach i odmowach pomocy. SI liczy ją przy paktach i sojuszach.
-- **SI widzi mapę i twoje starania** — docenia realne straty zadane jej wrogowi, boi się zdobywców Ratuszy, niepokoi
-  ją obce wojsko pod jej Ratuszami w czasie pokoju (dostajesz też ostrzeżenie), łączy się w pakty obronne i koalicje
-  przeciw agresorom, a posłów wysyła do tych, z którymi chce się zbliżyć albo których woli udobruchać.
-- **Kapitulacja** — przegrywający oddaje 40% zapasów (z górną granicą zależną od ery) za pokój i 6 minut paktu; zwycięzca
-  przyjmuje ją nawet na początku wojny (łupy zamiast podboju), ale tej samej nacji drugi raz dopiero po 15 minutach.
-- **Cuda Świata w Dyplomacji słabsze** — Chwała 35% tempa (było 60%), kolejne Cuda nacji po 50%, Triumf 7 minut; SI ściga
-  lidera Chwały już przy 70%. Wcześniej jedna SI zbierała wszystkie Cuda i wygrywała w 33.–37. minucie.
-- **Dłuższe kampanie** — domyślny limit czasu 60 minut (było 45).
-- Protokół 15 (gra wieloosobowa wymaga V1.2); zapisy z V1.0 i V1.1 wczytują się w V1.2.
-
-### Wcześniej: Reloaded V1.1
-
-**Reloaded V1.1** — pierwsza duża aktualizacja Reloaded:
-- **Handel wozami kupieckimi w Dyplomacji naprawiony** — wozy jeżdżą na targi sojuszników i partnerów umowy handlowej
-  (wcześniej handlowały tylko w obrębie drużyny, a w Dyplomacji każda nacja ma własną), od razu zawracają, gdy sojusz
-  się rozpada albo wybucha wojna, same ruszają przy nowym sojuszu i wybierają szlak dający najwięcej złota na sekundę.
-- **Bramy sojuszników otwarte** dla wozów i wojska sojusznika (wozy nie utykają pod murem); targu za cudzym murem
-  wóz nie wybiera, a zamknięta droga w trakcie kursu kieruje go na inny targ.
-- **Mniejszy pasek Chwały i Triumfu** — rząd małych pigułek zamiast banerów jeden nad drugim (szczegóły w podpowiedzi).
-- **SI szuka brodów zamiast szturmować przez rzekę** — jednostki nie gonią wroga za wodą, do którego nie prowadzi
-  bliski bród (koniec „tańca” przy brzegu pod ostrzałem), a fale SI oceniają cele drogą przez bród.
-- **Głębsza dyplomacja SI** — embargo na wroga sojusznika (i nowy powód „Handel z ich wrogiem”), prośby o wsparcie
-  surowcami (nowa propozycja, także od i do gracza), wspólne ofensywy sojuszników i obrona słabszych przed agresorem.
-- **Gra wieloosobowa jak solo** — w Dyplomacji do 8 nacji (gracze albo SI), w Klasycznym meczu do 4; protokół 14.
-- Poprawiony opis „Co nowego” dla V1.0 (bez sprzeczności); zapisy z V1.0 wczytują się w V1.1.
-
-### Wcześniej: Reloaded V1.0
-
-**Artificial Battles: Reloaded V1.0 by Conrad3k** — pierwsze wydanie nowej odsłony gry, na silniku **Raptor**.
-Nowy tryb główny **Dyplomacja**, cztery **Cuda Świata** ze zwycięstwem Chwałą, **zapis i wczytywanie gry**, gra
-wieloosobowa bez bety oraz menu i interfejs zaprojektowane od nowa. **Klasyczny mecz** został w menu jako druga opcja —
-jednostki jak w V3.5 (z poprawkami balansu z testów przed premierą), nowością są w nim Cuda Świata, Chwała i Triumf.
-
-**Dyplomacja** — kontynent 11 400 × 11 400 kroków (ok. 5× powierzchni mapy Gigantycznej) z rzekami, brodami, morzem,
-górami i Złotymi wzgórzami, do 8 nacji i relacje wojna / pokój / sojusz zmieniające się w trakcie gry. Cztery drogi do
-zwycięstwa: podbój, Sojusz zwycięzców (najwyżej połowa nacji, 3 minuty jako jedyni), Cuda Świata (1000 Chwały i
-5-minutowy Triumf) i limit czasu (30, 45 albo 60 min, domyślnie 45 — wygrywa najwyższy Wynik; można go wyłączyć).
-Partia trwa zwykle 25–45 minut.
-
-**Dyplomacja z głębią** — stosunek każdej nacji do innej to suma konkretnych powodów: pamięci (napaść, zdrada, dary,
-pokój, odmowy, pomoc w wojnie albo jej brak, zerwane umowy — każda sprawa blednie we własnym tempie) i sytuacji
-(wspólny wróg, handel, pakt, spór o granice, sympatia władców, strach przed hegemonem i przed Chwałą rywala). Nowe
-dźwignie: **umowa handlowa** (złoto co minutę dla obu stron — ok. 5–17 zależnie od ery i odległości; dochód widać w Przeglądzie i w górnym pasku), **pakt o nieagresji** (6 minut bez wojny), **dar** surowców (liczy się wobec bogactwa obdarowanego, z malejącym efektem — sojuszu nie da się kupić)
-i **wezwanie do wspólnej wojny**; dalej pokój za okup, trybut i sojusze. SI ocenia wszystkich według tych samych reguł
-(bez nagonki na gracza), handluje, zawiera pakty i sojusze także między sobą, a na Cuda rywala reaguje dopiero przy
-realnym zagrożeniu — w Dyplomacji Chwała rośnie wolniej (60%).
-
-**Ekran Dyplomacji (Tab)** — mapa relacji: kontynent z herbami nacji w stolicach i liniami wojen, sojuszy, handlu
-i paktów; pod nią „Kto z kim trzyma” (bloki sojusznicze i wojny) i kronika. Karta każdej nacji: stosunek do ciebie
-z rozpisanymi powodami, jej sojusze, wojny i umowy, siła, propozycje z paskiem **gotowości** (czy SI je przyjmie,
-a jeśli nie — czego brakuje), dar, zerwanie umów i wojna. Przegląd: jak widzą cię wszystkie nacje i twoje umowy.
-Propozycje SI pojawiają się w rogu ekranu jako karty z przyciskami.
-
-**Cuda Świata** — Wiszące Ogrody, Kolos i Wielka Biblioteka (III era) oraz Wielka Bazylika (IV era), każdy tylko raz na
-mapie i z własną premią. Ukończone Cuda dają Chwałę (każdy kolejny 70%), ale nie gdy są oblężone albo właściciel nie ma
-Ratusza. 1000 Chwały otwiera 5-minutowy Triumf: oblężenie go wstrzymuje, utrata Cudu przerywa i zabiera 40% Chwały.
-
-**Zapis i wczytywanie gry** — w menu pauzy (Esc) i w menu głównym; cały stan bitwy, szybki zapis F5 / wczytanie F9,
-autozapis co 5 minut gry, eksport do pliku `.absave` i wczytanie z pliku. Zapisy są kompresowane i trzymane w pamięci
-przeglądarki (IndexedDB). Działa w obu trybach gry solo.
-
-**Gra wieloosobowa (od V1.1: do 8 nacji w Dyplomacji, do 4 w Klasycznym meczu)** — bez serwera: przeglądarki łączą się bezpośrednio (WebRTC) po wymianie dwóch
-krótkich kodów. Działa między Windows, macOS i Linuksem oraz w Chrome, Edge, Firefoksie i Safari; na stronie Gra
-wieloosobowa jest test sieci i opcjonalny własny serwer TURN. Wszyscy gracze muszą mieć to samo wydanie pliku.
-
-**Testy przed premierą** — balans jednostek sprawdzony pojedynkami za równe koszty (słabszy Husarz, mocniejsi Muszkieter,
-Grenadier i Arkebuzer), pokonana nacja nie zostawia już na mapie walczących dalej resztek wojska, a gra wieloosobowa
-pewniej łączy graczy w jednej sieci (więcej adresów lokalnych w kodzie, wskazówki przy niepowodzeniu; protokół 13)
-oraz przez internet: obie strony ponawiają próby połączenia, aż wstanie, więc kod można przesyłać nawet kilka minut.
-Powrót gracza po rozłączeniu działa pewnie: host może zaprosić go ponownie już po kilku sekundach, łącze hosta ponawia
-próby przez pełne 2 minuty, a wracający gracz nie uznaje połączenia za zerwane, gdy świat przesyła się wolniej.
-
-**Nowy wygląd i szybszy silnik Raptor** — menu z paskiem zakładek, podglądem mapy i encyklopedią, spokojniejszy interfejs w grze
-(pismo Inter i Cinzel osadzone w pliku), generator kontynentów Raptor Atlas, strumieniowanie terenu i ok. 2–3× szybsza
-symulacja niż w V3.5.
-Szczegóły: menu gry → „Co nowego”.
+Testy uruchamiają grę w przeglądarce bez okna i prowadzą symulację krok po kroku z ustalonym ziarnem losowania:
+oba tryby SI kontra SI, powtarzalność przebiegu, Wydarzenia świata i Kronika, zapis i wczytanie (także zapisów
+z poprzedniego wydania), gra wieloosobowa w dwóch kartach, handel i wozy kupieckie przy murach i bramach, surowce,
+farmy, szkolenie, budowa, ery, ulepszenia, walka, Cuda Świata, długie marsze, poprawność łatania regionów
+(porównanie z pełnym przeliczeniem) i generowanie wszystkich typów oraz rozmiarów map i kontynentu z rzekami.
