@@ -3194,9 +3194,10 @@ function pickPeoples(k, taken) {
     for (const p of pool) if (out.length < k && !out.includes(p[0])) out.push(p[0]);
     return out;
 }
+// Tekst do wstawienia w HTML interfejsu (V2.0: jedna funkcja dla wszystkich paneli - wcześniej kilka kopii)
+function escHtml(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 // V1.2: własna nazwa nacji (Dyplomacja) - litery (także polskie), spacje, łącznik i apostrof, najwyżej 18 znaków.
 // Pusta albo taka sama jak nazwa nacji z palety (np. "Czerwoni") - brak własnej nazwy (zostaje nazwa koloru).
-function escHtml(t) { return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
 function cleanNationName(v) {
     const s = String(v == null ? '' : v).replace(/[^A-Za-zÀ-ÖØ-öø-žĄąĆćĘęŁłŃńÓóŚśŹźŻż' -]/g, '').replace(/\s+/g, ' ').trim().slice(0, 18).trim();
     if (s.length < 2) return '';
@@ -4441,14 +4442,6 @@ class Game {
         return tv.exp[col + row * this.visCols] === 1;
     }
 
-    // Czy drużyna widzi encję w tej chwili (własne i sojusznicze - zawsze; surowce - po odkryciu terenu)
-    teamSees(team, e) {
-        if (!e || e.isDestroyed) return false;
-        if (!e.owner) return this.teamExplored(team, e.x, e.y);
-        if (e.owner.team === team) return true;
-        return this.teamVisible(team, e.x, e.y);
-    }
-
     markVisibleCircle(cx, cy, radius) {
         this.markCircle(this.visibilityGrid, this.exploredGrid, cx, cy, radius);
     }
@@ -5573,12 +5566,6 @@ Game.prototype.advanceProjectiles = function (dt) {
             this.projectileImpact(p);
         }
     }
-};
-
-// Zgodność ze starszym kodem / testami: pełna aktualizacja efektów jednym wywołaniem
-Game.prototype.updateEffects = function (dt) {
-    this.advanceProjectiles(dt);
-    this.updateVisuals(dt);
 };
 
 // Wszystko, co jest tylko obrazem: położenie pocisków na ekranie, cząsteczki, ślady, napisy, wstrząs kamery.
@@ -8437,11 +8424,6 @@ class SoundManager {
         this.play('blast', x, y, { gain: 0.95 * SoundManager.COMBAT, max: 3, range: 2.5, send: 0.4, rate: kind === 1 ? 0.92 : 1 });
     }
 
-    // Stare wywołania z innych miejsc kodu (np. testy): krótki ton
-    tone(freq, start, dur, type, vol) { this.play('ui_select', undefined, undefined, { gain: (vol || 0.05) * 8, bus: 'ui', rate: freq / 466.2, delay: start }); }
-    playOscillator(freq, type, duration, vol) { this.tone(freq, 0, duration, type, vol); }
-    noiseBurst() { }
-
     // ---------------- Tło ----------------
     startAmbient() {
         if (this.amb) return;
@@ -8897,6 +8879,8 @@ class Pathfinder {
     // V1.1: bramy sojuszników - tabela uprawnień z bieżących sojuszy; po zmianie regiony i pamięć ścieżek od nowa
     syncGates() {
         const D = this.game.diplo, A = this.gateAllow;
+        const prev = this._gatePrev || (this._gatePrev = new Uint8Array(A.length));
+        prev.set(A);
         A.fill(0);
         for (let t = 1; t < 32; t++) A[t * 32 + t] = 1;
         A.fill(1, (Pathfinder.ALL_GATES + 1) * 32 + 1, (Pathfinder.ALL_GATES + 2) * 32);
@@ -8924,8 +8908,18 @@ class Pathfinder {
         }
         if (sig !== this._gateSig) {
             this._gateSig = sig;
-            this.regions.clear();
-            this.pathCache.clear();
+            // V2.0: regiony liczy się od nowa tylko dla drużyn (wierszy uprawnień), którym coś się zmieniło - i tylko
+            // wtedy, gdy na mapie w ogóle stoi brama. Wcześniej każdy sojusz czy umowa handlowa kasowały podział na
+            // regiony wszystkich ok. 20 drużyn i wierszy wozów (pełne zalanie 144 tys. pól kontynentu dla każdego).
+            if (this._gateCells !== 0) {
+                let any = false;
+                for (const key of [...this.regions.keys()]) {
+                    if (key.charCodeAt(0) !== 108) continue;   // okręty bram nie używają
+                    const row = (Number(key.slice(1)) + 1) * 32;
+                    for (let k = row; k < row + 32; k++) if (A[k] !== prev[k]) { this.regions.delete(key); any = true; break; }
+                }
+                if (any) this.pathCache.clear();
+            }
         }
     }
 
@@ -9066,6 +9060,9 @@ class Pathfinder {
         }
 
         this.lastObstacleVersion = game.obstacleVersion || 0;
+        let gc = 0;
+        for (const nation of game.nations) for (const b of nation.buildings) if (b.type === 'gate' && !b.isDestroyed) { gc = 1; break; }
+        this._gateCells = gc;   // V2.0: czy na mapie stoi jakakolwiek brama (syncGates)
         if (patch) { if (over) this.regions.clear(); else this._patchRegions(ch, m); }
         else this.regions.clear();
         this.pathCache.clear();
@@ -9148,7 +9145,8 @@ class Pathfinder {
                         q.push(j);
                     });
                 }
-                if (found < set.size) return false;
+                // V2.0: sąsiedzi nie łączą się w oknie - region mógł się rozpaść; sprawdzamy to na całej mapie
+                if (found < set.size && !this._resplit(lab, L, [...set], open)) return false;
             }
         }
         if (opened.length) {
@@ -9158,8 +9156,16 @@ class Pathfinder {
                 const later = [];
                 for (const i of rest) {
                     let L = 0, clash = false;
-                    nb(i, (j) => { const v = lab[j]; if (v !== 0) { if (L === 0) L = v; else if (v !== L) clash = true; } });
-                    if (clash) return false;
+                    let cj = -1;
+                    nb(i, (j) => { const v = lab[j]; if (v !== 0) { if (L === 0) { L = v; cj = j; } else if (v !== L) clash = true; } });
+                    if (clash) {
+                        // V2.0: otwarte pole łączy regiony - przemianowujemy mniejsze na numer większego (wcześniej
+                        // region całej drużyny liczył się od nowa)
+                        let ok = true;
+                        nb(i, (j) => { if (ok && lab[j] !== 0 && lab[j] !== lab[cj]) ok = this._mergeRegions(lab, cj, j); });
+                        if (!ok) return false;
+                        L = lab[cj];
+                    }
                     if (L === 0) { later.push(i); continue; }
                     lab[i] = L;
                     progress = true;
@@ -9176,6 +9182,125 @@ class Pathfinder {
             }
         }
         return true;
+    }
+
+    // V2.0: sąsiedzi pól, które się zamknęły (seeds, wszyscy z regionu L), nie łączą się w oknie wokół zmiany.
+    // Przeszukujemy region L równolegle od każdego z nich (po kolei, porcjami): spotkanie dwóch przeszukań łączy je
+    // w jedną grupę, a grupa, której zabrakło pól, zanim spotkała pozostałe, jest osobnym kawałkiem - dostaje nowy
+    // numer. Największy kawałek (zwykle reszta mapy) nie jest przechodzony do końca, więc koszt zależy od wielkości
+    // odciętych kawałków, nie całego regionu. false - za dużo pracy (wtedy pełne przeliczenie, jak wcześniej).
+    _resplit(lab, L, seeds, open) {
+        const cols = this.cols, rows = this.rows, k = seeds.length;
+        const stamp = this._spStamp || (this._spStamp = new Uint32Array(this.maxNodes));
+        const owner = this._spOwner || (this._spOwner = new Int32Array(this.maxNodes));
+        let gen = this._spGen = ((this._spGen || 0) + 1) >>> 0;
+        if (gen === 0) { stamp.fill(0); gen = this._spGen = 1; }
+        const parent = new Int32Array(k);
+        const find = (a) => { while (parent[a] !== a) { parent[a] = parent[parent[a]]; a = parent[a]; } return a; };
+        const q = [], head = new Int32Array(k);
+        for (let c = 0; c < k; c++) {
+            parent[c] = c;
+            const sc = seeds[c];
+            if (stamp[sc] === gen) { parent[c] = find(owner[sc]); q.push([]); continue; }
+            stamp[sc] = gen; owner[sc] = c; q.push([sc]);
+        }
+        let work = 0;
+        const LIMIT = 250000, BATCH = 48;
+        for (;;) {
+            // grupy, w których jeszcze jest co przeszukiwać
+            let active = -1, many = false;
+            for (let c = 0; c < k; c++) if (head[c] < q[c].length) { const r = find(c); if (active < 0) active = r; else if (r !== active) { many = true; break; } }
+            if (!many) break;
+            for (let c = 0; c < k; c++) {
+                const Q = q[c];
+                for (let b = 0; b < BATCH && head[c] < Q.length; b++) {
+                    const cur = Q[head[c]++];
+                    const cc = cur % cols;
+                    const step = (j) => {
+                        if (lab[j] !== L) return;
+                        if (stamp[j] !== gen) { stamp[j] = gen; owner[j] = c; Q.push(j); return; }
+                        const a = find(owner[j]), r = find(c);
+                        if (a !== r) parent[a] = r;
+                    };
+                    if (cc > 0) step(cur - 1);
+                    if (cc < cols - 1) step(cur + 1);
+                    if (cur >= cols) step(cur - cols);
+                    if (cur < (rows - 1) * cols) step(cur + cols);
+                }
+                work += BATCH;
+                if (work > LIMIT) return false;
+            }
+        }
+        // grupy: która jeszcze trwa (zostaje przy L), które się skończyły (osobne kawałki)
+        let keep = -1;
+        for (let c = 0; c < k; c++) if (head[c] < q[c].length) { keep = find(c); break; }
+        const groups = new Map();
+        for (let c = 0; c < k; c++) { const r = find(c); let g = groups.get(r); if (!g) groups.set(r, g = []); g.push(c); }
+        if (keep < 0) {
+            // wszystkie skończone: L zostaje przy największym kawałku
+            let best = -1, bs = -1;
+            for (const [r, g] of groups) { let sz = 0; for (const c of g) sz += q[c].length; if (sz > bs) { bs = sz; best = r; } }
+            keep = best;
+        }
+        for (const [r, g] of groups) {
+            if (r === keep) continue;
+            const NL = lab.maxLabel = (lab.maxLabel || 0) + 1;
+            for (const c of g) { const Q = q[c]; for (let i = 0; i < Q.length; i++) lab[Q[i]] = NL; }
+        }
+        return true;
+    }
+
+    // V2.0: dwa regiony łączą się (otwarte pole między pólami a i b) - mniejszy dostaje numer większego. Oba regiony
+    // są przeszukiwane na zmianę; ten, któremu pierwszemu zabraknie pól, jest mniejszy i to jego pola się przemianowuje.
+    _mergeRegions(lab, a, b) {
+        const La = lab[a], Lb = lab[b];
+        if (La === Lb) return true;
+        const cols = this.cols, rows = this.rows;
+        const stamp = this._spStamp || (this._spStamp = new Uint32Array(this.maxNodes));
+        let gen = this._spGen = ((this._spGen || 0) + 1) >>> 0;
+        if (gen === 0) { stamp.fill(0); gen = this._spGen = 1; }
+        const qa = [a], qb = [b];
+        stamp[a] = gen; stamp[b] = gen;
+        let ha = 0, hb = 0, work = 0;
+        const grow = (Q, h, L) => {
+            const cur = Q[h], cc = cur % cols;
+            const step = (j) => { if (lab[j] === L && stamp[j] !== gen) { stamp[j] = gen; Q.push(j); } };
+            if (cc > 0) step(cur - 1);
+            if (cc < cols - 1) step(cur + 1);
+            if (cur >= cols) step(cur - cols);
+            if (cur < (rows - 1) * cols) step(cur + cols);
+        };
+        while (ha < qa.length && hb < qb.length) {
+            grow(qa, ha++, La); grow(qb, hb++, Lb);
+            if (++work > 250000) return false;
+        }
+        // skończył się region a (mniejszy) -> numer b; inaczej odwrotnie
+        if (ha >= qa.length) { for (let i = 0; i < qa.length; i++) lab[qa[i]] = Lb; }
+        else { for (let i = 0; i < qb.length; i++) lab[qb[i]] = La; }
+        return true;
+    }
+
+    // Test (tests/): czy podział na regiony w pamięci jest taki sam jak po pełnym przeliczeniu - te same pola razem
+    // i osobno (numery mogą się różnić). Zwraca listę kluczy drużyn z błędem.
+    verifyRegions() {
+        this.ensureGrid();
+        const bad = [];
+        for (const [key, lab] of [...this.regions]) {
+            this.regions.delete(key);
+            const grid = key.charCodeAt(0) === 108 ? this.landGrid : this.boatGrid;
+            const fresh = this.getRegions(grid, Number(key.slice(1)));
+            this.regions.set(key, lab);
+            const map = new Map(), back = new Map();
+            for (let i = 0; i < lab.length; i++) {
+                const x = lab[i], y = fresh[i];
+                if ((x === 0) !== (y === 0)) { bad.push(key); break; }
+                if (x === 0) continue;
+                const m = map.get(x), r = back.get(y);
+                if (m === undefined && r === undefined) { map.set(x, y); back.set(y, x); }
+                else if (m !== y || r !== x) { bad.push(key); break; }
+            }
+        }
+        return bad;
     }
 
     // ---------------- Zapytania o komórki ----------------
@@ -9216,12 +9341,6 @@ class Pathfinder {
         const idx = this.cellIndex(x, y);
         if (idx < 0) return false;
         return this.cellOpen(this.getGrid(unit), idx, this.teamOf(unit));
-    }
-
-    isWalkable(unit, col, row, tMinX = -1, tMaxX = -1, tMinY = -1, tMaxY = -1) {
-        if (col >= tMinX && col <= tMaxX && row >= tMinY && row <= tMaxY) return true;
-        if (col < 0 || row < 0 || col >= this.cols || row >= this.rows) return false;
-        return this.cellOpen(this.getGrid(unit), row * this.cols + col, this.teamOf(unit));
     }
 
     // Najbliższa dostępna komórka (spirala do promienia maxR); zwraca indeks albo -1
@@ -10025,7 +10144,7 @@ class UIManager {
         // Chwała, tempo, czas do Triumfu, cienki pasek), najwyżej cztery w rzędzie, reszta jako "+N"; zdanie z opisem
         // w podpowiedzi (title). Triumf zostaje wyraźniejszy, ale też w jednej linii.
         let html = '';
-        const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const esc = escHtml;
         if (!g.gameOver && g.wondersOn) {
             const me = this.playerNation, T = g.triumphInfo();
             const clock = (t) => { t = Math.max(0, Math.ceil(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
@@ -10168,7 +10287,7 @@ class UIManager {
     // Wspólne dane ekranu Dyplomacji (liczone raz na odświeżenie)
     dpCtx() {
         const g = this.game, D = g.diplo, me = this.playerNation;
-        const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const esc = escHtml;
         const mmss = (t) => { t = Math.max(0, Math.ceil(t)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
         const ago = (t) => { const s = Math.max(0, g.time - t); return s < 60 ? 'od chwili' : 'od ' + Math.floor(s / 60) + ' min'; };
         const full = !!(this.locked || g.gameOver);
@@ -11063,7 +11182,7 @@ class UIManager {
     // i w kartach poza nim (prawy górny róg)
     diploPropHtml(p) {
         const g = this.game, me = this.playerNation, D = g.diplo;
-        const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const esc = escHtml;
         const nm = esc(p.from.shortName || p.from.name), pt = esc(Diplomacy.payText(p.pay));
         const left = Math.max(0, Math.ceil(p.until - g.time)), pct = Math.min(100, left / DIPLO.PROPOSAL_TTL * 100);
         const bar = `<i class="dp-tbar"><i style="width:${pct.toFixed(1)}%"></i></i>`;
@@ -14894,25 +15013,6 @@ const Sprites = {
         st = { canvas: c, cell: cell };
         this.rotCache.set(key, st);
         return st;
-    },
-
-    // ikona jednostki (portret) - sprite w pozie spoczynkowej obrócony "do góry"
-    unitIcon(type, colorKey, px) {
-        const key = 'ui|' + type + '|' + colorKey + '|' + px;
-        let c = this.cache.get(key);
-        if (c) return c;
-        const spr = this.unit(type, colorKey, 'idle', 0);
-        c = document.createElement('canvas');
-        c.width = px * 2; c.height = px * 2;
-        const g = c.getContext('2d');
-        const cfg = GameConfig.units[type];
-        const fit = (px * 2) / (Math.max(30, cfg.radius * 3.6, cfg.iconSpan || 0));
-        g.translate(px, px);
-        g.rotate(-Math.PI / 2);
-        g.scale(fit, fit);
-        g.drawImage(spr.canvas, spr.dx, spr.dy, spr.dw, spr.dh);
-        this.cache.set(key, c);
-        return c;
     }
 };
 
@@ -22221,8 +22321,6 @@ class NationAI {
         this.homePos = null;
     }
 
-    get attackWaveSize() { return this.waveSizeNow; }
-
     onAttach(nation) {
         const p = this.p;
         nation.gatherBonus = p.gatherBonus || 1;
@@ -27925,7 +28023,7 @@ UIManager.prototype.updateEvents = function () {
     if (!this.el['ev-inbox']) this.initEvents();
     const box = this.el['ev-inbox'], strip = this.el['ev-strip'];
     if (!box || !strip) return;
-    const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const esc = escHtml;
     const t = g.time, hide = this.locked || g.gameOver || me.defeated;
     // karty decyzji
     const gone = this._evGone || new Set();
@@ -27973,7 +28071,7 @@ UIManager.prototype.updateEvents = function () {
 // Wyróżnienia nad tabelą i trzy zakładki: Wyniki (tabela), Przebieg (wykres z wyborem miary), Kronika (oś ważnych chwil).
 UIManager.prototype.chronicleHtml = function (tableHtml) {
     const g = this.game, c = g.chron, me = g.nations.indexOf(this.playerNation);
-    const esc = (s) => String(s).replace(/[&<>"]/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]));
+    const esc = escHtml;
     const aw = Chronicle.awards(g);
     let h = '';
     if (aw.length) h += '<div class="chr-awards">' + aw.map(a => `<div class="chr-award${a[4] === this.playerNation ? ' me' : ''}" title="${esc(a[1] + ': ' + a[2] + ' — ' + a[3])}"><span>${a[0]}</span><b>${esc(a[1])}</b><em>${esc(a[2])}</em><small>${esc(a[3])}</small></div>`).join('') + '</div>';
@@ -29757,20 +29855,6 @@ const NetCodec = {
             if (cur) grid.fill(1, i, i + run);
             i += run; cur = 1 - cur;
         }
-    },
-
-    // ---------------- Base64 dla danych binarnych (alfabet bez znaków, które komunikatory traktują jak formatowanie) ----------------
-    toBase64(bytes) {
-        let s = '';
-        for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
-        return btoa(s).replace(/=+$/, '');
-    },
-
-    fromBase64(text) {
-        const s = atob(text);
-        const out = new Uint8Array(s.length);
-        for (let i = 0; i < s.length; i++) out[i] = s.charCodeAt(i);
-        return out;
     },
 
     // Nazwy graczy i nacji trafiają do HTML-a interfejsu: usuwamy z nich znaki, którymi dałoby się wstrzyknąć kod
@@ -31917,7 +32001,7 @@ const MpUI = {
         lost: 'Połączenie z hostem zostało zerwane.'
     },
 
-    esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); },
+    esc(s) { return escHtml(s); },
 
     errText(code, extra) {
         if (code === 'wrongKind') {
@@ -33366,7 +33450,7 @@ const SaveUI = {
         let saves = [];
         try { saves = await SaveStore.list(); } catch (e) { this.msg('Pamięć przeglądarki jest niedostępna — zapisz grę do pliku albo wczytaj ją z pliku.', 'bad'); }
         this._list = saves;
-        const esc = (t) => String(t == null ? '' : t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const esc = escHtml;
         const MAPS = { lake: 'Jezioro', lakes: 'Pojezierze', plains: 'Równiny', highlands: 'Góry', continent: 'Kontynent' };
         const g = this.game(), canSave = this.mode === 'save' && !SaveGame.blocker(g);
         const fmtDate = (ms) => { const d = new Date(ms); return d.toLocaleDateString('pl-PL', { day: 'numeric', month: 'short' }) + ', ' + d.toLocaleTimeString('pl-PL', { hour: '2-digit', minute: '2-digit' }); };
