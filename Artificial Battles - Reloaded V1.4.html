@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artificial Battles: Reloaded V1.3</title>
+    <title>Artificial Battles: Reloaded V1.4</title>
     <style>
 /* Czcionka Nunito (SIL Open Font License 1.1) osadzona w pliku - gra działa w pełni offline */
 @font-face { font-family: 'Nunito'; font-style: normal; font-display: swap; font-weight: 200 1000;
@@ -1292,37 +1292,103 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 
 /* mapa relacji */
 .dpm { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 12px; box-shadow: 0 0 0 1px rgba(241, 197, 106, 0.28), 0 10px 26px rgba(0, 0, 0, 0.45); }
-.dpm-e { stroke-linecap: round; fill: none; transition: opacity 0.2s; }
-.dpm-e.al { stroke: #46d36e; stroke-width: 3.4; }
-.dpm-e.war { stroke: #ff5a4d; stroke-width: 2.6; stroke-dasharray: 7 5; }
-.dpm-e.tr { stroke: #f1c56a; stroke-width: 2.2; stroke-dasharray: 0.1 5; }
-.dpm-e.tr2 { stroke: #fff1c2; stroke-width: 1.2; stroke-dasharray: 0.1 6; }
-.dpm-e.nap { stroke: #8ab4ff; stroke-width: 1.6; stroke-dasharray: 4 4; }
-.dpm-e.df { stroke: #4fd1c5; stroke-width: 2.6; stroke-dasharray: 10 3 2 3; }   /* V1.2: pakt obronny */
-.dpm-e.mine { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.35)); }
-.dpm-e.dim, .dpm-w.dim { opacity: 0.16; }
+/* V1.4: linie relacji to krzywe omijające herby, z ciemną obwódką pod spodem (czytelne na każdym tle);
+   handel biegnie osobnym złotym torem obok sojuszu albo paktu; po najechaniu na nację reszta przygasa */
+.dpm-c { fill: none; stroke: rgba(5, 7, 11, 0.8); stroke-linecap: round; transition: opacity 0.15s; }
+.dpm-c.al { stroke-width: 7; } .dpm-c.war { stroke-width: 6; } .dpm-c.df { stroke-width: 6.2; } .dpm-c.nap { stroke-width: 4.8; } .dpm-c.tr { stroke-width: 5.2; }
+.dpm-e { stroke-linecap: round; fill: none; transition: opacity 0.15s; }
+.dpm-e.al { stroke: #46d36e; stroke-width: 3.6; }
+.dpm-e.war { stroke: #ff5a4d; stroke-width: 2.8; stroke-dasharray: 7 4.5; }
+.dpm-e.tr, .dpm-e.tr2 { stroke: #f6cf6e; stroke-width: 2.8; stroke-dasharray: 0.1 5.2; }
+.dpm-e.nap { stroke: #8ab4ff; stroke-width: 1.9; stroke-dasharray: 4.5 3.5; }
+.dpm-e.df { stroke: #4fd1c5; stroke-width: 3; stroke-dasharray: 10 3 2.5 3; }   /* V1.2: pakt obronny */
+.dpm-e.mine { filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3)); }
+.dpm-e.hl { filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.35)); }
+.dpm-e.al.hl { stroke-width: 4.4; } .dpm-e.war.hl { stroke-width: 3.4; } .dpm-e.df.hl { stroke-width: 3.6; } .dpm-e.nap.hl { stroke-width: 2.5; }
+.dpm-c.dim, .dpm-e.dim, .dpm-w.dim { opacity: 0.1; }
 .dpm-w circle { fill: #3a0f0c; stroke: #ff5a4d; stroke-width: 1.4; }
 .dpm-w path { stroke: #ffd2cc; stroke-width: 1.5; stroke-linecap: round; }
-.dpm-n { cursor: pointer; }
-.dpm-n .dpm-ring { fill: none; stroke: rgba(235, 237, 245, 0.55); stroke-width: 2; }
-.dpm-n .dpm-halo { fill: rgba(0, 0, 0, 0.35); stroke: none; }
-.dpm-n.war .dpm-ring { stroke: #ff5a4d; stroke-width: 2.6; }
-.dpm-n.ally .dpm-ring { stroke: #46d36e; stroke-width: 2.6; }
-.dpm-n.me .dpm-ring { stroke: #f1c56a; stroke-width: 2.8; }
-.dpm-n.dead { opacity: 0.32; filter: grayscale(1); }
+.dpm-hit { fill: none; stroke: transparent; stroke-width: 11; pointer-events: stroke; cursor: help; }
+.dpm-n { cursor: pointer; transition: opacity 0.15s; }
+.dpm-n .dpm-ring { fill: none; stroke: rgba(235, 237, 245, 0.5); stroke-width: 2; }
+.dpm-n .dpm-halo { fill: rgba(5, 7, 11, 0.55); stroke: none; }
+.dpm-n.war .dpm-ring { stroke: #ff5a4d; stroke-width: 2.8; }
+.dpm-n.ally .dpm-ring { stroke: #46d36e; stroke-width: 2.8; }
+.dpm-n.df .dpm-ring { stroke: #4fd1c5; stroke-width: 2.8; }
+.dpm-n.nap .dpm-ring { stroke: #8ab4ff; stroke-width: 2.4; }
+.dpm-n.ref .dpm-ring { stroke: #f1c56a; stroke-width: 3; }
+.dpm-n.ref .dpm-halo { fill: rgba(241, 197, 106, 0.2); stroke: rgba(241, 197, 106, 0.75); stroke-width: 1.2; }
+.dpm-n.hl .dpm-halo { fill: rgba(241, 197, 106, 0.2); }
+.dpm-n.quiet { opacity: 0.42; }
+.dpm-n.dead { opacity: 0.3; filter: grayscale(1); }
 .dpm-n.sel .dpm-halo { fill: rgba(241, 197, 106, 0.22); stroke: #f1c56a; stroke-width: 1.5; }
-.dpm-n:hover .dpm-halo { fill: rgba(255, 255, 255, 0.14); }
-.dpm-l { font: 700 10.5px var(--nation); fill: #f5f5f7; text-anchor: middle; paint-order: stroke; stroke: rgba(5, 7, 11, 0.9); stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
+.dpm-n:hover .dpm-halo { fill: rgba(255, 255, 255, 0.16); }
+.dpm-l { font: 700 10.5px var(--nation); fill: #f5f5f7; paint-order: stroke; stroke: rgba(5, 7, 11, 0.92); stroke-width: 3.2px; stroke-linejoin: round; pointer-events: none; }
+.dpm.big .dpm-l { font-size: 12.5px; }
 .dpm-n.me .dpm-l { fill: #ffe08a; }
 .dpm-b { font: 800 11px var(--ui); text-anchor: middle; paint-order: stroke; stroke: rgba(5, 7, 11, 0.9); stroke-width: 3px; pointer-events: none; }
 .dpm-b.heg, .dpm-b.tri { fill: #ffd98a; }
 .dpm-b.thr { fill: #fff; font-size: 9px; stroke: none; }
 .dpm-thr { fill: #e2483c; stroke: #2a0c0a; stroke-width: 1; }
-.dpm-leg { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 12px; margin: 7px 0 0; font-size: 10.5px; color: var(--label-3); }
-.dpm-leg span { display: inline-flex; align-items: center; gap: 5px; }
+.dpm-wrap { position: relative; }
+.dpm-big { position: absolute; top: 7px; right: 7px; width: 26px; height: 26px; padding: 0; border: 0; border-radius: 8px; cursor: pointer; background: rgba(5, 7, 11, 0.75); color: var(--label-2); font: 700 14px var(--ui); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.35); }
+.dpm-big:hover { color: #ffe08a; background: rgba(5, 7, 11, 0.92); }
+.dpm-leg { display: flex; justify-content: center; flex-wrap: wrap; gap: 2px 4px; margin: 6px 0 0; }
+.dpm-leg button { display: inline-flex; align-items: center; gap: 5px; padding: 2px 6px; border: 0; border-radius: 6px; background: none; color: var(--label-3); font: 600 10.5px var(--ui); cursor: pointer; }
+.dpm-leg button:hover { background: rgba(255, 255, 255, 0.06); color: var(--label-2); }
+.dpm-leg button.off { opacity: 0.38; text-decoration: line-through; }
 .dpm-leg i { width: 18px; height: 0; border-top: 3px solid; }
-.dpm-leg .al i { border-color: #46d36e; } .dpm-leg .war i { border-top: 2px dashed #ff5a4d; } .dpm-leg .tr i { border-top: 3px dotted #f1c56a; } .dpm-leg .nap i { border-top: 2px dashed #8ab4ff; }
+.dpm-leg .al i { border-color: #46d36e; } .dpm-leg .war i { border-top: 2px dashed #ff5a4d; } .dpm-leg .tr i { border-top: 3px dotted #f6cf6e; } .dpm-leg .nap i { border-top: 2px dashed #8ab4ff; }
 .dpm-leg .df i { border-top: 3px double #4fd1c5; }
+.dpm-cap { margin: 4px 2px 0; min-height: 15px; font-size: 11px; line-height: 1.4; color: var(--label-3); text-align: center; }
+.dpm-cap .dp-n { font-size: 1em; }
+.dpx-map:empty { display: none; }
+
+/* V1.4: macierz relacji - wiersz i kolumna to te same nacje, pole = ich relacja (złota kropka = handel) */
+.dpmx { display: grid; gap: 2px; align-items: center; margin: 0 0 4px; }
+.dpmx-h { display: flex; justify-content: center; align-items: center; height: 22px; border-radius: 6px; cursor: pointer; }
+.dpmx-r { display: flex; align-items: center; gap: 5px; min-width: 0; height: 22px; padding: 0 5px 0 3px; border-radius: 6px; cursor: pointer; color: var(--label-2); font: 700 12px var(--nation); white-space: nowrap; }
+.dpmx-r > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.dpmx-r.me { color: #ffe08a; }
+.dpmx-h:hover, .dpmx-r:hover { background: rgba(255, 255, 255, 0.06); }
+.dpmx-h.hl, .dpmx-r.hl { background: rgba(241, 197, 106, 0.18); }
+.dpmx-k, .dpmx-x { position: relative; height: 22px; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 12px; line-height: 1; transition: opacity 0.15s; }
+.dpmx-x { background: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.05) 0 2px, transparent 2px 5px); }
+.dpmx-k { cursor: pointer; background: rgba(255, 255, 255, 0.04); color: var(--label-3); }
+.dpmx-k.al { background: rgba(50, 209, 93, 0.26); color: #b5f5c5; box-shadow: inset 0 0 0 1px rgba(50, 209, 93, 0.55); }
+.dpmx-k.war { background: rgba(255, 90, 77, 0.26); color: #ffc2bb; box-shadow: inset 0 0 0 1px rgba(255, 90, 77, 0.55); }
+.dpmx-k.df { background: rgba(79, 209, 197, 0.2); color: #b8f3ec; box-shadow: inset 0 0 0 1px rgba(79, 209, 197, 0.5); font-size: 11px; }
+.dpmx-k.nap { background: rgba(138, 180, 255, 0.15); color: #c3d6ff; box-shadow: inset 0 0 0 1px rgba(138, 180, 255, 0.35); }
+.dpmx-k.tr::after { content: ''; position: absolute; right: 2px; bottom: 2px; width: 6px; height: 6px; border-radius: 50%; background: #f6cf6e; box-shadow: 0 0 0 1.5px rgba(5, 7, 11, 0.85); }
+.dpmx-k:hover { filter: brightness(1.4); }
+.dpmx-k.on { box-shadow: inset 0 0 0 2px var(--accent); }
+.dpmx.foc .dpmx-k:not(.hl):not(.on) { opacity: 0.3; }
+.dpmx-leg { display: flex; flex-wrap: wrap; gap: 2px 10px; margin: 0 0 8px; font-size: 10.5px; color: var(--label-3); }
+.dpmx-leg span { display: inline-flex; align-items: center; gap: 4px; }
+.dpmx-leg .al { color: #9df0b2; } .dpmx-leg .war { color: #ffb0a8; } .dpmx-leg .df { color: #8ee8de; } .dpmx-leg .nap { color: #b8d0ff; }
+.dpmx-leg .tr i { width: 6px; height: 6px; border-radius: 50%; background: #f6cf6e; }
+
+/* V1.4: karta "Kontynent" */
+.dpw-hd .dpw-ico { flex: none; display: flex; align-items: center; justify-content: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(241, 197, 106, 0.12); box-shadow: inset 0 0 0 1.5px rgba(241, 197, 106, 0.5); color: #ffe08a; font-size: 22px; }
+.dpw-hd .dps-id > b { color: var(--accent); }
+.dpw { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(240px, 1fr); gap: 4px 16px; align-items: start; }
+.dpw-map .dpm { max-width: 520px; margin: 0 auto; }
+.dpw-n { margin: 0 0 5px; padding: 6px 9px 3px; border-radius: 10px; background: rgba(255, 255, 255, 0.03); box-shadow: inset 0 0 0 1px transparent; cursor: pointer; }
+.dpw-n:hover { background: rgba(255, 255, 255, 0.06); }
+.dpw-n.hl { background: rgba(241, 197, 106, 0.08); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.45); }
+.dpw-n.me { box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.22); }
+.dpw-nh { display: flex; align-items: center; gap: 7px; margin: 0 0 4px; font-size: 12px; }
+.dpw-nh .dpo-n { font-family: var(--nation); font-size: 14px; }
+.dpw-n .dps-rel { margin: 0 0 3px; }
+.dps-who { flex: 1; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 3px 8px; }   /* V1.4: zawinięte nazwy trzymają wcięcie */
+.dps-rel:has(> .dps-who) { flex-wrap: nowrap; align-items: baseline; }
+.dps-rel:has(> .dps-who) > .dp-k { min-width: 76px; }
+.dpw-n .dps-rel > .dp-k { min-width: 92px; }
+.dps-rel.al .dp-k { color: #7fe39a; } .dps-rel.war .dp-k { color: #ff8f85; } .dps-rel.df .dp-k { color: #8ee8de; } .dps-rel.nap .dp-k { color: #a9c6ff; } .dps-rel.tr .dp-k { color: #f1c56a; }
+.dpt.world { padding-left: 4px; }
+.dpt-ico { display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; border-radius: 50%; background: rgba(241, 197, 106, 0.16); color: #ffe08a; font-style: normal; font-size: 12px; }
+.dpb.torn { background: rgba(241, 197, 106, 0.06); box-shadow: inset 0 0 0 1px rgba(241, 197, 106, 0.25); } .dpb.torn > i { color: #f1c56a; }
+.dpb.torn small { margin: 0 2px; }
 
 /* kto z kim trzyma */
 .dpb { display: flex; align-items: center; gap: 7px; margin: 0 0 4px; padding: 5px 8px; border-radius: 9px; background: rgba(255, 255, 255, 0.035); font-size: 12px; color: var(--label-2); }
@@ -1530,7 +1596,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
     .dpx-left { border-right: 0; border-bottom: 1px solid var(--hair); }
     .dpx-map { max-width: 320px; width: 100%; margin: 0 auto; box-sizing: border-box; }
     .dpx-side, .dpx-right { overflow: visible; }
-    .dps-grid { grid-template-columns: minmax(0, 1fr); }
+    .dps-grid, .dpw { grid-template-columns: minmax(0, 1fr); }
     .dpx-st { display: none; }
     .dpo { grid-template-columns: 24px minmax(0, 1fr) auto 34px; }
     .dpo .dpo-bar, .dpo .dpo-why, .dpo .dp-threat { display: none; }
@@ -1570,7 +1636,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <span data-pane="controls" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg><span class="nav-txt">Jak grać</span></span>
                     <span data-pane="news" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span class="nav-txt">Co nowego</span></span>
                 </nav>
-                <div class="top-meta"><span class="by">by Conrad3k</span><b>V1.3</b></div>
+                <div class="top-meta"><span class="by">by Conrad3k</span><b>V1.4</b></div>
             </header>
 
             <main class="menu-main">
@@ -1626,7 +1692,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                 <div id="nation-rows" class="nation-list"></div>
                                 <div class="cfg-group diplo-only" id="diplo-nations">
                                     <div class="cfg-row">
-                                        <div class="cfg-label"><b>Rywale SI</b><small>Ile nacji SI dzieli z tobą kontynent</small></div>
+                                        <div class="cfg-label"><b>Rywale SI</b><small>Ile nacji SI dzieli z tobą kontynent — każda dostaje losową nazwę ludu (Wikingowie, Spartanie, Goci…)</small></div>
                                         <div class="radio-group c6">
                                             <input type="radio" name="dnat" id="dn-2" value="2"><label for="dn-2">2</label>
                                             <input type="radio" name="dnat" id="dn-3" value="3"><label for="dn-3">3</label>
@@ -1743,7 +1809,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                     <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 28 C5 17 10 8 19 5.5 C24 4.2 28.5 6 30 9.5 L26.4 10.6 C27.6 12.6 26.8 15.6 24 15.8 L21.4 14.6 C19.2 18.4 18.4 23 18.6 28 Z" fill="currentColor"/><path d="M8 25 C8.6 18 12 12.5 17 9.6" fill="none" stroke="#0b111c" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/><circle cx="22.6" cy="9.4" r="1.5" fill="#0b111c"/></svg>
                                     <div><b>Raptor Engine</b><small>silnik gry · designed by Claude</small></div>
                                 </div>
-                                <span>Artificial Battles: Reloaded V1.3 by Conrad3k · wykonane przy użyciu agentów LLM</span>
+                                <span>Artificial Battles: Reloaded V1.4 by Conrad3k · wykonane przy użyciu agentów LLM</span>
                             </div>
                         </section>
                     </div>
@@ -1826,7 +1892,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                         <div class="menu-card guide-goal">
                             <div>
                                 <h2><span class="card-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v18"/><path d="M5 21h14"/><path d="M4 8h16"/><path d="M4 8l-2.5 6a3 3 0 0 0 5 0z"/><path d="M20 8l-2.5 6a3 3 0 0 0 5 0z"/></svg></span>Dyplomacja</h2>
-                                <p>W trybie <b>Dyplomacja</b> nikt nie jest twoim wrogiem na zawsze. Ekran Dyplomacji (<kbd>Tab</kbd>) ma po lewej <b>mapę relacji</b> — herby nacji w ich stolicach, czerwone linie wojen, zielone sojuszy, turkusowe paktów obronnych, złote handlu i niebieskie paktów o nieagresji — a pod nią listę bloków sojuszniczych i toczących się wojen. Po prawej jest karta wybranej nacji: jej <b>stosunek do ciebie</b> z rozpisanymi powodami (od „Napaść na nich −50” po „Umowa handlowa +7”) i propozycje z paskiem <b>gotowości</b> — widać, czy SI je przyjmie, a jeśli nie, czego brakuje.</p>
+                                <p>W trybie <b>Dyplomacja</b> nikt nie jest twoim wrogiem na zawsze. Ekran Dyplomacji (<kbd>Tab</kbd>) ma po lewej <b>mapę relacji</b> — herby nacji w ich stolicach, czerwone linie wojen, zielone sojuszy, turkusowe paktów obronnych, złote handlu i niebieskie paktów o nieagresji — a pod nią <b>„Kto z kim trzyma”</b>: macierz relacji (każda para nacji w jednym polu), sojusze, pakty obronne i wojny. Najedź na herb, a mapa pokaże tylko relacje tej nacji; przycisk ⤢ albo zakładka <b>Kontynent</b> otwiera dużą mapę. Po prawej jest karta wybranej nacji: jej <b>stosunek do ciebie</b> z rozpisanymi powodami (od „Napaść na nich −50” po „Umowa handlowa +7”) i propozycje z paskiem <b>gotowości</b> — widać, czy SI je przyjmie, a jeśli nie, czego brakuje.</p>
                                 <p>Karta <b>Przegląd</b> pokazuje, jak widzą cię wszystkie nacje, twoje umowy, dochód z handlu i <b>reputację</b> — czy uchodzisz za kogoś, kto dotrzymuje słowa. Propozycje SI (handel, pakty, sojusz, pokój, trybut, wezwanie do wojny i do obrony) pojawiają się w prawym górnym rogu ekranu z przyciskami — nie musisz otwierać Dyplomacji. Swoją nację możesz też <b>nazwać</b> — pole „Nazwa” w menu Dyplomacji (w grze wieloosobowej: w poczekalni); najlepiej w liczbie mnogiej, jak lud: Polanie, Wilki.</p>
                                 <p>SI <b>widzi mapę</b>: docenia realne straty zadane jej wrogowi (a nie samo wypowiedzenie wojny), boi się zdobywców Ratuszy i nacji, które wywołują wojnę za wojną, a obce wojsko przy jej Ratuszach w czasie pokoju budzi niepokój. Przeciw agresorom i hegemonowi zawiera pakty obronne i sojusze.</p>
                             </div>
@@ -1852,9 +1918,57 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="news-wrap">
                     <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
                     <div class="menu-card news-new">
-                        <div class="eyebrow">Wydanie · Reloaded V1.3</div>
-                        <h2>Reloaded V1.3 — szybszy silnik Raptor, własna nazwa nacji, nowa czcionka nazw, wolniejsze surowce w Dyplomacji i rozwijający się Łatwy</h2>
-                        <p><b>Silnik Raptor przyspieszony bez zmiany obrazu i rozgrywki</b>: symulacja kampanii Dyplomacji liczy się o ok. 25% krócej, a minimapa i przebudowa ścieżek nie szarpią już obrazem. Do tego wszystko, co przyniosły poprawki po V1.2: <b>własna nazwa nacji</b> w Dyplomacji (także w grze wieloosobowej), nowa czcionka nazw nacji, wolniejsze zbieranie surowców w Dyplomacji, rozwijająca się SI Łatwa, mapa domyślnie nieodkryta i większa minimapa.</p>
+                        <div class="eyebrow">Wydanie · Reloaded V1.4</div>
+                        <h2>Reloaded V1.4 — czytelny ekran Dyplomacji: macierz relacji, widok Kontynent, mapa, na której widać, kto z kim trzyma, i nazwy ludów dla nacji SI</h2>
+                        <p>Ekran Dyplomacji (<kbd>Tab</kbd>) przebudowany pod kątem czytelności. <b>„Kto z kim trzyma”</b> nie łączy już w jeden blok nacji, które ze sobą walczą, i ma <b>macierz relacji</b> — każda para nacji w jednym polu. <b>Mapa relacji</b> ma linie omijające herby, z ciemną obwódką, warstwy do wyłączenia i podgląd relacji jednej nacji po najechaniu myszą. Nowa zakładka <b>Kontynent</b> to duża mapa i relacje każdej nacji po kolei. A nacje SI nazywają się teraz jak ludy — <b>Wikingowie, Spartanie, Goci</b> — a nie jak kolory.</p>
+
+                        <h3>„Kto z kim trzyma” — bez mylących bloków</h3>
+                        <ul>
+                            <li><b>Sojusz to grupa, w której każdy jest w sojuszu z każdym.</b> Wcześniej „blok” był łańcuchem: gdy A miało sojusz z B, a B z C, lista pokazywała blok A + B + C, choć A i C mogły ze sobą walczyć. Pomiar w czterech kampaniach SI: przy 8 nacjach w <b>79%</b> minut z sojuszami co najmniej jeden blok łączył nacje bez wzajemnego sojuszu, a w <b>38%</b> — nacje toczące ze sobą wojnę. Teraz nacja w dwóch osobnych sojuszach pojawia się w dwóch grupach.</li>
+                            <li><b>Macierz relacji</b>: wiersze i kolumny to nacje (ty pierwszy), a pole na ich przecięciu to relacja — ❖ sojusz, 🛡 pakt obronny, ⚔ wojna, ☮ pakt o nieagresji, złota kropka w rogu — handel. Wiersz czyta się jak zdanie: wszystkie relacje jednej nacji w jednej linii. Podpowiedź pola mówi to słowami („Goci — Frankowie: sojusz od 8 min · handel (+14 złota/min dla każdej strony)”), a klik otwiera kartę nacji.</li>
+                            <li><b>Rozdarte sojusze</b>: gdy nacja ma sojusz albo pakt obronny z obiema stronami jednej wojny, lista ostrzega (⚠) — prędzej czy później będzie musiała wybrać.</li>
+                        </ul>
+
+                        <h3>Mapa relacji, którą da się przeczytać</h3>
+                        <ul>
+                            <li><b>Linie omijają herby</b>: zamiast prostej, która przechodzi przez herb trzeciej nacji (i wygląda, jakby to ona była stroną relacji), linia wygina się w tę stronę, z której ma dalej do innych herbów.</li>
+                            <li><b>Ciemna obwódka pod każdą linią</b> — kreski wojen, paktów i handlu są czytelne na każdym tle (las, woda, góry). Linie zaczynają się na brzegu herbu, a nie pod nim.</li>
+                            <li><b>Handel osobnym torem</b>: złote kropki biegną obok linii sojuszu albo paktu, a nie po niej.</li>
+                            <li><b>Herby się nie nakładają</b> (stolice tuż obok siebie są rozsuwane), a nazwy szukają wolnego miejsca — pod herbem, nad nim albo z boku — i nie wychodzą poza mapę.</li>
+                            <li><b>Podgląd jednej nacji</b>: najedź na herb (albo na wiersz macierzy, albo na zakładkę nacji), a mapa pokaże tylko jej relacje, pozostałe przygasną, a obwódki herbów pokażą, w jakich stosunkach są <b>z nią</b> inni — zielona sojusz, turkusowa pakt obronny, czerwona wojna, niebieska pakt. Podpis pod mapą streszcza: „Goci: sojusze 2 · pakty obronne 1 · handel 3”. Wybrana nacja (karta po prawej) działa tak samo. Bez podglądu obwódki pokazują twoje relacje, jak dotąd.</li>
+                            <li><b>Podgląd pary</b>: najedź na linię albo pole macierzy — na mapie zostaje tylko ta para, a podpis mówi, co ich łączy.</li>
+                            <li><b>Warstwy</b>: legenda pod mapą to przełączniki — kliknij „handel”, a złote kropki znikną; tak samo sojusze, pakty obronne, wojny i pakty.</li>
+                        </ul>
+
+                        <h3>Nowa zakładka: Kontynent</h3>
+                        <ul>
+                            <li>Przycisk <b>⤢</b> w rogu mapy relacji albo zakładka <b>Kontynent</b> obok Przeglądu: duża mapa relacji (z tymi samymi warstwami i podglądem) i <b>relacje każdej nacji po kolei</b> — z kim ma sojusz, pakt obronny, wojnę, pakt i handel. U góry podsumowanie kontynentu: ile nacji, sojuszy, wojen, paktów i umów handlowych.</li>
+                            <li>Klik w nację (herb albo wiersz) otwiera jej kartę; w widoku Kontynent mała mapa znika z lewej kolumny, więc macierz i kronika mają więcej miejsca.</li>
+                        </ul>
+
+                        <h3>Nazwy ludów dla nacji SI</h3>
+                        <ul>
+                            <li>W Dyplomacji każda nacja SI dostaje losową nazwę ludu: <b>Celtowie, Galowie, Goci, Frankowie, Wikingowie, Hunowie, Scytowie, Normanowie, Wandalowie, Sasi, Trakowie, Etruskowie, Fenicjanie, Spartanie, Trojanie</b> albo <b>Sarmaci</b> — w jednej grze każda na inną literę, żeby się nie myliły. „Wikingowie” i „Spartanie” zapadają w pamięć łatwiej niż „Pomarańczowi” i „Różowi”, a kolor zostaje przy herbie i kropce przy nazwie.</li>
+                            <li>Nazwy ludów się odmieniają, jak dawniej nazwy kolorów: „sojusz z Wikingami”, „poselstwo do Spartan”, „wypowiadają wojnę Hunom”.</li>
+                            <li>Twoja nacja ma nazwę wpisaną w menu (albo nazwę koloru, gdy pole jest puste). Nazwy wpisanej przez gracza SI nie dostanie. W grze wieloosobowej nazwy ludów losuje host, goście widzą te same; gracze nazywają się sami. Klasyczny mecz — bez zmian (drużyny i kolory).</li>
+                        </ul>
+
+                        <h3>Drobniejsze</h3>
+                        <ul>
+                            <li>Karta nacji: w „Na kontynencie” także pakty o nieagresji, a długa lista nazw zawija się pod nazwami, nie pod etykietą.</li>
+                        </ul>
+
+                        <h3>Sprawdzone</h3>
+                        <ul>
+                            <li>Zmienił się ekran Dyplomacji i nazwy nacji SI — symulacja, SI i balans bez zmian. Wszyscy gracze w grze wieloosobowej potrzebują wydania Reloaded V1.4. Zapisy gier z Reloaded V1.0–V1.3 wczytasz w V1.4 (nacje z zapisu zachowują dawne nazwy).</li>
+                            <li><b>Sprawdzone automatycznie</b>: kampanie Dyplomacji SI kontra SI z 3, 6 i 8 nacjami do 40–45 minut — co minutę gry ekran Dyplomacji we wszystkich widokach (Przegląd, Kontynent, karta każdej nacji, podgląd każdej nacji i każdej pary, wyłączone warstwy), bez błędów i bez pustych wartości na mapie; macierz zgodna ze stanem relacji w każdej minucie, każda grupa sojusznicza to „każdy z każdym” i żaden sojusz nie znika z listy. Odświeżenie ekranu trwa ok. 2–4 ms. Losowanie nazw (200 prób: bez powtórzeń, bez nazwy gracza, różne litery) i ich odmiana w kronice. Zapis kampanii z V1.3 wczytany w V1.4 i grany dalej.</li>
+                        </ul>
+                    </div>
+                    <div class="news-sub">Wcześniejsze wydania</div>
+                    <details class="release">
+                        <summary><span class="ver">R1.3</span><h2>Reloaded V1.3 — szybszy silnik Raptor, własna nazwa nacji, nowa czcionka nazw, wolniejsze surowce w Dyplomacji i rozwijający się Łatwy</h2></summary>
+                        <div class="release-body">
+                        <p class="menu-note"><b>Silnik Raptor przyspieszony bez zmiany obrazu i rozgrywki</b>: symulacja kampanii Dyplomacji liczy się o ok. 25% krócej, a minimapa i przebudowa ścieżek nie szarpią już obrazem. Do tego wszystko, co przyniosły poprawki po V1.2: <b>własna nazwa nacji</b> w Dyplomacji (także w grze wieloosobowej), nowa czcionka nazw nacji, wolniejsze zbieranie surowców w Dyplomacji, rozwijająca się SI Łatwa, mapa domyślnie nieodkryta i większa minimapa.</p>
 
                         <h3>Szybszy silnik Raptor — ten sam obraz, ta sama gra</h3>
                         <ul>
@@ -1908,8 +2022,8 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li>Wszyscy gracze w grze wieloosobowej potrzebują wydania Reloaded V1.3. Zapisy gier z Reloaded V1.0–V1.2.7 wczytasz w V1.3 (sprawdzony zapis kampanii Dyplomacji z V1.2.7, wczytany i grany dalej).</li>
                             <li><b>Sprawdzone automatycznie</b>: identyczny stan gry i obraz w V1.2.7 i V1.3 (wyżej); zapis i wczytanie w V1.3 (Dyplomacja i Klasyczny mecz z Królami); gra wieloosobowa host i gość z SI w dodatkowych miejscach przy prędkości 3×; własna nazwa nacji — oczyszczanie i odrzucanie nazw, odmiana przez „nacja” w komunikatach i kronice, poczekalnia gry wieloosobowej (host i gość, nazwa z apostrofem, odrzucony duplikat); audyt dochodów przed i po spowolnieniu zbierania (wojsko i tempo er bez zmian); SI Łatwa w 45-minutowej kampanii (targ w 10. minucie, III era ok. 26., IV ok. 41.); kampanie Dyplomacji 4, 6 i 8 nacji do 60–75 minut ze sprawdzaniem spójności relacji; Klasyczny mecz — wszystko bez błędów.</li>
                         </ul>
-                    </div>
-                    <div class="news-sub">Wcześniejsze wydania</div>
+                        </div>
+                    </details>
                     <details class="release">
                         <summary><span class="ver">R1.2</span><h2>Reloaded V1.2 — pakty obronne, kapitulacja, ocieplanie stosunków, reputacja, SI, która widzi mapę, i dłuższe kampanie</h2></summary>
                         <div class="release-body">
@@ -2541,7 +2655,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
     <script>
 /* --- core/Config.js --- */
 const GameConfig = {
-    version: 'Reloaded V1.3',
+    version: 'Reloaded V1.4',
     engine: 'Raptor Engine · designed by Claude',
     cameraPad: 320,             // o tyle (w pikselach świata) kamera może wyjechać poza granicę mapy
     popCap: 200,
@@ -2918,6 +3032,29 @@ const TeamPalette = {
     pink:   { main: '#e85fa8', dark: '#8a2560', light: '#ffb3da', label: 'Różowy',       nation: 'Różowi',       gen: 'Różowych', dat: 'Różowym', ins: 'Różowymi' }
 };
 const ColorOrder = ['blue', 'red', 'purple', 'orange', 'green', 'teal', 'yellow', 'pink'];
+// V1.4: nazwy ludów dla nacji SI w Dyplomacji - łatwiej zapamiętać „Wikingów” i „Spartan” niż „Pomarańczowych”
+// i „Różowych” (kolor zostaje przy herbie i kropce przy nazwie). Krótkie, powszechnie znane ludy, same rodzaje
+// męskoosobowe w liczbie mnogiej, jak nazwy kolorów, więc komunikaty brzmią tak samo („Wikingowie proponują”).
+// Formy: mianownik, dopełniacz (= biernik), celownik, narzędnik (Diplomacy.form).
+const NationPeoples = [
+    ['Celtowie', 'Celtów', 'Celtom', 'Celtami'], ['Galowie', 'Galów', 'Galom', 'Galami'], ['Goci', 'Gotów', 'Gotom', 'Gotami'],
+    ['Frankowie', 'Franków', 'Frankom', 'Frankami'], ['Wikingowie', 'Wikingów', 'Wikingom', 'Wikingami'], ['Hunowie', 'Hunów', 'Hunom', 'Hunami'],
+    ['Scytowie', 'Scytów', 'Scytom', 'Scytami'], ['Normanowie', 'Normanów', 'Normanom', 'Normanami'], ['Wandalowie', 'Wandalów', 'Wandalom', 'Wandalami'],
+    ['Sasi', 'Sasów', 'Sasom', 'Sasami'], ['Trakowie', 'Traków', 'Trakom', 'Trakami'], ['Etruskowie', 'Etrusków', 'Etruskom', 'Etruskami'],
+    ['Fenicjanie', 'Fenicjan', 'Fenicjanom', 'Fenicjanami'], ['Spartanie', 'Spartan', 'Spartanom', 'Spartanami'], ['Trojanie', 'Trojan', 'Trojanom', 'Trojanami'],
+    ['Sarmaci', 'Sarmatów', 'Sarmatom', 'Sarmatami']
+];
+// Losowe nazwy dla k nacji SI: bez nazw już zajętych (własne nazwy graczy) i - dopóki się da - każda na inną literę,
+// żeby nie mylić „Sasów” ze „Scytami”
+function pickPeoples(k, taken) {
+    const low = new Set((taken || []).map(t => String(t).toLowerCase()));
+    const pool = NationPeoples.filter(p => !low.has(p[0].toLowerCase()));
+    for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+    const out = [], first = new Set([...low].map(t => t[0]));
+    for (const p of pool) if (out.length < k && !first.has(p[0][0].toLowerCase())) { out.push(p[0]); first.add(p[0][0].toLowerCase()); }
+    for (const p of pool) if (out.length < k && !out.includes(p[0])) out.push(p[0]);
+    return out;
+}
 // V1.2: własna nazwa nacji (Dyplomacja) - litery (także polskie), spacje, łącznik i apostrof, najwyżej 18 znaków.
 // Pusta albo taka sama jak nazwa nacji z palety (np. "Czerwoni") - brak własnej nazwy (zostaje nazwa koloru).
 function escHtml(t) { return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
@@ -9462,7 +9599,23 @@ class UIManager {
             this.el['dp-inbox'] = ib;
             // pointerdown, nie click: panel odświeża się co sekundę (odliczanie rozejmu) i klik mógłby trafić w podmieniony przycisk
             for (const box of [np, ib]) if (box) box.addEventListener('pointerdown', (e) => this.onDiploPointer(e));
+            // V1.4: najechanie na nację albo parę (herb, linia, macierz) - mapa i macierz pokazują tylko jej relacje
+            if (np) {
+                np.addEventListener('pointerover', (e) => {
+                    if (e.pointerType === 'touch') return;
+                    const h = e.target.closest ? e.target.closest('[data-dph]') : null;
+                    this.dpHover(h ? h.dataset.dph : null);
+                });
+                np.addEventListener('pointerleave', () => this.dpHover(null));
+            }
         }
+    }
+
+    // V1.4: zmiana nacji (albo pary) pod kursorem - odświeżają się tylko części, które się zmieniły (mapa, macierz)
+    dpHover(k) {
+        if (k === this._dpHov || (!k && !this._dpHov)) return;
+        this._dpHov = k || null;
+        if (this.nationsOpen && this.game.diplo) this.renderDiplomacy();
     }
 
     // Kliknięcia na ekranie Dyplomacji i w kartach propozycji
@@ -9474,7 +9627,7 @@ class UIManager {
         if (!b) {
             // wybór nacji (mapa, pasek, przegląd, karta propozycji), zamknięcie, rodzaj daru, opisy warunków, dłuższa kronika
             const s = t.closest('[data-dps]'), c = t.closest('[data-dpc]'), gr = t.closest('[data-dpgr]');
-            const gl = t.closest('[data-dpg]'), lg = t.closest('[data-dpl]'), op = t.closest('[data-dpo]');
+            const gl = t.closest('[data-dpg]'), lg = t.closest('[data-dpl]'), op = t.closest('[data-dpo]'), ly = t.closest('[data-dply]');
             if (c) { this.showNations(false); e.preventDefault(); return; }
             if (s) {
                 this._dpSel = Number(s.dataset.dps);
@@ -9482,6 +9635,7 @@ class UIManager {
             } else if (gr) this._dpGiftRes = gr.dataset.dpgr;
             else if (gl) this._dpGoals = !this._dpGoals;
             else if (lg) this._dpLogAll = !this._dpLogAll;
+            else if (ly) { const H = this._dpHide || (this._dpHide = new Set()), k = ly.dataset.dply; if (H.has(k)) H.delete(k); else H.add(k); }   // V1.4: warstwy mapy relacji
             else if (op) { this.showNations(true); return; }
             else return;
             e.preventDefault();
@@ -9651,6 +9805,7 @@ class UIManager {
         this.nationsOpen = open === undefined ? !this.nationsOpen : !!open;
         // Dyplomacja: kronika wyróżnia wpisy nowe od poprzedniego zajrzenia do panelu (i od nich zależy kropka na przycisku)
         if (this.game.diplo && was !== this.nationsOpen) {
+            this._dpHov = null;
             if (this.nationsOpen) this._dpNewSince = this._dpSeen === undefined ? 0 : this._dpSeen;
             this._dpSeen = this.game.time;
         }
@@ -9694,7 +9849,10 @@ class UIManager {
     //   - nagłówek: twoja sytuacja w jednym zdaniu, rozejm, liczniki relacji,
     //   - po lewej MAPA RELACJI: kontynent z herbami nacji w ich stolicach i liniami relacji (czerwone kreski - wojna,
     //     zielone - sojusz, złote kropki - handel, niebieskie kreski - pakt). Klik w herb wybiera nację. Pod mapą
-    //     bloki sojusznicze i toczące się wojny oraz kronika,
+    //     "Kto z kim trzyma" (V1.4: macierz relacji, sojusze jako grupy "każdy z każdym", pakty obronne, wojny,
+    //     rozdarte sojusze) oraz kronika. V1.4: linie omijają herby i mają ciemną obwódkę, legenda włącza i wyłącza
+    //     warstwy, a najechanie na nację (herb, wiersz macierzy, zakładka) albo parę (linia, pole macierzy) pokazuje
+    //     tylko jej relacje (dpFocus). Przycisk ⤢ i zakładka "Kontynent" otwierają dużą mapę z relacjami każdej nacji,
     //   - po prawej: propozycje czekające na odpowiedź, pasek nacji i KARTA wybranej nacji: stosunek do ciebie
     //     z rozpisanymi powodami (Diplomacy.whyFor), jej sojusze, wojny i umowy, propozycje z GOTOWOŚCIĄ - oceną,
     //     jaką wystawiłaby im SI (Diplomacy.outlookOf; czynniki w podpowiedzi) - oraz dar, zerwanie umów i wojna.
@@ -9709,6 +9867,8 @@ class UIManager {
             this._dpParts = {};
         }
         const C = this.dpCtx();
+        this.dpFocus(C);
+        el.classList.toggle('dp-world', C.world);
         const put = (cls, html) => { const P = this._dpParts; if (P[cls] === html) return; P[cls] = html; const box = el.querySelector('.' + cls); if (box) box.innerHTML = html; };
         put('dpx-head', this.dpHead(C));
         put('dpx-map', this.dpMap(C));
@@ -9716,7 +9876,7 @@ class UIManager {
         put('dpx-log', this.dpLog(C));
         put('dpx-props', C.full ? '' : C.D.proposals.filter(p => p.to === C.me).map(p => this.diploPropHtml(p)).join(''));
         put('dpx-tabs', this.dpTabs(C));
-        put('dpx-card', C.sel === C.me ? this.dpOverview(C) : this.dpDossier(C, C.sel));
+        put('dpx-card', C.world ? this.dpWorld(C) : C.sel === C.me ? this.dpOverview(C) : this.dpDossier(C, C.sel));
         put('dpx-foot', this.dpGoals(C));
     }
 
@@ -9730,8 +9890,9 @@ class UIManager {
         const live = !full && !me.defeated;
         let sel = Number.isInteger(this._dpSel) ? g.nations[this._dpSel] : null;
         if (!sel) sel = me;
+        const world = this._dpSel === -1;   // V1.4: karta "Kontynent" (duża mapa relacji)
         const C = {
-            g, D, me, esc, mmss, ago, full, live, sel,
+            g, D, me, esc, mmss, ago, full, live, sel, world,
             nm: (n) => esc(n.shortName || n.name),
             tag: (n, c) => {
                 const f = Diplomacy.form(n, c), s = n.shortName || n.name;
@@ -9773,59 +9934,274 @@ class UIManager {
             <div class="dpx-st">${status}</div><button class="dpx-x" data-dpc="1" title="Zamknij (Tab)">✕</button>`;
     }
 
-    // --- mapa relacji: kontynent, herby w stolicach, linie relacji ---
-    dpMap(C) {
-        const { g, D, me, esc } = C;
-        const S = 300, W = g.mapWidth || 1, H = g.mapHeight || 1;
-        if (!this._dpThumb && g.minimap && g.minimap.thumb) { try { this._dpThumb = g.minimap.thumb.toDataURL('image/jpeg', 0.8); } catch (e) { this._dpThumb = ''; } }
+    // --- V1.4: relacja dwóch nacji (mapa relacji, macierz, Kontynent) ---
+    // Para ma najwyżej jedną relację GŁÓWNĄ (sojusz > wojna > pakt obronny > pakt o nieagresji), a handel osobno -
+    // może iść w parze z każdą z nich oprócz wojny.
+    dpPair(C, a, b) {
+        const { D } = C, st = D.get(a, b);
+        const k = st === DIPLO.ALLY ? 'al' : st === DIPLO.WAR ? 'war' : D.defending(a, b) ? 'df' : (st === DIPLO.PEACE && D.pactLeft(a, b) > 0) ? 'nap' : '';
+        return { k, tr: D.trading(a, b) };
+    }
+
+    // ...i ta sama relacja słowami (podpowiedź linii na mapie i pola macierzy)
+    dpPairText(C, a, b) {
+        const { D, mmss, ago, me } = C, p = this.dpPair(C, a, b);
+        const nm = (n) => n === me ? 'Ty' : (n.shortName || n.name);
+        const s = p.k === 'al' ? 'sojusz ' + ago(D.sinceOf(a, b)) : p.k === 'war' ? 'wojna ' + ago(D.sinceOf(a, b))
+            : p.k === 'df' ? 'pakt obronny ' + ago(D.defenseSince(a, b)) : p.k === 'nap' ? 'pakt o nieagresji, jeszcze ' + mmss(D.pactLeft(a, b))
+            : p.tr ? 'pokój' : 'pokój bez umów';
+        return `${nm(a)} — ${nm(b)}: ${s}${p.tr ? ` · handel (+${Math.round(D.tradeRate(a, b) * 60)} złota/min dla każdej strony)` : ''}`;
+    }
+
+    // Położenie herbów (0..1): stolice, a herby, które by na siebie nachodziły (stolice tuż obok siebie), rozsunięte
+    dpLayout(C) {
+        const { g, D } = C, W = g.mapWidth || 1, H = g.mapHeight || 1, N = g.nations.length;
         const pos = this._dpPos || (this._dpPos = []);
         const P = g.nations.map((n, i) => {
             const c = D.capital(n);
-            if (c) pos[i] = { x: c.x / W * S, y: c.y / H * S };
-            return pos[i] || { x: S / 2 + Math.cos(i / g.nations.length * 6.283) * S * 0.38, y: S / 2 + Math.sin(i / g.nations.length * 6.283) * S * 0.38 };
+            if (c) pos[i] = { x: c.x / W, y: c.y / H };
+            return pos[i] ? { x: pos[i].x, y: pos[i].y } : { x: 0.5 + Math.cos(i / N * 6.283) * 0.38, y: 0.5 + Math.sin(i / N * 6.283) * 0.38 };
         });
-        const sel = C.sel, selI = C.idx(sel), focus = sel !== me ? selI : -1;
-        let edges = '', marks = '';
-        const N = g.nations.length;
-        for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
-            const a = g.nations[i], b = g.nations[j];
-            if (a.defeated || b.defeated) continue;
-            const st = D.get(a, b), tr = D.trading(a, b), nap = st === DIPLO.PEACE && D.pactLeft(a, b) > 0, df = D.defending(a, b);
-            let k = st === DIPLO.ALLY ? 'al' : st === DIPLO.WAR ? 'war' : df ? 'df' : tr ? 'tr' : nap ? 'nap' : '';
-            if (!k) continue;
-            const dim = focus >= 0 && i !== focus && j !== focus ? ' dim' : '', mine = (a === me || b === me) ? ' mine' : '';
-            const p = P[i], q = P[j];
-            edges += `<line class="dpm-e ${k}${dim}${mine}" x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}"/>`;
-            if ((k === 'al' || k === 'df') && tr) edges += `<line class="dpm-e tr2${dim}" x1="${p.x.toFixed(1)}" y1="${p.y.toFixed(1)}" x2="${q.x.toFixed(1)}" y2="${q.y.toFixed(1)}"/>`;
-            if (k === 'war') {
-                const mx = (p.x + q.x) / 2, my = (p.y + q.y) / 2;
-                marks += `<g class="dpm-w${dim}" transform="translate(${mx.toFixed(1)} ${my.toFixed(1)})"><circle r="6.5"/><path d="M-3 -3l6 6M3 -3l-6 6"/></g>`;
+        const MD = 0.125;
+        for (let it = 0; it < 16; it++) {
+            let moved = false;
+            for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+                const a = P[i], b = P[j];
+                let dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy);
+                if (d >= MD) continue;
+                if (d < 1e-4) { dx = Math.cos(i + j); dy = Math.sin(i + j); } else { dx /= d; dy /= d; }
+                const k = (MD - d) / 2;
+                a.x -= dx * k; a.y -= dy * k; b.x += dx * k; b.y += dy * k;
+                moved = true;
             }
+            for (const p of P) { p.x = clamp(p.x, 0.065, 0.935); p.y = clamp(p.y, 0.065, 0.935); }
+            if (!moved) break;
+        }
+        return P;
+    }
+
+    // Nacja albo para, na którą patrzy mapa i macierz: najechana myszą (herb, wiersz macierzy, linia), a bez tego
+    // nacja wybrana w pasku. Bez "ostrości" mapa pokazuje wszystkie relacje, a obwódki herbów - relacje z tobą.
+    dpFocus(C) {
+        const { g, me } = C, hv = this._dpHov;
+        let fN = null, fP = null;
+        if (typeof hv === 'string' && hv) {
+            if (hv.includes('-')) {
+                const [i, j] = hv.split('-').map(Number), a = g.nations[i], b = g.nations[j];
+                if (a && b && !a.defeated && !b.defeated) fP = [i, j];
+            } else {
+                const n = g.nations[Number(hv)];
+                if (n && !n.defeated) fN = n;
+            }
+        }
+        if (!fN && !fP && !C.world && C.sel !== me && !C.sel.defeated) fN = C.sel;
+        C.fN = fN; C.fP = fP;
+    }
+
+    // --- mapa relacji (V1.4): krzywe omijające herby, ciemna obwódka pod każdą linią, handel osobnym torem obok
+    // relacji głównej, warstwy do wyłączenia, a po najechaniu na nację - tylko jej relacje i obwódki względem niej ---
+    dpMapSvg(C, S, big) {
+        const { g, me, esc } = C, N = g.nations.length;
+        const P = this.dpLayout(C).map(p => ({ x: p.x * S, y: p.y * S }));
+        const hide = this._dpHide || (this._dpHide = new Set());
+        const fi = C.fN ? C.idx(C.fN) : -1, fp = C.fP;
+        const ref = C.fN || me, refI = C.idx(ref);
+        const f1 = (v) => v.toFixed(1);
+        const live = (i) => !g.nations[i].defeated;
+        // krzywa (Bézier 2. stopnia) od herbu do herbu: prosta, gdy nic nie stoi na drodze, a gdy po drodze jest inny
+        // herb - wygięta w tę stronę, z której ma do niego dalej
+        const curve = (i, j) => {
+            const p = P[i], q = P[j], dx = q.x - p.x, dy = q.y - p.y, L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L;
+            let best = null, bestS = -Infinity;
+            for (const k of [0, 0.13, -0.13, 0.26, -0.26]) {
+                const cx = (p.x + q.x) / 2 + nx * k * L, cy = (p.y + q.y) / 2 + ny * k * L;
+                let clear = Infinity;
+                for (let m = 0; m < N; m++) {
+                    if (m === i || m === j) continue;
+                    const o = P[m];
+                    for (let s = 1; s < 12; s++) {
+                        const t = s / 12, u = 1 - t;
+                        clear = Math.min(clear, Math.hypot(u * u * p.x + 2 * u * t * cx + t * t * q.x - o.x, u * u * p.y + 2 * u * t * cy + t * t * q.y - o.y));
+                    }
+                }
+                const sc = Math.min(clear, 27) - Math.abs(k) * 9;
+                if (sc > bestS) { bestS = sc; best = { cx, cy }; }
+            }
+            return { p, q, c: best, nx, ny };
+        };
+        // ścieżka krzywej przesuniętej w bok o d (tor handlu obok relacji głównej), skrócona o promień herbu
+        const path = (cv, d) => {
+            const ox = cv.nx * d, oy = cv.ny * d;
+            const p = { x: cv.p.x + ox, y: cv.p.y + oy }, q = { x: cv.q.x + ox, y: cv.q.y + oy }, c = { x: cv.c.cx + ox, y: cv.c.cy + oy };
+            const cut = (a, b) => { const l = Math.hypot(b.x - a.x, b.y - a.y) || 1, r = Math.min(18, l * 0.3); return { x: a.x + (b.x - a.x) / l * r, y: a.y + (b.y - a.y) / l * r }; };
+            const a = cut(p, c), b = cut(q, c);
+            return `M${f1(a.x)} ${f1(a.y)}Q${f1(c.x)} ${f1(c.y)} ${f1(b.x)} ${f1(b.y)}`;
+        };
+        const ORD = { nap: 0, tr: 1, df: 2, al: 3, war: 4 };
+        const items = [];
+        for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) {
+            if (!live(i) || !live(j)) continue;
+            const pr = this.dpPair(C, g.nations[i], g.nations[j]);
+            const main = pr.k && !hide.has(pr.k) ? pr.k : '', lane = pr.tr && !hide.has('tr');
+            if (!main && !lane) continue;
+            const touch = fp ? (fp[0] === i && fp[1] === j) || (fp[0] === j && fp[1] === i) : fi >= 0 ? i === fi || j === fi : false;
+            const dim = (fp || fi >= 0) && !touch;
+            items.push({ i, j, main, lane, dim, touch, cv: curve(i, j), o: dim ? 0 : touch ? 10 : 5 });
+        }
+        items.sort((a, b) => a.o - b.o || ORD[a.main || 'tr'] - ORD[b.main || 'tr']);
+        let cas = '', edges = '', marks = '', hits = '';
+        for (const it of items) {
+            const { i, j, main, lane, cv } = it;
+            const cls = (it.dim ? ' dim' : '') + (it.touch ? ' hl' : '') + (!it.dim && !it.touch && (i === refI || j === refI) && fi < 0 && !fp ? ' mine' : '');
+            const k0 = main || 'tr', d0 = main && lane ? -1.6 : 0;
+            const dm = path(cv, d0);
+            cas += `<path class="dpm-c ${k0}${cls}" d="${dm}"/>`;
+            edges += `<path class="dpm-e ${k0}${cls}" d="${dm}"/>`;
+            if (main && lane) {
+                const dl = path(cv, 3.4);
+                cas += `<path class="dpm-c tr${cls}" d="${dl}"/>`;
+                edges += `<path class="dpm-e tr2${cls}" d="${dl}"/>`;
+            }
+            if (main === 'war') {
+                const mx = (cv.p.x + 2 * cv.c.cx + cv.q.x) / 4, my = (cv.p.y + 2 * cv.c.cy + cv.q.y) / 4;
+                marks += `<g class="dpm-w${cls}" transform="translate(${f1(mx)} ${f1(my)})"><circle r="6.5"/><path d="M-3 -3l6 6M3 -3l-6 6"/></g>`;
+            }
+            hits += `<path class="dpm-hit" d="${path(cv, 0)}" data-dph="${i}-${j}"><title>${esc(this.dpPairText(C, g.nations[i], g.nations[j]))}</title></path>`;
+        }
+        // herby: obwódka = relacja z nacją, na którą patrzy mapa (bez ostrości - z tobą)
+        const T = g.triumphInfo();
+        const lab = [], boxes = [];
+        const fs = big ? 12.5 : 10.5;
+        const order = [refI, C.idx(me), ...g.nations.map((n, i) => i)].filter((v, k, a) => a.indexOf(v) === k);
+        for (const i of order) {
+            const n = g.nations[i];
+            if (n.defeated) continue;
+            const p = P[i], text = n === me ? 'Ty' : (n.shortName || n.name), w = text.length * fs * 0.62 + 4, top = n === C.heg || (T && T.team === n.team);
+            const cands = [[0, 28 + (big ? 2 : 0), 'middle'], [0, -21, 'middle'], [21, 4, 'start'], [-21, 4, 'end']].filter(c => !(top && c[1] < 0));
+            let pick = null, pickBad = Infinity;
+            for (const [dx, dy, an] of cands) {
+                let x0 = an === 'middle' ? p.x - w / 2 : an === 'start' ? p.x + dx : p.x + dx - w;
+                x0 = clamp(x0, 2, S - 2 - w);
+                const y0 = clamp(p.y + dy - fs + 1, 2, S - fs - 2), r = { x0, y0, x1: x0 + w, y1: y0 + fs + 1 };
+                let bad = 0;
+                for (const b of boxes) if (r.x0 < b.x1 && r.x1 > b.x0 && r.y0 < b.y1 && r.y1 > b.y0) bad += 2;
+                for (let m = 0; m < N; m++) {
+                    if (m === i) continue;
+                    const o = P[m], cx = clamp(o.x, r.x0, r.x1), cy = clamp(o.y, r.y0, r.y1);
+                    if (Math.hypot(o.x - cx, o.y - cy) < 16) bad += g.nations[m].defeated ? 0.5 : 1;
+                }
+                if (bad < pickBad) { pickBad = bad; pick = { r, an }; }
+                if (!bad) break;
+            }
+            boxes.push(pick.r);
+            const lx = pick.an === 'middle' ? (pick.r.x0 + pick.r.x1) / 2 : pick.an === 'start' ? pick.r.x0 : pick.r.x1;
+            lab[i] = `<text class="dpm-l" x="${f1(lx - p.x)}" y="${f1(pick.r.y1 - 2 - p.y)}" text-anchor="${pick.an}">${esc(text)}</text>`;
         }
         let nodes = '';
         g.nations.forEach((n, i) => {
-            const p = P[i], st = n === me ? -1 : D.get(me, n);
-            const rel = n === me ? 'me' : n.defeated ? 'dead' : ['war', 'peace', 'ally'][st];
-            const T = g.triumphInfo();
+            const p = P[i];
+            let rel;
+            if (n === ref) rel = 'ref';
+            else if (n.defeated) rel = 'dead';
+            else {
+                const pr = this.dpPair(C, ref, n);
+                rel = pr.k === 'al' ? 'ally' : pr.k || 'peace';
+                if ((fi >= 0) && !pr.k && !pr.tr) rel += ' quiet';
+            }
+            if (fp) rel += fp.includes(i) ? ' hl' : ' quiet';
             const badge = n === C.heg ? '<text class="dpm-b heg" y="-19">♛</text>' : (T && T.team === n.team) ? '<text class="dpm-b tri" y="-19">⛪</text>' : C.threats.includes(n) ? '<circle class="dpm-thr" cx="12" cy="-12" r="5"/><text class="dpm-b thr" x="12" y="-9.5">!</text>' : '';
-            nodes += `<g class="dpm-n ${rel}${n === sel ? ' sel' : ''}" data-dps="${i}" transform="translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})" style="--nc:${n.color}">
-                <title>${esc((n.shortName || n.name) + (n === me ? ' — ty' : ' — ' + DIPLO.NAMES[D.get(me, n)].toLowerCase()))}</title>
-                <circle class="dpm-halo" r="19"/><circle class="dpm-ring" r="15.5"/><image href="${Rulers.icon(n, g)}" x="-14" y="-14" width="28" height="28"/>${badge}
-                ${n.defeated ? '' : `<text class="dpm-l" y="28">${n === me ? 'Ty' : esc(n.shortName || n.name)}</text>`}</g>`;
+            const ttl = (n.shortName || n.name) + (n === me ? ' — ty' : n.defeated ? ' — pokonani' : ' — ' + DIPLO.NAMES[C.D.get(me, n)].toLowerCase() + ' z tobą');
+            nodes += `<g class="dpm-n ${rel}${n === me ? ' me' : ''}${n === C.sel && !C.world ? ' sel' : ''}" data-dps="${i}"${n.defeated ? '' : ` data-dph="${i}"`} transform="translate(${f1(p.x)} ${f1(p.y)})" style="--nc:${n.color}">
+                <title>${esc(ttl)}</title><circle class="dpm-halo" r="19"/><circle class="dpm-ring" r="15.5"/><image href="${Rulers.icon(n, g)}" x="-14" y="-14" width="28" height="28"/>${badge}${lab[i] || ''}</g>`;
         });
-        const bg = this._dpThumb ? `<image href="${this._dpThumb}" x="0" y="0" width="${S}" height="${S}" preserveAspectRatio="none" opacity="0.62"/>` : '';
-        return `<svg class="dpm" viewBox="0 0 ${S} ${S}" role="img" aria-label="Mapa relacji">
-            <defs><radialGradient id="dpm-vig" cx="0.5" cy="0.5" r="0.75"><stop offset="0.55" stop-color="#05070b" stop-opacity="0"/><stop offset="1" stop-color="#05070b" stop-opacity="0.75"/></radialGradient></defs>
-            <rect width="${S}" height="${S}" fill="#0b0f16"/>${bg}<rect width="${S}" height="${S}" fill="url(#dpm-vig)"/>${edges}${marks}${nodes}</svg>
-            <div class="dpm-leg"><span class="al"><i></i>sojusz</span><span class="df"><i></i>pakt obronny</span><span class="war"><i></i>wojna</span><span class="tr"><i></i>handel</span><span class="nap"><i></i>pakt</span></div>`;
+        if (!this._dpThumb && g.minimap && g.minimap.thumb) { try { this._dpThumb = g.minimap.thumb.toDataURL('image/jpeg', 0.8); } catch (e) { this._dpThumb = ''; } }
+        const bg = this._dpThumb ? `<image href="${this._dpThumb}" x="0" y="0" width="${S}" height="${S}" preserveAspectRatio="none" opacity="0.5"/>` : '';
+        const vg = big ? 'dpm-vigb' : 'dpm-vig';
+        return `<svg class="dpm${big ? ' big' : ''}${fi >= 0 || fp ? ' foc' : ''}" viewBox="0 0 ${S} ${S}" role="img" aria-label="Mapa relacji">
+            <defs><radialGradient id="${vg}" cx="0.5" cy="0.5" r="0.75"><stop offset="0.5" stop-color="#05070b" stop-opacity="0.12"/><stop offset="1" stop-color="#05070b" stop-opacity="0.78"/></radialGradient></defs>
+            <rect width="${S}" height="${S}" fill="#0b0f16"/>${bg}<rect width="${S}" height="${S}" fill="url(#${vg})"/>${cas}${edges}${marks}${hits}${nodes}</svg>`;
     }
 
-    // --- kto z kim trzyma: bloki sojusznicze i toczące się wojny ---
+    // Warstwy (legenda = przełączniki) i podpis: co widać na mapie
+    dpMapLegend(C) {
+        const hide = this._dpHide || (this._dpHide = new Set());
+        const L = [['al', 'sojusz'], ['df', 'pakt obronny'], ['war', 'wojna'], ['nap', 'pakt'], ['tr', 'handel']];
+        return `<div class="dpm-leg">${L.map(([k, l]) => `<button class="${k}${hide.has(k) ? ' off' : ''}" data-dply="${k}" title="${hide.has(k) ? 'Pokaż' : 'Ukryj'} na mapie: ${l}"><i></i>${l}</button>`).join('')}</div>`;
+    }
+
+    dpMapCaption(C) {
+        const { g, D, me, tag } = C;
+        if (C.fP) return `<div class="dpm-cap">${C.esc(this.dpPairText(C, g.nations[C.fP[0]], g.nations[C.fP[1]]))}</div>`;
+        const n = C.fN;
+        if (!n) return '<div class="dpm-cap">Obwódki herbów: twoje relacje. Najedź na herb, by zobaczyć relacje jednej nacji.</div>';
+        const c = { al: 0, war: 0, df: 0, nap: 0, tr: 0 };
+        for (const o of g.nations) {
+            if (o === n || o.defeated) continue;
+            const p = this.dpPair(C, n, o);
+            if (p.k) c[p.k]++;
+            if (p.tr) c.tr++;
+        }
+        const parts = [c.al && `sojusze ${c.al}`, c.df && `pakty obronne ${c.df}`, c.war && `wojny ${c.war}`, c.nap && `pakty ${c.nap}`, c.tr && `handel ${c.tr}`].filter(Boolean);
+        return `<div class="dpm-cap">${tag(n)}${n === me ? ' (ty)' : ''}: ${parts.length ? parts.join(' · ') : 'bez sojuszy, wojen i umów'}</div>`;
+    }
+
+    dpMap(C) {
+        if (C.world) return '';   // w widoku Kontynent duża mapa jest w karcie po prawej
+        return `<div class="dpm-wrap">${this.dpMapSvg(C, 300, false)}<button class="dpm-big" data-dps="-1" title="Powiększ: widok Kontynent — duża mapa relacji i relacje każdej nacji">⤢</button></div>${this.dpMapLegend(C)}${this.dpMapCaption(C)}`;
+    }
+
+    // --- V1.4: macierz relacji - każda para nacji w jednym polu (wiersz i kolumna to te same nacje, ty pierwszy) ---
+    dpMatrix(C) {
+        const { g, me, esc } = C;
+        const list = [me, ...g.nations.filter(n => n !== me)].filter(n => !n.defeated);
+        if (list.length < 2) return '';
+        const fi = C.fN ? C.idx(C.fN) : -1, [pa, pb] = C.fP || [-1, -1];
+        const on = (i) => i === fi || i === pa || i === pb;
+        const GL = { al: '❖', war: '⚔', df: '🛡', nap: '☮' };
+        const cw = list.length > 6 ? 22 : 24;   // 8 nacji: pola węższe, żeby zostało miejsce na nazwy
+        let h = `<div class="dpmx${fi >= 0 || C.fP ? ' foc' : ''}" style="grid-template-columns:minmax(0, 1fr) repeat(${list.length}, ${cw}px)"><span></span>`;
+        for (const n of list) {
+            const i = C.idx(n);
+            h += `<span class="dpmx-h${on(i) ? ' hl' : ''}" data-dph="${i}" data-dps="${i}" title="${esc(n === me ? 'Ty' : n.shortName || n.name)}">${Rulers.img(n, g, 18)}</span>`;
+        }
+        for (const a of list) {
+            const i = C.idx(a);
+            h += `<span class="dpmx-r${on(i) ? ' hl' : ''}${a === me ? ' me' : ''}" data-dph="${i}" data-dps="${i}">${Rulers.img(a, g, 16)}<span>${a === me ? 'Ty' : esc(a.shortName || a.name)}</span></span>`;
+            for (const b of list) {
+                const j = C.idx(b);
+                if (a === b) { h += '<span class="dpmx-x"></span>'; continue; }
+                const p = this.dpPair(C, a, b), lo = Math.min(i, j), hi = Math.max(i, j);
+                const cls = (i === fi || j === fi ? ' hl' : '') + (lo === Math.min(pa, pb) && hi === Math.max(pa, pb) ? ' on' : '');
+                h += `<span class="dpmx-k ${p.k || 'pc'}${p.tr ? ' tr' : ''}${cls}" data-dph="${lo}-${hi}" data-dps="${b === me ? i : j}" title="${esc(this.dpPairText(C, a, b))}">${GL[p.k] || ''}</span>`;
+            }
+        }
+        return h + '</div><div class="dpmx-leg"><span class="al">❖ sojusz</span><span class="df">🛡 pakt obronny</span><span class="war">⚔ wojna</span><span class="nap">☮ pakt</span><span class="tr"><i></i>handel</span></div>';
+    }
+
+    // V1.4: sojusze jako grupy, w których KAŻDY jest w sojuszu z każdym (kliki grafu sojuszy). Wcześniej "blok" był
+    // łańcuchem: A w sojuszu z B, a B z C dawało blok A + B + C, choć A i C mogły ze sobą walczyć.
+    dpAllianceGroups(C) {
+        const { g, D, me } = C, A = g.nations.filter(n => D.alive(n)), out = [];
+        const nb = new Map(A.map(x => [x, A.filter(y => D.allied(x, y))]));
+        const bk = (R, P, X) => {
+            if (!P.length && !X.length) { if (R.length > 1) out.push(R); return; }
+            for (const v of P.slice()) {
+                const Nv = nb.get(v);
+                bk([...R, v], P.filter(y => Nv.includes(y)), X.filter(y => Nv.includes(y)));
+                P = P.filter(y => y !== v); X = [...X, v];
+            }
+        };
+        bk([], A.filter(x => nb.get(x).length), []);
+        for (const b of out) b.sort((x, y) => (y === me) - (x === me) || g.nations.indexOf(x) - g.nations.indexOf(y));
+        return out.sort((x, y) => y.includes(me) - x.includes(me) || y.length - x.length);
+    }
+
+    // --- kto z kim trzyma: macierz relacji, sojusze, pakty obronne, wojny i rozdarte sojusze ---
     dpBlocs(C) {
         const { g, D, me, tag, ago } = C;
-        const blocs = D.blocs();
-        let h = '<div class="dpx-sec"><span>Kto z kim trzyma</span></div>';
-        if (blocs.length) h += blocs.map(b => `<div class="dpb al${b.includes(me) ? ' mine' : ''}"><i>❖</i><span>${b.map(n => tag(n)).join('<em>+</em>')}</span></div>`).join('');
+        let h = '<div class="dpx-sec"><span>Kto z kim trzyma</span></div>' + this.dpMatrix(C);
+        const blocs = this.dpAllianceGroups(C);
+        h += blocs.map(b => `<div class="dpb al${b.includes(me) ? ' mine' : ''}" title="${b.length > 2 ? 'Każda z tych nacji jest w sojuszu z każdą' : 'Sojusz'}"><i>❖</i><span>${b.map(n => tag(n)).join('<em>+</em>')}</span></div>`).join('');
         // V1.2: pakty obronne
         const defs = [];
         for (let i = 0; i < g.nations.length; i++) for (let j = i + 1; j < g.nations.length; j++) {
@@ -9841,9 +10217,54 @@ class UIManager {
         wars.sort((x, y) => y[2] - x[2]);
         h += wars.slice(0, 6).map(([a, b, t]) => `<div class="dpb war${a === me || b === me ? ' mine' : ''}"><i>⚔</i><span>${tag(a)}<em>×</em>${tag(b)}</span><small>${ago(t)}</small></div>`).join('');
         if (wars.length > 6) h += `<div class="dpb more">i jeszcze ${wars.length - 6} ${wars.length - 6 < 5 ? 'wojny' : 'wojen'}</div>`;
+        // V1.4: rozdarte sojusze - nacja w sojuszu albo pakcie obronnym z OBIEMA stronami jednej wojny
+        const torn = [];
+        for (const x of g.nations) {
+            if (x.defeated) continue;
+            const fr = g.nations.filter(y => y !== x && !y.defeated && (D.allied(x, y) || D.defending(x, y)));
+            for (let i = 0; i < fr.length; i++) for (let j = i + 1; j < fr.length; j++) if (D.atWar(fr[i], fr[j])) torn.push([x, fr[i], fr[j]]);
+        }
+        h += torn.slice(0, 3).map(([x, a, b]) => `<div class="dpb torn${[x, a, b].includes(me) ? ' mine' : ''}" title="Ta nacja ma sojusz albo pakt obronny z obiema stronami tej wojny — prędzej czy później będzie musiała wybrać"><i>⚠</i><span>${tag(x)}<small>z obiema stronami:</small>${tag(a)}<em>×</em>${tag(b)}</span></div>`).join('');
         if (!blocs.length && !wars.length) h += '<div class="dpb none">Na kontynencie panuje pokój — nikt nie ma jeszcze sojusznika.</div>';
         else if (!blocs.length) h += '<div class="dpb none">Nikt nie zawarł jeszcze sojuszu.</div>';
         return h;
+    }
+
+    // --- V1.4: karta "Kontynent" - duża mapa relacji i relacje każdej nacji po kolei ---
+    dpWorld(C) {
+        const { g, D, me, tag, nm } = C;
+        const A = [me, ...g.nations.filter(n => n !== me)].filter(n => !n.defeated);
+        const pl = (v, a, b, c) => v === 1 ? a : (v % 10 >= 2 && v % 10 <= 4 && (v % 100 < 12 || v % 100 > 14)) ? b : c;
+        const cnt = { al: 0, war: 0, df: 0, nap: 0, tr: 0 };
+        for (let i = 0; i < A.length; i++) for (let j = i + 1; j < A.length; j++) {
+            const p = this.dpPair(C, A[i], A[j]);
+            if (p.k) cnt[p.k]++;
+            if (p.tr) cnt.tr++;
+        }
+        const sum = [`${A.length} ${pl(A.length, 'nacja', 'nacje', 'nacji')}`, `${cnt.al} ${pl(cnt.al, 'sojusz', 'sojusze', 'sojuszy')}`, `${cnt.war} ${pl(cnt.war, 'wojna', 'wojny', 'wojen')}`,
+            `${cnt.df} ${pl(cnt.df, 'pakt obronny', 'pakty obronne', 'paktów obronnych')}`, `${cnt.nap} ${pl(cnt.nap, 'pakt o nieagresji', 'pakty o nieagresji', 'paktów o nieagresji')}`,
+            `${cnt.tr} ${pl(cnt.tr, 'umowa handlowa', 'umowy handlowe', 'umów handlowych')}`].join(' · ');
+        const fi = C.fN ? C.idx(C.fN) : -1;
+        let rows = '';
+        for (const n of A) {
+            const i = C.idx(n), r = { al: [], df: [], war: [], nap: [], tr: [] };
+            for (const o of A) {
+                if (o === n) continue;
+                const p = this.dpPair(C, n, o);
+                if (p.k) r[p.k].push(o);
+                if (p.tr) r.tr.push(o);
+            }
+            const line = (k, lbl, c) => r[k].length ? `<div class="dps-rel ${k}"><span class="dp-k">${lbl}</span><span class="dps-who">${r[k].map(o => tag(o, c)).join('')}</span></div>` : '';
+            const body = line('al', 'sojusz z', 'ins') + line('df', 'pakt obronny z', 'ins') + line('war', 'walczą z', 'ins') + line('nap', 'pakt z', 'ins') + line('tr', 'handel z', 'ins');
+            const st = n === me ? null : D.get(me, n);
+            rows += `<div class="dpw-n${i === fi ? ' hl' : ''}${n === me ? ' me' : ''}" data-dps="${i}" data-dph="${i}">
+                <div class="dpw-nh">${Rulers.img(n, g, 22)}<b class="dpo-n" style="color:${n.color}">${nm(n)}</b>${n === me ? '<span class="mut">(ty)</span>' : `<span class="dp-pill ${['war', 'peace', 'ally'][st]}">${DIPLO.NAMES[st]}</span>`}${n === C.heg ? '<span class="dp-heg">hegemon</span>' : ''}</div>
+                ${body || '<div class="dps-rel"><span class="mut">bez sojuszy, wojen i umów</span></div>'}</div>`;
+        }
+        return `<div class="dps-hd dpw-hd"><span class="dpw-ico">⤢</span><div class="dps-id"><b>Kontynent</b><span>${sum}</span></div></div>
+            <div class="dpw"><div class="dpw-map">${this.dpMapSvg(C, 440, true)}${this.dpMapLegend(C)}${this.dpMapCaption(C)}</div>
+            <div class="dpw-list"><div class="dpx-sec"><span>Relacje każdej nacji</span></div>${rows}
+            <p class="dps-note">Najedź na nację (herb, wiersz albo pole macierzy), a mapa pokaże tylko jej relacje; obwódki herbów pokażą wtedy, w jakich stosunkach są z nią inni. Kliknięcie otwiera kartę nacji. Linie omijają herby, a handel biegnie złotym torem obok sojuszu albo paktu.</p></div></div>`;
     }
 
     // --- kronika ---
@@ -9878,12 +10299,13 @@ class UIManager {
         const { g, D, me, nm } = C;
         const ord = (n) => n.defeated ? 9 : [0, 2, 1][D.get(me, n)];
         const list = g.nations.filter(n => n !== me).sort((a, b) => ord(a) - ord(b));
-        let h = `<button class="dpt me${C.sel === me ? ' sel' : ''}" data-dps="${C.idx(me)}" style="--nc:${me.color}">${Rulers.img(me, g, 20)}<span>Przegląd</span></button>`;
+        let h = `<button class="dpt me${C.sel === me && !C.world ? ' sel' : ''}" data-dps="${C.idx(me)}" style="--nc:${me.color}">${Rulers.img(me, g, 20)}<span>Przegląd</span></button>`
+            + `<button class="dpt world${C.world ? ' sel' : ''}" data-dps="-1" title="Kontynent: duża mapa relacji i relacje każdej nacji"><i class="dpt-ico">⤢</i><span>Kontynent</span></button>`;
         for (const n of list) {
             const st = D.get(me, n), rel = n.defeated ? 'dead' : ['war', 'peace', 'ally'][st];
             const op = C.ai(n) && !n.defeated ? Math.round(D.op(n, me)) : null, ow = op === null ? null : C.opWord(op);
             const pend = D.proposals.some(p => p.to === me && p.from === n);
-            h += `<button class="dpt ${rel}${C.sel === n ? ' sel' : ''}" data-dps="${C.idx(n)}" style="--nc:${n.color}" title="${nm(n)}: ${n.defeated ? 'pokonani' : DIPLO.NAMES[st].toLowerCase()}${op === null ? '' : ', stosunek do ciebie ' + (op > 0 ? '+' : '') + op}">`
+            h += `<button class="dpt ${rel}${C.sel === n && !C.world ? ' sel' : ''}" data-dps="${C.idx(n)}"${n.defeated ? '' : ` data-dph="${C.idx(n)}"`} style="--nc:${n.color}" title="${nm(n)}: ${n.defeated ? 'pokonani' : DIPLO.NAMES[st].toLowerCase()}${op === null ? '' : ', stosunek do ciebie ' + (op > 0 ? '+' : '') + op}">`
                 + `${Rulers.img(n, g, 20)}<span>${nm(n)}</span>${op === null ? '' : `<b style="color:${ow[2]}">${op > 0 ? '+' : ''}${op}</b>`}${pend ? '<i class="dpt-dot"></i>' : ''}</button>`;
         }
         return h;
@@ -9994,17 +10416,18 @@ class UIManager {
                 <ul class="dps-why">${this.dpWhyList(C, n, 8)}</ul></div>`;
         } else opBox = '<div class="dps-box"><div class="dpx-sec"><span>Stosunek do ciebie</span></div><div class="dpb none">Tą nacją steruje człowiek — dogadajcie się sami.</div></div>';
         // jej relacje na kontynencie i siła
-        const rel = { war: [], ally: [], trade: [], def: [] };
+        const rel = { war: [], ally: [], trade: [], def: [], nap: [] };
         for (const o of g.nations) {
             if (o === n || o.defeated) continue;
             if (D.atWar(n, o)) rel.war.push(o); else if (D.allied(n, o)) rel.ally.push(o);
             if (D.trading(n, o)) rel.trade.push(o);
             if (D.defending(n, o)) rel.def.push(o);
+            else if (!D.atWar(n, o) && !D.allied(n, o) && D.pactLeft(n, o) > 0) rel.nap.push(o);   // V1.4
         }
         const k = D.strength(n) / Math.max(1, C.myS);
         const pw = k > 1.6 ? ['dużo silniejsi', '#ff8f85'] : k > 1.15 ? ['silniejsi', '#ffc58a'] : k > 0.87 ? ['podobna siła', 'var(--label-2)'] : k > 0.6 ? ['słabsi', '#b9e6a0'] : ['dużo słabsi', '#7fe39a'];
-        const line = (lbl, a, c) => `<div class="dps-rel"><span class="dp-k">${lbl}</span>${a.length ? a.map(o => tag(o, c)).join('') : '<span class="mut">nikt</span>'}</div>`;
-        const world = `<div class="dps-box"><div class="dpx-sec"><span>Na kontynencie</span></div>${line('walczą z', rel.war, 'ins')}${line('sojusz z', rel.ally, 'ins')}${rel.def.length ? line('pakt obronny', rel.def, 'ins') : ''}${line('handel z', rel.trade, 'ins')}
+        const line = (lbl, a, c) => `<div class="dps-rel"><span class="dp-k">${lbl}</span><span class="dps-who">${a.length ? a.map(o => tag(o, c)).join('') : '<span class="mut">nikt</span>'}</span></div>`;
+        const world = `<div class="dps-box"><div class="dpx-sec"><span>Na kontynencie</span></div>${line('walczą z', rel.war, 'ins')}${line('sojusz z', rel.ally, 'ins')}${rel.def.length ? line('pakt obronny', rel.def, 'ins') : ''}${rel.nap.length ? line('pakt z', rel.nap, 'ins') : ''}${line('handel z', rel.trade, 'ins')}
             <div class="dps-rel"><span class="dp-k">siła</span><span class="dps-pw"><i style="width:${Math.round(100 * k / (1 + k))}%;background:${pw[1]}"></i></span><b style="color:${pw[1]}">${pw[0]}</b><small class="mut">${k.toFixed(1).replace('.', ',')}× twojej</small></div></div>`;
         const deals = live ? this.dpDeals(C, n) : '';
         const reply = live && D.replyOf ? D.replyOf(me, n) : null;
@@ -24068,6 +24491,8 @@ class Diplomacy {
         const s = n.shortName || n.name;
         if (!c) return s;
         for (const k in TeamPalette) if (TeamPalette[k].nation === s) return TeamPalette[k][c === 'acc' ? 'gen' : c] || s;
+        const p = NationPeoples.find(x => x[0] === s);   // V1.4: nazwy ludów (nacje SI) odmieniają się jak nazwy kolorów
+        if (p) return p[{ gen: 1, acc: 1, dat: 2, ins: 3 }[c]] || s;
         return (c === 'ins' ? 'nacją ' : c === 'acc' ? 'nację ' : 'nacji ') + s;
     }
     gen(n) { return Diplomacy.form(n, 'gen'); }
@@ -30718,7 +31143,7 @@ const MpUI = {
         else if (sl.state === 'joined') { who = this.esc(sl.name); tag = '<span class="mp-tag ok">połączony</span>'; }
         else { who = '<small>czeka na gracza</small>'; tag = `<span class="mp-tag wait">${sl.state === 'connecting' ? 'łączenie…' : 'niepołączony'}</span>`; }
         return `<div class="mp-slot${sl.kind === 'closed' ? ' off' : ''}${me ? ' me' : ''}"><div class="mp-slot-head"><i class="swatch" style="background:${pal.main}"></i>
-            <span class="nm"><span class="mp-nat">${this.esc((diplo && sl.nationName) || pal.nation)}</span> — ${who}${me ? ' <small>· to ty</small>' : ''} <small data-ping="${i}"></small></span>${tag}${sl.kind !== 'closed' ? this.teamPick(i, sl.team, editable) : ''}</div>
+            <span class="nm"><span class="mp-nat">${diplo && sl.kind === 'ai' ? '<small>losowy lud</small>' : this.esc((diplo && sl.nationName) || pal.nation)}</span> — ${who}${me ? ' <small>· to ty</small>' : ''} <small data-ping="${i}"></small></span>${tag}${sl.kind !== 'closed' ? this.teamPick(i, sl.team, editable) : ''}</div>
             ${editable && me && diplo ? this.nationPick(i, sl.nationName, pal) : ''}${editable && me ? this.colorPick(i, sl.color, taken) : ''}</div>`;
     },
 
@@ -32665,12 +33090,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const startRes = o.rich ? { gold: 600, wood: 1000, food: 800, stone: 300 } : { gold: 100, wood: 300, food: 200, stone: 0 };
         if (diplo) specs.forEach((n, i) => { n.team = i + 1; });   // Dyplomacja: każda nacja na własny rachunek - o wojnach decydują relacje
         let playerNation = null;
+        // V1.4: w Dyplomacji nacje SI dostają losowe nazwy ludów (host losuje, goście dostają je ze stanem świata)
+        const peoples = diplo ? pickPeoples(specs.filter(s => !s.isPlayer && !s.human).length, specs.map(s => cleanNationName(s.nationName)).filter(Boolean)) : [];
         for (const spec of specs) {
             const pal = TeamPalette[spec.color] || TeamPalette.blue;
             // Gra wieloosobowa: spec.human = nacją steruje zdalny gracz (bez AI), spec.name = nazwa gracza
             const who = spec.name ? spec.name : (spec.isPlayer ? 'Gracz' : 'AI');
             // V1.2: w Dyplomacji nacja może mieć własną nazwę (cleanNationName - pusta: nazwa koloru)
-            let own = diplo ? cleanNationName(spec.nationName) : '';
+            let own = diplo ? (spec.isPlayer || spec.human ? cleanNationName(spec.nationName) : peoples.shift() || '') : '';
             if (own && game.nations.some(n => (n.shortName || '').toLowerCase() === own.toLowerCase())) own = '';   // nazwy nacji są niepowtarzalne
             const nation = new Nation((own || pal.nation) + ' (' + who + ')', spec.color, !!spec.isPlayer);
             nation.shortName = own || pal.nation;
