@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artificial Battles: Reloaded V1.5</title>
+    <title>Artificial Battles: Reloaded V1.5.2</title>
     <style>
 /* Czcionka Nunito (SIL Open Font License 1.1) osadzona w pliku - gra działa w pełni offline */
 @font-face { font-family: 'Nunito'; font-style: normal; font-display: swap; font-weight: 200 1000;
@@ -1667,7 +1667,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <span data-pane="controls" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M8 14h8"/></svg><span class="nav-txt">Jak grać</span></span>
                     <span data-pane="news" tabindex="0" role="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg><span class="nav-txt">Co nowego</span></span>
                 </nav>
-                <div class="top-meta"><span class="by">by Conrad3k</span><b>V1.5</b></div>
+                <div class="top-meta"><span class="by">by Conrad3k</span><b>V1.5.2</b></div>
             </header>
 
             <main class="menu-main">
@@ -1840,7 +1840,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                                     <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 28 C5 17 10 8 19 5.5 C24 4.2 28.5 6 30 9.5 L26.4 10.6 C27.6 12.6 26.8 15.6 24 15.8 L21.4 14.6 C19.2 18.4 18.4 23 18.6 28 Z" fill="currentColor"/><path d="M8 25 C8.6 18 12 12.5 17 9.6" fill="none" stroke="#0b111c" stroke-width="1.3" stroke-linecap="round" opacity="0.55"/><circle cx="22.6" cy="9.4" r="1.5" fill="#0b111c"/></svg>
                                     <div><b>Raptor Engine</b><small>silnik gry · designed by Claude</small></div>
                                 </div>
-                                <span>Artificial Battles: Reloaded V1.5 by Conrad3k · wykonane przy użyciu agentów LLM</span>
+                                <span>Artificial Battles: Reloaded V1.5.2 by Conrad3k · wykonane przy użyciu agentów LLM</span>
                             </div>
                         </section>
                     </div>
@@ -1949,9 +1949,28 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="news-wrap">
                     <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
                     <div class="menu-card news-new">
-                        <div class="eyebrow">Wydanie · Reloaded V1.5</div>
-                        <h2>Reloaded V1.5 — Widok Prosty Dyplomacji, ładniejsze rzeki i wozy kupieckie przejeżdżające przez bramy partnerów handlowych</h2>
-                        <p>Ekran Dyplomacji ma dwa poziomy: <b>Widok Prosty</b> dla nowych graczy — najważniejsze informacje i polecane ruchy, bez nadmiaru liczb — i <b>Widok Zaawansowany</b>, czyli pełny ekran z V1.4. Rzeki na kontynencie wyglądają naturalniej (cienkie źródła, płycizny przy brodach, delty przy ujściach), a wozy kupieckie partnera z umową handlową nie utykają już pod twoją bramą.</p>
+                        <div class="eyebrow">Wydanie · Reloaded V1.5.2</div>
+                        <h2>Reloaded V1.5.2 — jednostki uwięzione za cudzą bramą nie stoją już w osadzie w nieskończoność</h2>
+                        <p>Poprawka do V1.5. Gdy kończył się sojusz albo umowa handlowa (albo wybuchała wojna), brama zamykała się przed wozami kupieckimi i wojskiem byłego partnera, które były akurat w środku jego osady. Nie miały którędy wyjechać, więc zostawały tam na zawsze — wozy stały pod bramą, żołnierze kręcili się po rynku.</p>
+
+                        <h3>Uwięzione jednostki przepadają</h3>
+                        <ul>
+                            <li>Jednostka, która <b>nie ma drogi do żadnego własnego budynku</b>, a miałaby ją przez zamkniętą bramę, po <b>20 sekundach</b> przepada (znika z mapy, bez łupu dla nikogo).</li>
+                            <li>Dostajesz ostrzeżenie, gdy twoje jednostki utkną: jeśli w ciągu tych 20 s brama znów się otworzy — odnowisz umowę handlową albo sojusz — jednostki zostają i wyjeżdżają.</li>
+                            <li>Nie dotyczy króla, pasażerów, okrętów ani wojska, które właśnie walczy (może wyrąbać sobie drogę przez bramę). Wyspa, drugi brzeg rzeki czy odcięcie samym murem bez bramy nie są uwięzieniem.</li>
+                        </ul>
+
+                        <h3>Sprawdzone</h3>
+                        <ul>
+                            <li>Wszyscy gracze w grze wieloosobowej potrzebują wydania Reloaded V1.5.2. Zapisy z Reloaded V1.0–V1.5 wczytasz w V1.5.2.</li>
+                            <li><b>Sprawdzone automatycznie</b>: osada otoczona murem z bramą — wóz kupiecki w środku przy umowie handlowej zostaje, po jej zerwaniu przepada po 20 s, a po odnowieniu umowy w tym czasie zostaje; żołnierz sojusznika po zerwaniu sojuszu — przepada; jednostki właściciela murów i wóz za murem — bez zmian. Kampanie Dyplomacji SI kontra SI z 6 i 8 nacjami (do 30 minut) i Klasyczny mecz — bez błędów i bez jednostek usuniętych bez powodu; w kampanii 8 nacji wóz kupiecki, który utknął pod cudzą bramą, przepadł po 20 s. Sprawdzanie kosztuje ok. 0,4% czasu symulacji. Zapis gry z uwięzionymi jednostkami działa.</li>
+                        </ul>
+                    </div>
+                    <div class="news-sub">Wcześniejsze wydania</div>
+                    <details class="release">
+                        <summary><span class="ver">R1.5</span><h2>Reloaded V1.5 — Widok Prosty Dyplomacji, ładniejsze rzeki i wozy kupieckie przejeżdżające przez bramy partnerów handlowych</h2></summary>
+                        <div class="release-body">
+                        <p class="menu-note">Ekran Dyplomacji ma dwa poziomy: <b>Widok Prosty</b> dla nowych graczy — najważniejsze informacje i polecane ruchy, bez nadmiaru liczb — i <b>Widok Zaawansowany</b>, czyli pełny ekran z V1.4. Rzeki na kontynencie wyglądają naturalniej (cienkie źródła, płycizny przy brodach, delty przy ujściach), a wozy kupieckie partnera z umową handlową nie utykają już pod twoją bramą.</p>
 
                         <h3>Widok Prosty i Widok Zaawansowany</h3>
                         <ul>
@@ -1984,8 +2003,8 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li>Wszyscy gracze w grze wieloosobowej potrzebują wydania Reloaded V1.5. Zapisy z Reloaded V1.0–V1.4 wczytasz w V1.5 (wczytany świat zachowuje swoje rzeki).</li>
                             <li><b>Sprawdzone automatycznie</b>: kampanie Dyplomacji SI kontra SI z 3, 6 i 8 nacjami — co minutę gry ekran Dyplomacji w obu widokach (lista i karta każdej nacji w Widoku Prostym; wszystkie widoki zaawansowane), bez błędów; przełącznik widoków zapamiętany. 60 kontynentów przed i po zmianie rzek (liczba rzek bez zmian). Brama innej nacji: wóz bez umowy — zamknięta, z umową handlową — otwarta, po zerwaniu — znów zamknięta; żołnierz — tylko w sojuszu. Zapis kampanii z V1.3 i V1.4 wczytany w V1.5 i grany dalej.</li>
                         </ul>
-                    </div>
-                    <div class="news-sub">Wcześniejsze wydania</div>
+                        </div>
+                    </details>
                     <details class="release">
                         <summary><span class="ver">R1.4</span><h2>Reloaded V1.4 — czytelny ekran Dyplomacji: macierz relacji, widok Kontynent, mapa, na której widać, kto z kim trzyma, i nazwy ludów dla nacji SI</h2></summary>
                         <div class="release-body">
@@ -2724,7 +2743,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
     <script>
 /* --- core/Config.js --- */
 const GameConfig = {
-    version: 'Reloaded V1.5',
+    version: 'Reloaded V1.5.2',
     engine: 'Raptor Engine · designed by Claude',
     cameraPad: 320,             // o tyle (w pikselach świata) kamera może wyjechać poza granicę mapy
     popCap: 200,
@@ -4081,6 +4100,7 @@ class Game {
 
         for (const nation of this.nations) nation.update(deltaTime);
         if (this.diplo) this.diplo.update(deltaTime);
+        this.freeTrapped(deltaTime);   // V1.5.2: jednostki uwięzione za cudzą bramą
 
         const ents = this.entities;
         // V1.3 (Raptor): drzewa i złoża nie mają czego liczyć - zamiast przeglądać co krok wszystkie encje (na kontynencie
@@ -6539,6 +6559,56 @@ Game.prototype.tradeRelationsChanged = function () {
     }
 };
 
+// V1.5.2: jednostki uwięzione za bramą. Gdy sojusz albo umowa handlowa się kończy (albo wybucha wojna), brama
+// zamyka się przed wozami i wojskiem byłego partnera, które są akurat w środku osady - wcześniej zostawały tam na
+// zawsze (wozy stały pod bramą, wojsko kręciło się po rynku). Jednostka, która nie ma drogi do żadnego własnego
+// budynku, a miałaby ją przez zamkniętą bramę (Pathfinder.gateTrapped), po Game.TRAP_TIME s przepada. Nie dotyczy
+// króla, pasażerów, okrętów i jednostek, które właśnie walczą (wojsko może wyrąbać sobie drogę przez bramę).
+Game.TRAP_TIME = 20;
+Game.TRAP_NEAR = 1500;   // sprawdzane są jednostki najwyżej tak daleko od zamkniętej dla nich bramy
+Game.prototype.freeTrapped = function (dt) {
+    if (this.isClient) return;
+    this._trapClock = (this._trapClock || 0) + dt;
+    if (this._trapClock < 1) return;
+    const step = this._trapClock;
+    this._trapClock = 0;
+    const pf = this.pathfinder;
+    if (!pf || !pf.landMask) return;
+    // tylko jednostki w pobliżu bramy, która ich nie przepuszcza - bez tego co sekundę liczyłyby się od nowa regiony
+    // wszystkich drużyn (pełne zalanie mapy po każdej zmianie bram i sojuszy)
+    const gates = [], GA = pf.gateAllow, D2 = Game.TRAP_NEAR * Game.TRAP_NEAR;
+    for (const n of this.nations) for (const b of n.buildings) if (b.type === 'gate' && !b.isDestroyed) gates.push(b);
+    const nearShut = (u) => {
+        const row = (pf.teamOf(u) + 1) * 32;
+        for (const b of gates) {
+            const dx = b.x - u.x, dy = b.y - u.y;
+            if (dx * dx + dy * dy < D2 && GA[row + b.owner.team + 1] === 0) return true;
+        }
+        return false;
+    };
+    const cache = new Map();
+    for (const n of this.nations) {
+        if (n.defeated) continue;
+        let lost = 0, name = '', warn = false;
+        for (const u of n.units) {
+            if (u.isDestroyed) continue;
+            const busy = u.state === 'attacking' && u.targetEntity && !u.targetEntity.isDestroyed;
+            if (u.inside || u.isShip || u.cfg.hero || busy || !nearShut(u) || !pf.gateTrapped(u, cache)) { u.trapT = 0; continue; }
+            u.trapT = (u.trapT || 0) + step;
+            if (u.trapT < Game.TRAP_TIME) { if (u.trapT === step) warn = true; continue; }
+            u.trapT = 0;
+            this.killEntity(u, null);
+            lost++; name = u.cfg.name;
+        }
+        if (!n.human) continue;
+        if (lost) this.tell(n, lost === 1 ? `Jednostka uwięziona za zamkniętą bramą obcej osady przepadła: ${name}.` : `Jednostki uwięzione za zamkniętą bramą obcej osady przepadły (${lost}).`, 'warn');
+        else if (warn && this.time - (n._trapTold || -99) > 10) {
+            n._trapTold = this.time;
+            this.tell(n, `Twoje jednostki utknęły za zamkniętą bramą obcej osady. Jeśli w ciągu ${Game.TRAP_TIME} s nie znajdą drogi wyjścia, przepadną.`, 'warn');
+        }
+    }
+};
+
 // Złoto za kurs z punktu (ox, oy) na targ m; fromOwner - właściciel targu wyjazdu (premia za handel z sojusznikiem)
 Game.prototype.tradeGold = function (nation, ox, oy, m, fromOwner) {
     if (ox == null || !m) return 0;
@@ -8740,8 +8810,10 @@ class Pathfinder {
         // V1.1: kto przechodzi przez bramę - gateAllow[(drużyna jednostki + 1) * 32 + gateTeam]: własna drużyna zawsze,
         // a w Dyplomacji także sojusznicy (wcześniej brama sojusznika była dla nich murem: wozy kupieckie i odsiecz
         // utykały pod nią). Przeliczane przy każdej zmianie sojuszy (syncGates).
-        this.gateAllow = new Uint8Array(32 * 32);
+        // V1.5.2: wiersz drużyny Pathfinder.ALL_GATES (31) - wszystkie bramy otwarte (Pathfinder.gateTrapped)
+        this.gateAllow = new Uint8Array(33 * 32);
         for (let t = 1; t < 32; t++) this.gateAllow[t * 32 + t] = 1;
+        this.gateAllow.fill(1, (Pathfinder.ALL_GATES + 1) * 32 + 1, (Pathfinder.ALL_GATES + 2) * 32);
         this._gateSig = '';
         this.landGrid = new Uint8Array(n);
         this.boatGrid = new Uint8Array(n);
@@ -8761,6 +8833,7 @@ class Pathfinder {
         const D = this.game.diplo, A = this.gateAllow;
         A.fill(0);
         for (let t = 1; t < 32; t++) A[t * 32 + t] = 1;
+        A.fill(1, (Pathfinder.ALL_GATES + 1) * 32 + 1, (Pathfinder.ALL_GATES + 2) * 32);
         let sig = '';
         if (D && D.allyMask) {
             const teams = [...new Set(this.game.nations.map(n => n.team))];
@@ -9171,6 +9244,53 @@ class Pathfinder {
         return false;
     }
 
+    // V1.5.2: czy jednostka jest uwięziona za bramą, która jej nie przepuszcza (zerwany sojusz albo umowa handlowa,
+    // wojna): jej region (z jej uprawnieniami bram) nie sięga żadnego własnego budynku, przy wszystkich bramach
+    // otwartych - sięga, a do tego jest mniejszą częścią tego obszaru (osada za murem, nie reszta świata, gdy to własna
+    // osada zostałaby odcięta). Wyspa, drugi brzeg rzeki czy odcięcie samym murem bez bramy nie są uwięzieniem.
+    // cache - Map na jedno przejście (Game.freeTrapped): własne regiony nacji i wielkości regionów.
+    gateTrapped(unit, cache) {
+        if (unit.isShip || !unit.owner) return false;
+        const team = this.teamOf(unit);
+        if (team < 0 || team >= Pathfinder.ALL_GATES) return false;
+        const grid = this.getGrid(unit), cs = this.cellSize;
+        const idx = this.nearestOpen(grid, team, Math.floor(unit.x / cs), Math.floor(unit.y / cs), 4);
+        if (idx < 0) return false;
+        const lab = this.getRegions(grid, team), L = lab[idx];
+        if (!L || this._homeLabels(unit.owner, lab, cache).has(L)) return false;
+        const all = this.getRegions(grid, Pathfinder.ALL_GATES), A = all[idx];
+        if (!A || !this._homeLabels(unit.owner, all, cache).has(A)) return false;
+        return this._regionSize(lab, L, cache) * 2 < this._regionSize(all, A, cache);
+    }
+
+    // Numery regionów (podział lab) przy budynkach nacji - bez murów i bram (do nich podchodzi się też z zewnątrz)
+    _homeLabels(nation, lab, cache) {
+        let byLab = cache.get(lab);
+        if (!byLab) cache.set(lab, byLab = new Map());
+        let set = byLab.get(nation);
+        if (set) return set;
+        byLab.set(nation, set = new Set());
+        const cs = this.cellSize, cols = this.cols, rows = this.rows;
+        for (const b of nation.buildings) {
+            if (b.isDestroyed || isWallType(b.type)) continue;
+            const rad = (b.size || 20) / 2;
+            const c0 = Math.max(0, Math.floor((b.x - rad) / cs) - 2), c1 = Math.min(cols - 1, Math.floor((b.x + rad) / cs) + 2);
+            const r0 = Math.max(0, Math.floor((b.y - rad) / cs) - 2), r1 = Math.min(rows - 1, Math.floor((b.y + rad) / cs) + 2);
+            for (let r = r0; r <= r1; r++) for (let c = c0; c <= c1; c++) { const v = lab[r * cols + c]; if (v) set.add(v); }
+        }
+        return set;
+    }
+
+    _regionSize(lab, L, cache) {
+        let sizes = cache.get('n');
+        if (!sizes) cache.set('n', sizes = new Map());
+        let m = sizes.get(lab);
+        if (!m) sizes.set(lab, m = new Map());
+        let k = m.get(L);
+        if (k === undefined) { k = 0; for (let i = 0; i < lab.length; i++) if (lab[i] === L) k++; m.set(L, k); }
+        return k;
+    }
+
     // ---------------- V1.1: rzeki i brody ----------------
     // Czy odcinek przecina wodę albo góry (sam teren, bez budynków) - szybki test co pół pola siatki
     terrainLineBlocked(ax, ay, bx, by) {
@@ -9422,6 +9542,7 @@ class Pathfinder {
         return true;
     }
 }
+Pathfinder.ALL_GATES = 31;   // V1.5.2: drużyna "wszystkie bramy otwarte" - tylko do podziału na regiony (gateTrapped)
 
 
 /* --- core/UIManager.js --- */
@@ -20627,7 +20748,7 @@ Unit.inEnemyStreets = function (g, u) {
     }
     return false;
 };
-Unit.FIELDS = ['owner', 'unitType', 'targetX', 'targetY', 'cfg', 'isShip', 'speed', 'radius', 'isSelected', 'targetEntity', 'state', 'leashTargetX', 'leashTargetY', 'explicitTarget', 'gatherTimer', 'carryType', 'carryAmount', 'carryCapacity', 'gatherRate', 'kills', 'rank', 'attackTimer', 'attackRate', 'angle', '_px', '_py', '_pa', 'walkDist', 'isMoving', 'seed', 'resumeTargetX', 'resumeTargetY', 'leashAnchorX', 'leashAnchorY', 'formAngle', 'formSpeed', 'formHold', 'attackDamage', 'attackRange', 'armorMelee', 'armorPierce', 'healRate', 'healRange', 'vision', 'aggroRadius', '_gridLayer', '_gridTeam', '_gridKey', '_faceX', '_grid', 'freeX', 'freeY', 'aggroTimer', '_sepX', '_sepY', '_sx', '_sy', '_sa', 'path', 'stuck', 'stuckT', 'stuckX', 'stuckY', 'moveFailCount', 'repathCooldown', '_gt', 'urgentPath', 'lastPathTargetX', 'lastPathTargetY', 'pathPartial', '_faceY', 'fxTimer', 'buildTimer', 'resumeGather', 'lastGatherType', 'previousResource', 'aggroEnabled', '_swing', 'hasDealtDamage', 'chargeDist', 'lastHitTime', 'ghostUntil', 'isDrafted', 'healTimer', 'inspiredUntil', 'inspireBonus', 'fuseFx', 'auraTimer', 'auraCount', 'healTarget', 'healFx', 'healSnd', 'lazT', 'chargeIdle', 'repairTimer', 'unreachableBy', 'netHidden', 'netFresh', 'deathCause', 'inside', 'passengers', 'ambushUntil', 'inStreets', 'streetT', 'carryApples', 'waitT', 'regen', 'chargeBonus', 'royalOn', 'royalReady', 'royalUntil', 'royalT', 'tradeFrom', 'tradeBack', 'tradeOx', 'tradeOy', 'tradeWait', 'tradeRescan', '_farMemo', '_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf'];
+Unit.FIELDS = ['owner', 'unitType', 'targetX', 'targetY', 'cfg', 'isShip', 'speed', 'radius', 'isSelected', 'targetEntity', 'state', 'leashTargetX', 'leashTargetY', 'explicitTarget', 'gatherTimer', 'carryType', 'carryAmount', 'carryCapacity', 'gatherRate', 'kills', 'rank', 'attackTimer', 'attackRate', 'angle', '_px', '_py', '_pa', 'walkDist', 'isMoving', 'seed', 'resumeTargetX', 'resumeTargetY', 'leashAnchorX', 'leashAnchorY', 'formAngle', 'formSpeed', 'formHold', 'attackDamage', 'attackRange', 'armorMelee', 'armorPierce', 'healRate', 'healRange', 'vision', 'aggroRadius', '_gridLayer', '_gridTeam', '_gridKey', '_faceX', '_grid', 'freeX', 'freeY', 'aggroTimer', '_sepX', '_sepY', '_sx', '_sy', '_sa', 'path', 'stuck', 'stuckT', 'stuckX', 'stuckY', 'moveFailCount', 'repathCooldown', '_gt', 'urgentPath', 'lastPathTargetX', 'lastPathTargetY', 'pathPartial', '_faceY', 'fxTimer', 'buildTimer', 'resumeGather', 'lastGatherType', 'previousResource', 'aggroEnabled', '_swing', 'hasDealtDamage', 'chargeDist', 'lastHitTime', 'ghostUntil', 'isDrafted', 'healTimer', 'inspiredUntil', 'inspireBonus', 'fuseFx', 'auraTimer', 'auraCount', 'healTarget', 'healFx', 'healSnd', 'lazT', 'chargeIdle', 'repairTimer', 'unreachableBy', 'netHidden', 'netFresh', 'deathCause', 'inside', 'passengers', 'ambushUntil', 'inStreets', 'streetT', 'carryApples', 'waitT', 'regen', 'chargeBonus', 'royalOn', 'royalReady', 'royalUntil', 'royalT', 'tradeFrom', 'tradeBack', 'tradeOx', 'tradeOy', 'tradeWait', 'tradeRescan', 'trapT', '_farMemo', '_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf'];
 
 // Rodzaj dźwięku ciosu wręcz (V3.5): 0 - szczęk stali, 1 - drzewce i tarcza, 2 - topór, 3 - narzędzie / pięść, 4 - stal o mur
 Unit.MELEE_SND = { swordsman: 0, knight: 0, hussar: 0, royal_guard: 0, scout: 0, lisowczyk: 0, spearman: 1, halberdier: 1, axeman: 2, worker: 3 };

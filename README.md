@@ -1,7 +1,17 @@
 # Artificial-Battles
 Gra w jednym pliku HTML
 
-Najnowsze wydanie: **Artificial Battles - Reloaded V1.5.html** (otwórz w przeglądarce, działa offline).
+Najnowsze wydanie: **Artificial Battles - Reloaded V1.5.2.html** (otwórz w przeglądarce, działa offline).
+
+**Reloaded V1.5.2** — poprawka: jednostki uwięzione za cudzą bramą nie stoją już w osadzie w nieskończoność:
+- Gdy kończył się sojusz albo umowa handlowa (albo wybuchała wojna), brama zamykała się przed wozami kupieckimi
+  i wojskiem byłego partnera, które były akurat w jego osadzie — zostawały tam na zawsze.
+- Teraz jednostka, która nie ma drogi do żadnego własnego budynku, a miałaby ją przez zamkniętą bramę, po 20 s
+  przepada. Gracz dostaje ostrzeżenie; jeśli w tym czasie brama znów się otworzy (odnowiona umowa, sojusz), jednostki
+  zostają. Nie dotyczy króla, pasażerów, okrętów ani wojska w walce; wyspa czy drugi brzeg rzeki to nie uwięzienie.
+- Gra wieloosobowa wymaga V1.5.2; zapisy z V1.0–V1.5 wczytują się.
+
+### Wcześniej: Reloaded V1.5
 
 **Reloaded V1.5** — Widok Prosty Dyplomacji, ładniejsze rzeki i wozy kupieckie u partnerów handlowych:
 - **Widok Prosty / Zaawansowany** — przełącznik w nagłówku ekranu Dyplomacji (zapamiętany, na start Prosty). Prosty:
