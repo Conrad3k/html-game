@@ -6699,6 +6699,7 @@ Game.prototype.tradePartner = function (u, from) {
 
 // Wóz dojechał na targ m: rozliczenie kursu i powrót na drugi koniec szlaku
 Game.prototype.tradeArrive = function (u, m) {
+    u.tradeJam = 0;
     if (!this.isTradeMarket(u.owner, m)) { this.tradeResume(u); return; }
     const from = u.tradeFrom;
     if (u.tradeOx != null && from !== m) {
@@ -19272,6 +19273,7 @@ class Unit extends Entity {
     }
 
     resetStuck() {
+        this.partialBest = undefined;   // V2.0: postęp na trasie z kilku odcinków (moveStep)
         this.stuck = 0; this.stuckT = 0;
         this.stuckX = this.x; this.stuckY = this.y;
         this.moveFailCount = 0;
@@ -19817,7 +19819,9 @@ class Unit extends Entity {
     canEnter(pf, x, y) {
         const idx = pf.cellIndex(x, y);
         if (idx < 0) return false;
-        if (pf.cellOpen(this._grid, idx, this.owner ? this.owner.team : -1)) return true;
+        // V2.0: uprawnienia bram jak przy wyznaczaniu trasy (Pathfinder.teamOf) - wcześniej wóz partnera handlowego
+        // dostawał trasę przez bramę, ale sam ruch traktował ją jak mur: wóz utykał w bramie i tracił szlak
+        if (pf.cellOpen(this._grid, idx, pf.teamOf(this))) return true;
         return this.inTargetBox(pf, x, y);
     }
 
@@ -19905,7 +19909,7 @@ class Unit extends Entity {
     // Zwraca true, jeśli w tej klatce jednostka tylko "wychodzi z przeszkody".
     updateEmbedded(pf, deltaTime) {
         const idx = pf.cellIndex(this.x, this.y);
-        if (idx >= 0 && pf.cellOpen(this._grid, idx, this.owner ? this.owner.team : -1)) {
+        if (idx >= 0 && pf.cellOpen(this._grid, idx, pf.teamOf(this))) {   // V2.0: jak canEnter
             this.freeX = this.x; this.freeY = this.y;
             return false;
         }
@@ -20351,6 +20355,15 @@ class Unit extends Entity {
             if (this.path && this.pathPartial) {
                 // doszliśmy najbliżej, jak się da - cel jest odcięty
                 if (this.state === 'trading' && te && !pf.canReach(this, this.x, this.y, te, 2)) { g.tradeBlocked(this); return; }   // V1.1: targ za murem
+                // V2.0: trasa urwała się na limicie wyszukiwania (bardzo długi marsz po kontynencie), a cel jest osiągalny -
+                // liczymy dalszy odcinek od miejsca, w którym jednostka stoi. Wcześniej stawała w pół drogi (wóz kupiecki
+                // tracił przy tym szlak). Dalej tylko wtedy, gdy każdy odcinek przybliża do celu (bez krążenia w zatoce).
+                const left = Math.hypot(destX - this.x, destY - this.y);
+                if (left < (this.partialBest === undefined ? Infinity : this.partialBest) - 60 && pf.canReach(this, this.x, this.y, te || { x: destX, y: destY }, 2)) {
+                    this.partialBest = left;
+                    this.path = null; this.pathPartial = false; this.repathCooldown = 0;
+                    return;
+                }
                 if (this.state === 'moving_to_resource' && te && te.amount !== undefined && !isFarmType(te.type)) {
                     // drzewo / złoże w środku skupiska: robotnik bierze najbliższe osiągalne tego samego rodzaju
                     const alt = this.findWork(te.type, te.x, te.y, 320);
@@ -20392,6 +20405,15 @@ class Unit extends Entity {
                 if (!attackState) {
                     this.ghostUntil = time + 1.6;   // przez chwilę własne jednostki nie zagradzają drogi
                     if (!te && this.stuck >= 2 && Math.hypot(destX - this.x, destY - this.y) < 120) { this.goIdle(); return; }   // tłok u celu
+                    if (this.stuck >= 6 && this.state === 'trading' && te) {
+                        // V2.0: wóz kupiecki w zatorze (brama, tłum przy targu) nie porzuca szlaku - przepycha się dalej, a po
+                        // trzecim zatorze z rzędu jedzie na drugi koniec szlaku albo na inny targ (Game.tradeBlocked)
+                        this.stuck = 0;
+                        this.tradeJam = (this.tradeJam || 0) + 1;
+                        this.ghostUntil = time + 3;
+                        if (this.tradeJam >= 3) { this.tradeJam = 0; g.tradeBlocked(this); }
+                        return;
+                    }
                     if (this.stuck >= 6) {
                         if (te) {
                             if (!te.unreachableBy) te.unreachableBy = new Map();
@@ -20818,7 +20840,7 @@ Unit.inEnemyStreets = function (g, u) {
     }
     return false;
 };
-Unit.FIELDS = ['owner', 'unitType', 'targetX', 'targetY', 'cfg', 'isShip', 'speed', 'radius', 'isSelected', 'targetEntity', 'state', 'leashTargetX', 'leashTargetY', 'explicitTarget', 'gatherTimer', 'carryType', 'carryAmount', 'carryCapacity', 'gatherRate', 'kills', 'rank', 'attackTimer', 'attackRate', 'angle', '_px', '_py', '_pa', 'walkDist', 'isMoving', 'seed', 'resumeTargetX', 'resumeTargetY', 'leashAnchorX', 'leashAnchorY', 'formAngle', 'formSpeed', 'formHold', 'attackDamage', 'attackRange', 'armorMelee', 'armorPierce', 'healRate', 'healRange', 'vision', 'aggroRadius', '_gridLayer', '_gridTeam', '_gridKey', '_faceX', '_grid', 'freeX', 'freeY', 'aggroTimer', '_sepX', '_sepY', '_sx', '_sy', '_sa', 'path', 'stuck', 'stuckT', 'stuckX', 'stuckY', 'moveFailCount', 'repathCooldown', '_gt', 'urgentPath', 'lastPathTargetX', 'lastPathTargetY', 'pathPartial', '_faceY', 'fxTimer', 'buildTimer', 'resumeGather', 'lastGatherType', 'previousResource', 'aggroEnabled', '_swing', 'hasDealtDamage', 'chargeDist', 'lastHitTime', 'ghostUntil', 'isDrafted', 'healTimer', 'inspiredUntil', 'inspireBonus', 'fuseFx', 'auraTimer', 'auraCount', 'healTarget', 'healFx', 'healSnd', 'lazT', 'chargeIdle', 'repairTimer', 'unreachableBy', 'netHidden', 'netFresh', 'deathCause', 'inside', 'passengers', 'ambushUntil', 'inStreets', 'streetT', 'carryApples', 'waitT', 'regen', 'chargeBonus', 'royalOn', 'royalReady', 'royalUntil', 'royalT', 'tradeFrom', 'tradeBack', 'tradeOx', 'tradeOy', 'tradeWait', 'tradeRescan', 'trapT', '_farMemo', '_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf'];
+Unit.FIELDS = ['owner', 'unitType', 'targetX', 'targetY', 'cfg', 'isShip', 'speed', 'radius', 'isSelected', 'targetEntity', 'state', 'leashTargetX', 'leashTargetY', 'explicitTarget', 'gatherTimer', 'carryType', 'carryAmount', 'carryCapacity', 'gatherRate', 'kills', 'rank', 'attackTimer', 'attackRate', 'angle', '_px', '_py', '_pa', 'walkDist', 'isMoving', 'seed', 'resumeTargetX', 'resumeTargetY', 'leashAnchorX', 'leashAnchorY', 'formAngle', 'formSpeed', 'formHold', 'attackDamage', 'attackRange', 'armorMelee', 'armorPierce', 'healRate', 'healRange', 'vision', 'aggroRadius', '_gridLayer', '_gridTeam', '_gridKey', '_faceX', '_grid', 'freeX', 'freeY', 'aggroTimer', '_sepX', '_sepY', '_sx', '_sy', '_sa', 'path', 'stuck', 'stuckT', 'stuckX', 'stuckY', 'moveFailCount', 'repathCooldown', '_gt', 'urgentPath', 'lastPathTargetX', 'lastPathTargetY', 'pathPartial', '_faceY', 'fxTimer', 'buildTimer', 'resumeGather', 'lastGatherType', 'previousResource', 'aggroEnabled', '_swing', 'hasDealtDamage', 'chargeDist', 'lastHitTime', 'ghostUntil', 'isDrafted', 'healTimer', 'inspiredUntil', 'inspireBonus', 'fuseFx', 'auraTimer', 'auraCount', 'healTarget', 'healFx', 'healSnd', 'lazT', 'chargeIdle', 'repairTimer', 'unreachableBy', 'netHidden', 'netFresh', 'deathCause', 'inside', 'passengers', 'ambushUntil', 'inStreets', 'streetT', 'carryApples', 'waitT', 'regen', 'chargeBonus', 'royalOn', 'royalReady', 'royalUntil', 'royalT', 'tradeFrom', 'tradeBack', 'tradeOx', 'tradeOy', 'tradeWait', 'tradeRescan', 'trapT', 'partialBest', 'tradeJam', '_farMemo', '_spr', '_spP', '_spF', '_spC', '_shSpr', '_shC', '_tk', '_tf'];
 
 // Rodzaj dźwięku ciosu wręcz (V3.5): 0 - szczęk stali, 1 - drzewce i tarcza, 2 - topór, 3 - narzędzie / pięść, 4 - stal o mur
 Unit.MELEE_SND = { swordsman: 0, knight: 0, hussar: 0, royal_guard: 0, scout: 0, lisowczyk: 0, spearman: 1, halberdier: 1, axeman: 2, worker: 3 };
