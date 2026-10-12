@@ -175,6 +175,30 @@ export default [
         }
     },
     {
+        name: 'Surowce: tempo zbierania V2.1 (-25%) - 3 na sekundę w Klasycznym meczu, 2,4 w Dyplomacji',
+        async run() {
+            for (const [mode, opts, want] of [['klasyczny', classicOptions({ events: false }), 1.5], ['dyplomacja', diploOptions(3, { truce: 3000, events: false }), 1.2]]) {
+                const page = await scene(opts);
+                const r = await page.evaluate(() => {
+                    const G = window.game, H = window.__ab, [A] = G.nations;
+                    H.noAI();
+                    const tc = H.tc(A), w = A.units.find(u => u.unitType === 'worker');
+                    const tree = G.resourceNodes.filter(n => n.type === 'wood' && !n.isDestroyed).sort((a, b) => Math.hypot(a.x - tc.x, a.y - tc.y) - Math.hypot(b.x - tc.x, b.y - tc.y))[0];
+                    w.gather(tree);
+                    G.pathBudget = G.orderBudget = 1e9;
+                    // pierwsze uderzenie siekierą: tyle drewna na jeden takt zbierania (co gatherRate s)
+                    for (let i = 0; i < 1800 && !(w.state === 'gathering' && w.carryAmount > 0); i++) G.simStep(Game.STEP);
+                    return { per: w.carryAmount, rate: w.gatherRate, mult: A.gatherMult.wood };
+                });
+                assert.equal(r.mult, 1, mode + ': premia nacji');
+                assert.ok(Math.abs(r.per - want) < 1e-9, `${mode}: drewno na takt ${r.per} (oczekiwane ${want})`);
+                assert.ok(Math.abs(r.per / r.rate - want * 2) < 1e-9, `${mode}: na sekundę ${r.per / r.rate}`);
+                assertNoErrors(page);
+                await closeGame(page);
+            }
+        }
+    },
+    {
         name: 'Farma: robotnik zbiera żywność z farmy, wyczerpana farma jest obsiewana za drewno',
         async run() {
             const page = await scene(classicOptions({ events: false }));
