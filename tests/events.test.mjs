@@ -223,6 +223,47 @@ export default [
         }
     },
     {
+        name: 'Karty z odliczaniem (propozycja Dyplomacji, decyzja Wydarzenia) nie migają - sekundy zmieniają się na miejscu',
+        async run() {
+            const page = await diploPage();
+            const r = await page.evaluate(() => {
+                const g = window.game, W = g.worldEvents, D = g.diplo, me = g.playerNation, ui = window.uiManager;
+                W.nextAt.fill(1e9); W.worldAt = 1e9;
+                const step = (s) => { for (let i = 0; i < Math.round(s / Game.STEP); i++) g.simStep(Game.STEP); ui.refresh(); };
+                D.proposals.push({ id: ++D._pid, from: g.nations[1], to: me, kind: 'trade', target: null, at: g.time, until: g.time + DIPLO.PROPOSAL_TTL, pay: null, def: 0 });
+                W.fire('drought', me);
+                ui.refresh();
+                const q = (s) => document.querySelector(s);
+                const card = q('#dp-inbox .dp-prop'), ev = q('#ev-inbox .ev-card');
+                const t0 = [card && card.querySelector('.lv-left').textContent, ev && ev.querySelector('.lv-left').textContent];
+                step(3.2);
+                // V2.0: co sekundę nowy element karty (animacja wejścia od początku - miganie)
+                const same = [q('#dp-inbox .dp-prop') === card, q('#ev-inbox .ev-card') === ev];
+                const t1 = [card.querySelector('.lv-left').textContent, ev.querySelector('.lv-left').textContent];
+                const bar = card.querySelector('.lv-bar').style.width;
+                // druga propozycja dochodzi pod pierwszą - pierwsza karta zostaje tym samym elementem
+                D.proposals.push({ id: ++D._pid, from: g.nations[2], to: me, kind: 'nap', target: null, at: g.time, until: g.time + DIPLO.PROPOSAL_TTL, pay: null, def: 0 });
+                step(1.1);
+                const two = [...document.querySelectorAll('#dp-inbox .dp-prop')];
+                // panel Dyplomacji: te same karty, też bez podmieniania
+                ui.showNations(true);
+                ui.refresh();
+                const pc = q('.dpx-props .dp-prop');
+                step(1.1);
+                return { t0, t1, same, bar, two: two.length, firstSame: two[0] === card, panel: !!pc, panelSame: !!pc && q('.dpx-props .dp-prop') === pc };
+            });
+            assert.ok(r.t0[0] && r.t0[1], 'brak kart: ' + JSON.stringify(r));
+            assert.deepEqual(r.same, [true, true], 'karta powstała od nowa: ' + JSON.stringify(r));
+            assert.ok(Number(r.t1[0]) <= Number(r.t0[0]) - 3 && Number(r.t1[1]) <= Number(r.t0[1]) - 3, 'odliczanie: ' + JSON.stringify(r));
+            assert.ok(parseFloat(r.bar) < 100, 'pasek czasu: ' + r.bar);
+            assert.equal(r.two, 2);
+            assert.ok(r.firstSame, 'nowa propozycja podmieniła starą kartę');
+            assert.ok(r.panelSame, 'karta w panelu Dyplomacji powstała od nowa');
+            assertNoErrors(page);
+            await closeGame(page);
+        }
+    },
+    {
         name: 'Kampania 15 minut: wydarzenia trafiają do wszystkich nacji, SI decyduje sama',
         slow: true,
         async run() {
