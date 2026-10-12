@@ -1609,6 +1609,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
 #mid-layer.with-tutorial #dp-inbox { right: 364px; }
 .dp-inbox-more { align-self: flex-end; padding: 3px 10px; border-radius: 999px; background: rgba(13, 16, 23, 0.9); font-size: 11.5px; color: var(--label-2); cursor: pointer; }
 @keyframes dp-in { from { opacity: 0; transform: translateY(-6px); } }
+#dp-inbox .dp-prop.lv-same, .ev-card.lv-same { animation: none; }   /* V2.1: syncLiveCards */
 
 /* przyciski */
 .dp-btn { padding: 5px 11px; border-radius: 8px; border: 0; cursor: pointer; font: 600 12px var(--ui); color: var(--label); background: var(--fill); white-space: nowrap; }
@@ -2001,7 +2002,7 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                     <div class="pane-head"><div><div class="eyebrow">Dziennik zmian</div><h2>Co nowego</h2><p>Artificial Battles: Reloaded — nowa odsłona gry. Poniżej zmiany w tym wydaniu i historia wcześniejszych wersji.</p></div></div>
                     <div class="menu-card news-new">
                         <div class="eyebrow">Wydanie · Reloaded V2.1</div>
-                        <h2>Reloaded V2.1 — wolniejsze zbieranie surowców</h2>
+                        <h2>Reloaded V2.1 — wolniejsze zbieranie surowców i komunikaty Dyplomacji bez migania</h2>
                         <p>Aktualizacja balansu: surowce zbiera się o jedną czwartą wolniej — w Dyplomacji i w Klasycznym meczu. Każdy robotnik i każda łódź rybacka ma teraz większą wartość, a wydatki trzeba lepiej planować.</p>
 
                         <h3>Balans gospodarki</h3>
@@ -2009,6 +2010,12 @@ details.mp-more[open] summary { margin-bottom: 8px; }
                             <li><b>Zbieranie surowców −25% w obu trybach</b>: wycinka drewna, wydobycie złota i kamienia, plony z farm i sadów oraz połów ryb. Robotnik bez ulepszeń zbiera 3 jednostki na sekundę zamiast 4 w Klasycznym meczu i 2,4 zamiast 3,2 w Dyplomacji (tam zbieranie nadal jest o 20% wolniejsze niż w Klasycznym meczu).</li>
                             <li>Premie działają jak dotąd i mnożą się z nowym tempem: ulepszenia (Piła dwuręczna, Stalowe kilofy, Pług), Cuda Świata, Wydarzenia świata (urodzaj, złota żyła, susza…) i premia poziomu Skandalicznego.</li>
                             <li>Złoto z jabłek z sadu, ze szlaków handlowych i z łupów, daniny Cudów oraz dary w Dyplomacji — bez zmian (złoto z sadu maleje razem ze zbiorem jabłek).</li>
+                        </ul>
+
+                        <h3>Komunikaty bez migania</h3>
+                        <ul>
+                            <li><b>Karty propozycji Dyplomacji</b> (pokój, sojusz, umowa handlowa, pakty, trybut, wezwania) i <b>karty decyzji Wydarzeń świata</b> już nie migają. Wcześniej co sekundę, razem z odliczaniem, cała karta powstawała od nowa i jeszcze raz się pojawiała. Teraz zmieniają się tylko sekundy i pasek czasu, który płynnie maleje.</li>
+                            <li>Nowa propozycja dochodzi pod poprzednie, nie odświeżając tych, które już widać. Tak samo działają karty na ekranie Dyplomacji (Tab).</li>
                         </ul>
 
                         <h3>Zgodność</h3>
@@ -2937,6 +2944,38 @@ function pickPeoples(k, taken) {
 }
 // Tekst do wstawienia w HTML interfejsu (V2.0: jedna funkcja dla wszystkich paneli - wcześniej kilka kopii)
 function escHtml(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+// V2.1: karty z odliczaniem (propozycje Dyplomacji, decyzje Wydarzeń świata). Wcześniej sekundy i pasek czasu były
+// częścią HTML karty, więc co sekundę cała karta powstawała od nowa, a jej animacja wejścia (dp-in) zaczynała się od
+// początku - komunikaty migały. Teraz karta powstaje tylko wtedy, gdy zmieni się jej treść; sekundy (.lv-left) i pasek
+// (.lv-bar) są poprawiane na miejscu. items: [{ key, html, left, pct }] - left / pct tylko dla kart z odliczaniem.
+function syncLiveCards(box, items) {
+    const LIVE = /<span class="lv-left">\d+<\/span>|<i class="lv-bar" style="width:[\d.]+%">/g;
+    const old = new Map();
+    for (const c of box.children) if (c._lk !== undefined) old.set(c._lk, c);
+    const nodes = [];
+    for (const it of items) {
+        const sig = it.html.replace(LIVE, '');
+        let c = old.get(it.key);
+        if (!c || c._ls !== sig) {
+            const t = document.createElement('template');
+            t.innerHTML = it.html.trim();
+            const n = t.content.firstElementChild;
+            if (!n) continue;
+            if (c) n.classList.add('lv-same');   // zmieniona treść tej samej karty - bez ponownej animacji wejścia
+            n._lk = it.key; n._ls = sig;
+            c = n;
+        } else if (it.left !== undefined) {
+            const l = c.querySelector('.lv-left'), b = c.querySelector('.lv-bar'), w = it.pct.toFixed(1) + '%';
+            if (l && l.textContent !== String(it.left)) l.textContent = it.left;
+            if (b && b.style.width !== w) b.style.width = w;
+        }
+        nodes.push(c);
+    }
+    const want = new Set(nodes);
+    for (const c of [...box.children]) if (!want.has(c)) c.remove();
+    nodes.forEach((c, i) => { if (box.children[i] !== c) box.insertBefore(c, box.children[i] || null); });
+}
 // V1.2: własna nazwa nacji (Dyplomacja) - litery (także polskie), spacje, łącznik i apostrof, najwyżej 18 znaków.
 // Pusta albo taka sama jak nazwa nacji z palety (np. "Czerwoni") - brak własnej nazwy (zostaje nazwa koloru).
 function cleanNationName(v) {
@@ -9801,7 +9840,6 @@ class UIManager {
         this._warArmed = null;
         this.game.issue(cmd);
         if (window.soundManager) window.soundManager.playKeypress();
-        this._inboxSig = '';
         redraw();
     }
 
@@ -10018,7 +10056,8 @@ class UIManager {
         put('dpx-map', C.simple ? this.dpMapSimple(C) : this.dpMap(C));
         put('dpx-blocs', C.simple ? this.dpBlocsSimple(C) : this.dpBlocs(C));
         put('dpx-log', this.dpLog(C));
-        put('dpx-props', C.full ? '' : C.D.proposals.filter(p => p.to === C.me).map(p => this.diploPropHtml(p)).join(''));
+        const pb = el.querySelector('.dpx-props');   // V2.1: karty propozycji z odliczaniem na miejscu (syncLiveCards)
+        if (pb) syncLiveCards(pb, C.full ? [] : C.D.proposals.filter(p => p.to === C.me).map(p => this.diploPropItem(p)));
         put('dpx-tabs', C.simple ? this.dpTabsSimple(C) : this.dpTabs(C));
         put('dpx-card', C.simple ? (C.sel === C.me ? this.dpSimpleList(C) : this.dpSimpleCard(C, C.sel))
             : C.world ? this.dpWorld(C) : C.sel === C.me ? this.dpOverview(C) : this.dpDossier(C, C.sel));
@@ -10926,8 +10965,8 @@ class UIManager {
         const esc = escHtml;
         const nm = esc(p.from.shortName || p.from.name), pt = esc(Diplomacy.payText(p.pay));
         const left = Math.max(0, Math.ceil(p.until - g.time)), pct = Math.min(100, left / DIPLO.PROPOSAL_TTL * 100);
-        const bar = `<i class="dp-tbar"><i style="width:${pct.toFixed(1)}%"></i></i>`;
-        const card = (cls, title, sub, yes, no, yesT, noT) => `<div class="dp-prop ${cls}" data-dps="${g.nations.indexOf(p.from)}">${Rulers.img(p.from, g, 30)}<span class="dp-prop-t"><span>${title}</span><small>${sub} · ${left} s</small></span>
+        const bar = `<i class="dp-tbar"><i class="lv-bar" style="width:${pct.toFixed(1)}%"></i></i>`;
+        const card = (cls, title, sub, yes, no, yesT, noT) => `<div class="dp-prop ${cls}" data-dps="${g.nations.indexOf(p.from)}">${Rulers.img(p.from, g, 30)}<span class="dp-prop-t"><span>${title}</span><small>${sub} · <span class="lv-left">${left}</span> s</small></span>
             <span class="dp-act"><button class="dp-btn ok" data-dip="accept" data-id="${p.id}"${yesT ? ` title="${esc(yesT)}"` : ''}>${yes}</button><button class="dp-btn${cls === 'tribute' || cls === 'join' ? ' war' : ''}" data-dip="decline" data-id="${p.id}"${noT ? ` title="${esc(noT)}"` : ''}>${no}</button></span>${bar}</div>`;
         if (p.kind === 'tribute') {
             const r = me.resources, can = r.get('gold') >= (p.pay.gold || 0) && r.get('food') >= (p.pay.food || 0) && r.get('wood') >= (p.pay.wood || 0);
@@ -10970,11 +11009,17 @@ class UIManager {
         const el = this.el['dp-inbox'], g = this.game, D = g.diplo, me = this.playerNation;
         if (!el || !D) return;
         const mine = this.nationsOpen || this.locked || g.gameOver || me.defeated ? [] : D.proposals.filter(p => p.to === me);
-        let html = mine.slice(0, 3).map(p => this.diploPropHtml(p)).join('');
-        if (mine.length > 3) html += `<div class="dp-inbox-more" data-dpo="1">i jeszcze ${mine.length - 3} — otwórz Dyplomację (Tab)</div>`;
-        if (html !== this._inboxSig) { this._inboxSig = html; el.innerHTML = html; }
-        const show = html ? 'flex' : 'none';
+        const items = mine.slice(0, 3).map(p => this.diploPropItem(p));
+        if (mine.length > 3) items.push({ key: 'more', html: `<div class="dp-inbox-more" data-dpo="1">i jeszcze ${mine.length - 3} — otwórz Dyplomację (Tab)</div>` });
+        syncLiveCards(el, items);
+        const show = items.length ? 'flex' : 'none';
         if (el.style.display !== show) el.style.display = show;
+    }
+
+    // V2.1: karta propozycji dla syncLiveCards (odliczanie poprawiane na miejscu, bez migania)
+    diploPropItem(p) {
+        const left = Math.max(0, Math.ceil(p.until - this.game.time));
+        return { key: p.id, html: this.diploPropHtml(p), left, pct: Math.min(100, left / DIPLO.PROPOSAL_TTL * 100) };
     }
 
     // Górny pasek (Dyplomacja): dochód z umów handlowych obok złota, szczegóły w podpowiedzi
@@ -27875,7 +27920,6 @@ UIManager.prototype.initWorldEventsUI = function () {
         if (window.soundManager) window.soundManager.playKeypress();
         this._evGone = this._evGone || new Set();
         this._evGone.add(Number(b.dataset.evid));   // karta znika od razu (u gościa - zanim host odpowie)
-        this._evSig = '';
         this.updateEvents();
     });
 };
@@ -27891,7 +27935,7 @@ UIManager.prototype.updateEvents = function () {
     // karty decyzji
     const gone = this._evGone || new Set();
     const list = hide ? [] : W.pendingFor(me).filter(p => !gone.has(p.id) && p.until > t);
-    let html = '';
+    const items = [];
     for (const p of list.slice(0, 2)) {
         const d = WORLD_EVENTS[p.k];
         if (!d) continue;
@@ -27902,14 +27946,15 @@ UIManager.prototype.updateEvents = function () {
         else if (p.k === 'scholar') what = `nauczy was: <b>${esc((GameConfig.upgrades[p.up] || {}).name || '?')}</b> za <b class="tr">${WorldEvents.costText(p.cost)}</b>`;
         else if (p.k === 'tournament') what = `każdy żołnierz zyskuje gwiazdkę weterana · koszt <b class="tr">${WorldEvents.costText(p.cost)}</b>`;
         else what = `koszt <b class="tr">${WorldEvents.costText(p.cost)}</b> · inaczej ${esc(d.fx2 || '')}`;
-        html += `<div class="ev-card ${d.tone}"><span class="ev-ico">${d.icon}</span><span class="ev-t"><span><b>${esc(d.name)}</b> — ${esc(d.desc.toLowerCase())}</span><small>${what} · ${left} s</small></span>
+        const html = `<div class="ev-card ${d.tone}"><span class="ev-ico">${d.icon}</span><span class="ev-t"><span><b>${esc(d.name)}</b> — ${esc(d.desc.toLowerCase())}</span><small>${what} · <span class="lv-left">${left}</span> s</small></span>
             <span class="ev-act"><button class="dp-btn ok" data-evid="${p.id}" data-evc="0"${block ? ` disabled title="${esc(block)}"` : ''}>${esc(d.c[0])}</button><button class="dp-btn" data-evid="${p.id}" data-evc="1">${esc(d.c[1])}</button></span>
-            <i class="dp-tbar"><i style="width:${pct.toFixed(1)}%"></i></i></div>`;
+            <i class="dp-tbar"><i class="lv-bar" style="width:${pct.toFixed(1)}%"></i></i></div>`;
+        items.push({ key: p.id, html, left, pct });
     }
-    if (html !== this._evSig) { this._evSig = html; box.innerHTML = html; }
-    const show = html ? 'flex' : 'none';
+    syncLiveCards(box, items);   // V2.1: odliczanie na miejscu - karta nie miga co sekundę
+    const show = items.length ? 'flex' : 'none';
     if (box.style.display !== show) box.style.display = show;
-    if (html) {
+    if (items.length) {
         // pod kartami propozycji Dyplomacji (jeśli są)
         const ib = this.el['dp-inbox'], top = ib && ib.style.display !== 'none' ? ib.offsetTop + ib.offsetHeight + 8 : 10;
         if (box._top !== top) { box._top = top; box.style.top = top + 'px'; }

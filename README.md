@@ -4,10 +4,12 @@ Gra w jednym pliku HTML
 Najnowsze wydanie: **Artificial Battles - Reloaded V2.1.html** (otwórz w przeglądarce, działa offline).
 Poprzednie wydanie, **Artificial Battles - Reloaded V1.5.2.html**, zostaje w repozytorium.
 
-**Reloaded V2.1** — wolniejsze zbieranie surowców:
+**Reloaded V2.1** — wolniejsze zbieranie surowców i komunikaty Dyplomacji bez migania:
 - **Zbieranie surowców −25% w obu trybach** (Dyplomacja i Klasyczny mecz): drewno, złoto, kamień, farmy, sady i połów.
   Robotnik bez ulepszeń zbiera 3 jednostki na sekundę zamiast 4 (w Dyplomacji 2,4 zamiast 3,2). Premie z ulepszeń, Cudów,
   Wydarzeń świata i poziomu Skandalicznego mnożą się z nowym tempem; handel, łupy i daniny bez zmian.
+- **Komunikaty bez migania** — karty propozycji Dyplomacji i decyzji Wydarzeń świata nie powstają już co sekundę od
+  nowa (z animacją wejścia); zmieniają się tylko sekundy i pasek czasu, także na ekranie Dyplomacji.
 - Gra wieloosobowa wymaga V2.1; zapisy z Reloaded V1.0–V2.0 wczytują się.
 
 **Reloaded V2.0** — Wydarzenia świata, Kronika bitwy i wozy kupieckie, które nie gubią drogi:
